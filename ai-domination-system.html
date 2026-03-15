@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AI Search Playbook — £497 | PharmoDigital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #0f172a;
+      --navy-light: #1e293b;
+      --teal: #14b8a6;
+      --teal-dark: #0d9488;
+      --cream: #f5f3ef;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --white: #ffffff;
+      --sage: #4d7b6f;
+      --sage-mid: #8B9D83;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #fef7ed;
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--teal); color: white; }
+    .btn-primary:hover { background: var(--teal-dark); }
+    .btn-dark { background: var(--navy); color: white; }
+    .btn-dark:hover { background: var(--navy-light); transform: translateY(-1px); }
+
+    /* ─── Motion: Global reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ─── Motion: Price card float ─── */
+    @keyframes priceFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    .final-cta-price-card.floating {
+      animation: priceFloat 3s ease-in-out infinite;
+    }
+
+    /* ─── Motion: Math pulse ─── */
+    @keyframes mathPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .math-total-num.pulse {
+      animation: mathPulse 0.4s ease-out;
+    }
+    .math-card.highlighted .math-total-num.glow {
+      text-shadow: 0 0 20px rgba(20,184,166,0.4), 0 0 40px rgba(20,184,166,0.15);
+      transition: text-shadow 0.6s ease;
+    }
+
+    /* ─── Motion: Timeline progressive ─── */
+    .next-step .next-step-circle {
+      transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .next-step.activated .next-step-circle {
+      background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(20,184,166,0.15);
+    }
+    .next-step.activated .next-step-circle-num {
+      color: white;
+    }
+    .next-step:not(:last-child)::after {
+      transition: background 0.5s ease 0.2s;
+    }
+    .next-step.activated:not(:last-child)::after {
+      background: var(--teal);
+    }
+    .next-step .next-step-body {
+      opacity: 0;
+      transform: translateX(16px);
+      transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .next-step.activated .next-step-body {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ─── Motion: FAQ answer fade ─── */
+    .faq-answer-inner {
+      opacity: 0;
+      transition: opacity 0.25s ease 0.15s;
+    }
+    .faq-item.open .faq-answer-inner {
+      opacity: 1;
+    }
+
+    /* ─── Motion: CTA arrow micro-interaction ─── */
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .btn:hover .btn-arrow,
+    .teal-strip-btn:hover .btn-arrow,
+    .final-cta-price-btn:hover .btn-arrow,
+    .cta-band-btn-primary:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+    .btn-outline {
+      background: white;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+    .btn-outline:hover { background: var(--navy); color: white; }
+    .btn-lg {
+      padding: 1.125rem 2.5rem;
+      font-size: 1.0625rem;
+      font-weight: 700;
+    }
+
+    /* ─── Nav ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(254,247,237,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .nav-brand span {
+      color: var(--teal);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy);
+      color: white !important;
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+    }
+    .nav-cta:hover { background: var(--navy-light) !important; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ─── Hero ─── */
+    .playbook-hero {
+      background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+      padding: 6rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .playbook-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .playbook-hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .playbook-hero-eyebrow::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 2px;
+      background: var(--teal);
+      opacity: 0.6;
+    }
+    .playbook-hero-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+      font-weight: 700;
+      color: #1a2b3c;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .playbook-hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+    }
+    .playbook-hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .playbook-hero-stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1a2b3c;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .playbook-hero-stat-label {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .playbook-hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .playbook-hero-note {
+      font-size: 0.875rem;
+      color: var(--gray-400);
+    }
+    .playbook-hero-image {
+      position: relative;
+    }
+    .playbook-hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow:
+        0 4px 6px -1px rgba(0,0,0,0.05),
+        0 25px 50px -12px rgba(0,0,0,0.18),
+        0 50px 80px -20px rgba(0,0,0,0.1);
+      transform: rotate(1deg);
+      transition: transform 0.4s ease;
+    }
+    .playbook-hero-image:hover img {
+      transform: rotate(0deg) scale(1.01);
+    }
+    .playbook-hero-image-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -1.5rem;
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .playbook-hero-image-badge-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .playbook-hero-image-badge-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 900px) {
+      .playbook-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .playbook-hero-subtitle { max-width: 100%; }
+      .playbook-hero-image { display: none; }
+    }
+    @media (max-width: 640px) {
+      .playbook-hero { padding: 4rem 1.5rem 3rem; }
+      .playbook-hero-stats { flex-direction: column; gap: 1rem; }
+      .playbook-hero-cta { flex-direction: column; }
+    }
+
+    /* ─── Section utility ─── */
+    .section-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .section-eyebrow.sage { color: var(--sage); }
+    .section-headline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-subheadline {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    /* ─── Problem Section ─── */
+    .problem-section {
+      display: flex;
+      width: 100%;
+    }
+    .problem-left {
+      width: 40%;
+      background: var(--navy);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .problem-right {
+      width: 60%;
+      background: var(--cream);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .problem-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+    }
+    .problem-text {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .problem-text:last-of-type { margin-bottom: 0; }
+    .problem-text strong { color: white; }
+    .problem-right-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .problem-right-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .problem-right-text {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 440px;
+    }
+    .problem-compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .problem-compare-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .problem-compare-card.muted { opacity: 0.6; }
+    .problem-compare-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 0.75rem;
+    }
+    .problem-compare-label.teal { color: var(--sage); }
+    .problem-compare-item {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .problem-compare-item::before { content: '·'; color: var(--gray-400); font-weight: 700; }
+    .problem-compare-card.good .problem-compare-item::before { content: '✓'; color: var(--teal); font-size: 0.75rem; }
+    .problem-compare-card.good .problem-compare-item { color: #1a2b3c; font-weight: 500; }
+
+    /* Teal strip */
+    .teal-strip {
+      background: var(--teal);
+      padding: 1.75rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .teal-strip-text {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: white;
+    }
+    .teal-strip-btn {
+      background: white;
+      color: var(--teal);
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .teal-strip-btn:hover { background: #f0fdf9; transform: translateY(-1px); }
+
+    @media (max-width: 900px) {
+      .problem-section { flex-direction: column; }
+      .problem-left, .problem-right { width: 100%; padding: 3.5rem 2rem; }
+      .problem-compare-grid { grid-template-columns: 1fr; }
+      .teal-strip { flex-direction: column; gap: 1.25rem; text-align: center; padding: 2rem; }
+    }
+
+    /* ─── Proof Section (navy) ─── */
+    .proof-section {
+      background: var(--navy);
+      padding: 6rem 2rem;
+    }
+    .proof-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .proof-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .proof-header .section-headline { color: white; }
+    .proof-header .section-subheadline { color: rgba(255,255,255,0.65); max-width: 580px; margin: 0 auto; }
+
+    .proof-cases {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .proof-case {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .proof-case.reverse { direction: rtl; }
+    .proof-case.reverse > * { direction: ltr; }
+
+    .proof-case-image-wrap {
+      position: relative;
+    }
+    .proof-case-image-wrap img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+      border: 3px solid rgba(255,255,255,0.1);
+    }
+    .proof-case-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px; right: 12px; bottom: 12px;
+      border: 2px solid var(--teal);
+      border-radius: 16px;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    .proof-case-content { }
+    .proof-case-client-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .proof-case-client-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+    }
+    .proof-case-client-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2dd4bf;
+      background: rgba(20,184,166,0.12);
+      border: 1px solid rgba(20,184,166,0.3);
+      border-radius: 100px;
+      padding: 0.25rem 0.65rem;
+      white-space: nowrap;
+    }
+
+    .proof-case-result {
+      background: #1A202C;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--teal);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 3px solid var(--teal);
+    }
+    .proof-case-result-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2dd4bf;
+      margin-bottom: 0.5rem;
+    }
+    .proof-case-result-text {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.6;
+    }
+    .proof-case-result-text strong { color: white; }
+    .proof-how {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .proof-how-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.5rem;
+    }
+    .proof-how-text {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+    .proof-how-text strong { color: rgba(255,255,255,0.95); }
+    .proof-case-quote {
+      background: rgba(20,184,166,0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(20,184,166,0.2);
+      margin-top: 1rem;
+    }
+    .proof-case-quote-text {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+    .proof-case-quote-text strong { color: #2dd4bf; font-style: normal; }
+    .proof-case-quote-attr {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+
+    /* Bing rankings mockup */
+    .proof-bing-wrap {
+      margin-top: 4rem;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+    .proof-bing-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .proof-case { grid-template-columns: 1fr; gap: 2rem; }
+      .proof-case.reverse { direction: ltr; }
+      .proof-case-image-wrap img { height: 260px; object-fit: cover; }
+    }
+    @media (max-width: 600px) {
+      .proof-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── The Shift (level playing field) ─── */
+    .playing-field {
+      background: var(--cream);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .playing-field-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .playing-field-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .playing-field-header .section-subheadline {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .playing-field-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin-bottom: 4rem;
+    }
+    .playing-field-col {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+      background: white;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
+    .playing-field-col-label {
+      padding: 0.875rem 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .playing-field-col.old .playing-field-col-label {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+    .playing-field-col.new .playing-field-col-label {
+      background: rgba(20,184,166,0.08);
+      color: var(--sage);
+    }
+    .playing-field-col-body {
+      padding: 1.75rem;
+    }
+    .playing-field-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .playing-field-row:last-child { border-bottom: none; }
+    .playing-field-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .playing-field-col.old .playing-field-dot { background: var(--gray-400); }
+    .playing-field-col.new .playing-field-dot { background: var(--teal); }
+    .playing-field-row-text {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .playing-field-col.old .playing-field-row-text { color: var(--gray-600); }
+    .playing-field-col.new .playing-field-row-text { color: #1a2b3c; font-weight: 500; }
+    .playing-field-col-caption {
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--gray-100);
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.55;
+    }
+
+    .playing-field-callout {
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+    }
+    .playing-field-callout p {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+    }
+    .playing-field-callout p span { color: var(--teal); }
+
+    @media (max-width: 768px) {
+      .playing-field-compare { grid-template-columns: 1fr; }
+      .playing-field { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── System (What You Get) ─── */
+    .system-section {
+      background: #fef7ed;
+      padding: 6rem 2rem;
+    }
+    .system-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .system-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .system-modules {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .system-module {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+      transition: all 0.25s ease;
+    }
+    .system-module:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .system-module-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(77,123,111,0.1);
+      border: 2px solid rgba(77,123,111,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--sage);
+      flex-shrink: 0;
+    }
+    .system-module-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+    .system-module-subheadline {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.55;
+      margin-bottom: 1.125rem;
+    }
+    .system-module-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .system-module-check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 0.9375rem;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .system-module-check-item .check-icon {
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .system-intro-text {
+      font-size: 1rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      max-width: 820px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .system-intro-text + .system-intro-text { margin-top: -1.75rem; }
+    .system-included-subheading {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .system-included-subheading:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .system-early-buyers {
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--teal);
+    }
+    .system-early-buyers h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+    }
+    .system-early-buyers p {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 0.875rem;
+    }
+    .system-early-buyers p:last-child { margin-bottom: 0; }
+    .system-early-buyers strong { color: white; }
+
+    /* ─── Search Console Proof Section ─── */
+    .sc-proof-section {
+      background: var(--cream);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .sc-proof-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sc-proof-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .sc-proof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      align-items: start;
+    }
+    .sc-proof-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .sc-proof-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    /* Fixed-height image container so both screenshots sit at same height */
+    .sc-proof-img-wrap {
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sc-proof-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    /* Caption rebuilt: bigger text, two-line layout, consistent alignment */
+    .sc-proof-caption {
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex: 1;
+    }
+    .sc-proof-caption-header {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 0.625rem;
+    }
+    .sc-proof-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+    .sc-proof-caption-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .sc-proof-caption-result {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 0.625rem;
+    }
+    .sc-proof-caption-data {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--sage);
+      text-transform: uppercase;
+    }
+    .sc-proof-footer {
+      text-align: center;
+    }
+    .sc-proof-footer p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    @media (max-width: 768px) {
+      .sc-proof-grid { grid-template-columns: 1fr; }
+      .sc-proof-section { padding: 4rem 1.5rem; }
+      .sc-proof-img-wrap { height: 200px; }
+      .sc-proof-card:first-child .sc-proof-img { object-position: 15% top; }
+    }
+
+    /* ─── Three Tier Cards ─── */
+    .system-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .system-tier-card {
+      border-radius: 16px;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .system-tier-card.manual {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-left: 4px solid var(--sage);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .system-tier-card.automated {
+      background: var(--navy);
+      border: 1px solid rgba(20,184,166,0.3);
+      border-left: 4px solid var(--teal);
+      box-shadow: 0 8px 30px rgba(20,184,166,0.1);
+    }
+    .system-tier-card.lifetime {
+      background: #fcf9f4;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .system-tier-header {
+      padding: 1.5rem 1.5rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .system-tier-card.automated .system-tier-header {
+      border-bottom-color: rgba(255,255,255,0.08);
+    }
+    .system-tier-card.lifetime .system-tier-header {
+      border-bottom-color: rgba(0,0,0,0.06);
+    }
+    .system-tier-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .system-tier-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .system-tier-card.manual .system-tier-icon {
+      background: rgba(77,123,111,0.12);
+    }
+    .system-tier-card.automated .system-tier-icon {
+      background: rgba(20,184,166,0.15);
+    }
+    .system-tier-card.lifetime .system-tier-icon {
+      background: rgba(180,160,130,0.15);
+    }
+    .system-tier-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .system-tier-card.manual .system-tier-title,
+    .system-tier-card.lifetime .system-tier-title { color: var(--navy); }
+    .system-tier-card.automated .system-tier-title { color: white; }
+    .system-tier-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.6rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .system-tier-status.available {
+      background: rgba(77,123,111,0.12);
+      color: var(--sage);
+    }
+    .system-tier-status.coming {
+      background: rgba(20,184,166,0.15);
+      color: var(--teal);
+    }
+    .system-tier-status.included {
+      background: rgba(180,160,130,0.15);
+      color: #8b7355;
+    }
+    .system-tier-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--gray-500);
+      padding: 0.25rem 0.5rem;
+      background: rgba(0,0,0,0.04);
+      border-radius: 4px;
+    }
+    .system-tier-card.automated .system-tier-count {
+      color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.08);
+    }
+    .system-tier-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .system-tier-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+    .system-tier-list li {
+      font-size: 0.9375rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.45;
+    }
+    .system-tier-card.manual .system-tier-list li,
+    .system-tier-card.lifetime .system-tier-list li { color: var(--gray-700); }
+    .system-tier-card.automated .system-tier-list li { color: rgba(255,255,255,0.75); }
+    .system-tier-list li.highlight {
+      font-weight: 600;
+      padding: 0.5rem 0.625rem;
+      margin: 0.25rem -0.625rem;
+      border-radius: 8px;
+    }
+    .system-tier-card.manual .system-tier-list li.highlight {
+      background: rgba(77,123,111,0.08);
+      color: var(--sage);
+    }
+    .system-tier-card.automated .system-tier-list li.highlight {
+      background: rgba(20,184,166,0.12);
+      color: var(--teal);
+    }
+    .system-tier-card.lifetime .system-tier-list li.highlight {
+      background: rgba(180,160,130,0.1);
+      color: #6b5a40;
+    }
+    .system-tier-check {
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+      margin-top: 0.1em;
+    }
+    .system-tier-card.manual .system-tier-check { color: var(--sage); }
+    .system-tier-card.lifetime .system-tier-check { color: #a08060; }
+    .system-tier-value-strap {
+      background: rgba(20,184,166,0.08);
+      border: 1px solid rgba(20,184,166,0.15);
+      border-radius: 12px;
+      padding: 1.25rem 2rem;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .system-tier-value-strap span {
+      font-size: 0.9375rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .system-tier-value-strap span strong {
+      color: var(--teal);
+      font-weight: 700;
+    }
+    @media (max-width: 900px) {
+      .system-tiers { grid-template-columns: 1fr; }
+      .system-tier-card { border-left-width: 4px !important; }
+    }
+
+    .system-timeline {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 0;
+    }
+    .system-timeline-block {
+      text-align: center;
+      padding: 1.25rem 1rem;
+      border-right: 1px solid rgba(0,0,0,0.07);
+    }
+    .system-timeline-block:last-child { border-right: none; }
+    .system-timeline-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 0.375rem;
+    }
+    .system-timeline-label {
+      font-size: 0.8125rem;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .system-module { grid-template-columns: 44px 1fr; gap: 1.25rem; padding: 1.5rem; }
+      .system-whats-included { padding: 2rem 1.75rem; }
+      .system-section { padding: 4rem 1.5rem; }
+      .system-timeline { grid-template-columns: 1fr; }
+      .system-timeline-block { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
+      .system-timeline-block:last-child { border-bottom: none; }
+    }
+
+    /* ─── The Math ─── */
+    .math-section {
+      background: var(--cream);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .math-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+    .math-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .math-intro {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      text-align: center;
+      max-width: 640px;
+      margin: -1.5rem auto 3.5rem;
+    }
+
+    /* Audience cards */
+    .math-audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .math-audience-card {
+      border-radius: 20px;
+      padding: 2.5rem 2.5rem 2.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .math-audience-card:hover {
+      transform: translateY(-3px);
+    }
+    /* Card 1 — Navy (the hero card) */
+    .math-audience-card:nth-child(1) {
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .math-audience-card:nth-child(1) h3 { color: white; }
+    .math-audience-card:nth-child(1) p { color: rgba(255,255,255,0.7); }
+    .math-audience-card:nth-child(1) .math-audience-label { color: var(--teal); }
+    .math-audience-card:nth-child(1) .math-audience-metric { color: var(--teal); }
+    /* Card 2 — White */
+    .math-audience-card:nth-child(2) {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .math-audience-card:nth-child(2) .math-audience-label { color: var(--sage); }
+    .math-audience-card:nth-child(2) .math-audience-metric { color: var(--sage); }
+    /* Card 3 — Sage subtle */
+    .math-audience-card:nth-child(3) {
+      background: linear-gradient(145deg, #f0f5f3 0%, #eaf2ef 100%);
+      border: 1px solid rgba(77,123,111,0.1);
+    }
+    .math-audience-card:nth-child(3) .math-audience-label { color: var(--sage); }
+    .math-audience-card:nth-child(3) .math-audience-metric { color: var(--sage); }
+    /* Card 4 — Cream/warm */
+    .math-audience-card:nth-child(4) {
+      background: #fcf9f4;
+      border: 1px solid rgba(160,128,96,0.1);
+    }
+    .math-audience-card:nth-child(4) .math-audience-label { color: #8b7355; }
+    .math-audience-card:nth-child(4) .math-audience-metric { color: #8b7355; }
+
+    .math-audience-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .math-audience-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.625rem;
+      line-height: 1.2;
+    }
+    .math-audience-metric {
+      font-family: 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .math-audience-card p {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .math-audience-grid { grid-template-columns: 1fr; }
+      .math-audience-card { padding: 2rem 1.75rem 1.75rem; }
+      .math-audience-metric { font-size: 1.625rem; }
+    }
+
+    /* Comparison */
+    .math-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .math-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .math-card.highlighted {
+      border-color: rgba(20,184,166,0.3);
+      box-shadow: 0 8px 40px rgba(20,184,166,0.08);
+    }
+    .math-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      padding: 0.375rem 0.875rem;
+      border-radius: 100px;
+      display: inline-block;
+    }
+    .math-card-label.old { background: var(--gray-100); color: var(--gray-600); }
+    .math-card-label.new { background: rgba(20,184,166,0.1); color: var(--sage); }
+    .math-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.875rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .math-row:last-of-type { border-bottom: none; }
+    .math-row-name { font-size: 1rem; color: var(--gray-600); }
+    .math-row-val { font-size: 1rem; font-weight: 600; color: var(--navy); }
+    .math-total {
+      padding: 1rem 0 0;
+      border-top: 2px solid rgba(0,0,0,0.08);
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .math-total-label { font-size: 1.125rem; font-weight: 700; }
+    .math-card:not(.highlighted) .math-total-label { color: #dc2626; }
+    .math-card.highlighted .math-total-label { color: var(--teal); }
+    .math-total-num { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+    .math-card:not(.highlighted) .math-total-num { color: #dc2626; }
+    .math-card.highlighted .math-total-num { color: var(--teal); }
+    .math-card-note {
+      font-size: 0.9375rem;
+      color: var(--gray-400);
+      text-align: center;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-100);
+    }
+    .math-card.highlighted .math-card-note { color: #1a2b3c; font-weight: 500; }
+
+    .math-difference {
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .math-difference-main {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 0.375rem;
+    }
+    .math-difference-sub {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+    }
+
+    .math-callout {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .math-callout p {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.4;
+    }
+    .math-callout p span { color: var(--teal); }
+
+    @media (max-width: 768px) {
+      .math-compare { grid-template-columns: 1fr; }
+      .math-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── What Happens Next (timeline) ─── */
+    .next-section {
+      background: #fef7ed;
+      padding: 6rem 2rem;
+    }
+    .next-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .next-header { text-align: center; margin-bottom: 3.5rem; }
+    .next-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .next-step {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1.5rem;
+      position: relative;
+    }
+    .next-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 25px; top: 52px; bottom: -28px;
+      width: 2px;
+      background: rgba(0,0,0,0.07);
+    }
+    .next-step + .next-step { margin-top: 2rem; }
+    .next-step-node { display: flex; align-items: flex-start; flex-shrink: 0; }
+    .next-step-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: white;
+    }
+    .next-step-circle-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--sage);
+    }
+    .next-step-body { padding-top: 0.875rem; padding-bottom: 2rem; }
+    .next-step-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.375rem;
+    }
+    .next-step-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.375rem;
+    }
+    .next-step-text {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+    .next-step.final .next-step-circle {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .next-step.final .next-step-circle-num { color: var(--teal); }
+    .next-step.final .next-step-label { color: var(--sage); }
+    .next-step.final .next-step-title { color: var(--teal); font-size: 1.25rem; }
+    .next-step.final .next-step-text { color: var(--navy); font-weight: 500; font-size: 1rem; }
+
+    @media (max-width: 600px) {
+      .next-step { grid-template-columns: 44px 1fr; gap: 1rem; }
+      .next-step-circle { width: 44px; height: 44px; }
+      .next-step:not(:last-child)::after { left: 21px; top: 44px; }
+      .next-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section {
+      background: var(--cream);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .faq-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-header { text-align: center; margin-bottom: 3.5rem; }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .faq-item {
+      background: white;
+      border-radius: 0;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-bottom: none;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+    .faq-item:first-child { border-radius: 16px 16px 0 0; }
+    .faq-item:last-child { border-radius: 0 0 16px 16px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .faq-question {
+      padding: 1.5rem 1.75rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+    .faq-question:hover { background: #fefefe; }
+    .faq-question-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+    .faq-icon {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gray-200);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      color: var(--gray-400);
+      transition: all 0.2s;
+    }
+    .faq-item.open .faq-icon {
+      border-color: var(--teal);
+      color: var(--teal);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner {
+      padding: 0 1.75rem 1.5rem;
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      border-top: 1px solid var(--gray-100);
+      padding-top: 1rem;
+      margin: 0 1.75rem 1.5rem;
+      border: none;
+    }
+    .faq-answer-inner strong { color: var(--navy); }
+
+    @media (max-width: 600px) {
+      .faq-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── Guarantee ─── */
+    .guarantee-section {
+      background: var(--navy);
+      padding: 6rem 2rem;
+    }
+    .guarantee-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .guarantee-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(20,184,166,0.12);
+      border: 1px solid rgba(20,184,166,0.3);
+      border-radius: 100px;
+      padding: 0.625rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .guarantee-badge-icon { font-size: 1.25rem; }
+    .guarantee-badge-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .guarantee-headline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.875rem, 4vw, 2.875rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .guarantee-body {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+    .guarantee-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .guarantee-proof-card {
+      background: #1A202C;
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: left;
+    }
+    .guarantee-proof-client {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(20,184,166,0.8);
+      margin-bottom: 0.5rem;
+    }
+    .guarantee-proof-stat {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .guarantee-proof-desc {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .guarantee-personal {
+      background: rgba(20,184,166,0.1);
+      border: 1px solid rgba(20,184,166,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    .guarantee-personal-text {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.65;
+    }
+    .guarantee-personal-text strong { color: white; }
+
+    @media (max-width: 768px) {
+      .guarantee-proof-grid { grid-template-columns: 1fr; }
+      .guarantee-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── Final CTA ─── */
+    .final-cta {
+      background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+      padding: 6rem 2rem;
+    }
+    .final-cta-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .final-cta-header {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 4rem;
+      align-items: start;
+      margin-bottom: 4rem;
+    }
+    .final-cta-left .section-headline { color: #1a2b3c; }
+    .final-cta-body {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .final-cta-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      margin-bottom: 2rem;
+    }
+    .final-cta-features li {
+      font-size: 0.9375rem;
+      color: #374151;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      line-height: 1.5;
+    }
+    .final-cta-price-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.06);
+      position: sticky;
+      top: 100px;
+    }
+    .final-cta-price-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+    .final-cta-price-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .final-cta-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      margin-bottom: 1.25rem;
+    }
+    .final-cta-price-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .final-cta-price-qualifier {
+      font-size: 0.9375rem;
+      color: var(--gray-400);
+    }
+    .final-cta-price-btn {
+      display: block;
+      text-align: center;
+      padding: 1.125rem 1.5rem;
+      background: var(--sage-mid);
+      color: white;
+      font-weight: 700;
+      font-size: 1.0625rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.875rem;
+    }
+    .final-cta-price-btn:hover {
+      background: #7a8c73;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(139,157,131,0.4);
+    }
+    .final-cta-price-secondary {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--gray-400);
+    }
+    .final-cta-price-secondary a {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* Two choices at bottom */
+    .final-choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .final-choice {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .final-choice.dim { opacity: 0.7; }
+    .final-choice-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.375rem 0.875rem;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .final-choice.dim .final-choice-label { background: #fee2e2; color: #dc2626; }
+    .final-choice:not(.dim) .final-choice-label { background: rgba(20,184,166,0.1); color: var(--sage); }
+    .final-choice-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .final-choice-text {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+      .final-cta-header { grid-template-columns: 1fr; gap: 2rem; }
+      .final-cta-price-card { position: static; }
+      .final-choices { grid-template-columns: 1fr; }
+      .final-cta { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── CTA Band (sage) ─── */
+    .cta-band {
+      background: #8B9D83;
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+    .cta-band-inner { max-width: 800px; margin: 0 auto; }
+    .cta-band-headline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+    .cta-band-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .cta-band-btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.875rem 1.75rem;
+      background: white; color: #2d3f35;
+      font-weight: 600; font-size: 0.95rem;
+      border-radius: 8px; text-decoration: none;
+      transition: all 0.2s; border: 2px solid white;
+    }
+    .cta-band-btn-primary:hover { background: #f5f5f5; }
+    .cta-band-btn-outline {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.875rem 1.75rem;
+      background: transparent; color: white;
+      font-weight: 600; font-size: 0.95rem;
+      border-radius: 8px; text-decoration: none;
+      transition: all 0.2s; border: 2px solid rgba(255,255,255,0.7);
+    }
+    .cta-band-btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+    .cta-band-proof { font-size: 0.875rem; color: rgba(255,255,255,0.75); }
+    @media (max-width: 600px) {
+      .cta-band-buttons { flex-direction: column; align-items: center; }
+      .cta-band-btn-primary, .cta-band-btn-outline { width: 100%; max-width: 320px; }
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      padding: 4rem 0 2rem;
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand-name {
+      color: white; font-size: 1.125rem; font-weight: 700;
+      text-decoration: none; display: inline-block; margin-bottom: 0.375rem;
+    }
+    .footer-brand-tagline { color: rgba(255,255,255,0.5); font-size: 0.875rem; margin-bottom: 0.875rem; }
+    .footer-brand-desc { color: rgba(255,255,255,0.6); line-height: 1.65; font-size: 0.9375rem; max-width: 280px; margin-bottom: 1.125rem; }
+    .footer-brand-link { display: inline-block; color: #8B9D83; font-size: 0.875rem; font-weight: 600; text-decoration: none; }
+    .footer-brand-link:hover { text-decoration: underline; }
+    .footer-col h4 { font-size: 0.875rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.25rem; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 0.75rem; transition: color 0.2s; font-size: 0.9375rem; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
+    @media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+    @media (max-width: 640px) { .footer-top { grid-template-columns: 1fr; gap: 2rem; } .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; } }
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="case-study-ealing.html">Case Studies</a>
+        <a href="#what-you-get">What's Inside</a>
+        <a href="#buy-now" class="nav-cta">Get The Playbook — £497</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="playbook-hero">
+    <div class="playbook-hero-inner">
+      <div class="playbook-hero-content">
+        <p class="playbook-hero-eyebrow">The AI Search Playbook</p>
+        <h1 class="playbook-hero-title">The Exact System That Got 3 Practices AI Search Domination</h1>
+        <p class="playbook-hero-subtitle">Ealing: Zero to #1 in Google AI Overviews (6 weeks). Superior: 50% of revenue from ChatGPT (8 weeks). Puri: #1 UK Mounjaro provider (national expansion). One playbook. Three transformations. £497.</p>
+        <div class="playbook-hero-stats">
+          <div>
+            <div class="playbook-hero-stat-num">300%</div>
+            <div class="playbook-hero-stat-label">Revenue Growth</div>
+          </div>
+          <div>
+            <div class="playbook-hero-stat-num">50%</div>
+            <div class="playbook-hero-stat-label">ChatGPT Sales</div>
+          </div>
+          <div>
+            <div class="playbook-hero-stat-num">#1 UK</div>
+            <div class="playbook-hero-stat-label">Rankings</div>
+          </div>
+        </div>
+        <div class="playbook-hero-cta">
+          <a href="#buy-now" class="btn btn-dark btn-lg">Get The Playbook — £497 <span class="btn-arrow">→</span></a>
+          <a href="#what-you-get" class="btn btn-outline btn-lg">See What's Inside</a>
+        </div>
+        <p class="playbook-hero-note" style="font-size: 0.9375rem; color: #4b5563; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;"><span>✓ Training</span><span>✓ Prompts</span><span>✓ Templates</span><span>✓ Monthly calls</span><span>✓ Lifetime access</span></p>
+      </div>
+      <div class="playbook-hero-image">
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772985250408-0.jpeg" alt="AI Search Playbook for Healthcare - Device Mockup">
+        <div class="playbook-hero-image-badge">
+          <div class="playbook-hero-image-badge-num">£497</div>
+          <div class="playbook-hero-image-badge-label">One payment · Yours forever</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Level Playing Field split -->
+  <section>
+    <div class="problem-section">
+      <div class="problem-left">
+        <p class="section-eyebrow">The Problem</p>
+        <h2 class="problem-title">National Chains Spend Millions. You Can't Compete.</h2>
+        <p class="problem-text">Boots has a <strong>£50M+ marketing budget</strong> and decades of domain authority. Bupa has unlimited ad spend. You have neither.</p>
+        <p class="problem-text">You're paying agencies <strong>£5k/month</strong>. Running ads at <strong>£3k/month</strong>. Competing with players who have 100× your resources.</p>
+        <p class="problem-text">Not because your service is worse. Because their authority was insurmountable.</p>
+        <p class="problem-text" style="color: #2dd4bf; font-weight: 600; font-size: 1.125rem;">Then AI search happened.</p>
+      </div>
+      <div class="problem-right">
+        <p class="problem-right-eyebrow">The Shift</p>
+        <h2 class="problem-right-title">AI Search Doesn't Care About Brand Size</h2>
+        <p class="problem-right-text">ChatGPT doesn't rank by marketing budget. Google AI Overviews don't favour chains. Claude doesn't care about your domain authority. They rank by content quality.</p>
+        <div class="problem-compare-grid">
+          <div class="problem-compare-card muted">
+            <div class="problem-compare-label">The Old Game</div>
+            <div class="problem-compare-item">Authority wins</div>
+            <div class="problem-compare-item">Marketing budgets</div>
+            <div class="problem-compare-item">Backlinks &amp; brand size</div>
+            <div class="problem-compare-item">Years to compete</div>
+          </div>
+          <div class="problem-compare-card good">
+            <div class="problem-compare-label teal">The New Game</div>
+            <div class="problem-compare-item">Content wins</div>
+            <div class="problem-compare-item">Best answer wins</div>
+            <div class="problem-compare-item">Quality over authority</div>
+            <div class="problem-compare-item">Weeks to rank</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="teal-strip">
+      <p class="teal-strip-text">First time in 20 years independent practices can outrank national chains. Not in 5 years. In weeks.</p>
+      <a href="#buy-now" class="teal-strip-btn">Get The System <span class="btn-arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- Proof Section -->
+  <section class="proof-section">
+    <div class="proof-inner">
+      <div class="proof-header">
+        <p class="section-eyebrow">Three Practices. Same Result.</p>
+        <h2 class="section-headline" style="color: white;">Three Different Approaches. One Outcome: Domination.</h2>
+        <p class="section-subheadline">Same foundation. Different implementations. All outranking national chains.</p>
+      </div>
+
+      <div class="proof-cases" id="proof-cases">
+
+        <!-- Ealing -->
+        <div class="proof-case">
+          <div class="proof-case-image-wrap">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772980355727-0.jpeg" alt="Sachin Mehta – Ealing Travel Clinic" style="object-position: center top;">
+          </div>
+          <div class="proof-case-content">
+            <div class="proof-case-client-row">
+              <h3 class="proof-case-client-name">Ealing Travel Clinic</h3>
+              <span class="proof-case-client-tag">Travel Clinic</span>
+            </div>
+            <div class="proof-case-result">
+              <p class="proof-case-result-label">The Result</p>
+              <p class="proof-case-result-text"><strong>#1 in Google AI Overviews</strong> for HPV vaccines. Outranking Boots and Superdrug. <strong>300% revenue growth</strong> in 6 months.</p>
+            </div>
+            <div class="proof-how">
+              <p class="proof-how-label">How</p>
+              <p class="proof-how-text">Six weeks. Zero ad spend. Five pieces of interactive content. Featured in <strong>Google AI Overviews, ChatGPT, and Claude</strong>. This is the core system.</p>
+            </div>
+            <div class="proof-case-quote">
+              <p class="proof-case-quote-text">"Traffic's up <strong>300%</strong> and compounding every month. Not just traffic for the sake of it, but <strong>patients actually booking appointments</strong>."</p>
+              <p class="proof-case-quote-attr">— Sachin Mehta, Owner, Ealing Travel Clinic</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Superior -->
+        <div class="proof-case reverse">
+          <div class="proof-case-image-wrap">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773224605645-0.png" alt="Raman Sangha – Superior Pharmacy" style="object-position: center top;">
+          </div>
+          <div class="proof-case-content">
+            <div class="proof-case-client-row">
+              <h3 class="proof-case-client-name">Superior Pharmacy</h3>
+              <span class="proof-case-client-tag">Pharmacy</span>
+            </div>
+            <div class="proof-case-result">
+              <p class="proof-case-result-label">The Result</p>
+              <p class="proof-case-result-text">Launched January 2026. <strong>First sale in 48 hours</strong>. Now <strong>50% of sales from ChatGPT and Bing combined</strong>. Competing nationally against operators with million-pound budgets.</p>
+            </div>
+            <div class="proof-how">
+              <p class="proof-how-label">How</p>
+              <p class="proof-how-text">Two-person team. New website. <strong>#1 on Bing for "Best Mounjaro Provider UK."</strong> That Bing ranking feeds ChatGPT's recommendations—when patients ask ChatGPT, Superior appears in comparison tables.</p>
+              <p class="proof-how-text" style="margin-top: 0.75rem;">Bing traffic converts higher than Google. Commercial intent buyers, not browsers. Patients switching from Juniper, SHEmed, and Pharmacy Express—national operators they'd never heard of Superior until Bing and ChatGPT put them on the shortlist.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bing rankings proof -->
+      <div class="proof-bing-wrap">
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773574638748-0.png" alt="Bing search results — superiorpharmacy.co.uk #1 for UK Mounjaro Provider comparison">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Level Playing Field -->
+  <section class="playing-field">
+    <div class="playing-field-inner">
+      <div class="playing-field-header">
+        <p class="section-eyebrow">The Opportunity</p>
+        <h2 class="section-headline">AI Search Killed Brand Authority</h2>
+        <p class="section-subheadline">Traditional search rewarded authority. Boots wins because they've spent 50 years building links you'll never match. AI search doesn't care.</p>
+      </div>
+      <div class="playing-field-compare">
+        <div class="playing-field-col old reveal-left">
+          <div class="playing-field-col-label">The Old Game</div>
+          <div class="playing-field-col-body">
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Authority wins every time</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Marketing budgets determine visibility</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Backlinks from decades of presence</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Brand size and name recognition</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">5+ years to build real authority</p></div>
+          </div>
+          <div class="playing-field-col-caption">Boots, Bupa, Superdrug—they own Google because they've spent decades and millions you'll never match.</div>
+        </div>
+        <div class="playing-field-col new reveal-right">
+          <div class="playing-field-col-label">The New Reality</div>
+          <div class="playing-field-col-body">
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Best answer wins</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Content quality determines ranking</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Engagement signals over domain age</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Most helpful resource wins</p></div>
+            <div class="playing-field-row"><div class="playing-field-dot"></div><p class="playing-field-row-text">Weeks to get featured, not years</p></div>
+          </div>
+          <div class="playing-field-col-caption"><strong>Ealing outranked Boots in 6 weeks. On this new playing field, the best answer wins—not the biggest brand.</strong></div>
+        </div>
+      </div>
+      <div class="playing-field-callout">
+        <p>Same foundation Ealing used. Same foundation Superior used.<br><span>Level playing field. Finally.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The System -->
+  <section class="system-section" id="what-you-get">
+    <div class="system-inner">
+      <div class="system-header">
+        <p class="section-eyebrow sage">THE SYSTEM</p>
+        <h2 class="section-headline">200+ Hours of Battle-Testing. Millions in Proven Revenue. Now Fully Automated.</h2>
+        <p class="section-subheadline" style="max-width: 640px; margin: 0 auto;">The manual system works. Ealing, Superior, and Puri prove it. But in 4 weeks, Claude Cowork automates everything. One instruction builds your entire content infrastructure. Early buyers get both versions. Forever.</p>
+      </div>
+      <div class="system-modules">
+
+        <div class="system-module">
+          <div class="system-module-num">01</div>
+          <div>
+            <h3 class="system-module-title">Claude Projects Setup</h3>
+            <p class="system-module-subheadline">Your AI content engine in 20 minutes. Then fully automated in 4 weeks.</p>
+            <div class="system-module-checks">
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Manual: Battle-tested prompts, 20-minute setup</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Automated: One instruction builds entire infrastructure</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Early buyers get both, no upgrade fee</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-module">
+          <div class="system-module-num">02</div>
+          <div>
+            <h3 class="system-module-title">Pillar + Cluster Method</h3>
+            <p class="system-module-subheadline">Five pieces that own a topic. How Ealing beat Boots and Superior hit 50% ChatGPT sales.</p>
+            <div class="system-module-checks">
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Proven across Ealing, Superior, Puri</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Manual version teaches the strategy</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Automated version builds it for you</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-module">
+          <div class="system-module-num">03</div>
+          <div>
+            <h3 class="system-module-title">Interactive Content Creation</h3>
+            <p class="system-module-subheadline">5-minute engagement vs 30 seconds. AI platforms notice the difference.</p>
+            <div class="system-module-checks">
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Quiz templates and embed code (manual)</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Finished interactive tools (automated)</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Tested across 50+ practices</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-module">
+          <div class="system-module-num">04</div>
+          <div>
+            <h3 class="system-module-title">AI-Generated Visuals</h3>
+            <p class="system-module-subheadline">Replace £2,000 photo shoots and £500 graphics with Nano Banana prompts.</p>
+            <div class="system-module-checks">
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Professional medical imagery in minutes</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Custom infographics and charts on demand</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> What agencies charge thousands for</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-module">
+          <div class="system-module-num">05</div>
+          <div>
+            <h3 class="system-module-title">Faster Indexing Technique</h3>
+            <p class="system-module-subheadline">Indexed in days instead of weeks. Why Superior got sales 48 hours after launch.</p>
+            <div class="system-module-checks">
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Specific HTML/CSS structure</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Battle-tested across 200+ pieces</div>
+              <div class="system-module-check-item"><span class="check-icon">✓</span> Built into automated workflow</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE PROOF — Search Console Screenshots -->
+  <section class="sc-proof-section">
+    <div class="sc-proof-inner">
+      <div class="sc-proof-header">
+        <p class="section-eyebrow sage">THE PROOF</p>
+        <h2 class="section-headline">Real Traffic. Real Results. Real Data.</h2>
+        <p class="section-subheadline" style="max-width: 560px; margin: 0.75rem auto 0;">Google Search Console screenshots from clients who used this system.</p>
+      </div>
+      <div class="sc-proof-grid">
+        <div class="sc-proof-card">
+          <div class="sc-proof-img-wrap">
+            <img class="sc-proof-img" src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773555846762-1.png" alt="Ealing Travel Clinic Google Search Console — 5.93K clicks, 1.07M impressions, 3 months">
+          </div>
+          <div class="sc-proof-caption">
+            <div class="sc-proof-caption-header">
+              <div class="sc-proof-dot"></div>
+              <span class="sc-proof-caption-name">Ealing Travel Clinic</span>
+            </div>
+            <p class="sc-proof-caption-result">Outranked Boots &amp; Superdrug. <strong>300% revenue growth</strong> in 3 months from organic search alone.</p>
+            <p class="sc-proof-caption-data">5.93K clicks · 1.07M impressions · 3 months</p>
+          </div>
+        </div>
+        <div class="sc-proof-card">
+          <div class="sc-proof-img-wrap">
+            <img class="sc-proof-img" src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773555846726-0.png" alt="Miles Clinic Google Search Console — 82.1K clicks, 14.5M impressions" style="object-position: top left;">
+          </div>
+          <div class="sc-proof-caption">
+            <div class="sc-proof-caption-header">
+              <div class="sc-proof-dot"></div>
+              <span class="sc-proof-caption-name">Miles Clinic</span>
+            </div>
+            <p class="sc-proof-caption-result">Record-breaking revenue. <strong>Four-figure months</strong> from organic search alone — zero ad spend.</p>
+            <p class="sc-proof-caption-data">82.1K clicks · 14.5M impressions</p>
+          </div>
+        </div>
+      </div>
+      <div class="sc-proof-footer">
+        <p>Verified Search Console data. No invented numbers. Just results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The System — Everything You Get -->
+  <section class="system-section" style="padding-top: 4rem;">
+    <div class="system-inner">
+
+      <div class="system-tiers">
+        <!-- Manual System Card -->
+        <div class="system-tier-card manual">
+          <div class="system-tier-header">
+            <div class="system-tier-header-left">
+              <div class="system-tier-icon">📚</div>
+              <span class="system-tier-title">The Manual System</span>
+            </div>
+            <span class="system-tier-status available">Available Now</span>
+          </div>
+          <div class="system-tier-body">
+            <ul class="system-tier-list">
+              <li class="highlight"><span class="system-tier-check">✓</span> 5 video modules (2 hours total)</li>
+              <li><span class="system-tier-check">✓</span> Every prompt we use (200+ hrs testing)</li>
+              <li><span class="system-tier-check">✓</span> Claude Projects setup guide</li>
+              <li><span class="system-tier-check">✓</span> Pillar + cluster templates</li>
+              <li><span class="system-tier-check">✓</span> Interactive quiz builder</li>
+              <li><span class="system-tier-check">✓</span> Nano Banana visual guide</li>
+              <li><span class="system-tier-check">✓</span> Fast-indexing HTML/CSS</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Automated System Card -->
+        <div class="system-tier-card automated">
+          <div class="system-tier-header">
+            <div class="system-tier-header-left">
+              <div class="system-tier-icon">⚡</div>
+              <span class="system-tier-title">The Automated System</span>
+            </div>
+            <span class="system-tier-status coming">4 Weeks</span>
+          </div>
+          <div class="system-tier-body">
+            <ul class="system-tier-list">
+              <li class="highlight"><span class="system-tier-check">✓</span> 100x volume, same quality</li>
+              <li><span class="system-tier-check">✓</span> One-instruction content builds</li>
+              <li><span class="system-tier-check">✓</span> Auto pillar + cluster generation</li>
+              <li><span class="system-tier-check">✓</span> Interactive tools created, not templated</li>
+              <li><span class="system-tier-check">✓</span> Early buyer exclusive — no upgrade fee</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Lifetime Support Card -->
+        <div class="system-tier-card lifetime">
+          <div class="system-tier-header">
+            <div class="system-tier-header-left">
+              <div class="system-tier-icon">🤝</div>
+              <span class="system-tier-title">Lifetime Support</span>
+            </div>
+            <span class="system-tier-status included">+ Free</span>
+          </div>
+          <div class="system-tier-body">
+            <ul class="system-tier-list">
+              <li class="highlight"><span class="system-tier-check">✓</span> Monthly strategy calls</li>
+              <li><span class="system-tier-check">✓</span> Platform updates (ChatGPT, Claude, Google)</li>
+              <li><span class="system-tier-check">✓</span> Cowork training when it launches</li>
+              <li><span class="system-tier-check">✓</span> All future updates, no recurring fees</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="system-tier-value-strap">
+        <span><strong>£497 total</strong></span>
+        <span>Manual + Automated + Lifetime Support</span>
+        <span><strong>No recurring fees</strong></span>
+      </div>
+
+      <div class="system-timeline" style="grid-template-columns: repeat(6,1fr);">
+        <div class="system-timeline-block">
+          <div class="system-timeline-num">2 hrs</div>
+          <div class="system-timeline-label">Setup</div>
+        </div>
+        <div class="system-timeline-block">
+          <div class="system-timeline-num">1-2 hrs/wk</div>
+          <div class="system-timeline-label">Building content</div>
+        </div>
+        <div class="system-timeline-block">
+          <div class="system-timeline-num">6 wks</div>
+          <div class="system-timeline-label">First ranking</div>
+        </div>
+        <div class="system-timeline-block">
+          <div class="system-timeline-num">4 weeks</div>
+          <div class="system-timeline-label">Cowork launches</div>
+        </div>
+        <div class="system-timeline-block">
+          <div class="system-timeline-num">Set &amp; forget</div>
+          <div class="system-timeline-label">Automated builds</div>
+        </div>
+        <div class="system-timeline-block">
+          <div class="system-timeline-num">100x scale</div>
+          <div class="system-timeline-label">Same quality</div>
+        </div>
+      </div>
+
+      <div class="system-early-buyers">
+        <h3>Why Early Buyers Win</h3>
+        <p>When Cowork launches, it'll sell for <strong>£497 on its own</strong>. Early buyers get both systems (manual plus automated) for one payment. Save £497. Keep both forever.</p>
+        <p>Better yet: while your competitors wait for the automated version, you're already building. Already ranking. When Cowork launches in 4 weeks, you'll know exactly how to use it because you've been working with the manual system. You'll have content already live, already getting patients.</p>
+        <p><strong>Buy now. Build with the manual system. Get the automation. Win before they catch up.</strong></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- The Math -->
+  <section class="math-section">
+    <div class="math-inner">
+      <div class="math-header">
+        <p class="section-eyebrow sage">The Numbers</p>
+        <h2 class="section-headline">What This Actually Means for You</h2>
+      </div>
+      <p class="math-intro">The playbook costs £497. But what you're really buying depends on who you are.</p>
+
+      <div class="math-audience-grid">
+        <div class="math-audience-card">
+          <span class="math-audience-label">For Practice Owners</span>
+          <span class="math-audience-metric">£497 vs £60k</span>
+          <h3>Own the System. Fire the Agency.</h3>
+          <p>Build in-house AI search capability instead of paying an agency £5k/month forever. Train your team. Keep the knowledge. Keep the profit.</p>
+        </div>
+        <div class="math-audience-card">
+          <span class="math-audience-label">For Marketing Managers</span>
+          <span class="math-audience-metric">Career Move</span>
+          <h3>The Person Who Brought AI to the Practice</h3>
+          <p>That's a promotion-level skill. You'll own the fastest-growing channel in healthcare marketing — while everyone else is still Googling what AI Overviews are.</p>
+        </div>
+        <div class="math-audience-card">
+          <span class="math-audience-label">For Multi-Practice Groups</span>
+          <span class="math-audience-metric">1 → Unlimited</span>
+          <h3>One Purchase. Every Location.</h3>
+          <p>Train your entire marketing team. Build the department. Deploy across every practice you operate. No per-seat fees. No limits.</p>
+        </div>
+        <div class="math-audience-card">
+          <span class="math-audience-label">For Agencies &amp; Consultants</span>
+          <span class="math-audience-metric">120x ROI</span>
+          <h3>Our £5k/Month System. Your Clients.</h3>
+          <p>You're getting the exact system we charge clients £5k/month for. Use it with your own clients. Build your AI search service offering.</p>
+        </div>
+      </div>
+
+      <div class="math-compare">
+        <div class="math-card">
+          <div class="math-card-label old">The Old Way</div>
+          <div class="math-row"><span class="math-row-name">Agency retainer</span><span class="math-row-val">£5k/month</span></div>
+          <div class="math-row"><span class="math-row-name">Annual cost</span><span class="math-row-val">£60k/year</span></div>
+          <div class="math-total"><span class="math-total-label">You rent their expertise</span></div>
+        </div>
+        <div class="math-card highlighted">
+          <div class="math-card-label new">The New Way</div>
+          <div class="math-row"><span class="math-row-name">The playbook</span><span class="math-row-val" style="color: var(--teal);">£497 once</span></div>
+          <div class="math-row"><span class="math-row-name">Annual cost</span><span class="math-row-val" style="color: var(--teal);">£497 total</span></div>
+          <div class="math-total"><span class="math-total-label">You own the system</span></div>
+        </div>
+      </div>
+
+      <div class="math-difference">
+        <p class="math-difference-main">Difference: You keep £59,503 and own the IP</p>
+        <p class="math-difference-sub">Use for one practice or fifty. No limits. No ongoing fees.</p>
+      </div>
+
+      <div class="math-callout">
+        <p>One new patient per month pays for this.<br><span>Everything after that is profit.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Happens Next -->
+  <section class="next-section">
+    <div class="next-inner">
+      <div class="next-header">
+        <p class="section-eyebrow">Your Timeline</p>
+        <h2 class="section-headline">What Happens Next</h2>
+        <p class="section-subheadline">From purchase to AI rankings—exactly as it happened for Ealing and Superior.</p>
+      </div>
+      <div class="next-timeline">
+        <div class="next-step">
+          <div class="next-step-node"><div class="next-step-circle"><span class="next-step-circle-num">1</span></div></div>
+          <div class="next-step-body">
+            <p class="next-step-label">Today</p>
+            <p class="next-step-title">Get instant access</p>
+            <p class="next-step-text">Watch Module 1. Set up your Claude Project. Takes 20 minutes.</p>
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-node"><div class="next-step-circle"><span class="next-step-circle-num">2</span></div></div>
+          <div class="next-step-body">
+            <p class="next-step-label">This Week</p>
+            <p class="next-step-title">Complete the system</p>
+            <p class="next-step-text">Work through all 5 modules. Total runtime: 2 hours. You now know the full system.</p>
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-node"><div class="next-step-circle"><span class="next-step-circle-num">3</span></div></div>
+          <div class="next-step-body">
+            <p class="next-step-label">Next Week</p>
+            <p class="next-step-title">Create your first content</p>
+            <p class="next-step-text">One pillar page. Four clusters. Five pieces total. One hour of your time using the prompts I give you.</p>
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-node"><div class="next-step-circle"><span class="next-step-circle-num">4</span></div></div>
+          <div class="next-step-body">
+            <p class="next-step-label">Weeks 2–6</p>
+            <p class="next-step-title">Publish and submit</p>
+            <p class="next-step-text">Content goes live. Submit to AI platforms using the indexing technique. Rankings start appearing.</p>
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="next-step-node"><div class="next-step-circle"><span class="next-step-circle-num">5</span></div></div>
+          <div class="next-step-body">
+            <p class="next-step-label">Weeks 6–12</p>
+            <p class="next-step-title">AI features appear</p>
+            <p class="next-step-text">Featured in ChatGPT. Google AI Overviews. Claude. Traffic climbing. New patients booking. Ealing: 6 weeks. Superior: 48 hours for first sale.</p>
+          </div>
+        </div>
+        <div class="next-step final">
+          <div class="next-step-node"><div class="next-step-circle"><span class="next-step-circle-num">6</span></div></div>
+          <div class="next-step-body">
+            <p class="next-step-label">Day 90</p>
+            <p class="next-step-title">Ranked. Traffic compounding. Revenue growing.</p>
+            <p class="next-step-text">Your target service is featured in AI search. New patients finding you. The system runs on 1 hour per week. Everything compounds from here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <p class="section-eyebrow sage">No Surprises</p>
+        <h2 class="section-headline">Questions You're Asking</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"I'm not technical. Can I do this?"</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">If you can copy and paste, yes. Module 1 walks you through setup step by step. All prompts are written—you paste them in. And if you can't figure it out after the modules, <strong>I'll personally walk you through it on a call.</strong></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"Will this work for my specialty?"</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Yes. Ealing is a travel clinic. Superior is a pharmacy. Works for <strong>private clinics, IVF clinics, dental practices, specialist consultants, private hospitals</strong>—any private healthcare where patients search online. The method is identical. Only the keywords change.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"How long until I see results?"</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Ealing: <strong>6 weeks to first Google AI Overview feature</strong>. Superior: <strong>first ChatGPT sale in 48 hours</strong>. Typical range: 6–12 weeks for solid AI presence. Some practices see features in 2–4 weeks. Depends on how competitive your niche is and how quickly you publish.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"I don't have time."</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">1 hour per week. One pillar. Four clusters. Five pieces. The prompts are written—you're not starting from scratch. If you can't find 1 hour per week, the done-for-you option (starting at £5k/month) might suit you better.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"What if AI platforms change their algorithm?"</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Monthly calls cover this. ChatGPT updates. Google changes. Claude features. <strong>You'll know what to adjust before your competitors do.</strong> Every call is recorded so you never miss an update.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"Can I use this for multiple practices?"</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">Yes. You own it. <strong>One practice or fifty. No limits.</strong> The prompts work across any healthcare specialty. One purchase covers everything.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"Why not just hire you to do it?"</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">You can. Done-for-you starts at £5k/month. But if you want to own the system—no ongoing fees, no dependency on an agency—this is for you. <strong>£497 once vs £60k/year.</strong> Same results.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <p class="faq-question-text">"Is there a refund policy?"</p>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p class="faq-answer-inner">No refunds—because this works. It's documented. The screenshots don't lie. But if you go through all 5 modules and still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call at no extra charge.</strong> You're not buying a course. You're getting a system that works.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee -->
+  <section class="guarantee-section">
+    <div class="guarantee-inner">
+      <div class="guarantee-badge">
+        <span class="guarantee-badge-icon">🛡</span>
+        <span class="guarantee-badge-text">Personal Implementation Guarantee</span>
+      </div>
+      <h2 class="guarantee-headline">If You Implement This, It Works</h2>
+      <p class="guarantee-body">This isn't a promise. It's a documented fact. Three practices. Three different specialties. Same system. Same result.</p>
+      <div class="guarantee-proof-grid">
+        <div class="guarantee-proof-card">
+          <p class="guarantee-proof-client">Ealing Travel Clinic</p>
+          <p class="guarantee-proof-stat">300%</p>
+          <p class="guarantee-proof-desc">#1 in Google AI Overviews. Revenue growth in 3 months.</p>
+        </div>
+        <div class="guarantee-proof-card">
+          <p class="guarantee-proof-client">Superior Pharmacy</p>
+          <p class="guarantee-proof-stat">50%</p>
+          <p class="guarantee-proof-desc">Of all sales from ChatGPT. First sale in 48 hours from launch.</p>
+        </div>
+        <div class="guarantee-proof-card">
+          <p class="guarantee-proof-client">South Downs Pharmacy</p>
+          <p class="guarantee-proof-stat">100+</p>
+          <p class="guarantee-proof-desc">Monthly patients. 25% conversion rate. On autopilot.</p>
+        </div>
+      </div>
+      <div class="guarantee-personal">
+        <p class="guarantee-personal-text">Go through all 5 modules. Follow the system. If you still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call.</strong> You're not buying a course. You're getting a system that works—and I'll make sure you know how to use it.</p>
+      </div>
+      <a href="#buy-now" class="btn btn-primary btn-lg">Get Instant Access — £497 <span class="btn-arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta" id="buy-now">
+    <div class="final-cta-inner">
+      <div class="final-cta-header">
+        <div class="final-cta-left">
+          <p class="section-eyebrow sage">Your Turn</p>
+          <h2 class="section-headline">The Math Is Stupid Simple</h2>
+          <p class="final-cta-body">You're already spending £108k/year on agencies and ads. And you're still losing to national chains. This costs less than 5 days of your current spend—and instead of renting results that disappear when you stop paying, you own the system forever.</p>
+          <ul class="final-cta-features">
+            <li><span class="system-check">✓</span> 5 video modules — 2 hours total</li>
+            <li><span class="system-check">✓</span> Every prompt I use, copy-paste ready</li>
+            <li><span class="system-check">✓</span> Monthly strategy calls (live + recorded)</li>
+            <li><span class="system-check">✓</span> Lifetime access — one practice or fifty</li>
+            <li><span class="system-check">✓</span> Personal implementation guarantee</li>
+          </ul>
+          <p style="font-size: 0.9375rem; color: var(--gray-600); line-height: 1.6;">Ealing did it. Superior did it. South Downs did it. National chains spent millions. They spent £497.</p>
+        </div>
+        <div>
+          <div class="final-cta-price-card">
+            <p class="final-cta-price-eyebrow">The AI Search Playbook</p>
+            <h3 class="final-cta-price-title">Everything you need to dominate AI search</h3>
+            <div class="final-cta-price-row">
+              <span class="final-cta-price-num">£497</span>
+              <span class="final-cta-price-qualifier">one-time · lifetime access</span>
+            </div>
+            <a href="#" class="final-cta-price-btn">Get Instant Access — £497 <span class="btn-arrow">→</span></a>
+            <p class="final-cta-price-secondary">Or <a href="index.html#contact">talk to us about Done-For-You →</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two choices -->
+      <div class="final-choices">
+        <div class="final-choice dim">
+          <span class="final-choice-label">Choice 1</span>
+          <h3 class="final-choice-title">Keep Doing What You're Doing</h3>
+          <p class="final-choice-text">Pay agencies £60k/year. Run ads at £36k/year. Keep losing to national chains. Watch patients choose Boots, Bupa, and operators they found on ChatGPT—while you're invisible.</p>
+        </div>
+        <div class="final-choice">
+          <span class="final-choice-label">Choice 2</span>
+          <h3 class="final-choice-title">Own the System</h3>
+          <p class="final-choice-text">£497 once. The exact method that got independent practices to outrank national chains in AI search. 1 hour/week. Featured in ChatGPT, Google AI Overviews, Claude. Traffic compounds. Revenue grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-name">PharmoDigital</a>
+          <p class="footer-brand-tagline">AI Search for Healthcare</p>
+          <p class="footer-brand-desc">We get independent healthcare practices featured in ChatGPT, Claude, and Google AI Overviews—where patients actually search.</p>
+          <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook →</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="ai-domination-system.html">AI Search Playbook</a>
+          <a href="index.html#contact">Full Implementation</a>
+          <a href="index.html">Healthcare Websites</a>
+          <a href="case-study-ealing.html">Case Studies</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="index.html">About Us</a>
+          <a href="index.html#the-shift">How It Works</a>
+          <a href="case-study-ealing.html">Case Studies</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Proof</h4>
+          <a href="case-study-ealing.html">Ealing Travel Clinic</a>
+          <a href="index.html#superior-case-study">Superior Pharmacy</a>
+          <a href="index.html#get-ranked">Get Started</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PharmoDigital. All rights reserved.</p>
+        <p style="color: rgba(255,255,255,0.3);">Healthcare AI Search Specialists</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(q) {
+      q.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+        if (!isOpen) { item.classList.add('open'); }
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ─── 1. Hero Stats — Count Up on Scroll ───
+    (function() {
+      var stats = document.querySelectorAll('.playbook-hero-stat-num');
+      var counted = false;
+      function countUp(el, target, suffix, prefix) {
+        var duration = 1200;
+        var start = 0;
+        var startTime = null;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = Math.round(start + (target - start) * eased);
+          el.textContent = prefix + current + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !counted) {
+            counted = true;
+            stats.forEach(function(stat) {
+              var text = stat.textContent.trim();
+              if (text === '300%') { stat.textContent = '0%'; countUp(stat, 300, '%', ''); }
+              else if (text === '50%') { stat.textContent = '0%'; countUp(stat, 50, '%', ''); }
+              else if (text === '#1 UK') { stat.textContent = '#— UK'; setTimeout(function() { stat.textContent = '#1 UK'; }, 800); }
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+      if (stats.length) observer.observe(stats[0].parentElement.parentElement);
+    })();
+
+    // ─── 2. Proof Cases — Staggered Reveal ───
+    (function() {
+      var cases = document.querySelectorAll('.proof-case');
+      cases.forEach(function(c) {
+        var img = c.querySelector('.proof-case-image-wrap') || c.querySelector('[style*="background"]');
+        var result = c.querySelector('.proof-case-result');
+        var quote = c.querySelector('.proof-case-quote');
+        var howEl = c.querySelector('.proof-how');
+        var parts = [img, result, howEl, quote].filter(Boolean);
+        parts.forEach(function(p) {
+          p.style.opacity = '0';
+          p.style.transform = 'translateY(24px)';
+          p.style.transition = 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+        });
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              parts.forEach(function(p, i) {
+                setTimeout(function() {
+                  p.style.opacity = '1';
+                  p.style.transform = 'translateY(0)';
+                }, i * 200);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(c);
+      });
+    })();
+
+    // ─── 3. Compare Cards — Slide In From Opposite Sides ───
+    (function() {
+      var reveals = document.querySelectorAll('.reveal-left, .reveal-right');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      reveals.forEach(function(el) { observer.observe(el); });
+    })();
+
+    // ─── 4. System Modules — Sequential Cascade ───
+    (function() {
+      var modules = document.querySelectorAll('.system-module');
+      modules.forEach(function(m) {
+        m.style.opacity = '0';
+        m.style.transform = 'translateY(20px)';
+        m.style.transition = 'opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+      });
+      var container = document.querySelector('.system-modules');
+      if (container) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              modules.forEach(function(m, i) {
+                setTimeout(function() {
+                  m.style.opacity = '1';
+                  m.style.transform = 'translateY(0)';
+                }, i * 100);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(container);
+      }
+    })();
+
+    // ─── 5. The Math — Red Pulse + Teal Glow ───
+    (function() {
+      var mathSection = document.querySelector('.math-compare');
+      if (!mathSection) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var oldNum = mathSection.querySelector('.math-card:not(.highlighted) .math-total-num');
+            var newNum = mathSection.querySelector('.math-card.highlighted .math-total-num');
+            if (oldNum) oldNum.classList.add('pulse');
+            if (newNum) newNum.classList.add('glow');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      observer.observe(mathSection);
+    })();
+
+    // ─── 6. Timeline Steps — Progressive Activation ───
+    (function() {
+      var steps = document.querySelectorAll('.next-step');
+      steps.forEach(function(step) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('activated');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.35 });
+        observer.observe(step);
+      });
+    })();
+
+    // ─── 7. Price Card Float ───
+    (function() {
+      var card = document.querySelector('.final-cta-price-card');
+      if (!card) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            card.classList.add('floating');
+          } else {
+            card.classList.remove('floating');
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(card);
+    })();
+
+    // ─── 9. Audience Cards — Staggered Reveal ───
+    (function() {
+      var cards = document.querySelectorAll('.math-audience-card');
+      cards.forEach(function(card) {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(28px)';
+        card.style.transition = 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+      });
+      var grid = document.querySelector('.math-audience-grid');
+      if (grid) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              cards.forEach(function(card, i) {
+                setTimeout(function() {
+                  card.style.opacity = '1';
+                  card.style.transform = 'translateY(0)';
+                }, i * 120);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(grid);
+      }
+    })();
+
+    // ─── 8. FAQ items fade in on scroll ───
+    (function() {
+      var items = document.querySelectorAll('.faq-item');
+      items.forEach(function(item) {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(12px)';
+        item.style.transition = 'opacity 0.45s cubic-bezier(0.16,1,0.3,1), transform 0.45s cubic-bezier(0.16,1,0.3,1)';
+      });
+      var list = document.querySelector('.faq-list');
+      if (list) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              items.forEach(function(item, i) {
+                setTimeout(function() {
+                  item.style.opacity = '1';
+                  item.style.transform = 'translateY(0)';
+                }, i * 80);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        observer.observe(list);
+      }
+    })();
+  </script>
+
+</body>
+</html>

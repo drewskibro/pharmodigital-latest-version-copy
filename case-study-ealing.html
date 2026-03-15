@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study: Ealing Travel Clinic — 300% Revenue Growth | PharmoDigital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #0f172a;
+      --navy-light: #1e293b;
+      --teal: #14b8a6;
+      --teal-dark: #0d9488;
+      --cream: #f5f3ef;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --white: #ffffff;
+      --sage: #4d7b6f;
+      --sage-mid: #8B9D83;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #fef7ed;
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--teal); color: white; }
+    .btn-primary:hover { background: var(--teal-dark); }
+    .btn-dark { background: var(--navy); color: white; }
+    .btn-dark:hover { background: var(--navy-light); transform: translateY(-1px); }
+    .btn-outline {
+      background: white;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+    .btn-outline:hover { background: var(--navy); color: white; }
+    .btn-lg {
+      padding: 1.125rem 2.5rem;
+      font-size: 1.0625rem;
+      font-weight: 700;
+    }
+    .btn-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .btn:hover .btn-arrow { transform: translateX(4px); }
+
+    /* ─── Motion: Global reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+
+    /* ─── Nav ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(254,247,237,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .nav-brand span { color: var(--teal); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy);
+      color: white !important;
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+    }
+    .nav-cta:hover { background: var(--navy-light) !important; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ─── Hero ─── */
+    .cs-hero {
+      background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .cs-hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+    }
+    .cs-hero-breadcrumb a {
+      color: var(--gray-400);
+      transition: color 0.2s;
+    }
+    .cs-hero-breadcrumb a:hover { color: var(--navy); }
+    .cs-hero-breadcrumb span { color: var(--gray-600); font-weight: 500; }
+    .cs-hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .cs-hero-eyebrow::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 2px;
+      background: var(--teal);
+      opacity: 0.6;
+    }
+    .cs-hero-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+      font-weight: 700;
+      color: #1a2b3c;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .cs-hero-title .accent { color: var(--teal); }
+    .cs-hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+    .cs-hero-subtitle strong { color: var(--navy); font-weight: 600; }
+    .cs-hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .cs-hero-stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1a2b3c;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .cs-hero-stat-label {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cs-hero-image {
+      position: relative;
+    }
+    .cs-hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+    }
+    .cs-hero-image::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      right: 20px; bottom: 20px;
+      border: 2px solid var(--teal);
+      border-radius: 16px;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    @media (max-width: 900px) {
+      .cs-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .cs-hero-image { max-width: 500px; margin: 0 auto; }
+      .cs-hero-image::before { display: none; }
+      .cs-hero { padding: 3rem 1.5rem; }
+      .cs-hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    }
+
+    /* ─── Section Shared ─── */
+    .section-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+    .section-headline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: #1a2b3c;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-subheadline {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ─── The Problem ─── */
+    .problem-section {
+      background: var(--cream);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .problem-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .problem-body {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-top: 2rem;
+      max-width: 720px;
+    }
+    .problem-body p { margin-bottom: 1.25rem; }
+    .problem-body strong { color: var(--navy); font-weight: 600; }
+    .problem-callout {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 2.5rem 3rem;
+      margin-top: 2.5rem;
+      border-left: 4px solid var(--teal);
+    }
+    .problem-callout p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+    }
+    .problem-callout p span { color: var(--teal); }
+
+    @media (max-width: 768px) {
+      .problem-section { padding: 4rem 1.5rem; }
+      .problem-callout { padding: 2rem; }
+    }
+
+    /* ─── Discovery ─── */
+    .discovery-section {
+      background: #fef7ed;
+      padding: 6rem 2rem;
+    }
+    .discovery-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .discovery-body {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-top: 2rem;
+      max-width: 720px;
+    }
+    .discovery-body p { margin-bottom: 1.25rem; }
+    .discovery-body strong { color: var(--navy); font-weight: 600; }
+    .discovery-body .teal { color: var(--teal); font-weight: 600; }
+
+    /* ─── Money Shot ─── */
+    .proof-screenshot {
+      background: var(--navy);
+      padding: 5rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .proof-screenshot-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .proof-screenshot .section-eyebrow { color: var(--teal); }
+    .proof-screenshot .section-headline { color: white; margin-bottom: 0.75rem; }
+    .proof-screenshot .section-subheadline { color: rgba(255,255,255,0.6); margin: 0 auto 3rem; }
+    .proof-screenshot-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 3rem;
+    }
+    .proof-screenshot-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .proof-screenshot-stat {
+      text-align: center;
+    }
+    .proof-screenshot-stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.375rem;
+      line-height: 1;
+    }
+    .proof-screenshot-stat-label {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+    }
+    .proof-screenshot-stat-sub {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .proof-screenshot { padding: 4rem 1.5rem; }
+      .proof-screenshot-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
+    /* ─── The Mechanism (How We Did It) ─── */
+    .mechanism-section {
+      background: var(--cream);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .mechanism-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .mechanism-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .mechanism-col {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .mechanism-col.old { background: white; }
+    .mechanism-col.new { background: var(--navy); }
+    .mechanism-col-label {
+      padding: 0.875rem 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .mechanism-col.old .mechanism-col-label {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+    .mechanism-col.new .mechanism-col-label {
+      background: rgba(20,184,166,0.08);
+      color: var(--teal);
+    }
+    .mechanism-col-body { padding: 1.75rem; }
+    .mechanism-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .mechanism-col.new .mechanism-row { border-bottom-color: rgba(255,255,255,0.06); }
+    .mechanism-row:last-child { border-bottom: none; }
+    .mechanism-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+    .mechanism-col.old .mechanism-dot { background: var(--gray-400); }
+    .mechanism-col.new .mechanism-dot { background: var(--teal); }
+    .mechanism-row-text {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .mechanism-col.old .mechanism-row-text { color: var(--gray-600); }
+    .mechanism-col.new .mechanism-row-text { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    .mechanism-body {
+      font-size: 1.0625rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-top: 3rem;
+      max-width: 720px;
+    }
+    .mechanism-body p { margin-bottom: 1.25rem; }
+    .mechanism-body strong { color: var(--navy); font-weight: 600; }
+    .mechanism-body .teal { color: var(--teal); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .mechanism-compare { grid-template-columns: 1fr; }
+      .mechanism-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── Results ─── */
+    .results-section {
+      background: #fef7ed;
+      padding: 6rem 2rem;
+    }
+    .results-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .results-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .results-header .section-subheadline {
+      margin: 0 auto;
+    }
+    .results-big-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .results-stat-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+    }
+    .results-stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .results-stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .results-stat-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .results-stat-desc {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* Results graph section */
+    .results-graph {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 4rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .results-graph img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .results-graph-caption {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: var(--gray-400);
+    }
+
+    /* Keywords ranking grid */
+    .results-keywords {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .results-keywords-header {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.5rem;
+    }
+    .results-keywords-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .results-keyword {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.75rem 1rem;
+      background: rgba(20,184,166,0.04);
+      border-radius: 8px;
+      border: 1px solid rgba(20,184,166,0.08);
+    }
+    .results-keyword-check {
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .results-keyword-text {
+      font-size: 0.9375rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .results-keywords-note {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      margin-top: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .results-section { padding: 4rem 1.5rem; }
+      .results-big-stats { grid-template-columns: 1fr; }
+      .results-keywords-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Rankings Comparison ─── */
+    .rankings-section {
+      background: var(--navy);
+      padding: 5rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .rankings-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .rankings-section .section-eyebrow { color: var(--teal); }
+    .rankings-section .section-headline { color: white; margin-bottom: 2.5rem; }
+    .rankings-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .rankings-row {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1.25rem;
+      align-items: center;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: left;
+    }
+    .rankings-row.highlight {
+      background: rgba(20,184,166,0.1);
+      border-color: rgba(20,184,166,0.2);
+    }
+    .rankings-row-rank {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: -0.02em;
+    }
+    .rankings-row.highlight .rankings-row-rank { color: var(--teal); }
+    .rankings-row-name {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+    }
+    .rankings-row.highlight .rankings-row-name {
+      color: white;
+      font-weight: 700;
+    }
+    .rankings-bottom {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.4;
+    }
+    .rankings-bottom span { color: var(--teal); }
+
+    @media (max-width: 768px) {
+      .rankings-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── Quote ─── */
+    .quote-section {
+      background: linear-gradient(135deg, #fef7ed 0%, #ecfdf5 100%);
+      padding: 5rem 2rem;
+    }
+    .quote-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quote-mark {
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--teal);
+      opacity: 0.5;
+      font-family: Georgia, serif;
+      margin-bottom: -0.5rem;
+    }
+    .quote-text {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+      font-weight: 600;
+      color: #1a2b3c;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+    .quote-text span { color: var(--teal); }
+    .quote-author-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .quote-author-role {
+      font-size: 0.9375rem;
+      color: var(--gray-600);
+    }
+
+    /* ─── Before/After ─── */
+    .before-after-section {
+      background: var(--cream);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .before-after-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .before-after-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .before-after-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .ba-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .ba-card.before { background: white; }
+    .ba-card.after { background: var(--navy); }
+    .ba-card-label {
+      padding: 0.875rem 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .ba-card.before .ba-card-label {
+      background: var(--gray-100);
+      color: var(--gray-600);
+    }
+    .ba-card.after .ba-card-label {
+      background: rgba(20,184,166,0.08);
+      color: var(--teal);
+      border-bottom-color: rgba(255,255,255,0.06);
+    }
+    .ba-card-body { padding: 1.75rem; }
+    .ba-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .ba-card.after .ba-item { border-bottom-color: rgba(255,255,255,0.06); }
+    .ba-item:last-child { border-bottom: none; }
+    .ba-icon {
+      font-size: 0.875rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .ba-card.before .ba-icon { color: var(--gray-400); }
+    .ba-card.after .ba-icon { color: var(--teal); }
+    .ba-text {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .ba-card.before .ba-text { color: var(--gray-600); }
+    .ba-card.after .ba-text { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    @media (max-width: 768px) {
+      .before-after-grid { grid-template-columns: 1fr; }
+      .before-after-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── Cost of Inaction ─── */
+    .urgency-section {
+      background: var(--navy);
+      padding: 5rem 2rem;
+    }
+    .urgency-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .urgency-section .section-eyebrow { color: var(--teal); }
+    .urgency-section .section-headline { color: white; margin-bottom: 2.5rem; }
+    .urgency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .urgency-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: left;
+    }
+    .urgency-card p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+    .urgency-card strong { color: white; font-weight: 700; }
+    .urgency-bottom {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 600px) {
+      .urgency-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CTA Section ─── */
+    .cta-section {
+      background: linear-gradient(135deg, #fef7ed 0%, #ecfdf5 100%);
+      padding: 6rem 2rem;
+    }
+    .cta-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .cta-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .cta-header .section-subheadline {
+      margin: 0 auto;
+    }
+    .cta-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .cta-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .cta-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sage);
+    }
+    .cta-card-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .cta-card-body {
+      font-size: 1rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+    .cta-card-price {
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .cta-card-price-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .cta-card-price-label {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      margin-top: 0.25rem;
+    }
+    .cta-card-btn {
+      display: block;
+      text-align: center;
+      padding: 0.875rem 1.5rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      margin-top: auto;
+    }
+    .cta-card-btn.primary {
+      background: var(--teal);
+      color: white;
+      border: 2px solid var(--teal);
+    }
+    .cta-card-btn.primary:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+    .cta-card-btn.outline {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+    .cta-card-btn.outline:hover { background: var(--navy); color: white; }
+
+    @media (max-width: 768px) {
+      .cta-cards { grid-template-columns: 1fr; }
+      .cta-section { padding: 4rem 1.5rem; }
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      padding: 4rem 0 2rem;
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand-name {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.375rem;
+    }
+    .footer-brand-tagline {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.875rem;
+      margin-bottom: 0.875rem;
+    }
+    .footer-brand-desc {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      font-size: 0.9375rem;
+      max-width: 300px;
+      margin-bottom: 1.125rem;
+    }
+    .footer-brand-link {
+      display: inline-block;
+      color: #8B9D83;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: text-decoration 0.2s;
+    }
+    .footer-brand-link:hover { text-decoration: underline; }
+    .footer-col h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-bottom p {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.875rem;
+    }
+    .footer-badges {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+  <script src="/load.js"></script>
+  <script src="/static/anima.min.js" type="module"></script>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#case-studies">Case Studies</a>
+        <a href="ai-domination-system.html">AI Search Playbook</a>
+        <a href="index.html#aiRankingForm" class="nav-cta">Get Free AI Report</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="cs-hero">
+    <div class="cs-hero-inner">
+      <div>
+        <div class="cs-hero-breadcrumb reveal">
+          <a href="index.html">Home</a>
+          <span>→</span>
+          <span>Case Study: Ealing Travel Clinic</span>
+        </div>
+        <div class="cs-hero-eyebrow reveal stagger-1">Case Study</div>
+        <h1 class="cs-hero-title reveal stagger-2">
+          How a Small London Clinic <span class="accent">Outranked National Chains</span> in Weeks
+        </h1>
+        <p class="cs-hero-subtitle reveal stagger-3">
+          Ealing Travel Clinic bypassed the authority of <strong>Boots, Superdrug, and major pharmacy chains</strong> with one simple advantage: better content. Result? <strong>300% revenue increase</strong>, #1 in Google AI Overviews, featured everywhere patients search.
+        </p>
+        <div class="cs-hero-stats reveal stagger-4">
+          <div>
+            <div class="cs-hero-stat-num">300%</div>
+            <div class="cs-hero-stat-label">Revenue Growth</div>
+          </div>
+          <div>
+            <div class="cs-hero-stat-num">200+</div>
+            <div class="cs-hero-stat-label">Page 1 Keywords</div>
+          </div>
+          <div>
+            <div class="cs-hero-stat-num">#1</div>
+            <div class="cs-hero-stat-label">AI Overviews</div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-hero-image reveal">
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1770303097134-0.jpeg" alt="Sachin Mehta — Ealing Travel Clinic">
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="problem-section">
+    <div class="problem-inner">
+      <div class="section-eyebrow reveal">The Problem</div>
+      <h2 class="section-headline reveal stagger-1">Authority You Can't Compete With</h2>
+      <div class="problem-body reveal stagger-2">
+        <p>National pharmacy chains like <strong>Boots and Superdrug</strong> have spent decades building authority. Thousands of locations. Millions in marketing. Established brands.</p>
+        <p>When patients searched <strong>'HPV vaccine price London,'</strong> the big chains dominated every result. Not because their content was better — because their authority was overwhelming.</p>
+        <p>Sachin knew his clinic offered <strong>better service, more personalised care, and competitive pricing</strong>. But none of that mattered if patients couldn't find him.</p>
+      </div>
+      <div class="problem-callout reveal stagger-3">
+        <p>Sachin was watching <span>£50,000+ in annual revenue</span> walk past his clinic — straight into Boots and Superdrug. He's now ranking for hundreds of keywords around HPV vaccines like Gardasil 9. He's found in AI overviews on the first page for far more than just one keyword.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Discovery -->
+  <section class="discovery-section">
+    <div class="discovery-inner">
+      <div class="section-eyebrow reveal">The Discovery</div>
+      <h2 class="section-headline reveal stagger-1">AI Platforms Don't Care About Brand Authority</h2>
+      <div class="discovery-body reveal stagger-2">
+        <p>AI search is more meritocratic than traditional SEO: <strong>—but it's not completely level. Brand signals still matter. Domain authority still helps. But the advantage is smaller than ever.</strong>.A two-person pharmacy with great content can beat Boots. Your clients prove it. The question is: how long until the big chains figure this out?"</strong>.</p>
+        <p>We found <strong>thousands of monthly HPV vaccine price searches</strong> across London — patients asking specific questions about pricing, side effects, eligibility, appointment availability. The big chains had generic service pages. <span class="teal">We saw an opening</span>.</p>
+        <p>If we could create content that directly answered what patients were asking AI platforms, we could <span class="teal">bypass decades of built-up authority</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Screenshot -->
+  <section class="proof-screenshot">
+    <div class="proof-screenshot-inner">
+      <div class="section-eyebrow reveal">The Proof</div>
+      <h2 class="section-headline reveal stagger-1">Google Search Console Tells the Story</h2>
+      <p class="section-subheadline reveal stagger-2">Flat for months, then exponential growth the moment AI platforms discovered the content.</p>
+      <img class="proof-screenshot-img reveal stagger-3" src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1770550188024-1.jpeg" alt="Google Search Console showing exponential traffic growth for Ealing Travel Clinic">
+      <div class="proof-screenshot-stats">
+        <div class="proof-screenshot-stat reveal stagger-1">
+          <div class="proof-screenshot-stat-num">Featured</div>
+          <div class="proof-screenshot-stat-label">Prominently in AI Overviews</div>
+          <div class="proof-screenshot-stat-sub">Consistently appearing above national chains</div>
+        </div>
+        <div class="proof-screenshot-stat reveal stagger-2">
+          <div class="proof-screenshot-stat-num">100s</div>
+          <div class="proof-screenshot-stat-label">Keywords Ranking Page 1</div>
+          <div class="proof-screenshot-stat-sub">HPV & Travel Vaccines</div>
+        </div>
+        <div class="proof-screenshot-stat reveal stagger-3">
+          <div class="proof-screenshot-stat-num">90 days</div>
+          <div class="proof-screenshot-stat-label">Time to Results</div>
+          <div class="proof-screenshot-stat-sub">Not years. Weeks.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Mechanism -->
+  <section class="mechanism-section">
+    <div class="mechanism-inner">
+      <div class="section-eyebrow reveal">The Method</div>
+      <h2 class="section-headline reveal stagger-1">We Wrote Better Content. That's It.</h2>
+      <p class="section-subheadline reveal stagger-2">While Boots had generic 'HPV vaccination service' pages, we created content that directly answered the questions patients were asking.</p>
+
+      <div class="mechanism-compare">
+        <div class="mechanism-col old reveal stagger-1">
+          <div class="mechanism-col-label">Most Practices</div>
+          <div class="mechanism-col-body">
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">Generic "HPV vaccination" page</div>
+            </div>
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">No pricing transparency</div>
+            </div>
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">Waiting for Google to notice them</div>
+            </div>
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">Competing on brand authority</div>
+            </div>
+          </div>
+        </div>
+        <div class="mechanism-col new reveal stagger-2">
+          <div class="mechanism-col-label">What Sachin Did</div>
+          <div class="mechanism-col-body">
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">Answered specific patient questions</div>
+            </div>
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">Transparent pricing breakdown</div>
+            </div>
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">Optimised for AI platforms first</div>
+            </div>
+            <div class="mechanism-row">
+              <div class="mechanism-dot"></div>
+              <div class="mechanism-row-text">Competed on content quality</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mechanism-body reveal">
+        <p>AI platforms (Google AI Overviews, ChatGPT, Claude) pull from sources that best answer queries. <strong>We became that source.</strong></p>
+        <p>The kicker? <span class="teal">Google's traditional rankings followed automatically</span>. We optimised for AI platforms — Google came free.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="results-section">
+    <div class="results-inner">
+      <div class="results-header">
+        <div class="section-eyebrow reveal">The Results</div>
+        <h2 class="section-headline reveal stagger-1">From Invisible to Everywhere</h2>
+        <p class="section-subheadline reveal stagger-2">Week 6: First AI Overview feature. Week 8: Traffic doubled. Week 12: Sachin's phone wouldn't stop ringing.</p>
+      </div>
+
+      <div class="results-big-stats">
+        <div class="results-stat-card reveal stagger-1">
+          <div class="results-stat-num">3X</div>
+          <div class="results-stat-title">Traffic Growth</div>
+          <div class="results-stat-desc">From 30 to 90 daily clicks in 90 days — and accelerating</div>
+        </div>
+        <div class="results-stat-card reveal stagger-2">
+          <div class="results-stat-num">#1</div>
+          <div class="results-stat-title">AI Overview Rankings</div>
+          <div class="results-stat-desc">Featured above national chains across Google AI Overviews</div>
+        </div>
+        <div class="results-stat-card reveal stagger-3">
+          <div class="results-stat-num">300%</div>
+          <div class="results-stat-title">Revenue Increase</div>
+          <div class="results-stat-desc">More appointments. Higher-value services. Consistent growth.</div>
+        </div>
+      </div>
+
+      <div class="results-graph reveal">
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1770550188024-1.jpeg" alt="Traffic progression chart showing exponential growth">
+        <p class="results-graph-caption">Google Search Console — Ealing Travel Clinic traffic progression. Flat for months, then exponential growth.</p>
+      </div>
+
+      <div class="results-keywords reveal">
+        <div class="results-keywords-header">Dominating multiple service categories — Page 1 Rankings</div>
+        <div class="results-keywords-grid">
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">Chikungunya Vaccine London</span>
+          </div>
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">Zika Blood Test London</span>
+          </div>
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">Pregnancy Blood Test London</span>
+          </div>
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">HPV Vaccine Price London</span>
+          </div>
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">HPV Vaccines</span>
+          </div>
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">Travel Vaccines</span>
+          </div>
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">Blood Tests</span>
+          </div>
+          <div class="results-keyword">
+            <span class="results-keyword-check">✓</span>
+            <span class="results-keyword-text">Travel Health</span>
+          </div>
+        </div>
+        <p class="results-keywords-note">Rankings fluctuate daily — these are representative examples of consistent Page 1 performance as of February 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rankings Comparison -->
+  <section class="rankings-section">
+    <div class="rankings-inner">
+      <div class="section-eyebrow reveal">The Unfair Advantage</div>
+      <h2 class="section-headline reveal stagger-1">AI Platforms Levelled the Playing Field</h2>
+      <div class="rankings-table reveal stagger-2">
+        <div class="rankings-row highlight">
+          <div class="rankings-row-rank">#1</div>
+          <div class="rankings-row-name">Ealing Travel Clinic</div>
+        </div>
+        <div class="rankings-row">
+          <div class="rankings-row-rank">#3</div>
+          <div class="rankings-row-name">Boots</div>
+        </div>
+        <div class="rankings-row">
+          <div class="rankings-row-rank">#5</div>
+          <div class="rankings-row-name">Superdrug</div>
+        </div>
+      </div>
+      <p class="rankings-bottom reveal stagger-3">
+        That one ranking change = <span>£4,200/month</span> in new revenue
+      </p>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="quote-section">
+    <div class="quote-inner">
+      <div class="quote-mark reveal">"</div>
+      <p class="quote-text reveal stagger-1">
+        I couldn't believe it. We were ranking above <span>Boots. BOOTS.</span>
+      </p>
+      <div class="reveal stagger-2">
+        <p class="quote-author-name">Sachin Mehta</p>
+        <p class="quote-author-role">Owner, Ealing Travel Clinic</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before vs After -->
+  <section class="before-after-section">
+    <div class="before-after-inner">
+      <div class="before-after-header">
+        <div class="section-eyebrow reveal">The Transformation</div>
+        <h2 class="section-headline reveal stagger-1">Before vs After: The Numbers Don't Lie</h2>
+      </div>
+      <div class="before-after-grid">
+        <div class="ba-card before reveal stagger-1">
+          <div class="ba-card-label">Before</div>
+          <div class="ba-card-body">
+            <div class="ba-item">
+              <span class="ba-icon">✗</span>
+              <span class="ba-text">Hidden behind national chains</span>
+            </div>
+            <div class="ba-item">
+              <span class="ba-icon">✗</span>
+              <span class="ba-text">30 clicks per day from Google</span>
+            </div>
+            <div class="ba-item">
+              <span class="ba-icon">✗</span>
+              <span class="ba-text">Generic service pages</span>
+            </div>
+            <div class="ba-item">
+              <span class="ba-icon">✗</span>
+              <span class="ba-text">Flat, stagnant revenue</span>
+            </div>
+          </div>
+        </div>
+        <div class="ba-card after reveal stagger-2">
+          <div class="ba-card-label">After</div>
+          <div class="ba-card-body">
+            <div class="ba-item">
+              <span class="ba-icon">✓</span>
+              <span class="ba-text">Featured in AI Overviews everywhere</span>
+            </div>
+            <div class="ba-item">
+              <span class="ba-icon">✓</span>
+              <span class="ba-text">90 clicks per day (3X growth — still climbing)</span>
+            </div>
+            <div class="ba-item">
+              <span class="ba-icon">✓</span>
+              <span class="ba-text">#1 for high-intent HPV vaccine & travel vaccine searches</span>
+            </div>
+            <div class="ba-item">
+              <span class="ba-icon">✓</span>
+              <span class="ba-text">300% revenue increase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost of Inaction -->
+  <section class="urgency-section">
+    <div class="urgency-inner">
+      <div class="section-eyebrow reveal">While You Wait</div>
+      <h2 class="section-headline reveal stagger-1">What You're Losing Every Day</h2>
+      <div class="urgency-grid reveal stagger-2">
+        <div class="urgency-card">
+          <p>ChatGPT recommended your competitor <strong>47 times today</strong></p>
+        </div>
+        <div class="urgency-card">
+          <p>You lost <strong>12 high-intent patients</strong> to practices using AI search</p>
+        </div>
+        <div class="urgency-card">
+          <p>Your competitor just got featured in <strong>another AI Overview</strong></p>
+        </div>
+        <div class="urgency-card">
+          <p>That's <strong>£3,400 in revenue</strong> gone. Today.</p>
+        </div>
+      </div>
+      <p class="urgency-bottom reveal stagger-3">Tomorrow it happens again.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-header">
+        <div class="section-eyebrow reveal">Your Move</div>
+        <h2 class="section-headline reveal stagger-1">Want to Bypass Your Competitors' Authority?</h2>
+        <p class="section-subheadline reveal stagger-2">You don't need their marketing budget. You need better content optimised for where patients actually search.</p>
+      </div>
+      <div class="cta-cards">
+        <div class="cta-card reveal stagger-1">
+          <div class="cta-card-label">DIY</div>
+          <h3 class="cta-card-title">The AI Search Playbook</h3>
+          <p class="cta-card-body">Get the exact playbook that got Ealing to #1 — yours to own. Hand it to your team, deploy it yourself, never depend on an agency.</p>
+          <div class="cta-card-price">
+            <div class="cta-card-price-num">£497</div>
+            <div class="cta-card-price-label">one-time payment</div>
+          </div>
+          <a href="ai-domination-system.html" class="cta-card-btn primary">Get Instant Access <span class="btn-arrow">→</span></a>
+        </div>
+        <div class="cta-card reveal stagger-2">
+          <div class="cta-card-label">Done For You</div>
+          <h3 class="cta-card-title">We Do It All For You</h3>
+          <p class="cta-card-body">If you'd rather hand this to specialists who've done it before — we'll write everything, optimise everything, track everything. You focus on patients.</p>
+          <div class="cta-card-price">
+            <div class="cta-card-price-num">Custom</div>
+            <div class="cta-card-price-label">for 7-figure+ practices</div>
+          </div>
+          <a href="index.html#aiRankingForm" class="cta-card-btn outline">Get Your Free Audit <span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-name">PharmoDigital</a>
+          <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
+          <p class="footer-brand-desc">Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.</p>
+          <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook — £497 →</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="ai-domination-system.html">AI Search Playbook</a>
+          <a href="#">Full Implementation</a>
+          <a href="#">Healthcare Websites</a>
+          <a href="index.html#case-studies">Case Studies</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">How It Works</a>
+          <a href="index.html#case-studies">Case Studies</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@pharmodigital.com">hello@pharmodigital.com</a>
+          <a href="tel:+442035820064">020 3582 0064</a>
+          <a href="#">London, UK</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 PharmoDigital. Healthcare Marketing Agency.</p>
+        <div class="footer-badges">
+          <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">ISO 27001 Certified</span>
+          <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">Top 40 Agency</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    console.log('__ANIMA_DBG__ case-study-ealing.html loaded, reveal observer active');
+  </script>
+
+</body>
+</html>
