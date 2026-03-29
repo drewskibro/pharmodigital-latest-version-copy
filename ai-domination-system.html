@@ -789,6 +789,258 @@
       .playing-field { padding: 4rem 1.5rem; }
     }
 
+    /* ─── The Method ─── */
+    .method-section {
+      background: var(--navy);
+      padding: 7rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .method-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .method-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .method-anchor {
+      position: sticky;
+      top: 100px;
+    }
+    .method-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .method-headline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.875rem, 3.2vw, 2.5rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .method-proof-line {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: 2.75rem;
+    }
+    .method-proof-line strong {
+      color: white;
+    }
+    .method-timeline-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1rem;
+    }
+    .method-weeks {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .method-week-block {
+      padding: 1rem 1.25rem;
+      border-left: 3px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .method-week-block:hover {
+      background: rgba(255,255,255,0.03);
+    }
+    .method-week-block.active {
+      border-left-color: var(--teal);
+      background: rgba(20,184,166,0.06);
+    }
+    .method-week-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
+      min-width: 52px;
+      transition: color 0.3s ease;
+    }
+    .method-week-block.active .method-week-num {
+      color: var(--teal);
+    }
+    .method-week-label {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .method-week-block.active .method-week-label {
+      color: white;
+    }
+
+    /* Right steps column */
+    .method-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .method-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.75rem;
+      position: relative;
+      padding-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .method-step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .method-step:last-child {
+      padding-bottom: 0;
+    }
+    .method-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 60px;
+      bottom: 0;
+      width: 2px;
+      background: rgba(255,255,255,0.08);
+      transition: background 0.5s ease;
+    }
+    .method-step.active:not(:last-child)::after {
+      background: var(--teal);
+    }
+    .method-step-node {
+      display: flex;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+    .method-step-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.03);
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .method-step.active .method-step-circle {
+      background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 6px rgba(20,184,166,0.15), 0 4px 20px rgba(20,184,166,0.25);
+    }
+    .method-step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.4s ease;
+    }
+    .method-step.active .method-step-num {
+      color: white;
+    }
+    .method-step-body {
+      padding-top: 0.625rem;
+    }
+    .method-step-week {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .method-step-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.625rem;
+      line-height: 1.3;
+    }
+    .method-step-text {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+    .method-step-proof {
+      display: inline-block;
+      margin-top: 0.875rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #2dd4bf;
+      background: rgba(20,184,166,0.1);
+      border: 1px solid rgba(20,184,166,0.2);
+      border-radius: 100px;
+      padding: 0.4rem 0.875rem;
+    }
+
+    @media (max-width: 900px) {
+      .method-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .method-anchor {
+        position: static;
+      }
+      .method-weeks {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0;
+        -webkit-overflow-scrolling: touch;
+      }
+      .method-week-block {
+        border-left: none;
+        border-bottom: 3px solid rgba(255,255,255,0.08);
+        flex-shrink: 0;
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+      .method-week-block.active {
+        border-bottom-color: var(--teal);
+        border-left: none;
+      }
+      .method-section { padding: 5rem 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .method-step { grid-template-columns: 44px 1fr; gap: 1.25rem; }
+      .method-step-circle { width: 44px; height: 44px; }
+      .method-step:not(:last-child)::after { left: 21px; top: 48px; }
+    }
+
     /* ─── System (What You Get) ─── */
     .system-section {
       background: #fef7ed;
@@ -1985,6 +2237,7 @@
       <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
       <div class="nav-links">
         <a href="index.html">Home</a>
+        <a href="homepage-v2.html">Home Page 2</a>
         <a href="case-study-ealing.html">Case Studies</a>
         <a href="#what-you-get">What's Inside</a>
         <a href="#buy-now" class="nav-cta">Get The Playbook — £497</a>
@@ -2170,6 +2423,94 @@
       </div>
       <div class="playing-field-callout">
         <p>Same foundation Ealing used. Same foundation Superior used.<br><span>Level playing field. Finally.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Method Section -->
+  <section class="method-section" id="method">
+    <div class="method-layout">
+
+      <!-- Left anchor column -->
+      <div class="method-anchor">
+        <p class="method-eyebrow">The Method</p>
+        <h2 class="method-headline">How We Get You Featured in ChatGPT, Claude &amp; Google AI Overviews</h2>
+        <p class="method-proof-line">Four steps. <strong>Six weeks to first rankings.</strong> The exact system that put Ealing Travel Clinic and Superior Pharmacy on the AI shortlist—ahead of Boots and Bupa.</p>
+
+        <p class="method-timeline-label">Typical client timeline</p>
+        <div class="method-weeks" id="methodWeeks">
+          <div class="method-week-block active" data-week="0">
+            <span class="method-week-num">Wk 1–2</span>
+            <span class="method-week-label">Discovery &amp; Architecture</span>
+          </div>
+          <div class="method-week-block" data-week="1">
+            <span class="method-week-num">Wk 3–4</span>
+            <span class="method-week-label">Content Build</span>
+          </div>
+          <div class="method-week-block" data-week="2">
+            <span class="method-week-num">Wk 5–6</span>
+            <span class="method-week-label">First AI Rankings ✓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right steps column -->
+      <div class="method-steps">
+
+        <div class="method-step active" data-step="0">
+          <div class="method-step-node">
+            <div class="method-step-circle">
+              <span class="method-step-num">01</span>
+            </div>
+          </div>
+          <div class="method-step-body">
+            <p class="method-step-week">Week 1–2</p>
+            <h3 class="method-step-title">Discovery &amp; Content Architecture</h3>
+            <p class="method-step-text">We interrogate every AI platform—ChatGPT, Claude, Perplexity, Google AI—to find the exact questions your patients are asking. Then we map a pillar + cluster architecture that owns the answer space, not just isolated keywords.</p>
+          </div>
+        </div>
+
+        <div class="method-step" data-step="1">
+          <div class="method-step-node">
+            <div class="method-step-circle">
+              <span class="method-step-num">02</span>
+            </div>
+          </div>
+          <div class="method-step-body">
+            <p class="method-step-week">Week 2–4</p>
+            <h3 class="method-step-title">Interactive Content That AI Trusts</h3>
+            <p class="method-step-text">Generic blog posts average 30 seconds on-page. Our quizzes, comparison tools, and symptom calculators average 5+ minutes. AI platforms read engagement signals—high dwell time signals authority and earns features.</p>
+            <span class="method-step-proof">Ealing Travel Clinic: avg. 6m 40s session duration</span>
+          </div>
+        </div>
+
+        <div class="method-step" data-step="2">
+          <div class="method-step-node">
+            <div class="method-step-circle">
+              <span class="method-step-num">03</span>
+            </div>
+          </div>
+          <div class="method-step-body">
+            <p class="method-step-week">Week 3–5</p>
+            <h3 class="method-step-title">AI-Specific Technical Optimisation</h3>
+            <p class="method-step-text">We structure content for how LLMs actually parse pages—entity relationships, citation density, schema markup, and the specific formatting patterns that Claude, ChatGPT, and Google AI Overviews favour when building their answers.</p>
+          </div>
+        </div>
+
+        <div class="method-step" data-step="3">
+          <div class="method-step-node">
+            <div class="method-step-circle">
+              <span class="method-step-num">04</span>
+            </div>
+          </div>
+          <div class="method-step-body">
+            <p class="method-step-week">Week 5–6</p>
+            <h3 class="method-step-title">Rapid Indexing &amp; Live Tracking</h3>
+            <p class="method-step-text">Custom indexing techniques get content crawled weeks faster than standard publishing. Then we monitor every AI platform daily—you see the exact moment you appear in recommendations, and we iterate in real time.</p>
+            <span class="method-step-proof">Superior Pharmacy: in ChatGPT results within 4 weeks</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2937,6 +3278,69 @@
         }, { threshold: 0.15 });
         observer.observe(grid);
       }
+    })();
+
+    // ─── Method Section — Interactive timeline + step reveals ───
+    (function() {
+      var weekBlocks = document.querySelectorAll('.method-week-block');
+      var steps = document.querySelectorAll('.method-step');
+
+      // Scroll-triggered reveal for steps
+      steps.forEach(function(step, i) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              setTimeout(function() {
+                entry.target.classList.add('visible');
+              }, i * 150);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(step);
+      });
+
+      // Click on week blocks to highlight corresponding steps
+      weekBlocks.forEach(function(block) {
+        block.addEventListener('click', function() {
+          var weekIndex = parseInt(this.getAttribute('data-week'));
+
+          // Update week block active states
+          weekBlocks.forEach(function(b) { b.classList.remove('active'); });
+          this.classList.add('active');
+
+          // Update step active states — activate all up to and including clicked week
+          steps.forEach(function(step) {
+            var stepIndex = parseInt(step.getAttribute('data-step'));
+            if (stepIndex <= weekIndex) {
+              step.classList.add('active');
+            } else {
+              step.classList.remove('active');
+            }
+          });
+        });
+      });
+
+      // Auto-progress on scroll — activate steps as they come into view
+      steps.forEach(function(step) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var stepIndex = parseInt(entry.target.getAttribute('data-step'));
+              entry.target.classList.add('active');
+
+              // Sync week blocks
+              weekBlocks.forEach(function(b) {
+                var weekIdx = parseInt(b.getAttribute('data-week'));
+                if (weekIdx <= Math.floor(stepIndex / 2)) {
+                  b.classList.add('active');
+                }
+              });
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(step);
+      });
     })();
 
     // ─── 8. FAQ items fade in on scroll ───

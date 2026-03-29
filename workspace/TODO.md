@@ -17,16 +17,16 @@ Rules:
 </instructions>
 
 <todo>
-Wire "Get Instant Access" buttons to payment processor
-The final-cta-price-btn currently links to "#" — needs real Stripe/payment link
+Build /services page for "Done For You" pathway
+homepage-v2.html links to /services — needs dedicated page with DFY packages, pricing, process
 </todo>
 
 <todo>
-Port motion patterns to index.html for brand consistency
-Same IntersectionObserver reveals, stagger cascades, and countUp patterns from sales page → homepage sections
+Build /choose vertical router page
+homepage-v2.html "Choose Your Type" card links to /choose — needs pharmacy/clinic/hospital selector
 </todo>
 
 <todo>
-Test Ealing case study on mobile devices
-Verify all reveal animations trigger on touch scroll, check responsive breakpoints for hero/stats/compare columns
+A/B test homepage-v2 vs original index.html
+Compare conversion rates between the two homepage approaches before committing to one
 </todo>

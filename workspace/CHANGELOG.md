@@ -18,6 +18,122 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-03-29] — Premium revenue section billion-pound overhaul (index.html)
+- Complete visual redesign: dark gradient bg, radial ambient glow, glassmorphism cards
+- 2×2 card grid (was 4-col) — stats now huge (3.5rem) with room to breathe; £99k/year fits perfectly
+- Left-edge gradient accent bars replace top borders; featured cards (2 & 4) get teal glassmorphism bg
+- Headline "In Real £." gets gradient teal accent via `.revenue-headline-accent` span
+- "Revenue." bolded in subheadline; eyebrow gets flanking teal lines
+- Short teal gradient dividers per card; proof text muted for hierarchy
+- CTA buttons enlarged (1.2rem padding, 12px radius); hover lifts with glow
+- Fully responsive: stacks 1-col on mobile with adjusted stat sizes (2.5rem) and padding
+- Count-up animation + staggered card reveals + number pulse preserved
+
+### [2026-03-29] — Revenue cards visual hierarchy upgrade (index.html)
+- Previous iteration: 4-col grid, top teal borders, checker pattern bg, nowrap stats
+
+### [2026-03-29] — Animated "The Shift" section with dramatic staggering (index.html)
+- Header: eyebrow → headline → subheadline stagger in with translateY reveals
+- Comparison columns slide in from opposite sides (old from left, new from right)
+- Google results load bar-by-bar with 0.1s stagger; later results fade to 0.45 opacity
+- AI chat: user bubble slides in, response intro fades, 3 recommendations cascade with scale; #1 gets teal glow pulse
+- Column captions fade up after their respective mockups complete
+- Proof cards stagger up (2.8s → 3.0s → 3.3s); stat numbers pulse on reveal
+- Competitor card gets ominous red glow pulse animation (2 cycles)
+- Card hover: lift + enhanced shadow; competitor hover adds subtle red glow
+- All driven by IntersectionObserver with `.shift-visible` class toggle
+
+### [2026-03-29] — Animated Problem/Solution split section (index.html)
+- Problem side: eyebrow, headline, and 4 text lines reveal staggered (0.1s–1.2s delays)
+- "You don't." line gets emphasis treatment (larger, bolder, full white) on reveal
+- Solution side: eyebrow fades, 4 cards stagger up with scale, icon glow pulse at 0.8s
+- Card hover: teal accent border + elevated shadow + slight scale lift
+- Teal CTA strip slides up when section enters viewport
+- All driven by IntersectionObserver with `.split-visible` class toggle
+
+### [2026-03-29] — Animated featured case study section (index.html)
+- Added scroll-triggered reveal: image slides in from left with teal border draw-on effect
+- Quote mark scales up, quote text fades up, author slides in — all staggered
+- Stars cascade in one-by-one with spring physics (rotate + scale)
+- CTA card rises from below; 300% number pulses on reveal
+- Idle float animation on hero image after reveal completes
+- All driven by IntersectionObserver with `.fcs-visible` class toggle
+
+### [2026-03-29] — Premium headline typography refinement (index.html)
+- Tightened .hero-title line-height from 1.15 → 1.08 (base), .line-2 → 1.02, .line-3 → 0.95
+- Added negative letter-spacing -0.035em on .line-3 "Clients." for dense, weighted impact
+- Compressed vertical gaps: .line-1 margin 0.04em, .line-2 margin 0.02em — headline reads as one unit
+- Bumped .line-3 from 1.38em → 1.42em for stronger size punch
+- Previous: split headline into 3 spans, staggered animations, reduced hero top padding 45px
+
+### [2026-03-29] — Fixed full-width layout breakage below shift section (index.html)
+- Missing closing `</div>` for `.shift-inner` and `</section>` for `.shift-section` after proof cards
+- Caused "Which One Is You", case studies, stats, closing, and footer to nest inside `max-width: 1200px`
+- Added the two missing closing tags to restore full-width layout
+
+### [2026-03-29] — Improved pathway card trust banners (homepage-v2.html)
+- Dropped all-caps → sentence case, bumped font-size from 0.6rem → 0.8rem
+- Shortened copy: "Used by Superior, Ealing & Puri" / "Built for 50+ healthcare practices" / "Proof from pharmacies, clinics & hospitals"
+- Increased contrast (darker green #2c5447 on light cards, 0.88 opacity on featured)
+- Removed pipe-separated verbose strings that wrapped on smaller screens
+
+### [2026-03-29] — Made pathway cards section full width (index.html)
+- Removed inline `max-width:1200px` override and bumped `.two-paths-inner` from 1100px → 1400px
+- Cards now match the width of hero, stats, and other full-width sections
+
+### [2026-03-29] — Refined "Three Paths" section copy, banners & animations (index.html)
+- Headline → "Which One Is You?" / subheadline → "Superior used the playbook. Ealing went done-for-you. Both outranked Boots."
+- Banners: removed "USED BY:" labels, replaced with bolder proof statements (0.7rem, heavier weight)
+- Card 2: removed price/retainer, replaced with italic muted "Pricing depends on your practice size and goals."
+- Card 3 ticks: shortened to "Pharmacy:" / "Clinic:" / "Hospital:" prefix style
+- Added scroll-triggered staggered entrance: Card 1 first, Card 2 rises 0.2s later with teal glow pulse, Card 3 last
+- Hover: all cards lift + shadow; featured card adds teal border glow on hover
+
+### [2026-03-29] — Upgraded "Two Paths" to "Three Paths" section (index.html)
+- Expanded from 2-column to 3-column grid; Card 2 dark navy featured; Card 3 "By Practice Type" proof card
+- Max-width 1200px, responsive stacks at 900px
+
+### [2026-03-29] — Added "The Method" section to AI Search Playbook (ai-domination-system.html)
+- New section between Level Playing Field and The System sections
+- Two-column layout: sticky left anchor (headline + interactive week timeline) + right steps column
+- Four numbered steps with scroll-triggered staggered reveals and active-state progression
+- Interactive: clicking week blocks highlights corresponding steps; auto-activates on scroll
+- Proof badges (teal pills) on steps 2 and 4 with client data
+- Full CSS: navy background, teal accents, responsive (stacks on mobile, week blocks go horizontal)
+
+### [2026-03-29] — Premium upgrade to V2 pathway cards + urgency section (homepage-v2.html)
+- Pathway cards: added trust banners, ✓ feature lists, pricing anchors (£497 / £5k/month), rounded 24px cards with overflow hidden
+- Featured card: teal pill RECOMMENDED badge, trust banner, structured features — matches original "Two Paths" quality
+- Urgency comparison: upgraded from flat text-on-dark to premium card treatment with headers, tags (Winning/Losing), stat highlights, and losing-state footer
+- VS divider: changed from inline text to floating teal circle badge overlay
+- All copy preserved exactly per original build prompt
+
+### [2026-03-29] — Major V2 homepage upgrade (homepage-v2.html)
+- Hero: two-column split (55/45) with product mockup in rounded teal-tinted container, CTA buttons + inline stats bar
+- Pathway cards: featured dark centre card with RECOMMENDED label, ~24px extra padding, flanking light cards
+- Urgency: dramatic comparison with teal left-border accent, VS divider, ✓/✗ icons, italic closing challenge
+- Final CTA: three distinct button styles (filled teal, teal outline, white outline), increased spacing
+- Global: updated brand teal to #00B5A3, dark to #0D1117, generous section padding (100px), letter-spacing 4px on eyebrows
+- Sections kept unchanged: logo bar, stats bar, proof carousel cards/images, footer
+
+### [2026-03-29] — Added "Home Page 2" nav link across all pages
+- Added `homepage-v2.html` link titled "Home Page 2" to nav in: index.html, homepage-v2.html, ai-domination-system.html, case-study-ealing.html
+- Removed `__ANIMA_DBG__` debug log from case-study-ealing.html
+
+### [2026-03-29] — Created alternative homepage v2 (homepage-v2.html)
+- New file `homepage-v2.html` — hybrid router design with trust-first approach
+- 7 sections: Hero, Trust Badges/Logos, 3 Pathway Cards, Urgency, Proof Carousel, Final CTA, Footer
+- Matches existing design system: Inter/Outfit/Space Mono, navy/teal/cream palette, vanilla CSS
+- Scroll-triggered reveal animations, card hover effects, carousel auto-scroll
+- NO pricing on page — routes visitors to playbook, services, or verticals
+- Original `index.html` untouched
+
+### [2026-03-29] — Added sticky nav to homepage (index.html)
+- Homepage was missing navigation menu that existed on case-study-ealing.html and ai-domination-system.html
+- Added .nav CSS (sticky, backdrop-blur, 72px height) and HTML nav element before hero section
+- Links: Case Studies, AI Search Playbook, Pricing, Get Free AI Report CTA
+- Responsive: nav-links hidden on mobile (≤768px), brand always visible
+
 ### [2026-03-08] — Diagnosed hero image rendering differences
 - User reported dots appearing on second hero image
 - Investigated: dots are baked INTO the PNG file itself, not HTML elements

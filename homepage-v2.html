@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PharmoDigital - AI Search for Healthcare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #0D1117;
+      --navy-light: #1e293b;
+      --teal: #00B5A3;
+      --teal-dark: #009e8e;
+      --cream: #F5F2EC;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --white: #ffffff;
+      --sage: #4d7b6f;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: var(--cream);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ─── Nav ─── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(245,242,236,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+    }
+    .nav-brand span { color: var(--teal); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--navy);
+      color: white !important;
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 0.9rem !important;
+    }
+    .nav-cta:hover { background: var(--navy-light) !important; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ─── Reveal Animations ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── HERO — Two-column split ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      background: linear-gradient(135deg, var(--cream) 0%, #fdf4e8 30%, #fef9f3 55%, #e6f7f4 80%, #d9f5f0 100%);
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s ease-out 0.15s forwards;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      font-weight: 400;
+      color: var(--gray-600);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s ease-out 0.45s forwards;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease-out 0.7s forwards;
+    }
+    .hero-btn-filled {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9375rem 2rem;
+      background: var(--teal);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(0,181,163,0.25);
+    }
+    .hero-btn-filled:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+    .hero-btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9375rem 2rem;
+      background: transparent;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 1rem;
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .hero-btn-outline:hover {
+      background: var(--navy);
+      color: white;
+    }
+    .hero-stats {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.5s ease-out 0.95s forwards;
+    }
+    .hero-stats span {
+      margin: 0 0.75rem;
+      opacity: 0.4;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-mockup-container {
+      width: 100%;
+      max-width: 580px;
+      background: rgba(0,181,163,0.06);
+      border-radius: 20px;
+      padding: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease-out 0.5s forwards;
+    }
+    .hero-mockup-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual {
+        order: 2;
+      }
+      .hero-content {
+        text-align: center;
+      }
+      .hero-sub {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .hero-stats {
+        text-align: center;
+      }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 1.5rem; min-height: auto; }
+      .hero-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    /* ─── Logo Bar ─── */
+    .logo-bar {
+      width: 100%;
+      background: var(--cream);
+      border-top: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 1.5rem 0;
+      overflow: hidden;
+    }
+    .logo-bar-scroller {
+      display: flex;
+      gap: 4rem;
+      animation: logoScroll 30s linear infinite;
+    }
+    .logo-bar-scroller img {
+      height: 50px;
+      width: auto;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .logo-bar-scroller img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+    @keyframes logoScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── Pathway Cards ─── */
+    .pathways {
+      padding: 100px 2rem;
+      background: var(--cream);
+    }
+    .pathways-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pathways-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .pathways-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    /* Standard flanking card */
+    .pathway-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pathway-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    /* Trust banner at top of card */
+    .pathway-trust-banner {
+      background: rgba(0,181,163,0.06);
+      padding: 0.7rem 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: #2c5447;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,181,163,0.15);
+    }
+
+    .pathway-card-inner {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      flex: 1;
+    }
+
+    /* Featured (dark centre card) */
+    .pathway-card.featured {
+      background: var(--navy);
+      border-color: transparent;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.25);
+    }
+    .pathway-card.featured:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 70px rgba(0,0,0,0.3);
+    }
+    .pathway-card.featured .pathway-trust-banner {
+      background: rgba(0,181,163,0.12);
+      color: rgba(255,255,255,0.88);
+      border-bottom-color: rgba(0,181,163,0.2);
+    }
+    .pathway-card.featured .pathway-card-inner {
+      padding: 3rem 2.5rem;
+    }
+    .pathway-card.featured .pathway-label,
+    .pathway-card.featured .pathway-title {
+      color: white;
+    }
+    .pathway-card.featured .pathway-body {
+      color: rgba(255,255,255,0.78);
+    }
+    .pathway-card.featured .pathway-label {
+      color: var(--teal);
+    }
+    .pathway-card.featured .pathway-features li {
+      color: rgba(255,255,255,0.82);
+    }
+
+    .pathway-recommended {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: white;
+      background: var(--teal);
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: -0.25rem;
+    }
+
+    .pathway-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4d7b6f;
+    }
+    .pathway-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .pathway-body {
+      font-size: 1rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    /* Feature tick list */
+    .pathway-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+    }
+    .pathway-features li {
+      font-size: 0.9375rem;
+      color: #374151;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      line-height: 1.5;
+    }
+    .pathway-check {
+      color: #4d7b6f;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+    .pathway-card.featured .pathway-check {
+      color: var(--teal);
+    }
+
+    /* Price block */
+    .pathway-price-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .pathway-card.featured .pathway-price-block {
+      border-top-color: rgba(255,255,255,0.1);
+    }
+    .pathway-price {
+      font-family: 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .pathway-card.featured .pathway-price {
+      color: white;
+    }
+    .pathway-price-note {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+    }
+    .pathway-card.featured .pathway-price-note {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .pathway-btn {
+      display: block;
+      text-align: center;
+      padding: 1rem 1.5rem;
+      background: var(--teal);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: auto;
+    }
+    .pathway-btn:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+    .pathway-btn-outline {
+      display: block;
+      text-align: center;
+      padding: 1rem 1.5rem;
+      background: transparent;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 2px solid var(--navy);
+      transition: all 0.2s;
+      margin-top: auto;
+    }
+    .pathway-btn-outline:hover {
+      background: var(--navy);
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .pathways-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .pathway-card.flanking-left  { order: 1; }
+      .pathway-card.featured       { order: 2; }
+      .pathway-card.flanking-right { order: 3; }
+      .pathway-card-inner { padding: 2rem 1.5rem; }
+      .pathway-card.featured .pathway-card-inner { padding: 2.5rem 1.75rem; }
+    }
+    @media (max-width: 768px) {
+      .pathways { padding: 64px 1.5rem; }
+    }
+
+    /* ─── Urgency Section ─── */
+    .urgency {
+      background: var(--navy);
+      padding: 100px 2rem;
+    }
+    .urgency-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .urgency-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .urgency-headline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .urgency-body {
+      max-width: 740px;
+      margin: 0 auto 4rem;
+    }
+    .urgency-body p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .urgency-body p:last-child { margin-bottom: 0; }
+
+    /* Comparison — premium card treatment */
+    .urgency-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      align-items: stretch;
+    }
+    .urgency-compare-card {
+      border-radius: 20px;
+      padding: 0;
+      text-align: left;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .urgency-compare-card.small-practice {
+      background: #1A202C;
+      border: 1px solid rgba(0,181,163,0.25);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,181,163,0.1);
+    }
+    .urgency-compare-card.national-chain {
+      background: #1A202C;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    }
+
+    /* Card header bar */
+    .compare-card-header {
+      padding: 1rem 1.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .small-practice .compare-card-header {
+      background: rgba(0,181,163,0.08);
+      border-bottom-color: rgba(0,181,163,0.15);
+    }
+    .national-chain .compare-card-header {
+      background: rgba(255,255,255,0.03);
+    }
+    .compare-card-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+    .small-practice .compare-card-title { color: var(--teal); }
+    .national-chain .compare-card-title { color: var(--gray-400); }
+
+    .compare-card-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+    }
+    .small-practice .compare-card-tag {
+      background: rgba(0,181,163,0.12);
+      border: 1px solid rgba(0,181,163,0.3);
+      color: #2dd4bf;
+    }
+    .national-chain .compare-card-tag {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.2);
+      color: #f87171;
+    }
+
+    /* Card body */
+    .compare-card-body {
+      padding: 2rem 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .compare-card-point {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin-bottom: 0.875rem;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .compare-card-point:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .compare-card-point .check {
+      color: var(--teal);
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+    }
+    .compare-card-point .cross {
+      color: #ef4444;
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Stat highlight at bottom of winning card */
+    .compare-card-stat {
+      padding: 1.25rem 1.75rem;
+      border-top: 1px solid rgba(0,181,163,0.15);
+      background: rgba(0,181,163,0.06);
+    }
+    .compare-card-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,181,163,0.7);
+      margin-bottom: 0.375rem;
+    }
+    .compare-card-stat-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+
+    /* National chain losing stat */
+    .compare-card-losing {
+      padding: 1.25rem 1.75rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(239,68,68,0.04);
+    }
+    .compare-card-losing-text {
+      font-size: 0.875rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* VS badge between cards — overlay approach */
+    .urgency-compare {
+      position: relative;
+    }
+    .vs-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,181,163,0.4);
+    }
+    .vs-badge span {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: 0.05em;
+    }
+
+    .urgency-closing {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.65;
+      padding-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .urgency { padding: 64px 1.5rem; }
+      .urgency-compare {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .vs-badge {
+        position: static;
+        transform: none;
+        margin: -0.75rem auto;
+      }
+    }
+
+    /* ─── Proof Carousel ─── */
+    .case-studies {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .section-header {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+    .section-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-header h2 {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .section-header .section-sub {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    .carousel-container {
+      overflow: hidden;
+      padding: 0 2rem;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 2rem;
+      animation: carouselScroll 40s linear infinite;
+    }
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes carouselScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .case-card {
+      flex: 0 0 400px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .case-card-image {
+      height: 220px;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .case-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .case-card:hover .case-card-image img {
+      transform: scale(1.05);
+    }
+    .case-card-content {
+      padding: 1.5rem;
+    }
+    .case-card-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .case-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+    .case-card-desc {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .case-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      text-decoration: none;
+      padding: 0.625rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, gap 0.2s;
+    }
+    .case-card-cta:hover {
+      border-bottom-color: var(--teal);
+      gap: 0.65rem;
+    }
+    .case-card-cta .cta-arrow {
+      transition: transform 0.2s;
+      font-style: normal;
+    }
+    .case-card-cta:hover .cta-arrow {
+      transform: translateX(3px);
+    }
+
+    @media (max-width: 768px) {
+      .case-studies { padding: 64px 0; }
+    }
+
+    /* ─── Final CTA ─── */
+    .final-cta {
+      background: var(--navy);
+      padding: 100px 2rem;
+    }
+    .final-cta-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .final-cta-headline {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .final-cta-sub {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+      margin-bottom: 3.5rem;
+    }
+    .final-cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .final-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      min-width: 200px;
+    }
+    .final-btn-filled {
+      background: var(--teal);
+      color: white;
+    }
+    .final-btn-filled:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+    }
+    .final-btn-teal-outline {
+      background: transparent;
+      color: var(--teal);
+      border: 2px solid var(--teal);
+    }
+    .final-btn-teal-outline:hover {
+      background: rgba(0,181,163,0.1);
+    }
+    .final-btn-white-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .final-btn-white-outline:hover {
+      border-color: white;
+      background: rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 640px) {
+      .final-cta { padding: 64px 1.5rem; }
+      .final-cta-buttons { flex-direction: column; align-items: center; }
+      .final-btn { width: 100%; max-width: 320px; }
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      padding: 4rem 0 2rem;
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand-name {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 0.375rem;
+    }
+    .footer-brand-tagline {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.875rem;
+      margin-bottom: 0.875rem;
+    }
+    .footer-brand-desc {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      font-size: 0.9375rem;
+      max-width: 300px;
+      margin-bottom: 1.125rem;
+    }
+    .footer-brand-link {
+      display: inline-block;
+      color: var(--teal);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: text-decoration 0.2s;
+    }
+    .footer-brand-link:hover { text-decoration: underline; }
+    .footer-col h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-bottom p {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.875rem;
+    }
+    .footer-badges {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+      <div class="nav-links">
+        <a href="homepage-v2.html">Home Page 2</a>
+        <a href="#proof">Case Studies</a>
+        <a href="ai-domination-system.html">AI Search Playbook</a>
+        <a href="#choose">Pricing</a>
+        <a href="#final-cta" class="nav-cta">Get Free AI Report</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ SECTION 1: HERO — Two-column split ═══ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <h1 class="hero-title">50% of Sales From ChatGPT. Zero Ad Spend. Two-Person Team.</h1>
+        <p class="hero-sub">Superior Pharmacy did it in 8 weeks. Ealing outranked Boots in 6 weeks. Both started exactly where you are &#8212; invisible in AI search. Choose how you want to build yours:</p>
+        <div class="hero-buttons">
+          <a href="ai-domination-system.html" class="hero-btn-filled">Get The System</a>
+          <a href="#proof" class="hero-btn-outline">See The Proof</a>
+        </div>
+        <p class="hero-stats">£50M+ Revenue<span>|</span>1000+ AI Rankings<span>|</span>50+ Healthcare Clients</p>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-mockup-container">
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772985250408-0.jpeg" alt="AI Search Playbook for Healthcare - Device Mockup">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2: SCROLLING LOGOS ═══ -->
+  <section class="logo-bar">
+    <div class="logo-bar-scroller">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic">
+      <!-- Duplicate for seamless loop -->
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic">
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: PATHWAY CARDS ═══ -->
+  <section class="pathways" id="choose">
+    <div class="pathways-inner">
+      <p class="pathways-eyebrow reveal">CHOOSE YOUR PATH</p>
+      <div class="pathways-grid">
+
+        <!-- Card 1: Build It Yourself (flanking left) -->
+        <div class="pathway-card flanking-left reveal reveal-delay-1">
+          <div class="pathway-trust-banner">Used by Superior, Ealing &amp; Puri</div>
+          <div class="pathway-card-inner">
+            <span class="pathway-label">BUILD IT YOURSELF</span>
+            <h3 class="pathway-title">The AI Search Playbook</h3>
+            <p class="pathway-body">Superior gets half their revenue from ChatGPT now. Started with this exact playbook. Same prompts. Same system. You build it. We show you how.</p>
+            <ul class="pathway-features">
+              <li><span class="pathway-check">&#10003;</span> Complete 5-module training system</li>
+              <li><span class="pathway-check">&#10003;</span> Every prompt we use (copy/paste ready)</li>
+              <li><span class="pathway-check">&#10003;</span> Interactive content templates</li>
+              <li><span class="pathway-check">&#10003;</span> Monthly live strategy calls</li>
+              <li><span class="pathway-check">&#10003;</span> Lifetime access + all updates</li>
+            </ul>
+            <div class="pathway-price-block">
+              <span class="pathway-price">&#163;497</span>
+              <span class="pathway-price-note">One-time. Yours forever.</span>
+            </div>
+            <a href="ai-domination-system.html" class="pathway-btn">Get The Playbook &#8594;</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Done For You (FEATURED — dark, dominant) -->
+        <div class="pathway-card featured reveal reveal-delay-2">
+          <div class="pathway-trust-banner">Built for 50+ healthcare practices</div>
+          <div class="pathway-card-inner">
+            <span class="pathway-recommended">RECOMMENDED</span>
+            <span class="pathway-label">DONE FOR YOU</span>
+            <h3 class="pathway-title">We Build It For You</h3>
+            <p class="pathway-body">The team that built Superior&#39;s 50% ChatGPT sales engine builds yours. Website. Content. AI sales agent. You wake up ranked.</p>
+            <ul class="pathway-features">
+              <li><span class="pathway-check">&#10003;</span> Complete AI search infrastructure build</li>
+              <li><span class="pathway-check">&#10003;</span> Get featured in ChatGPT, Claude, Google AI</li>
+              <li><span class="pathway-check">&#10003;</span> Real-time ranking tracking (all platforms)</li>
+              <li><span class="pathway-check">&#10003;</span> Monthly optimisation based on results</li>
+              <li><span class="pathway-check">&#10003;</span> Dedicated account manager</li>
+            </ul>
+            <div class="pathway-price-block">
+              <span class="pathway-price">From &#163;5k/month</span>
+              <span class="pathway-price-note">Retainer. Cancel anytime.</span>
+            </div>
+            <a href="#final-cta" class="pathway-btn">See What We Build &#8594;</a>
+          </div>
+        </div>
+
+        <!-- Card 3: By Practice Type (flanking right) -->
+        <div class="pathway-card flanking-right reveal reveal-delay-3">
+          <div class="pathway-trust-banner">Proof from pharmacies, clinics &amp; hospitals</div>
+          <div class="pathway-card-inner">
+            <span class="pathway-label">BY PRACTICE TYPE</span>
+            <h3 class="pathway-title">Choose Your Vertical</h3>
+            <p class="pathway-body">Pharmacy: Superior&#39;s 50% ChatGPT sales. Clinic: Ealing&#39;s 300% growth. Hospital: South Downs&#39; 100+ patients. See proof from practices like yours.</p>
+            <ul class="pathway-features">
+              <li><span class="pathway-check">&#10003;</span> Vertical-specific case studies</li>
+              <li><span class="pathway-check">&#10003;</span> Tailored ranking strategies</li>
+              <li><span class="pathway-check">&#10003;</span> Competitor analysis for your sector</li>
+              <li><span class="pathway-check">&#10003;</span> Real results from practices like yours</li>
+            </ul>
+            <a href="#proof" class="pathway-btn-outline">Choose Your Type &#8594;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4: URGENCY ═══ -->
+  <section class="urgency">
+    <div class="urgency-inner">
+      <p class="urgency-eyebrow reveal">THE WINDOW IS CLOSING</p>
+      <h2 class="urgency-headline reveal reveal-delay-1">Right Now, Small Practices Can Beat National Chains</h2>
+      <div class="urgency-body reveal reveal-delay-2">
+        <p>Right now, AI platforms rank by content quality. Not brand size. Not marketing budget. Quality. That&#39;s why Ealing beat Boots. Why Superior competes nationally with a two-person team.</p>
+        <p>But every day, more practices figure this out. The shortlist fills up. The window closes.</p>
+      </div>
+
+      <div class="urgency-compare reveal reveal-delay-3">
+        <!-- Left: Small Practice — WINNING -->
+        <div class="urgency-compare-card small-practice">
+          <div class="compare-card-header">
+            <h4 class="compare-card-title">SMALL PRACTICE</h4>
+            <span class="compare-card-tag">Winning</span>
+          </div>
+          <div class="compare-card-body">
+            <p class="compare-card-point"><span class="check">&#10003;</span> Better content</p>
+            <p class="compare-card-point"><span class="check">&#10003;</span> Can win NOW</p>
+            <p class="compare-card-point"><span class="check">&#10003;</span> Ealing ranked #1 in 6 weeks</p>
+            <p class="compare-card-point"><span class="check">&#10003;</span> Superior: 50% of sales from ChatGPT</p>
+          </div>
+          <div class="compare-card-stat">
+            <p class="compare-card-stat-label">Proof</p>
+            <p class="compare-card-stat-value">2 practices. 14 weeks combined. Both beating national chains.</p>
+          </div>
+        </div>
+
+        <!-- VS Badge -->
+        <div class="vs-badge">
+          <span>VS</span>
+        </div>
+
+        <!-- Right: National Chain — LOSING -->
+        <div class="urgency-compare-card national-chain">
+          <div class="compare-card-header">
+            <h4 class="compare-card-title">NATIONAL CHAIN</h4>
+            <span class="compare-card-tag">Losing</span>
+          </div>
+          <div class="compare-card-body">
+            <p class="compare-card-point"><span class="check">&#10003;</span> Bigger budget</p>
+            <p class="compare-card-point"><span class="cross">&#10007;</span> Content quality matters more than spend</p>
+            <p class="compare-card-point"><span class="cross">&#10007;</span> They&#39;re already losing to our clients</p>
+          </div>
+          <div class="compare-card-losing">
+            <p class="compare-card-losing-text">Boots, Bupa, Superdrug &#8212; outranked by single-location practices using better content.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="urgency-closing reveal reveal-delay-4">Ealing moved in 6 weeks. Superior in 8. How long will you wait?</p>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5: PROOF CAROUSEL ═══ -->
+  <section class="case-studies" id="proof">
+    <div class="section-header">
+      <p class="section-eyebrow">REAL RESULTS</p>
+      <h2>Real Practices. Real Results.</h2>
+      <p class="section-sub">See how healthcare practices went from invisible to dominating AI search</p>
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <!-- Card 1: Superior -->
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773160539937-1.png" alt="Superior Pharmacy">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Pharmacy</div>
+            <h3 class="case-card-title">50% of sales from ChatGPT</h3>
+            <p class="case-card-desc">Launched January 2026. Two-person team. Beating national operators. Zero ad spend.</p>
+            <a href="#final-cta" class="case-card-cta">Get the same system <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+        <!-- Card 2: Ealing -->
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773047932483-0.png" alt="Ealing Travel Clinic">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Travel Clinic</div>
+            <h3 class="case-card-title">300% revenue growth in 6 months</h3>
+            <p class="case-card-desc">Outranked Boots in 6 weeks. #1 in Google AI Overviews. Zero ad spend.</p>
+            <a href="case-study-ealing.html" class="case-card-cta">Read the full case study <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+        <!-- Card 3: Puri -->
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773216983562-1.png" alt="Puri Pharmacy">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Weight Loss</div>
+            <h3 class="case-card-title">30,000 annual patients</h3>
+            <p class="case-card-desc">#1 UK Mounjaro provider. National expansion. From local to nationwide.</p>
+            <a href="#final-cta" class="case-card-cta">See how they did it <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop" alt="Healthcare Practice">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Clinic</div>
+            <h3 class="case-card-title">80K visitors. Zero ad spend.</h3>
+            <p class="case-card-desc">From local clinic to national rankings attracting 80,000+ annual visitors searching for weight loss medication.</p>
+            <a href="#final-cta" class="case-card-cta">Find out where you rank <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773160539937-1.png" alt="Superior Pharmacy">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Pharmacy</div>
+            <h3 class="case-card-title">50% of sales from ChatGPT</h3>
+            <p class="case-card-desc">Launched January 2026. Two-person team. Beating national operators. Zero ad spend.</p>
+            <a href="#final-cta" class="case-card-cta">Get the same system <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773047932483-0.png" alt="Ealing Travel Clinic">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Travel Clinic</div>
+            <h3 class="case-card-title">300% revenue growth in 6 months</h3>
+            <p class="case-card-desc">Outranked Boots in 6 weeks. #1 in Google AI Overviews. Zero ad spend.</p>
+            <a href="case-study-ealing.html" class="case-card-cta">Read the full case study <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773216983562-1.png" alt="Puri Pharmacy">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Weight Loss</div>
+            <h3 class="case-card-title">30,000 annual patients</h3>
+            <p class="case-card-desc">#1 UK Mounjaro provider. National expansion. From local to nationwide.</p>
+            <a href="#final-cta" class="case-card-cta">See how they did it <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-card-image">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop" alt="Healthcare Practice">
+          </div>
+          <div class="case-card-content">
+            <div class="case-card-tag">Clinic</div>
+            <h3 class="case-card-title">80K visitors. Zero ad spend.</h3>
+            <p class="case-card-desc">From local clinic to national rankings attracting 80,000+ annual visitors searching for weight loss medication.</p>
+            <a href="#final-cta" class="case-card-cta">Find out where you rank <i class="cta-arrow">&#8594;</i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 6: FINAL CTA ═══ -->
+  <section class="final-cta" id="final-cta">
+    <div class="final-cta-inner">
+      <h2 class="final-cta-headline reveal">Choose Your Path</h2>
+      <p class="final-cta-sub reveal reveal-delay-1">Get the proven system, let us build it for you, or see vertical-specific proof.</p>
+      <div class="final-cta-buttons reveal reveal-delay-2">
+        <a href="ai-domination-system.html" class="final-btn final-btn-filled">Get The Playbook</a>
+        <a href="#choose" class="final-btn final-btn-teal-outline">See What We Build</a>
+        <a href="#proof" class="final-btn final-btn-white-outline">Choose Your Type</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 7: FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-name">PharmoDigital</a>
+          <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
+          <p class="footer-brand-desc">Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.</p>
+          <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook &#8212; £497 &#8594;</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="ai-domination-system.html">AI Search Playbook</a>
+          <a href="#">Full Implementation</a>
+          <a href="#">Healthcare Websites</a>
+          <a href="#proof">Case Studies</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">How It Works</a>
+          <a href="#proof">Case Studies</a>
+          <a href="#final-cta">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@pharmodigital.com">hello@pharmodigital.com</a>
+          <a href="tel:+442035820064">020 3582 0064</a>
+          <a href="#">London, UK</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&#169; 2026 PharmoDigital. Healthcare Marketing Agency.</p>
+        <div class="footer-badges">
+          <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">ISO 27001 Certified</span>
+          <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">Top 40 Agency</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Scroll-triggered reveal animations
+    (function() {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(el => observer.observe(el));
+    })();
+  </script>
+
+</body>
+</html>
