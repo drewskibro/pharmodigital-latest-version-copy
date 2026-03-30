@@ -6,7 +6,10 @@
     <title>SalesAgent Pro — PharmoDigital</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -865,6 +868,151 @@
       .sa-problem-cta .btn-primary-lg {
         padding: 1rem 2.25rem;
         font-size: 1.05rem;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         RAHUL TESTIMONIAL
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-testimonial {
+        background: #f5f0e8;
+        padding: 6rem 2rem;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .sa-testimonial::before {
+        content: '';
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(20,184,166,0.07) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .sa-testimonial-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 5rem;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .sa-testimonial-photo-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .sa-testimonial-photo-wrap {
+        width: 260px;
+        height: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 6px 20px rgba(0,0,0,0.08);
+        position: relative;
+      }
+      .sa-testimonial-photo-wrap::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+        pointer-events: none;
+      }
+      .sa-testimonial-photo-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+      }
+      .sa-testimonial-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--navy);
+        color: white;
+        padding: 0.5rem 1.125rem;
+        border-radius: 20px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .sa-testimonial-badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--teal);
+        box-shadow: 0 0 6px rgba(20,184,166,0.7);
+        animation: saLivePulse 2s ease-in-out infinite;
+      }
+      .sa-testimonial-content {
+        padding: 0.5rem 0;
+      }
+      .sa-testimonial-quote-mark {
+        font-family: 'Georgia', serif;
+        font-size: 5rem;
+        line-height: 0.6;
+        color: rgba(20,184,166,0.25);
+        margin-bottom: 1.25rem;
+        display: block;
+      }
+      .sa-testimonial-quote {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.125rem, 1.75vw, 1.3125rem);
+        font-weight: 500;
+        color: var(--navy);
+        line-height: 1.75;
+        margin-bottom: 2.5rem;
+        position: relative;
+      }
+      .sa-testimonial-quote strong {
+        color: #0f172a;
+        font-weight: 700;
+      }
+      .sa-testimonial-quote em {
+        color: var(--teal);
+        font-style: normal;
+        font-weight: 600;
+      }
+      .sa-testimonial-divider {
+        width: 48px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--teal), transparent);
+        border-radius: 2px;
+        margin-bottom: 1.5rem;
+      }
+      .sa-testimonial-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .sa-testimonial-name {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.0625rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .sa-testimonial-role {
+        font-size: 0.9375rem;
+        color: var(--gray-600);
+        font-weight: 500;
+      }
+      @media (max-width: 900px) {
+        .sa-testimonial-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+          text-align: center;
+        }
+        .sa-testimonial-photo-col { align-items: center; }
+        .sa-testimonial-photo-wrap { width: 200px; height: 230px; }
+        .sa-testimonial-divider { margin: 0 auto 1.5rem; }
+        .sa-testimonial-meta { align-items: center; }
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1785,7 +1933,6 @@
     </style>
   </head>
   <body>
-
     <!-- Nav -->
     <nav class="nav">
       <div class="nav-inner">
@@ -1795,15 +1942,34 @@
             <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu">
               <span class="dd-section-label">Complete Packages</span>
-              <a href="#" class="dd-item"><span class="dd-item-name">WebPro Elite</span><span class="dd-item-sub">Pillar Domination Framework™ + Website</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Revenue System</span><span class="dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a>
-              <a href="ai-domination-system.html" class="dd-item"><span class="dd-item-name">The Playbook</span><span class="dd-item-sub">DIY System — £497</span></a>
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">WebPro Elite</span
+                ><span class="dd-item-sub">Pillar Domination Framework™ + Website</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Revenue System</span
+                ><span class="dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a
+              >
+              <a href="ai-domination-system.html" class="dd-item"
+                ><span class="dd-item-name">The Playbook</span><span class="dd-item-sub">DIY System — £497</span></a
+              >
               <div class="dd-divider"></div>
               <span class="dd-section-label">Custom AI Arsenal</span>
-              <a href="#" class="dd-item"><span class="dd-item-name">ContentIQ Elite</span><span class="dd-item-sub">Content Engine for Existing Sites</span></a>
-              <a href="salesagent.html" class="dd-item"><span class="dd-item-name">SalesAgent Pro</span><span class="dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">WebPro Foundation</span><span class="dd-item-sub">Website Only</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Visibility Accelerator</span><span class="dd-item-sub">SEO + AI Search</span></a>
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">ContentIQ Elite</span
+                ><span class="dd-item-sub">Content Engine for Existing Sites</span></a
+              >
+              <a href="salesagent.html" class="dd-item"
+                ><span class="dd-item-name">SalesAgent Pro</span
+                ><span class="dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">WebPro Foundation</span><span class="dd-item-sub">Website Only</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Visibility Accelerator</span
+                ><span class="dd-item-sub">SEO + AI Search</span></a
+              >
             </div>
           </div>
           <a href="#">Pharmacies</a>
@@ -1812,23 +1978,64 @@
           <a href="ai-domination-system.html">The Playbook</a>
           <a href="#contact" class="nav-cta">Book A Call</a>
         </div>
-        <button class="nav-hamburger" aria-label="Open menu" onclick="document.querySelector('.nav-mobile-overlay').classList.toggle('mobile-open'); this.querySelector('.ham-open').style.display = this.querySelector('.ham-open').style.display === 'none' ? 'block' : 'none'; this.querySelector('.ham-close').style.display = this.querySelector('.ham-close').style.display === 'none' ? 'block' : 'none';">
-          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <button
+          class="nav-hamburger"
+          aria-label="Open menu"
+          onclick="document.querySelector('.nav-mobile-overlay').classList.toggle('mobile-open'); this.querySelector('.ham-open').style.display = this.querySelector('.ham-open').style.display === 'none' ? 'block' : 'none'; this.querySelector('.ham-close').style.display = this.querySelector('.ham-close').style.display === 'none' ? 'block' : 'none';"
+        >
+          <svg
+            class="ham-open"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg
+            class="ham-close"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            style="display:none"
+          >
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
         </button>
       </div>
       <div class="nav-mobile-overlay">
-        <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">PharmoBoost ▼</button>
+        <button
+          onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';"
+        >
+          PharmoBoost ▼
+        </button>
         <div style="display:none;">
           <span class="mobile-dd-section-label">Complete Packages</span>
-          <a href="#" class="mobile-dd-item">WebPro Elite <span class="mobile-dd-item-sub">Pillar Domination Framework™ + Website</span></a>
-          <a href="#" class="mobile-dd-item">Revenue System <span class="mobile-dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a>
-          <a href="ai-domination-system.html" class="mobile-dd-item">The Playbook <span class="mobile-dd-item-sub">DIY System — £497</span></a>
+          <a href="#" class="mobile-dd-item"
+            >WebPro Elite <span class="mobile-dd-item-sub">Pillar Domination Framework™ + Website</span></a
+          >
+          <a href="#" class="mobile-dd-item"
+            >Revenue System <span class="mobile-dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a
+          >
+          <a href="ai-domination-system.html" class="mobile-dd-item"
+            >The Playbook <span class="mobile-dd-item-sub">DIY System — £497</span></a
+          >
           <span class="mobile-dd-section-label">Custom AI Arsenal</span>
-          <a href="#" class="mobile-dd-item">ContentIQ Elite <span class="mobile-dd-item-sub">Content Engine for Existing Sites</span></a>
-          <a href="salesagent.html" class="mobile-dd-item">SalesAgent Pro <span class="mobile-dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a>
+          <a href="#" class="mobile-dd-item"
+            >ContentIQ Elite <span class="mobile-dd-item-sub">Content Engine for Existing Sites</span></a
+          >
+          <a href="salesagent.html" class="mobile-dd-item"
+            >SalesAgent Pro <span class="mobile-dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a
+          >
           <a href="#" class="mobile-dd-item">WebPro Foundation <span class="mobile-dd-item-sub">Website Only</span></a>
-          <a href="#" class="mobile-dd-item">Visibility Accelerator <span class="mobile-dd-item-sub">SEO + AI Search</span></a>
+          <a href="#" class="mobile-dd-item"
+            >Visibility Accelerator <span class="mobile-dd-item-sub">SEO + AI Search</span></a
+          >
         </div>
         <a href="#">Pharmacies</a>
         <a href="#">Clinics</a>
@@ -1848,14 +2055,23 @@
             <span class="line-2">They Had A Question.</span>
             <span class="line-3">Nobody Answered.</span>
           </h1>
-          <p class="sa-hero-subtitle">Superior Pharmacy now handles 50% of weight loss sales through AI. Ealing Travel Clinic converts 1-in-4 patient inquiries into booked appointments. Ray Lane Group runs 24/7 without hiring a single extra member of staff.</p>
+          <p class="sa-hero-subtitle">
+            Superior Pharmacy now handles 50% of weight loss sales through AI. Ealing Travel Clinic converts 1-in-4
+            patient inquiries into booked appointments. Ray Lane Group runs 24/7 without hiring a single extra member of
+            staff.
+          </p>
           <div class="sa-hero-cta">
             <a href="#eligibility" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
           </div>
-          <p class="sa-hero-sub-cta" style="opacity:0; animation: saFadeUp 0.4s ease-out 2.9s forwards;">We&#39;re selective. Not every practice qualifies.</p>
+          <p class="sa-hero-sub-cta" style="opacity:0; animation: saFadeUp 0.4s ease-out 2.9s forwards;">
+            We&#39;re selective. Not every practice qualifies.
+          </p>
         </div>
         <div class="sa-hero-visual">
-          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774876986452-0.jpeg" alt="SalesAgent Pro — laptop and phone showing AI agent chat, prompt library, AI checklist, and client logos" />
+          <img
+            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774876986452-0.jpeg"
+            alt="SalesAgent Pro — laptop and phone showing AI agent chat, prompt library, AI checklist, and client logos"
+          />
         </div>
       </div>
     </section>
@@ -1865,19 +2081,27 @@
       <div class="sa-trust-bar-inner">
         <div class="sa-trust-bar-item">
           <p class="sa-trust-bar-num" data-countup="25" data-suffix="%">25%</p>
-          <p class="sa-trust-bar-label">Conversion Rate · <strong style="color:rgba(255,255,255,0.75);">Ealing Travel Clinic</strong></p>
+          <p class="sa-trust-bar-label">
+            Conversion Rate · <strong style="color:rgba(255,255,255,0.75);">Ealing Travel Clinic</strong>
+          </p>
         </div>
         <div class="sa-trust-bar-item">
           <p class="sa-trust-bar-num" data-countup="50" data-suffix="%">50%</p>
-          <p class="sa-trust-bar-label">Weight Loss Sales Via AI · <strong style="color:rgba(255,255,255,0.75);">Superior Pharmacy</strong></p>
+          <p class="sa-trust-bar-label">
+            Weight Loss Sales Via AI · <strong style="color:rgba(255,255,255,0.75);">Superior Pharmacy</strong>
+          </p>
         </div>
         <div class="sa-trust-bar-item">
           <p class="sa-trust-bar-num">24 / 7</p>
-          <p class="sa-trust-bar-label">Zero Extra Staff · <strong style="color:rgba(255,255,255,0.75);">Ray Lane Group</strong></p>
+          <p class="sa-trust-bar-label">
+            Zero Extra Staff · <strong style="color:rgba(255,255,255,0.75);">Ray Lane Group</strong>
+          </p>
         </div>
         <div class="sa-trust-bar-item">
           <p class="sa-trust-bar-num" data-countup="100000" data-suffix="+" data-format="number">100,000+</p>
-          <p class="sa-trust-bar-label">Real Patient Conversations · <strong style="color:rgba(255,255,255,0.75);">Our Network</strong></p>
+          <p class="sa-trust-bar-label">
+            Real Patient Conversations · <strong style="color:rgba(255,255,255,0.75);">Our Network</strong>
+          </p>
         </div>
       </div>
     </section>
@@ -1887,11 +2111,15 @@
       <div class="sa-problem-inner">
         <div class="sa-problem-header">
           <p class="sa-eyebrow sa-eyebrow-teal sa-reveal sa-reveal-d1">SalesAgent Pro</p>
-          <h2 class="sa-headline-white sa-reveal sa-reveal-d2">ChatGPT Recommended You.<br>The Patient Had Questions.<br>Your Competitor&#39;s AI Agent Answered First.</h2>
+          <h2 class="sa-headline-white sa-reveal sa-reveal-d2">
+            ChatGPT Recommended You.<br />The Patient Had Questions.<br />Your Competitor&#39;s AI Agent Answered First.
+          </h2>
         </div>
         <div class="sa-story sa-reveal sa-reveal-d3">
           <p class="sa-story-line"><strong>10:47pm. Tuesday.</strong></p>
-          <p class="sa-story-line">A patient Googles weight loss injections. ChatGPT recommends <em>your clinic.</em></p>
+          <p class="sa-story-line">
+            A patient Googles weight loss injections. ChatGPT recommends <em>your clinic.</em>
+          </p>
           <p class="sa-story-line">She clicks through. Lands on your site. Reads the services page.</p>
           <div class="sa-story-break"></div>
           <p class="sa-story-line">She has a question about Mounjaro dosing and her blood pressure medication.</p>
@@ -1901,7 +2129,10 @@
           <p class="sa-story-line">That site has an AI agent. It answers her in <em>11 seconds.</em></p>
           <p class="sa-story-line">She books. Pays. <strong>Never comes back to you.</strong></p>
           <div class="sa-story-break"></div>
-          <p class="sa-story-punchline">We&#39;ve generated <em>100,000+ patient conversations</em> across our network.<br>Every one of them would have bounced from a static site.</p>
+          <p class="sa-story-punchline">
+            We&#39;ve generated <em>100,000+ patient conversations</em> across our network.<br />Every one of them would
+            have bounced from a static site.
+          </p>
         </div>
 
         <div class="sa-problem-stats">
@@ -1918,12 +2149,16 @@
             <div class="sa-stat-compare">
               <div class="sa-stat-compare-row">
                 <span class="sa-stat-compare-label">Industry</span>
-                <div class="sa-stat-compare-track"><div class="sa-stat-compare-fill sa-stat-compare-fill--them" data-fill="20%"></div></div>
+                <div class="sa-stat-compare-track">
+                  <div class="sa-stat-compare-fill sa-stat-compare-fill--them" data-fill="20%"></div>
+                </div>
                 <span class="sa-stat-compare-val">2–5%</span>
               </div>
               <div class="sa-stat-compare-row">
                 <span class="sa-stat-compare-label">Ours</span>
-                <div class="sa-stat-compare-track"><div class="sa-stat-compare-fill sa-stat-compare-fill--us" data-fill="100%"></div></div>
+                <div class="sa-stat-compare-track">
+                  <div class="sa-stat-compare-fill sa-stat-compare-fill--us" data-fill="100%"></div>
+                </div>
                 <span class="sa-stat-compare-val sa-stat-compare-val--us">25%</span>
               </div>
             </div>
@@ -1963,43 +2198,103 @@
       </div>
     </section>
 
+    <!-- ═══ RAHUL TESTIMONIAL ═══ -->
+    <section class="sa-testimonial">
+      <div class="sa-testimonial-inner">
+        <div class="sa-testimonial-photo-col sa-reveal sa-reveal-d2">
+          <div class="sa-testimonial-photo-wrap">
+            <img
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774878180215-0.png"
+              alt="Rahul Puri — Puri Pharmacy"
+            />
+          </div>
+          <div class="sa-testimonial-badge">
+            <span class="sa-testimonial-badge-dot"></span>
+            Pharmacy Client
+          </div>
+        </div>
+        <div class="sa-testimonial-content sa-reveal sa-reveal-d3">
+          <span class="sa-testimonial-quote-mark">"</span>
+          <p class="sa-testimonial-quote">
+            <strong>We&#39;re now outranking Boots and major chains in our area.</strong> But what changed everything
+            was the AI sales agent. It handles patient inquiries around the clock, converts the traffic we&#39;re
+            driving, and books appointments without us lifting a finger.<br /><br />
+            We&#39;re now <em>taking that national.</em><br /><br />
+            Most web developers just build sites. Drew builds pharmacy growth engines.
+            <strong>I trust him because he understands both pharmacy and digital, that&#39;s rare to find.</strong>
+          </p>
+          <div class="sa-testimonial-divider"></div>
+          <div class="sa-testimonial-meta">
+            <span class="sa-testimonial-name">Rahul Puri</span>
+            <span class="sa-testimonial-role">Owner, Puri Pharmacy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ SECTION 3: NOT A CHATBOT — INTELLIGENCE ENGINE ═══ -->
     <section class="sa-chatbot">
       <div class="sa-chatbot-inner">
         <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">The Intelligence Engine</p>
         <h2 class="sa-headline-dark sa-reveal sa-reveal-d2">Every Patient Question Is A Revenue Signal.</h2>
-        <p class="sa-chatbot-sub sa-reveal sa-reveal-d3">Your AI agent doesn&#39;t just answer — it captures the exact language patients use, the clinical questions they ask, and the services they&#39;re ready to pay for. Then we turn that into content that ranks.</p>
+        <p class="sa-chatbot-sub sa-reveal sa-reveal-d3">
+          Your AI agent doesn&#39;t just answer — it captures the exact language patients use, the clinical questions
+          they ask, and the services they&#39;re ready to pay for. Then we turn that into content that ranks.
+        </p>
 
         <div class="sa-query-cards">
           <div class="sa-query-card sa-reveal-card sa-reveal-d3">
             <p class="sa-query-label sa-query-label--patient">Patient Query</p>
-            <p class="sa-query-text">"I&#39;m at risk of needlestick injury at work. I need Hepatitis A/B and tetanus vaccines urgently for occupational health. Can I start immediately?"</p>
+            <p class="sa-query-text">
+              "I&#39;m at risk of needlestick injury at work. I need Hepatitis A/B and tetanus vaccines urgently for
+              occupational health. Can I start immediately?"
+            </p>
             <div class="sa-query-divider"></div>
             <p class="sa-query-label sa-query-label--agent">Agent Outcome</p>
-            <p class="sa-query-outcome">Qualified for occupational health pathway. Urgent appointment booked. Three vaccine course initiated.</p>
+            <p class="sa-query-outcome">
+              Qualified for occupational health pathway. Urgent appointment booked. Three vaccine course initiated.
+            </p>
             <div class="sa-query-divider"></div>
             <p class="sa-query-label sa-query-label--intel">Content Signal</p>
-            <p class="sa-query-intel"><strong>Blog created:</strong> "Needlestick Injury Vaccines: What You Need and How Quickly You Can Start" → ranks in AI Overview for occupational health vaccine queries</p>
+            <p class="sa-query-intel">
+              <strong>Blog created:</strong> "Needlestick Injury Vaccines: What You Need and How Quickly You Can Start"
+              → ranks in AI Overview for occupational health vaccine queries
+            </p>
           </div>
           <div class="sa-query-card sa-reveal-card sa-reveal-d4">
             <p class="sa-query-label sa-query-label--patient">Patient Query</p>
-            <p class="sa-query-text">"I&#39;m on week three of Mounjaro but I take medication for high blood pressure. Is this safe to continue?"</p>
+            <p class="sa-query-text">
+              "I&#39;m on week three of Mounjaro but I take medication for high blood pressure. Is this safe to
+              continue?"
+            </p>
             <div class="sa-query-divider"></div>
             <p class="sa-query-label sa-query-label--agent">Agent Outcome</p>
-            <p class="sa-query-outcome">Medically accurate response delivered. Patient reassured. Follow-up consultation booked.</p>
+            <p class="sa-query-outcome">
+              Medically accurate response delivered. Patient reassured. Follow-up consultation booked.
+            </p>
             <div class="sa-query-divider"></div>
             <p class="sa-query-label sa-query-label--intel">Content Signal</p>
-            <p class="sa-query-intel"><strong>Blog created:</strong> "Mounjaro and Blood Pressure Medication: Is It Safe?" → ranks in ChatGPT for weight loss drug interaction queries</p>
+            <p class="sa-query-intel">
+              <strong>Blog created:</strong> "Mounjaro and Blood Pressure Medication: Is It Safe?" → ranks in ChatGPT
+              for weight loss drug interaction queries
+            </p>
           </div>
           <div class="sa-query-card sa-reveal-card sa-reveal-d5">
             <p class="sa-query-label sa-query-label--patient">Patient Query</p>
-            <p class="sa-query-text">"I&#39;m travelling to Southeast Asia in three weeks. My child is seven. What vaccines do we need?"</p>
+            <p class="sa-query-text">
+              "I&#39;m travelling to Southeast Asia in three weeks. My child is seven. What vaccines do we need?"
+            </p>
             <div class="sa-query-divider"></div>
             <p class="sa-query-label sa-query-label--agent">Agent Outcome</p>
-            <p class="sa-query-outcome">Full travel health assessment completed. Family vaccination course recommended and booked.</p>
+            <p class="sa-query-outcome">
+              Full travel health assessment completed. Family vaccination course recommended and booked.
+            </p>
             <div class="sa-query-divider"></div>
             <p class="sa-query-label sa-query-label--intel">Content Signal</p>
-            <p class="sa-query-intel"><strong>Blog created:</strong> "Southeast Asia Vaccines for Families: What Children Under 10 Need" → ranks in Google AI Overview for family travel health</p>
+            <p class="sa-query-intel">
+              <strong>Blog created:</strong> "Southeast Asia Vaccines for Families: What Children Under 10 Need" → ranks
+              in Google AI Overview for family travel health
+            </p>
           </div>
         </div>
 
@@ -2008,7 +2303,10 @@
           <div class="sa-flywheel-header">
             <p class="sa-eyebrow sa-eyebrow-cream" style="margin-bottom:1rem;">The Content Flywheel</p>
             <h3 class="sa-flywheel-headline">Patient Questions → Content That Ranks → More Patients</h3>
-            <p class="sa-flywheel-desc">Every conversation your agent has generates marketing intelligence. We turn that into content that appears in ChatGPT, Google AI Overview, and Claude — driving more patients to your agent. The loop never stops.</p>
+            <p class="sa-flywheel-desc">
+              Every conversation your agent has generates marketing intelligence. We turn that into content that appears
+              in ChatGPT, Google AI Overview, and Claude — driving more patients to your agent. The loop never stops.
+            </p>
           </div>
 
           <div class="sa-flywheel-loop">
@@ -2016,34 +2314,65 @@
               <div class="sa-flywheel-icon sa-flywheel-icon--capture">💬</div>
               <p class="sa-flywheel-num">Step 01</p>
               <p class="sa-flywheel-title">Agent Captures</p>
-              <p class="sa-flywheel-text">Real patient questions captured in their exact words. What they ask, how they ask it, what they&#39;re ready to buy.</p>
+              <p class="sa-flywheel-text">
+                Real patient questions captured in their exact words. What they ask, how they ask it, what they&#39;re
+                ready to buy.
+              </p>
             </div>
             <div class="sa-flywheel-step sa-reveal sa-reveal-d3">
               <div class="sa-flywheel-icon sa-flywheel-icon--intel">🧠</div>
               <p class="sa-flywheel-num">Step 02</p>
               <p class="sa-flywheel-title">Intelligence Extracted</p>
-              <p class="sa-flywheel-text">We analyse patterns across thousands of conversations. Surface the high-value queries competitors haven&#39;t answered yet.</p>
+              <p class="sa-flywheel-text">
+                We analyse patterns across thousands of conversations. Surface the high-value queries competitors
+                haven&#39;t answered yet.
+              </p>
             </div>
             <div class="sa-flywheel-step sa-reveal sa-reveal-d4">
-              <div class="sa-flywheel-icon sa-flywheel-icon--content"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+              <div class="sa-flywheel-icon sa-flywheel-icon--content">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+              </div>
               <p class="sa-flywheel-num">Step 03</p>
               <p class="sa-flywheel-title">Content Created</p>
-              <p class="sa-flywheel-text">Clinically accurate articles, FAQs, and service pages built from real patient language. Not keyword stuffing — real intent.</p>
+              <p class="sa-flywheel-text">
+                Clinically accurate articles, FAQs, and service pages built from real patient language. Not keyword
+                stuffing — real intent.
+              </p>
             </div>
             <div class="sa-flywheel-step sa-reveal sa-reveal-d5">
-              <div class="sa-flywheel-icon sa-flywheel-icon--rank"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M8 11h6M11 8v6" stroke-linecap="round"/></svg></div>
+              <div class="sa-flywheel-icon sa-flywheel-icon--rank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  <path d="M8 11h6M11 8v6" stroke-linecap="round" />
+                </svg>
+              </div>
               <p class="sa-flywheel-num">Step 04</p>
               <p class="sa-flywheel-title">Ranks In AI Search</p>
-              <p class="sa-flywheel-text">Content appears in ChatGPT, Claude, and Google AI Overviews. More patients land on your site. The cycle repeats.</p>
+              <p class="sa-flywheel-text">
+                Content appears in ChatGPT, Claude, and Google AI Overviews. More patients land on your site. The cycle
+                repeats.
+              </p>
             </div>
           </div>
 
           <div class="sa-flywheel-loop-back sa-reveal sa-reveal-d6">
-            <div class="sa-flywheel-loop-label"><span class="sa-flywheel-loop-arrow">↻</span> Continuous loop — accelerates over time</div>
+            <div class="sa-flywheel-loop-label">
+              <span class="sa-flywheel-loop-arrow">↻</span> Continuous loop — accelerates over time
+            </div>
           </div>
         </div>
 
-        <p class="sa-chatbot-closing sa-reveal sa-reveal-d6">Every patient who asks a question is telling you what content to create next.<br>Your competitors are guessing. You won&#39;t be.</p>
+        <p class="sa-chatbot-closing sa-reveal sa-reveal-d6">
+          Every patient who asks a question is telling you what content to create next.<br />Your competitors are
+          guessing. You won&#39;t be.
+        </p>
       </div>
     </section>
 
@@ -2052,8 +2381,10 @@
       <div class="sa-proof-inner">
         <div class="sa-proof-header">
           <p class="sa-eyebrow sa-eyebrow-teal sa-reveal sa-reveal-d1">The Numbers</p>
-          <h2 class="sa-headline-white sa-reveal sa-reveal-d2">What Happens When Nobody<br>Gets Left Behind.</h2>
-          <p class="sa-proof-sub sa-reveal sa-reveal-d3">Not rankings. Not traffic. <strong>Revenue.</strong> Here&#39;s what it looks like in practice.</p>
+          <h2 class="sa-headline-white sa-reveal sa-reveal-d2">What Happens When Nobody<br />Gets Left Behind.</h2>
+          <p class="sa-proof-sub sa-reveal sa-reveal-d3">
+            Not rankings. Not traffic. <strong>Revenue.</strong> Here&#39;s what it looks like in practice.
+          </p>
         </div>
 
         <div class="sa-proof-cards">
@@ -2062,28 +2393,39 @@
             <p class="sa-proof-card-number" data-countup="200" data-prefix="£" data-suffix="k">£200k</p>
             <p class="sa-proof-card-descriptor">Projected annual revenue from their AI sales agent alone</p>
             <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">Patients arrive with specific clinical questions. The agent handles every one. Books the appointment. Captures the data. Every single day.</p>
+            <p class="sa-proof-card-text">
+              Patients arrive with specific clinical questions. The agent handles every one. Books the appointment.
+              Captures the data. Every single day.
+            </p>
           </div>
           <div class="sa-proof-card sa-reveal-card sa-reveal-d4">
             <p class="sa-proof-card-label">Superior Pharmacy</p>
             <p class="sa-proof-card-number" data-countup="50" data-suffix="%">50%</p>
             <p class="sa-proof-card-descriptor">Of all weight loss sales now handled by AI</p>
             <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">Weight loss inquiries at 2am. Medication questions on Sunday afternoons. The agent answers every one and converts.</p>
+            <p class="sa-proof-card-text">
+              Weight loss inquiries at 2am. Medication questions on Sunday afternoons. The agent answers every one and
+              converts.
+            </p>
           </div>
           <div class="sa-proof-card sa-reveal-card sa-reveal-d5">
             <p class="sa-proof-card-label">Ealing Travel Clinic</p>
             <p class="sa-proof-card-number" data-countup="25" data-suffix="%">25%</p>
             <p class="sa-proof-card-descriptor">Conversion rate across all AI agent inquiries</p>
             <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">One in four inquiries becomes a booked appointment. The other three leave their data for follow-up.</p>
+            <p class="sa-proof-card-text">
+              One in four inquiries becomes a booked appointment. The other three leave their data for follow-up.
+            </p>
           </div>
           <div class="sa-proof-card sa-reveal-card sa-reveal-d6">
             <p class="sa-proof-card-label">Across Our Client Network</p>
             <p class="sa-proof-card-number" data-countup="100000" data-suffix="+" data-format="number">100,000+</p>
             <p class="sa-proof-card-descriptor">Real healthcare conversations handled and learned from</p>
             <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">Every conversation makes the agent smarter. It knows healthcare. It knows patients. It knows how to convert.</p>
+            <p class="sa-proof-card-text">
+              Every conversation makes the agent smarter. It knows healthcare. It knows patients. It knows how to
+              convert.
+            </p>
           </div>
         </div>
       </div>
@@ -2094,8 +2436,12 @@
       <div class="sa-how-v2-inner">
         <div class="sa-how-v2-header sa-reveal sa-reveal-d1">
           <p class="sa-eyebrow sa-eyebrow-teal">The Process</p>
-          <h2 class="sa-how-v2-headline">Seven Days To Go Live.<br>Bookings Before You&#39;ve Had Your Morning Coffee.</h2>
-          <p class="sa-how-v2-sub">One client booked their first weight loss appointment within <strong>five minutes</strong> of going live.</p>
+          <h2 class="sa-how-v2-headline">
+            Seven Days To Go Live.<br />Bookings Before You&#39;ve Had Your Morning Coffee.
+          </h2>
+          <p class="sa-how-v2-sub">
+            One client booked their first weight loss appointment within <strong>five minutes</strong> of going live.
+          </p>
         </div>
 
         <div class="sa-how-v2-steps">
@@ -2107,7 +2453,10 @@
             <div class="sa-how-v2-step-content">
               <p class="sa-how-v2-step-label">Train</p>
               <h3 class="sa-how-v2-step-title">Built Around Your Practice</h3>
-              <p class="sa-how-v2-step-text">We build it around your practice. Your services, your pricing, your clinical protocols. It learns your business the way your best member of staff would — except it never calls in sick.</p>
+              <p class="sa-how-v2-step-text">
+                We build it around your practice. Your services, your pricing, your clinical protocols. It learns your
+                business the way your best member of staff would — except it never calls in sick.
+              </p>
             </div>
           </div>
 
@@ -2119,7 +2468,10 @@
             <div class="sa-how-v2-step-content">
               <p class="sa-how-v2-step-label">Test</p>
               <h3 class="sa-how-v2-step-title">Bulletproof Before It Touches Your Site</h3>
-              <p class="sa-how-v2-step-text">We run hundreds of real patient scenarios through it before it touches your website. Edge cases. Clinical questions. Compliance boundaries. It doesn&#39;t go live until it&#39;s bulletproof.</p>
+              <p class="sa-how-v2-step-text">
+                We run hundreds of real patient scenarios through it before it touches your website. Edge cases.
+                Clinical questions. Compliance boundaries. It doesn&#39;t go live until it&#39;s bulletproof.
+              </p>
             </div>
           </div>
 
@@ -2130,7 +2482,10 @@
             <div class="sa-how-v2-step-content">
               <p class="sa-how-v2-step-label">Deploy</p>
               <h3 class="sa-how-v2-step-title">Live In Seven Days</h3>
-              <p class="sa-how-v2-step-text">Seven days after you sign off, it&#39;s live. From that moment, it&#39;s answering inquiries, handling objections, and booking appointments — around the clock, without you lifting a finger.</p>
+              <p class="sa-how-v2-step-text">
+                Seven days after you sign off, it&#39;s live. From that moment, it&#39;s answering inquiries, handling
+                objections, and booking appointments — around the clock, without you lifting a finger.
+              </p>
               <div class="sa-how-v2-badge sa-reveal sa-reveal-d5">
                 <span class="sa-how-v2-badge-dot"></span>
                 First booking within minutes of going live
@@ -2157,8 +2512,14 @@
         <div class="sa-eligibility-copy">
           <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">Not For Everyone</p>
           <h2 class="sa-eligibility-headline sa-reveal sa-reveal-d2">We Are Selective About Who We Work With.</h2>
-          <p class="sa-eligibility-body sa-reveal sa-reveal-d3">The AI sales agent works best for practices that already have patient demand coming through their website. If your practice is ready, the agent will find revenue you didn&#39;t know you were losing.</p>
-          <p class="sa-eligibility-note sa-reveal sa-reveal-d4">If you meet those three criteria, there is five figure monthly revenue sitting in your website right now that you are not capturing.</p>
+          <p class="sa-eligibility-body sa-reveal sa-reveal-d3">
+            The AI sales agent works best for practices that already have patient demand coming through their website.
+            If your practice is ready, the agent will find revenue you didn&#39;t know you were losing.
+          </p>
+          <p class="sa-eligibility-note sa-reveal sa-reveal-d4">
+            If you meet those three criteria, there is five figure monthly revenue sitting in your website right now
+            that you are not capturing.
+          </p>
           <div class="sa-eligibility-cta-wrap sa-reveal sa-reveal-d5">
             <a href="#contact" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
             <p class="sa-eligibility-sub-cta">Takes two minutes. No obligation.</p>
@@ -2169,21 +2530,30 @@
             <div class="sa-eligibility-card-icon">✓</div>
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">500+ Monthly Website Visitors</p>
-              <p class="sa-eligibility-card-desc">The agent needs traffic to convert. Fewer than 500 monthly visitors means the agent has nothing to work with.</p>
+              <p class="sa-eligibility-card-desc">
+                The agent needs traffic to convert. Fewer than 500 monthly visitors means the agent has nothing to work
+                with.
+              </p>
             </div>
           </div>
           <div class="sa-eligibility-card sa-reveal-card sa-reveal-d4">
             <div class="sa-eligibility-card-icon">✓</div>
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">At Least One Private Service</p>
-              <p class="sa-eligibility-card-desc">Active demand for a paid service — weight loss, travel health, occupational health, aesthetics, or similar.</p>
+              <p class="sa-eligibility-card-desc">
+                Active demand for a paid service — weight loss, travel health, occupational health, aesthetics, or
+                similar.
+              </p>
             </div>
           </div>
           <div class="sa-eligibility-card sa-reveal-card sa-reveal-d5">
             <div class="sa-eligibility-card-icon">✓</div>
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">A Brand Patients Trust</p>
-              <p class="sa-eligibility-card-desc">Professional enough for patients to engage with online. We&#39;ve turned down practices that weren&#39;t ready.</p>
+              <p class="sa-eligibility-card-desc">
+                Professional enough for patients to engage with online. We&#39;ve turned down practices that weren&#39;t
+                ready.
+              </p>
             </div>
           </div>
         </div>
@@ -2195,7 +2565,10 @@
       <div class="sa-final-inner">
         <p class="sa-final-eyebrow sa-reveal sa-reveal-d1">Ready To Find Out</p>
         <h2 class="sa-final-headline sa-reveal sa-reveal-d2">Find Out What You Are Losing Every Month.</h2>
-        <p class="sa-final-body sa-reveal sa-reveal-d3">We&#39;ll review your practice, your traffic and your current conversion rate. We&#39;ll tell you honestly whether the agent is right for you — and what it would likely generate if deployed.</p>
+        <p class="sa-final-body sa-reveal sa-reveal-d3">
+          We&#39;ll review your practice, your traffic and your current conversion rate. We&#39;ll tell you honestly
+          whether the agent is right for you — and what it would likely generate if deployed.
+        </p>
         <div class="sa-reveal sa-reveal-d4">
           <a href="#contact" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
           <p class="sa-final-note">We only take on practices we are confident we can deliver results for.</p>
@@ -2210,7 +2583,10 @@
           <div class="footer-brand">
             <a href="index.html" class="footer-brand-name">PharmoDigital</a>
             <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
-            <p class="footer-brand-desc">Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.</p>
+            <p class="footer-brand-desc">
+              Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices
+              including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.
+            </p>
             <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook — £497 →</a>
           </div>
           <div class="footer-col">
