@@ -18,6 +18,42 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-03-30] — FAQ section premium overhaul → dark navy glassmorphism (ai-domination-system.html)
+- Moved from cream bg to navy bg with radial ambient glows
+- Individual separated cards (gap 0.875rem) with glassmorphism: rgba white bg, subtle borders
+- Added numbered teal badges (01–08) per question with active state fill
+- Question text bumped 1rem → 1.1875rem Inter 700, white on dark
+- Open state: teal glow border + shadow, answer text 1.0625rem with generous padding
+- Toggle icon: 36px circle, teal transform on open, hover states
+- Added bottom CTA section with teal button after FAQ list
+- 3 responsive breakpoints (768px, 480px) — num badges hide on mobile
+
+### [2026-03-30] — Timeline "What Happens Next" → Frank Kern style overhaul (ai-domination-system.html)
+- Widened container 860px → 1000px, bigger headline clamp(2.25rem,4vw,3.25rem)
+- Each step now a white card with 4px teal left border, hover lift + shadow
+- Circle nodes: 52px → 80px with teal border, shadow ring, 1.75rem bold numbers
+- Titles 1.0625rem → 1.5rem, body 0.9375rem → 1.125rem, labels 0.65rem → 0.8rem
+- Step 6 (final) gets navy card treatment with teal accents — destination feel
+- Full-height teal gradient connector line behind cards
+- Responsive: 3 breakpoints (768px, 480px) with scaled-down circles/text
+
+### [2026-03-30] — Tier cards, timeline & early buyers section size upgrade (ai-domination-system.html)
+- Widened `.system-inner` from 1000px → 1200px so 3-col tier cards breathe
+- Tier card titles 1.1875rem → 1.375rem, list items 1.0625rem → 1.125rem
+- FREE badge: bigger (0.8rem), bolder (800 weight), more padding
+- Value strap: text 1.125rem → 1.25rem, strong 1.25rem → 1.375rem, £497 1.375rem → 1.5rem
+- Timeline stats 1.5rem → 1.625rem, labels 0.9375rem → 1.0625rem
+- "Why Early Buyers Win": h3 clamp max 1.875rem → 2.25rem, body 1.0625rem → 1.1875rem, added margin-top 3rem
+- Responsive fallbacks for mobile sizing
+
+### [2026-03-30] — Revenue section: kill AI teal, warm premium typography (index.html)
+- Replaced fluorescent teal gradient stats with warm off-white #f0ede6 — no gradients, no AI tell
+- "In Real £." headline: dropped gradient teal, now white with subtle gold underline accent
+- All accent colours shifted from teal → warm gold (#c9a95c) for left-edge bars, dividers, eyebrow, ambient glow
+- Company labels bumped 0.65rem → 0.8rem, proof text 0.925rem → 1rem with stronger opacity
+- Descriptors boosted to 700 weight / 1.125rem for more visual punch
+- Mobile stat size tightened to 2.25rem for better fit
+
 ### [2026-03-29] — Premium revenue section billion-pound overhaul (index.html)
 - Complete visual redesign: dark gradient bg, radial ambient glow, glassmorphism cards
 - 2×2 card grid (was 4-col) — stats now huge (3.5rem) with room to breathe; £99k/year fits perfectly

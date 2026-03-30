@@ -1737,7 +1737,7 @@
         position: relative;
       }
 
-      /* Ambient glow behind section */
+      /* Ambient glow behind section — warm, not teal */
       .revenue-section::before {
         content: '';
         position: absolute;
@@ -1746,7 +1746,7 @@
         transform: translateX(-50%);
         width: 800px;
         height: 800px;
-        background: radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(201,169,92,0.04) 0%, transparent 70%);
         pointer-events: none;
         z-index: 0;
       }
@@ -1767,7 +1767,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.8rem;
         font-weight: 700;
-        color: var(--teal);
+        color: rgba(201,169,92,0.8);
         letter-spacing: 0.18em;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
@@ -1781,10 +1781,10 @@
         content: '';
         width: 40px;
         height: 1px;
-        background: linear-gradient(90deg, transparent, var(--teal));
+        background: linear-gradient(90deg, transparent, rgba(201,169,92,0.6));
       }
       .revenue-eyebrow::after {
-        background: linear-gradient(90deg, var(--teal), transparent);
+        background: linear-gradient(90deg, rgba(201,169,92,0.6), transparent);
       }
 
       .revenue-headline {
@@ -1801,10 +1801,21 @@
       }
 
       .revenue-headline-accent {
-        background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 50%, #5eead4 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #f0ede6;
+        position: relative;
+        display: inline;
+      }
+
+      .revenue-headline-accent::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #c9a95c, #e2c97e, #c9a95c);
+        border-radius: 2px;
+        opacity: 0.7;
       }
 
       .revenue-subheadline {
@@ -1842,15 +1853,15 @@
         backdrop-filter: blur(12px);
       }
 
-      /* Gradient accent strip on left edge */
+      /* Accent strip on left edge — warm gold tone */
       .revenue-card::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 4px;
+        width: 3px;
         height: 100%;
-        background: linear-gradient(180deg, var(--teal) 0%, rgba(20,184,166,0.2) 100%);
+        background: linear-gradient(180deg, rgba(201,169,92,0.7) 0%, rgba(201,169,92,0.15) 100%);
         opacity: 0.6;
         transition: opacity 0.35s ease;
       }
@@ -1859,21 +1870,21 @@
         opacity: 1;
       }
 
-      /* Elevated cards (2 and 4) — featured treatment */
+      /* Elevated cards (2 and 4) — subtle lighter bg, no teal */
       .revenue-card:nth-child(2),
       .revenue-card:nth-child(4) {
-        background: rgba(20,184,166,0.04);
-        border-color: rgba(20,184,166,0.12);
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.1);
       }
 
       .revenue-card:nth-child(2)::before,
       .revenue-card:nth-child(4)::before {
-        width: 5px;
+        width: 4px;
         opacity: 0.85;
-        background: linear-gradient(180deg, #5eead4 0%, var(--teal) 50%, rgba(20,184,166,0.3) 100%);
+        background: linear-gradient(180deg, rgba(226,201,126,0.9) 0%, rgba(201,169,92,0.5) 50%, rgba(201,169,92,0.1) 100%);
       }
 
-      /* Ambient glow on featured cards */
+      /* Subtle warm ambient on featured cards */
       .revenue-card:nth-child(2)::after,
       .revenue-card:nth-child(4)::after {
         content: '';
@@ -1882,71 +1893,63 @@
         right: -60px;
         width: 200px;
         height: 200px;
-        background: radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(201,169,92,0.04) 0%, transparent 70%);
         pointer-events: none;
       }
 
       .revenue-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(20,184,166,0.08);
-        border-color: rgba(255,255,255,0.1);
-        background: rgba(255,255,255,0.05);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(201,169,92,0.06);
+        border-color: rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.06);
       }
 
       .revenue-card:nth-child(2):hover,
       .revenue-card:nth-child(4):hover {
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 60px rgba(20,184,166,0.15);
-        border-color: rgba(20,184,166,0.25);
-        background: rgba(20,184,166,0.07);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,169,92,0.1);
+        border-color: rgba(255,255,255,0.15);
+        background: rgba(255,255,255,0.07);
       }
 
       .revenue-card-label {
         font-family: 'Space Mono', monospace;
-        font-size: 0.65rem;
+        font-size: 0.8rem;
         font-weight: 700;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.4);
+        color: rgba(255,255,255,0.55);
         margin-bottom: 1.75rem;
         padding-left: 0.125rem;
       }
 
       .revenue-card:nth-child(2) .revenue-card-label,
       .revenue-card:nth-child(4) .revenue-card-label {
-        color: rgba(45,212,191,0.6);
+        color: rgba(255,255,255,0.6);
       }
 
       .revenue-card-number {
         font-family: 'Inter', sans-serif;
         font-size: clamp(2.5rem, 4vw, 3.5rem);
         font-weight: 800;
-        color: white;
+        color: #f0ede6;
         line-height: 1;
         letter-spacing: -0.04em;
         margin-bottom: 0.75rem;
       }
 
-      /* Teal stat colour on elevated cards (2 and 4) */
-      .revenue-card:nth-child(2) .revenue-card-number,
-      .revenue-card:nth-child(4) .revenue-card-number {
-        background: linear-gradient(135deg, #5eead4 0%, #2dd4bf 50%, #14b8a6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
       .revenue-card-descriptor {
-        font-size: 1.0625rem;
-        font-weight: 600;
-        color: rgba(255,255,255,0.88);
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: rgba(255,255,255,0.92);
         line-height: 1.5;
         margin-bottom: 2rem;
+        letter-spacing: -0.01em;
       }
 
       .revenue-card-divider {
         width: 48px;
         height: 2px;
-        background: linear-gradient(90deg, var(--teal), rgba(20,184,166,0.15));
+        background: linear-gradient(90deg, rgba(201,169,92,0.6), rgba(201,169,92,0.1));
         margin-bottom: 1.5rem;
         flex-shrink: 0;
         border-radius: 2px;
@@ -1955,12 +1958,12 @@
       .revenue-card:nth-child(2) .revenue-card-divider,
       .revenue-card:nth-child(4) .revenue-card-divider {
         width: 64px;
-        background: linear-gradient(90deg, #5eead4, rgba(45,212,191,0.2));
+        background: linear-gradient(90deg, rgba(201,169,92,0.7), rgba(201,169,92,0.15));
       }
 
       .revenue-card-proof {
-        font-size: 0.925rem;
-        color: rgba(255,255,255,0.5);
+        font-size: 1rem;
+        color: rgba(255,255,255,0.6);
         line-height: 1.7;
         flex: 1;
       }
@@ -2100,7 +2103,7 @@
       /* Restore featured card shadows after reveal */
       .revenue-section.rev-visible .revenue-card:nth-child(2),
       .revenue-section.rev-visible .revenue-card:nth-child(4) {
-        box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 30px rgba(20,184,166,0.06);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 20px rgba(201,169,92,0.04);
       }
 
       /* Number pulse on reveal */
@@ -2213,7 +2216,7 @@
         }
 
         .revenue-card-number {
-          font-size: 2.5rem;
+          font-size: 2.25rem;
         }
 
         .revenue-card-label {
