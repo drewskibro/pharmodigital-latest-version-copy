@@ -506,6 +506,74 @@
         to { opacity: 1; transform: translateY(0) scale(1) rotate(1deg); }
       }
 
+      /* ─── Logo Bar ─── */
+      .sa-logo-bar {
+        background: #fef7ed;
+        padding: 2.5rem 0;
+        overflow: hidden;
+        position: relative;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .sa-logo-bar::before,
+      .sa-logo-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 120px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .sa-logo-bar::before {
+        left: 0;
+        background: linear-gradient(90deg, #fef7ed 0%, transparent 100%);
+      }
+      .sa-logo-bar::after {
+        right: 0;
+        background: linear-gradient(270deg, #fef7ed 0%, transparent 100%);
+      }
+      .sa-logo-bar-label {
+        text-align: center;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(15,23,42,0.35);
+        margin-bottom: 1.75rem;
+      }
+      .sa-logo-bar-scroller {
+        display: flex;
+        gap: 4rem;
+        animation: saLogoScroll 30s linear infinite;
+      }
+      .sa-logo-bar-scroller:hover {
+        animation-play-state: paused;
+      }
+      .sa-logo-bar-scroller img {
+        height: 42px;
+        width: auto;
+        object-fit: contain;
+        opacity: 0.55;
+        filter: grayscale(100%);
+        transition: opacity 0.3s ease, filter 0.3s ease;
+        flex-shrink: 0;
+      }
+      .sa-logo-bar-scroller img:hover {
+        opacity: 0.9;
+        filter: grayscale(0%);
+      }
+      @keyframes saLogoScroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      @media (max-width: 768px) {
+        .sa-logo-bar::before,
+        .sa-logo-bar::after { width: 60px; }
+        .sa-logo-bar-scroller img { height: 32px; }
+        .sa-logo-bar-scroller { gap: 3rem; }
+      }
+
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
          SECTION 2 — SALESAGENT PRO (Dark)
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -2076,33 +2144,29 @@
       </div>
     </section>
 
-    <!-- ═══ TRUST BAR ═══ -->
-    <section class="sa-trust-bar">
-      <div class="sa-trust-bar-inner">
-        <div class="sa-trust-bar-item">
-          <p class="sa-trust-bar-num" data-countup="25" data-suffix="%">25%</p>
-          <p class="sa-trust-bar-label">
-            Conversion Rate · <strong style="color:rgba(255,255,255,0.75);">Ealing Travel Clinic</strong>
-          </p>
-        </div>
-        <div class="sa-trust-bar-item">
-          <p class="sa-trust-bar-num" data-countup="50" data-suffix="%">50%</p>
-          <p class="sa-trust-bar-label">
-            Weight Loss Sales Via AI · <strong style="color:rgba(255,255,255,0.75);">Superior Pharmacy</strong>
-          </p>
-        </div>
-        <div class="sa-trust-bar-item">
-          <p class="sa-trust-bar-num">24 / 7</p>
-          <p class="sa-trust-bar-label">
-            Zero Extra Staff · <strong style="color:rgba(255,255,255,0.75);">Ray Lane Group</strong>
-          </p>
-        </div>
-        <div class="sa-trust-bar-item">
-          <p class="sa-trust-bar-num" data-countup="100000" data-suffix="+" data-format="number">100,000+</p>
-          <p class="sa-trust-bar-label">
-            Real Patient Conversations · <strong style="color:rgba(255,255,255,0.75);">Our Network</strong>
-          </p>
-        </div>
+    <!-- ═══ CLIENT LOGO BAR ═══ -->
+    <section class="sa-logo-bar">
+      <p class="sa-logo-bar-label">Trusted by healthcare practices across the UK</p>
+      <div class="sa-logo-bar-scroller">
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+        <!-- Duplicate set for seamless loop -->
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
+        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
       </div>
     </section>
 

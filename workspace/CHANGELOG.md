@@ -18,6 +18,24 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-03-30] — SalesAgent: logo scroller v3 — flat single-row fix (salesagent.html)
+- Previous twin-track nested approach still showed white gap on loop reset
+- Flattened to match homepage pattern: single `.sa-logo-bar-scroller` div with 18 imgs (9+9 duplicate)
+- Removed `.sa-logo-bar-track` wrapper entirely; animation now on `.sa-logo-bar-scroller` directly
+- 30s duration, `translateX(-50%)`, same seamless loop as homepage-v2.html
+
+### [2026-03-30] — SalesAgent: removed trust bar + fixed logo scroller (salesagent.html)
+- Deleted entire `.sa-trust-bar` section (too cluttered sitting above the logo bar)
+- Removed `uploaded-asset-1773216983562-1.png` (Puri Pharmacy photo/laptop image) from all 4 logo scroller duplicates
+- Logo scroller now only shows 3 proper vector logos: Superior Pharmacy, Ray Lane Group, Ealing Travel Clinic
+- Logo bar now sits cleanly directly below the hero with no stat bar above it
+
+### [2026-03-30] — SalesAgent: sliding logo banner added after trust bar (salesagent.html)
+- New `.sa-logo-bar` section placed between trust bar and SalesAgent Pro section
+- Infinite scroll animation (28s), grayscale logos at 55% opacity, full colour on hover
+- Logos: Superior Pharmacy, Ray Lane Group, Ealing Travel Clinic, Puri Pharmacy (×4 for seamless loop)
+- Fade mask edges via ::before/::after gradients; pause-on-hover; responsive mobile sizing
+
 ### [2026-03-30] — SalesAgent: process section redesigned (salesagent.html)
 - Replaced old 2-column "Four Weeks" layout with centred dark vertical 3-step design
 - New headline: "Seven Days To Go Live. Bookings Before You've Had Your Morning Coffee."
