@@ -129,8 +129,202 @@
         font-size: 0.9rem !important;
       }
       .nav-cta:hover { background: var(--navy-light) !important; }
+
+      /* ─── PharmoBoost Dropdown ─── */
+      .nav-dropdown {
+        position: relative;
+      }
+      .nav-dropdown-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--gray-600);
+        text-decoration: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: inherit;
+        padding: 0;
+        transition: color 0.2s;
+      }
+      .nav-dropdown-trigger:hover { color: var(--navy); }
+      .nav-dropdown-trigger .dd-arrow {
+        font-size: 0.55rem;
+        transition: transform 0.25s ease;
+        margin-top: 1px;
+      }
+      .nav-dropdown:hover .dd-arrow,
+      .nav-dropdown.open .dd-arrow {
+        transform: rotate(180deg);
+      }
+      .nav-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        min-width: 380px;
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+        z-index: 100;
+        padding: 0.5rem 0;
+      }
+      .nav-dropdown:hover .nav-dropdown-menu,
+      .nav-dropdown.open .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+      .nav-dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 14px;
+        height: 14px;
+        background: white;
+        border-radius: 2px;
+        transform: translateX(-50%) rotate(45deg);
+        box-shadow: -1px -1px 0 0 rgba(0,0,0,0.04);
+      }
+      /* Invisible hover bridge between trigger and menu */
+      .nav-dropdown-menu::after {
+        content: '';
+        position: absolute;
+        top: -18px;
+        left: 0;
+        right: 0;
+        height: 18px;
+      }
+      .dd-section-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gray-400);
+        padding: 0.75rem 1.25rem 0.375rem;
+        display: block;
+      }
+      .dd-divider {
+        height: 1px;
+        background: var(--gray-100);
+        margin: 0.375rem 0;
+      }
+      .dd-item {
+        display: block;
+        padding: 0.625rem 1.25rem;
+        text-decoration: none;
+        border-radius: 8px;
+        margin: 0 0.375rem;
+        transition: background 0.15s ease;
+      }
+      .dd-item:hover {
+        background: rgba(20,184,166,0.06);
+      }
+      .dd-item-name {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1.3;
+        display: block;
+      }
+      .dd-item-sub {
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--gray-400);
+        line-height: 1.4;
+        display: block;
+        margin-top: 1px;
+      }
+
+      /* Mobile hamburger */
+      .nav-hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        color: var(--navy);
+      }
+      .nav-hamburger svg { display: block; }
+
+      /* Mobile nav overlay */
+      .nav-mobile-overlay {
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(254,247,237,0.99);
+        backdrop-filter: blur(12px);
+        z-index: 49;
+        padding: 2rem;
+        flex-direction: column;
+        gap: 0.25rem;
+        overflow-y: auto;
+      }
+      .nav-mobile-overlay.mobile-open { display: flex; }
+      .nav-mobile-overlay a,
+      .nav-mobile-overlay button {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--gray-600);
+        text-decoration: none;
+        padding: 0.75rem 0;
+        border: none;
+        background: none;
+        font-family: inherit;
+        cursor: pointer;
+        text-align: left;
+        display: block;
+        width: 100%;
+      }
+      .nav-mobile-overlay a:hover,
+      .nav-mobile-overlay button:hover { color: var(--navy); }
+      .nav-mobile-overlay .mobile-dd-section-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gray-400);
+        padding: 0.75rem 0 0.25rem 1rem;
+      }
+      .nav-mobile-overlay .mobile-dd-item {
+        padding-left: 1rem;
+        font-size: 1rem;
+      }
+      .nav-mobile-overlay .mobile-dd-item-sub {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--gray-400);
+        font-weight: 400;
+      }
+      .nav-mobile-overlay .mobile-nav-cta {
+        display: inline-block;
+        background: var(--navy);
+        color: white !important;
+        padding: 0.875rem 1.75rem;
+        border-radius: 8px;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        text-align: center;
+        margin-top: 1rem;
+      }
+
       @media (max-width: 768px) {
         .nav-links { display: none; }
+        .nav-hamburger { display: block; }
       }
 
       /* Hero Section */
@@ -1729,6 +1923,206 @@
         }
       }
 
+      /* ─── Founder Section ─── */
+      .founder-section {
+        background: #FAF8F3;
+        padding: 5rem 2rem 0;
+        overflow: hidden;
+      }
+
+      .founder-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 45% 55%;
+        align-items: end;
+      }
+
+      .founder-image {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        align-self: end;
+      }
+
+      .founder-image img {
+        display: block;
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        object-fit: contain;
+        object-position: bottom;
+      }
+
+      .founder-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5rem 2rem 5rem 3rem;
+      }
+
+      .founder-eyebrow {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--teal);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+      }
+
+      .founder-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.75rem, 3vw, 2.375rem);
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.75rem;
+      }
+
+      .founder-body {
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: #374151;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        max-width: 540px;
+      }
+
+      .founder-body:last-of-type {
+        font-weight: 600;
+        color: var(--navy);
+        margin-bottom: 2.5rem;
+      }
+
+      .founder-body-break {
+        display: block;
+        margin-top: 1.25rem;
+      }
+
+      .founder-name {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .founder-name-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.01em;
+      }
+
+      .founder-title-text {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--gray-600);
+      }
+
+      .founder-linkedin {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #4b5563;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        line-height: 1.4;
+      }
+
+      .founder-linkedin:hover {
+        color: #0A66C2;
+      }
+
+      .founder-linkedin svg {
+        flex-shrink: 0;
+      }
+
+      /* Founder scroll animation */
+      .founder-section .founder-copy > * {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .founder-section.founder-visible .founder-eyebrow {
+        opacity: 1; transform: translateY(0); transition-delay: 0.1s;
+      }
+      .founder-section.founder-visible .founder-headline {
+        opacity: 1; transform: translateY(0); transition-delay: 0.25s;
+      }
+      .founder-section.founder-visible .founder-body:nth-of-type(1) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.4s;
+      }
+      .founder-section.founder-visible .founder-body:nth-of-type(2) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.55s;
+      }
+      .founder-section.founder-visible .founder-name {
+        opacity: 1; transform: translateY(0);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s;
+      }
+
+      .founder-linkedin {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .founder-section.founder-visible .founder-linkedin {
+        opacity: 1; transform: translateY(0); transition-delay: 0.85s;
+      }
+
+      .founder-image {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .founder-section.founder-visible .founder-image {
+        opacity: 1; transform: translateX(0); transition-delay: 0.15s;
+      }
+
+      @media (max-width: 900px) {
+        .founder-section {
+          padding: 0;
+        }
+
+        .founder-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .founder-copy {
+          padding: 4rem 2rem 3rem;
+          order: -1;
+          text-align: left;
+        }
+
+        .founder-image {
+          justify-content: center;
+        }
+
+        .founder-image img {
+          max-width: 340px;
+          width: 80%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .founder-copy {
+          padding: 3rem 1.5rem 2rem;
+        }
+
+        .founder-headline {
+          font-size: 1.625rem;
+        }
+
+        .founder-body {
+          font-size: 1rem;
+        }
+      }
+
       /* ─── Revenue Results Section ─── */
       .revenue-section {
         background: linear-gradient(180deg, #0a0f1c 0%, #0f172a 40%, #111d35 100%);
@@ -1737,7 +2131,7 @@
         position: relative;
       }
 
-      /* Ambient glow behind section — warm, not teal */
+      /* Ambient glow behind section */
       .revenue-section::before {
         content: '';
         position: absolute;
@@ -1746,7 +2140,7 @@
         transform: translateX(-50%);
         width: 800px;
         height: 800px;
-        background: radial-gradient(circle, rgba(201,169,92,0.04) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%);
         pointer-events: none;
         z-index: 0;
       }
@@ -1767,7 +2161,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.8rem;
         font-weight: 700;
-        color: rgba(201,169,92,0.8);
+        color: rgba(20,184,166,0.8);
         letter-spacing: 0.18em;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
@@ -1781,10 +2175,10 @@
         content: '';
         width: 40px;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(201,169,92,0.6));
+        background: linear-gradient(90deg, transparent, rgba(20,184,166,0.6));
       }
       .revenue-eyebrow::after {
-        background: linear-gradient(90deg, rgba(201,169,92,0.6), transparent);
+        background: linear-gradient(90deg, rgba(20,184,166,0.6), transparent);
       }
 
       .revenue-headline {
@@ -1813,7 +2207,7 @@
         bottom: -4px;
         width: 100%;
         height: 3px;
-        background: linear-gradient(90deg, #c9a95c, #e2c97e, #c9a95c);
+        background: linear-gradient(90deg, #14b8a6, #2dd4bf, #14b8a6);
         border-radius: 2px;
         opacity: 0.7;
       }
@@ -1853,7 +2247,7 @@
         backdrop-filter: blur(12px);
       }
 
-      /* Accent strip on left edge — warm gold tone */
+      /* Accent strip on left edge */
       .revenue-card::before {
         content: '';
         position: absolute;
@@ -1861,7 +2255,7 @@
         left: 0;
         width: 3px;
         height: 100%;
-        background: linear-gradient(180deg, rgba(201,169,92,0.7) 0%, rgba(201,169,92,0.15) 100%);
+        background: linear-gradient(180deg, rgba(20,184,166,0.7) 0%, rgba(20,184,166,0.15) 100%);
         opacity: 0.6;
         transition: opacity 0.35s ease;
       }
@@ -1881,10 +2275,10 @@
       .revenue-card:nth-child(4)::before {
         width: 4px;
         opacity: 0.85;
-        background: linear-gradient(180deg, rgba(226,201,126,0.9) 0%, rgba(201,169,92,0.5) 50%, rgba(201,169,92,0.1) 100%);
+        background: linear-gradient(180deg, rgba(45,212,191,0.9) 0%, rgba(20,184,166,0.5) 50%, rgba(20,184,166,0.1) 100%);
       }
 
-      /* Subtle warm ambient on featured cards */
+      /* Subtle teal ambient on featured cards */
       .revenue-card:nth-child(2)::after,
       .revenue-card:nth-child(4)::after {
         content: '';
@@ -1893,20 +2287,20 @@
         right: -60px;
         width: 200px;
         height: 200px;
-        background: radial-gradient(circle, rgba(201,169,92,0.04) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%);
         pointer-events: none;
       }
 
       .revenue-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(201,169,92,0.06);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(20,184,166,0.06);
         border-color: rgba(255,255,255,0.12);
         background: rgba(255,255,255,0.06);
       }
 
       .revenue-card:nth-child(2):hover,
       .revenue-card:nth-child(4):hover {
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,169,92,0.1);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(20,184,166,0.1);
         border-color: rgba(255,255,255,0.15);
         background: rgba(255,255,255,0.07);
       }
@@ -1949,7 +2343,7 @@
       .revenue-card-divider {
         width: 48px;
         height: 2px;
-        background: linear-gradient(90deg, rgba(201,169,92,0.6), rgba(201,169,92,0.1));
+        background: linear-gradient(90deg, rgba(20,184,166,0.6), rgba(20,184,166,0.1));
         margin-bottom: 1.5rem;
         flex-shrink: 0;
         border-radius: 2px;
@@ -1958,7 +2352,7 @@
       .revenue-card:nth-child(2) .revenue-card-divider,
       .revenue-card:nth-child(4) .revenue-card-divider {
         width: 64px;
-        background: linear-gradient(90deg, rgba(201,169,92,0.7), rgba(201,169,92,0.15));
+        background: linear-gradient(90deg, rgba(20,184,166,0.7), rgba(20,184,166,0.15));
       }
 
       .revenue-card-proof {
@@ -2103,7 +2497,7 @@
       /* Restore featured card shadows after reveal */
       .revenue-section.rev-visible .revenue-card:nth-child(2),
       .revenue-section.rev-visible .revenue-card:nth-child(4) {
-        box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 20px rgba(201,169,92,0.04);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 20px rgba(20,184,166,0.04);
       }
 
       /* Number pulse on reveal */
@@ -3951,12 +4345,74 @@
       <div class="nav-inner">
         <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
         <div class="nav-links">
-          <a href="homepage-v2.html">Home Page 2</a>
+          <!-- PharmoBoost Dropdown -->
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
+            <div class="nav-dropdown-menu">
+              <span class="dd-section-label">Complete Packages</span>
+              <a href="#" class="dd-item">
+                <span class="dd-item-name">WebPro Elite</span>
+                <span class="dd-item-sub">Pillar Domination Framework™ + Website</span>
+              </a>
+              <a href="#" class="dd-item">
+                <span class="dd-item-name">Revenue System</span>
+                <span class="dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span>
+              </a>
+              <a href="ai-domination-system.html" class="dd-item">
+                <span class="dd-item-name">The Playbook</span>
+                <span class="dd-item-sub">DIY System — £497</span>
+              </a>
+              <div class="dd-divider"></div>
+              <span class="dd-section-label">Custom AI Arsenal</span>
+              <a href="#" class="dd-item">
+                <span class="dd-item-name">ContentIQ Elite</span>
+                <span class="dd-item-sub">Content Engine for Existing Sites</span>
+              </a>
+              <a href="salesagent.html" class="dd-item">
+                <span class="dd-item-name">SalesAgent Pro</span>
+                <span class="dd-item-sub">24/7 Patient Q&amp;A Engine™</span>
+              </a>
+              <a href="#" class="dd-item">
+                <span class="dd-item-name">WebPro Foundation</span>
+                <span class="dd-item-sub">Website Only</span>
+              </a>
+              <a href="#" class="dd-item">
+                <span class="dd-item-name">Visibility Accelerator</span>
+                <span class="dd-item-sub">SEO + AI Search</span>
+              </a>
+            </div>
+          </div>
+          <a href="#">Pharmacies</a>
+          <a href="#">Clinics</a>
           <a href="#case-studies">Case Studies</a>
-          <a href="ai-domination-system.html">AI Search Playbook</a>
-          <a href="#get-started">Pricing</a>
-          <a href="#contact" class="nav-cta">Get Free AI Report</a>
+          <a href="ai-domination-system.html">The Playbook</a>
+          <a href="#contact" class="nav-cta">Book A Call</a>
         </div>
+        <!-- Mobile hamburger -->
+        <button class="nav-hamburger" aria-label="Open menu" onclick="document.querySelector('.nav-mobile-overlay').classList.toggle('mobile-open'); this.querySelector('.ham-open').style.display = this.querySelector('.ham-open').style.display === 'none' ? 'block' : 'none'; this.querySelector('.ham-close').style.display = this.querySelector('.ham-close').style.display === 'none' ? 'block' : 'none';">
+          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <!-- Mobile nav overlay -->
+      <div class="nav-mobile-overlay">
+        <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">PharmoBoost ▼</button>
+        <div style="display:none;">
+          <span class="mobile-dd-section-label">Complete Packages</span>
+          <a href="#" class="mobile-dd-item">WebPro Elite <span class="mobile-dd-item-sub">Pillar Domination Framework™ + Website</span></a>
+          <a href="#" class="mobile-dd-item">Revenue System <span class="mobile-dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a>
+          <a href="ai-domination-system.html" class="mobile-dd-item">The Playbook <span class="mobile-dd-item-sub">DIY System — £497</span></a>
+          <span class="mobile-dd-section-label">Custom AI Arsenal</span>
+          <a href="#" class="mobile-dd-item">ContentIQ Elite <span class="mobile-dd-item-sub">Content Engine for Existing Sites</span></a>
+          <a href="salesagent.html" class="mobile-dd-item">SalesAgent Pro <span class="mobile-dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a>
+          <a href="#" class="mobile-dd-item">WebPro Foundation <span class="mobile-dd-item-sub">Website Only</span></a>
+          <a href="#" class="mobile-dd-item">Visibility Accelerator <span class="mobile-dd-item-sub">SEO + AI Search</span></a>
+        </div>
+        <a href="#">Pharmacies</a>
+        <a href="#">Clinics</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="ai-domination-system.html">The Playbook</a>
+        <a href="#contact" class="mobile-nav-cta">Book A Call</a>
       </div>
     </nav>
 
@@ -4633,6 +5089,35 @@
       </div>
     </section>
 
+    <!-- Founder Section -->
+    <section class="founder-section">
+      <div class="founder-inner">
+        <div class="founder-image">
+          <img
+            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774857966915-0.png"
+            alt="Drew — Founder, PharmoDigital"
+          />
+        </div>
+        <div class="founder-copy">
+          <p class="founder-eyebrow">The Person Behind The Results</p>
+          <h2 class="founder-headline">I built the system that put Superior on ChatGPT's shortlist</h2>
+          <p class="founder-body">
+            I built the one that took Ealing past Boots and into six figures from a single service. Nearly 20 years in healthcare marketing taught me one thing: visibility without revenue is just vanity.
+            <span class="founder-body-break">Every practice I work with has one goal. More patients. More revenue. More of the private services that actually grow a business.</span>
+            <span class="founder-body-break">I personally oversee every client we onboard because I know exactly what&#39;s possible when the system is built correctly. If you work with PharmoDigital, you work with me.</span>
+          </p>
+          <div class="founder-name">
+            <span class="founder-name-text">Drew</span>
+            <span class="founder-title-text">Founder, PharmoDigital</span>
+            <a href="https://www.linkedin.com/in/drew-s-clayton/" target="_blank" rel="noopener noreferrer" class="founder-linkedin">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              Connect with me on LinkedIn — 5,000+ healthcare professionals follow our AI search insights.
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Revenue Results Section -->
     <section class="revenue-section" id="revenue-results">
       <div class="revenue-inner">
@@ -4897,6 +5382,21 @@
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
         cards.forEach(c => obs.observe(c));
+      })();
+
+      // ── Founder Section: scroll-triggered reveal ──
+      (function() {
+        const founderSection = document.querySelector('.founder-section');
+        if (!founderSection) return;
+        const founderObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              founderSection.classList.add('founder-visible');
+              founderObs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+        founderObs.observe(founderSection);
       })();
 
       // ── Revenue Results: scroll-triggered reveal + count-up ──

@@ -18,6 +18,113 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-03-30] — SalesAgent: process section redesigned (salesagent.html)
+- Replaced old 2-column "Four Weeks" layout with centred dark vertical 3-step design
+- New headline: "Seven Days To Go Live. Bookings Before You've Had Your Morning Coffee."
+- Steps: Train → Test → Deploy with user-provided copy, vertical connector lines, hover effects
+- Added Day 1 → Day 7 animated timeline bar at bottom with teal gradient fill on scroll
+- Removed old week-tab auto-cycling JS, replaced with simpler timeline reveal observer
+
+### [2026-03-30] — SalesAgent: hero image replaced (salesagent.html)
+- Swapped old hero device mockup image for new screenshot showing SalesAgent Pro chat, prompt library, AI checklist, and client logos
+- Hosted new image via host_assets, updated src + alt text in .sa-hero-visual img
+
+### [2026-03-30] — SalesAgent: flywheel steps 3+4 emoji → SVG icons (salesagent.html)
+- Replaced ✍️ (step 3) with clean document/lines SVG icon matching indigo colour scheme
+- Replaced 🚀 (step 4) with magnifying-glass-plus SVG icon matching green colour scheme
+- Added `.sa-flywheel-icon svg` styles (28px, stroke-width 1.8, currentColor)
+- Steps 1 (💬) and 2 (🧠) kept as-is per user preference
+
+### [2026-03-30] — SalesAgent: Not A Chatbot → Intelligence Engine with Content Flywheel (salesagent.html)
+- Reframed section from "we answer questions" to "every question is a revenue signal"
+- Each query card now has 3rd layer: Content Signal (amber) showing exact blog post generated from patient question
+- Added Content Flywheel 4-step visual loop: Capture → Intelligence → Content → AI Search Rankings
+- Flywheel has spinning ↻ loop indicator, colour-coded step icons, responsive grid layout
+- Closing line changed to "Every patient who asks a question is telling you what content to create next"
+
+### [2026-03-30] — SalesAgent Pro: dashboard strip → revenue proof bar (salesagent.html)
+- Removed cheesy "System Live" pulsating dot and monospace dashboard strip
+- Replaced with 3-column revenue proof bar: £200k+ South Downs, 50% Superior, 1-in-4 Ealing
+- Cream-white (#f0ede6) numbers on dark glass cards — revenue-focused, not generic metrics
+- Subtle hover states, responsive stacking on mobile, italic "Real client results" context line
+
+### [2026-03-30] — SalesAgent Pro: copy overhaul with real numbers (salesagent.html)
+- Story rewritten: specific patient scenario (Mounjaro + blood pressure), 11-second competitor response, "never comes back" punchline
+- Punchline updated from "South Downs 100+" to "100,000+ patient conversations across our network"
+- First stat card: 100+ → 100,000+ patient conversations generated across network
+- Dashboard strip: 247 handled this week → 2,847 handled this month (matches scale)
+
+### [2026-03-30] — SalesAgent Pro section: premium redesign (salesagent.html)
+- Body text → cinematic micro-story with teal left border, line-by-line pacing, punchline treatment
+- Stat card 1: ring glow animation with pulsing outer ring
+- Stat card 2: visual comparison bar (industry 2-5% vs ours 25%) with animated fills
+- Stat card 3: "Running now" live pulse dot indicator
+- Callout → live dashboard strip (System Live dot, 247 handled, 100% rate, 0 missed)
+
+### [2026-03-30] — SalesAgent: problem → SalesAgent Pro showcase section (salesagent.html)
+- Replaced generic "Built To Inform, Not Convert" with ChatGPT-referral narrative headline (3-line dramatic)
+- Subhead now tells 10pm patient story anchored to South Downs capturing 100+ patients monthly
+- Stats: teal numbers (100+ monthly patients, 25% conversion, Set & Forget) with sub-labels
+- Added teal proof callout box: "Hundreds of inquiries monthly. Every single one handled."
+- Added "See The System →" CTA button below callout
+
+### [2026-03-30] — SalesAgent: client name-drops in hero, trust bar, problem (salesagent.html)
+- Hero subtitle now names Superior Pharmacy (50% weight loss via AI), Ealing Travel Clinic (1-in-4 conversion), Ray Lane Group (24/7 no extra staff)
+- Trust bar: each of 4 columns now anchored to a named client — Ealing 25%, Superior 50%, Ray Lane 24/7, Network 100k+
+- Problem section: added italic proof callout naming Superior Pharmacy's after-hours revenue loss
+- Matches homepage pattern (Sachin testimony) — specificity before the ask, not generic claims
+
+### [2026-03-30] — SalesAgent hero: reduced text + premium trust bar (salesagent.html)
+- Hero title downsized clamp(2.75rem,5.5vw,4rem) → clamp(2.25rem,4.5vw,3.25rem), subtitle 1.15→1.05rem, tighter spacing
+- Killed weak inline trust stats (sa-hero-trust) — replaced with full-width dark navy trust bar between hero & problem
+- Trust bar: 4-column grid (25% rate, 100k+ convos, 24/7, industry avg), staggered fade-in, teal top-line gradient
+- Count-up animations on trust bar numbers, responsive 2-col on mobile, vertical dividers between items
+- Matches homepage premium visual weight — no more text-heavy bottom of hero
+
+### [2026-03-30] — SalesAgent Pro premium overhaul (salesagent.html)
+- Complete redesign to match homepage billion-pound aesthetic: full-height hero, ambient glows, glassmorphism
+- Hero: full viewport height, escalating title animation, trust stats bar, breathing device mockup — mirrors index.html hero exactly
+- Problem: condensed to 1 paragraph + 3 stat cards (glassmorphism dark cards with count-up animations) — no more text wall
+- Not A Chatbot: trimmed to 1-line intro → straight to query cards — visual-led not copy-led
+- Proof: 2×2 grid matching homepage revenue cards (teal accent strips, ambient glows, backdrop blur, number pulse)
+- How It Works: rebuilt as homepage method section — left anchor column with timeline widget + right step column with circle nodes, connector lines, proof badges
+- Eligibility: 2-column layout with proper bordered cards (icon + title + desc) instead of plain ticks
+- Final CTA: dark navy, matches homepage CTA treatment
+- Count-up animations on all numeric stats, timeline auto-cycle, scroll-triggered reveals throughout
+
+### [2026-03-30] — Sync PharmoBoost nav across all pages (ai-domination-system.html, case-study-ealing.html, homepage-v2.html)
+- Replaced old nav markup + CSS on all 3 sub-pages with the new PharmoBoost dropdown from index.html
+- Each page now has: PharmoBoost ▼ dropdown (7 products, 2 sections), Pharmacies, Clinics, Case Studies, The Playbook, Book A Call CTA
+- Added dropdown CSS (hover reveal, arrow, white card, teal hover), mobile hamburger + overlay with accordion
+- Consistent nav experience across entire site — no more stale links on inner pages
+
+### [2026-03-30] — Navigation overhaul with PharmoBoost dropdown (index.html)
+- Replaced old nav links with: PharmoBoost ▼, Pharmacies, Clinics, Case Studies, The Playbook, Book A Call
+- PharmoBoost dropdown: 2 sections (Complete Packages / Custom AI Arsenal) with 7 products, hover teal bg, clean divider
+- Clean white dropdown with arrow indicator, smooth opacity/transform reveal on hover
+- Mobile: hamburger button toggles full-screen overlay with collapsible PharmoBoost accordion
+- Framework names shown as lighter subtext below each product name
+
+### [2026-03-30] — Revenue section: gold → teal accent consistency fix (index.html)
+- Replaced all #c9a95c / #e2c97e gold references with teal (#14b8a6 / #2dd4bf) to match homepage palette
+- Affected: ambient glow, eyebrow colour, headline underline, left-edge card strips, dividers, hover shadows, featured card shadows
+- Section now visually consistent with hero, problem/solution, shift, pathway, and founder sections
+
+### [2026-03-30] — Founder section copy polish + LinkedIn line (index.html)
+- Body text split into 3 visual paragraphs via `.founder-body-break` spans (margin-top 1.25rem)
+- Increased body line-height 1.75→1.8, bottom margin 1.25rem→1.5rem, last-of-type 2rem→2.5rem
+- Added `.founder-linkedin` link below name/title: LinkedIn brand-blue icon, muted dark text, opens new tab
+- LinkedIn line gets own scroll-reveal at 0.85s delay
+- Link: https://www.linkedin.com/in/drew-s-clayton/
+
+### [2026-03-30] — Founder section added above revenue results (index.html)
+- New `.founder-section` with warm cream #FAF8F3 bg, 2-col grid (45/55 split)
+- Left: Drew full-length transparent photo, bottom-aligned, bleeds to section edge
+- Right: eyebrow/headline/body/name vertically centred with generous left padding
+- Scroll-triggered reveals: copy staggered fadeUp, image slides in from left
+- Mobile: stacks vertically (copy first, then photo full-width)
+- Responsive breakpoints at 900px and 480px
+
 ### [2026-03-30] — FAQ section premium overhaul → dark navy glassmorphism (ai-domination-system.html)
 - Moved from cream bg to navy bg with radial ambient glows
 - Individual separated cards (gap 0.875rem) with glassmorphism: rgba white bg, subtle borders

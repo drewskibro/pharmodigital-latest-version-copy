@@ -191,9 +191,7 @@
       color: var(--navy);
       text-decoration: none;
     }
-    .nav-brand span {
-      color: var(--teal);
-    }
+    .nav-brand span { color: var(--teal); }
     .nav-links {
       display: flex;
       align-items: center;
@@ -203,6 +201,7 @@
       font-size: 0.9375rem;
       font-weight: 500;
       color: var(--gray-600);
+      text-decoration: none;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--navy); }
@@ -216,8 +215,76 @@
     }
     .nav-cta:hover { background: var(--navy-light) !important; }
 
+    /* ─── PharmoBoost Dropdown ─── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.9375rem; font-weight: 500; color: var(--gray-600);
+      cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; transition: color 0.2s;
+    }
+    .nav-dropdown-trigger:hover { color: var(--navy); }
+    .nav-dropdown-trigger .dd-arrow { font-size: 0.55rem; transition: transform 0.25s ease; margin-top: 1px; }
+    .nav-dropdown:hover .dd-arrow, .nav-dropdown.open .dd-arrow { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px);
+      min-width: 380px; background: white; border-radius: 14px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100; padding: 0.5rem 0;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown.open .nav-dropdown-menu {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu::before {
+      content: ''; position: absolute; top: -8px; left: 50%;
+      width: 14px; height: 14px; background: white; border-radius: 2px;
+      transform: translateX(-50%) rotate(45deg); box-shadow: -1px -1px 0 0 rgba(0,0,0,0.04);
+    }
+    .nav-dropdown-menu::after { content: ''; position: absolute; top: -18px; left: 0; right: 0; height: 18px; }
+    .dd-section-label {
+      font-family: 'Space Mono', monospace; font-size: 0.625rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-400);
+      padding: 0.75rem 1.25rem 0.375rem; display: block;
+    }
+    .dd-divider { height: 1px; background: var(--gray-100); margin: 0.375rem 0; }
+    .dd-item {
+      display: block; padding: 0.625rem 1.25rem; text-decoration: none;
+      border-radius: 8px; margin: 0 0.375rem; transition: background 0.15s ease;
+    }
+    .dd-item:hover { background: rgba(20,184,166,0.06); }
+    .dd-item-name { font-size: 0.9375rem; font-weight: 600; color: var(--navy); line-height: 1.3; display: block; }
+    .dd-item-sub { font-size: 0.75rem; font-weight: 400; color: var(--gray-400); line-height: 1.4; display: block; margin-top: 1px; }
+
+    /* Mobile hamburger */
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--navy); }
+    .nav-hamburger svg { display: block; }
+    .nav-mobile-overlay {
+      display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: rgba(254,247,237,0.99); backdrop-filter: blur(12px); z-index: 49;
+      padding: 2rem; flex-direction: column; gap: 0.25rem; overflow-y: auto;
+    }
+    .nav-mobile-overlay.mobile-open { display: flex; }
+    .nav-mobile-overlay a, .nav-mobile-overlay button {
+      font-size: 1.125rem; font-weight: 500; color: var(--gray-600); text-decoration: none;
+      padding: 0.75rem 0; border: none; background: none; font-family: inherit;
+      cursor: pointer; text-align: left; display: block; width: 100%;
+    }
+    .nav-mobile-overlay a:hover, .nav-mobile-overlay button:hover { color: var(--navy); }
+    .nav-mobile-overlay .mobile-dd-section-label {
+      font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); padding: 0.75rem 0 0.25rem 1rem;
+    }
+    .nav-mobile-overlay .mobile-dd-item { padding-left: 1rem; font-size: 1rem; }
+    .nav-mobile-overlay .mobile-dd-item-sub { display: block; font-size: 0.75rem; color: var(--gray-400); font-weight: 400; }
+    .nav-mobile-overlay .mobile-nav-cta {
+      display: inline-block; background: var(--navy); color: white !important;
+      padding: 0.875rem 1.75rem; border-radius: 8px; font-weight: 600 !important;
+      font-size: 1rem !important; text-align: center; margin-top: 1rem;
+    }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .nav-hamburger { display: block; }
     }
 
     /* ─── Hero ─── */
@@ -2518,12 +2585,50 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="homepage-v2.html">Home Page 2</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
+          <div class="nav-dropdown-menu">
+            <span class="dd-section-label">Complete Packages</span>
+            <a href="#" class="dd-item"><span class="dd-item-name">WebPro Elite</span><span class="dd-item-sub">Pillar Domination Framework™ + Website</span></a>
+            <a href="#" class="dd-item"><span class="dd-item-name">Revenue System</span><span class="dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a>
+            <a href="ai-domination-system.html" class="dd-item"><span class="dd-item-name">The Playbook</span><span class="dd-item-sub">DIY System — £497</span></a>
+            <div class="dd-divider"></div>
+            <span class="dd-section-label">Custom AI Arsenal</span>
+            <a href="#" class="dd-item"><span class="dd-item-name">ContentIQ Elite</span><span class="dd-item-sub">Content Engine for Existing Sites</span></a>
+            <a href="#" class="dd-item"><span class="dd-item-name">SalesAgent Pro</span><span class="dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a>
+            <a href="#" class="dd-item"><span class="dd-item-name">WebPro Foundation</span><span class="dd-item-sub">Website Only</span></a>
+            <a href="#" class="dd-item"><span class="dd-item-name">Visibility Accelerator</span><span class="dd-item-sub">SEO + AI Search</span></a>
+          </div>
+        </div>
+        <a href="#">Pharmacies</a>
+        <a href="#">Clinics</a>
         <a href="case-study-ealing.html">Case Studies</a>
-        <a href="#what-you-get">What's Inside</a>
-        <a href="#buy-now" class="nav-cta">Get The Playbook — £497</a>
+        <a href="ai-domination-system.html">The Playbook</a>
+        <a href="index.html#contact" class="nav-cta">Book A Call</a>
       </div>
+      <button class="nav-hamburger" aria-label="Open menu" onclick="document.querySelector('.nav-mobile-overlay').classList.toggle('mobile-open'); this.querySelector('.ham-open').style.display = this.querySelector('.ham-open').style.display === 'none' ? 'block' : 'none'; this.querySelector('.ham-close').style.display = this.querySelector('.ham-close').style.display === 'none' ? 'block' : 'none';">
+        <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="nav-mobile-overlay">
+      <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">PharmoBoost ▼</button>
+      <div style="display:none;">
+        <span class="mobile-dd-section-label">Complete Packages</span>
+        <a href="#" class="mobile-dd-item">WebPro Elite <span class="mobile-dd-item-sub">Pillar Domination Framework™ + Website</span></a>
+        <a href="#" class="mobile-dd-item">Revenue System <span class="mobile-dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a>
+        <a href="ai-domination-system.html" class="mobile-dd-item">The Playbook <span class="mobile-dd-item-sub">DIY System — £497</span></a>
+        <span class="mobile-dd-section-label">Custom AI Arsenal</span>
+        <a href="#" class="mobile-dd-item">ContentIQ Elite <span class="mobile-dd-item-sub">Content Engine for Existing Sites</span></a>
+        <a href="#" class="mobile-dd-item">SalesAgent Pro <span class="mobile-dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a>
+        <a href="#" class="mobile-dd-item">WebPro Foundation <span class="mobile-dd-item-sub">Website Only</span></a>
+        <a href="#" class="mobile-dd-item">Visibility Accelerator <span class="mobile-dd-item-sub">SEO + AI Search</span></a>
+      </div>
+      <a href="#">Pharmacies</a>
+      <a href="#">Clinics</a>
+      <a href="case-study-ealing.html">Case Studies</a>
+      <a href="ai-domination-system.html">The Playbook</a>
+      <a href="index.html#contact" class="mobile-nav-cta">Book A Call</a>
     </div>
   </nav>
 

@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SalesAgent Pro — PharmoDigital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --navy: #0f172a;
+        --navy-light: #1e293b;
+        --teal: #14b8a6;
+        --teal-dark: #0d9488;
+        --cream: #f5f3ef;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-400: #9ca3af;
+        --gray-600: #4b5563;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: 'Outfit', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fef7ed;
+        color: var(--navy);
+        overflow-x: hidden;
+      }
+
+      /* ─── Nav ─── */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(254,247,237,0.97);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(0,0,0,0.07);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-brand {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--navy);
+        text-decoration: none;
+      }
+      .nav-brand span { color: var(--teal); }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+      .nav-links a {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--gray-600);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover { color: var(--navy); }
+      .nav-cta {
+        background: var(--navy);
+        color: white !important;
+        padding: 0.625rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+      }
+      .nav-cta:hover { background: var(--navy-light) !important; }
+      .nav-dropdown { position: relative; }
+      .nav-dropdown-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--gray-600);
+        text-decoration: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: inherit;
+        padding: 0;
+        transition: color 0.2s;
+      }
+      .nav-dropdown-trigger:hover { color: var(--navy); }
+      .nav-dropdown-trigger .dd-arrow {
+        font-size: 0.55rem;
+        transition: transform 0.25s ease;
+        margin-top: 1px;
+      }
+      .nav-dropdown:hover .dd-arrow,
+      .nav-dropdown.open .dd-arrow { transform: rotate(180deg); }
+      .nav-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        min-width: 380px;
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+        z-index: 100;
+        padding: 0.5rem 0;
+      }
+      .nav-dropdown:hover .nav-dropdown-menu,
+      .nav-dropdown.open .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+      .nav-dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        width: 14px;
+        height: 14px;
+        background: white;
+        border-radius: 2px;
+        transform: translateX(-50%) rotate(45deg);
+        box-shadow: -1px -1px 0 0 rgba(0,0,0,0.04);
+      }
+      .nav-dropdown-menu::after {
+        content: '';
+        position: absolute;
+        top: -18px;
+        left: 0;
+        right: 0;
+        height: 18px;
+      }
+      .dd-section-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gray-400);
+        padding: 0.75rem 1.25rem 0.375rem;
+        display: block;
+      }
+      .dd-divider {
+        height: 1px;
+        background: var(--gray-100);
+        margin: 0.375rem 0;
+      }
+      .dd-item {
+        display: block;
+        padding: 0.625rem 1.25rem;
+        text-decoration: none;
+        border-radius: 8px;
+        margin: 0 0.375rem;
+        transition: background 0.15s ease;
+      }
+      .dd-item:hover { background: rgba(20,184,166,0.06); }
+      .dd-item-name {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1.3;
+        display: block;
+      }
+      .dd-item-sub {
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--gray-400);
+        line-height: 1.4;
+        display: block;
+        margin-top: 1px;
+      }
+      .nav-hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        color: var(--navy);
+      }
+      .nav-hamburger svg { display: block; }
+      .nav-mobile-overlay {
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(254,247,237,0.99);
+        backdrop-filter: blur(12px);
+        z-index: 49;
+        padding: 2rem;
+        flex-direction: column;
+        gap: 0.25rem;
+        overflow-y: auto;
+      }
+      .nav-mobile-overlay.mobile-open { display: flex; }
+      .nav-mobile-overlay a,
+      .nav-mobile-overlay button {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--gray-600);
+        text-decoration: none;
+        padding: 0.75rem 0;
+        border: none;
+        background: none;
+        font-family: inherit;
+        cursor: pointer;
+        text-align: left;
+        display: block;
+        width: 100%;
+      }
+      .nav-mobile-overlay a:hover,
+      .nav-mobile-overlay button:hover { color: var(--navy); }
+      .nav-mobile-overlay .mobile-dd-section-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gray-400);
+        padding: 0.75rem 0 0.25rem 1rem;
+      }
+      .nav-mobile-overlay .mobile-dd-item {
+        padding-left: 1rem;
+        font-size: 1rem;
+      }
+      .nav-mobile-overlay .mobile-dd-item-sub {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--gray-400);
+        font-weight: 400;
+      }
+      .nav-mobile-overlay .mobile-nav-cta {
+        display: inline-block;
+        background: var(--navy);
+        color: white !important;
+        padding: 0.875rem 1.75rem;
+        border-radius: 8px;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        text-align: center;
+        margin-top: 1rem;
+      }
+      @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .nav-hamburger { display: block; }
+      }
+
+      /* ─── Buttons ─── */
+      .btn-primary-lg {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.1rem 2.5rem;
+        background: var(--teal);
+        color: white;
+        font-family: inherit;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 10px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(20,184,166,0.35);
+        transition: all 0.25s ease;
+      }
+      .btn-primary-lg:hover {
+        background: var(--teal-dark);
+        box-shadow: 0 8px 30px rgba(20,184,166,0.5);
+        transform: translateY(-2px);
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         SECTION 1 — HERO
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+        margin-top: -45px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+      }
+      .sa-hero-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .sa-hero-eyebrow {
+        font-family: 'Space Mono', monospace;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #4d7b6f;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        letter-spacing: 0.015em;
+        display: inline-block;
+        position: relative;
+        padding-bottom: 4px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: saFadeUp 0.6s ease-out 0.3s forwards;
+      }
+      .sa-hero-eyebrow::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--teal);
+        opacity: 0.6;
+      }
+      .sa-hero-title {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+        font-weight: 700;
+        line-height: 1.1;
+        color: #1a2b3c;
+        margin-bottom: 1.75rem;
+        letter-spacing: -0.02em;
+      }
+      .sa-hero-title .line-1 {
+        display: block;
+        font-size: 1em;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: saFadeUp 0.8s ease-out 0.2s forwards;
+      }
+      .sa-hero-title .line-2 {
+        display: block;
+        font-size: 1.18em;
+        line-height: 1.02;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: saFadeUp 0.8s ease-out 1.3s forwards;
+      }
+      .sa-hero-title .line-3 {
+        display: block;
+        font-size: 1.42em;
+        line-height: 0.95;
+        letter-spacing: -0.035em;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: saFadeUp 0.8s ease-out 1.8s forwards;
+      }
+      @keyframes saFadeUp {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .sa-hero-subtitle {
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: var(--gray-600);
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        max-width: 520px;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: saFadeUp 0.6s ease-out 2.3s forwards;
+      }
+      .sa-hero-cta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: saFadeUp 0.5s ease-out 2.7s forwards;
+      }
+      .sa-hero-cta .btn-primary-lg {
+        padding: 1rem 2rem;
+      }
+      .sa-hero-sub-cta {
+        font-size: 0.8125rem;
+        font-style: italic;
+        color: var(--gray-400);
+      }
+      .sa-hero-trust { display: none; }
+
+      /* ─── Premium Trust Bar ─── */
+      .sa-trust-bar {
+        background: var(--navy);
+        padding: 0;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .sa-trust-bar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(20,184,166,0.4) 50%, transparent 100%);
+      }
+      .sa-trust-bar-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .sa-trust-bar-item {
+        padding: 2.25rem 2rem;
+        text-align: center;
+        position: relative;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: saFadeUp 0.5s ease-out forwards;
+      }
+      .sa-trust-bar-item:nth-child(1) { animation-delay: 3.0s; }
+      .sa-trust-bar-item:nth-child(2) { animation-delay: 3.15s; }
+      .sa-trust-bar-item:nth-child(3) { animation-delay: 3.3s; }
+      .sa-trust-bar-item:nth-child(4) { animation-delay: 3.45s; }
+      .sa-trust-bar-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 25%;
+        height: 50%;
+        width: 1px;
+        background: rgba(255,255,255,0.1);
+      }
+      .sa-trust-bar-num {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 800;
+        color: #f0ede6;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .sa-trust-bar-label {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.4;
+      }
+      @media (max-width: 768px) {
+        .sa-trust-bar-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .sa-trust-bar-item {
+          padding: 1.5rem 1.25rem;
+        }
+        .sa-trust-bar-item:nth-child(2)::after {
+          display: none;
+        }
+        .sa-trust-bar-item:nth-child(1),
+        .sa-trust-bar-item:nth-child(2) {
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+      }
+      @media (max-width: 480px) {
+        .sa-trust-bar-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .sa-trust-bar-num {
+          font-size: 1.375rem;
+        }
+        .sa-trust-bar-label {
+          font-size: 0.75rem;
+        }
+      }
+      .sa-hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sa-hero-visual img {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 25px 50px -12px rgba(0,0,0,0.15), 0 50px 80px -20px rgba(0,0,0,0.1);
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        animation: saImageIn 0.8s ease-out 0.5s forwards;
+      }
+      @keyframes saImageIn {
+        to { opacity: 1; transform: translateY(0) scale(1) rotate(1deg); }
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         SECTION 2 — SALESAGENT PRO (Dark)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-problem {
+        background: linear-gradient(180deg, #070b14 0%, #0c1220 35%, #0f172a 100%);
+        padding: 7rem 2rem 5.5rem;
+        overflow: hidden;
+        position: relative;
+      }
+      .sa-problem::before {
+        content: '';
+        position: absolute;
+        top: -300px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1000px;
+        height: 1000px;
+        background: radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 65%);
+        pointer-events: none;
+      }
+      .sa-problem::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 5%, rgba(20,184,166,0.15) 50%, transparent 95%);
+      }
+      .sa-problem-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .sa-problem-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .sa-eyebrow {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .sa-eyebrow-teal {
+        color: rgba(20,184,166,0.8);
+      }
+      .sa-eyebrow-teal::before,
+      .sa-eyebrow-teal::after {
+        content: '';
+        width: 40px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(20,184,166,0.6));
+      }
+      .sa-eyebrow-teal::after {
+        background: linear-gradient(90deg, rgba(20,184,166,0.6), transparent);
+      }
+      .sa-headline-white {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: white;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        max-width: 820px;
+        margin: 0 auto;
+      }
+
+      /* ── Cinematic story block ── */
+      .sa-story {
+        max-width: 660px;
+        margin: 0 auto;
+        text-align: left;
+        position: relative;
+        padding-left: 1.75rem;
+      }
+      .sa-story::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(20,184,166,0.5) 0%, rgba(20,184,166,0.08) 100%);
+        border-radius: 2px;
+      }
+      .sa-story-line {
+        font-size: 1.0625rem;
+        color: rgba(255,255,255,0.55);
+        line-height: 1.75;
+        margin-bottom: 0;
+        padding: 0.35rem 0;
+        transition: color 0.4s ease;
+      }
+      .sa-story-line.sa-visible { color: rgba(255,255,255,0.75); }
+      .sa-story-line strong {
+        color: rgba(255,255,255,0.95);
+        font-weight: 600;
+      }
+      .sa-story-line em {
+        color: var(--teal);
+        font-style: normal;
+        font-weight: 600;
+      }
+      .sa-story-break {
+        height: 0.65rem;
+      }
+      .sa-story-punchline {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1875rem;
+        font-weight: 700;
+        color: white;
+        padding: 0.75rem 0 0.25rem;
+        line-height: 1.5;
+      }
+      .sa-story-punchline em {
+        color: var(--teal);
+        font-style: normal;
+      }
+
+      /* ── Stat cards with personality ── */
+      .sa-problem-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      .sa-problem-stat {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 20px;
+        padding: 2.5rem 2rem 2.25rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease, border-color 0.4s ease;
+      }
+      .sa-problem-stat::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--teal), transparent);
+        opacity: 0.5;
+      }
+      .sa-problem-stat:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(20,184,166,0.08);
+        border-color: rgba(20,184,166,0.2);
+      }
+      .sa-problem-stat:hover::before { opacity: 1; }
+
+      /* Card 1: ring glow */
+      .sa-stat-ring {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 1.25rem;
+        border-radius: 50%;
+        border: 3px solid rgba(20,184,166,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: rgba(20,184,166,0.03);
+      }
+      .sa-stat-ring::after {
+        content: '';
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 1px solid rgba(20,184,166,0.08);
+        animation: saRingPulse 3s ease-in-out infinite;
+      }
+      @keyframes saRingPulse {
+        0%, 100% { transform: scale(1); opacity: 0.4; }
+        50% { transform: scale(1.12); opacity: 0.8; }
+      }
+      .sa-stat-ring .sa-problem-stat-num {
+        margin-bottom: 0;
+      }
+
+      /* Card 2: comparison bar */
+      .sa-stat-compare {
+        margin-top: 1rem;
+      }
+      .sa-stat-compare-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .sa-stat-compare-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        width: 60px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .sa-stat-compare-track {
+        flex: 1;
+        height: 6px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .sa-stat-compare-fill {
+        height: 100%;
+        border-radius: 3px;
+        transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+        width: 0;
+      }
+      .sa-stat-compare-fill--them {
+        background: rgba(255,255,255,0.15);
+      }
+      .sa-stat-compare-fill--us {
+        background: linear-gradient(90deg, var(--teal), #2dd4bf);
+      }
+      .sa-stat-compare-val {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        color: rgba(255,255,255,0.5);
+        width: 36px;
+        flex-shrink: 0;
+      }
+      .sa-stat-compare-val--us { color: var(--teal); }
+
+      /* Card 3: live pulse */
+      .sa-stat-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        padding: 0.375rem 0.875rem;
+        border-radius: 20px;
+        background: rgba(20,184,166,0.08);
+        border: 1px solid rgba(20,184,166,0.2);
+      }
+      .sa-stat-live-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #2dd4bf;
+        animation: saLivePulse 2s ease-in-out infinite;
+        box-shadow: 0 0 6px rgba(45,212,191,0.6);
+      }
+      @keyframes saLivePulse {
+        0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(45,212,191,0.6); }
+        50% { opacity: 0.5; box-shadow: 0 0 2px rgba(45,212,191,0.3); }
+      }
+      .sa-stat-live-text {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--teal);
+        letter-spacing: 0.02em;
+      }
+
+      .sa-problem-stat-num {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2.25rem, 3.5vw, 3rem);
+        font-weight: 800;
+        color: var(--teal);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        margin-bottom: 0.5rem;
+      }
+      .sa-problem-stat-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.9);
+        line-height: 1.4;
+        margin-bottom: 0.25rem;
+      }
+      .sa-problem-stat-sub {
+        font-size: 0.8125rem;
+        color: rgba(255,255,255,0.4);
+        line-height: 1.4;
+      }
+
+      /* ── Revenue proof bar ── */
+      .sa-problem-dashboard {
+        margin-top: 3.5rem;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+      }
+      .sa-revenue-bar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(245,243,239,0.08);
+      }
+      .sa-revenue-bar-item {
+        padding: 2rem 1.5rem;
+        text-align: center;
+        position: relative;
+        background: rgba(245,243,239,0.03);
+        transition: background 0.3s ease;
+      }
+      .sa-revenue-bar-item:hover {
+        background: rgba(245,243,239,0.06);
+      }
+      .sa-revenue-bar-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 60%;
+        width: 1px;
+        background: rgba(245,243,239,0.08);
+      }
+      .sa-revenue-bar-num {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: #f0ede6;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .sa-revenue-bar-label {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: rgba(245,243,239,0.45);
+        line-height: 1.4;
+        letter-spacing: 0.01em;
+      }
+      .sa-revenue-bar-label strong {
+        color: rgba(245,243,239,0.7);
+        font-weight: 600;
+      }
+      .sa-revenue-bar-context {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.8125rem;
+        color: rgba(245,243,239,0.35);
+        font-style: italic;
+      }
+
+      /* CTA in problem section */
+      .sa-problem-cta {
+        text-align: center;
+        margin-top: 2.75rem;
+      }
+      .sa-problem-cta .btn-primary-lg {
+        padding: 1rem 2.25rem;
+        font-size: 1.05rem;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         SECTION 3 — NOT A CHATBOT (Cream)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-chatbot {
+        background: var(--cream);
+        padding: 7rem 2rem;
+        border-top: 1px solid rgba(0,0,0,0.06);
+      }
+      .sa-chatbot-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .sa-eyebrow-cream {
+        color: var(--teal);
+      }
+      .sa-headline-dark {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+      .sa-chatbot-sub {
+        font-size: 1.0625rem;
+        color: var(--gray-600);
+        line-height: 1.65;
+        max-width: 640px;
+        margin-bottom: 3.5rem;
+      }
+      .sa-query-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .sa-query-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem 1.75rem;
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        border-left: 4px solid var(--teal);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+      }
+      .sa-query-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(20,184,166,0.3);
+      }
+      .sa-query-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.875rem;
+      }
+      .sa-query-label--patient { color: var(--gray-400); }
+      .sa-query-label--agent { color: var(--teal); }
+      .sa-query-label--intel { color: #b45309; }
+      .sa-query-text {
+        font-size: 0.9375rem;
+        color: var(--navy);
+        line-height: 1.6;
+        font-weight: 500;
+      }
+      .sa-query-divider {
+        width: 100%;
+        height: 1px;
+        background: var(--gray-100);
+        margin: 1.125rem 0;
+      }
+      .sa-query-outcome {
+        font-size: 0.9375rem;
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+      .sa-query-intel {
+        font-size: 0.8125rem;
+        color: #92400e;
+        line-height: 1.5;
+        background: rgba(180,83,9,0.06);
+        border: 1px solid rgba(180,83,9,0.12);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+      }
+      .sa-query-intel strong {
+        font-weight: 700;
+        color: #78350f;
+      }
+
+      /* ── Content Flywheel ── */
+      .sa-flywheel {
+        margin-top: 4rem;
+        padding-top: 4rem;
+        border-top: 1px solid rgba(0,0,0,0.08);
+      }
+      .sa-flywheel-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .sa-flywheel-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+      }
+      .sa-flywheel-desc {
+        font-size: 1rem;
+        color: var(--gray-600);
+        line-height: 1.65;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .sa-flywheel-loop {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        position: relative;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .sa-flywheel-step {
+        text-align: center;
+        padding: 2rem 1.25rem;
+        position: relative;
+      }
+      .sa-flywheel-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: -2px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        z-index: 2;
+      }
+      .sa-flywheel-step:not(:last-child)::after {
+        content: '→';
+        font-size: 1.25rem;
+        color: var(--teal);
+        font-weight: 700;
+        width: auto;
+        height: auto;
+        background: var(--cream);
+        padding: 0 2px;
+      }
+      .sa-flywheel-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .sa-flywheel-icon svg {
+        width: 28px;
+        height: 28px;
+        stroke-width: 1.8;
+        fill: none;
+        stroke: currentColor;
+      }
+      .sa-flywheel-step:hover .sa-flywheel-icon {
+        transform: scale(1.1);
+      }
+      .sa-flywheel-icon--capture {
+        background: rgba(20,184,166,0.1);
+        border: 1px solid rgba(20,184,166,0.2);
+        color: var(--teal);
+      }
+      .sa-flywheel-icon--intel {
+        background: rgba(180,83,9,0.08);
+        border: 1px solid rgba(180,83,9,0.15);
+        color: #b45309;
+      }
+      .sa-flywheel-icon--content {
+        background: rgba(99,102,241,0.08);
+        border: 1px solid rgba(99,102,241,0.15);
+        color: #6366f1;
+      }
+      .sa-flywheel-icon--rank {
+        background: rgba(16,185,129,0.08);
+        border: 1px solid rgba(16,185,129,0.15);
+        color: #10b981;
+      }
+      .sa-flywheel-num {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gray-400);
+        margin-bottom: 0.5rem;
+      }
+      .sa-flywheel-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.375rem;
+        line-height: 1.3;
+      }
+      .sa-flywheel-text {
+        font-size: 0.8125rem;
+        color: var(--gray-600);
+        line-height: 1.55;
+      }
+      .sa-flywheel-loop-back {
+        text-align: center;
+        margin-top: 1.5rem;
+        position: relative;
+      }
+      .sa-flywheel-loop-back::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 15%;
+        right: 15%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(20,184,166,0.3), rgba(20,184,166,0.5), rgba(20,184,166,0.3), transparent);
+        border-radius: 2px;
+      }
+      .sa-flywheel-loop-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(20,184,166,0.06);
+        border: 1px solid rgba(20,184,166,0.15);
+        border-radius: 20px;
+        padding: 0.5rem 1.25rem;
+        margin-top: 1rem;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--teal);
+      }
+      .sa-flywheel-loop-label .sa-flywheel-loop-arrow {
+        display: inline-block;
+        animation: saLoopSpin 2s linear infinite;
+      }
+      @keyframes saLoopSpin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      .sa-chatbot-closing {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.25rem, 2vw, 1.5rem);
+        font-weight: 700;
+        color: var(--navy);
+        text-align: center;
+        letter-spacing: -0.02em;
+        margin-top: 3.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .sa-flywheel-loop {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
+        .sa-flywheel-step:nth-child(2)::after { display: none; }
+        .sa-flywheel-step::after { display: none; }
+      }
+      @media (max-width: 480px) {
+        .sa-flywheel-loop { grid-template-columns: 1fr; }
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         SECTION 4 — PROOF (Dark)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-proof {
+        background: linear-gradient(180deg, #0a0f1c 0%, #0f172a 40%, #111d35 100%);
+        padding: 8rem 2rem 7rem;
+        overflow: hidden;
+        position: relative;
+      }
+      .sa-proof::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .sa-proof-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .sa-proof-header {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+      .sa-proof-sub {
+        font-size: 1.25rem;
+        color: rgba(255,255,255,0.5);
+        line-height: 1.7;
+        max-width: 620px;
+        margin: 1.5rem auto 0;
+        font-weight: 400;
+      }
+      .sa-proof-sub strong {
+        color: rgba(255,255,255,0.85);
+        font-weight: 600;
+      }
+      .sa-proof-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+      }
+      .sa-proof-card {
+        background: rgba(255,255,255,0.03);
+        border-radius: 24px;
+        padding: 3rem 2.75rem;
+        border: 1px solid rgba(255,255,255,0.06);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.45s ease, background 0.45s ease;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(12px);
+      }
+      .sa-proof-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(20,184,166,0.7) 0%, rgba(20,184,166,0.15) 100%);
+        opacity: 0.6;
+        transition: opacity 0.35s ease;
+      }
+      .sa-proof-card:nth-child(2),
+      .sa-proof-card:nth-child(4) {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.1);
+      }
+      .sa-proof-card:nth-child(2)::before,
+      .sa-proof-card:nth-child(4)::before {
+        width: 4px;
+        opacity: 0.85;
+        background: linear-gradient(180deg, rgba(45,212,191,0.9) 0%, rgba(20,184,166,0.5) 50%, rgba(20,184,166,0.1) 100%);
+      }
+      .sa-proof-card:nth-child(2)::after,
+      .sa-proof-card:nth-child(4)::after {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .sa-proof-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(20,184,166,0.06);
+        border-color: rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.06);
+      }
+      .sa-proof-card:hover::before { opacity: 1; }
+      .sa-proof-card-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+        margin-bottom: 1.75rem;
+      }
+      .sa-proof-card-number {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        font-weight: 800;
+        color: #f0ede6;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        margin-bottom: 0.75rem;
+      }
+      .sa-proof-card-descriptor {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: rgba(255,255,255,0.92);
+        line-height: 1.5;
+        margin-bottom: 2rem;
+      }
+      .sa-proof-card-divider {
+        width: 48px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(20,184,166,0.6), rgba(20,184,166,0.1));
+        margin-bottom: 1.5rem;
+        border-radius: 2px;
+      }
+      .sa-proof-card-text {
+        font-size: 1rem;
+        color: rgba(255,255,255,0.6);
+        line-height: 1.7;
+        flex: 1;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         SECTION 5 — THE PROCESS (v2)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-how-v2 {
+        background: linear-gradient(180deg, #070b14 0%, #0c1220 50%, #0f172a 100%);
+        padding: 7rem 2rem 6rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .sa-how-v2::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(20,184,166,0.05) 0%, transparent 65%);
+        pointer-events: none;
+      }
+      .sa-how-v2-inner {
+        max-width: 780px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .sa-how-v2-header {
+        text-align: center;
+        margin-bottom: 4.5rem;
+      }
+      .sa-how-v2-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: white;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-top: 1.5rem;
+      }
+      .sa-how-v2-sub {
+        font-size: 1.125rem;
+        color: rgba(255,255,255,0.55);
+        line-height: 1.7;
+        margin-top: 1.25rem;
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .sa-how-v2-sub strong {
+        color: var(--teal);
+        font-weight: 700;
+      }
+
+      /* ── Steps ── */
+      .sa-how-v2-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .sa-how-v2-step {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 2rem;
+        position: relative;
+      }
+      .sa-how-v2-step + .sa-how-v2-step {
+        margin-top: 3rem;
+      }
+
+      /* Marker column */
+      .sa-how-v2-step-marker {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+      .sa-how-v2-step-num {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: 2px solid rgba(20,184,166,0.3);
+        background: rgba(20,184,166,0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: var(--teal);
+        flex-shrink: 0;
+        transition: all 0.45s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .sa-how-v2-step:hover .sa-how-v2-step-num {
+        background: rgba(20,184,166,0.15);
+        border-color: var(--teal);
+        box-shadow: 0 0 0 6px rgba(20,184,166,0.08), 0 0 24px rgba(20,184,166,0.15);
+        transform: scale(1.08);
+      }
+      .sa-how-v2-step-line {
+        display: block;
+        width: 2px;
+        flex: 1;
+        min-height: 40px;
+        background: linear-gradient(180deg, rgba(20,184,166,0.4) 0%, rgba(20,184,166,0.08) 100%);
+        margin-top: 0.75rem;
+        border-radius: 2px;
+      }
+
+      /* Content column */
+      .sa-how-v2-step-content {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      .sa-how-v2-step-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.5rem;
+      }
+      .sa-how-v2-step-title {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.25rem, 2vw, 1.5rem);
+        font-weight: 700;
+        color: white;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.75rem;
+      }
+      .sa-how-v2-step-text {
+        font-size: 1.0625rem;
+        font-weight: 400;
+        color: rgba(255,255,255,0.65);
+        line-height: 1.75;
+        max-width: 560px;
+      }
+
+      /* Badge */
+      .sa-how-v2-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+        padding: 0.5rem 1rem;
+        background: rgba(20,184,166,0.1);
+        border: 1px solid rgba(20,184,166,0.25);
+        border-radius: 8px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--teal);
+      }
+      .sa-how-v2-badge-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #2dd4bf;
+        box-shadow: 0 0 6px rgba(45,212,191,0.6);
+        animation: saLivePulse 2s ease-in-out infinite;
+      }
+
+      /* Timeline bar */
+      .sa-how-v2-timeline {
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(255,255,255,0.06);
+      }
+      .sa-how-v2-timeline-track {
+        height: 6px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+      }
+      .sa-how-v2-timeline-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, var(--teal), #2dd4bf);
+        border-radius: 3px;
+        transition: width 1.8s cubic-bezier(0.22,1,0.36,1);
+      }
+      .sa-how-v2-timeline.sa-visible .sa-how-v2-timeline-fill {
+        width: 100%;
+      }
+      .sa-how-v2-timeline-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.75rem;
+      }
+      .sa-how-v2-timeline-labels span {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: rgba(255,255,255,0.4);
+      }
+      .sa-how-v2-timeline-labels span:last-child {
+        color: var(--teal);
+      }
+
+      @media (max-width: 768px) {
+        .sa-how-v2 { padding: 5rem 1.5rem 4rem; }
+        .sa-how-v2-step { grid-template-columns: 44px 1fr; gap: 1.25rem; }
+        .sa-how-v2-step-num { width: 44px; height: 44px; font-size: 0.8125rem; }
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         SECTION 6 — ELIGIBILITY (Dark)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-eligibility {
+        background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+        padding: 7rem 2rem;
+        border-top: 1px solid rgba(0,0,0,0.06);
+      }
+      .sa-eligibility-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .sa-eligibility-copy {
+        max-width: 520px;
+      }
+      .sa-eligibility-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.875rem, 3vw, 2.5rem);
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+      }
+      .sa-eligibility-body {
+        font-size: 1.0625rem;
+        color: var(--gray-600);
+        line-height: 1.75;
+        margin-bottom: 2rem;
+      }
+      .sa-eligibility-note {
+        font-size: 0.9375rem;
+        font-style: italic;
+        color: var(--gray-400);
+        margin-bottom: 2.5rem;
+      }
+      .sa-eligibility-cta-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .sa-eligibility-sub-cta {
+        font-size: 0.8125rem;
+        font-style: italic;
+        color: var(--gray-400);
+      }
+      /* Eligibility cards */
+      .sa-eligibility-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .sa-eligibility-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        display: flex;
+        align-items: flex-start;
+        gap: 1.25rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .sa-eligibility-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      }
+      .sa-eligibility-card-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(20,184,166,0.08);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--teal);
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+      .sa-eligibility-card-text {
+        flex: 1;
+      }
+      .sa-eligibility-card-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 0.375rem;
+      }
+      .sa-eligibility-card-desc {
+        font-size: 0.9375rem;
+        color: var(--gray-600);
+        line-height: 1.55;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         SECTION 7 — FINAL CTA (Dark navy)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-final {
+        background: var(--navy);
+        padding: 6rem 2rem;
+      }
+      .sa-final-inner {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .sa-final-eyebrow {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #4d7b6f;
+        margin-bottom: 1rem;
+      }
+      .sa-final-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 700;
+        color: white;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.25rem;
+      }
+      .sa-final-body {
+        font-size: 1.125rem;
+        color: rgba(255,255,255,0.7);
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .sa-final-note {
+        font-size: 0.8125rem;
+        color: rgba(255,255,255,0.45);
+        margin-top: 1.25rem;
+      }
+
+      /* ─── Scroll Reveal ─── */
+      .sa-reveal {
+        opacity: 0;
+        transform: translateY(36px);
+        transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+      }
+      .sa-reveal.sa-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .sa-reveal-d1 { transition-delay: 0.1s; }
+      .sa-reveal-d2 { transition-delay: 0.2s; }
+      .sa-reveal-d3 { transition-delay: 0.35s; }
+      .sa-reveal-d4 { transition-delay: 0.5s; }
+      .sa-reveal-d5 { transition-delay: 0.65s; }
+      .sa-reveal-d6 { transition-delay: 0.8s; }
+
+      /* Card scale-in variant */
+      .sa-reveal-card {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+        transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.45s ease, background 0.45s ease !important;
+      }
+      .sa-reveal-card.sa-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* Number pulse */
+      @keyframes saNumPulse {
+        0% { transform: scale(1); }
+        40% { transform: scale(1.08); }
+        100% { transform: scale(1); }
+      }
+
+      /* ─── Footer ─── */
+      .footer {
+        padding: 4rem 0 2rem;
+        background: var(--navy);
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+      .footer-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 4rem;
+        margin-bottom: 3rem;
+      }
+      .footer-brand-name {
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 0.375rem;
+      }
+      .footer-brand-tagline {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.875rem;
+        margin-bottom: 0.875rem;
+      }
+      .footer-brand-desc {
+        color: rgba(255,255,255,0.6);
+        line-height: 1.65;
+        font-size: 0.9375rem;
+        max-width: 300px;
+        margin-bottom: 1.125rem;
+      }
+      .footer-brand-link {
+        display: inline-block;
+        color: #8B9D83;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: text-decoration 0.2s;
+      }
+      .footer-brand-link:hover { text-decoration: underline; }
+      .footer-col h4 {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.25rem;
+      }
+      .footer-col a {
+        display: block;
+        color: rgba(255,255,255,0.6);
+        text-decoration: none;
+        margin-bottom: 0.75rem;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover { color: white; }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+      .footer-bottom p {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.875rem;
+      }
+      .footer-badges {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 1024px) {
+        .sa-hero-inner { grid-template-columns: 1fr; }
+        .sa-hero-visual { display: none; }
+        .sa-hero { min-height: auto; padding: 5rem 2rem; margin-top: 0; }
+        .sa-problem-stats { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .sa-proof-cards { grid-template-columns: repeat(2, 1fr); }
+        .sa-eligibility-inner { grid-template-columns: 1fr; gap: 3rem; }
+        .footer-top { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 768px) {
+        .sa-hero { padding: 3rem 1.5rem; }
+        .sa-hero-title { font-size: clamp(2rem, 8vw, 2.75rem); }
+        .sa-hero-cta { flex-direction: column; }
+        .sa-hero-trust { text-align: center; }
+        .sa-hero-content { text-align: center; }
+        .sa-hero-subtitle { margin-left: auto; margin-right: auto; }
+        .sa-problem { padding: 5rem 1.5rem; }
+        .sa-problem-stats { grid-template-columns: 1fr; }
+        .sa-revenue-bar { grid-template-columns: 1fr !important; }
+        .sa-revenue-bar-item:not(:last-child)::after { display: none; }
+        .sa-revenue-bar-item:not(:last-child) { border-bottom: 1px solid rgba(245,243,239,0.06); }
+        .sa-chatbot { padding: 5rem 1.5rem; }
+        .sa-query-cards { grid-template-columns: 1fr; }
+        .sa-proof { padding: 5.5rem 1.5rem; }
+        .sa-proof-cards { grid-template-columns: 1fr; }
+        .sa-eligibility { padding: 5rem 1.5rem; }
+        .sa-eligibility-inner { gap: 2.5rem; }
+        .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+        .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Nav -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+        <div class="nav-links">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
+            <div class="nav-dropdown-menu">
+              <span class="dd-section-label">Complete Packages</span>
+              <a href="#" class="dd-item"><span class="dd-item-name">WebPro Elite</span><span class="dd-item-sub">Pillar Domination Framework™ + Website</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">Revenue System</span><span class="dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a>
+              <a href="ai-domination-system.html" class="dd-item"><span class="dd-item-name">The Playbook</span><span class="dd-item-sub">DIY System — £497</span></a>
+              <div class="dd-divider"></div>
+              <span class="dd-section-label">Custom AI Arsenal</span>
+              <a href="#" class="dd-item"><span class="dd-item-name">ContentIQ Elite</span><span class="dd-item-sub">Content Engine for Existing Sites</span></a>
+              <a href="salesagent.html" class="dd-item"><span class="dd-item-name">SalesAgent Pro</span><span class="dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">WebPro Foundation</span><span class="dd-item-sub">Website Only</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">Visibility Accelerator</span><span class="dd-item-sub">SEO + AI Search</span></a>
+            </div>
+          </div>
+          <a href="#">Pharmacies</a>
+          <a href="#">Clinics</a>
+          <a href="index.html#case-studies">Case Studies</a>
+          <a href="ai-domination-system.html">The Playbook</a>
+          <a href="#contact" class="nav-cta">Book A Call</a>
+        </div>
+        <button class="nav-hamburger" aria-label="Open menu" onclick="document.querySelector('.nav-mobile-overlay').classList.toggle('mobile-open'); this.querySelector('.ham-open').style.display = this.querySelector('.ham-open').style.display === 'none' ? 'block' : 'none'; this.querySelector('.ham-close').style.display = this.querySelector('.ham-close').style.display === 'none' ? 'block' : 'none';">
+          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="nav-mobile-overlay">
+        <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">PharmoBoost ▼</button>
+        <div style="display:none;">
+          <span class="mobile-dd-section-label">Complete Packages</span>
+          <a href="#" class="mobile-dd-item">WebPro Elite <span class="mobile-dd-item-sub">Pillar Domination Framework™ + Website</span></a>
+          <a href="#" class="mobile-dd-item">Revenue System <span class="mobile-dd-item-sub">WebPro Elite + ChatGPT Conversion Protocol™</span></a>
+          <a href="ai-domination-system.html" class="mobile-dd-item">The Playbook <span class="mobile-dd-item-sub">DIY System — £497</span></a>
+          <span class="mobile-dd-section-label">Custom AI Arsenal</span>
+          <a href="#" class="mobile-dd-item">ContentIQ Elite <span class="mobile-dd-item-sub">Content Engine for Existing Sites</span></a>
+          <a href="salesagent.html" class="mobile-dd-item">SalesAgent Pro <span class="mobile-dd-item-sub">24/7 Patient Q&amp;A Engine™</span></a>
+          <a href="#" class="mobile-dd-item">WebPro Foundation <span class="mobile-dd-item-sub">Website Only</span></a>
+          <a href="#" class="mobile-dd-item">Visibility Accelerator <span class="mobile-dd-item-sub">SEO + AI Search</span></a>
+        </div>
+        <a href="#">Pharmacies</a>
+        <a href="#">Clinics</a>
+        <a href="index.html#case-studies">Case Studies</a>
+        <a href="ai-domination-system.html">The Playbook</a>
+        <a href="#contact" class="mobile-nav-cta">Book A Call</a>
+      </div>
+    </nav>
+
+    <!-- ═══ SECTION 1: HERO ═══ -->
+    <section class="sa-hero">
+      <div class="sa-hero-inner">
+        <div class="sa-hero-content">
+          <p class="sa-hero-eyebrow">SalesAgent Pro</p>
+          <h1 class="sa-hero-title">
+            <span class="line-1">Someone Just Left Your Website.</span>
+            <span class="line-2">They Had A Question.</span>
+            <span class="line-3">Nobody Answered.</span>
+          </h1>
+          <p class="sa-hero-subtitle">Superior Pharmacy now handles 50% of weight loss sales through AI. Ealing Travel Clinic converts 1-in-4 patient inquiries into booked appointments. Ray Lane Group runs 24/7 without hiring a single extra member of staff.</p>
+          <div class="sa-hero-cta">
+            <a href="#eligibility" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
+          </div>
+          <p class="sa-hero-sub-cta" style="opacity:0; animation: saFadeUp 0.4s ease-out 2.9s forwards;">We&#39;re selective. Not every practice qualifies.</p>
+        </div>
+        <div class="sa-hero-visual">
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774876986452-0.jpeg" alt="SalesAgent Pro — laptop and phone showing AI agent chat, prompt library, AI checklist, and client logos" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TRUST BAR ═══ -->
+    <section class="sa-trust-bar">
+      <div class="sa-trust-bar-inner">
+        <div class="sa-trust-bar-item">
+          <p class="sa-trust-bar-num" data-countup="25" data-suffix="%">25%</p>
+          <p class="sa-trust-bar-label">Conversion Rate · <strong style="color:rgba(255,255,255,0.75);">Ealing Travel Clinic</strong></p>
+        </div>
+        <div class="sa-trust-bar-item">
+          <p class="sa-trust-bar-num" data-countup="50" data-suffix="%">50%</p>
+          <p class="sa-trust-bar-label">Weight Loss Sales Via AI · <strong style="color:rgba(255,255,255,0.75);">Superior Pharmacy</strong></p>
+        </div>
+        <div class="sa-trust-bar-item">
+          <p class="sa-trust-bar-num">24 / 7</p>
+          <p class="sa-trust-bar-label">Zero Extra Staff · <strong style="color:rgba(255,255,255,0.75);">Ray Lane Group</strong></p>
+        </div>
+        <div class="sa-trust-bar-item">
+          <p class="sa-trust-bar-num" data-countup="100000" data-suffix="+" data-format="number">100,000+</p>
+          <p class="sa-trust-bar-label">Real Patient Conversations · <strong style="color:rgba(255,255,255,0.75);">Our Network</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 2: SALESAGENT PRO ═══ -->
+    <section class="sa-problem">
+      <div class="sa-problem-inner">
+        <div class="sa-problem-header">
+          <p class="sa-eyebrow sa-eyebrow-teal sa-reveal sa-reveal-d1">SalesAgent Pro</p>
+          <h2 class="sa-headline-white sa-reveal sa-reveal-d2">ChatGPT Recommended You.<br>The Patient Had Questions.<br>Your Competitor&#39;s AI Agent Answered First.</h2>
+        </div>
+        <div class="sa-story sa-reveal sa-reveal-d3">
+          <p class="sa-story-line"><strong>10:47pm. Tuesday.</strong></p>
+          <p class="sa-story-line">A patient Googles weight loss injections. ChatGPT recommends <em>your clinic.</em></p>
+          <p class="sa-story-line">She clicks through. Lands on your site. Reads the services page.</p>
+          <div class="sa-story-break"></div>
+          <p class="sa-story-line">She has a question about Mounjaro dosing and her blood pressure medication.</p>
+          <p class="sa-story-line">Your website says: <strong>&#39;Call us Monday to Friday, 9–5.&#39;</strong></p>
+          <div class="sa-story-break"></div>
+          <p class="sa-story-line">She goes back to ChatGPT. Clicks the next recommendation.</p>
+          <p class="sa-story-line">That site has an AI agent. It answers her in <em>11 seconds.</em></p>
+          <p class="sa-story-line">She books. Pays. <strong>Never comes back to you.</strong></p>
+          <div class="sa-story-break"></div>
+          <p class="sa-story-punchline">We&#39;ve generated <em>100,000+ patient conversations</em> across our network.<br>Every one of them would have bounced from a static site.</p>
+        </div>
+
+        <div class="sa-problem-stats">
+          <div class="sa-problem-stat sa-reveal-card sa-reveal-d3">
+            <div class="sa-stat-ring">
+              <p class="sa-problem-stat-num" data-countup="100000" data-suffix="+" data-format="number">0+</p>
+            </div>
+            <p class="sa-problem-stat-label">Patient conversations</p>
+            <p class="sa-problem-stat-sub">Generated across our network</p>
+          </div>
+          <div class="sa-problem-stat sa-reveal-card sa-reveal-d4">
+            <p class="sa-problem-stat-num" data-countup="25" data-suffix="%">0%</p>
+            <p class="sa-problem-stat-label">Conversion rate</p>
+            <div class="sa-stat-compare">
+              <div class="sa-stat-compare-row">
+                <span class="sa-stat-compare-label">Industry</span>
+                <div class="sa-stat-compare-track"><div class="sa-stat-compare-fill sa-stat-compare-fill--them" data-fill="20%"></div></div>
+                <span class="sa-stat-compare-val">2–5%</span>
+              </div>
+              <div class="sa-stat-compare-row">
+                <span class="sa-stat-compare-label">Ours</span>
+                <div class="sa-stat-compare-track"><div class="sa-stat-compare-fill sa-stat-compare-fill--us" data-fill="100%"></div></div>
+                <span class="sa-stat-compare-val sa-stat-compare-val--us">25%</span>
+              </div>
+            </div>
+          </div>
+          <div class="sa-problem-stat sa-reveal-card sa-reveal-d5">
+            <p class="sa-problem-stat-num" style="color: var(--teal);">Set &amp; Forget</p>
+            <p class="sa-problem-stat-label">Install once</p>
+            <p class="sa-problem-stat-sub">Runs forever</p>
+            <div class="sa-stat-live">
+              <span class="sa-stat-live-dot"></span>
+              <span class="sa-stat-live-text">Running now</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sa-problem-dashboard sa-reveal sa-reveal-d5">
+          <div class="sa-revenue-bar">
+            <div class="sa-revenue-bar-item">
+              <p class="sa-revenue-bar-num">£200k+</p>
+              <p class="sa-revenue-bar-label">Projected annual revenue · <strong>South Downs</strong></p>
+            </div>
+            <div class="sa-revenue-bar-item">
+              <p class="sa-revenue-bar-num">50%</p>
+              <p class="sa-revenue-bar-label">Weight loss sales via AI · <strong>Superior Pharmacy</strong></p>
+            </div>
+            <div class="sa-revenue-bar-item">
+              <p class="sa-revenue-bar-num">1 in 4</p>
+              <p class="sa-revenue-bar-label">Inquiries convert to bookings · <strong>Ealing Travel</strong></p>
+            </div>
+          </div>
+          <p class="sa-revenue-bar-context">Real client results. Not projections.</p>
+        </div>
+
+        <div class="sa-problem-cta sa-reveal sa-reveal-d6">
+          <a href="#eligibility" class="btn-primary-lg">See The System →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 3: NOT A CHATBOT — INTELLIGENCE ENGINE ═══ -->
+    <section class="sa-chatbot">
+      <div class="sa-chatbot-inner">
+        <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">The Intelligence Engine</p>
+        <h2 class="sa-headline-dark sa-reveal sa-reveal-d2">Every Patient Question Is A Revenue Signal.</h2>
+        <p class="sa-chatbot-sub sa-reveal sa-reveal-d3">Your AI agent doesn&#39;t just answer — it captures the exact language patients use, the clinical questions they ask, and the services they&#39;re ready to pay for. Then we turn that into content that ranks.</p>
+
+        <div class="sa-query-cards">
+          <div class="sa-query-card sa-reveal-card sa-reveal-d3">
+            <p class="sa-query-label sa-query-label--patient">Patient Query</p>
+            <p class="sa-query-text">"I&#39;m at risk of needlestick injury at work. I need Hepatitis A/B and tetanus vaccines urgently for occupational health. Can I start immediately?"</p>
+            <div class="sa-query-divider"></div>
+            <p class="sa-query-label sa-query-label--agent">Agent Outcome</p>
+            <p class="sa-query-outcome">Qualified for occupational health pathway. Urgent appointment booked. Three vaccine course initiated.</p>
+            <div class="sa-query-divider"></div>
+            <p class="sa-query-label sa-query-label--intel">Content Signal</p>
+            <p class="sa-query-intel"><strong>Blog created:</strong> "Needlestick Injury Vaccines: What You Need and How Quickly You Can Start" → ranks in AI Overview for occupational health vaccine queries</p>
+          </div>
+          <div class="sa-query-card sa-reveal-card sa-reveal-d4">
+            <p class="sa-query-label sa-query-label--patient">Patient Query</p>
+            <p class="sa-query-text">"I&#39;m on week three of Mounjaro but I take medication for high blood pressure. Is this safe to continue?"</p>
+            <div class="sa-query-divider"></div>
+            <p class="sa-query-label sa-query-label--agent">Agent Outcome</p>
+            <p class="sa-query-outcome">Medically accurate response delivered. Patient reassured. Follow-up consultation booked.</p>
+            <div class="sa-query-divider"></div>
+            <p class="sa-query-label sa-query-label--intel">Content Signal</p>
+            <p class="sa-query-intel"><strong>Blog created:</strong> "Mounjaro and Blood Pressure Medication: Is It Safe?" → ranks in ChatGPT for weight loss drug interaction queries</p>
+          </div>
+          <div class="sa-query-card sa-reveal-card sa-reveal-d5">
+            <p class="sa-query-label sa-query-label--patient">Patient Query</p>
+            <p class="sa-query-text">"I&#39;m travelling to Southeast Asia in three weeks. My child is seven. What vaccines do we need?"</p>
+            <div class="sa-query-divider"></div>
+            <p class="sa-query-label sa-query-label--agent">Agent Outcome</p>
+            <p class="sa-query-outcome">Full travel health assessment completed. Family vaccination course recommended and booked.</p>
+            <div class="sa-query-divider"></div>
+            <p class="sa-query-label sa-query-label--intel">Content Signal</p>
+            <p class="sa-query-intel"><strong>Blog created:</strong> "Southeast Asia Vaccines for Families: What Children Under 10 Need" → ranks in Google AI Overview for family travel health</p>
+          </div>
+        </div>
+
+        <!-- Content Flywheel -->
+        <div class="sa-flywheel sa-reveal sa-reveal-d4">
+          <div class="sa-flywheel-header">
+            <p class="sa-eyebrow sa-eyebrow-cream" style="margin-bottom:1rem;">The Content Flywheel</p>
+            <h3 class="sa-flywheel-headline">Patient Questions → Content That Ranks → More Patients</h3>
+            <p class="sa-flywheel-desc">Every conversation your agent has generates marketing intelligence. We turn that into content that appears in ChatGPT, Google AI Overview, and Claude — driving more patients to your agent. The loop never stops.</p>
+          </div>
+
+          <div class="sa-flywheel-loop">
+            <div class="sa-flywheel-step sa-reveal sa-reveal-d2">
+              <div class="sa-flywheel-icon sa-flywheel-icon--capture">💬</div>
+              <p class="sa-flywheel-num">Step 01</p>
+              <p class="sa-flywheel-title">Agent Captures</p>
+              <p class="sa-flywheel-text">Real patient questions captured in their exact words. What they ask, how they ask it, what they&#39;re ready to buy.</p>
+            </div>
+            <div class="sa-flywheel-step sa-reveal sa-reveal-d3">
+              <div class="sa-flywheel-icon sa-flywheel-icon--intel">🧠</div>
+              <p class="sa-flywheel-num">Step 02</p>
+              <p class="sa-flywheel-title">Intelligence Extracted</p>
+              <p class="sa-flywheel-text">We analyse patterns across thousands of conversations. Surface the high-value queries competitors haven&#39;t answered yet.</p>
+            </div>
+            <div class="sa-flywheel-step sa-reveal sa-reveal-d4">
+              <div class="sa-flywheel-icon sa-flywheel-icon--content"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+              <p class="sa-flywheel-num">Step 03</p>
+              <p class="sa-flywheel-title">Content Created</p>
+              <p class="sa-flywheel-text">Clinically accurate articles, FAQs, and service pages built from real patient language. Not keyword stuffing — real intent.</p>
+            </div>
+            <div class="sa-flywheel-step sa-reveal sa-reveal-d5">
+              <div class="sa-flywheel-icon sa-flywheel-icon--rank"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M8 11h6M11 8v6" stroke-linecap="round"/></svg></div>
+              <p class="sa-flywheel-num">Step 04</p>
+              <p class="sa-flywheel-title">Ranks In AI Search</p>
+              <p class="sa-flywheel-text">Content appears in ChatGPT, Claude, and Google AI Overviews. More patients land on your site. The cycle repeats.</p>
+            </div>
+          </div>
+
+          <div class="sa-flywheel-loop-back sa-reveal sa-reveal-d6">
+            <div class="sa-flywheel-loop-label"><span class="sa-flywheel-loop-arrow">↻</span> Continuous loop — accelerates over time</div>
+          </div>
+        </div>
+
+        <p class="sa-chatbot-closing sa-reveal sa-reveal-d6">Every patient who asks a question is telling you what content to create next.<br>Your competitors are guessing. You won&#39;t be.</p>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 4: PROOF ═══ -->
+    <section class="sa-proof" id="proof">
+      <div class="sa-proof-inner">
+        <div class="sa-proof-header">
+          <p class="sa-eyebrow sa-eyebrow-teal sa-reveal sa-reveal-d1">The Numbers</p>
+          <h2 class="sa-headline-white sa-reveal sa-reveal-d2">What Happens When Nobody<br>Gets Left Behind.</h2>
+          <p class="sa-proof-sub sa-reveal sa-reveal-d3">Not rankings. Not traffic. <strong>Revenue.</strong> Here&#39;s what it looks like in practice.</p>
+        </div>
+
+        <div class="sa-proof-cards">
+          <div class="sa-proof-card sa-reveal-card sa-reveal-d3">
+            <p class="sa-proof-card-label">South Downs Pharmacy Group</p>
+            <p class="sa-proof-card-number" data-countup="200" data-prefix="£" data-suffix="k">£200k</p>
+            <p class="sa-proof-card-descriptor">Projected annual revenue from their AI sales agent alone</p>
+            <div class="sa-proof-card-divider"></div>
+            <p class="sa-proof-card-text">Patients arrive with specific clinical questions. The agent handles every one. Books the appointment. Captures the data. Every single day.</p>
+          </div>
+          <div class="sa-proof-card sa-reveal-card sa-reveal-d4">
+            <p class="sa-proof-card-label">Superior Pharmacy</p>
+            <p class="sa-proof-card-number" data-countup="50" data-suffix="%">50%</p>
+            <p class="sa-proof-card-descriptor">Of all weight loss sales now handled by AI</p>
+            <div class="sa-proof-card-divider"></div>
+            <p class="sa-proof-card-text">Weight loss inquiries at 2am. Medication questions on Sunday afternoons. The agent answers every one and converts.</p>
+          </div>
+          <div class="sa-proof-card sa-reveal-card sa-reveal-d5">
+            <p class="sa-proof-card-label">Ealing Travel Clinic</p>
+            <p class="sa-proof-card-number" data-countup="25" data-suffix="%">25%</p>
+            <p class="sa-proof-card-descriptor">Conversion rate across all AI agent inquiries</p>
+            <div class="sa-proof-card-divider"></div>
+            <p class="sa-proof-card-text">One in four inquiries becomes a booked appointment. The other three leave their data for follow-up.</p>
+          </div>
+          <div class="sa-proof-card sa-reveal-card sa-reveal-d6">
+            <p class="sa-proof-card-label">Across Our Client Network</p>
+            <p class="sa-proof-card-number" data-countup="100000" data-suffix="+" data-format="number">100,000+</p>
+            <p class="sa-proof-card-descriptor">Real healthcare conversations handled and learned from</p>
+            <div class="sa-proof-card-divider"></div>
+            <p class="sa-proof-card-text">Every conversation makes the agent smarter. It knows healthcare. It knows patients. It knows how to convert.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 5: HOW IT WORKS (Redesigned) ═══ -->
+    <section class="sa-how-v2">
+      <div class="sa-how-v2-inner">
+        <div class="sa-how-v2-header sa-reveal sa-reveal-d1">
+          <p class="sa-eyebrow sa-eyebrow-teal">The Process</p>
+          <h2 class="sa-how-v2-headline">Seven Days To Go Live.<br>Bookings Before You&#39;ve Had Your Morning Coffee.</h2>
+          <p class="sa-how-v2-sub">One client booked their first weight loss appointment within <strong>five minutes</strong> of going live.</p>
+        </div>
+
+        <div class="sa-how-v2-steps">
+          <div class="sa-how-v2-step sa-reveal sa-reveal-d2">
+            <div class="sa-how-v2-step-marker">
+              <span class="sa-how-v2-step-num">01</span>
+              <span class="sa-how-v2-step-line"></span>
+            </div>
+            <div class="sa-how-v2-step-content">
+              <p class="sa-how-v2-step-label">Train</p>
+              <h3 class="sa-how-v2-step-title">Built Around Your Practice</h3>
+              <p class="sa-how-v2-step-text">We build it around your practice. Your services, your pricing, your clinical protocols. It learns your business the way your best member of staff would — except it never calls in sick.</p>
+            </div>
+          </div>
+
+          <div class="sa-how-v2-step sa-reveal sa-reveal-d3">
+            <div class="sa-how-v2-step-marker">
+              <span class="sa-how-v2-step-num">02</span>
+              <span class="sa-how-v2-step-line"></span>
+            </div>
+            <div class="sa-how-v2-step-content">
+              <p class="sa-how-v2-step-label">Test</p>
+              <h3 class="sa-how-v2-step-title">Bulletproof Before It Touches Your Site</h3>
+              <p class="sa-how-v2-step-text">We run hundreds of real patient scenarios through it before it touches your website. Edge cases. Clinical questions. Compliance boundaries. It doesn&#39;t go live until it&#39;s bulletproof.</p>
+            </div>
+          </div>
+
+          <div class="sa-how-v2-step sa-how-v2-step--last sa-reveal sa-reveal-d4">
+            <div class="sa-how-v2-step-marker">
+              <span class="sa-how-v2-step-num">03</span>
+            </div>
+            <div class="sa-how-v2-step-content">
+              <p class="sa-how-v2-step-label">Deploy</p>
+              <h3 class="sa-how-v2-step-title">Live In Seven Days</h3>
+              <p class="sa-how-v2-step-text">Seven days after you sign off, it&#39;s live. From that moment, it&#39;s answering inquiries, handling objections, and booking appointments — around the clock, without you lifting a finger.</p>
+              <div class="sa-how-v2-badge sa-reveal sa-reveal-d5">
+                <span class="sa-how-v2-badge-dot"></span>
+                First booking within minutes of going live
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sa-how-v2-timeline sa-reveal sa-reveal-d5">
+          <div class="sa-how-v2-timeline-track">
+            <div class="sa-how-v2-timeline-fill"></div>
+          </div>
+          <div class="sa-how-v2-timeline-labels">
+            <span>Day 1</span>
+            <span>Day 7 — Go Live</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 6: ELIGIBILITY ═══ -->
+    <section class="sa-eligibility" id="eligibility">
+      <div class="sa-eligibility-inner">
+        <div class="sa-eligibility-copy">
+          <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">Not For Everyone</p>
+          <h2 class="sa-eligibility-headline sa-reveal sa-reveal-d2">We Are Selective About Who We Work With.</h2>
+          <p class="sa-eligibility-body sa-reveal sa-reveal-d3">The AI sales agent works best for practices that already have patient demand coming through their website. If your practice is ready, the agent will find revenue you didn&#39;t know you were losing.</p>
+          <p class="sa-eligibility-note sa-reveal sa-reveal-d4">If you meet those three criteria, there is five figure monthly revenue sitting in your website right now that you are not capturing.</p>
+          <div class="sa-eligibility-cta-wrap sa-reveal sa-reveal-d5">
+            <a href="#contact" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
+            <p class="sa-eligibility-sub-cta">Takes two minutes. No obligation.</p>
+          </div>
+        </div>
+        <div class="sa-eligibility-cards">
+          <div class="sa-eligibility-card sa-reveal-card sa-reveal-d3">
+            <div class="sa-eligibility-card-icon">✓</div>
+            <div class="sa-eligibility-card-text">
+              <p class="sa-eligibility-card-title">500+ Monthly Website Visitors</p>
+              <p class="sa-eligibility-card-desc">The agent needs traffic to convert. Fewer than 500 monthly visitors means the agent has nothing to work with.</p>
+            </div>
+          </div>
+          <div class="sa-eligibility-card sa-reveal-card sa-reveal-d4">
+            <div class="sa-eligibility-card-icon">✓</div>
+            <div class="sa-eligibility-card-text">
+              <p class="sa-eligibility-card-title">At Least One Private Service</p>
+              <p class="sa-eligibility-card-desc">Active demand for a paid service — weight loss, travel health, occupational health, aesthetics, or similar.</p>
+            </div>
+          </div>
+          <div class="sa-eligibility-card sa-reveal-card sa-reveal-d5">
+            <div class="sa-eligibility-card-icon">✓</div>
+            <div class="sa-eligibility-card-text">
+              <p class="sa-eligibility-card-title">A Brand Patients Trust</p>
+              <p class="sa-eligibility-card-desc">Professional enough for patients to engage with online. We&#39;ve turned down practices that weren&#39;t ready.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 7: FINAL CTA ═══ -->
+    <section class="sa-final">
+      <div class="sa-final-inner">
+        <p class="sa-final-eyebrow sa-reveal sa-reveal-d1">Ready To Find Out</p>
+        <h2 class="sa-final-headline sa-reveal sa-reveal-d2">Find Out What You Are Losing Every Month.</h2>
+        <p class="sa-final-body sa-reveal sa-reveal-d3">We&#39;ll review your practice, your traffic and your current conversion rate. We&#39;ll tell you honestly whether the agent is right for you — and what it would likely generate if deployed.</p>
+        <div class="sa-reveal sa-reveal-d4">
+          <a href="#contact" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
+          <p class="sa-final-note">We only take on practices we are confident we can deliver results for.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-brand-name">PharmoDigital</a>
+            <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
+            <p class="footer-brand-desc">Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.</p>
+            <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook — £497 →</a>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <a href="ai-domination-system.html">AI Search Playbook</a>
+            <a href="#">Full Implementation</a>
+            <a href="#">Healthcare Websites</a>
+            <a href="index.html#case-studies">Case Studies</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">How It Works</a>
+            <a href="index.html#case-studies">Case Studies</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:hello@pharmodigital.com">hello@pharmodigital.com</a>
+            <a href="tel:+442035820064">020 3582 0064</a>
+            <a href="#">London, UK</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 PharmoDigital. Healthcare Marketing Agency.</p>
+          <div class="footer-badges">
+            <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">ISO 27001 Certified</span>
+            <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">Top 40 Agency</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── Scroll-triggered reveals ──
+      (function() {
+        const reveals = document.querySelectorAll('.sa-reveal, .sa-reveal-card');
+        if (!reveals.length) return;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('sa-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        reveals.forEach(el => obs.observe(el));
+      })();
+
+      // ── Count-up animations ──
+      (function() {
+        function animateCountUp(el) {
+          const target = parseInt(el.dataset.countup, 10);
+          if (isNaN(target)) return;
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const format = el.dataset.format || 'plain';
+          const duration = 1200;
+          const startTime = performance.now();
+          function formatNum(n) {
+            if (format === 'number') return n.toLocaleString('en-GB');
+            return String(n);
+          }
+          function tick(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = prefix + formatNum(current) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }
+
+        const counters = document.querySelectorAll('[data-countup]');
+        if (!counters.length) return;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              setTimeout(() => {
+                animateCountUp(el);
+                el.style.animation = 'saNumPulse 0.6s ease 0.2s 1';
+              }, 300);
+              obs.unobserve(el);
+            }
+          });
+        }, { threshold: 0.3 });
+        counters.forEach(el => obs.observe(el));
+      })();
+
+      // ── Process v2: timeline fill animation ──
+      (function() {
+        const timeline = document.querySelector('.sa-how-v2-timeline');
+        if (!timeline) return;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('sa-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        obs.observe(timeline);
+      })();
+
+      // ── Comparison bar animation ──
+      (function() {
+        const fills = document.querySelectorAll('.sa-stat-compare-fill');
+        if (!fills.length) return;
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.width = entry.target.dataset.fill;
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        fills.forEach(el => obs.observe(el));
+      })();
+
+      // ── Smooth scroll ──
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    </script>
+  </body>
+</html>
