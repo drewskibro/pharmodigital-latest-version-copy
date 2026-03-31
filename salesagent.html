@@ -491,19 +491,28 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        /* Bleed beyond the grid column right edge */
+        margin-right: -10vw;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
       }
-      .sa-hero-visual img {
+      .sa-hero-visual-inner {
+        position: relative;
+        width: 110%;
+        max-width: 960px;
+      }
+      .sa-hero-visual-inner img {
         width: 100%;
-        max-width: 700px;
         height: auto;
-        border-radius: 16px;
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 25px 50px -12px rgba(0,0,0,0.15), 0 50px 80px -20px rgba(0,0,0,0.1);
+        display: block;
+        border-radius: 20px;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06);
         opacity: 0;
         transform: translateY(40px) scale(0.95);
         animation: saImageIn 0.8s ease-out 0.5s forwards;
       }
       @keyframes saImageIn {
-        to { opacity: 1; transform: translateY(0) scale(1) rotate(1deg); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
       }
 
       /* ─── Logo Bar ─── */
@@ -535,11 +544,11 @@
       .sa-logo-bar-label {
         text-align: center;
         font-family: 'Space Mono', monospace;
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(15,23,42,0.35);
+        color: rgba(15,23,42,0.55);
         margin-bottom: 1.75rem;
       }
       .sa-logo-bar-scroller {
@@ -551,16 +560,16 @@
         animation-play-state: paused;
       }
       .sa-logo-bar-scroller img {
-        height: 42px;
+        height: 50px;
         width: auto;
         object-fit: contain;
-        opacity: 0.55;
+        opacity: 0.7;
         filter: grayscale(100%);
         transition: opacity 0.3s ease, filter 0.3s ease;
         flex-shrink: 0;
       }
       .sa-logo-bar-scroller img:hover {
-        opacity: 0.9;
+        opacity: 1;
         filter: grayscale(0%);
       }
       @keyframes saLogoScroll {
@@ -570,7 +579,7 @@
       @media (max-width: 768px) {
         .sa-logo-bar::before,
         .sa-logo-bar::after { width: 60px; }
-        .sa-logo-bar-scroller img { height: 32px; }
+        .sa-logo-bar-scroller img { height: 40px; }
         .sa-logo-bar-scroller { gap: 3rem; }
       }
 
@@ -1094,6 +1103,39 @@
       .sa-chatbot-inner {
         max-width: 1200px;
         margin: 0 auto;
+      }
+      .sa-chatbot-hero {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        margin-bottom: 3.5rem;
+      }
+      .sa-chatbot-hero-copy {}
+      .sa-chatbot-hero-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .sa-chatbot-hero-image img {
+        width: 100%;
+        max-width: 900px;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 24px 60px rgba(0,0,0,0.13), 0 6px 20px rgba(20,184,166,0.08);
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        transition: transform 0.6s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
+      }
+      .sa-chatbot-hero-image img:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 32px 72px rgba(0,0,0,0.18), 0 8px 28px rgba(20,184,166,0.15);
+      }
+      @media (max-width: 900px) {
+        .sa-chatbot-hero-image img {
+          max-width: 100%;
+        }
       }
       .sa-eyebrow-cream {
         color: var(--teal);
@@ -2135,11 +2177,13 @@
             We&#39;re selective. Not every practice qualifies.
           </p>
         </div>
-        <div class="sa-hero-visual">
-          <img
-            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774876986452-0.jpeg"
-            alt="SalesAgent Pro — laptop and phone showing AI agent chat, prompt library, AI checklist, and client logos"
-          />
+          <div class="sa-hero-visual">
+          <div class="sa-hero-visual-inner">
+            <img
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774942910672-0.jpeg"
+              alt="SalesAgent Pro — laptop and phone showing AI agent chat, prompt library, AI checklist, and client logos"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -2148,25 +2192,61 @@
     <section class="sa-logo-bar">
       <p class="sa-logo-bar-label">Trusted by healthcare practices across the UK</p>
       <div class="sa-logo-bar-scroller">
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
         <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
         <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
         <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
         <!-- Duplicate set for seamless loop -->
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
         <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
         <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
         <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Ray Lane Group" />
-        <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
       </div>
     </section>
 
@@ -2284,7 +2364,7 @@
             was the AI sales agent. It handles patient inquiries around the clock, converts the traffic we&#39;re
             driving, and books appointments without us lifting a finger.<br /><br />
             We&#39;re now <em>taking that national.</em><br /><br />
-            Most web developers just build sites. Drew builds pharmacy growth engines.
+            Drew builds pharmacy growth engines.
             <strong>I trust him because he understands both pharmacy and digital, that&#39;s rare to find.</strong>
           </p>
           <div class="sa-testimonial-divider"></div>
@@ -2299,12 +2379,22 @@
     <!-- ═══ SECTION 3: NOT A CHATBOT — INTELLIGENCE ENGINE ═══ -->
     <section class="sa-chatbot">
       <div class="sa-chatbot-inner">
-        <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">The Intelligence Engine</p>
-        <h2 class="sa-headline-dark sa-reveal sa-reveal-d2">Every Patient Question Is A Revenue Signal.</h2>
-        <p class="sa-chatbot-sub sa-reveal sa-reveal-d3">
-          Your AI agent doesn&#39;t just answer — it captures the exact language patients use, the clinical questions
-          they ask, and the services they&#39;re ready to pay for. Then we turn that into content that ranks.
-        </p>
+        <div class="sa-chatbot-hero">
+          <div class="sa-chatbot-hero-copy">
+            <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">The Intelligence Engine</p>
+            <h2 class="sa-headline-dark sa-reveal sa-reveal-d2">Every Patient Question Is A Revenue Signal.</h2>
+            <p class="sa-chatbot-sub sa-reveal sa-reveal-d3">
+              Your AI agent doesn&#39;t just answer — it captures the exact language patients use, the clinical questions
+              they ask, and the services they&#39;re ready to pay for. Then we turn that into content that ranks.
+            </p>
+          </div>
+          <div class="sa-chatbot-hero-image sa-reveal sa-reveal-d4">
+            <img
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774942377922-0.png"
+              alt="SalesAgent Pro chat — needle stick injury to urgent Hep A/B appointment booked in 4 messages"
+            />
+          </div>
+        </div>
 
         <div class="sa-query-cards">
           <div class="sa-query-card sa-reveal-card sa-reveal-d3">

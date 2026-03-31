@@ -18,6 +18,36 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-03-31] — SalesAgent: hero image replaced, hover removed, pixel-perfect (salesagent.html)
+- Swapped hero image to new uploaded asset (uploaded-asset-1774942910672-0.jpeg)
+- Removed all hover/zoom behaviour (scale, teal border, zoom-hint badge)
+- Removed border-radius, box-shadow, overflow:hidden, cursor:zoom-in from .sa-hero-visual-inner
+- Image renders at natural resolution with zero CSS constraints — pixel perfect
+
+### [2026-03-31] — SalesAgent: chat image rendering quality fix (salesagent.html)
+- Replaced `filter: drop-shadow()` with `box-shadow` — drop-shadow forces GPU compositing and blurs text
+- Added `image-rendering: -webkit-optimize-contrast` / `crisp-edges` to prevent browser interpolation softening
+- Increased max-width from 680px → 900px so image doesn't have to stretch as much
+- Root cause noted: source image is low-res; re-uploading at 2x (1800px+) is the definitive fix
+
+### [2026-03-31] — SalesAgent: chat image enlarged in Intelligence Engine section (salesagent.html)
+- Removed 2-col grid (420px column was making image too small to read)
+- Layout now stacks vertically: copy on top, image below at full-section width
+- Image max-width raised from 420px → 680px; text now legible
+- Mobile: max-width 100% so it fills the viewport
+
+### [2026-03-30] — SalesAgent: hero image bleed + zoom-on-hover enhanced (salesagent.html)
+- Bleed increased from -6vw to -10vw; container width 110%, max-width 960px (was 820px)
+- Hover zoom increased from 1.07 to 1.15 — enough to read UI detail in laptop screen
+- Added "Hover to explore" hint badge (fades on hover) so users know to interact
+- Teal border on hover strengthened to 2px / 0.35 opacity
+
+### [2026-03-30] — SalesAgent: logo bar size + label readability fix (salesagent.html)
+- Logo height bumped 42px → 50px to match homepage logo bar
+- Opacity raised 0.55 → 0.7, hover 0.9 → 1 (matching homepage)
+- Label text: font-size 0.65rem → 0.75rem, color opacity 0.35 → 0.55 for readability
+- Mobile logo height 32px → 40px
+
 ### [2026-03-30] — SalesAgent: logo scroller v3 — flat single-row fix (salesagent.html)
 - Previous twin-track nested approach still showed white gap on loop reset
 - Flattened to match homepage pattern: single `.sa-logo-bar-scroller` div with 18 imgs (9+9 duplicate)
