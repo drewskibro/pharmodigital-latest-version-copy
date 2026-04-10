@@ -535,27 +535,25 @@
         width: 100%;
         max-width: 720px;
         height: auto;
-        border-radius: 0;
+        border-radius: 20px;
         position: relative;
         opacity: 0;
-        transform: translateY(40px) scale(0.97);
+        transform: translateY(40px) scale(0.97) rotate(0deg);
         border: none;
-        box-shadow: none;
-        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 8px 24px rgba(0, 0, 0, 0.1);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
         margin: 0 auto;
         display: block;
-        /* Soft edge mask — fades the image edges into the hero background */
-        -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 55%, transparent 100%);
-        mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 55%, transparent 100%);
       }
 
       .hero-image-stack img.active {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1) rotate(-2deg);
       }
 
       .hero-image-stack img.active:hover {
-        transform: translateY(-4px) scale(1.01);
+        transform: translateY(-6px) scale(1.02) rotate(-1deg);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22), 0 12px 30px rgba(0, 0, 0, 0.12);
       }
 
 
@@ -4323,10 +4321,6 @@
           margin-right: auto;
         }
 
-        .hero-image-stack img {
-          -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, black 50%, transparent 100%);
-          mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, black 50%, transparent 100%);
-        }
 
         .stats-grid {
           grid-template-columns: 1fr;

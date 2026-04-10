@@ -18,12 +18,17 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
-### [2026-04-10] — Hero image seamlessly blended into hero section (index.html)
-- Removed border-radius, box-shadow, and hard-edge framing from `.hero-image-stack img`
-- Applied radial-gradient CSS mask to softly fade image edges into hero background
-- Eliminates visual clash between dark navy image bg and warm cream hero gradient
-- Mobile breakpoint updated: mask slightly expanded for smaller screens
-- No changes to left-hand hero content, CTAs, or layout structure
+### [2026-04-10] — Added curved edges + tilt to hero image (index.html)
+- `border-radius: 20px` for rounded corners
+- `rotate(-2deg)` tilt on active state for a dynamic, non-static look
+- Layered `box-shadow` for depth (20px/60px + 8px/24px)
+- Hover lifts slightly and reduces tilt to -1° with deeper shadow
+
+### [2026-04-10] — Removed radial gradient mask from hero image (index.html)
+- Removed `-webkit-mask-image` / `mask-image` radial-gradient from `.hero-image-stack img`
+- Also removed the mobile-breakpoint mask override at ≤768px
+- Image now displays at full quality with no edge fade-out
+- No other layout, structure, or content changes
 
 ### [2026-04-10] — Homepage hero image swapped to new attached version (index.html)
 - Old image: uploaded-asset-1775810656815-0.jpeg
