@@ -523,40 +523,39 @@
       .hero-image-stack {
         position: relative;
         width: 100%;
-        max-width: 700px;
+        max-width: 720px;
+      }
+
+      .hero-image-stack {
+        position: relative;
+        overflow: visible;
       }
 
       .hero-image-stack img {
         width: 100%;
+        max-width: 720px;
         height: auto;
-        border-radius: 16px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        transform: translateY(40px) scale(0.95);
-        box-shadow:
-          0 4px 6px -1px rgba(0, 0, 0, 0.05),
-          0 25px 50px -12px rgba(0, 0, 0, 0.15),
-          0 50px 80px -20px rgba(0, 0, 0, 0.1);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-
-      .hero-image-stack img:first-child {
+        border-radius: 0;
         position: relative;
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+        border: none;
+        box-shadow: none;
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        margin: 0 auto;
+        display: block;
+        /* Soft edge mask — fades the image edges into the hero background */
+        -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 55%, transparent 100%);
+        mask-image: radial-gradient(ellipse 85% 80% at 50% 50%, black 55%, transparent 100%);
       }
 
       .hero-image-stack img.active {
         opacity: 1;
-        transform: translateY(0) scale(1) rotate(1deg);
+        transform: translateY(0) scale(1);
       }
 
       .hero-image-stack img.active:hover {
-        transform: translateY(0) scale(1.02) rotate(0deg);
-        box-shadow:
-          0 8px 12px -2px rgba(0, 0, 0, 0.08),
-          0 30px 60px -12px rgba(0, 0, 0, 0.18),
-          0 60px 100px -24px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px) scale(1.01);
       }
 
 
@@ -4237,10 +4236,21 @@
       @media (max-width: 1024px) {
         .hero-inner {
           grid-template-columns: 1fr;
+          gap: 2.5rem;
         }
 
         .hero-visual {
-          display: none;
+          display: flex;
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        .hero-image-stack {
+          max-width: 100%;
+        }
+
+        .hero-image-stack img {
+          max-width: 100%;
         }
 
         .expertise-inner {
@@ -4279,6 +4289,12 @@
       @media (max-width: 768px) {
         .hero {
           padding: 3rem 1.5rem;
+          min-height: auto;
+          padding-bottom: 4rem;
+        }
+
+        .hero-inner {
+          gap: 2rem;
         }
 
         .hero-cta {
@@ -4287,6 +4303,7 @@
 
         .hero-trust-stats {
           text-align: center;
+          margin-bottom: 1rem;
         }
 
         .hero-title .desktop-only {
@@ -4304,6 +4321,11 @@
         .hero-subtitle {
           margin-left: auto;
           margin-right: auto;
+        }
+
+        .hero-image-stack img {
+          -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, black 50%, transparent 100%);
+          mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, black 50%, transparent 100%);
         }
 
         .stats-grid {
@@ -4446,15 +4468,10 @@
         <div class="hero-visual">
           <div class="hero-image-stack">
             <img
-              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772985250408-0.jpeg"
-              alt="AI Search Playbook for Healthcare - Device Mockup"
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775811251244-0.jpeg"
+              alt="Phone showing £480 booking confirmation surrounded by client logos and AI platform icons on dark navy background"
               class="active"
               data-index="0"
-            />
-            <img
-              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773039341550-1.png"
-              alt="AI Search Playbook - Stats Dashboard"
-              data-index="1"
             />
           </div>
         </div>

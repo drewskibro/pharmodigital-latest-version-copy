@@ -560,7 +560,7 @@
         animation-play-state: paused;
       }
       .sa-logo-bar-scroller img {
-        height: 50px;
+        height: 65px;
         width: auto;
         object-fit: contain;
         opacity: 0.7;
@@ -579,7 +579,7 @@
       @media (max-width: 768px) {
         .sa-logo-bar::before,
         .sa-logo-bar::after { width: 60px; }
-        .sa-logo-bar-scroller img { height: 40px; }
+        .sa-logo-bar-scroller img { height: 50px; }
         .sa-logo-bar-scroller { gap: 3rem; }
       }
 
@@ -1117,22 +1117,28 @@
         justify-content: center;
         position: relative;
       }
+      .sa-chatbot-hero-image {
+        justify-content: center;
+      }
       .sa-chatbot-hero-image img {
         width: 100%;
-        max-width: 900px;
+        max-width: 480px;
         height: auto;
         display: block;
         border-radius: 16px;
-        box-shadow: 0 24px 60px rgba(0,0,0,0.13), 0 6px 20px rgba(20,184,166,0.08);
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.13), 0 4px 16px rgba(20,184,166,0.08);
         transition: transform 0.6s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
       }
       .sa-chatbot-hero-image img:hover {
-        transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 32px 72px rgba(0,0,0,0.18), 0 8px 28px rgba(20,184,166,0.15);
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 24px 60px rgba(0,0,0,0.18), 0 6px 20px rgba(20,184,166,0.15);
       }
       @media (max-width: 900px) {
+        .sa-chatbot-hero-image img {
+          max-width: 380px;
+        }
+      }
+      @media (max-width: 480px) {
         .sa-chatbot-hero-image img {
           max-width: 100%;
         }
@@ -1786,7 +1792,7 @@
       .sa-eligibility-note {
         font-size: 0.9375rem;
         font-style: italic;
-        color: var(--gray-400);
+        color: var(--gray-600);
         margin-bottom: 2.5rem;
       }
       .sa-eligibility-cta-wrap {
@@ -1797,7 +1803,7 @@
       .sa-eligibility-sub-cta {
         font-size: 0.8125rem;
         font-style: italic;
-        color: var(--gray-400);
+        color: var(--gray-600);
       }
       /* Eligibility cards */
       .sa-eligibility-cards {
@@ -2008,6 +2014,277 @@
         align-items: center;
       }
 
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         LIVE RIGHT NOW — Client Carousel
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-live-clients {
+        background: var(--navy);
+        padding: 6rem 0 5rem;
+        overflow: hidden;
+        position: relative;
+      }
+      .sa-live-clients::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(20,184,166,0.35) 50%, transparent 100%);
+      }
+      .sa-live-clients-header {
+        text-align: center;
+        padding: 0 2rem;
+        margin-bottom: 3.5rem;
+      }
+      .sa-live-clients-overline {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+      .sa-live-clients-overline::before,
+      .sa-live-clients-overline::after {
+        content: '';
+        width: 32px;
+        height: 1px;
+        background: rgba(20,184,166,0.5);
+      }
+      .sa-live-clients-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: white;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.75rem;
+      }
+      .sa-live-clients-sub {
+        font-size: 1.0625rem;
+        color: rgba(255,255,255,0.5);
+        font-weight: 400;
+      }
+
+      /* Carousel track */
+      .sa-live-carousel-wrap {
+        overflow: hidden;
+        position: relative;
+        cursor: grab;
+        user-select: none;
+      }
+      .sa-live-carousel-wrap:active {
+        cursor: grabbing;
+      }
+      /* Fade masks at edges */
+      .sa-live-carousel-wrap::before,
+      .sa-live-carousel-wrap::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .sa-live-carousel-wrap::before {
+        left: 0;
+        background: linear-gradient(90deg, var(--navy) 0%, transparent 100%);
+      }
+      .sa-live-carousel-wrap::after {
+        right: 0;
+        background: linear-gradient(270deg, var(--navy) 0%, transparent 100%);
+      }
+      .sa-live-carousel-track {
+        display: flex;
+        gap: 1.5rem;
+        padding: 0.5rem 2rem 0.5rem;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .sa-live-carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Individual client card */
+      .sa-live-card {
+        flex: 0 0 420px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .sa-live-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(20,184,166,0.3);
+        box-shadow: 0 16px 50px rgba(0,0,0,0.5), 0 0 30px rgba(20,184,166,0.06);
+      }
+      .sa-live-card-screenshot {
+        width: 100%;
+        height: 260px;
+        overflow: hidden;
+        display: block;
+        background: #0c1220;
+      }
+      .sa-live-card-screenshot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top right;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .sa-live-card:hover .sa-live-card-screenshot img {
+        transform: scale(1.04);
+      }
+      .sa-live-card-footer {
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+      .sa-live-card-name {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+        letter-spacing: -0.01em;
+      }
+      .sa-live-card-badge {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--teal);
+        background: rgba(20,184,166,0.1);
+        border: 1px solid rgba(20,184,166,0.2);
+        border-radius: 100px;
+        padding: 0.25rem 0.625rem;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        flex-shrink: 0;
+      }
+      .sa-live-card-badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        box-shadow: 0 0 4px rgba(20,184,166,0.7);
+        animation: saLivePulse 2s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+
+      /* Lightbox */
+      .sa-lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(5, 10, 20, 0.93);
+        backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        padding: 1.5rem;
+      }
+      .sa-lightbox-overlay.sa-lightbox-open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .sa-lightbox-inner {
+        position: relative;
+        max-width: 1100px;
+        width: 100%;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        transform: scale(0.94) translateY(16px);
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+      }
+      .sa-lightbox-overlay.sa-lightbox-open .sa-lightbox-inner {
+        transform: scale(1) translateY(0);
+      }
+      .sa-lightbox-inner img {
+        width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+        display: block;
+      }
+      .sa-lightbox-caption {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: rgba(255,255,255,0.7);
+        letter-spacing: 0.01em;
+      }
+      .sa-lightbox-close {
+        position: fixed;
+        top: 1.25rem;
+        right: 1.25rem;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.15);
+        color: white;
+        font-size: 1.375rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+        z-index: 10000;
+      }
+      .sa-lightbox-close:hover {
+        background: rgba(255,255,255,0.2);
+      }
+
+      /* Bottom footnote */
+      .sa-live-clients-footnote {
+        text-align: center;
+        margin-top: 2.5rem;
+        padding: 0 2rem;
+        font-size: 0.8125rem;
+        color: rgba(255,255,255,0.55);
+        font-style: italic;
+        letter-spacing: 0.01em;
+      }
+
+      /* Scroll hint arrow */
+      .sa-live-scroll-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.75rem;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+      }
+
       /* ─── Responsive ─── */
       @media (max-width: 1024px) {
         .sa-hero-inner { grid-template-columns: 1fr; }
@@ -2180,8 +2457,8 @@
           <div class="sa-hero-visual">
           <div class="sa-hero-visual-inner">
             <img
-              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774942910672-0.jpeg"
-              alt="SalesAgent Pro — laptop and phone showing AI agent chat, prompt library, AI checklist, and client logos"
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775739434759-0.jpeg"
+              alt="SalesAgent Pro — phone showing new booking confirmation for Family Travel Vaccinations £480, surrounded by client logos"
             />
           </div>
         </div>
@@ -2249,6 +2526,100 @@
         />
       </div>
     </section>
+
+    <!-- ═══ LIVE RIGHT NOW — Client Chatbot Carousel ═══ -->
+    <section class="sa-live-clients">
+      <div class="sa-live-clients-header sa-reveal sa-reveal-d1">
+        <p class="sa-live-clients-overline">Live Right Now</p>
+        <h2 class="sa-live-clients-headline">Already Running on These Practice Websites</h2>
+        <p class="sa-live-clients-sub">Five independent practices. Five different brands. One system.</p>
+      </div>
+
+      <div class="sa-live-carousel-wrap">
+        <div class="sa-live-carousel-track" id="liveCarouselTrack">
+
+          <!-- Card 1: Ealing Travel Clinic -->
+          <div class="sa-live-card">
+            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904621-0.png" data-caption="Ealing Travel Clinic" style="cursor:zoom-in;">
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904621-0.png"
+                alt="Ealing Travel Clinic website with the blue chatbot widget open"
+              />
+            </div>
+            <div class="sa-live-card-footer">
+              <span class="sa-live-card-name">Ealing Travel Clinic</span>
+              <span class="sa-live-card-badge"><span class="sa-live-card-badge-dot"></span>Live</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Southdowns Pharmacy Group -->
+          <div class="sa-live-card">
+            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775652123368-0.png" data-caption="Southdowns Pharmacy Group" style="cursor:zoom-in;">
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775652123368-0.png"
+                alt="Southdowns Pharmacy Group website with Ask Our Pharmacist widget open"
+              />
+            </div>
+            <div class="sa-live-card-footer">
+              <span class="sa-live-card-name">Southdowns Pharmacy Group</span>
+              <span class="sa-live-card-badge"><span class="sa-live-card-badge-dot"></span>Live</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Malvern Travel Clinic -->
+          <div class="sa-live-card">
+            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904626-1.png" data-caption="Malvern Travel Clinic" style="cursor:zoom-in;">
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904626-1.png"
+                alt="Malvern Travel Clinic yellow homepage with blue chatbot widget open"
+              />
+            </div>
+            <div class="sa-live-card-footer">
+              <span class="sa-live-card-name">Malvern Travel Clinic</span>
+              <span class="sa-live-card-badge"><span class="sa-live-card-badge-dot"></span>Live</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Medihub Pharmacy (screenshot needed) -->
+          <div class="sa-live-card">
+            <div class="sa-live-card-screenshot" style="background:#0c1220; display:flex; align-items:center; justify-content:center;">
+              <span style="color:rgba(255,255,255,0.15); font-size:0.875rem; font-family:'Space Mono',monospace;">Screenshot coming soon</span>
+            </div>
+            <div class="sa-live-card-footer">
+              <span class="sa-live-card-name">Medihub Pharmacy</span>
+              <span class="sa-live-card-badge"><span class="sa-live-card-badge-dot"></span>Live</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Superior Pharmacy -->
+          <div class="sa-live-card">
+            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904635-2.png" data-caption="Superior Pharmacy" style="cursor:zoom-in;">
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904635-2.png"
+                alt="Superior Pharmacy homepage with Chat With Resh teal widget open"
+              />
+            </div>
+            <div class="sa-live-card-footer">
+              <span class="sa-live-card-name">Superior Pharmacy</span>
+              <span class="sa-live-card-badge"><span class="sa-live-card-badge-dot"></span>Live</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="sa-live-scroll-hint">← Scroll to see all →</p>
+      <p class="sa-live-clients-footnote">All chatbots live and patient-facing. Screenshots taken April 2026.</p>
+    </section>
+
+    <!-- Lightbox overlay -->
+    <div class="sa-lightbox-overlay" id="saLightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
+      <button class="sa-lightbox-close" id="saLightboxClose" aria-label="Close preview">✕</button>
+      <div class="sa-lightbox-inner">
+        <img id="saLightboxImg" src="" alt="" />
+        <p class="sa-lightbox-caption" id="saLightboxCaption"></p>
+      </div>
+    </div>
 
     <!-- ═══ SECTION 2: SALESAGENT PRO ═══ -->
     <section class="sa-problem">
@@ -2390,8 +2761,8 @@
           </div>
           <div class="sa-chatbot-hero-image sa-reveal sa-reveal-d4">
             <img
-              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774942377922-0.png"
-              alt="SalesAgent Pro chat — needle stick injury to urgent Hep A/B appointment booked in 4 messages"
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775650226952-0.jpeg"
+              alt="Ask Our Pharmacist — AI agent chat showing travel vaccine recommendations for a family of four, booking confirmed"
             />
           </div>
         </div>
@@ -2665,7 +3036,7 @@
       <div class="sa-eligibility-inner">
         <div class="sa-eligibility-copy">
           <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">Not For Everyone</p>
-          <h2 class="sa-eligibility-headline sa-reveal sa-reveal-d2">We Are Selective About Who We Work With.</h2>
+          <h2 class="sa-eligibility-headline sa-reveal sa-reveal-d2">If Your Practice Meets These Three Criteria, There Is Five-Figure Monthly Revenue You Are Not Capturing.</h2>
           <p class="sa-eligibility-body sa-reveal sa-reveal-d3">
             The AI sales agent works best for practices that already have patient demand coming through their website.
             If your practice is ready, the agent will find revenue you didn&#39;t know you were losing.
@@ -2685,8 +3056,7 @@
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">500+ Monthly Website Visitors</p>
               <p class="sa-eligibility-card-desc">
-                The agent needs traffic to convert. Fewer than 500 monthly visitors means the agent has nothing to work
-                with.
+                Your website is already getting patients through the door. The agent converts the ones who were leaving without booking.
               </p>
             </div>
           </div>
@@ -2695,8 +3065,7 @@
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">At Least One Private Service</p>
               <p class="sa-eligibility-card-desc">
-                Active demand for a paid service — weight loss, travel health, occupational health, aesthetics, or
-                similar.
+                Weight loss, travel health, aesthetics, occupational health. Services patients are already searching for and willing to pay for — the agent makes sure they book with you.
               </p>
             </div>
           </div>
@@ -2705,8 +3074,7 @@
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">A Brand Patients Trust</p>
               <p class="sa-eligibility-card-desc">
-                Professional enough for patients to engage with online. We&#39;ve turned down practices that weren&#39;t
-                ready.
+                Patients will interact with the agent before they&#39;ve ever spoken to your team. Your brand needs to be one they&#39;d trust with their health. We&#39;ve turned down practices that weren&#39;t ready.
               </p>
             </div>
           </div>
@@ -2860,6 +3228,94 @@
           });
         }, { threshold: 0.3 });
         fills.forEach(el => obs.observe(el));
+      })();
+
+      // ── Lightbox ──
+      (function() {
+        const overlay = document.getElementById('saLightbox');
+        const img = document.getElementById('saLightboxImg');
+        const caption = document.getElementById('saLightboxCaption');
+        const closeBtn = document.getElementById('saLightboxClose');
+
+        function openLightbox(src, cap) {
+          img.src = src;
+          img.alt = cap;
+          caption.textContent = cap;
+          overlay.classList.add('sa-lightbox-open');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+          overlay.classList.remove('sa-lightbox-open');
+          document.body.style.overflow = '';
+          setTimeout(() => { img.src = ''; }, 350);
+        }
+
+        document.querySelectorAll('.sa-lightbox-trigger').forEach(trigger => {
+          trigger.addEventListener('click', function(e) {
+            // Don't open if the user was dragging the carousel
+            if (Math.abs(window._lbDragDelta || 0) > 6) return;
+            openLightbox(this.dataset.src, this.dataset.caption);
+          });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        overlay.addEventListener('click', function(e) {
+          if (e.target === overlay) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') closeLightbox();
+        });
+      })();
+
+      // ── Carousel drag-to-scroll (mouse + touch) ──
+      (function() {
+        const track = document.getElementById('liveCarouselTrack');
+        if (!track) return;
+
+        let isDown = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        track.addEventListener('mousedown', function(e) {
+          isDown = true;
+          startX = e.pageX - track.offsetLeft;
+          scrollLeft = track.scrollLeft;
+          window._lbDragDelta = 0;
+          track.style.cursor = 'grabbing';
+        });
+
+        track.addEventListener('mouseleave', function() {
+          isDown = false;
+          track.style.cursor = 'grab';
+        });
+
+        track.addEventListener('mouseup', function() {
+          isDown = false;
+          track.style.cursor = 'grab';
+        });
+
+        track.addEventListener('mousemove', function(e) {
+          if (!isDown) return;
+          e.preventDefault();
+          var x = e.pageX - track.offsetLeft;
+          var walk = (x - startX) * 1.5;
+          track.scrollLeft = scrollLeft - walk;
+          window._lbDragDelta = Math.abs(e.pageX - (startX + track.offsetLeft));
+        });
+
+        // Touch support
+        track.addEventListener('touchstart', function(e) {
+          startX = e.touches[0].pageX - track.offsetLeft;
+          scrollLeft = track.scrollLeft;
+          window._lbDragDelta = 0;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function(e) {
+          var x = e.touches[0].pageX - track.offsetLeft;
+          var walk = (x - startX) * 1.5;
+          track.scrollLeft = scrollLeft - walk;
+          window._lbDragDelta = Math.abs(x - startX);
+        }, { passive: true });
       })();
 
       // ── Smooth scroll ──

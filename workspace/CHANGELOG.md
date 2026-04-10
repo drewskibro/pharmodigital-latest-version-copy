@@ -18,6 +18,136 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-10] — Hero image seamlessly blended into hero section (index.html)
+- Removed border-radius, box-shadow, and hard-edge framing from `.hero-image-stack img`
+- Applied radial-gradient CSS mask to softly fade image edges into hero background
+- Eliminates visual clash between dark navy image bg and warm cream hero gradient
+- Mobile breakpoint updated: mask slightly expanded for smaller screens
+- No changes to left-hand hero content, CTAs, or layout structure
+
+### [2026-04-10] — Homepage hero image swapped to new attached version (index.html)
+- Old image: uploaded-asset-1775810656815-0.jpeg
+- New image: uploaded-asset-1775811251244-0.jpeg (phone + £480 booking + AI icons on dark navy bg)
+- No layout, CSS, or structural changes — image-only swap
+
+### [2026-04-10] — Hero image now visible on mobile + premium treatment (index.html)
+- Removed `display: none` at ≤1024px — image now shows below hero text on tablet/mobile
+- Full-width responsive at all breakpoints: 720px max desktop, 100% on mobile
+- Softer border-radius progression: 24px → 20px → 16px across breakpoints
+- Deeper multi-layer box-shadow with cubic-bezier entrance animation
+- Left-hand hero content (title, subtitle, CTA buttons, stats) completely untouched
+
+### [2026-04-10] — Homepage hero image swapped to 16:9 version (index.html)
+- Old image: uploaded-asset-1775762532501-0.jpeg (ChatGPT/Mounjaro phone mockup, ~4:3)
+- New image: uploaded-asset-1775810656815-0.jpeg (phone + £480 booking + AI platform icons, 16:9)
+- `max-width` bumped 520px → 640px to fill hero right column at wider aspect ratio
+- No layout or CSS structure changes beyond width tweak
+
+### [2026-04-09] — Premium depth treatment on homepage hero image (index.html)
+- Replaced flat 3-layer shadow with 5-layer progressive shadow stack for realistic depth
+- Border-radius bumped 16px → 20px for softer, more premium feel
+- Added faint `rgba(255,255,255,0.08)` border for subtle edge definition
+- Hover: gentle -4px lift + deepened shadow instead of scale-up
+- No structural/layout changes — CSS-only refinement
+
+### [2026-04-09] — Homepage hero image replaced with ChatGPT/Mounjaro phone mockup (index.html)
+- Old images: uploaded-asset-1772985250408-0.jpeg + uploaded-asset-1773039341550-1.png (two-image stack with scroll swap)
+- New image: uploaded-asset-1775762532501-0.jpeg (ChatGPT recommending Superior Pharmacy, phone + floating client logos)
+- Removed second stacked image — now single image, max-width 520px, centred
+- Cleaned up absolute positioning for single-image layout
+
+### [2026-04-09] — Hero image replaced with phone/logo mockup (salesagent.html)
+- Old image: uploaded-asset-1774942910672-0.jpeg (laptop/multi-device mockup)
+- New image: uploaded-asset-1775739434759-0.jpeg (phone showing £480 booking + client logo cards floating around it)
+- No layout or CSS changes — same `.sa-hero-visual-inner img` container
+
+### [2026-04-08] — Carousel scroll fix + footnote readability (salesagent.html)
+- Added full mouse drag-to-scroll and touch swipe JS to `.sa-live-carousel-track`
+- Scroll hint text opacity: 0.25 → 0.55; footnote opacity: 0.3 → 0.55
+- Both lines now clearly readable against dark navy background
+
+### [2026-04-08] — Lightbox added to Live Right Now carousel (salesagent.html)
+- Clicking any card screenshot opens a full-size lightbox overlay (blur backdrop, scale-in animation)
+- Close via ✕ button, click outside, or Escape key
+- Drag-threshold guard prevents lightbox firing after carousel scroll drags
+- Medihub placeholder card has no trigger (no image yet)
+
+### [2026-04-08] — Carousel image fixes: cropping + Southdowns image (salesagent.html)
+- `object-position` changed from `top center` → `top right` so chatbot widgets on right side are visible
+- Southdowns card: replaced Intelligence Engine chat image with correct full-page screenshot (uploaded-asset-1775652123368-0.png)
+- New hosted images: -1775652123368-0.png (Southdowns full page), -1775652123377-1.png (spare)
+
+### [2026-04-08] — "Live Right Now" client carousel added (salesagent.html)
+- New dark-navy section inserted directly after the logo bar, before the problem section
+- 5 cards: Ealing, Southdowns, Malvern, Medihub (placeholder pending screenshot), Superior Pharmacy
+- Horizontal scrollable carousel: cards 420px wide, 260px screenshot area, fade-edge masks, drag-scroll
+- Each card has "Live" teal pulse badge; footnote: "All chatbots live and patient-facing. Screenshots taken April 2026."
+- Images: uploaded-asset-1775651904621-0.png (Ealing), -626-1.png (Malvern), -635-2.png (Superior), 1775650226952-0.jpeg (Southdowns)
+
+### [2026-04-08] — Intelligence Engine image size fixed (salesagent.html)
+- `max-width` reduced from 900px → 480px on the Southdowns chat image
+- Added responsive breakpoints: 380px at ≤900px, 100% at ≤480px
+- Root cause: previous swap kept the old `.sa-chatbot-hero-image img` 900px constraint
+
+### [2026-04-08] — SalesAgent Intelligence Engine chat image replaced (salesagent.html) [v2]
+- Old image: uploaded-asset-1775647874874-0.jpeg (travel vaccines family booking)
+- New image: uploaded-asset-1775650226952-0.jpeg (Ask Our Pharmacist — Southdowns chat UI)
+- No layout, CSS, or structure changes
+
+### [2026-04-08] — SalesAgent eligibility section text readability fix (salesagent.html)
+- `.sa-eligibility-note` and `.sa-eligibility-sub-cta` color: gray-400 → gray-600
+- Affects italic note + "Takes two minutes. No obligation." line — both were near-invisible
+- No structural changes
+
+### [2026-04-08] — SalesAgent "Not For Everyone" copy updated (salesagent.html)
+- Headline → "If Your Practice Meets These Three Criteria, There Is Five-Figure Monthly Revenue You Are Not Capturing."
+- Card 1 body → converts visitors already leaving without booking
+- Card 2 body → lists services, patients searching + willing to pay framing
+- Card 3 body → brand trust angle, "before they've ever spoken to your team"
+
+### [2026-04-08] — SalesAgent logo bar enlarged (salesagent.html)
+- Logo height bumped 50px → 65px (desktop), 40px → 50px (mobile)
+- Homepage logo bar is 50px — SA page now visually larger/more prominent
+- Extra padding + label text was making same-size logos feel smaller
+
+### [2026-04-08] — Ealing "The Method" section copy updated (case-study-ealing.html)
+- Headline → "Boots Has a £2bn Marketing Budget…" framing
+- Subhead → references ChatGPT/Claude/Google AI recommendation logic
+- Final bullet in "What Sachin Did" → "Built for AI recommendation, not just Google indexing"
+- All other bullets and "Most Practices" card left unchanged
+
+### [2026-04-08] — Ealing "While You Wait" section reworked (case-study-ealing.html)
+- Replaced 4 generic urgency cards with single centred narrative block telling Sachin's story
+- New overline "WHILE YOU WAIT", headline "This Is What Was Happening to Ealing Travel Clinic"
+- Three paragraphs of Ealing-specific copy about invisible demand and missed patients
+- Teal gradient divider + bold closing line: "Three months later, he was doing 55 a month"
+- Removed "Tomorrow it happens again" tagline entirely
+
+### [2026-04-08] — Ealing hero image sizing fix (case-study-ealing.html)
+- Constrained Sachin portrait: max-width 380px, max-height 460px with object-fit:cover
+- Grid rebalanced from 1fr/1fr to 1.2fr/0.8fr — text side gets more space
+- Decorative border accent scaled down proportionally (20px→14px offset)
+- Mobile max-width reduced from 500px→340px for phone screens
+
+### [2026-04-08] — Ealing Transformation Timeline: readability + impact overhaul (case-study-ealing.html)
+- Before numbers: 2rem→3rem, opacity 0.25→0.45 — now clearly visible but still muted
+- After numbers: 3rem→4.5rem with teal text-shadow glow — dramatic and unmissable
+- Reframed first metric from "30→90 clicks/day" to "~900→2,700 clicks/month" — far more impressive
+- Increased card padding, arrow width, tag size, context text size for premium feel
+- Mobile responsive sizes bumped proportionally (2rem before, 3rem after)
+
+### [2026-04-08] — Ealing Case Study: Before/After → Transformation Timeline (case-study-ealing.html)
+- Replaced flat Before/After two-card section with dark immersive transformation timeline
+- Three metric rows with animated counters, gradient arrows, multiplier tags
+- Closing statement card: "The clinic didn't change. The visibility did."
+
+### [2026-04-08] — Ealing Case Study: rankings section → proof cards (case-study-ealing.html)
+- Replaced leaderboard rows with two side-by-side proof cards on dark background
+- Card 1: Ealing Travel Clinic — 8→55 HPV vaccinations/month, £300/course revenue copy
+- Card 2: The Bigger Picture — 300% revenue growth, compounding services narrative
+- Removed "£4,200/month" bottom line; new overline "THE REAL RESULT"
+- Premium styling: teal top accent bar, hover lift, responsive single-column on mobile
+
 ### [2026-03-31] — SalesAgent: hero image replaced, hover removed, pixel-perfect (salesagent.html)
 - Swapped hero image to new uploaded asset (uploaded-asset-1774942910672-0.jpeg)
 - Removed all hover/zoom behaviour (scale, teal border, zoom-hint badge)

@@ -216,8 +216,8 @@
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
       align-items: center;
     }
     .cs-hero-breadcrumb {
@@ -296,21 +296,25 @@
     }
     .cs-hero-image {
       position: relative;
+      max-width: 380px;
+      justify-self: center;
     }
     .cs-hero-image img {
       width: 100%;
-      height: auto;
+      max-height: 460px;
+      object-fit: cover;
+      object-position: top center;
       border-radius: 16px;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
     }
     .cs-hero-image::before {
       content: '';
       position: absolute;
-      top: -20px; left: -20px;
-      right: 20px; bottom: 20px;
+      top: -14px; left: -14px;
+      right: 14px; bottom: 14px;
       border: 2px solid var(--teal);
       border-radius: 16px;
-      opacity: 0.3;
+      opacity: 0.25;
       z-index: -1;
     }
 
@@ -319,7 +323,7 @@
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-      .cs-hero-image { max-width: 500px; margin: 0 auto; }
+      .cs-hero-image { max-width: 340px; margin: 0 auto; }
       .cs-hero-image::before { display: none; }
       .cs-hero { padding: 3rem 1.5rem; }
       .cs-hero-stats { gap: 1.5rem; flex-wrap: wrap; }
@@ -680,68 +684,88 @@
       .results-keywords-grid { grid-template-columns: 1fr; }
     }
 
-    /* ─── Rankings Comparison ─── */
+    /* ─── Proof Cards (Rankings rework) ─── */
     .rankings-section {
       background: var(--navy);
       padding: 5rem 2rem;
       border-top: 1px solid rgba(0,0,0,0.06);
     }
     .rankings-inner {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       text-align: center;
     }
     .rankings-section .section-eyebrow { color: var(--teal); }
-    .rankings-section .section-headline { color: white; margin-bottom: 2.5rem; }
-    .rankings-table {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-    .rankings-row {
+    .rankings-section .section-headline { color: white; margin-bottom: 3rem; }
+    .proof-cards-grid {
       display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 1.25rem;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .proof-card {
       background: rgba(255,255,255,0.04);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
       text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.3s;
     }
-    .rankings-row.highlight {
-      background: rgba(20,184,166,0.1);
-      border-color: rgba(20,184,166,0.2);
+    .proof-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(20,184,166,0.25);
     }
-    .rankings-row-rank {
+    .proof-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), rgba(20,184,166,0.3));
+      border-radius: 20px 20px 0 0;
+    }
+    .proof-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .proof-card-stat {
       font-family: 'Inter', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: -0.02em;
-    }
-    .rankings-row.highlight .rankings-row-rank { color: var(--teal); }
-    .rankings-row-name {
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
       font-weight: 600;
-      color: rgba(255,255,255,0.6);
-    }
-    .rankings-row.highlight .rankings-row-name {
-      color: white;
-      font-weight: 700;
-    }
-    .rankings-bottom {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: white;
+      color: rgba(255,255,255,0.5);
       line-height: 1.4;
+      margin-bottom: 0.75rem;
     }
-    .rankings-bottom span { color: var(--teal); }
+    .proof-card-stat-highlight {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .proof-card-body {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+    .proof-card-body strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
 
     @media (max-width: 768px) {
       .rankings-section { padding: 4rem 1.5rem; }
+      .proof-cards-grid { grid-template-columns: 1fr; }
+      .proof-card-stat-highlight { font-size: 2rem; }
     }
 
     /* ─── Quote ─── */
@@ -783,78 +807,197 @@
       color: var(--gray-600);
     }
 
-    /* ─── Before/After ─── */
-    .before-after-section {
-      background: var(--cream);
+    /* ─── Transformation Timeline ─── */
+    .transform-section {
+      background: var(--navy);
       padding: 6rem 2rem;
-      border-top: 1px solid rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
     }
-    .before-after-inner {
-      max-width: 900px;
+    .transform-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(20,184,166,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .transform-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .transform-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .transform-header .section-eyebrow { color: var(--teal); }
+    .transform-header .section-headline {
+      color: white;
+      margin-bottom: 0.75rem;
+    }
+    .transform-header .section-subheadline {
+      color: rgba(255,255,255,0.5);
       margin: 0 auto;
     }
-    .before-after-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .before-after-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .ba-card {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.07);
-    }
-    .ba-card.before { background: white; }
-    .ba-card.after { background: var(--navy); }
-    .ba-card-label {
-      padding: 0.875rem 1.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-    .ba-card.before .ba-card-label {
-      background: var(--gray-100);
-      color: var(--gray-600);
-    }
-    .ba-card.after .ba-card-label {
-      background: rgba(20,184,166,0.08);
-      color: var(--teal);
-      border-bottom-color: rgba(255,255,255,0.06);
-    }
-    .ba-card-body { padding: 1.75rem; }
-    .ba-item {
+
+    /* Metric rows */
+    .transform-metrics {
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      padding: 0.625rem 0;
-      border-bottom: 1px solid var(--gray-100);
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
     }
-    .ba-card.after .ba-item { border-bottom-color: rgba(255,255,255,0.06); }
-    .ba-item:last-child { border-bottom: none; }
-    .ba-icon {
+    .transform-metric {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 2.75rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2.5rem;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .transform-metric:hover {
+      border-color: rgba(20,184,166,0.2);
+      transform: translateY(-2px);
+    }
+    .tm-before {
+      text-align: right;
+    }
+    .tm-before-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .tm-before-label {
       font-size: 0.875rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 0.15rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.5rem;
+      font-weight: 500;
     }
-    .ba-card.before .ba-icon { color: var(--gray-400); }
-    .ba-card.after .ba-icon { color: var(--teal); }
-    .ba-text {
-      font-size: 1rem;
+    .tm-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      flex-shrink: 0;
+    }
+    .tm-arrow-line {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.15), var(--teal), rgba(255,255,255,0.15));
+      border-radius: 2px;
+      position: relative;
+    }
+    .tm-arrow-line::after {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid var(--teal);
+    }
+    .tm-arrow-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(20,184,166,0.12);
+      padding: 0.3rem 0.625rem;
+      border-radius: 6px;
+      border: 1px solid rgba(20,184,166,0.2);
+    }
+    .tm-after {
+      text-align: left;
+    }
+    .tm-after-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(20,184,166,0.3);
+    }
+    .tm-after-num.counted { /* animated via JS */ }
+    .tm-after-label {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .tm-context {
+      grid-column: 1 / -1;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .tm-context strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+
+    /* Bottom statement */
+    .transform-statement {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: rgba(20,184,166,0.05);
+      border: 1px solid rgba(20,184,166,0.12);
+      border-radius: 16px;
+    }
+    .transform-statement-text {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+    .transform-statement-text span { color: var(--teal); }
+    .transform-statement-sub {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.75rem;
       line-height: 1.5;
     }
-    .ba-card.before .ba-text { color: var(--gray-600); }
-    .ba-card.after .ba-text { color: rgba(255,255,255,0.8); font-weight: 500; }
 
     @media (max-width: 768px) {
-      .before-after-grid { grid-template-columns: 1fr; }
-      .before-after-section { padding: 4rem 1.5rem; }
+      .transform-section { padding: 4rem 1.5rem; }
+      .transform-metric {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.75rem 1.5rem;
+      }
+      .tm-before { text-align: center; }
+      .tm-after { text-align: center; }
+      .tm-before-num { font-size: 2rem; }
+      .tm-after-num { font-size: 3rem; }
+      .tm-arrow { flex-direction: row; justify-content: center; }
+      .tm-arrow-line {
+        width: 2px; height: 32px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.1), var(--teal), rgba(255,255,255,0.1));
+      }
+      .tm-arrow-line::after {
+        right: auto; top: auto;
+        bottom: -3px; left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 7px solid var(--teal);
+        border-bottom: none;
+      }
+      .tm-arrow { flex-direction: column; }
     }
 
     /* ─── Cost of Inaction ─── */
@@ -869,37 +1012,34 @@
     }
     .urgency-section .section-eyebrow { color: var(--teal); }
     .urgency-section .section-headline { color: white; margin-bottom: 2.5rem; }
-    .urgency-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
+    .urgency-narrative {
+      max-width: 680px;
+      margin: 0 auto 3rem;
     }
-    .urgency-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: left;
+    .urgency-narrative p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
     }
-    .urgency-card p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.5;
+    .urgency-narrative p:last-child { margin-bottom: 0; }
+    .urgency-narrative strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+    .urgency-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      margin: 2.5rem auto;
+      border: none;
     }
-    .urgency-card strong { color: white; font-weight: 700; }
-    .urgency-bottom {
+    .urgency-closing {
       font-family: 'Inter', sans-serif;
       font-size: 1.5rem;
       font-weight: 700;
       color: white;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      letter-spacing: -0.01em;
+      line-height: 1.4;
     }
-
-    @media (max-width: 600px) {
-      .urgency-grid { grid-template-columns: 1fr; }
-    }
+    .urgency-closing span { color: var(--teal); }
 
     /* ─── CTA Section ─── */
     .cta-section {
@@ -1186,7 +1326,7 @@
         <p>Sachin knew his clinic offered <strong>better service, more personalised care, and competitive pricing</strong>. But none of that mattered if patients couldn't find him.</p>
       </div>
       <div class="problem-callout reveal stagger-3">
-        <p>Sachin was watching <span>£50,000+ in annual revenue</span> walk past his clinic — straight into Boots and Superdrug. He's now ranking for hundreds of keywords around HPV vaccines like Gardasil 9. He's found in AI overviews on the first page for far more than just one keyword.</p>
+        <p>Sachin was watching <span>£100,000+ in annual revenue</span> walk past his clinic — straight into Boots and Superdrug. He's now ranking for hundreds of keywords around HPV vaccines like Gardasil 9. He's found in AI overviews on the first page for far more than just one keyword.</p>
       </div>
     </div>
   </section>
@@ -1235,8 +1375,8 @@
   <section class="mechanism-section">
     <div class="mechanism-inner">
       <div class="section-eyebrow reveal">The Method</div>
-      <h2 class="section-headline reveal stagger-1">We Wrote Better Content. That's It.</h2>
-      <p class="section-subheadline reveal stagger-2">While Boots had generic 'HPV vaccination service' pages, we created content that directly answered the questions patients were asking.</p>
+      <h2 class="section-headline reveal stagger-1">Boots Has a £2bn Marketing Budget. Ealing Travel Clinic Has One Location. They Now Appear Side by Side in AI Search.</h2>
+      <p class="section-subheadline reveal stagger-2">Boots built pages for Google in 2015. We built Ealing&#39;s content specifically for how ChatGPT, Claude, and Google AI decide who to recommend — and that changed everything.</p>
 
       <div class="mechanism-compare">
         <div class="mechanism-col old reveal stagger-1">
@@ -1277,7 +1417,7 @@
             </div>
             <div class="mechanism-row">
               <div class="mechanism-dot"></div>
-              <div class="mechanism-row-text">Competed on content quality</div>
+              <div class="mechanism-row-text">Built for AI recommendation, not just Google indexing</div>
             </div>
           </div>
         </div>
@@ -1363,28 +1503,25 @@
     </div>
   </section>
 
-  <!-- Rankings Comparison -->
+  <!-- Proof Cards -->
   <section class="rankings-section">
     <div class="rankings-inner">
-      <div class="section-eyebrow reveal">The Unfair Advantage</div>
-      <h2 class="section-headline reveal stagger-1">AI Platforms Levelled the Playing Field</h2>
-      <div class="rankings-table reveal stagger-2">
-        <div class="rankings-row highlight">
-          <div class="rankings-row-rank">#1</div>
-          <div class="rankings-row-name">Ealing Travel Clinic</div>
+      <div class="section-eyebrow reveal">THE REAL RESULT</div>
+      <h2 class="section-headline reveal stagger-1">One Practice. Multiple Services. Revenue That Compounds Every Month.</h2>
+      <div class="proof-cards-grid">
+        <div class="proof-card reveal stagger-2">
+          <span class="proof-card-label">Ealing Travel Clinic</span>
+          <div class="proof-card-stat">8 every 3 months →</div>
+          <span class="proof-card-stat-highlight">55 HPV vaccinations/month</span>
+          <p class="proof-card-body">One service. At <strong>£300 per course</strong>, generating serious recurring revenue — and growing every month as AI platforms keep referring patients.</p>
         </div>
-        <div class="rankings-row">
-          <div class="rankings-row-rank">#3</div>
-          <div class="rankings-row-name">Boots</div>
-        </div>
-        <div class="rankings-row">
-          <div class="rankings-row-rank">#5</div>
-          <div class="rankings-row-name">Superdrug</div>
+        <div class="proof-card reveal stagger-3">
+          <span class="proof-card-label">The Bigger Picture</span>
+          <div class="proof-card-stat">Single clinic →</div>
+          <span class="proof-card-stat-highlight">300% revenue growth</span>
+          <p class="proof-card-body">HPV is just one service. Travel vaccines, blood tests, health screenings — <strong>every service compounds</strong> as AI visibility builds across the board.</p>
         </div>
       </div>
-      <p class="rankings-bottom reveal stagger-3">
-        That one ranking change = <span>£4,200/month</span> in new revenue
-      </p>
     </div>
   </section>
 
@@ -1393,7 +1530,7 @@
     <div class="quote-inner">
       <div class="quote-mark reveal">"</div>
       <p class="quote-text reveal stagger-1">
-        I couldn't believe it. We were ranking above <span>Boots. BOOTS.</span>
+        We were doing around 8 HPV vaccinations every three months. We're now seeing 55 a month. The visibility shift has been significant, we're appearing above Boots.".</span>
       </p>
       <div class="reveal stagger-2">
         <p class="quote-author-name">Sachin Mehta</p>
@@ -1402,56 +1539,71 @@
     </div>
   </section>
 
-  <!-- Before vs After -->
-  <section class="before-after-section">
-    <div class="before-after-inner">
-      <div class="before-after-header">
-        <div class="section-eyebrow reveal">The Transformation</div>
-        <h2 class="section-headline reveal stagger-1">Before vs After: The Numbers Don't Lie</h2>
+  <!-- Transformation Timeline -->
+  <section class="transform-section">
+    <div class="transform-inner">
+      <div class="transform-header">
+        <div class="section-eyebrow reveal">Same Clinic. Same Staff. Different Visibility.</div>
+        <h2 class="section-headline reveal stagger-1">The Shift in 90 Days</h2>
+        <p class="section-subheadline reveal stagger-2">Nothing about the clinic changed — except where patients could find it.</p>
       </div>
-      <div class="before-after-grid">
-        <div class="ba-card before reveal stagger-1">
-          <div class="ba-card-label">Before</div>
-          <div class="ba-card-body">
-            <div class="ba-item">
-              <span class="ba-icon">✗</span>
-              <span class="ba-text">Hidden behind national chains</span>
-            </div>
-            <div class="ba-item">
-              <span class="ba-icon">✗</span>
-              <span class="ba-text">30 clicks per day from Google</span>
-            </div>
-            <div class="ba-item">
-              <span class="ba-icon">✗</span>
-              <span class="ba-text">Generic service pages</span>
-            </div>
-            <div class="ba-item">
-              <span class="ba-icon">✗</span>
-              <span class="ba-text">Flat, stagnant revenue</span>
-            </div>
+
+      <div class="transform-metrics">
+        <!-- Metric 1: Monthly patient searches -->
+        <div class="transform-metric reveal stagger-1">
+          <div class="tm-before">
+            <div class="tm-before-num">~900</div>
+            <div class="tm-before-label">clicks per month</div>
           </div>
-        </div>
-        <div class="ba-card after reveal stagger-2">
-          <div class="ba-card-label">After</div>
-          <div class="ba-card-body">
-            <div class="ba-item">
-              <span class="ba-icon">✓</span>
-              <span class="ba-text">Featured in AI Overviews everywhere</span>
-            </div>
-            <div class="ba-item">
-              <span class="ba-icon">✓</span>
-              <span class="ba-text">90 clicks per day (3X growth — still climbing)</span>
-            </div>
-            <div class="ba-item">
-              <span class="ba-icon">✓</span>
-              <span class="ba-text">#1 for high-intent HPV vaccine & travel vaccine searches</span>
-            </div>
-            <div class="ba-item">
-              <span class="ba-icon">✓</span>
-              <span class="ba-text">300% revenue increase</span>
-            </div>
+          <div class="tm-arrow">
+            <div class="tm-arrow-line"></div>
+            <span class="tm-arrow-tag">3×</span>
           </div>
+          <div class="tm-after">
+            <div class="tm-after-num" data-count="2700">0</div>
+            <div class="tm-after-label">patient searches per month — and accelerating</div>
+          </div>
+          <div class="tm-context"><strong>Google Search Console verified.</strong> Flat for months, then exponential growth once AI platforms discovered the content.</div>
         </div>
+
+        <!-- Metric 2: HPV vaccinations -->
+        <div class="transform-metric reveal stagger-2">
+          <div class="tm-before">
+            <div class="tm-before-num">8</div>
+            <div class="tm-before-label">HPV vaccinations / quarter</div>
+          </div>
+          <div class="tm-arrow">
+            <div class="tm-arrow-line"></div>
+            <span class="tm-arrow-tag">20×</span>
+          </div>
+          <div class="tm-after">
+            <div class="tm-after-num" data-count="55">0</div>
+            <div class="tm-after-label">HPV vaccinations per month</div>
+          </div>
+          <div class="tm-context"><strong>At £300 per course</strong> — that&#39;s £16,500/month from a single service line, compounding as AI platforms keep referring patients.</div>
+        </div>
+
+        <!-- Metric 3: Revenue -->
+        <div class="transform-metric reveal stagger-3">
+          <div class="tm-before">
+            <div class="tm-before-num">Flat</div>
+            <div class="tm-before-label">stagnant revenue</div>
+          </div>
+          <div class="tm-arrow">
+            <div class="tm-arrow-line"></div>
+            <span class="tm-arrow-tag">300%</span>
+          </div>
+          <div class="tm-after">
+            <div class="tm-after-num tm-after-num-text">300%</div>
+            <div class="tm-after-label">total revenue growth across all services</div>
+          </div>
+          <div class="tm-context"><strong>HPV is just one service.</strong> Travel vaccines, blood tests, health screenings — every service compounds as AI visibility builds.</div>
+        </div>
+      </div>
+
+      <div class="transform-statement reveal stagger-4">
+        <p class="transform-statement-text">The clinic didn&#39;t change. The <span>visibility</span> did.</p>
+        <p class="transform-statement-sub">Every number above came from one thing: content that AI platforms chose to recommend.</p>
       </div>
     </div>
   </section>
@@ -1459,23 +1611,15 @@
   <!-- Cost of Inaction -->
   <section class="urgency-section">
     <div class="urgency-inner">
-      <div class="section-eyebrow reveal">While You Wait</div>
-      <h2 class="section-headline reveal stagger-1">What You're Losing Every Day</h2>
-      <div class="urgency-grid reveal stagger-2">
-        <div class="urgency-card">
-          <p>ChatGPT recommended your competitor <strong>47 times today</strong></p>
-        </div>
-        <div class="urgency-card">
-          <p>You lost <strong>12 high-intent patients</strong> to practices using AI search</p>
-        </div>
-        <div class="urgency-card">
-          <p>Your competitor just got featured in <strong>another AI Overview</strong></p>
-        </div>
-        <div class="urgency-card">
-          <p>That's <strong>£3,400 in revenue</strong> gone. Today.</p>
-        </div>
+      <div class="section-eyebrow reveal">WHILE YOU WAIT</div>
+      <h2 class="section-headline reveal stagger-1">This Is What Was Happening to Ealing Travel Clinic</h2>
+      <div class="urgency-narrative reveal stagger-2">
+        <p>Every month, patients in Ealing were searching for HPV vaccinations. AI platforms were recommending clinics. <strong>Ealing Travel Clinic wasn&#39;t one of them.</strong></p>
+        <p>Sachin was seeing <strong>8 patients every three months</strong> for HPV. Not because demand was low — because he wasn&#39;t visible where patients were actually looking.</p>
+        <p>That was the cost of not being in AI search. Quietly, every month, before he ever knew it was happening.</p>
       </div>
-      <p class="urgency-bottom reveal stagger-3">Tomorrow it happens again.</p>
+      <hr class="urgency-divider reveal stagger-3">
+      <p class="urgency-closing reveal stagger-4">Three months later, he was doing <span>55 a month</span>.</p>
     </div>
   </section>
 
@@ -1501,7 +1645,8 @@
         <div class="cta-card reveal stagger-2">
           <div class="cta-card-label">Done For You</div>
           <h3 class="cta-card-title">We Do It All For You</h3>
-          <p class="cta-card-body">If you'd rather hand this to specialists who've done it before — we'll write everything, optimise everything, track everything. You focus on patients.</p>
+          <p class="cta-card-body">We Do It For You
+Built for established practices turning over £1M+. We design, build, and manage your entire AI search presence — content, technical infrastructure, ongoing optimisation. You focus on running the practice.</p>
           <div class="cta-card-price">
             <div class="cta-card-price-num">Custom</div>
             <div class="cta-card-price-label">for 7-figure+ practices</div>
@@ -1564,6 +1709,30 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Animated counters for transformation metrics
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-count'), 10);
+          if (isNaN(target) || el.dataset.counted) return;
+          el.dataset.counted = 'true';
+          const duration = 1600;
+          const startTime = performance.now();
+          function animate(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target);
+            if (progress < 1) requestAnimationFrame(animate);
+          }
+          requestAnimationFrame(animate);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.tm-after-num[data-count]').forEach(el => counterObserver.observe(el));
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
