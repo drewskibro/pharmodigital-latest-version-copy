@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-11] — "Which One Is You?" section copy updates (index.html)
+- Card 1 (DIY): All 5 bullets replaced with Bing strategy, AI-optimised prompts, engagement templates, Ealing indexing protocol, lifetime access
+- Card 2 (DFY): Final bullet "Dedicated account manager" → "Direct access to the team that built the system — not a junior account handler."
+- Card 3 (Proof): Subhead updated; bullets replaced with Superior 50%, Ealing 300%, Miles Clinic £300k, Southdowns £200k; removed Hospital/South Downs line and "Recommended system" line
+
 ### [2026-04-11] — Problem/Solution section copy + icon rework (index.html)
 - LEFT: overline→ "THE PROBLEM", new headline "ChatGPT Isn't Searching Google. It's Searching Bing.", single consolidated body paragraph replacing 4 lines
 - RIGHT: overline→ "THE SOLUTION", Card 1 title→ "The Bing Advantage" with new bar-chart/upward-arrow SVG icon and Bing 87% research body copy
