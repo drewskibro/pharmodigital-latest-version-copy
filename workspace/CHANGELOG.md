@@ -18,6 +18,26 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-11] — Medihub Pharmacy card image replaced with correct screenshot (salesagent.html)
+- Old image: `uploaded-asset-1775894491439-1.png` (wrong placeholder)
+- New image: `uploaded-asset-1775895160015-0.png` (Medihub site with pink "Ask Our Pharmacist" widget + dental suite hero)
+
+### [2026-04-11] — Easy Clinic card image corrected to cream/terracotta/purple screenshot (salesagent.html)
+- Old image: `uploaded-asset-1775894491428-0.png` (wrong — was showing a different layout)
+- New image: `uploaded-asset-1775894721521-1.png` (correct Easy Pharmacy site with "Speak To Dilip" widget)
+
+### [2026-04-11] — Live carousel: 6 cards, reordered, 2 new images (salesagent.html)
+- Reordered to: Ealing, Easy Clinic, Superior, Malvern, Southdowns, Medihub
+- Added Easy Clinic card (pos 2) with hosted image `uploaded-asset-1775894491428-0.png`
+- Replaced Medihub placeholder with real screenshot `uploaded-asset-1775894491439-1.png`
+- Both new cards have lightbox trigger enabled + LIVE badge; subhead updated to "Six" practices
+
+### [2026-04-11] — Pricing text visibility + DFY copy update (index.html)
+- `two-paths-price-note` (Card 1): color upgraded from gray-400 to #6b7280, weight 500 — now clearly readable
+- `two-paths-price-muted` (Card 2): color upgraded; featured card override lifted from rgba 0.4 → 0.65
+- DFY pricing text replaced: "Pricing depends on your practice size and goals." → ROI/investment range copy
+- CSS-only change to Card 1 note + text+CSS change to Card 2 pricing block
+
 ### [2026-04-11] — "Which One Is You?" section copy updates (index.html)
 - Card 1 (DIY): All 5 bullets replaced with Bing strategy, AI-optimised prompts, engagement templates, Ealing indexing protocol, lifetime access
 - Card 2 (DFY): Final bullet "Dedicated account manager" → "Direct access to the team that built the system — not a junior account handler."
