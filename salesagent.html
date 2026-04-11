@@ -490,16 +490,15 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-        /* Bleed beyond the grid column right edge */
-        margin-right: -10vw;
+        justify-content: flex-end;
+        margin-right: -4vw;
         margin-top: 2rem;
         margin-bottom: 2rem;
       }
       .sa-hero-visual-inner {
         position: relative;
-        width: 110%;
-        max-width: 960px;
+        width: 80%;
+        max-width: 580px;
       }
       .sa-hero-visual-inner img {
         width: 100%;
@@ -2263,26 +2262,76 @@
       .sa-live-clients-footnote {
         text-align: center;
         margin-top: 2.5rem;
-        padding: 0 2rem;
-        font-size: 0.8125rem;
-        color: rgba(255,255,255,0.55);
+        padding: 1.75rem 2rem 0;
+        font-size: 1rem;
+        color: rgba(255,255,255,0.75);
         font-style: italic;
         letter-spacing: 0.01em;
+        line-height: 1.7;
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+        border-top: 1px solid rgba(20,184,166,0.2);
+      }
+
+      /* Arrow navigation buttons */
+      .sa-carousel-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .sa-carousel-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.15);
+        color: white;
+        font-size: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        flex-shrink: 0;
+        line-height: 1;
+      }
+      .sa-carousel-btn:hover {
+        background: rgba(20,184,166,0.15);
+        border-color: rgba(20,184,166,0.45);
+        transform: scale(1.08);
+      }
+      .sa-carousel-btn:active {
+        transform: scale(0.96);
+      }
+      .sa-carousel-btn:disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .sa-carousel-progress {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .sa-carousel-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        transition: background 0.25s ease, transform 0.25s ease;
+        cursor: pointer;
+      }
+      .sa-carousel-dot.active {
+        background: var(--teal);
+        transform: scale(1.4);
       }
 
       /* Scroll hint arrow */
       .sa-live-scroll-hint {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1.75rem;
-        font-family: 'Space Mono', monospace;
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.55);
+        display: none;
       }
 
       /* ─── Responsive ─── */
@@ -2454,7 +2503,7 @@
             We&#39;re selective. Not every practice qualifies.
           </p>
         </div>
-          <div class="sa-hero-visual">
+        <div class="sa-hero-visual">
           <div class="sa-hero-visual-inner">
             <img
               src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775739434759-0.jpeg"
@@ -2537,10 +2586,14 @@
 
       <div class="sa-live-carousel-wrap">
         <div class="sa-live-carousel-track" id="liveCarouselTrack">
-
           <!-- Card 1: Ealing Travel Clinic -->
           <div class="sa-live-card">
-            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904621-0.png" data-caption="Ealing Travel Clinic" style="cursor:zoom-in;">
+            <div
+              class="sa-live-card-screenshot sa-lightbox-trigger"
+              data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904621-0.png"
+              data-caption="Ealing Travel Clinic"
+              style="cursor:zoom-in;"
+            >
               <img
                 src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904621-0.png"
                 alt="Ealing Travel Clinic website with the blue chatbot widget open"
@@ -2554,7 +2607,12 @@
 
           <!-- Card 2: Easy Clinic -->
           <div class="sa-live-card">
-            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775894721521-1.png" data-caption="Easy Clinic" style="cursor:zoom-in;">
+            <div
+              class="sa-live-card-screenshot sa-lightbox-trigger"
+              data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775894721521-1.png"
+              data-caption="Easy Clinic"
+              style="cursor:zoom-in;"
+            >
               <img
                 src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775894721521-1.png"
                 alt="Easy Clinic website with Speak To Dilip Qualified Pharmacist chatbot widget open"
@@ -2568,7 +2626,12 @@
 
           <!-- Card 3: Superior Pharmacy -->
           <div class="sa-live-card">
-            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904635-2.png" data-caption="Superior Pharmacy" style="cursor:zoom-in;">
+            <div
+              class="sa-live-card-screenshot sa-lightbox-trigger"
+              data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904635-2.png"
+              data-caption="Superior Pharmacy"
+              style="cursor:zoom-in;"
+            >
               <img
                 src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904635-2.png"
                 alt="Superior Pharmacy homepage with Chat With Resh teal widget open"
@@ -2582,7 +2645,12 @@
 
           <!-- Card 4: Malvern Travel Clinic -->
           <div class="sa-live-card">
-            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904626-1.png" data-caption="Malvern Travel Clinic" style="cursor:zoom-in;">
+            <div
+              class="sa-live-card-screenshot sa-lightbox-trigger"
+              data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904626-1.png"
+              data-caption="Malvern Travel Clinic"
+              style="cursor:zoom-in;"
+            >
               <img
                 src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775651904626-1.png"
                 alt="Malvern Travel Clinic yellow homepage with blue chatbot widget open"
@@ -2596,9 +2664,14 @@
 
           <!-- Card 5: Southdowns Pharmacy Group -->
           <div class="sa-live-card">
-            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775652123368-0.png" data-caption="Southdowns Pharmacy Group" style="cursor:zoom-in;">
+            <div
+              class="sa-live-card-screenshot sa-lightbox-trigger"
+              data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775895890217-0.png"
+              data-caption="Southdowns Pharmacy Group"
+              style="cursor:zoom-in;"
+            >
               <img
-                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775652123368-0.png"
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775895890217-0.png"
                 alt="Southdowns Pharmacy Group website with Ask Our Pharmacist widget open"
               />
             </div>
@@ -2610,10 +2683,15 @@
 
           <!-- Card 6: Medihub Pharmacy -->
           <div class="sa-live-card">
-            <div class="sa-live-card-screenshot sa-lightbox-trigger" data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775895160015-0.png" data-caption="Medihub Pharmacy" style="cursor:zoom-in;">
+            <div
+              class="sa-live-card-screenshot sa-lightbox-trigger"
+              data-src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775896085700-0.png"
+              data-caption="Medihub Pharmacy"
+              style="cursor:zoom-in;"
+            >
               <img
-                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775895160015-0.png"
-                alt="Medihub Pharmacy website with the pink Ask Our Pharmacist chatbot widget open"
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775896085700-0.png"
+                alt="Medihub Pharmacy — Serving the Community in Pontarddulais and Killay, pink Ask Our Pharmacist chatbot widget open"
               />
             </div>
             <div class="sa-live-card-footer">
@@ -2621,12 +2699,21 @@
               <span class="sa-live-card-badge"><span class="sa-live-card-badge-dot"></span>Live</span>
             </div>
           </div>
-
         </div>
       </div>
 
-      <p class="sa-live-scroll-hint">← Scroll to see all →</p>
-      <p class="sa-live-clients-footnote">All chatbots live and patient-facing. Screenshots taken April 2026.</p>
+      <!-- Arrow navigation -->
+      <div class="sa-carousel-nav">
+        <button class="sa-carousel-btn" id="carouselPrev" aria-label="Previous">&#8592;</button>
+        <div class="sa-carousel-progress" id="carouselDots"></div>
+        <button class="sa-carousel-btn" id="carouselNext" aria-label="Next">&#8594;</button>
+      </div>
+
+      <p class="sa-live-clients-footnote">
+        Every practice shown is generating revenue automatically, capturing patient intent data on every interaction,
+        and building a compounding commercial advantage across their entire service portfolio. What you see here is a
+        fraction of our active client network.
+      </p>
     </section>
 
     <!-- Lightbox overlay -->
@@ -2772,8 +2859,9 @@
             <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">The Intelligence Engine</p>
             <h2 class="sa-headline-dark sa-reveal sa-reveal-d2">Every Patient Question Is A Revenue Signal.</h2>
             <p class="sa-chatbot-sub sa-reveal sa-reveal-d3">
-              Your AI agent doesn&#39;t just answer — it captures the exact language patients use, the clinical questions
-              they ask, and the services they&#39;re ready to pay for. Then we turn that into content that ranks.
+              Your AI agent doesn&#39;t just answer — it captures the exact language patients use, the clinical
+              questions they ask, and the services they&#39;re ready to pay for. Then we turn that into content that
+              ranks.
             </p>
           </div>
           <div class="sa-chatbot-hero-image sa-reveal sa-reveal-d4">
@@ -3053,7 +3141,9 @@
       <div class="sa-eligibility-inner">
         <div class="sa-eligibility-copy">
           <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">Not For Everyone</p>
-          <h2 class="sa-eligibility-headline sa-reveal sa-reveal-d2">If Your Practice Meets These Three Criteria, There Is Five-Figure Monthly Revenue You Are Not Capturing.</h2>
+          <h2 class="sa-eligibility-headline sa-reveal sa-reveal-d2">
+            If Your Practice Meets These Three Criteria, There Is Five-Figure Monthly Revenue You Are Not Capturing.
+          </h2>
           <p class="sa-eligibility-body sa-reveal sa-reveal-d3">
             The AI sales agent works best for practices that already have patient demand coming through their website.
             If your practice is ready, the agent will find revenue you didn&#39;t know you were losing.
@@ -3073,7 +3163,8 @@
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">500+ Monthly Website Visitors</p>
               <p class="sa-eligibility-card-desc">
-                Your website is already getting patients through the door. The agent converts the ones who were leaving without booking.
+                Your website is already getting patients through the door. The agent converts the ones who were leaving
+                without booking.
               </p>
             </div>
           </div>
@@ -3082,7 +3173,8 @@
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">At Least One Private Service</p>
               <p class="sa-eligibility-card-desc">
-                Weight loss, travel health, aesthetics, occupational health. Services patients are already searching for and willing to pay for — the agent makes sure they book with you.
+                Weight loss, travel health, aesthetics, occupational health. Services patients are already searching for
+                and willing to pay for — the agent makes sure they book with you.
               </p>
             </div>
           </div>
@@ -3091,7 +3183,8 @@
             <div class="sa-eligibility-card-text">
               <p class="sa-eligibility-card-title">A Brand Patients Trust</p>
               <p class="sa-eligibility-card-desc">
-                Patients will interact with the agent before they&#39;ve ever spoken to your team. Your brand needs to be one they&#39;d trust with their health. We&#39;ve turned down practices that weren&#39;t ready.
+                Patients will interact with the agent before they&#39;ve ever spoken to your team. Your brand needs to
+                be one they&#39;d trust with their health. We&#39;ve turned down practices that weren&#39;t ready.
               </p>
             </div>
           </div>
@@ -3282,6 +3375,74 @@
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape') closeLightbox();
         });
+      })();
+
+      // ── Carousel arrow navigation ──
+      (function() {
+        const track = document.getElementById('liveCarouselTrack');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        const dotsWrap = document.getElementById('carouselDots');
+        if (!track || !prevBtn || !nextBtn) return;
+
+        const cards = track.querySelectorAll('.sa-live-card');
+        const totalCards = cards.length;
+        let currentIndex = 0;
+
+        // Build dots
+        cards.forEach(function(_, i) {
+          var dot = document.createElement('button');
+          dot.className = 'sa-carousel-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+          dot.addEventListener('click', function() { goTo(i); });
+          dotsWrap.appendChild(dot);
+        });
+
+        function getCardWidth() {
+          var card = cards[0];
+          if (!card) return 436;
+          var style = getComputedStyle(track);
+          var gap = parseFloat(style.gap) || 24;
+          return card.offsetWidth + gap;
+        }
+
+        function updateButtons() {
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex >= totalCards - 1;
+          var dots = dotsWrap.querySelectorAll('.sa-carousel-dot');
+          dots.forEach(function(d, i) {
+            d.classList.toggle('active', i === currentIndex);
+          });
+        }
+
+        function goTo(index) {
+          currentIndex = Math.max(0, Math.min(index, totalCards - 1));
+          var cardW = getCardWidth();
+          // Centre the carousel padding (2rem = 32px) into account
+          track.scrollTo({ left: currentIndex * cardW, behavior: 'smooth' });
+          updateButtons();
+        }
+
+        prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); });
+        nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); });
+
+        // Keep index in sync when user drags
+        track.addEventListener('scroll', function() {
+          var cardW = getCardWidth();
+          var nearest = Math.round(track.scrollLeft / cardW);
+          if (nearest !== currentIndex) {
+            currentIndex = Math.max(0, Math.min(nearest, totalCards - 1));
+            updateButtons();
+          }
+        });
+
+        // Keyboard arrow support
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+          if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
+        });
+
+        updateButtons();
       })();
 
       // ── Carousel drag-to-scroll (mouse + touch) ──

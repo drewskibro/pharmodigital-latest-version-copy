@@ -18,6 +18,30 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-11] — Hero image resized on Sales Agent page (salesagent.html)
+- `.sa-hero-visual-inner`: `width` 110% → 80%, `max-width` 960px → 580px
+- `.sa-hero-visual`: `margin-right` -10vw → -4vw, `justify-content` → flex-end for better balance
+- Image now proportionate to left-hand headline text
+
+### [2026-04-11] — Medihub Pharmacy carousel image replaced with new screenshot (salesagent.html)
+- Old image: `uploaded-asset-1775895160015-0.png`
+- New image: `uploaded-asset-1775896085700-0.png` (Medihub — "Serving the Community in Pontarddulais & Killay", pink chatbot widget open)
+
+### [2026-04-11] — Southdowns Pharmacy Group carousel image replaced (salesagent.html)
+- Old image: uploaded-asset-1775652123368-0.png
+- New image: uploaded-asset-1775895890217-0.png (full-page screenshot with "Ask Our Pharmacist" chat widget open, couple hero image)
+
+### [2026-04-11] — Carousel footnote text visibility improved (salesagent.html)
+- `.sa-live-clients-footnote`: color bumped from rgba(255,255,255,0.55) → 0.75, font-size 0.8125rem → 1rem
+- Added `border-top: 1px solid rgba(20,184,166,0.2)` separator + top padding for visual breathing room
+- Line-height + max-width added for comfortable reading
+
+### [2026-04-11] — Arrow nav + dot indicators added to client carousel (salesagent.html)
+- Added `← →` arrow buttons + progress dots below the carousel track
+- Buttons live outside card area — zero conflict with hover-to-zoom effect
+- Dots sync with drag-scroll; keyboard ArrowLeft/ArrowRight also supported
+- `.sa-live-scroll-hint` text hidden (replaced by visual nav controls)
+
 ### [2026-04-11] — Medihub Pharmacy card image replaced with correct screenshot (salesagent.html)
 - Old image: `uploaded-asset-1775894491439-1.png` (wrong placeholder)
 - New image: `uploaded-asset-1775895160015-0.png` (Medihub site with pink "Ask Our Pharmacist" widget + dental suite hero)
