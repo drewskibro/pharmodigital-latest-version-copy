@@ -18,6 +18,32 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-11] — Fixed Why This Exists bullet wrapping: strong now inline, bold phrase flows into supporting text on one line (salesagent.html)
+- Root cause: `display: block` on `strong` and `span` inside `li` was splitting each bullet onto multiple stacked lines
+- Fix: removed `display: block` from strong, removed span entirely — each li is now plain inline text: **Bold phrase —** supporting line
+- Rewrote all 9 bullet points to use em-dash inline pattern for clean single-line readability
+
+### [2026-04-11] — "Why This Exists" cards: replaced paragraph body text with scannable bullet lists (salesagent.html)
+- Each card now has 3 bullet micro-points: bold key phrase + short supporting line
+- Added `.sa-why-block-bullets` CSS with teal tick icon via SVG data URI
+- Lead paragraph tightened to 2 punchy lines; added destination pill badge (NHS.uk · Fit for Travel · patient.info)
+- No structural or layout changes — cards still 3-col grid with white background and teal accent bar
+
+### [2026-04-11] — Added "Why This Exists" cream section between carousel and stats (salesagent.html)
+### [2026-04-11] — Added "Why This Exists" cream section between carousel and stats (salesagent.html)
+- New `.sa-why` section inserted after `sa-live-clients`, before `sa-problem`
+- Overline in teal spaced caps, large `Inter` headline (max 2 lines desktop), centred lead paragraph
+- Three white cards (`.sa-why-block`) in 3-col grid with teal accent bar, icon, bold title, body copy
+- Cards: "Answers Every Question", "Every Conversation Becomes Intelligence", "You Become Impossible to Displace"
+- Hover lift + teal border glow; stacks to 1-col on mobile; scroll-reveal animated
+
+### [2026-04-11] — Stat cards + bottom row overhaul in ChatGPT section (salesagent.html)
+- Card 1: removed `.sa-stat-ring` circular graphic — stat now renders directly; body text replaced with full network data-point copy
+- Card 2: attribution line updated to "Conversion rate — Southdowns Pharmacy Group"
+- Card 3: replaced "Set & Forget" / "Install once" / "Running now" with "Every Conversation" headline + intent data body copy
+- Bottom row: single wide rectangle → 3 individual cards matching top row (border, shadow, hover, border-radius); `.sa-revenue-bar-num` now white (#fff); new `.sa-revenue-bar-attribution` element; removed "Real client results" line; mobile stacks with gap
+- All 6 cards: consistent border `rgba(255,255,255,0.1)`, `box-shadow: 0 8px 32px`, `border-radius: 20px`, increased body font-size to 0.9375rem with line-height 1.65
+
 ### [2026-04-11] — Hero image resized on Sales Agent page (salesagent.html)
 - `.sa-hero-visual-inner`: `width` 110% → 80%, `max-width` 960px → 580px
 - `.sa-hero-visual`: `margin-right` -10vw → -4vw, `justify-content` → flex-end for better balance

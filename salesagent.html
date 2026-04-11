@@ -583,6 +583,197 @@
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         WHY THIS EXISTS (Cream)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-why {
+        background: var(--cream);
+        padding: 7rem 2rem 7.5rem;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .sa-why::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .sa-why-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .sa-why-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .sa-eyebrow-why {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 1.5rem;
+        display: block;
+      }
+      .sa-why-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        margin-bottom: 2rem;
+      }
+      .sa-why-lead {
+        font-size: clamp(1.0625rem, 1.6vw, 1.2rem);
+        color: var(--gray-600);
+        line-height: 1.75;
+        max-width: 760px;
+        margin: 0 auto;
+        font-weight: 400;
+      }
+      /* Feature blocks */
+      .sa-why-blocks {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+      .sa-why-block {
+        position: relative;
+        padding: 2.5rem 2rem 2.25rem;
+        background: white;
+        border-radius: 20px;
+        border: 1px solid rgba(0,0,0,0.07);
+        box-shadow: 0 6px 28px rgba(0,0,0,0.055), 0 1px 4px rgba(0,0,0,0.04);
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
+      }
+      .sa-why-block:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 50px rgba(0,0,0,0.09), 0 2px 8px rgba(20,184,166,0.08);
+        border-color: rgba(20,184,166,0.25);
+      }
+      .sa-why-block-accent {
+        width: 36px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--teal), #2dd4bf);
+        border-radius: 3px;
+        margin-bottom: 1.5rem;
+      }
+      .sa-why-block-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(20,184,166,0.08);
+        border: 1px solid rgba(20,184,166,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.375rem;
+        color: var(--teal);
+        transition: background 0.3s ease, border-color 0.3s ease;
+      }
+      .sa-why-block:hover .sa-why-block-icon {
+        background: rgba(20,184,166,0.14);
+        border-color: rgba(20,184,166,0.3);
+      }
+      .sa-why-block-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .sa-why-block-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.3;
+        margin-bottom: 0.875rem;
+        letter-spacing: -0.01em;
+      }
+      .sa-why-block-text {
+        font-size: 0.9375rem;
+        color: var(--gray-600);
+        line-height: 1.65;
+        font-weight: 400;
+      }
+      .sa-why-block-bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.875rem;
+      }
+      .sa-why-block-bullets li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.625rem;
+        font-size: 0.9375rem;
+        color: var(--gray-600);
+        line-height: 1.55;
+      }
+      .sa-why-block-bullets li::before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgba(20,184,166,0.1);
+        border: 1.5px solid rgba(20,184,166,0.35);
+        flex-shrink: 0;
+        margin-top: 2px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4.5 8l2.5 2.5 4.5-5' stroke='%2314b8a6' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .sa-why-block-bullets li strong {
+        color: var(--navy);
+        font-weight: 700;
+        display: inline;
+        font-size: 0.9375rem;
+      }
+      .sa-why-lead-stat {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+        padding: 0.5rem 1.125rem;
+        background: rgba(20,184,166,0.07);
+        border: 1px solid rgba(20,184,166,0.2);
+        border-radius: 50px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--teal);
+        text-transform: uppercase;
+      }
+      @media (max-width: 900px) {
+        .sa-why-blocks { grid-template-columns: 1fr; gap: 1.5rem; }
+        .sa-why { padding: 5rem 1.5rem 5.5rem; }
+        .sa-why-headline { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+      }
+      @media (max-width: 640px) {
+        .sa-why-block { padding: 2rem 1.5rem 1.875rem; }
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
          SECTION 2 — SALESAGENT PRO (Dark)
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       .sa-problem {
@@ -717,12 +908,13 @@
       }
       .sa-problem-stat {
         background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
         border-radius: 20px;
         padding: 2.5rem 2rem 2.25rem;
         text-align: center;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 0.5px rgba(20,184,166,0.06);
         transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease, border-color 0.4s ease;
       }
       .sa-problem-stat::before {
@@ -739,38 +931,10 @@
       .sa-problem-stat:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(20,184,166,0.08);
-        border-color: rgba(20,184,166,0.2);
+        border-color: rgba(20,184,166,0.25);
       }
       .sa-problem-stat:hover::before { opacity: 1; }
 
-      /* Card 1: ring glow */
-      .sa-stat-ring {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 1.25rem;
-        border-radius: 50%;
-        border: 3px solid rgba(20,184,166,0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        background: rgba(20,184,166,0.03);
-      }
-      .sa-stat-ring::after {
-        content: '';
-        position: absolute;
-        inset: -6px;
-        border-radius: 50%;
-        border: 1px solid rgba(20,184,166,0.08);
-        animation: saRingPulse 3s ease-in-out infinite;
-      }
-      @keyframes saRingPulse {
-        0%, 100% { transform: scale(1); opacity: 0.4; }
-        50% { transform: scale(1.12); opacity: 0.8; }
-      }
-      .sa-stat-ring .sa-problem-stat-num {
-        margin-bottom: 0;
-      }
 
       /* Card 2: comparison bar */
       .sa-stat-compare {
@@ -868,15 +1032,16 @@
         margin-bottom: 0.25rem;
       }
       .sa-problem-stat-sub {
-        font-size: 0.8125rem;
-        color: rgba(255,255,255,0.4);
-        line-height: 1.4;
+        font-size: 0.9375rem;
+        color: rgba(255,255,255,0.55);
+        line-height: 1.65;
+        margin-top: 0.5rem;
       }
 
-      /* ── Revenue proof bar ── */
+      /* ── Revenue proof cards (bottom row — 3-up grid) ── */
       .sa-problem-dashboard {
         margin-top: 3.5rem;
-        max-width: 900px;
+        max-width: 1100px;
         margin-left: auto;
         margin-right: auto;
         position: relative;
@@ -884,56 +1049,58 @@
       .sa-revenue-bar {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 0;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(245,243,239,0.08);
+        gap: 1.5rem;
       }
       .sa-revenue-bar-item {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 2rem 2.25rem;
         text-align: center;
         position: relative;
-        background: rgba(245,243,239,0.03);
-        transition: background 0.3s ease;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 0.5px rgba(20,184,166,0.08);
+        transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease, border-color 0.4s ease;
       }
-      .sa-revenue-bar-item:hover {
-        background: rgba(245,243,239,0.06);
-      }
-      .sa-revenue-bar-item:not(:last-child)::after {
+      .sa-revenue-bar-item::before {
         content: '';
         position: absolute;
-        right: 0;
-        top: 20%;
-        height: 60%;
-        width: 1px;
-        background: rgba(245,243,239,0.08);
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(20,184,166,0.5), transparent);
+        border-radius: 2px;
+        opacity: 0.6;
       }
+      .sa-revenue-bar-item:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(20,184,166,0.08);
+        border-color: rgba(20,184,166,0.25);
+      }
+      .sa-revenue-bar-item:hover::before { opacity: 1; }
       .sa-revenue-bar-num {
         font-family: 'Inter', sans-serif;
-        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-size: clamp(2.25rem, 3.5vw, 3rem);
         font-weight: 800;
-        color: #f0ede6;
-        letter-spacing: -0.03em;
+        color: #ffffff;
+        letter-spacing: -0.04em;
         line-height: 1;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.625rem;
       }
       .sa-revenue-bar-label {
-        font-size: 0.8125rem;
-        font-weight: 500;
-        color: rgba(245,243,239,0.45);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--teal);
         line-height: 1.4;
         letter-spacing: 0.01em;
+        margin-bottom: 0.375rem;
       }
-      .sa-revenue-bar-label strong {
-        color: rgba(245,243,239,0.7);
-        font-weight: 600;
-      }
-      .sa-revenue-bar-context {
-        text-align: center;
-        margin-top: 1rem;
-        font-size: 0.8125rem;
-        color: rgba(245,243,239,0.35);
-        font-style: italic;
+      .sa-revenue-bar-attribution {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: rgba(255,255,255,0.45);
+        line-height: 1.4;
       }
 
       /* CTA in problem section */
@@ -2354,9 +2521,7 @@
         .sa-hero-subtitle { margin-left: auto; margin-right: auto; }
         .sa-problem { padding: 5rem 1.5rem; }
         .sa-problem-stats { grid-template-columns: 1fr; }
-        .sa-revenue-bar { grid-template-columns: 1fr !important; }
-        .sa-revenue-bar-item:not(:last-child)::after { display: none; }
-        .sa-revenue-bar-item:not(:last-child) { border-bottom: 1px solid rgba(245,243,239,0.06); }
+        .sa-revenue-bar { grid-template-columns: 1fr !important; gap: 1rem !important; }
         .sa-chatbot { padding: 5rem 1.5rem; }
         .sa-query-cards { grid-template-columns: 1fr; }
         .sa-proof { padding: 5.5rem 1.5rem; }
@@ -2492,16 +2657,13 @@
             <span class="line-3">Nobody Answered.</span>
           </h1>
           <p class="sa-hero-subtitle">
-            Superior Pharmacy now handles 50% of weight loss sales through AI. Ealing Travel Clinic converts 1-in-4
-            patient inquiries into booked appointments. Ray Lane Group runs 24/7 without hiring a single extra member of
-            staff.
+            Superior Pharmacy now closes 50% of all weight loss sales through AI — no consultation required. Southdowns
+            Pharmacy Group converts one in four patient enquiries into booked appointments, around the clock. Raylane
+            Group scaled to a seven-day patient operation without adding a single salary.
           </p>
           <div class="sa-hero-cta">
             <a href="#eligibility" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
           </div>
-          <p class="sa-hero-sub-cta" style="opacity:0; animation: saFadeUp 0.4s ease-out 2.9s forwards;">
-            We&#39;re selective. Not every practice qualifies.
-          </p>
         </div>
         <div class="sa-hero-visual">
           <div class="sa-hero-visual-inner">
@@ -2725,6 +2887,68 @@
       </div>
     </div>
 
+    <!-- ═══ WHY THIS EXISTS ═══ -->
+    <section class="sa-why">
+      <div class="sa-why-inner">
+
+        <div class="sa-why-header">
+          <span class="sa-eyebrow-why sa-reveal sa-reveal-d1">Why This Exists</span>
+          <h2 class="sa-why-headline sa-reveal sa-reveal-d2">
+            Your Patients Are Asking Thousands of Clinical Questions.<br />Right Now, They&#39;re Getting the Answers Somewhere Else.
+          </h2>
+          <p class="sa-why-lead sa-reveal sa-reveal-d3">
+            Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can&#39;t answer them in that moment — they leave. They don&#39;t come back.
+          </p>
+          <div class="sa-reveal sa-reveal-d3" style="display:flex;justify-content:center;margin-top:1.25rem;">
+            <span class="sa-why-lead-stat">↓ &nbsp;Where they go instead: NHS.uk &nbsp;·&nbsp; Fit for Travel &nbsp;·&nbsp; patient.info</span>
+          </div>
+        </div>
+
+        <div class="sa-why-blocks">
+
+          <div class="sa-why-block sa-reveal-card sa-reveal-d3">
+            <div class="sa-why-block-accent"></div>
+            <div class="sa-why-block-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3 class="sa-why-block-title">Answers Every Question. Instantly.</h3>
+            <ul class="sa-why-block-bullets">
+              <li><strong>Any hour, any question —</strong> clinical depth of a qualified pharmacist at 2am on a Sunday.</li>
+              <li><strong>Patients stay on your site —</strong> no dead ends, no "call us Monday to Friday."</li>
+              <li><strong>Engaged patients book —</strong> they trust the practice that answered them first.</li>
+            </ul>
+          </div>
+
+          <div class="sa-why-block sa-reveal-card sa-reveal-d4">
+            <div class="sa-why-block-accent"></div>
+            <div class="sa-why-block-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 20h20M5 20V10l7-7 7 7v10"/><path d="M9 20v-5h6v5"/></svg>
+            </div>
+            <h3 class="sa-why-block-title">Every Conversation Becomes Intelligence.</h3>
+            <ul class="sa-why-block-bullets">
+              <li><strong>Intent data on every interaction —</strong> what patients ask, exactly how they ask it, and when.</li>
+              <li><strong>Your content strategy, written for you —</strong> real patient language becomes articles that rank.</li>
+              <li><strong>Your practice becomes the authority —</strong> not NHS.uk, not Fit for Travel. You.</li>
+            </ul>
+          </div>
+
+          <div class="sa-why-block sa-reveal-card sa-reveal-d5">
+            <div class="sa-why-block-accent"></div>
+            <div class="sa-why-block-icon">
+              <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <h3 class="sa-why-block-title">You Become Impossible to Displace.</h3>
+            <ul class="sa-why-block-bullets">
+              <li><strong>Recognised by every AI engine —</strong> Google, ChatGPT, Claude, Bing, Gemini all pointing to you.</li>
+              <li><strong>Not just converting more patients —</strong> compounding a commercial advantage that grows every month.</li>
+              <li><strong>Your competitors can&#39;t catch up —</strong> the data gap widens the longer they wait.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ SECTION 2: SALESAGENT PRO ═══ -->
     <section class="sa-problem">
       <div class="sa-problem-inner">
@@ -2755,13 +2979,13 @@
         </div>
 
         <div class="sa-problem-stats">
+          <!-- Card 1: 100,000+ — no ring graphic -->
           <div class="sa-problem-stat sa-reveal-card sa-reveal-d3">
-            <div class="sa-stat-ring">
-              <p class="sa-problem-stat-num" data-countup="100000" data-suffix="+" data-format="number">0+</p>
-            </div>
+            <p class="sa-problem-stat-num" data-countup="100000" data-suffix="+" data-format="number">0+</p>
             <p class="sa-problem-stat-label">Patient conversations</p>
-            <p class="sa-problem-stat-sub">Generated across our network</p>
+            <p class="sa-problem-stat-sub">Patient conversations captured across our network — every one a data point on what patients want, when they want it, and what makes them book.</p>
           </div>
+          <!-- Card 2: 25% conversion — bar visual unchanged, attribution updated -->
           <div class="sa-problem-stat sa-reveal-card sa-reveal-d4">
             <p class="sa-problem-stat-num" data-countup="25" data-suffix="%">0%</p>
             <p class="sa-problem-stat-label">Conversion rate</p>
@@ -2781,15 +3005,12 @@
                 <span class="sa-stat-compare-val sa-stat-compare-val--us">25%</span>
               </div>
             </div>
+            <p class="sa-problem-stat-sub" style="margin-top:0.875rem;">Conversion rate — Southdowns Pharmacy Group</p>
           </div>
+          <!-- Card 3: Every Conversation -->
           <div class="sa-problem-stat sa-reveal-card sa-reveal-d5">
-            <p class="sa-problem-stat-num" style="color: var(--teal);">Set &amp; Forget</p>
-            <p class="sa-problem-stat-label">Install once</p>
-            <p class="sa-problem-stat-sub">Runs forever</p>
-            <div class="sa-stat-live">
-              <span class="sa-stat-live-dot"></span>
-              <span class="sa-stat-live-text">Running now</span>
-            </div>
+            <p class="sa-problem-stat-num" style="font-size: clamp(1.5rem, 2.5vw, 2rem); letter-spacing: -0.02em; margin-bottom: 0.75rem;">Every Conversation</p>
+            <p class="sa-problem-stat-sub">Captured as patient intent data — building a commercial intelligence layer that makes your AI agent more effective every single month.</p>
           </div>
         </div>
 
@@ -2797,18 +3018,20 @@
           <div class="sa-revenue-bar">
             <div class="sa-revenue-bar-item">
               <p class="sa-revenue-bar-num">£200k+</p>
-              <p class="sa-revenue-bar-label">Projected annual revenue · <strong>South Downs</strong></p>
+              <p class="sa-revenue-bar-label">Annual revenue run rate</p>
+              <p class="sa-revenue-bar-attribution">Southdowns Pharmacy Group</p>
             </div>
             <div class="sa-revenue-bar-item">
               <p class="sa-revenue-bar-num">50%</p>
-              <p class="sa-revenue-bar-label">Weight loss sales via AI · <strong>Superior Pharmacy</strong></p>
+              <p class="sa-revenue-bar-label">Weight loss sales via AI</p>
+              <p class="sa-revenue-bar-attribution">Superior Pharmacy</p>
             </div>
             <div class="sa-revenue-bar-item">
               <p class="sa-revenue-bar-num">1 in 4</p>
-              <p class="sa-revenue-bar-label">Inquiries convert to bookings · <strong>Ealing Travel</strong></p>
+              <p class="sa-revenue-bar-label">Enquiries convert to bookings</p>
+              <p class="sa-revenue-bar-attribution">Southdowns Pharmacy Group</p>
             </div>
           </div>
-          <p class="sa-revenue-bar-context">Real client results. Not projections.</p>
         </div>
 
         <div class="sa-problem-cta sa-reveal sa-reveal-d6">
