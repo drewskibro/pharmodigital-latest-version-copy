@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-11] — Problem/Solution section copy + icon rework (index.html)
+- LEFT: overline→ "THE PROBLEM", new headline "ChatGPT Isn't Searching Google. It's Searching Bing.", single consolidated body paragraph replacing 4 lines
+- RIGHT: overline→ "THE SOLUTION", Card 1 title→ "The Bing Advantage" with new bar-chart/upward-arrow SVG icon and Bing 87% research body copy
+- Cards 2–4: updated body copy per brief; all icons, layout, and card styling unchanged
+
 ### [2026-04-10] — Added curved edges + tilt to hero image (index.html)
 - `border-radius: 20px` for rounded corners
 - `rotate(-2deg)` tilt on active state for a dynamic, non-static look
