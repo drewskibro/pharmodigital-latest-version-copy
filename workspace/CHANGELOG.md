@@ -18,6 +18,24 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-11] — Closing section: guarantee, pricing card, urgency banner fixes (salesagent.html)
+- Guarantee replaced: "First booking within hours, or we rebuild it" → "We build it. We test it. We stand behind it." + performance rebuild guarantee
+- Pricing card restyled for cream bg: white card, navy text, cream inputs, proper contrast throughout
+- Form labels now dark navy (was white-on-white), inputs have visible borders on cream background
+- Urgency banner: removed navy box + ⚡ emoji → clean inline typography, teal accent on key phrase, subtle rule below
+- CTA button changed from teal → navy to match premium aesthetic; "Most Popular" badge now navy bg / white text
+
+### [2026-04-11] — Hormozi-style closing section complete redesign (salesagent.html)
+- Wall of text replaced: centred headline + single anchor line, then Hormozi value stack (6 scannable items with bold title + one-liner each)
+- Added urgency banner (⚡ teal border) for April deadline
+- Form labels contrast boosted from rgba(0.5)/0.75rem → rgba(0.75)/0.8125rem
+- Right column now wrapped in subtle bordered card container (`.sa-closing-pricing`)
+- Added risk reversal block with shield icon: "First booking within hours, or we rebuild it"
+- Eligibility compressed into inline bar; three buried feature columns removed
+
+### [2026-04-11] — Replaced eligibility + final CTA with merged closing section (salesagent.html)
+- Original deletion of `.sa-eligibility` + `.sa-final` — first version of closing section
+
 ### [2026-04-11] — Fixed Why This Exists bullet wrapping: strong now inline, bold phrase flows into supporting text on one line (salesagent.html)
 - Root cause: `display: block` on `strong` and `span` inside `li` was splitting each bullet onto multiple stacked lines
 - Fix: removed `display: block` from strong, removed span entirely — each li is now plain inline text: **Bold phrase —** supporting line
