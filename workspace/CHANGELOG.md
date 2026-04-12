@@ -18,6 +18,16 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Increase Live Right Now footnote text size (salesagent.html)
+- `.sa-live-clients-footnote` font-size bumped from 1rem → 1.1875rem, line-height 1.7 → 1.75
+
+### [2026-04-12] — Replace two-column bullet layout in three feature cards (salesagent.html)
+- Removed bold label + em-dash two-column split from all three .sa-why-block cards
+- Card 1: 3 clean sentences — clinical depth, patients stay on site, engaged patients book first
+- Card 2: 3 clean sentences — intent data, real patient language ranks, practice becomes authority
+- Card 3: 3 clean sentences — clinical authority, agent learns patients, competitors can't catch up
+- Existing teal tick CSS (::before) renders correctly — no bold/strong tags in new copy
+
 ### [2026-04-12] — Update Live Right Now section copy (salesagent.html)
 - Headline: "The Practices That Saw Where Healthcare Was Going."
 - Subhead: expanded to "Six independent practices already operating with AI at the core of their patient acquisition. Not piloting it. Not planning it. Running it."
