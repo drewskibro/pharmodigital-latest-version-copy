@@ -18,6 +18,10 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Improve flywheel section text readability (salesagent.html)
+- `.sa-flywheel-card-text` bumped from rgba(255,255,255,0.55) → rgba(255,255,255,0.85)
+- `.sa-flywheel-desc` subheading bumped from 0.55 → 0.80 opacity for legibility on dark bg
+
 ### [2026-04-12] — Increase Live Right Now footnote text size (salesagent.html)
 - `.sa-live-clients-footnote` font-size bumped from 1rem → 1.1875rem, line-height 1.7 → 1.75
 
