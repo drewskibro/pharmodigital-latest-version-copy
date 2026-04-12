@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Update Live Right Now section copy (salesagent.html)
+- Headline: "The Practices That Saw Where Healthcare Was Going."
+- Subhead: expanded to "Six independent practices already operating with AI at the core of their patient acquisition. Not piloting it. Not planning it. Running it."
+- Overline unchanged: "Live Right Now"
+
 ### [2026-04-12] — Add Track Record guarantee section (salesagent.html)
 - New `.sa-track-record` section inserted between Why This Exists and SalesAgent Pro (dark) sections
 - Background #f7f0e6, centred layout, max-width 820px, no icons/borders/cards — pure typography
