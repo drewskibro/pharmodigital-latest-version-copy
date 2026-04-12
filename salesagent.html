@@ -2072,6 +2072,136 @@
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         FAQ SECTION
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-faq {
+        background: #f7f0e6;
+        padding: 7rem 2rem 6.5rem;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid rgba(0,0,0,0.06);
+      }
+      .sa-faq::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(20,184,166,0.05) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .sa-faq-inner {
+        max-width: 820px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+      .sa-faq-header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .sa-faq-overline {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 1.25rem;
+        display: block;
+      }
+      .sa-faq-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+      .sa-faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .sa-faq-item {
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+      }
+      .sa-faq-item:first-child {
+        border-top: 1px solid rgba(0,0,0,0.08);
+      }
+      .sa-faq-question {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.4;
+        letter-spacing: -0.01em;
+        transition: color 0.2s ease;
+      }
+      .sa-faq-question:hover {
+        color: var(--teal-dark);
+      }
+      .sa-faq-chevron {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(20,184,166,0.1);
+        border: 1px solid rgba(20,184,166,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background 0.25s ease;
+      }
+      .sa-faq-chevron svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--teal);
+        stroke-width: 2.5;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+      }
+      .sa-faq-item.open .sa-faq-chevron {
+        background: rgba(20,184,166,0.18);
+        transform: rotate(180deg);
+      }
+      .sa-faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.45s cubic-bezier(0.22,1,0.36,1), padding 0.35s ease;
+        padding: 0 0 0 0;
+      }
+      .sa-faq-item.open .sa-faq-answer {
+        padding: 0 0 1.75rem 0;
+      }
+      .sa-faq-answer-text {
+        font-size: 1.0625rem;
+        color: var(--gray-600);
+        line-height: 1.8;
+        max-width: 740px;
+        padding-right: 3rem;
+      }
+      @media (max-width: 768px) {
+        .sa-faq { padding: 5rem 1.5rem 4.5rem; }
+        .sa-faq-question { font-size: 1rem; padding: 1.25rem 0; }
+        .sa-faq-answer-text { font-size: 1rem; padding-right: 0; }
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
          SECTION 6 — CLOSING / OFFER + PRICING
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       .sa-closing {
@@ -3998,6 +4128,128 @@
       </div>
     </section>
 
+    <!-- ═══ FAQ SECTION ═══ -->
+    <section class="sa-faq">
+      <div class="sa-faq-inner">
+        <div class="sa-faq-header">
+          <span class="sa-faq-overline sa-reveal sa-reveal-d1">Frequently Asked Questions</span>
+          <h2 class="sa-faq-headline sa-reveal sa-reveal-d2">Everything You Need to Know<br />Before You Deploy.</h2>
+        </div>
+
+        <div class="sa-faq-list sa-reveal sa-reveal-d3">
+          <!-- Q1 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              Is this medically compliant?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">Yes. The agent draws only from medically verified sources and your own practice website. It never gives medical advice. Its job is to reassure patients, answer their questions, and guide them toward booking. Clinical judgment stays with your team. Always.</p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              What guardrails are in place?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">We&#39;ve spent 18 months testing this against real patient scenarios. The agent knows exactly what it can say and what it can&#39;t. When a question falls outside its scope it doesn&#39;t guess — it directs the patient appropriately. Across 50+ practices and hundreds of thousands of conversations, it has never given unsafe medical information. That&#39;s not luck. That&#39;s 18 months of deliberate refinement.</p>
+            </div>
+          </div>
+
+          <!-- Q3 — open by default -->
+          <div class="sa-faq-item open">
+            <button class="sa-faq-question" aria-expanded="true">
+              How is this different from a standard chatbot?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer" style="max-height: 600px;">
+              <p class="sa-faq-answer-text">A standard chatbot follows a decision tree. Ask it something unexpected and it falls over. SalesAgent Pro holds a real conversation. It listens. It responds. It handles objections, answers follow-up questions, and moves patients toward booking naturally. Underneath it is a medically verified knowledge base built over 18 months, intent data capture on every conversation, and Microsoft Clarity showing you exactly where each patient came from. A standard chatbot is a script. This is infrastructure.</p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              Where do patient enquiries go?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">Wherever you want them. CRM, spreadsheet, email, or all three. Every conversation is fully transcribed so you know exactly what was asked, what was answered, and how close that patient is to booking. Nothing gets lost.</p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              What services can it be trained on?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">All of them. Weight loss, travel health, aesthetics, occupational health, ear wax removal, private GP. There are no limitations. If you offer it, the agent can handle it.</p>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              How does it know my specific services and pricing?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">We start with our medically verified knowledge base built over 18 months. Then we layer in your services, your pricing, your processes, and your practice personality. By the time it goes live it sounds like your team. Not a generic bot. Not a template. Yours.</p>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              How long does setup take?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">Seven days. We build it, test it, and deploy it. You don&#39;t touch a single line of code. You review it, approve it, and it goes live.</p>
+            </div>
+          </div>
+
+          <!-- Q8 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              Do I need any technical knowledge?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">None. You approve the agent before it goes live. After that it runs itself. Every update as the AI space evolves gets rolled in automatically. You always have the most current version without doing anything.</p>
+            </div>
+          </div>
+
+          <!-- Q9 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              Is patient data secure and GDPR compliant?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">Fully. Every agent includes compliant patient messaging explaining how their data is used. We update your privacy policy as part of setup. Everything is handled in accordance with UK GDPR. You&#39;re covered from day one.</p>
+            </div>
+          </div>
+
+          <!-- Q10 -->
+          <div class="sa-faq-item">
+            <button class="sa-faq-question" aria-expanded="false">
+              What happens after 12 months?
+              <span class="sa-faq-chevron"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+            </button>
+            <div class="sa-faq-answer">
+              <p class="sa-faq-answer-text">If you paid upfront, your price is locked in. Renews at the same rate regardless of what happens to pricing in the market. You also get every update we make as AI continues to evolve — included, no extra cost. If you&#39;re on the monthly plan it rolls over automatically. Either way the authority, the intent data, and the patient conversations you&#39;ve built keep compounding. The agent gets more valuable every month it runs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ SECTION 6: CLOSING — OFFER + PRICING ═══ -->
     <section class="sa-closing" id="eligibility">
       <!-- Full-width centred headline -->
@@ -4531,6 +4783,43 @@
           track.scrollLeft = scrollLeft - walk;
           window._lbDragDelta = Math.abs(x - startX);
         }, { passive: true });
+      })();
+
+      // ── FAQ accordion ──
+      (function() {
+        var items = document.querySelectorAll('.sa-faq-item');
+        items.forEach(function(item) {
+          var btn = item.querySelector('.sa-faq-question');
+          var answer = item.querySelector('.sa-faq-answer');
+          if (!btn || !answer) return;
+
+          // Set initial max-height for items open on load
+          if (item.classList.contains('open')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+
+          btn.addEventListener('click', function() {
+            var isOpen = item.classList.contains('open');
+            if (isOpen) {
+              answer.style.maxHeight = answer.scrollHeight + 'px';
+              requestAnimationFrame(function() {
+                answer.style.maxHeight = '0px';
+              });
+              item.classList.remove('open');
+              btn.setAttribute('aria-expanded', 'false');
+            } else {
+              item.classList.add('open');
+              btn.setAttribute('aria-expanded', 'true');
+              answer.style.maxHeight = answer.scrollHeight + 'px';
+              answer.addEventListener('transitionend', function handler() {
+                if (item.classList.contains('open')) {
+                  answer.style.maxHeight = 'none';
+                }
+                answer.removeEventListener('transitionend', handler);
+              });
+            }
+          });
+        });
       })();
 
       // ── Smooth scroll ──

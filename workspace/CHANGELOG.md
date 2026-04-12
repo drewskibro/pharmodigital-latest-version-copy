@@ -18,6 +18,13 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — FAQ accordion section added above pricing (salesagent.html)
+- New `.sa-faq` section: cream `#f7f0e6` background, max-width 820px centred, consistent page aesthetic
+- 10 FAQ items as accordion — collapsed by default, teal chevron rotates on open, Q3 open on page load
+- CSS: `.sa-faq-item`, `.sa-faq-question`, `.sa-faq-chevron`, `.sa-faq-answer` with `max-height` animation
+- JS: click handler toggles `.open` class, manages `max-height` for smooth expand/collapse, sets `aria-expanded`
+- Copy verbatim per brief — no words altered; mobile responsive with adjusted padding/font sizes
+
 ### [2026-04-12] — Numbers/Proof section: cream gradient colour retheme (salesagent.html)
 - Background changed from dark navy gradient to warm cream gradient (`#faf7f2 → #f5f0e8 → #ede8df`)
 - Cards: dark glass → white bg, dark navy text, teal accents; box-shadow tuned for light bg
