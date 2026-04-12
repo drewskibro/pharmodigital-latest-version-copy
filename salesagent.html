@@ -2517,6 +2517,23 @@
         flex-shrink: 0;
       }
 
+      /* ── Testimonial avatar ── */
+      .sa-closing-testimonial-avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 5%;
+        flex-shrink: 0;
+        border: 2px solid rgba(20,184,166,0.35);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      }
+      .sa-closing-testimonial-meta-row {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+
       /* ── Left-column testimonial cards ── */
       .sa-closing-testimonials {
         display: flex;
@@ -4565,9 +4582,16 @@
             <div class="sa-closing-testimonial-card sa-reveal sa-reveal-d1">
               <p class="sa-closing-testimonial-quote">"To be honest I wasn&#39;t expecting much. We went live and within a couple of days patients were booking HPV appointments through it at night. I&#39;m thinking where were these people going before? It just runs. I check in occasionally and the bookings are there."</p>
               <div class="sa-closing-testimonial-footer">
-                <div class="sa-closing-testimonial-meta">
-                  <span class="sa-closing-testimonial-name">Sachin Mehta</span>
-                  <span class="sa-closing-testimonial-role">Ealing Travel Clinic</span>
+                <div class="sa-closing-testimonial-meta-row">
+                  <img
+                    src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776010896483-1.png"
+                    alt="Sachin Mehta"
+                    class="sa-closing-testimonial-avatar"
+                  />
+                  <div class="sa-closing-testimonial-meta">
+                    <span class="sa-closing-testimonial-name">Sachin Mehta</span>
+                    <span class="sa-closing-testimonial-role">Ealing Travel Clinic</span>
+                  </div>
                 </div>
                 <span class="sa-closing-testimonial-metric">Diary full in 3 weeks</span>
               </div>

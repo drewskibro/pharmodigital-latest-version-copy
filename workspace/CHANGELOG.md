@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Sachin avatar: 96px + tighter face crop (salesagent.html)
+- Bumped avatar from 64px → 96px (three-quarter body shot needs more room to show face)
+- object-position tightened from `50% 12%` → `50% 5%` to pull face fully into the circle
+- Hosted image: uploaded-asset-1776010896483-1.png
+
 ### [2026-04-12] — Improve flywheel section text readability (salesagent.html)
 - `.sa-flywheel-card-text` bumped from rgba(255,255,255,0.55) → rgba(255,255,255,0.85)
 - `.sa-flywheel-desc` subheading bumped from 0.55 → 0.80 opacity for legibility on dark bg
