@@ -297,7 +297,6 @@
         display: flex;
         align-items: center;
         padding: 0 2rem;
-        margin-top: -45px;
         position: relative;
         overflow: hidden;
         background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
@@ -771,6 +770,76 @@
       }
       @media (max-width: 640px) {
         .sa-why-block { padding: 2rem 1.5rem 1.875rem; }
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         TRACK RECORD GUARANTEE SECTION
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      .sa-track-record {
+        background: #f7f0e6;
+        padding: 8rem 2rem 8.5rem;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .sa-track-record::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .sa-track-record-inner {
+        max-width: 820px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .sa-track-record-overline {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--teal);
+        display: block;
+        margin-bottom: 2rem;
+      }
+      .sa-track-record-headline {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.875rem, 3.5vw, 2.875rem);
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 2.5rem;
+      }
+      .sa-track-record-body {
+        font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+        color: #374151;
+        line-height: 1.85;
+        max-width: 740px;
+        margin: 0 auto 4rem;
+        font-weight: 400;
+      }
+      .sa-track-record-close {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.25rem, 2.25vw, 1.625rem);
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: -0.02em;
+        margin-top: 4rem;
+        line-height: 1.3;
+      }
+      @media (max-width: 768px) {
+        .sa-track-record { padding: 5.5rem 1.5rem 6rem; }
+        .sa-track-record-body { margin-bottom: 2.5rem; }
+        .sa-track-record-close { margin-top: 2.75rem; }
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -2297,16 +2366,23 @@
         margin: 1.25rem auto 0;
       }
 
-      /* ── Two-column grid ── */
+      /* ── Two-column integrated layout ── */
       .sa-closing-inner {
         max-width: 1200px;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3.5rem;
-        align-items: start;
         position: relative;
         z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 480px;
+        gap: 3.5rem;
+        align-items: start;
+      }
+
+      /* ── Right column: checkout lane ── */
+      .sa-closing-checkout-lane {
+        position: sticky;
+        top: 100px;
+        width: 100%;
       }
 
       /* ── Left column: value stack ── */
@@ -2439,6 +2515,81 @@
         font-size: 0.875rem;
         font-weight: 700;
         flex-shrink: 0;
+      }
+
+      /* ── Left-column testimonial cards ── */
+      .sa-closing-testimonials {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        margin-top: 2.5rem;
+      }
+      .sa-closing-testimonials-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.25rem;
+      }
+      .sa-closing-testimonial-card {
+        background: #f0ede8;
+        border-left: 3px solid var(--teal);
+        border-radius: 0 14px 14px 0;
+        padding: 1.5rem 1.75rem;
+        position: relative;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, opacity 0.7s cubic-bezier(0.22,1,0.36,1);
+      }
+      .sa-closing-testimonial-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+      }
+      .sa-closing-testimonial-quote {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        font-style: italic;
+        color: var(--navy);
+        line-height: 1.65;
+        margin-bottom: 0.875rem;
+      }
+      .sa-closing-testimonial-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .sa-closing-testimonial-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+      .sa-closing-testimonial-name {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .sa-closing-testimonial-role {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--gray-600);
+      }
+      .sa-closing-testimonial-metric {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--teal);
+        background: rgba(20,184,166,0.08);
+        border: 1px solid rgba(20,184,166,0.2);
+        border-radius: 20px;
+        padding: 0.3rem 0.75rem;
+        white-space: nowrap;
       }
 
       /* Confidence note (replaces old risk reversal) */
@@ -2749,7 +2900,7 @@
       .sa-closing-form-submit {
         width: 100%;
         padding: 1.1rem 2rem;
-        background: var(--navy);
+        background: var(--teal);
         color: white;
         font-family: 'Outfit', sans-serif;
         font-size: 1.1rem;
@@ -2757,36 +2908,86 @@
         border: none;
         border-radius: 10px;
         cursor: pointer;
-        box-shadow: 0 4px 20px rgba(15,23,42,0.2);
+        box-shadow: 0 4px 20px rgba(20,184,166,0.35);
         transition: all 0.25s ease;
         margin-top: 0.5rem;
       }
       .sa-closing-form-submit:hover {
-        background: var(--navy-light);
-        box-shadow: 0 8px 30px rgba(15,23,42,0.35);
+        background: var(--teal-dark);
+        box-shadow: 0 8px 30px rgba(20,184,166,0.5);
         transform: translateY(-2px);
       }
       .sa-closing-form-note {
-        font-size: 0.8125rem;
-        color: var(--gray-400);
+        font-size: 0.9375rem;
+        color: var(--gray-600);
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.375rem;
+        gap: 0.5rem;
       }
       .sa-closing-form-note svg {
-        width: 14px;
-        height: 14px;
-        opacity: 0.45;
-        stroke: var(--gray-400);
+        width: 16px;
+        height: 16px;
+        opacity: 0.55;
+        stroke: var(--gray-600);
+      }
+      .sa-closing-price-lock {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        font-style: italic;
+        color: var(--navy);
+        line-height: 1.5;
+        margin-top: 0.625rem;
+        text-align: center;
+      }
+      .sa-closing-bold-close {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.25rem, 2.25vw, 1.625rem);
+        font-weight: 800;
+        color: var(--navy);
+        text-align: center;
+        line-height: 1.45;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+      }
+      .sa-closing-joining-note {
+        font-size: 0.9375rem;
+        color: var(--gray-600);
+        text-align: center;
+        margin-top: 0.75rem;
+        font-weight: 500;
       }
 
-      /* Responsive */
+      /* Responsive — closing section */
       @media (max-width: 1024px) {
         .sa-closing-inner {
           grid-template-columns: 1fr;
-          gap: 3rem;
+          gap: 2.5rem;
+        }
+        .sa-closing-checkout-lane {
+          position: static;
+        }
+        /* Testimonials become horizontal scrollable trust strip above payment */
+        .sa-closing-testimonials {
+          flex-direction: row;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          gap: 1rem;
+          margin-top: 2rem;
+          padding-bottom: 0.5rem;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .sa-closing-testimonials::-webkit-scrollbar { display: none; }
+        .sa-closing-testimonial-card {
+          flex: 0 0 85%;
+          max-width: 380px;
+          scroll-snap-align: start;
+        }
+        .sa-closing-testimonials-label {
+          flex: 0 0 100%;
         }
       }
       @media (max-width: 768px) {
@@ -2797,6 +2998,12 @@
         .sa-closing-eligibility-bar { flex-direction: column; gap: 0.75rem; }
         .sa-closing-pricing { padding: 2rem 1.5rem 1.75rem; }
         .sa-closing-proof-row { grid-template-columns: 1fr; gap: 1.5rem; }
+        .sa-closing-testimonial-card {
+          flex: 0 0 88%;
+          max-width: 340px;
+          padding: 1.25rem 1.375rem;
+        }
+        .sa-closing-testimonial-quote { font-size: 0.875rem; }
       }
 
       /* ─── Scroll Reveal ─── */
@@ -3389,13 +3596,12 @@
             <span class="line-2">They Had A Question.</span>
             <span class="line-3">Nobody Answered.</span>
           </h1>
-          <p class="sa-hero-subtitle">
-            Superior Pharmacy now closes 50% of all weight loss sales through AI — no consultation required. Southdowns
-            Pharmacy Group converts one in four patient enquiries into booked appointments, around the clock. Raylane
-            Group scaled to a seven-day patient operation without adding a single salary.
-          </p>
+          <div class="sa-hero-subtitle">
+            <p style="font-size:1.05rem;font-weight:400;color:#4b5563;line-height:1.75;margin-bottom:1rem;">Sachin at Ealing Travel Clinic joined those conversations. Within two days he had three HPV bookings he&#39;d never have seen.</p>
+            <p style="font-size:1.05rem;font-weight:400;color:#4b5563;line-height:1.75;margin-bottom:0;">Nemesh at Southdowns Pharmacy started answering Mounjaro questions automatically. Their weight loss enquiries haven&#39;t stopped since.</p>
+          </div>
           <div class="sa-hero-cta">
-            <a href="#eligibility" class="btn-primary-lg">Check If Your Practice Is Eligible</a>
+            <a href="#eligibility" class="btn-primary-lg">Deploy SalesAgent Pro This April</a>
           </div>
         </div>
         <div class="sa-hero-visual">
@@ -3704,6 +3910,20 @@
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ═══ TRACK RECORD GUARANTEE ═══ -->
+    <section class="sa-track-record">
+      <div class="sa-track-record-inner">
+        <span class="sa-track-record-overline sa-reveal sa-reveal-d1">The Track Record</span>
+        <h2 class="sa-track-record-headline sa-reveal sa-reveal-d2">
+          In 18 Months and Over 100,000 Patient Conversations, Not One Qualified Practice Has Failed to Generate Their First Enquiry.
+        </h2>
+        <p class="sa-track-record-body sa-reveal sa-reveal-d3">
+          Every agent is stress-tested against hundreds of real patient scenarios before it touches your site. We&#39;ve never deployed one that didn&#39;t work. We&#39;re not about to start with yours. If for any reason your agent doesn&#39;t generate its first patient enquiry within 30 days of going live, we rebuild it completely at no extra cost.
+        </p>
+        <p class="sa-track-record-close sa-reveal sa-reveal-d4">We&#39;ve never had to.</p>
       </div>
     </section>
 
@@ -4348,25 +4568,79 @@
             </p>
             <span class="sa-closing-eligibility-bar-label">THIS WAS BUILT FOR YOU IF</span>
             <span class="sa-closing-elig-item">At least one private service</span>
-            <span class="sa-closing-elig-item">A website</span>
+            <span class="sa-closing-elig-item">A website that gets at least some traffic</span>
           </div>
 
-          <div class="sa-closing-confidence">
-            <span class="sa-closing-confidence-icon">🛡️</span>
-            <p class="sa-closing-confidence-text">
-              <strong>We build it. We test it. We stand behind it.</strong> Every agent is stress-tested against
-              hundreds of real patient scenarios before it touches your site. If your agent doesn&#39;t generate its
-              first patient enquiry within 30 days of going live, we rebuild it completely — at no extra cost.
-            </p>
+          <!-- Client testimonials -->
+          <div class="sa-closing-testimonials">
+            <p class="sa-closing-testimonials-label">From practices already live</p>
+
+            <!-- Card 1: Sachin Mehta — Ealing Travel Clinic -->
+            <div class="sa-closing-testimonial-card sa-reveal sa-reveal-d1">
+              <p class="sa-closing-testimonial-quote">"To be honest I wasn&#39;t expecting much. We went live and within a couple of days patients were booking HPV appointments through it at night. I&#39;m thinking where were these people going before? It just runs. I check in occasionally and the bookings are there."</p>
+              <div class="sa-closing-testimonial-footer">
+                <div class="sa-closing-testimonial-meta">
+                  <span class="sa-closing-testimonial-name">Sachin Mehta</span>
+                  <span class="sa-closing-testimonial-role">Ealing Travel Clinic</span>
+                </div>
+                <span class="sa-closing-testimonial-metric">Diary full in 3 weeks</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Southdowns Pharmacy Group -->
+            <div class="sa-closing-testimonial-card sa-reveal sa-reveal-d2">
+              <p class="sa-closing-testimonial-quote">"We didn&#39;t realise how many enquiries we were losing until it started catching them. Patients use it at all hours. We just see the bookings come in."</p>
+              <div class="sa-closing-testimonial-footer">
+                <div class="sa-closing-testimonial-meta">
+                  <span class="sa-closing-testimonial-name">Southdowns Pharmacy Group</span>
+                  <span class="sa-closing-testimonial-role">Multi-site pharmacy group</span>
+                </div>
+                <span class="sa-closing-testimonial-metric">£200k+ revenue</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Superior Pharmacy -->
+            <div class="sa-closing-testimonial-card sa-reveal sa-reveal-d3">
+              <p class="sa-closing-testimonial-quote">"Half our weight loss bookings come through it now. Mounjaro enquiries, Wegovy questions, eligibility checks — it handles all of it. I check the transcripts occasionally and you can see the whole conversation. Patients asking questions, getting answers, booking. It just does its thing."</p>
+              <div class="sa-closing-testimonial-footer">
+                <div class="sa-closing-testimonial-meta">
+                  <span class="sa-closing-testimonial-name">Superior Pharmacy</span>
+                  <span class="sa-closing-testimonial-role">Community pharmacy</span>
+                </div>
+                <span class="sa-closing-testimonial-metric">50% of sales via AI</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: sticky checkout lane -->
+        <div class="sa-closing-checkout-lane">
+        <p class="sa-closing-bridge sa-reveal sa-reveal-d4">
+          Good. Here&#39;s what it costs — and why the maths make this the easiest decision you&#39;ll make this year.
+        </p>
+
+        <!-- Social proof stat row -->
+        <div class="sa-closing-proof-row sa-reveal sa-reveal-d4">
+          <div class="sa-closing-proof-col">
+            <p class="sa-closing-proof-client">Southdowns Pharmacy Group</p>
+            <p class="sa-closing-proof-stat">£200k</p>
+            <p class="sa-closing-proof-label">Annual revenue run rate from their AI agent</p>
+          </div>
+          <div class="sa-closing-proof-col">
+            <p class="sa-closing-proof-client">Medihub Pharmacy</p>
+            <p class="sa-closing-proof-stat">Live</p>
+            <p class="sa-closing-proof-label">Converting weight loss enquiries from day one</p>
+          </div>
+          <div class="sa-closing-proof-col">
+            <p class="sa-closing-proof-client">Raylane Group</p>
+            <p class="sa-closing-proof-stat">UK Network</p>
+            <p class="sa-closing-proof-label">One of the UK&#39;s largest travel clinic groups. Running on every site.</p>
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: Pricing + Form -->
+        <!-- Pricing cards -->
         <div class="sa-closing-pricing sa-reveal sa-reveal-d4">
-          <p class="sa-closing-bridge">
-            Good. Here&#39;s what it costs — and why the maths make this the easiest decision you&#39;ll make this year.
-          </p>
-
           <span class="sa-closing-promo">Choose Your Plan</span>
 
           <div class="sa-closing-cards">
@@ -4387,6 +4661,7 @@
               <span class="sa-closing-card-save">Save £505 vs monthly</span>
               <span class="sa-closing-card-save sa-closing-card-save--gold">£1,500 setup fee waived — April only</span>
               <p class="sa-closing-card-total">Total saving this April: £2,005</p>
+              <p class="sa-closing-price-lock">Price locked forever. As demand grows and pricing increases, you renew at £995. Always.</p>
             </div>
           </div>
 
@@ -4394,27 +4669,6 @@
             One family travel booking covers the monthly plan for four months. One Mounjaro patient covers the annual
             plan entirely.
           </p>
-
-          <!-- Social proof stat row -->
-          <div class="sa-closing-proof-row">
-            <div class="sa-closing-proof-col">
-              <p class="sa-closing-proof-client">Southdowns Pharmacy Group</p>
-              <p class="sa-closing-proof-stat">£200k</p>
-              <p class="sa-closing-proof-label">Annual revenue run rate from their AI agent</p>
-            </div>
-            <div class="sa-closing-proof-col">
-              <p class="sa-closing-proof-client">Medihub Pharmacy</p>
-              <p class="sa-closing-proof-stat">Live</p>
-              <p class="sa-closing-proof-label">Converting weight loss enquiries from day one</p>
-            </div>
-            <div class="sa-closing-proof-col">
-              <p class="sa-closing-proof-client">Raylane Group</p>
-              <p class="sa-closing-proof-stat">UK Network</p>
-              <p class="sa-closing-proof-label">
-                One of the UK&#39;s largest travel clinic groups. Running on every site.
-              </p>
-            </div>
-          </div>
 
           <div class="sa-closing-form-divider"></div>
 
@@ -4468,13 +4722,17 @@
                 <span>Stripe payment fields load here</span>
               </div>
             </div>
+
             <!-- Pull quote -->
             <div class="sa-closing-pull-quote">
               <p class="sa-closing-pull-quote-text">
-                "We didn&#39;t realise how many enquiries we were losing until the agent started catching them."
+                "Patients use it at all hours. We just see the bookings come in."
               </p>
               <p class="sa-closing-pull-quote-attr">— Southdowns Pharmacy Group</p>
             </div>
+
+            <!-- Bold closing line -->
+            <p class="sa-closing-bold-close">£995. One year. The first booking this generates pays for months of this. Everything after that is profit.</p>
 
             <button type="submit" class="sa-closing-form-submit">Deploy SalesAgent Pro →</button>
             <p class="sa-closing-form-note">
@@ -4487,14 +4745,15 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                <line x1="1" y1="10" x2="23" y2="10" />
               </svg>
               Payments processed securely via Stripe.
             </p>
+            <p class="sa-closing-joining-note">Joining 50+ practices across the UK, US, and beyond.</p>
           </form>
         </div>
-      </div>
+      </div><!-- end .sa-closing-inner -->
     </section>
 
     <!-- Footer -->

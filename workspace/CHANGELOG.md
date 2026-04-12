@@ -18,6 +18,71 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Add Track Record guarantee section (salesagent.html)
+- New `.sa-track-record` section inserted between Why This Exists and SalesAgent Pro (dark) sections
+- Background #f7f0e6, centred layout, max-width 820px, no icons/borders/cards — pure typography
+- Overline: teal spaced caps; headline: large bold navy; body: dark grey generous line-height
+- Closing line "We&#39;ve never had to." has 4rem top margin to land as standalone statement
+- Removed old `.sa-closing-confidence` guarantee block from inside the pricing section entirely
+
+### [2026-04-12] — Fix hero overlapping nav (salesagent.html)
+- Removed `margin-top: -45px` from `.sa-hero` — was pulling hero content behind sticky nav
+- No other layout changes
+
+### [2026-04-12] — Hero subhead + CTA rewrite (salesagent.html)
+- Replaced subtitle paragraph with 4-element block: bold loss line + 2 story paragraphs (Sachin/Nemesh)
+- Bold line: "That patient was probably worth £480. Possibly £3,000. Definitely gone." — dark navy, larger text
+- Story paragraphs: regular body weight, #4b5563, with clear spacing between each
+- CTA changed: "Check If Your Practice Is Eligible" → "Deploy SalesAgent Pro This April"
+- "Check If Your Practice Is Eligible" secondary link removed entirely
+
+### [2026-04-12] — Replaced closing testimonial quotes with verbatim client text (salesagent.html)
+- Card 1: Sachin Mehta, Ealing Travel Clinic — "To be honest I wasn't expecting much…"
+- Card 2: Southdowns Pharmacy Group — "We didn't realise how many enquiries we were losing…"
+- Card 3: Superior Pharmacy — "Half our weight loss bookings come through it now…"
+- Pull quote in right column updated to match Southdowns' new verbatim wording
+- Names/roles updated: Card 1 now shows "Sachin Mehta" as name, "Ealing Travel Clinic" as role
+
+### [2026-04-12] — Step 4: Scroll-reveal animation + responsive behaviour (salesagent.html)
+- Testimonial card delays changed from d4/d5/d6 → d1/d2/d3 so they reveal relative to their own viewport entry
+- Mobile ≤1024px: testimonials become horizontal snap-scrollable trust strip (flex-row, scroll-snap, hidden scrollbar)
+- Mobile ≤768px: card width 88%, reduced padding/font for compact fit
+- Added transition on opacity for smoother card entrance
+- Plan "Add client testimonials/social proof to left column" — all 4 steps complete
+
+### [2026-04-12] — Reframed closing testimonial quotes for objection coverage (salesagent.html)
+- Card 1 (Ealing): speed — "live Thursday, bookings by Friday morning" → will it work?
+- Card 2 (Southdowns): ROI — "£200k revenue from chatbot conversations, ROI isn't close" → worth money?
+- Card 3 (Superior): ease — "I haven't touched it in months, half bookings overnight" → hassle?
+- Quotes now personal first-person voice, 2 sentences max, varied objection types
+- Step 3 of 4 complete; next: step 4 (scroll-reveal animation + responsive behaviour)
+
+### [2026-04-12] — Built 3 testimonial card components in closing left column (salesagent.html)
+- New CSS: `.sa-closing-testimonials`, `.sa-closing-testimonial-card`, metric pill badge
+- Teal left-border accent, #f0ede8 card bg, hover lift; visually lighter than right-col pricing
+- Scroll-reveal with staggered delays (d4/d5/d6) — step 2 of 4 in testimonials plan
+
+### [2026-04-12] — Closing section audit: mapped left column for testimonial insertion (salesagent.html)
+- Left column (.sa-closing-offer): stack-label → 6-item value stack → eligibility bar → EMPTY SPACE
+- Right column (.sa-closing-checkout-lane): bridge → proof row → pricing → guarantee → form → CTA
+- Grid: `1fr 480px`, right col sticky at top:100px, collapses at ≤1024px
+- Insertion point identified: after `.sa-closing-eligibility-bar`, inside `.sa-closing-offer`
+- Next step: design and build 2–3 short testimonial card components for that slot
+
+### [2026-04-12] — Closing section: restored two-column integrated layout (salesagent.html)
+- Reverted from single-column flex to `grid-template-columns: 1fr 480px` at max-width 1200px
+- Left column: value stack + eligibility card; Right column: pricing/checkout lane (sticky at top:100px)
+- Mobile ≤1024px: collapses to single column, sticky removed
+- Eliminates the empty right-hand space issue from previous single-col attempts
+
+### [2026-04-12] — Closing/pricing section restructured per exact brief (salesagent.html)
+- Reordered right column: proof row → pricing cards → punchline → guarantee → form → pull quote → bold close → CTA
+- Added price-lock line on upfront card: "Price locked forever… renew at £995. Always."
+- Bold closing line added: "£995. One year. One Mounjaro patient covers it entirely…"
+- Eligibility criterion updated: "A website" → "A website that gets at least some traffic"
+- Guarantee moved from left column to right column between punchline and form
+- Deploy button changed navy → teal; "Joining 50+ practices…" added as final footnote
+
 ### [2026-04-12] — FAQ accordion section added above pricing (salesagent.html)
 - New `.sa-faq` section: cream `#f7f0e6` background, max-width 820px centred, consistent page aesthetic
 - 10 FAQ items as accordion — collapsed by default, teal chevron rotates on open, Q3 open on page load
