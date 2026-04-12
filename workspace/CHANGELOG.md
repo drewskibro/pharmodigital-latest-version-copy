@@ -18,6 +18,12 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Replace third card in "Which One Is You?" section (index.html)
+- Removed "By Practice Type / See Proof From Your World" card entirely
+- New card: SalesAgent Pro — teal banner strip, Sachin/Southdowns body copy, 4 teal tick bullets, no price
+- CTA button: teal full-width "See What It Does →" linking to salesagent.html
+- First two cards (DIY Playbook + DFY) left completely untouched
+
 ### [2026-04-12] — Sachin avatar: 96px + tighter face crop (salesagent.html)
 - Bumped avatar from 64px → 96px (three-quarter body shot needs more room to show face)
 - object-position tightened from `50% 12%` → `50% 5%` to pull face fully into the circle
