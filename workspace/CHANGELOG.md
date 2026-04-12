@@ -18,6 +18,38 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Problem section: added image alongside story text (salesagent.html)
+- New `.sa-problem-story-grid` 2-col layout wrapping `.sa-story` + new image column
+- Reuses hero image (booking confirmation phone) with dark section styling: deeper shadow, teal glow behind
+- Image has scroll-reveal animation (fade up + scale) matching existing reveal system
+- Mobile: stacks to 1-col with image on top (order: -1), max-width 360px centred
+- No changes to story copy, stats, or any other section
+
+### [2026-04-12] — Eligibility card: copy split + design overhaul (salesagent.html)
+- First sentence kept italic via `<em>`, second/third sentences now regular-weight dark navy via `.sa-closing-eligibility-intro-body`
+- "exactly these two criteria" → "just these two things"
+- Card background changed from white to `#f0ede8` (subtle off-white) for separation from cream page
+- Shadow boosted: `0 8px 36px rgba(0,0,0,0.1), 0 2px 10px rgba(0,0,0,0.06)` — clear lift off page
+- Tick icons 30% larger (22px→28px), criteria text larger + bold (1rem/500→1.1875rem/700)
+- Increased spacing: intro margin-bottom 0.25→1.5rem, overline margin-bottom 0.25→0.75rem, card padding bumped
+
+### [2026-04-12] — Closing section: eligibility, bridge line, social proof row, pull quote (salesagent.html)
+- Eligibility intro expanded: "Over 50 practices across the UK, US, and beyond…" context added
+- Bridge line inserted between eligibility card and pricing: italic, centred, dark navy maths line
+- Three-column social proof stat row (Southdowns £200k / Medihub Live / Raylane UK Network) below pricing cards
+- Pull quote block above CTA button: cream background, Southdowns attribution, subtle separation
+- New CSS: `.sa-closing-bridge`, `.sa-closing-proof-row/col/client/stat/label`, `.sa-closing-pull-quote`
+- Mobile: proof row stacks to 1-col at 768px
+
+### [2026-04-11] — Closing section: copy, pricing card, eligibility & guarantee overhaul (salesagent.html)
+- Eligibility: added Frank Kern conversational intro line ("Honestly? If you're reading this…") above criteria
+- Guarantee: 30-day patient enquiry commitment added; stress-test language retained
+- 24/7 bullet replaced with Ealing Travel Clinic story (Sachin / HPV appointments / diary full)
+- Authority bullet body: updated to name Google, ChatGPT, Claude, Bing, Gemini explicitly
+- Pricing cards: 3-col grid (card / "or" / card), upfront card taller + elevated shadow + badge overlaps top
+- Two distinct saving badges on upfront: teal (Save £505) + amber/gold (£1,500 setup waived — April only)
+- Bold "Total saving this April: £2,005" line below badges; monthly card updated to "Setup fee waived this April"
+
 ### [2026-04-11] — Closing section: guarantee, pricing card, urgency banner fixes (salesagent.html)
 - Guarantee replaced: "First booking within hours, or we rebuild it" → "We build it. We test it. We stand behind it." + performance rebuild guarantee
 - Pricing card restyled for cream bg: white card, navy text, cream inputs, proper contrast throughout
