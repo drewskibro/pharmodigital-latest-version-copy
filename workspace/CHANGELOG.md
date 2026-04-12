@@ -18,6 +18,29 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-12] — Numbers/Proof section: cream gradient colour retheme (salesagent.html)
+- Background changed from dark navy gradient to warm cream gradient (`#faf7f2 → #f5f0e8 → #ede8df`)
+- Cards: dark glass → white bg, dark navy text, teal accents; box-shadow tuned for light bg
+- Label colour: dim white → teal; numbers/descriptors: off-white → navy; body text: dim white → gray-600
+- Headline switched from `.sa-headline-white` → `.sa-headline-dark`; eyebrow from teal-on-dark → cream variant
+- Card hover: reduced shadow intensity for light context; border-color shifts to teal on hover
+- Added `border-top` on section for edge separation from preceding dark flywheel section
+
+### [2026-04-12] — Content Flywheel: full design overhaul — dark standalone section (salesagent.html)
+- Extracted flywheel from `.sa-chatbot` into its own dark navy `<section class="sa-flywheel-section">`
+- Replaced 4-column inline grid with 2×2 card layout (`sa-flywheel-grid`) + centre animated loop ring
+- Each card: dark glass background, teal top-line accent, faded step number, icon, title + one-liner
+- Centre: pulsing ring with rotating ↻ icon + connecting vertical lines to cards
+- Closing line + loop pill moved into the new section; old `.sa-chatbot-closing` removed
+- Full mobile responsive: stacks to 1-col, loop ring above cards at ≤900px
+
+### [2026-04-12] — Content Flywheel copy rewrite: Hormozi/Kern sales style (salesagent.html)
+- Headline: "Patient Questions → Content That Ranks" → "Your Patients Write Your Marketing For You"
+- All 4 step titles rewritten: benefit-first, active voice ("Patients Tell You What They Want", "We Find the Gold", "Content That Actually Converts", "You Show Up Everywhere")
+- Step descriptions cut to 1-2 punchy sentences each, roughly equal length across all 4
+- Intro paragraph simplified: flywheel concept explained in 3 plain sentences
+- Closing line sharpened: "Your competitors are guessing… Your patients are *telling* you."
+
 ### [2026-04-12] — Problem section: added image alongside story text (salesagent.html)
 - New `.sa-problem-story-grid` 2-col layout wrapping `.sa-story` + new image column
 - Reuses hero image (booking confirmation phone) with dark section styling: deeper shadow, teal glow behind
