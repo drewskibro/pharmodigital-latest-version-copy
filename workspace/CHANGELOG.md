@@ -18,6 +18,50 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-16] — WPE hero headline + dedup (web-pro-elite.html)
+- Removed "WEBPRO ELITE" eyebrow label from hero entirely
+- Hero h1 restructured: 3 lines — navy / teal / navy; no line runs into the next
+- Deleted duplicate Package section + duplicate Pricing/CTA section (both were rendering twice)
+- Page now flows: Portfolio → Package → Pricing → Footer (no repetition)
+
+### [2026-04-16] — WPE Package section: premium dark redesign (web-pro-elite.html)
+- Swapped cream bg + white cards → dark immersive layout (matches homepage Revenue Results section style)
+- Cards now glassmorphic: rgba bg, teal left accent strips, hover lift+glow, backdrop-blur
+- Removed emoji icons, replaced with `01`/`02` Space Mono numbering (like revenue card labels)
+- Timeline strip now dark variant with teal week numbers and light text
+- Both duplicate package sections updated (file still has dupes)
+- Section header text now white/teal to match dark bg
+
+### [2026-04-16] — WPE Hero: eyebrow restyle, Kern subtext, waitlist CTA (web-pro-elite.html)
+- Eyebrow: removed border/box badge → plain grey uppercase text (no longer looks cheap)
+- Subtext rewritten Kern/Brown style: "Three pharmacies. Three cities. All outranking national chains..."
+- All CTAs → "Join The Waitlist" (hero, nav, mobile nav, both CTA form sections)
+- Form success state → "You're on the list" with 2–4 week messaging
+- Fixed duplicate CTA section still showing old "Book A Strategy Call" text
+- NOTE: file still has duplicate Portfolio/Package/CTA sections that need dedup
+
+### [2026-04-16] — WPE Hero: cream palette overhaul (web-pro-elite.html)
+- Swapped dark immersive hero bg → homepage's warm cream gradient (cream→teal linear-gradient)
+- All hero text now navy/gray on cream instead of white-on-dark; kills the "AI template" look
+- Removed: pill badge, proof-line paragraph, trust bar below hero, subtitle sub-line — stripped text density by ~60%
+- Right column: Rahul Puri testimonial now in white card with border/shadow; 3 metric tiles in white cards
+- CTAs restyle: teal filled + navy outline (matching homepage button pattern)
+- Stats line below CTAs: compact Space Mono uppercase like homepage hero
+
+### [2026-04-16] — WebPro Elite Steps 3+4 complete (web-pro-elite.html)
+- Portfolio section: 3 client cards (Chiselhurst, Easy Clinic, Puri) with live iframe previews in browser chrome mockup
+- Package section: dual-col (WebPro Elite Site + Pillar Domination Framework™) + 4-step delivery timeline strip
+- Pricing + CTA section: dark navy, starts-from £3,500 block, 3 trust guarantees, contact form with success state
+- Form submit: handleWpeFormSubmit() shows success card, hides form — no page reload
+- homepage-v2.html has no PharmoBoost dropdown; no wiring needed there
+
+### [2026-04-16] — WebPro Elite Step 2: page structure + hero section (web-pro-elite.html)
+- Created web-pro-elite.html from scratch — dark immersive hero, sticky nav, PharmoBoost dropdown wired
+- Hero: teal pill badge, animated title, three client cards (Chiselhurst, Easy Clinic, Puri), 4-stat bar, trust bar
+- Intro/positioning section: proof cards (Ealing 300%, Superior 50%, Puri national), scroll-reveal animations
+- Wired `web-pro-elite.html` link into dropdown in index.html and salesagent.html (desktop + mobile)
+- Step 3 next: three client portfolio showcase cards
+
 ### [2026-04-12] — Replace third card in "Which One Is You?" section (index.html)
 - Removed "By Practice Type / See Proof From Your World" card entirely
 - New card: SalesAgent Pro — teal banner strip, Sachin/Southdowns body copy, 4 teal tick bullets, no price
