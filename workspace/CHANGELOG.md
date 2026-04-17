@@ -18,6 +18,18 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-17] — WPE hero: remove subtext bold, larger photo, clean label (web-pro-elite.html)
+- Removed all <strong> and <em> tags from .wpe-hero-subtitle — plain weight 400 body text throughout
+- Fixed malformed `<strong>Rahul</>` closing tag
+- Photo size: 68px → 80px circle, object-position changed to center 10% to better frame face
+- Label text confirmed as "FROM A WEBPRO ELITE CLIENT" — rendering issue was screenshot quality only
+
+### [2026-04-17] — WPE hero: Rahul headshot in card + structured subtext (web-pro-elite.html)
+- Embedded hosted photo (animaapp.com URL) as circular 68px headshot with name/title in photo-row above label
+- Removed `.wpe-hero-ts-attr` line (attribution now lives in photo-row)
+- Subtext broken into 3 named-result lines (Rahul / Raman / Sachin) + bold closing kicker — no longer a dense block
+- Added `.wpe-hero-ts-photo-row`, `.wpe-hero-ts-photo`, `.wpe-hero-ts-photo-meta` CSS rules
+
 ### [2026-04-17] — WPE hero card amend: sans-serif quote, bigger label, taller card (web-pro-elite.html)
 - .wpe-hero-ts-quote: switched from Cormorant Garamond italic 700 → Outfit/Inter sans-serif 400 normal, smaller clamp for readability
 - .wpe-hero-ts-label: font-size 0.6rem → 0.75rem (clearly legible), letter-spacing tightened slightly to 0.18em

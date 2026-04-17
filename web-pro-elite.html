@@ -591,44 +591,76 @@
       .wpe-hero-testimonial-single {
         background: white;
         border-radius: 16px;
-        padding: 3.25rem 2.75rem;
+        padding: 2.75rem 2.75rem 3rem;
         border: 1px solid rgba(0,0,0,0.06);
         box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 16px 56px rgba(0,0,0,0.05);
         width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        min-height: 360px;
+        justify-content: flex-start;
+        min-height: 400px;
         animation: wpeCardIn 0.6s ease-out 0.7s both;
+      }
+
+      .wpe-hero-ts-photo-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+      }
+
+      .wpe-hero-ts-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 10%;
+        border: 3px solid rgba(20,184,166,0.3);
+        flex-shrink: 0;
+        background: #f3f4f6;
+      }
+
+      .wpe-hero-ts-photo-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .wpe-hero-ts-photo-name {
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.2;
+      }
+
+      .wpe-hero-ts-photo-title {
+        font-size: 0.8125rem;
+        color: var(--gray-400);
+        font-weight: 400;
+        line-height: 1.3;
       }
 
       .wpe-hero-ts-label {
         font-family: 'Space Mono', monospace;
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         font-weight: 700;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--teal);
         display: block;
-        margin-bottom: 1.75rem;
+        margin-bottom: 1.25rem;
       }
 
       .wpe-hero-ts-quote {
         font-family: 'Outfit', 'Inter', sans-serif;
-        font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+        font-size: clamp(1.05rem, 1.65vw, 1.275rem);
         font-weight: 400;
         font-style: normal;
         color: var(--navy);
-        line-height: 1.7;
+        line-height: 1.75;
         letter-spacing: 0;
-        margin-bottom: 1.75rem;
-      }
-
-      .wpe-hero-ts-attr {
-        font-size: 0.9375rem;
-        color: var(--gray-400);
-        font-weight: 500;
-        font-style: normal;
+        margin-bottom: 0;
+        flex: 1;
       }
 
       /* Live badge — hidden */
@@ -1836,7 +1868,10 @@
           </h1>
 
           <p class="wpe-hero-subtitle">
-            Rahul at Puri Pharmacy is outranking Boots nationally. Raman at Superior Pharmacy is on track for £500k this year. Sachin at Ealing Travel Clinic will generate £100,000 from a single service — HPV vaccinations — this year alone. No ad spend. Yours could be next.
+            Rahul at Puri Pharmacy is outranking Boots nationally.<br />
+            Raman at Superior Pharmacy is on track for £500k this year.<br />
+            Sachin at Ealing Travel Clinic will generate £100,000 from a single service — HPV vaccinations — this year alone.<br />
+            No ad spend. Yours could be next.
           </p>
 
           <div class="wpe-hero-cta">
@@ -1848,9 +1883,19 @@
         <!-- Right: Single large testimonial card -->
         <div class="wpe-hero-visual">
           <div class="wpe-hero-testimonial-single">
+            <div class="wpe-hero-ts-photo-row">
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776423192281-0.png"
+                alt="Rahul Puri, Puri Pharmacy"
+                class="wpe-hero-ts-photo"
+              />
+              <div class="wpe-hero-ts-photo-meta">
+                <span class="wpe-hero-ts-photo-name">Rahul Puri</span>
+                <span class="wpe-hero-ts-photo-title">Owner, Puri Pharmacy</span>
+              </div>
+            </div>
             <span class="wpe-hero-ts-label">From a WebPro Elite Client</span>
             <p class="wpe-hero-ts-quote">&#8220;Things are going really well. Weight loss is up and we&#39;re hitting five figures every month. I want to take this national.&#8221;</p>
-            <p class="wpe-hero-ts-attr">&#8212; Rahul Puri, Puri Pharmacy</p>
           </div>
         </div>
       </div>
