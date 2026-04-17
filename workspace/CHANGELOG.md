@@ -18,6 +18,85 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-17] — WPE hero card amend: sans-serif quote, bigger label, taller card (web-pro-elite.html)
+- .wpe-hero-ts-quote: switched from Cormorant Garamond italic 700 → Outfit/Inter sans-serif 400 normal, smaller clamp for readability
+- .wpe-hero-ts-label: font-size 0.6rem → 0.75rem (clearly legible), letter-spacing tightened slightly to 0.18em
+- .wpe-hero-testimonial-single: padding 2.5rem → 3.25rem 2.75rem, min-height: 360px, flex-column justify-center for vertical fill
+
+### [2026-04-17] — WPE hero plan step 3: single large testimonial card (web-pro-elite.html)
+- Removed .wpe-hero-testimonials grid and both small cards from right column markup
+- Added .wpe-hero-testimonial-single: white bg, 16px radius, 2.5rem padding, homepage-matching shadow
+- Label: .wpe-hero-ts-label — Space Mono, teal, 0.22em tracked small-caps
+- Quote: .wpe-hero-ts-quote — Cormorant Garamond italic, navy, clamp(1.3rem→1.65rem)
+- Attribution: .wpe-hero-ts-attr — grey, 0.9375rem — no stats bar
+
+### [2026-04-17] — WPE hero plan step 2: headline scale + subhead copy (web-pro-elite.html)
+- .wpe-hero-title font-size raised to clamp(2.25rem, 3.8vw, 3.5rem) — matches homepage headline scale
+- .wpe-ht-line1 / .wpe-ht-line3 letter-spacing tightened to -0.03em for commanding feel
+- .wpe-ht-line2 kept at 1.08em relative size (Cormorant matches Inter 800 visual weight at same scale)
+- Subhead paragraph replaced with Rahul/Raman/Sachin proof copy (grey body font, no change to style rules)
+- Both CTA buttons left completely untouched
+
+### [2026-04-17] — WPE hero redesign plan step 1: full-width container + 60/40 grid (web-pro-elite.html)
+- Added `width: 100%` to .wpe-hero to ensure full viewport use
+- Raised .wpe-hero-inner max-width: 1400px → 1600px to remove box-in constraint
+- Grid ratio: 62fr/38fr → 60fr/40fr (cleaner ratio, left col still dominant)
+- Horizontal padding stays at 1.5rem each side (already set from prior step)
+
+### [2026-04-17] — WPE hero plan step 3: expand left text column grid ratio (web-pro-elite.html)
+- Changed .wpe-hero-inner grid-template-columns from 1fr 1fr → 62fr 38fr
+- Left column gains ~12% more width, giving headline more horizontal space
+- No other layout, typography, or card changes
+
+### [2026-04-17] — WPE hero plan step 2: widen hero container, reduce outer padding (web-pro-elite.html)
+- .wpe-hero-inner max-width was already 1400px (set in a prior session) — no change needed there
+- Reduced .wpe-hero horizontal padding: 4rem 2rem 5rem → 4rem 1.5rem 5rem (0.5rem less each side)
+- No grid, typography, or card changes
+
+### [2026-04-17] — WPE hero plan step 1: remove large top-right testimonial card (web-pro-elite.html)
+- Deleted .wpe-hero-statement block (big Rahul Puri quote card above the two smaller cards)
+- .wpe-hero-testimonials grid and both smaller cards left completely untouched
+- No CSS, typography, or other structural changes
+
+### [2026-04-17] — WPE hero: adjust headline font sizes (web-pro-elite.html)
+- Lines 1 & 3 base: clamp reduced 10% → clamp(1.98rem, 3.47vw, 2.7rem) from clamp(2.2rem, 3.85vw, 3rem)
+- Line 2 (.wpe-ht-line2): font-size bumped 1em → 1.12em to match visual weight of Inter 800 on L1/L3
+- No other changes; layout, colours, spacing all untouched
+
+### [2026-04-17] — WPE hero: remove excess top space (web-pro-elite.html)
+- Root cause: `min-height: calc(100vh - 72px)` with `align-items: center` was vertically centring content, pushing headline down
+- Fix: set `min-height: 0` and `padding: 4rem 2rem 5rem` — section now sizes to content only
+- No layout, typography, or other structural changes
+
+### [2026-04-17] — WPE hero: corrected mixed-type headline treatment (web-pro-elite.html)
+- .wpe-hero-title base: Inter/Outfit 800, clamp(2.2rem, 3.85vw, 3rem) — ~20% reduction from previous clamp(2.75rem, 4.8vw, 3.75rem)
+- .wpe-ht-line1 + .wpe-ht-line3: Inter/Outfit sans-serif 800, normal, navy — retain original typeface
+- .wpe-ht-line2: Cormorant Garamond italic 700, teal, same 1em size as lines 1 & 3 (no size hierarchy)
+- Cormorant Garamond restricted to .wpe-ht-line2 only — no other page elements affected
+- Removed previous Cormorant/Playfair serif from lines 1 & 3; those lines now correctly stay in sans-serif
+
+### [2026-04-17] — WPE hero Step 3: Scoped CSS for mixed-type treatment (web-pro-elite.html)
+- Replaced .wpe-hero-title Inter/800 rule with Cormorant Garamond/Playfair Display/Georgia/serif at 700
+- .wpe-ht-line1 + .wpe-ht-line3: display:block, font-weight:700, font-style:normal, color:navy, 1em
+- .wpe-ht-line2: display:block, font-weight:700, font-style:italic, color:var(--teal), font-size:1.18em for hierarchy
+- No layout/structural changes; legacy .wpe-hero-title-accent and .wpe-hero-title-sub rules preserved
+
+### [2026-04-17] — WPE hero Step 2: Restructure h1 into three styled spans (web-pro-elite.html)
+- Replaced existing h1 text (plain text + br tags) with three block spans: .wpe-ht-line1, .wpe-ht-line2, .wpe-ht-line3
+- Removed old .wpe-hero-title-accent span; each line is now independently targetable via class
+- Step 3 next: add scoped CSS — Cormorant Garamond font, navy/italic-teal/navy treatment, size hierarchy
+
+### [2026-04-17] — WPE hero Step 1: Load Cormorant Garamond + Playfair Display (web-pro-elite.html)
+- Added Cormorant Garamond 700 + 700 Italic and Playfair Display 700 + 700 Italic to Google Fonts link
+- Both families appended to existing Inter/Outfit/Space Mono bundle — single request, no extra preconnect needed
+
+### [2026-04-17] — WPE hero: replace 3 stats cards with 2 testimonial cards (web-pro-elite.html)
+- Removed .wpe-hero-metrics grid (6 wks / £0 / 50+) entirely
+- Added .wpe-hero-testimonials: 2-col grid matching existing statement card style (white bg, rounded, same shadow/padding)
+- Card 1: Rahul Puri quote + "On track for six figures this year." in teal bold
+- Card 2: Raman Superior Pharmacy quote + "On track for £500k this year." in teal bold
+- Revenue line separated by teal top-border for visual distinction; stacks to 1-col below 640px
+
 ### [2026-04-16] — WPE hero headline + dedup (web-pro-elite.html)
 - Removed "WEBPRO ELITE" eyebrow label from hero entirely
 - Hero h1 restructured: 3 lines — navy / teal / navy; no line runs into the next
