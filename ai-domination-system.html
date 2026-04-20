@@ -298,11 +298,11 @@
         overflow: hidden;
       }
       .playbook-hero-inner {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5rem;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 3rem;
         align-items: center;
       }
       .playbook-hero-eyebrow {
@@ -385,11 +385,13 @@
           0 4px 6px -1px rgba(0,0,0,0.05),
           0 25px 50px -12px rgba(0,0,0,0.18),
           0 50px 80px -20px rgba(0,0,0,0.1);
-        transform: rotate(1deg);
+        transform: none;
         transition: transform 0.4s ease;
+        display: block;
+        object-fit: cover;
       }
       .playbook-hero-image:hover img {
-        transform: rotate(0deg) scale(1.01);
+        transform: scale(1.01);
       }
       .playbook-hero-image-badge {
         position: absolute;
@@ -472,6 +474,13 @@
         letter-spacing: 0.14em;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+      }
+      .problem-shift-label.ps-label-visible {
+        opacity: 1;
+        transform: translateY(0);
       }
       .problem-shift-headline {
         font-family: 'Inter', sans-serif;
@@ -483,6 +492,16 @@
         margin-bottom: 1.75rem;
         max-width: 780px;
       }
+      .problem-shift-headline .ps-word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.45s cubic-bezier(0.16,1,0.3,1), transform 0.45s cubic-bezier(0.16,1,0.3,1);
+      }
+      .problem-shift-headline.ps-headline-visible .ps-word {
+        opacity: 1;
+        transform: translateY(0);
+      }
       .problem-shift-intro {
         font-size: 1.1875rem;
         color: rgba(255,255,255,0.88);
@@ -490,6 +509,13 @@
         margin-bottom: 3.5rem;
         max-width: 640px;
         letter-spacing: 0.005em;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s, transform 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s;
+      }
+      .problem-shift-intro.ps-intro-visible {
+        opacity: 1;
+        transform: translateY(0);
       }
       /* Paired stat–consequence rows */
       .ps-pair-rows {
@@ -508,6 +534,14 @@
         border-left: 4px solid #f59e0b;
         box-shadow: 0 2px 12px rgba(0,0,0,0.15), 0 0 0 1px rgba(245,158,11,0.06);
         transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+        /* Animation: start hidden */
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      .ps-pair-row.ps-visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
       }
       .ps-pair-row:hover {
         transform: translateY(-2px);
@@ -528,17 +562,40 @@
         width: 48px;
         flex-shrink: 0;
         position: relative;
+        opacity: 0;
+        transition: opacity 0.4s ease 0.25s;
+      }
+      .ps-pair-row.ps-visible .ps-pair-vs {
+        opacity: 1;
+      }
+      @keyframes arrowPulse {
+        0%, 100% {
+          color: rgba(245,158,11,0.5);
+          text-shadow: 0 0 0 transparent;
+          transform: translateX(0);
+        }
+        50% {
+          color: rgba(245,158,11,1);
+          text-shadow: 0 0 16px rgba(245,158,11,0.5), 0 0 32px rgba(245,158,11,0.2);
+          transform: translateX(3px);
+        }
       }
       .ps-pair-vs-label {
-        font-size: 1.25rem;
-        color: rgba(255,255,255,0.25);
+        font-size: 1.5rem;
+        color: rgba(245,158,11,0.5);
         line-height: 1;
         letter-spacing: 0;
         text-transform: none;
         display: flex;
         align-items: center;
         justify-content: center;
+        animation: arrowPulse 2s ease-in-out infinite;
       }
+      .ps-pair-row:nth-child(1) .ps-pair-vs-label { animation-delay: 0s; }
+      .ps-pair-row:nth-child(2) .ps-pair-vs-label { animation-delay: 0.3s; }
+      .ps-pair-row:nth-child(3) .ps-pair-vs-label { animation-delay: 0.6s; }
+      .ps-pair-row:nth-child(4) .ps-pair-vs-label { animation-delay: 0.9s; }
+      .ps-pair-row:nth-child(5) .ps-pair-vs-label { animation-delay: 1.2s; }
       .ps-pair-lose {
         flex: 1;
         padding: 2rem 2.5rem;
@@ -547,6 +604,14 @@
         gap: 1rem;
         background: rgba(239,68,68,0.06);
         border-left: none;
+        /* Slide in from right */
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.35s, transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.35s;
+      }
+      .ps-pair-row.ps-visible .ps-pair-lose {
+        opacity: 1;
+        transform: translateX(0);
       }
       .ps-pair-stat-num {
         font-family: 'Inter', sans-serif;
@@ -557,6 +622,15 @@
         line-height: 1.05;
         margin-bottom: 0.4rem;
         text-shadow: 0 2px 12px rgba(245,158,11,0.15);
+        transition: text-shadow 0.6s ease;
+      }
+      @keyframes statGlow {
+        0% { text-shadow: 0 2px 12px rgba(245,158,11,0.15); }
+        50% { text-shadow: 0 2px 24px rgba(245,158,11,0.45), 0 0 48px rgba(245,158,11,0.12); }
+        100% { text-shadow: 0 2px 12px rgba(245,158,11,0.15); }
+      }
+      .ps-pair-stat-num.ps-glow {
+        animation: statGlow 1.8s ease-in-out 1;
       }
       .ps-pair-stat-text {
         font-size: 0.9375rem;
@@ -608,6 +682,9 @@
           transform: none;
           box-shadow: 0 2px 12px rgba(0,0,0,0.15), 0 0 0 1px rgba(245,158,11,0.06);
         }
+        .ps-pair-row.ps-visible:hover {
+          transform: none;
+        }
         /* Stat (win) block — top of stacked card */
         .ps-pair-win {
           padding: 1.5rem 1.25rem 1.25rem;
@@ -630,17 +707,36 @@
           padding: 0.375rem 0;
           background: rgba(255,255,255,0.02);
         }
-        .ps-pair-vs-label {
-          transform: rotate(90deg);
-          font-size: 1rem;
-          color: rgba(255,255,255,0.18);
+      .ps-pair-vs-label {
+        transform: rotate(90deg);
+        font-size: 1.25rem;
+        color: rgba(245,158,11,0.5);
+        animation-name: arrowPulseMobile;
+      }
+      @keyframes arrowPulseMobile {
+        0%, 100% {
+          color: rgba(245,158,11,0.5);
+          text-shadow: 0 0 0 transparent;
+          transform: rotate(90deg) translateX(0);
         }
+        50% {
+          color: rgba(245,158,11,1);
+          text-shadow: 0 0 12px rgba(245,158,11,0.4);
+          transform: rotate(90deg) translateX(2px);
+        }
+      }
         /* Consequence (lose) block — full-width warning zone below */
         .ps-pair-lose {
           padding: 1.25rem 1.25rem 1.5rem;
           background: rgba(239,68,68,0.07);
           gap: 0.75rem;
           border-left: none;
+          /* Override desktop slide-in for mobile stacked layout */
+          transform: translateY(12px);
+          transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.25s, transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.25s;
+        }
+        .ps-pair-row.ps-visible .ps-pair-lose {
+          transform: translateY(0);
         }
         .ps-pair-lose-icon {
           width: 28px;
@@ -2839,8 +2935,8 @@
         </div>
         <div class="playbook-hero-image">
           <img
-            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772985250408-0.jpeg"
-            alt="AI Search Playbook for Healthcare - Device Mockup"
+            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776669430182-0.jpeg"
+            alt="AI Search Playbook — pharmacy logos with booking confirmation on phone"
           />
         </div>
       </div>
@@ -2851,7 +2947,7 @@
       <div class="problem-shift-section">
         <div class="problem-shift-inner">
           <p class="problem-shift-label">The Shift</p>
-          <h2 class="problem-shift-headline">In Two Years, The Practices On ChatGPT&#39;s Shortlist Will Own Your Market.</h2>
+          <h2 class="problem-shift-headline" id="psHeadline">In Two Years, The Practices On ChatGPT&#39;s Shortlist Will Own Your Market.</h2>
           <p class="problem-shift-intro">That shortlist is being built right now. Every week a practice claims a spot. Every week it gets harder to displace them. And the patients those practices are capturing — Semrush confirmed it across hundreds of sites — convert 4.4 times better than Google organic visitors. Not because of the platform. Because by the time they click a name on ChatGPT&#39;s recommendation, the decision is already made.</p>
 
           <div class="ps-pair-rows">
@@ -4231,6 +4327,114 @@
           }, { threshold: 0.5 });
           observer.observe(step);
         });
+      })();
+
+      // ─── The Shift — Premium Section Animations ───
+      (function() {
+        // 1. Eyebrow label reveal
+        var label = document.querySelector('.problem-shift-label');
+        if (label) {
+          var lo = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) { entry.target.classList.add('ps-label-visible'); lo.unobserve(entry.target); }
+            });
+          }, { threshold: 0.5 });
+          lo.observe(label);
+        }
+
+        // 2. Headline word-by-word reveal
+        var headline = document.getElementById('psHeadline');
+        if (headline) {
+          var rawText = headline.textContent;
+          var words = rawText.split(/\s+/);
+          headline.innerHTML = words.map(function(w, i) {
+            return '<span class="ps-word" style="transition-delay:' + (i * 55) + 'ms">' + w + '</span>';
+          }).join(' ');
+          var ho = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) { headline.classList.add('ps-headline-visible'); ho.unobserve(entry.target); }
+            });
+          }, { threshold: 0.3 });
+          ho.observe(headline);
+        }
+
+        // 3. Intro paragraph fade up
+        var intro = document.querySelector('.problem-shift-intro');
+        if (intro) {
+          var io2 = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) { entry.target.classList.add('ps-intro-visible'); io2.unobserve(entry.target); }
+            });
+          }, { threshold: 0.3 });
+          io2.observe(intro);
+        }
+
+        // 4. Paired rows — staggered cascade + stat counter + glow
+        var rows = document.querySelectorAll('.ps-pair-row');
+        var rowContainer = document.querySelector('.ps-pair-rows');
+        if (rowContainer && rows.length) {
+          var ro = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                rows.forEach(function(row, i) {
+                  setTimeout(function() {
+                    row.classList.add('ps-visible');
+                    // Animate the stat number
+                    var numEl = row.querySelector('.ps-pair-stat-num');
+                    if (numEl) {
+                      var original = numEl.getAttribute('data-target') || numEl.textContent.trim();
+                      numEl.setAttribute('data-target', original);
+                      animateStatNum(numEl, original);
+                    }
+                  }, i * 160);
+                });
+                ro.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12 });
+          ro.observe(rowContainer);
+        }
+
+        function animateStatNum(el, target) {
+          // Parse the target to extract numeric part
+          var match = target.match(/^([£]?)([0-9.,]+)(.*)/);
+          if (!match) { el.textContent = target; el.classList.add('ps-glow'); return; }
+          var prefix = match[1];
+          var numStr = match[2].replace(/,/g, '');
+          var suffix = match[3];
+          var endVal = parseFloat(numStr);
+          var isDecimal = numStr.indexOf('.') !== -1;
+          var decimals = isDecimal ? (numStr.split('.')[1] || '').length : 0;
+          var hasComma = match[2].indexOf(',') !== -1;
+          var duration = 1000;
+          var startTime = null;
+
+          function formatNum(n) {
+            var s = isDecimal ? n.toFixed(decimals) : Math.round(n).toString();
+            if (hasComma) {
+              var parts = s.split('.');
+              parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+              s = parts.join('.');
+            }
+            return s;
+          }
+
+          el.textContent = prefix + '0' + suffix;
+          function step(ts) {
+            if (!startTime) startTime = ts;
+            var progress = Math.min((ts - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            var current = eased * endVal;
+            el.textContent = prefix + formatNum(current) + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent = target; // ensure exact original
+              el.classList.add('ps-glow');
+            }
+          }
+          requestAnimationFrame(step);
+        }
       })();
 
       // ─── 8. FAQ items fade in on scroll ───

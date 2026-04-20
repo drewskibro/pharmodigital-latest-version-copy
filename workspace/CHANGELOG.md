@@ -18,6 +18,33 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-20] — AI Domination System: Shift section — pulsating arrow connectors (ai-domination-system.html)
+- Arrow color: rgba(255,255,255,0.25) → amber (#f59e0b) with `arrowPulse` keyframe animation
+- Pulse: color fades 0.5→1 opacity, amber text-shadow glow, slight 3px translateX nudge — 2s infinite loop
+- Staggered delays: each row offset by 0.3s so arrows cascade down sequentially
+- Font-size bumped 1.25rem → 1.5rem for better visibility
+- Mobile: separate `arrowPulseMobile` keyframe accounts for 90deg rotation; color/glow matched
+
+### [2026-04-20] — AI Domination System: Shift section premium animations (ai-domination-system.html)
+- Eyebrow label fades in on scroll, headline reveals word-by-word (55ms stagger per word)
+- Intro paragraph slides up with 0.3s delay after headline
+- 5 paired stat/consequence rows cascade in with 160ms stagger, each row fades up from 28px
+- Stat numbers count up with ease-out cubic animation (1s duration) then trigger amber glow pulse keyframe
+- Consequence (lose) side slides in from right with 350ms delay — creates "stat appears → consequence follows" narrative
+- Arrow connector fades in between the two halves; mobile overrides use translateY instead of translateX
+- All animations use IntersectionObserver, fire once, threshold-based for natural scroll feel
+
+### [2026-04-20] — AI Domination System: hero layout fix — match homepage proportions (ai-domination-system.html)
+- Root cause: max-width 1200px + 1fr 1fr grid + 5rem gap + object-fit:contain = squished wide image
+- Fix: max-width 1400px, grid 1fr 1.15fr, gap 3rem, object-fit:cover — matches homepage hero approach
+- Homepage uses 1400px / 1fr 1.1fr / 3rem gap — now both heroes share same proportional logic
+
+### [2026-04-20] — AI Domination System: hero image replaced (ai-domination-system.html)
+- Swapped hero image to new pharmacy logos + phone booking mockup (uploaded-asset-1776669430182-0.jpeg)
+- Removed 1deg rotation (transform: none) so wide image renders straight without distortion
+- Added object-fit: contain + display: block for clean full-width rendering
+- Old image: uploaded-asset-1772985250408-0.jpeg → deleted from markup
+
 ### [2026-04-20] — AI Domination System: Shift intro paragraph readability on desktop (ai-domination-system.html)
 - `.problem-shift-intro`: max-width narrowed 780px → 640px to shorten line length for easier reading
 - Font-size bumped 1.0625rem → 1.1875rem; color opacity raised 0.82 → 0.88; line-height 1.75 → 1.8
