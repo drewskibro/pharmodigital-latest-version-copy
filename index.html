@@ -2359,97 +2359,171 @@
         flex: 1;
       }
 
-      /* Closing statement */
-      .revenue-closing-line {
-        text-align: center;
+      /* ─── Closing Section ─── */
+      .revenue-close-section {
+        max-width: 800px;
+        margin: 0 auto;
+        padding-top: 2rem;
+      }
+
+      /* Top italic headline — centred */
+      .revenue-close-headline {
         font-family: 'Inter', sans-serif;
         font-size: clamp(1.5rem, 2.5vw, 2rem);
         font-weight: 600;
         font-style: italic;
         color: white;
-        margin-bottom: 0.75rem;
-        padding: 0 1rem;
+        margin-bottom: 3.5rem;
         letter-spacing: -0.02em;
-      }
-
-      .revenue-closing-sub {
-        text-align: center;
-        font-size: 1rem;
-        color: rgba(255,255,255,0.35);
-        margin-bottom: 5rem;
-        letter-spacing: 0.01em;
-      }
-
-      /* Final CTA */
-      .revenue-cta {
+        line-height: 1.35;
         text-align: center;
       }
 
-      .revenue-cta-text {
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: rgba(255,255,255,0.6);
-        margin-bottom: 2.25rem;
-        letter-spacing: -0.01em;
+      /* Stat callout — large isolated number */
+      .revenue-close-stat {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+        margin-bottom: 3rem;
+        padding: 2rem 2.5rem;
+        border-left: 3px solid var(--teal);
+        background: rgba(20,184,166,0.04);
+        border-radius: 0 12px 12px 0;
       }
 
-      .revenue-cta-buttons {
+      .revenue-close-stat-num {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(3.5rem, 7vw, 5rem);
+        font-weight: 800;
+        color: white;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      .revenue-close-stat-label {
+        font-size: 1.0625rem;
+        color: rgba(255,255,255,0.7);
+        line-height: 1.5;
+        max-width: 340px;
+      }
+
+      .revenue-close-stat-label strong {
+        color: white;
+        font-weight: 600;
+        display: block;
+        font-size: 1.125rem;
+        margin-bottom: 0.25rem;
+      }
+
+      /* Body copy — left aligned */
+      .revenue-close-body {
+        margin-bottom: 3.5rem;
+      }
+
+      .revenue-close-body p {
+        font-size: 1.0625rem;
+        color: rgba(255,255,255,0.78);
+        line-height: 1.85;
+        margin-bottom: 1.75rem;
+        text-align: left;
+      }
+
+      .revenue-close-body p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Closing gut-punch line — isolated, large, centred */
+      .revenue-close-final {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+        font-weight: 700;
+        font-style: italic;
+        color: white;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+        padding: 2.5rem 0;
+        margin-bottom: 3.5rem;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        text-align: center;
+      }
+
+      /* CTA buttons */
+      .revenue-close-cta-buttons {
         display: flex;
         gap: 1rem;
         justify-content: center;
         flex-wrap: wrap;
       }
 
-      .revenue-cta-buttons .btn-primary {
-        padding: 1.2rem 2.75rem;
-        font-size: 1.1rem;
-        font-weight: 700;
+      .revenue-close-btn-primary {
+        padding: 1.2rem 2.75rem !important;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
         box-shadow: 0 4px 20px rgba(20,184,166,0.35);
-        border-radius: 12px;
+        border-radius: 12px !important;
         transition: all 0.25s ease;
       }
 
-      .revenue-cta-buttons .btn-primary:hover {
+      .revenue-close-btn-primary:hover {
         box-shadow: 0 8px 30px rgba(20,184,166,0.5);
         transform: translateY(-2px);
       }
 
-      .revenue-cta-buttons .btn-outline-teal {
+      .revenue-close-btn-outline {
+        padding: 1.2rem 2.75rem !important;
+        font-size: 1.05rem !important;
+        font-weight: 600 !important;
+        border-radius: 12px !important;
+        border-width: 2px;
+        border-color: rgba(255,255,255,0.5);
+        color: white;
+        background: transparent;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 1.2rem 2.75rem;
-        background: transparent;
-        color: var(--teal);
-        border: 2px solid rgba(20,184,166,0.4);
-        border-radius: 12px;
-        font-family: inherit;
-        font-size: 1.1rem;
-        font-weight: 600;
         text-decoration: none;
+        font-family: inherit;
         cursor: pointer;
         transition: all 0.25s ease;
       }
 
-      .revenue-cta-buttons .btn-outline-teal:hover {
-        background: rgba(20,184,166,0.08);
-        border-color: #2dd4bf;
-        color: #2dd4bf;
+      .revenue-close-btn-outline:hover {
+        border-color: white;
+        background: rgba(255,255,255,0.08);
         transform: translateY(-2px);
       }
 
-      .revenue-cta-buttons .btn-outline-white {
-        padding: 1.2rem 2.75rem;
-        font-size: 1.1rem;
-        border-radius: 12px;
-        border-width: 2px;
-        border-color: rgba(255,255,255,0.25);
-        transition: all 0.25s ease;
-      }
+      @media (max-width: 640px) {
+        .revenue-close-stat {
+          flex-direction: column;
+          gap: 0.5rem;
+          padding: 1.5rem;
+        }
 
-      .revenue-cta-buttons .btn-outline-white:hover {
-        border-color: rgba(255,255,255,0.6);
-        transform: translateY(-2px);
+        .revenue-close-stat-num {
+          font-size: clamp(3rem, 12vw, 4rem);
+        }
+
+        .revenue-close-cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .revenue-close-btn-primary,
+        .revenue-close-btn-outline {
+          width: 100%;
+          max-width: 340px;
+        }
+
+        .revenue-close-body p {
+          font-size: 1rem;
+        }
+
+        .revenue-close-final {
+          font-size: 1.125rem;
+          padding: 2rem 0;
+        }
       }
 
       /* ─── Revenue Section Scroll Animations ─── */
@@ -2517,41 +2591,50 @@
         animation: revNumberPulse 0.6s ease 1.45s 1;
       }
 
-      /* Closing line + sub */
-      .revenue-closing-line {
+      /* Closing section scroll animations */
+      .revenue-close-headline {
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.7s ease, transform 0.7s ease;
       }
-      .revenue-section.rev-visible .revenue-closing-line {
+      .revenue-section.rev-visible .revenue-close-headline {
         opacity: 1; transform: translateY(0); transition-delay: 1.6s;
       }
 
-      .revenue-closing-sub {
+      .revenue-close-stat {
         opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
       }
-      .revenue-section.rev-visible .revenue-closing-sub {
+      .revenue-section.rev-visible .revenue-close-stat {
         opacity: 1; transform: translateY(0); transition-delay: 1.85s;
       }
 
-      .revenue-cta-text {
+      .revenue-close-body {
         opacity: 0;
         transform: translateY(16px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transition: opacity 0.7s ease, transform 0.7s ease;
       }
-      .revenue-section.rev-visible .revenue-cta-text {
+      .revenue-section.rev-visible .revenue-close-body {
         opacity: 1; transform: translateY(0); transition-delay: 2.1s;
       }
 
-      .revenue-cta-buttons {
+      .revenue-close-final {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .revenue-section.rev-visible .revenue-close-final {
+        opacity: 1; transform: translateY(0); transition-delay: 2.4s;
+      }
+
+      .revenue-close-cta-buttons {
         opacity: 0;
         transform: translateY(16px);
         transition: opacity 0.6s ease, transform 0.6s ease;
       }
-      .revenue-section.rev-visible .revenue-cta-buttons {
-        opacity: 1; transform: translateY(0); transition-delay: 2.3s;
+      .revenue-section.rev-visible .revenue-close-cta-buttons {
+        opacity: 1; transform: translateY(0); transition-delay: 2.7s;
       }
 
       @media (max-width: 1024px) {
@@ -5296,18 +5379,34 @@
           </div>
         </div>
 
-        <!-- Closing Line -->
-        <p class="revenue-closing-line">These aren&#39;t projections. This is last month.</p>
-        <p class="revenue-closing-sub">Across 50+ healthcare practices in the UK.</p>
+        <!-- Closing Section -->
+        <div class="revenue-close-section">
 
-        <!-- Final CTA -->
-        <div class="revenue-cta">
-          <p class="revenue-cta-text">Your practice. Your path.</p>
-          <div class="revenue-cta-buttons">
-            <a href="ai-domination-system.html" class="btn btn-primary">Get The Playbook</a>
-            <a href="/services" class="btn-outline-teal">See What We Build</a>
-            <a href="/choose" class="btn-outline-white">Choose Your Practice Type</a>
+          <p class="revenue-close-headline">These aren&#39;t projections. This is last month.</p>
+
+          <!-- Isolated stat callout -->
+          <div class="revenue-close-stat">
+            <span class="revenue-close-stat-num">4.4×</span>
+            <div class="revenue-close-stat-label">
+              <strong>AI visitors convert better than organic search</strong>
+              Semrush confirmed. That gap isn&#39;t closing. It&#39;s widening.
+            </div>
           </div>
+
+          <!-- Left-aligned body copy -->
+          <div class="revenue-close-body">
+            <p>Every week that passes, the shortlist gets harder to crack. The practices already on it aren&#39;t losing sleep over Google algorithm updates, AI shifts, or what Boots does next. They&#39;re already where patients are looking.</p>
+            <p>AI search isn&#39;t a trend. It&#39;s the new front door to every healthcare practice in the UK. The practices building their presence now aren&#39;t just winning this month — they&#39;re laying foundations that compound for years.</p>
+          </div>
+
+          <!-- Isolated closing gut-punch -->
+          <p class="revenue-close-final">What you do in the next 90 days will determine where your practice stands when AI search becomes the only channel that matters.</p>
+
+          <div class="revenue-close-cta-buttons">
+            <a href="#contact" class="btn btn-primary revenue-close-btn-primary">See If You&#39;re On The AI Shortlist →</a>
+            <a href="/services" class="revenue-close-btn-outline">See What We Build →</a>
+          </div>
+
         </div>
       </div>
     </section>

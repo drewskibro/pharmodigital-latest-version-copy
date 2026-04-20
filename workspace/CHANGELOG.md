@@ -18,6 +18,21 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-20] — Homepage: redesigned final closing section v2 — hierarchy overhaul (index.html)
+- Pulled 4.4× Semrush stat out as a large isolated callout (teal border-left, number + label treatment)
+- Left-aligned body copy — 2 paragraphs, more readable, less wall-of-text
+- "What you do in the next 90 days…" isolated as a large italic gut-punch line between body and CTAs
+- Italic headline stays centred at top; button styles cleaned up (removed duplicate btn-outline-white class)
+- Staggered scroll animation chain: headline → stat → body → final line → CTAs (0.25s apart)
+
+### [2026-04-20] — Homepage: redesigned final closing section v1 before footer (index.html)
+### [2026-04-20] — Homepage: redesigned final closing section before footer (index.html)
+- Replaced old "Across 50+ practices" + "Your practice. Your path." + 3-button CTA with centred closing copy
+- New `.revenue-close-section`: max-width 800px, centred, italic headline + 3 persuasive paragraphs + 2 CTAs
+- Primary: "See If You're On The AI Shortlist →" (teal solid), Secondary: "See What We Build →" (white outline)
+- Removed "Choose Your Practice Type" button, "Across 50+" sub, "Your practice. Your path." text entirely
+- Updated scroll animations to match new DOM: headline→body→buttons stagger with same rev-visible trigger
+
 ### [2026-04-20] — AI Domination System: Shift section — pulsating arrow connectors (ai-domination-system.html)
 - Arrow color: rgba(255,255,255,0.25) → amber (#f59e0b) with `arrowPulse` keyframe animation
 - Pulse: color fades 0.5→1 opacity, amber text-shadow glow, slight 3px translateX nudge — 2s infinite loop
