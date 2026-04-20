@@ -18,6 +18,58 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-20] — AI Domination System: Shift intro paragraph readability on desktop (ai-domination-system.html)
+- `.problem-shift-intro`: max-width narrowed 780px → 640px to shorten line length for easier reading
+- Font-size bumped 1.0625rem → 1.1875rem; color opacity raised 0.82 → 0.88; line-height 1.75 → 1.8
+- Added subtle letter-spacing (0.005em) for improved tracking on dark bg
+- Copy unchanged — purely a rendering/readability improvement
+
+### [2026-04-20] — AI Domination System: Shift section step 5 — responsive collapse + mobile treatment (ai-domination-system.html)
+- ≤768px: `.ps-pair-row` stacks vertical — stat on top, arrow separator, full-width red warning zone below
+- Disabled hover lift on mobile (no transform); reduced border-left to 3px; border-radius 14px
+- Stat text/number sizes scale down: clamp(2rem,7vw,2.75rem), stat-text 0.875rem, lose-text 0.9375rem
+- Added ≤420px breakpoint for small phones: tighter padding (1rem), smaller icons (24px), compact text
+- Completes all 5 steps of the paired stat/consequence row redesign plan
+
+### [2026-04-20] — AI Domination System: Shift section step 4 — typography hierarchy + arrow connector (ai-domination-system.html)
+- `.ps-pair-stat-num`: font-size bumped to clamp(2.5rem, 4vw, 3.25rem), weight 900, subtle amber text-shadow
+- `.ps-pair-vs`: changed from 1px divider with "vs" to 48px wide arrow (→) connector at 1.25rem — visual flow between win/lose
+- `.ps-pair-lose-icon`: size raised to 32px circle, red opacity bumped to 0.9/0.14 for stronger warning presence
+- `.ps-pair-lose-text`: opacity raised to 0.82, line-height to 1.55 for improved legibility
+- Mobile: arrow rotates 90° on stack; stat numbers scale down elegantly
+
+### [2026-04-20] — AI Domination System: Shift section step 3 — card/panel treatment for pair rows (ai-domination-system.html)
+- `.ps-pair-row`: border-left 4px solid #f59e0b (amber accent), border-radius 16px, box-shadow depth, hover lift
+- `.ps-pair-win`: background rgba(245,158,11,0.04) — subtle warm amber tint on stat side
+- `.ps-pair-lose`: background rgba(239,68,68,0.06) — red warning zone on consequence side
+- Padding bumped to 2rem 2.5rem for more breathing room; gap tightened to 1.25rem for tighter rhythm
+- Mobile: tinted backgrounds preserved at lower opacity for readability
+
+### [2026-04-20] — AI Domination System: Shift section step 2 — warm amber stats + legible consequences (ai-domination-system.html)
+- `.ps-pair-stat-num` color changed from var(--teal) to #f59e0b (warm amber/gold) — breaks teal monotony, pops on navy
+- `.ps-pair-lose-icon` color raised from rgba(220,80,80,0.6) to rgba(239,68,68,0.85) + bg to 0.12 — clearer red warning
+- `.ps-pair-lose-text` opacity raised from 0.6 to 0.78 — actually legible now
+- Creates amber=winning / red=losing colour story within the section
+
+### [2026-04-20] — AI Domination System: Shift section — paired stat/consequence rows step 1 (ai-domination-system.html)
+- Replaced two-column grid (`.problem-shift-columns`) with `.ps-pair-rows` — 5 paired flex rows
+- Each row: `.ps-pair-win` (stat left) + `.ps-pair-vs` divider + `.ps-pair-lose` (consequence right)
+- Consequence icons use red-tinted circle (rgba(220,80,80,0.6)) for warning emphasis
+- "vs" label on thin divider between halves; rows have subtle card bg (rgba white 0.04)
+- Mobile: rows collapse to vertical stack; headline/intro/teal banner untouched
+
+### [2026-04-20] — AI Domination System: merged Problem+Shift into unified dark navy section (ai-domination-system.html)
+- Removed split 40/60 Problem-left / Shift-right layout entirely
+- New single `.problem-shift-section` with dark navy bg, white text throughout
+- Headline, single intro paragraph, teal banner below completely untouched
+
+### [2026-04-19] — AI Domination System: hero subtext, stats, remove badge, Shift paragraph (ai-domination-system.html)
+- Hero subtitle replaced with Rahul/Raman/Sachin named-result copy + "No ad spend" kicker
+- Stats updated: Ealing revenue growth / Superior ChatGPT sales / Puri Mounjaro £100k
+- £497 floating badge removed entirely from hero image column
+- "The Shift" section paragraph replaced with 4-paragraph Boots-to-AI narrative inc. Semrush 4.4× stat
+- Old Game / New Game cards and teal strip left completely untouched
+
 ### [2026-04-17] — WPE hero: remove subtext bold, larger photo, clean label (web-pro-elite.html)
 - Removed all <strong> and <em> tags from .wpe-hero-subtitle — plain weight 400 body text throughout
 - Fixed malformed `<strong>Rahul</>` closing tag
