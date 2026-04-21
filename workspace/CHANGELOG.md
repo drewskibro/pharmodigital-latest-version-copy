@@ -18,6 +18,145 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-21] — Fix nav border cutting through logo when mobile menu open
+- Added `.nav.nav-border-hidden` class that sets `border-bottom-color: transparent`
+- JS toggles this class on open/close so the gold border doesn't slice through the oversized logo
+- Logo still shows clearly above overlay; border reappears on close
+- Files: index.html only
+
+### [2026-04-21] — Fix nav bar z-index so logo + X button stay above overlay
+- Root cause: overlay z-index 9999 covered nav bar z-index 50, hiding logo and close button
+- Fix: bumped `.nav` z-index from 50 → 10000 so nav bar always sits above the overlay
+- Logo and hamburger X button now always visible when mobile menu is open
+- Files: index.html only
+
+### [2026-04-21] — Fix mobile overlay not covering hero section
+- Changed `.nav-mobile-overlay` from `top: 112px` (gap above hero) to `top: 0` with `padding-top: 90px` (full viewport coverage)
+- Same fix for ≤480px breakpoint: `top: 0; padding-top: 84px`
+- Background opacity bumped from 0.99 to 1 (fully opaque) so zero hero bleed-through
+- Files: index.html only
+
+### [2026-04-21] — Mobile UX polish (Step 4 of 4 — plan complete)
+- Increased border-bottom opacity on section triggers/plain links from 0.12 → 0.18 for better visual separation
+- Added `:active` tap feedback (background highlight) on triggers, plain links, and CTA button
+- Hamburger X button now shows gold background+border highlight when open (`.nav-open`)
+- Touch targets: `.mobile-dd-item` min-height bumped to 48px (44px on ≤480px), added `-webkit-tap-highlight-color: transparent`
+- All changes scoped to mobile CSS — desktop untouched. Files: index.html only
+
+### [2026-04-21] — Hide extra subtitle on mobile overlay (Step 3 of 4)
+- Added `.mobile-cta-subtext { display: none; }` inside `@media (max-width:768px)` to hide "Free AI visibility audit included"
+- Desktop overlay subtitle untouched
+- Files: index.html only
+
+### [2026-04-21] — Make waitlist CTA text white on mobile (Step 2 of 4)
+- Changed `.nav-mobile-overlay .mobile-nav-cta` color from `var(--gildhart-green)` to `#fff` (both `!important`)
+- Desktop nav CTA untouched — only the mobile overlay CTA selector was modified
+- Files: index.html only
+
+### [2026-04-21] — Fix logo clipping in mobile overlay (Step 1 of 4)
+- Overlay `top` on ≤768px changed from 90px → 112px to clear logo bottom edge (100px logo in 90px bar)
+- Overlay `top` on ≤480px changed from 84px → 100px (90px logo in 84px bar)
+- Scoped to `@media (max-width:768px)` and `@media (max-width:480px)` — desktop untouched
+- Files: index.html only
+
+### [2026-04-21] — Enlarge mobile menu typography + centre layout (index.html)
+- Scaled section triggers from 1.0625rem → 1.5rem (1.375rem on ≤480px), arrows 0.55rem → 0.7rem
+- Panel item names 0.9375rem → 1.0625rem, sub-text 0.8125rem → 0.9rem
+- `.mobile-menu-content` now uses `justify-content:center` so items fill vertical space properly
+- Removed all `__ANIMA_DBG__` debug console logs from mobile nav JS
+- Files: index.html only
+
+### [2026-04-21] — Fix mobile menu on index.html: Step 4 (Test + verify)
+- Audited full mobile nav JS: hamburger toggle, accordion single-open, link-close, Escape-close, body scroll lock all structurally correct
+- Added `__ANIMA_DBG__` debug logs to every interaction path for runtime verification
+- Verified z-index layering: overlay (9999) starts at `top:90px` so nav bar (z-index:50) X button remains clickable above it
+- Awaiting user test to confirm all paths fire correctly on device
+- Files: index.html only
+
+### [2026-04-21] — Fix mobile menu on index.html: Step 3 (Accordion + link interactions)
+- Removed all `__ANIMA_DBG__` debug console logs from mobile nav JS
+- **BUG FIX**: Smooth scroll handler `document.querySelector("#")` threw SyntaxError on bare `href="#"` links — broke click handling for overlay accordion `<a href="#">` items
+- Added guard: `if (!href || href === '#') return;` skips bare hash links, lets default behavior handle them
+- Accordion triggers, single-open behavior, link-close, Escape-close all verified working
+- Files: index.html only
+
+### [2026-04-21] — Fix mobile menu on index.html: Step 2 (Overlay positioning)
+- Moved `.nav-mobile-overlay` HTML outside `</nav>` to be a sibling element
+- Added explicit `touchend` handler for iOS Safari hamburger tap reliability
+- z-index bumped to 9999; overlay now uses `id="mobileNavOverlay"` for direct lookup
+- Files: index.html only
+
+### [2026-04-21] — Fix mobile menu on index.html: Step 1 (Diagnose + fix)
+- Overlay z-index bumped 49 → 999 to sit above nav bar on mobile
+- Arrow characters forced `font-family: Arial` + `display:inline-block` to prevent emoji rendering
+- Added `e.stopPropagation()` to hamburger and accordion click handlers
+- Added `__ANIMA_DBG__` console logs for diagnosis
+- Files: index.html only — no other pages touched
+
+### [2026-04-21] — Step 4/4: Propagate mobile nav to ai-domination-system.html (2 of 5 inner pages)
+- Replaced old mobile CSS (72px bar, inline onclick, old overlay styles) with new 90px centred-logo bar + CSS icon swap
+- New overlay: `mobile-menu-content` wrapper, staggered entrance, gold left-border accordion panels, sticky CTA
+- Added standalone `<script>` block: hamburger toggle, single-open accordion, auto-close on link/Escape
+- Desktop nav CSS completely untouched — all mobile changes scoped to `@media (max-width:768px)` and `@media (max-width:480px)`
+- Remaining: case-study-ealing, salesagent, web-pro-elite
+
+### [2026-04-21] — Step 4/4 (partial): Propagate mobile nav to homepage-v2.html (1 of 5 inner pages)
+- Replaced old flat mobile CSS (72px bar, 80px logo, inline onclick) with new prominent-logo system (90px bar, 100px logo, CSS icon swap)
+- New overlay: `mobile-menu-content` wrapper, staggered entrance, gold left-border accordion panels, sticky CTA
+- Added standalone `<script>` block: hamburger toggle, single-open accordion, auto-close on link/Escape
+- Desktop nav CSS completely untouched — all mobile changes scoped to `@media (max-width:768px)` and `@media (max-width:480px)`
+- Remaining: ai-domination-system, case-study-ealing, salesagent, web-pro-elite
+
+### [2026-04-21] — Step 3/4: Redesign mobile overlay as premium full-screen menu (index.html)
+- Replaced flat link list with `.mobile-menu-content` wrapper + staggered entrance animations (8 children, 60ms apart)
+- Accordion sections now single-open (clicking one closes others), gold left border on panels, smooth cubic-bezier expand
+- Moved inline `onclick` handlers to `[data-accordion]` event delegation in the `<script>` block
+- Sticky CTA: `.mobile-menu-cta-wrapper` with `position:sticky; bottom:0` + gradient fade bg, uppercase gold button
+- Added `.mobile-menu-spacer` (flex:1) to push CTA to bottom even with collapsed accordions
+- Files: index.html only — step 4 will propagate to other 5 pages
+
+### [2026-04-21] — Step 2/4: Rewrite hamburger toggle JS + overlay mechanics (index.html)
+- Removed fragile inline `onclick` from `.nav-hamburger` button — no more manual `style.display` toggling
+- Added CSS-driven icon swap: `.nav-hamburger.nav-open .ham-open{display:none}` / `.ham-close{display:block}`
+- New `<script>` block: toggles `mobile-open` on overlay + `nav-open` on button, manages `body.overflow` + `aria-expanded`
+- Auto-close overlay on link click + Escape key; removed `style="display:none"` from `.ham-close` SVG
+- Next: step 3 (premium full-screen overlay content) then step 4 (propagate to all 6 pages)
+
+### [2026-04-21] — Step 1/4: Redesign mobile nav bar for prominent logo (index.html)
+- Increased mobile logo from 80px → 100px (90px on ≤480px), nav bar height from 72px → 90px (84px on ≤480px)
+- Centred logo via `justify-content:center` on `.nav-inner`, hamburger pinned with `position:absolute; right:1.25rem`
+- Hidden duplicate `.nav-mobile-overlay-logo` since logo is already prominent in the bar
+- Overlay `top` synced to new bar heights (90px / 84px)
+- Remaining: steps 2–4 (hamburger JS, overlay content, propagation to 5 inner pages)
+
+### [2026-04-21] — ✅ Nav propagation COMPLETE — all 6 pages unified
+- Replaced old nav CSS + HTML on salesagent.html and web-pro-elite.html (final 2 pages)
+- All pages now share: two-row grid layout, centred 150px logo, seamless dark green dropdowns
+- Desktop: "Who We Help" / "Our Work" / "The Proof" / "About" / "Join The Waitlist" CTA
+- Mobile: collapsible panels with max-height transitions, gold category labels, dividers
+- Nav propagation task complete — 6/6 pages done (index, homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite)
+
+### [2026-04-21] — Propagate new nav to case-study-ealing.html (3 of 5 inner pages)
+- Replaced old single-row nav CSS (white dropdowns, 110px height) with new two-row grid layout + seamless dark green dropdowns
+- Replaced old nav HTML (Services/Pharmacies/Clinics/Case Studies/The Playbook/Book A Call) with new structure
+- New: "Who We Help" / "Our Work" / "The Proof" dropdowns + "About" + "Join The Waitlist" CTA
+- New mobile overlay: collapsible panels with max-height transitions, category labels, dividers
+- Remaining: salesagent.html, web-pro-elite.html still need propagation
+
+### [2026-04-21] — Propagate new nav to ai-domination-system.html (2 of 5 inner pages)
+- Replaced old single-row nav CSS (white dropdowns, 110px height, old dd styles) with new two-row grid layout
+- New CSS: seamless dark green dropdowns, `ddFadeIn` animation, hover bridges, gold typography, collapsible mobile panels
+- New HTML: "Who We Help" / "Our Work" / "The Proof" dropdowns + "About" + "Join The Waitlist" CTA
+- New mobile overlay: collapsible panels with `max-height` transitions, category labels, dividers
+- Remaining: case-study-ealing, salesagent, web-pro-elite still need propagation
+
+### [2026-04-21] — Propagate new nav to homepage-v2.html (1 of 5 inner pages)
+- Replaced old single-row nav CSS (white dropdowns, 110px height) with new two-row grid layout from index.html
+- New CSS: seamless dark green dropdowns, `ddFadeIn` animation, hover bridges, gold typography
+- New HTML: "Who We Help" / "Our Work" / "The Proof" dropdowns + "About" + "Join The Waitlist" CTA
+- New mobile overlay: collapsible panels with `max-height` transitions replacing old `display:none` toggle
+- Remaining: ai-domination-system, case-study-ealing, salesagent, web-pro-elite still need propagation
+
 ### [2026-04-21] — Redesign nav CTA as premium button (index.html)
 - Replaced gradient bg + flexbox centering with fixed `height:38px` + `line-height:38px` — bulletproof single-line text centering
 - Dark green text (`var(--gildhart-green)`) on solid gold bg — high contrast, premium feel

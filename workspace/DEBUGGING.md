@@ -47,6 +47,20 @@ CRITICAL: Keep this file under 300 lines. You are allowed to summarize, change t
 
 ## Current Issues
 
+### [2026-04-21] — Mobile menu not opening on index.html — RESOLVED
+
+**Status:** Fixed (Step 3 of 4)
+**Symptoms:** Tapping hamburger on mobile does nothing. Overlay never appears.
+**Environment:** index.html, all mobile viewports (≤768px)
+**Root Cause (ACTUAL):** Missing `</div>` closing tag for `.nav-mobile-overlay` — entire page content (hero, sections, footer) was inside the overlay div. When overlay was hidden, entire page disappeared.
+**Secondary issue:** `display:none` base + `display:flex` on `.mobile-open` can't be CSS-transitioned — overlay appeared without animation.
+**Investigation Steps:**
+- Step 1: Added `__ANIMA_DBG__` logs — confirmed handler fires but overlay not visible
+- Step 2: Moved overlay outside sticky nav, added touchend for iOS, z-index→9999
+- Step 3: Found missing `</div>` — the ACTUAL root cause. Reverted to `display:flex` always with `visibility/opacity/pointer-events` for show/hide
+**Solution:** Added missing `</div>`, reverted to visibility-based show/hide, cleaned up JS to single click handler with `isOpen` flag, accordion panels reset on close. Fixed smooth scroll handler throwing SyntaxError on `querySelector("#")` for bare-hash overlay links.
+**Prevention:** Never place `position:fixed` overlays inside `position:sticky` containers. Always verify closing tags for overlay containers. Guard `querySelector()` calls against bare `#` selectors.
+
 <!-- Newest debugging entries first. Closed issues move to "Resolved Issues" below. -->
 
 ## Resolved Issues

@@ -91,7 +91,7 @@
       .nav {
         position: sticky;
         top: 0;
-        z-index: 50;
+        z-index: 10000;
         background: rgba(30,61,47,0.97);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid rgba(201,164,74,0.18);
@@ -374,8 +374,19 @@
       .nav-hamburger:hover { background: rgba(250,245,238,0.08); }
       .nav-hamburger:active { background: rgba(250,245,238,0.12); }
       .nav-hamburger svg { display: block; }
-      /* Gold colour for the X (close) icon */
+      /* Gold colour for the X (close) icon — larger hit area when open */
       .nav-hamburger .ham-close { color: var(--gildhart-gold); }
+      .nav-hamburger.nav-open {
+        background: rgba(201,164,74,0.12);
+        border: 1px solid rgba(201,164,74,0.25);
+      }
+      /* CSS-driven icon swap via .nav-open class */
+      .nav-hamburger .ham-close { display: none; }
+      .nav-hamburger.nav-open .ham-open { display: none; }
+      .nav-hamburger.nav-open .ham-close { display: block; }
+
+      /* Hide nav border when mobile menu is open so it doesn't cut through the logo */
+      .nav.nav-border-hidden { border-bottom-color: transparent; }
 
       /* Mobile nav overlay */
       .nav-mobile-overlay {
@@ -384,17 +395,15 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(30,61,47,0.99);
+        background: rgba(30,61,47,1);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        z-index: 49;
-        padding: 0 2rem 2rem;
+        z-index: 9999;
+        padding: 0;
+        display: flex;
         flex-direction: column;
-        gap: 0.25rem;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        /* Hidden by default with slide-down animation */
-        display: flex;
         opacity: 0;
         transform: translateY(-12px);
         pointer-events: none;
@@ -407,29 +416,42 @@
         pointer-events: auto;
         visibility: visible;
       }
-      /* Centred logo at top of overlay */
-      .nav-mobile-overlay-logo {
+      /* Staggered entrance for overlay children */
+      .nav-mobile-overlay .mobile-menu-content > * {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0.08s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.14s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.20s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.26s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay:0.32s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(6) { opacity:1; transform:translateY(0); transition-delay:0.38s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(7) { opacity:1; transform:translateY(0); transition-delay:0.44s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(8) { opacity:1; transform:translateY(0); transition-delay:0.50s; }
+
+      /* Hidden — overlay logo no longer needed */
+      .nav-mobile-overlay-logo { display: none; }
+
+      /* Main scrollable content area */
+      .mobile-menu-content {
+        flex: 1;
+        padding: 2.5rem 2.5rem 2rem;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
-        padding: 1.5rem 0 1.25rem;
-        border-bottom: 1px solid rgba(201,164,74,0.15);
-        margin-bottom: 0.75rem;
-        flex-shrink: 0;
+        gap: 0.25rem;
       }
-      .nav-mobile-overlay-logo img {
-        width: 80px;
-        height: 80px;
-        object-fit: contain;
-        filter: drop-shadow(0 2px 8px rgba(201,164,74,0.3));
-      }
+
+      /* Generic resets for overlay links/buttons */
       .nav-mobile-overlay a,
       .nav-mobile-overlay button {
         font-size: 1.125rem;
         font-weight: 500;
         color: #FAF5EE;
         text-decoration: none;
-        padding: 0.875rem 0;
+        padding: 0;
         border: none;
         background: none;
         font-family: inherit;
@@ -437,128 +459,175 @@
         text-align: left;
         display: block;
         width: 100%;
-        min-height: 48px;
+        min-height: auto;
         transition: color 0.2s ease;
       }
       .nav-mobile-overlay a:hover,
       .nav-mobile-overlay button:hover { color: var(--gildhart-gold); }
 
-      /* Mobile section triggers */
+      /* ─── Mobile accordion section triggers ─── */
       .mobile-nav-section-trigger {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 1.125rem;
-        font-weight: 500;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
         color: #FAF5EE;
-        padding: 1rem 0;
+        padding: 1.25rem 0;
         border: none;
         background: none;
         font-family: inherit;
         cursor: pointer;
         text-align: left;
         width: 100%;
-        min-height: 48px;
-        border-bottom: 1px solid rgba(201,164,74,0.1);
-        transition: color 0.2s ease;
+        min-height: 56px;
+        border-bottom: 1px solid rgba(201,164,74,0.18);
+        transition: color 0.2s ease, background 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
       }
       .mobile-nav-section-trigger:hover { color: var(--gildhart-gold); }
+      .mobile-nav-section-trigger:active { color: var(--gildhart-gold); background: rgba(201,164,74,0.06); }
       .mobile-dd-arrow {
-        font-size: 0.55rem;
-        transition: transform 0.3s ease;
-        color: rgba(250,245,238,0.5);
+        font-size: 0.7rem;
+        transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+        color: var(--gildhart-gold);
+        opacity: 0.7;
+        display: inline-block;
+        line-height: 1;
+        font-family: Arial, Helvetica, sans-serif;
       }
 
-      /* Mobile dropdown panels */
+      /* ─── Accordion panels ─── */
       .mobile-dd-panel {
-        padding-left: 0.5rem;
+        padding-left: 0.75rem;
+        border-left: 2px solid rgba(201,164,74,0.15);
+        margin-left: 0.25rem;
       }
       .mobile-dd-panel .mobile-dd-item {
         display: block;
         padding: 0.875rem 1rem;
         text-decoration: none;
-        border-bottom: 1px solid rgba(201,164,74,0.08);
-        transition: background 0.15s ease;
-        min-height: auto;
+        border-bottom: 1px solid rgba(201,164,74,0.06);
+        transition: background 0.15s ease, padding-left 0.2s ease;
+        min-height: 48px;
+        border-radius: 6px;
+        margin-bottom: 2px;
+        -webkit-tap-highlight-color: transparent;
       }
       .mobile-dd-panel .mobile-dd-item:last-child {
         border-bottom: none;
       }
       .mobile-dd-panel .mobile-dd-item:hover {
         background: rgba(201,164,74,0.06);
+        padding-left: 1.25rem;
       }
       .mobile-dd-item-name {
         display: block;
-        font-size: 0.9375rem;
+        font-size: 1.0625rem;
         font-weight: 600;
         color: var(--gildhart-gold);
         letter-spacing: 0.04em;
         line-height: 1.3;
       }
       .mobile-dd-panel .mobile-dd-item:hover .mobile-dd-item-name {
-        color: #d4b35a;
+        color: #e0bf7a;
       }
       .mobile-dd-item-sub {
         display: block;
-        font-size: 0.8125rem;
+        font-size: 0.9rem;
         font-weight: 300;
-        color: #F5ECD7;
+        color: rgba(245,236,215,0.75);
         line-height: 1.5;
-        margin-top: 3px;
+        margin-top: 4px;
       }
 
-      /* Mobile category labels */
+      /* Category labels inside panels */
       .mobile-dd-category-label {
         display: block;
         font-family: 'Space Mono', monospace;
-        font-size: 0.625rem;
+        font-size: 0.6rem;
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        font-variant: small-caps;
         color: var(--gildhart-gold);
-        padding: 0.875rem 1rem 0.375rem;
+        opacity: 0.65;
+        padding: 0.75rem 1rem 0.25rem;
         min-height: auto;
       }
 
-      /* Mobile divider between categories */
+      /* Divider between categories */
       .mobile-dd-divider {
         height: 1px;
-        background: var(--gildhart-gold);
-        opacity: 0.25;
-        margin: 0.25rem 1rem;
+        background: linear-gradient(90deg, rgba(201,164,74,0.3), rgba(201,164,74,0.05));
+        margin: 0.375rem 1rem;
       }
 
-      /* Plain link (About) */
+      /* ─── Plain link (About) ─── */
       .mobile-nav-plain-link {
-        display: block;
-        font-size: 1.125rem;
-        font-weight: 500;
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
         color: #FAF5EE;
         text-decoration: none;
-        padding: 1rem 0;
-        border-bottom: 1px solid rgba(201,164,74,0.1);
-        min-height: 48px;
-        transition: color 0.2s ease;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid rgba(201,164,74,0.18);
+        min-height: 56px;
+        transition: color 0.2s ease, background 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
       }
       .mobile-nav-plain-link:hover { color: var(--gildhart-gold); }
+      .mobile-nav-plain-link:active { color: var(--gildhart-gold); background: rgba(201,164,74,0.06); }
+
+      /* ─── Spacer to push CTA down ─── */
+      .mobile-menu-spacer {
+        flex: 1;
+        min-height: 1.5rem;
+      }
+
+      /* ─── Bottom CTA — sticky at bottom of viewport ─── */
+      .mobile-menu-cta-wrapper {
+        position: sticky;
+        bottom: 0;
+        padding: 1rem 2rem 1.5rem;
+        background: linear-gradient(to top, rgba(30,61,47,1) 60%, rgba(30,61,47,0));
+        z-index: 2;
+        flex-shrink: 0;
+      }
       .nav-mobile-overlay .mobile-nav-cta {
         display: block;
         background: var(--gildhart-gold);
-        color: var(--gildhart-black) !important;
+        color: #fff !important;
         padding: 1rem 1.75rem;
-        border-radius: 10px;
+        border-radius: 12px;
         font-weight: 700 !important;
-        font-size: 1.05rem !important;
+        font-size: 1rem !important;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
         text-align: center;
-        margin-top: 1.5rem;
-        box-shadow: 0 4px 16px rgba(201,164,74,0.25);
+        text-decoration: none;
+        box-shadow: 0 4px 24px rgba(201,164,74,0.3), 0 1px 3px rgba(0,0,0,0.15);
         transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
       }
       .nav-mobile-overlay .mobile-nav-cta:hover {
         background: #b8912f;
         transform: translateY(-1px);
-        box-shadow: 0 6px 24px rgba(201,164,74,0.35);
+        box-shadow: 0 6px 32px rgba(201,164,74,0.4), 0 2px 6px rgba(0,0,0,0.2);
+      }
+      .nav-mobile-overlay .mobile-nav-cta:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 12px rgba(201,164,74,0.3);
+      }
+      .mobile-cta-subtext {
+        display: block;
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: rgba(250,245,238,0.4);
+        margin-top: 0.625rem;
+        letter-spacing: 0.02em;
       }
 
       @media (max-width: 1024px) {
@@ -584,10 +653,6 @@
           line-height: 34px;
           padding: 0 1.25rem;
         }
-        .nav-mobile-overlay-logo img {
-          width: 80px;
-          height: 80px;
-        }
       }
       @media (max-width: 768px) {
         .nav-links { display: none; }
@@ -595,44 +660,78 @@
         .nav-hamburger { display: flex; }
         .nav-inner {
           display: flex;
-          justify-content: space-between;
-          height: 72px;
-          min-height: 72px;
+          justify-content: center;
+          align-items: center;
+          height: 90px;
+          min-height: 90px;
           padding: 0 1.25rem;
+          position: relative;
         }
         .nav-brand {
           grid-column: unset;
           grid-row: unset;
           padding: 0;
+          /* Centred via flex on parent */
         }
         .nav-brand img {
-          max-width: 80px;
-          max-height: 80px;
+          max-width: 100px;
+          max-height: 100px;
         }
+        .nav-hamburger {
+          position: absolute;
+          right: 1.25rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        /* Full-screen overlay — padding-top clears the nav bar */
         .nav-mobile-overlay {
-          top: 72px;
-          padding: 0 1.5rem 2rem;
+          top: 0;
+          padding-top: 90px;
         }
-        .nav-mobile-overlay-logo img {
-          width: 56px;
-          height: 56px;
+        .mobile-menu-content {
+          padding: 2rem 2rem 1.5rem;
+        }
+        .mobile-menu-cta-wrapper {
+          padding: 1rem 1.75rem 1.5rem;
+        }
+        .mobile-cta-subtext {
+          display: none;
+        }
+        /* Ensure first section trigger has no top border for cleanliness */
+        .mobile-menu-content .mobile-nav-section-trigger:first-child {
+          border-top: none;
+          padding-top: 0.5rem;
         }
       }
       @media (max-width: 480px) {
+        .nav-inner {
+          height: 84px;
+          min-height: 84px;
+        }
+        .nav-brand img {
+          max-width: 90px;
+          max-height: 90px;
+        }
+        /* Smaller nav bar — adjust padding-top */
         .nav-mobile-overlay {
-          padding: 0 1.25rem 1.5rem;
+          top: 0;
+          padding-top: 84px;
         }
-        .nav-mobile-overlay a,
-        .nav-mobile-overlay button {
-          font-size: 1rem;
-          padding: 0.75rem 0;
+        .mobile-menu-content {
+          padding: 1rem 1.25rem 1.25rem;
         }
-        .nav-mobile-overlay-logo {
-          padding: 1.25rem 0 1rem;
+        .mobile-menu-cta-wrapper {
+          padding: 0.75rem 1.25rem 1.25rem;
         }
-        .nav-mobile-overlay-logo img {
-          width: 48px;
-          height: 48px;
+        .mobile-nav-section-trigger,
+        .mobile-nav-plain-link {
+          font-size: 1.375rem;
+          padding: 1.125rem 0;
+          min-height: 52px;
+        }
+        .mobile-dd-panel .mobile-dd-item {
+          min-height: 44px;
+          padding: 0.75rem 0.875rem;
         }
       }
 
@@ -4846,113 +4945,95 @@
           <a href="#contact" class="nav-cta">Join The Waitlist</a>
         </div>
         <!-- Mobile hamburger -->
-        <button
-          class="nav-hamburger"
-          aria-label="Open navigation menu"
-          onclick="var o=document.querySelector('.nav-mobile-overlay');o.classList.toggle('mobile-open');document.body.style.overflow=o.classList.contains('mobile-open')?'hidden':'';this.querySelector('.ham-open').style.display=this.querySelector('.ham-open').style.display==='none'?'block':'none';this.querySelector('.ham-close').style.display=this.querySelector('.ham-close').style.display==='none'?'block':'none';"
-        >
-          <svg
-            class="ham-open"
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
+        <button class="nav-hamburger" aria-label="Open navigation menu">
+          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg
-            class="ham-close"
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            style="display:none"
-          >
+          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <!-- Mobile nav overlay -->
-      <div class="nav-mobile-overlay">
-        <div class="nav-mobile-overlay-logo">
-          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" />
-        </div>
-
-        <!-- Who We Help -->
-        <button class="mobile-nav-section-trigger" onclick="var p=this.nextElementSibling;var a=this.querySelector('.mobile-dd-arrow');if(p.style.maxHeight&&p.style.maxHeight!=='0px'){p.style.maxHeight='0px';p.style.opacity='0';a.style.transform='rotate(0deg)';}else{p.style.maxHeight=p.scrollHeight+'px';p.style.opacity='1';a.style.transform='rotate(180deg)';}">Who We Help <span class="mobile-dd-arrow">▼</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.3s ease, opacity 0.25s ease;">
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Pharmacy Groups</span>
-          </a>
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Private Clinics</span>
-          </a>
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Enterprise Healthcare</span>
-          </a>
-        </div>
-
-        <!-- Our Work -->
-        <button class="mobile-nav-section-trigger" onclick="var p=this.nextElementSibling;var a=this.querySelector('.mobile-dd-arrow');if(p.style.maxHeight&&p.style.maxHeight!=='0px'){p.style.maxHeight='0px';p.style.opacity='0';a.style.transform='rotate(0deg)';}else{p.style.maxHeight=p.scrollHeight+'px';p.style.opacity='1';a.style.transform='rotate(180deg)';}">Our Work <span class="mobile-dd-arrow">▼</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.3s ease, opacity 0.25s ease;">
-          <a href="web-pro-elite.html" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">The Build</span>
-            <span class="mobile-dd-item-sub">Bespoke Healthcare Website</span>
-          </a>
-          <a href="salesagent.html" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">The Agent</span>
-            <span class="mobile-dd-item-sub">Your Practice Never Closes</span>
-          </a>
-          <a href="ai-domination-system.html" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">The Method</span>
-            <span class="mobile-dd-item-sub">DIY Access &#163;497</span>
-          </a>
-        </div>
-
-        <!-- The Proof -->
-        <button class="mobile-nav-section-trigger" onclick="var p=this.nextElementSibling;var a=this.querySelector('.mobile-dd-arrow');if(p.style.maxHeight&&p.style.maxHeight!=='0px'){p.style.maxHeight='0px';p.style.opacity='0';a.style.transform='rotate(0deg)';}else{p.style.maxHeight=p.scrollHeight+'px';p.style.opacity='1';a.style.transform='rotate(180deg)';}">The Proof <span class="mobile-dd-arrow">▼</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.3s ease, opacity 0.25s ease;">
-          <span class="mobile-dd-category-label">Client Results</span>
-          <a href="case-study-ealing.html" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Ealing Travel Clinic</span>
-            <span class="mobile-dd-item-sub">300% Revenue Growth</span>
-          </a>
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Superior Pharmacy</span>
-            <span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span>
-          </a>
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Puri Pharmacy</span>
-            <span class="mobile-dd-item-sub">Outranking Boots Nationally</span>
-          </a>
-          <div class="mobile-dd-divider"></div>
-          <span class="mobile-dd-category-label">Latest Builds</span>
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span>
-            <span class="mobile-dd-item-sub">Premium Multi-Site Build</span>
-          </a>
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Easy Clinic</span>
-            <span class="mobile-dd-item-sub">Premium Private Clinic Build</span>
-          </a>
-          <a href="#" class="mobile-dd-item">
-            <span class="mobile-dd-item-name">Southdowns Pharmacy Group</span>
-            <span class="mobile-dd-item-sub">AI Agent</span>
-          </a>
-        </div>
-
-        <!-- About (plain link) -->
-        <a href="#about" class="mobile-nav-plain-link">About</a>
-
-        <!-- CTA -->
-        <a href="#contact" class="mobile-nav-cta">Join The Waitlist</a>
-      </div>
     </nav>
+    <!-- Mobile nav overlay — MUST be outside <nav> (position:sticky breaks position:fixed children on mobile) -->
+    <div class="nav-mobile-overlay" id="mobileNavOverlay">
+        <div class="mobile-menu-content">
+          <!-- Who We Help -->
+          <button class="mobile-nav-section-trigger" data-accordion>Who We Help <span class="mobile-dd-arrow">&#9662;</span></button>
+          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Pharmacy Groups</span>
+            </a>
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Private Clinics</span>
+            </a>
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Enterprise Healthcare</span>
+            </a>
+          </div>
 
+          <!-- Our Work -->
+          <button class="mobile-nav-section-trigger" data-accordion>Our Work <span class="mobile-dd-arrow">&#9662;</span></button>
+          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+            <a href="web-pro-elite.html" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">The Build</span>
+              <span class="mobile-dd-item-sub">Bespoke Healthcare Website</span>
+            </a>
+            <a href="salesagent.html" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">The Agent</span>
+              <span class="mobile-dd-item-sub">Your Practice Never Closes</span>
+            </a>
+            <a href="ai-domination-system.html" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">The Method</span>
+              <span class="mobile-dd-item-sub">DIY Access &#163;497</span>
+            </a>
+          </div>
+
+          <!-- The Proof -->
+          <button class="mobile-nav-section-trigger" data-accordion>The Proof <span class="mobile-dd-arrow">&#9662;</span></button>
+          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+            <span class="mobile-dd-category-label">Client Results</span>
+            <a href="case-study-ealing.html" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Ealing Travel Clinic</span>
+              <span class="mobile-dd-item-sub">300% Revenue Growth</span>
+            </a>
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Superior Pharmacy</span>
+              <span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span>
+            </a>
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Puri Pharmacy</span>
+              <span class="mobile-dd-item-sub">Outranking Boots Nationally</span>
+            </a>
+            <div class="mobile-dd-divider"></div>
+            <span class="mobile-dd-category-label">Latest Builds</span>
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span>
+              <span class="mobile-dd-item-sub">Premium Multi-Site Build</span>
+            </a>
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Easy Clinic</span>
+              <span class="mobile-dd-item-sub">Premium Private Clinic Build</span>
+            </a>
+            <a href="#" class="mobile-dd-item">
+              <span class="mobile-dd-item-name">Southdowns Pharmacy Group</span>
+              <span class="mobile-dd-item-sub">AI Agent</span>
+            </a>
+          </div>
+
+          <!-- About (plain link) -->
+          <a href="#about" class="mobile-nav-plain-link">About</a>
+
+          <!-- Spacer pushes CTA to bottom -->
+          <div class="mobile-menu-spacer"></div>
+        </div>
+
+        <!-- Sticky CTA at bottom -->
+        <div class="mobile-menu-cta-wrapper">
+          <a href="#contact" class="mobile-nav-cta">Join The Waitlist</a>
+          <span class="mobile-cta-subtext">Free AI visibility audit included</span>
+        </div>
+    </div>
     <!-- Hero -->
     <section class="hero">
       <div class="hero-inner">
@@ -5868,11 +5949,117 @@
     </footer>
 
     <script>
-      // Smooth scroll for anchor links
+      // ── Mobile nav toggle ──
+      (function() {
+        var hamburger = document.querySelector('.nav-hamburger');
+        var overlay = document.getElementById('mobileNavOverlay');
+        if (!hamburger || !overlay) return;
+
+        var isOpen = false;
+
+        var navEl = document.querySelector('.nav');
+
+        function openMenu() {
+            isOpen = true;
+          overlay.classList.add('mobile-open');
+          hamburger.classList.add('nav-open');
+          if (navEl) navEl.classList.add('nav-border-hidden');
+          hamburger.setAttribute('aria-label', 'Close navigation menu');
+          hamburger.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+          isOpen = false;
+          overlay.classList.remove('mobile-open');
+          hamburger.classList.remove('nav-open');
+          if (navEl) navEl.classList.remove('nav-border-hidden');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+          // Collapse all accordion panels on close
+          overlay.querySelectorAll('.mobile-dd-panel').forEach(function(p) {
+            p.style.maxHeight = '0px';
+            p.style.opacity = '0';
+          });
+          overlay.querySelectorAll('.mobile-dd-arrow').forEach(function(a) {
+            a.style.transform = 'rotate(0deg)';
+          });
+        }
+
+        function toggleMenu(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+
+        // Close overlay when a nav link inside it is clicked
+        overlay.addEventListener('click', function(e) {
+          var link = e.target.closest('a');
+          if (link) {
+            closeMenu();
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && isOpen) {
+            closeMenu();
+          }
+        });
+
+        // ── Accordion toggles (data-accordion buttons) ──
+        var triggers = overlay.querySelectorAll('[data-accordion]');
+
+        triggers.forEach(function(trigger) {
+          trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var panel = this.nextElementSibling;
+            var arrow = this.querySelector('.mobile-dd-arrow');
+            if (!panel || !panel.classList.contains('mobile-dd-panel')) return;
+
+            var isExpanded = parseInt(panel.style.maxHeight, 10) > 0;
+
+            // Close all other panels first (single-open accordion)
+            triggers.forEach(function(otherTrigger) {
+              if (otherTrigger === trigger) return;
+              var otherPanel = otherTrigger.nextElementSibling;
+              var otherArrow = otherTrigger.querySelector('.mobile-dd-arrow');
+              if (otherPanel && otherPanel.classList.contains('mobile-dd-panel')) {
+                otherPanel.style.maxHeight = '0px';
+                otherPanel.style.opacity = '0';
+                if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+              }
+            });
+
+            // Toggle this panel
+            if (isExpanded) {
+              panel.style.maxHeight = '0px';
+              panel.style.opacity = '0';
+              if (arrow) arrow.style.transform = 'rotate(0deg)';
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + 'px';
+              panel.style.opacity = '1';
+              if (arrow) arrow.style.transform = 'rotate(180deg)';
+            }
+          });
+        });
+      })();
+
+      // Smooth scroll for anchor links (skip bare "#" — querySelector("#") throws SyntaxError)
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+          var href = this.getAttribute('href');
+          if (!href || href === '#') return; // let default behavior handle bare #
           e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
+          var target = document.querySelector(href);
           if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }

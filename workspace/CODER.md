@@ -20,7 +20,7 @@ Keep entries sorted in DESC order (newest first) so recent knowledge stays in pr
 - **Right nav items**: "The Proof" dropdown (CLIENT RESULTS + LATEST BUILDS), plain "About" link, "Join The Waitlist" CTA
 - **Dropdown styling**: `.dd-section-label` colour is `var(--gildhart-gold)`, divider between categories uses gold with `opacity:0.25`
 - **Logo img**: `uploaded-asset-1776767932323-0.png` at 150px max (desktop), 120px tablet, 80px mobile
-- **Other 5 pages**: still have OLD nav (Services/Pharmacies/Clinics/Case Studies/The Playbook/Book A Call)
+- **All 6 pages**: unified nav propagation COMPLETE (index, homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite)
 
 ## Known Gotchas
 - **Duplicate CSS selector bug**: When adding new CSS properties to `.nav-brand` across multiple HTML files via replace_in_file, the SEARCH block must include the full opening `{` context to avoid creating a duplicate unclosed brace. Always verify the replacement doesn't produce `selector {\nselector {` — this silently breaks all CSS that follows.

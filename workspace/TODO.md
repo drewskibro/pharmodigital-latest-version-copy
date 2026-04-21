@@ -17,16 +17,16 @@ Rules:
 </instructions>
 
 <todo>
-Propagate new nav to other 5 pages
-index.html nav redesign complete — replicate to homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite
+Propagate mobile menu fixes to other 5 pages
+All 4 overlay fix steps complete on index.html. Apply the same CSS/JS to homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite.
 </todo>
 
 <todo>
-Build /services page for "Done For You" pathway
-homepage-v2.html links to /services — needs dedicated page with DFY packages, pricing, process
+Review all footer links across 6 pages
+Footer links still reference old nav structure (Services/Case Studies) — should match new nav items
 </todo>
 
 <todo>
-Build /choose vertical router page
-homepage-v2.html "Choose Your Type" card links to /choose — needs pharmacy/clinic/hospital selector
+User test mobile overlay on real device
+Verify touch targets, accordion smoothness, CTA tap feedback, and X button visibility on iOS/Android
 </todo>
