@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PharmoDigital - Healthcare Marketing Agency</title>
+    <title>Gildhart — AI Search for Healthcare</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,6 +28,11 @@
         --gray-400: #9ca3af;
         --gray-600: #4b5563;
         --white: #ffffff;
+        /* Gildhart brand tokens */
+        --gildhart-green: #1E3D2F;
+        --gildhart-gold: #C9A44A;
+        --gildhart-cream: #F0E6C8;
+        --gildhart-black: #0D1A12;
       }
 
       body {
@@ -53,12 +58,13 @@
       }
 
       .btn-primary {
-        background: var(--teal);
-        color: white;
+        background: var(--gildhart-gold);
+        color: var(--gildhart-black);
       }
 
       .btn-primary:hover {
-        background: var(--teal-dark);
+        background: #b8912f;
+        color: var(--gildhart-black);
       }
 
       .btn-dark {
@@ -106,7 +112,7 @@
         color: var(--navy);
         text-decoration: none;
       }
-      .nav-brand span { color: var(--teal); }
+      .nav-brand span { color: var(--gildhart-gold); }
       .nav-links {
         display: flex;
         align-items: center;
@@ -378,8 +384,8 @@
         bottom: 0;
         width: 100%;
         height: 2px;
-        background: var(--teal);
-        opacity: 0.6;
+        background: var(--gildhart-gold);
+        opacity: 0.7;
       }
 
       @keyframes eyebrowReveal {
@@ -573,7 +579,7 @@
 
       .scorecard-accent {
         height: 6px;
-        background: linear-gradient(90deg, var(--teal) 0%, #0d9488 100%);
+        background: linear-gradient(90deg, var(--gildhart-green) 0%, #152d21 100%);
         width: 100%;
       }
 
@@ -594,7 +600,7 @@
         font-size: 0.7rem;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         font-weight: 600;
       }
 
@@ -685,7 +691,7 @@
       }
 
       .status-unknown {
-        color: var(--teal);
+        color: var(--gildhart-gold);
         font-weight: 600;
       }
 
@@ -720,7 +726,7 @@
 
       .scorecard-cta {
         font-size: 0.875rem;
-        color: var(--teal);
+        color: var(--gildhart-green);
         font-weight: 600;
         display: flex;
         align-items: center;
@@ -730,6 +736,33 @@
 
       .scorecard-cta::before {
         content: '↓';
+      }
+
+      /* ─── Gildhart section divider logo mark ─── */
+      .gh-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 0;
+        gap: 1.5rem;
+      }
+      .gh-divider::before,
+      .gh-divider::after {
+        content: '';
+        flex: 1;
+        max-width: 120px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(201,164,74,0.35));
+      }
+      .gh-divider::after {
+        background: linear-gradient(270deg, transparent, rgba(201,164,74,0.35));
+      }
+      .gh-divider img {
+        width: 60px;
+        height: 60px;
+        opacity: 0.55;
+        filter: drop-shadow(0 2px 6px rgba(201,164,74,0.25));
+        border-radius: 50%;
       }
 
       /* Logo Bar - Full Width */
@@ -919,8 +952,8 @@
       .featured-quote-mark {
         font-size: 5rem;
         line-height: 1;
-        color: var(--teal);
-        opacity: 0.6;
+        color: var(--gildhart-gold);
+        opacity: 0.55;
         margin-bottom: -1rem;
         font-family: Georgia, serif;
       }
@@ -934,7 +967,7 @@
       }
 
       .featured-quote strong {
-        color: var(--teal);
+        color: var(--gildhart-green);
         font-weight: 600;
       }
 
@@ -1229,7 +1262,7 @@
       .case-card-tag {
         font-size: 0.75rem;
         font-weight: 600;
-        color: var(--teal);
+        color: var(--gildhart-green);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 0.75rem;
@@ -1258,7 +1291,7 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.06em;
-        color: var(--teal);
+        color: var(--gildhart-green);
         text-decoration: none;
         padding: 0.625rem 0;
         border-bottom: 2px solid transparent;
@@ -1266,7 +1299,7 @@
       }
 
       .case-card-cta:hover {
-        border-bottom-color: var(--teal);
+        border-bottom-color: var(--gildhart-green);
         gap: 0.65rem;
       }
 
@@ -1305,7 +1338,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.75rem;
         font-weight: 700;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         letter-spacing: 0.14em;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
@@ -1370,9 +1403,9 @@
       }
 
       .method-week-block.active {
-        background: rgba(20,184,166,0.22);
-        border-right-color: rgba(20,184,166,0.3);
-        box-shadow: inset 0 0 0 2px rgba(20,184,166,0.4);
+        background: rgba(30,61,47,0.18);
+        border-right-color: rgba(30,61,47,0.3);
+        box-shadow: inset 0 0 0 2px rgba(30,61,47,0.35);
       }
 
       .method-week-num {
@@ -1386,7 +1419,7 @@
       }
 
       .method-week-block.active .method-week-num {
-        color: #2dd4bf;
+        color: var(--gildhart-gold);
       }
 
       .method-week-label {
@@ -1432,7 +1465,7 @@
       }
 
       .method-step.step-active:not(:last-child)::after {
-        background: linear-gradient(to bottom, rgba(20,184,166,0.6), rgba(255,255,255,0.08));
+        background: linear-gradient(to bottom, rgba(201,164,74,0.6), rgba(255,255,255,0.08));
       }
 
       .method-step + .method-step {
@@ -1462,17 +1495,17 @@
       }
 
       .method-step.step-active .method-step-circle {
-        border-color: var(--teal);
-        background: rgba(20,184,166,0.12);
+        border-color: var(--gildhart-gold);
+        background: rgba(201,164,74,0.12);
         transform: scale(1);
         opacity: 1;
-        box-shadow: 0 0 0 4px rgba(20,184,166,0.1), 0 0 20px rgba(20,184,166,0.15);
+        box-shadow: 0 0 0 4px rgba(201,164,74,0.1), 0 0 20px rgba(201,164,74,0.15);
       }
 
       /* Hover still works on top of active state */
       .method-step:hover .method-step-circle {
-        border-color: var(--teal);
-        background: rgba(20,184,166,0.18);
+        border-color: var(--gildhart-gold);
+        background: rgba(201,164,74,0.18);
         transform: scale(1.05);
         opacity: 1;
       }
@@ -1486,11 +1519,11 @@
       }
 
       .method-step.step-active .method-step-num {
-        color: var(--teal);
+        color: var(--gildhart-gold);
       }
 
       .method-step:hover .method-step-num {
-        color: var(--teal);
+        color: var(--gildhart-gold);
       }
 
       .method-step-body {
@@ -1511,7 +1544,7 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         margin-bottom: 0.4rem;
         opacity: 1;
       }
@@ -1539,13 +1572,13 @@
         align-items: center;
         gap: 0.375rem;
         margin-top: 0.875rem;
-        background: rgba(20,184,166,0.12);
-        border: 1px solid rgba(20,184,166,0.3);
+        background: rgba(201,164,74,0.1);
+        border: 1px solid rgba(201,164,74,0.3);
         border-radius: 6px;
         padding: 0.4rem 0.875rem;
         font-size: 0.8125rem;
         font-weight: 600;
-        color: var(--teal);
+        color: var(--gildhart-gold);
       }
 
       .method-step-proof::before {
@@ -1706,9 +1739,9 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: #2dd4bf;
-        background: rgba(20,184,166,0.12);
-        border: 1px solid rgba(20,184,166,0.3);
+        color: var(--gildhart-gold);
+        background: rgba(201,164,74,0.1);
+        border: 1px solid rgba(201,164,74,0.3);
         border-radius: 100px;
         padding: 0.25rem 0.65rem;
         white-space: nowrap;
@@ -1801,9 +1834,9 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: #0d9488;
-        background: rgba(20,184,166,0.08);
-        border: 1px solid rgba(20,184,166,0.25);
+        color: var(--gildhart-green);
+        background: rgba(30,61,47,0.08);
+        border: 1px solid rgba(30,61,47,0.2);
         border-radius: 100px;
         padding: 0.3rem 0.75rem;
         white-space: nowrap;
@@ -1815,14 +1848,14 @@
         border-top: 1px solid rgba(0,0,0,0.07);
         font-size: 0.875rem;
         font-weight: 600;
-        color: #0d9488;
+        color: var(--gildhart-green);
         text-decoration: none;
         letter-spacing: 0.01em;
         transition: color 0.2s ease, padding-left 0.2s ease;
       }
 
       .proof-breakdown-cta-link:hover {
-        color: #0a7a6f;
+        color: var(--gildhart-black);
         padding-left: 2.375rem;
       }
 
@@ -1962,7 +1995,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.75rem;
         font-weight: 700;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         letter-spacing: 0.14em;
         text-transform: uppercase;
         margin-bottom: 1.25rem;
@@ -2158,7 +2191,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.8rem;
         font-weight: 700;
-        color: rgba(20,184,166,0.8);
+        color: rgba(201,164,74,0.85);
         letter-spacing: 0.18em;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
@@ -2172,10 +2205,10 @@
         content: '';
         width: 40px;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(20,184,166,0.6));
+        background: linear-gradient(90deg, transparent, rgba(201,164,74,0.6));
       }
       .revenue-eyebrow::after {
-        background: linear-gradient(90deg, rgba(20,184,166,0.6), transparent);
+        background: linear-gradient(90deg, rgba(201,164,74,0.6), transparent);
       }
 
       .revenue-headline {
@@ -2204,7 +2237,7 @@
         bottom: -4px;
         width: 100%;
         height: 3px;
-        background: linear-gradient(90deg, #14b8a6, #2dd4bf, #14b8a6);
+        background: linear-gradient(90deg, var(--gildhart-gold), #e0bf7a, var(--gildhart-gold));
         border-radius: 2px;
         opacity: 0.7;
       }
@@ -2386,8 +2419,8 @@
         gap: 0.75rem;
         margin-bottom: 3rem;
         padding: 2rem 2.5rem;
-        border-left: 3px solid var(--teal);
-        background: rgba(20,184,166,0.04);
+        border-left: 3px solid var(--gildhart-gold);
+        background: rgba(201,164,74,0.05);
         border-radius: 0 12px 12px 0;
       }
 
@@ -2738,7 +2771,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.75rem;
         font-weight: 600;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         letter-spacing: 0.1em;
         margin-bottom: 1.5rem;
         text-transform: uppercase;
@@ -2932,13 +2965,14 @@
         line-height: 1.65;
       }
 
-      /* Bottom CTA strip - full width teal */
+      /* Bottom CTA strip - full width Gildhart green */
       .split-cta {
-        background: var(--teal);
+        background: var(--gildhart-green);
         padding: 1.75rem 4rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        border-top: 1px solid rgba(201,164,74,0.2);
       }
 
       .split-cta-text {
@@ -2948,11 +2982,11 @@
       }
 
       .split-cta-btn {
-        background: white;
-        color: var(--teal);
+        background: var(--gildhart-gold);
+        color: var(--gildhart-black);
         padding: 0.875rem 2rem;
         border-radius: 8px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 0.95rem;
         text-decoration: none;
         transition: all 0.2s;
@@ -2960,7 +2994,7 @@
       }
 
       .split-cta-btn:hover {
-        background: #f0fdf9;
+        background: #b8912f;
         transform: translateY(-1px);
       }
 
@@ -3009,7 +3043,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.75rem;
         font-weight: 600;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         letter-spacing: 0.12em;
         text-transform: uppercase;
         margin-bottom: 1.25rem;
@@ -3348,7 +3382,7 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         margin-bottom: 0.75rem;
       }
 
@@ -3382,7 +3416,7 @@
       .shift-proof-stat {
         font-size: 1.5rem;
         font-weight: 800;
-        color: var(--teal);
+        color: var(--gildhart-green);
         line-height: 1;
       }
 
@@ -3702,7 +3736,7 @@
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: #4d7b6f;
+        color: var(--gildhart-gold);
         margin-bottom: 1rem;
       }
 
@@ -4020,14 +4054,14 @@
       }
 
       .two-paths-btn-primary {
-        background: var(--teal);
+        background: var(--gildhart-green);
         color: white;
-        border: 2px solid var(--teal);
+        border: 2px solid var(--gildhart-green);
       }
 
       .two-paths-btn-primary:hover {
-        background: #159d93;
-        border-color: #159d93;
+        background: var(--gildhart-black);
+        border-color: var(--gildhart-black);
       }
 
       .two-paths-btn-outline {
@@ -4210,8 +4244,8 @@
       /* Footer */
       .footer {
         padding: 4rem 0 2rem;
-        background: var(--navy);
-        border-top: 1px solid rgba(255,255,255,0.1);
+        background: var(--gildhart-green);
+        border-top: 1px solid rgba(201,164,74,0.25);
       }
 
       .footer-inner {
@@ -4252,7 +4286,7 @@
 
       .footer-brand-link {
         display: inline-block;
-        color: #8B9D83;
+        color: var(--gildhart-gold);
         font-size: 0.875rem;
         font-weight: 600;
         text-decoration: none;
@@ -4288,7 +4322,7 @@
       }
 
       .footer-col a:hover {
-        color: white;
+        color: var(--gildhart-gold);
       }
 
       .footer-bottom {
@@ -4296,7 +4330,7 @@
         justify-content: space-between;
         align-items: center;
         padding-top: 2rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
+        border-top: 1px solid rgba(201,164,74,0.2);
       }
 
       .footer-bottom p {
@@ -4446,11 +4480,11 @@
     <!-- Nav -->
     <nav class="nav">
       <div class="nav-inner">
-        <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+        <a href="index.html" class="nav-brand">Gildhart</a>
         <div class="nav-links">
-          <!-- PharmoBoost Dropdown -->
+          <!-- Services Dropdown -->
           <div class="nav-dropdown">
-            <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
+            <button class="nav-dropdown-trigger">Services <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu">
               <span class="dd-section-label">Complete Packages</span>
               <a href="web-pro-elite.html" class="dd-item">
@@ -4494,7 +4528,7 @@
         <!-- Mobile hamburger -->
         <button
           class="nav-hamburger"
-          aria-label="Open menu"
+          aria-label="Open navigation menu"
           onclick="document.querySelector('.nav-mobile-overlay').classList.toggle('mobile-open'); this.querySelector('.ham-open').style.display = this.querySelector('.ham-open').style.display === 'none' ? 'block' : 'none'; this.querySelector('.ham-close').style.display = this.querySelector('.ham-close').style.display === 'none' ? 'block' : 'none';"
         >
           <svg
@@ -4527,7 +4561,7 @@
         <button
           onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';"
         >
-          PharmoBoost ▼
+          Services ▼
         </button>
         <div style="display:none;">
           <span class="mobile-dd-section-label">Complete Packages</span>
@@ -4599,6 +4633,11 @@
         </div>
       </div>
     </section>
+
+    <!-- Gildhart section divider -->
+    <div class="gh-divider" style="background:#fef7ed;">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776672268791-0.png" alt="Gildhart" />
+    </div>
 
     <!-- Logo Bar -->
     <section class="logo-bar">
@@ -5271,7 +5310,7 @@
         <div class="founder-image">
           <img
             src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1774857966915-0.png"
-            alt="Drew — Founder, PharmoDigital"
+            alt="Drew — Founder, Gildhart"
           />
         </div>
         <div class="founder-copy">
@@ -5286,12 +5325,12 @@
             >
             <span class="founder-body-break"
               >I personally oversee every client we onboard because I know exactly what&#39;s possible when the system
-              is built correctly. If you work with PharmoDigital, you work with me.</span
+              is built correctly. If you work with Gildhart, you work with me.</span
             >
           </p>
           <div class="founder-name">
             <span class="founder-name-text">Drew</span>
-            <span class="founder-title-text">Founder, PharmoDigital</span>
+            <span class="founder-title-text">Founder, Gildhart</span>
             <a
               href="https://www.linkedin.com/in/drew-s-clayton/"
               target="_blank"
@@ -5309,6 +5348,11 @@
         </div>
       </div>
     </section>
+
+    <!-- Gildhart section divider before closing CTA -->
+    <div class="gh-divider" style="background:#FAF8F3;">
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776672268791-0.png" alt="Gildhart" />
+    </div>
 
     <!-- Revenue Results Section -->
     <section class="revenue-section" id="revenue-results">
@@ -5416,7 +5460,7 @@
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-brand">
-            <a href="/" class="footer-brand-name">PharmoDigital</a>
+            <a href="/" class="footer-brand-name">Gildhart</a>
             <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
             <p class="footer-brand-desc">
               Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices
@@ -5440,13 +5484,13 @@
           </div>
           <div class="footer-col">
             <h4>Contact</h4>
-            <a href="mailto:hello@pharmodigital.com">hello@pharmodigital.com</a>
+            <a href="mailto:hello@gildhart.com">hello@gildhart.com</a>
             <a href="tel:+442035820064">020 3582 0064</a>
             <a href="#">London, UK</a>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>© 2026 PharmoDigital. Healthcare Marketing Agency.</p>
+          <p>© 2026 Gildhart. Healthcare Marketing Agency.</p>
           <div class="footer-badges">
             <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">ISO 27001 Certified</span>
             <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">Top 40 Agency</span>

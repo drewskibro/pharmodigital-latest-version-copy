@@ -18,6 +18,68 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-21] — Sachin Mehta quote: highlighted text (300%, "patients actually booking appointments") → forest green
+- `.featured-quote strong` color: `var(--teal)` → `var(--gildhart-green)` (#1E3D2F) in index.html
+
+### [2026-04-21] — Gildhart colour system: teal → forest green + gold (all 5 pages)
+- Replaced teal (#14b8a6) with --gildhart-green (#1E3D2F) on: CTA strips, card borders, stat accents, hero eyebrow underlines, method/step circles, proof tags, buttons
+- Gold (#C9A44A) replaces teal as the standalone "pop" colour for eyebrow labels, stat numbers, underline accents
+- Nav brand span: teal → gold (index + cross-page)
+- Page <title> tags: "PharmoDigital" → "Gildhart" on ai-domination-system, salesagent, web-pro-elite, case-study-ealing
+- Nav: "PharmoBoost" dropdown trigger → "Services" on 4 remaining pages; nav brand "PharmoDigital" → "Gildhart"
+- Contact email: hello@pharmodigital.com → hello@gildhart.com on salesagent, web-pro-elite, case-study-ealing
+- Teal retained only for functional interactive elements (AI mockup rank bubble, hover borders, timeline fill)
+
+### [2026-04-21] — Gildhart Rebrand Step 3 + retry: index.html nav & brand text fixed
+- Nav brand updated: `Pharmo<span>Digital</span>` → `Gildhart` (plain text, no span)
+- Nav dropdown trigger + mobile label: "PharmoBoost" → "Services"
+- Founder section: "PharmoDigital" → "Gildhart" in title and inline copy
+- Contact email: `hello@pharmodigital.com` → `hello@gildhart.com`
+- Footer branding was already correctly applied from prior step; no re-edit needed
+
+### [2026-04-21] — Gildhart Rebrand Step 3: Footer branding across all 6 pages
+- Footer background → `#1E3D2F` (Gildhart forest green) on all 6 files
+- Gildhart brand token block added to `:root` in all 6 files: `--gildhart-green`, `--gildhart-gold`, `--gildhart-cream`, `--gildhart-black`
+- Footer `border-top` and `border-bottom` dividers → gold `rgba(201,164,74,0.25/0.2)` replacing white opacity
+- `.footer-brand-link` color → `--gildhart-gold` (#C9A44A) across all files
+- `.footer-col a:hover` → `--gildhart-gold` (was `white`) across all files
+- `.footer-brand-name` text → "Gildhart" in all 6 footers; copyright → "© 2026 Gildhart."
+- Logo `<img>` placeholder deferred pending asset upload (dark-green-bg variant needed)
+- Files edited: index.html, homepage-v2.html, ai-domination-system.html, case-study-ealing.html, salesagent.html, web-pro-elite.html
+
+### [2026-04-20] — AI Domination System: THE SYSTEM section — replaced all emoji icons with SVG (ai-domination-system.html)
+- Removed all 5 emoji icons (⚡🏗🧩🎨🚀) from .system-module cards, replaced with stroke SVG icons (22px, stroke-width 2)
+- Removed emojis from tier cards (📚⚡🤝) and guarantee badge (🛡) — same SVG treatment
+- Icon colors: engine teal, pillar indigo, interactive amber, visuals sage, indexed emerald — all from existing palette
+- SVG icons match site&#39;s existing stroke icon language (same style used in split-section cards on homepage)
+
+### [2026-04-20] — AI Domination System: THE SYSTEM section — full card redesign (ai-domination-system.html)
+- Switched from stacked single-column list to 2-column grid (2+2+1 centred) for shorter scroll + visual variety
+- Each card: distinct icon (.system-module-icon), bold one-line hook (.system-module-hook), reduced-weight body copy
+- Pulled proof stat callout (.system-module-proof) per card — teal left-border, large stat number + context label
+- Stats: "£0/mo", "6 wks", "6m 40s", "£0", "48 hrs" — scanners see the knockout numbers without reading paragraphs
+- Responsive: ≤900px collapses to 1-col; ≤768px tighter padding/fonts; existing JS cascade animation still targets .system-module
+
+### [2026-04-20] — AI Domination System: THE SYSTEM section step 4 — emoji/symbol audit (ai-domination-system.html)
+- Confirmed #what-you-get section is fully clean: no emojis, no ✓/✗ icons, no decorative symbols
+- Removed orphaned CSS: `.system-module-subheadline`, `.system-module-checks`, `.system-module-check-item`, `.check-icon`
+- Numbered circles (01–05) remain as the sole visual element per card
+
+### [2026-04-20] — AI Domination System: THE SYSTEM section step 3 — card body CSS (ai-domination-system.html)
+- Added `.system-module-body` class: color #4b5563, font-size 0.9375rem, line-height 1.7, margin 0
+- Inserted before legacy `.system-module-subheadline` rule (kept for now, cleanup in step 4)
+- Completes typography for new paragraph-style card body copy
+
+### [2026-04-20] — AI Domination System: THE SYSTEM section step 2 — five cards rewritten (ai-domination-system.html)
+- All 5 `.system-module` cards: removed `.system-module-subheadline` + `.system-module-checks` bullet lists
+- Replaced with single `.system-module-body` paragraph per card (new class, CSS in step 3)
+- Card titles: "Your AI Content Engine", "The Pillar Domination Method", "Interactive Content That AI Trusts", "Professional Visuals Without The Bill", "Indexed In Days, Not Months"
+- Numbered circles (`.system-module-num`) kept unchanged as sole visual element
+
+### [2026-04-20] — AI Domination System: THE SYSTEM section step 1 — headline + subhead replaced (ai-domination-system.html)
+- Replaced headline with "What Ealing, Superior, and Puri Actually Used. Now Yours."
+- Replaced subhead with five-components copy; max-width 700px centred
+
 ### [2026-04-20] — Homepage: redesigned final closing section v2 — hierarchy overhaul (index.html)
 - Pulled 4.4× Semrush stat out as a large isolated callout (teal border-left, number + label treatment)
 - Left-aligned body copy — 2 paragraphs, more readable, less wall-of-text

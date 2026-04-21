@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The AI Search Playbook — £497 | PharmoDigital</title>
+    <title>The AI Search Playbook — £497 | Gildhart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,6 +26,11 @@
         --white: #ffffff;
         --sage: #4d7b6f;
         --sage-mid: #8B9D83;
+        /* Gildhart brand tokens */
+        --gildhart-green: #1E3D2F;
+        --gildhart-gold: #C9A44A;
+        --gildhart-cream: #F0E6C8;
+        --gildhart-black: #0D1A12;
       }
 
       body {
@@ -52,8 +57,8 @@
         cursor: pointer;
         border: none;
       }
-      .btn-primary { background: var(--teal); color: white; }
-      .btn-primary:hover { background: var(--teal-dark); }
+      .btn-primary { background: var(--gildhart-green); color: white; }
+      .btn-primary:hover { background: var(--gildhart-black); }
       .btn-dark { background: var(--navy); color: white; }
       .btn-dark:hover { background: var(--navy-light); transform: translateY(-1px); }
 
@@ -322,8 +327,8 @@
         position: absolute;
         left: 0; bottom: 0;
         width: 100%; height: 2px;
-        background: var(--teal);
-        opacity: 0.6;
+        background: var(--gildhart-gold);
+        opacity: 0.7;
       }
       .playbook-hero-title {
         font-family: 'Inter', sans-serif;
@@ -436,7 +441,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.75rem;
         font-weight: 700;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         letter-spacing: 0.14em;
         text-transform: uppercase;
         margin-bottom: 1.25rem;
@@ -763,7 +768,7 @@
 
       /* Teal strip */
       .teal-strip {
-        background: var(--teal);
+        background: var(--gildhart-green);
         padding: 1.75rem 4rem;
         display: flex;
         align-items: center;
@@ -775,17 +780,17 @@
         color: white;
       }
       .teal-strip-btn {
-        background: white;
-        color: var(--teal);
+        background: var(--gildhart-gold);
+        color: var(--gildhart-black);
         padding: 0.875rem 2rem;
         border-radius: 8px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 0.95rem;
         text-decoration: none;
         transition: all 0.2s;
         white-space: nowrap;
       }
-      .teal-strip-btn:hover { background: #f0fdf9; transform: translateY(-1px); }
+      .teal-strip-btn:hover { background: #b8912f; transform: translateY(-1px); }
 
       @media (max-width: 900px) {
         .teal-strip { flex-direction: column; gap: 1.25rem; text-align: center; padding: 2rem; }
@@ -1097,7 +1102,7 @@
         font-family: 'Space Mono', monospace;
         font-size: 0.75rem;
         font-weight: 700;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         letter-spacing: 0.14em;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
@@ -1147,8 +1152,8 @@
         background: rgba(255,255,255,0.03);
       }
       .method-week-block.active {
-        border-left-color: var(--teal);
-        background: rgba(20,184,166,0.06);
+        border-left-color: var(--gildhart-gold);
+        background: rgba(201,164,74,0.06);
       }
       .method-week-num {
         font-family: 'Space Mono', monospace;
@@ -1160,7 +1165,7 @@
         transition: color 0.3s ease;
       }
       .method-week-block.active .method-week-num {
-        color: var(--teal);
+        color: var(--gildhart-gold);
       }
       .method-week-label {
         font-size: 0.9375rem;
@@ -1226,9 +1231,9 @@
         transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
       }
       .method-step.active .method-step-circle {
-        background: var(--teal);
-        border-color: var(--teal);
-        box-shadow: 0 0 0 6px rgba(20,184,166,0.15), 0 4px 20px rgba(20,184,166,0.25);
+        background: var(--gildhart-green);
+        border-color: var(--gildhart-green);
+        box-shadow: 0 0 0 6px rgba(30,61,47,0.15), 0 4px 20px rgba(30,61,47,0.25);
       }
       .method-step-num {
         font-family: 'Space Mono', monospace;
@@ -1249,7 +1254,7 @@
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         margin-bottom: 0.5rem;
       }
       .method-step-title {
@@ -1273,9 +1278,9 @@
         font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 0.06em;
-        color: #2dd4bf;
-        background: rgba(20,184,166,0.1);
-        border: 1px solid rgba(20,184,166,0.2);
+        color: var(--gildhart-gold);
+        background: rgba(201,164,74,0.1);
+        border: 1px solid rgba(201,164,74,0.25);
         border-radius: 100px;
         padding: 0.4rem 0.875rem;
       }
@@ -1329,74 +1334,126 @@
         margin-bottom: 4rem;
       }
       .system-modules {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
         margin-bottom: 3rem;
+      }
+      /* Last card (5th) centered */
+      .system-module:last-child {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 0.75rem);
+        justify-self: center;
       }
       .system-module {
         background: white;
-        border-radius: 16px;
-        padding: 2rem 2.25rem;
+        border-radius: 20px;
+        padding: 0;
         border: 1px solid rgba(0,0,0,0.06);
-        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-        display: grid;
-        grid-template-columns: 56px 1fr;
-        gap: 1.75rem;
-        align-items: start;
-        transition: all 0.25s ease;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+        position: relative;
       }
       .system-module:hover {
-        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        transform: translateY(-4px);
+      }
+      /* Top bar — number + icon area */
+      .system-module-top {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        padding: 1.75rem 2rem 0;
       }
       .system-module-num {
-        width: 56px; height: 56px;
-        border-radius: 50%;
+        width: 44px; height: 44px;
+        border-radius: 12px;
         background: rgba(77,123,111,0.1);
-        border: 2px solid rgba(77,123,111,0.2);
+        border: none;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: 'Space Mono', monospace;
-        font-size: 1.125rem;
+        font-size: 0.875rem;
         font-weight: 700;
         color: var(--sage);
         flex-shrink: 0;
       }
-      .system-module-title {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.125rem;
-        font-weight: 700;
-        color: var(--navy);
-        letter-spacing: -0.01em;
-        margin-bottom: 0.5rem;
-      }
-      .system-module-subheadline {
-        font-size: 0.9375rem;
-        color: var(--gray-600);
-        line-height: 1.55;
-        margin-bottom: 1.125rem;
-      }
-      .system-module-checks {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .system-module-check-item {
+      .system-module-icon {
+        width: 44px; height: 44px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
-        gap: 0.625rem;
-        font-size: 0.9375rem;
-        color: var(--navy);
-        font-weight: 500;
-        line-height: 1.4;
-      }
-      .system-module-check-item .check-icon {
-        color: var(--teal);
-        font-weight: 700;
-        font-size: 1rem;
+        justify-content: center;
         flex-shrink: 0;
+      }
+      .system-module-icon svg {
+        display: block;
+        flex-shrink: 0;
+      }
+      .system-module-icon.engine { background: rgba(20,184,166,0.1); color: #0d9488; }
+      .system-module-icon.pillar { background: rgba(99,102,241,0.1); color: #6366f1; }
+      .system-module-icon.interactive { background: rgba(245,158,11,0.1); color: #d97706; }
+      .system-module-icon.visuals { background: rgba(77,123,111,0.12); color: #4d7b6f; }
+      .system-module-icon.indexed { background: rgba(16,185,129,0.1); color: #059669; }
+      /* Content body */
+      .system-module-content {
+        padding: 1.25rem 2rem 1.75rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .system-module-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: -0.02em;
+        margin-bottom: 0.625rem;
+        line-height: 1.25;
+      }
+      .system-module-hook {
+        font-size: 1.0625rem;
+        font-weight: 500;
+        color: #1a2b3c;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+      .system-module-body {
+        font-size: 0.9rem;
+        color: #6b7280;
+        line-height: 1.65;
+        margin: 0;
+        flex: 1;
+      }
+      /* Pulled proof stat callout */
+      .system-module-proof {
+        margin-top: 1.25rem;
+        padding: 0.875rem 1rem;
+        border-left: 3px solid var(--gildhart-green);
+        background: rgba(30,61,47,0.04);
+        border-radius: 0 10px 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+      }
+      .system-module-proof-stat {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--gildhart-green);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .system-module-proof-text {
+        font-size: 0.8125rem;
+        color: var(--gray-600);
+        line-height: 1.45;
+        font-weight: 500;
       }
       .system-intro-text {
         font-size: 1rem;
@@ -1484,7 +1541,7 @@
         gap: 0.5rem;
         margin-top: 1.25rem;
         padding: 0.875rem 1.75rem;
-        background: var(--teal);
+        background: var(--gildhart-green);
         color: white;
         font-weight: 600;
         font-size: 1rem;
@@ -1493,9 +1550,9 @@
         transition: all 0.2s ease;
       }
       .system-early-buyers-cta:hover {
-        background: var(--teal-dark);
+        background: var(--gildhart-black);
         transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(20,184,166,0.3);
+        box-shadow: 0 6px 20px rgba(30,61,47,0.3);
       }
       @media (max-width: 768px) {
         .system-early-buyers { padding: 2.5rem 2rem 2rem; margin-top: 2rem; }
@@ -1866,10 +1923,22 @@
         font-weight: 500;
       }
 
+      @media (max-width: 900px) {
+        .system-modules { grid-template-columns: 1fr; }
+        .system-module:last-child { max-width: 100%; grid-column: auto; }
+      }
       @media (max-width: 768px) {
-        .system-module { grid-template-columns: 44px 1fr; gap: 1.25rem; padding: 1.5rem; }
-        .system-whats-included { padding: 2rem 1.75rem; }
         .system-section { padding: 4rem 1.5rem; }
+        .system-module-top { padding: 1.25rem 1.5rem 0; }
+        .system-module-content { padding: 1rem 1.5rem 1.5rem; }
+        .system-module-title { font-size: 1.125rem; }
+        .system-module-hook { font-size: 1rem; }
+        .system-module-body { font-size: 0.8375rem; }
+        .system-module-num { width: 38px; height: 38px; font-size: 0.8125rem; }
+        .system-module-icon { width: 38px; height: 38px; font-size: 1.15rem; }
+        .system-module-proof { padding: 0.75rem 0.875rem; gap: 0.625rem; }
+        .system-module-proof-stat { font-size: 1.25rem; }
+        .system-module-proof-text { font-size: 0.75rem; }
         .system-timeline { grid-template-columns: repeat(3, 1fr); }
         .system-timeline-block { border-right: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); padding: 1.25rem 0.75rem; }
         .system-timeline-block:nth-child(3) { border-right: none; }
@@ -2417,7 +2486,7 @@
         align-items: center;
         gap: 0.5rem;
         padding: 1rem 2rem;
-        background: var(--teal);
+        background: var(--gildhart-green);
         color: white;
         font-weight: 700;
         font-size: 1.0625rem;
@@ -2426,9 +2495,9 @@
         transition: all 0.2s ease;
       }
       .faq-bottom-cta a:hover {
-        background: var(--teal-dark);
+        background: var(--gildhart-black);
         transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(20,184,166,0.3);
+        box-shadow: 0 8px 30px rgba(30,61,47,0.3);
       }
 
       @media (max-width: 768px) {
@@ -2484,7 +2553,7 @@
       }
       .guarantee-body {
         font-size: 1.0625rem;
-        color: rgba(255,255,255,0.7);
+        color: rgba(255,255,255,0.72);
         line-height: 1.7;
         max-width: 640px;
         margin: 0 auto 2.5rem;
@@ -2633,7 +2702,7 @@
         display: block;
         text-align: center;
         padding: 1.125rem 1.5rem;
-        background: var(--sage-mid);
+        background: var(--gildhart-green);
         color: white;
         font-weight: 700;
         font-size: 1.0625rem;
@@ -2644,9 +2713,9 @@
         margin-bottom: 0.875rem;
       }
       .final-cta-price-btn:hover {
-        background: #7a8c73;
+        background: var(--gildhart-black);
         transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(139,157,131,0.4);
+        box-shadow: 0 6px 20px rgba(30,61,47,0.4);
       }
       .final-cta-price-secondary {
         text-align: center;
@@ -2754,8 +2823,8 @@
       /* ─── Footer ─── */
       .footer {
         padding: 4rem 0 2rem;
-        background: var(--navy);
-        border-top: 1px solid rgba(255,255,255,0.1);
+        background: var(--gildhart-green);
+        border-top: 1px solid rgba(201,164,74,0.25);
       }
       .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
       .footer-top {
@@ -2770,14 +2839,14 @@
       }
       .footer-brand-tagline { color: rgba(255,255,255,0.5); font-size: 0.875rem; margin-bottom: 0.875rem; }
       .footer-brand-desc { color: rgba(255,255,255,0.6); line-height: 1.65; font-size: 0.9375rem; max-width: 280px; margin-bottom: 1.125rem; }
-      .footer-brand-link { display: inline-block; color: #8B9D83; font-size: 0.875rem; font-weight: 600; text-decoration: none; }
+      .footer-brand-link { display: inline-block; color: var(--gildhart-gold); font-size: 0.875rem; font-weight: 600; text-decoration: none; }
       .footer-brand-link:hover { text-decoration: underline; }
       .footer-col h4 { font-size: 0.875rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.25rem; }
       .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 0.75rem; transition: color 0.2s; font-size: 0.9375rem; }
-      .footer-col a:hover { color: white; }
+      .footer-col a:hover { color: var(--gildhart-gold); }
       .footer-bottom {
         display: flex; justify-content: space-between; align-items: center;
-        padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 2rem; border-top: 1px solid rgba(201,164,74,0.2);
       }
       .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
       @media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
@@ -2788,10 +2857,10 @@
     <!-- Nav -->
     <nav class="nav">
       <div class="nav-inner">
-        <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+        <a href="index.html" class="nav-brand">Gildhart</a>
         <div class="nav-links">
           <div class="nav-dropdown">
-            <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
+            <button class="nav-dropdown-trigger">Services <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu">
               <span class="dd-section-label">Complete Packages</span>
               <a href="#" class="dd-item"
@@ -2864,7 +2933,7 @@
         <button
           onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';"
         >
-          PharmoBoost ▼
+          Services ▼
         </button>
         <div style="display:none;">
           <span class="mobile-dd-section-label">Complete Packages</span>
@@ -3308,117 +3377,103 @@
       <div class="system-inner">
         <div class="system-header">
           <p class="section-eyebrow sage">THE SYSTEM</p>
-          <h2 class="section-headline">
-            200+ Hours of Battle-Testing. Millions in Proven Revenue. Now Fully Automated.
-          </h2>
-          <p class="section-subheadline" style="max-width: 640px; margin: 0 auto;">
-            The manual system works. Ealing, Superior, and Puri prove it. But in 4 weeks, Claude Cowork automates
-            everything. One instruction builds your entire content infrastructure. Early buyers get both versions.
-            Forever.
+          <h2 class="section-headline">What Ealing, Superior, and Puri Actually Used. Now Yours.</h2>
+          <p class="section-subheadline" style="max-width: 700px; margin: 0 auto;">
+            The same five components. Used across three practices. Now generating five figures monthly, £500k annual revenue, and £100k from a single service. Fully automated. Yours today.
           </p>
         </div>
         <div class="system-modules">
+          <!-- Card 1: AI Content Engine -->
           <div class="system-module">
-            <div class="system-module-num">01</div>
-            <div>
-              <h3 class="system-module-title">Claude Projects Setup</h3>
-              <p class="system-module-subheadline">
-                Your AI content engine in 20 minutes. Then fully automated in 4 weeks.
-              </p>
-              <div class="system-module-checks">
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Manual: Battle-tested prompts, 20-minute setup
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Automated: One instruction builds entire infrastructure
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Early buyers get both, no upgrade fee
-                </div>
+            <div class="system-module-top">
+              <div class="system-module-num">01</div>
+              <div class="system-module-icon engine">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+            </div>
+            <div class="system-module-content">
+              <h3 class="system-module-title">Your AI Content Engine</h3>
+              <p class="system-module-hook">Set up in 20 minutes. Runs while you see patients.</p>
+              <p class="system-module-body">Produces content that gets you featured on Google AI Overviews, ChatGPT, Claude, and Perplexity — without hiring a writer, briefing an agency, or paying a monthly retainer.</p>
+              <div class="system-module-proof">
+                <span class="system-module-proof-stat">£0/mo</span>
+                <span class="system-module-proof-text">Replaces agency content retainers entirely</span>
               </div>
             </div>
           </div>
 
+          <!-- Card 2: Pillar Domination -->
           <div class="system-module">
-            <div class="system-module-num">02</div>
-            <div>
-              <h3 class="system-module-title">Pillar + Cluster Method</h3>
-              <p class="system-module-subheadline">
-                Five pieces that own a topic. How Ealing beat Boots and Superior hit 50% ChatGPT sales.
-              </p>
-              <div class="system-module-checks">
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Proven across Ealing, Superior, Puri
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Manual version teaches the strategy
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Automated version builds it for you
-                </div>
+            <div class="system-module-top">
+              <div class="system-module-num">02</div>
+              <div class="system-module-icon pillar">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              </div>
+            </div>
+            <div class="system-module-content">
+              <h3 class="system-module-title">The Pillar Domination Method</h3>
+              <p class="system-module-hook">Own every topic you serve. Every pillar compounds.</p>
+              <p class="system-module-body">A repeatable content architecture that dominates across ChatGPT, Claude, Google AI Overviews, and Perplexity simultaneously. Deploy once. Replicate for every service.</p>
+              <div class="system-module-proof">
+                <span class="system-module-proof-stat">6 wks</span>
+                <span class="system-module-proof-text">Ealing beat Boots. Superior hit 50% of sales from AI search.</span>
               </div>
             </div>
           </div>
 
+          <!-- Card 3: Interactive Content -->
           <div class="system-module">
-            <div class="system-module-num">03</div>
-            <div>
-              <h3 class="system-module-title">Interactive Content Creation</h3>
-              <p class="system-module-subheadline">
-                5-minute engagement vs 30 seconds. AI platforms notice the difference.
-              </p>
-              <div class="system-module-checks">
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Quiz templates and embed code (manual)
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Finished interactive tools (automated)
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Tested across 50+ practices
-                </div>
+            <div class="system-module-top">
+              <div class="system-module-num">03</div>
+              <div class="system-module-icon interactive">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+            </div>
+            <div class="system-module-content">
+              <h3 class="system-module-title">Interactive Content That AI Trusts</h3>
+              <p class="system-module-hook">5+ minute engagement vs 30 seconds. AI notices the difference.</p>
+              <p class="system-module-body">Quizzes, calculators, and comparison tools that AI platforms read as trust signals. Longer engagement means higher recommendations — the difference between being on the shortlist and invisible.</p>
+              <div class="system-module-proof">
+                <span class="system-module-proof-stat">6m 40s</span>
+                <span class="system-module-proof-text">Ealing Travel Clinic avg. session duration</span>
               </div>
             </div>
           </div>
 
+          <!-- Card 4: Professional Visuals -->
           <div class="system-module">
-            <div class="system-module-num">04</div>
-            <div>
-              <h3 class="system-module-title">AI-Generated Visuals</h3>
-              <p class="system-module-subheadline">
-                Replace £2,000 photo shoots and £500 graphics with Nano Banana prompts.
-              </p>
-              <div class="system-module-checks">
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Professional medical imagery in minutes
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Custom infographics and charts on demand
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> What agencies charge thousands for
-                </div>
+            <div class="system-module-top">
+              <div class="system-module-num">04</div>
+              <div class="system-module-icon visuals">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+            </div>
+            <div class="system-module-content">
+              <h3 class="system-module-title">Professional Visuals Without The Bill</h3>
+              <p class="system-module-hook">What agencies charge thousands for, built into the system.</p>
+              <p class="system-module-body">Clinically credible medical imagery and custom infographics in minutes, on demand. Low quality imagery signals low quality content to AI platforms — this eliminates that problem.</p>
+              <div class="system-module-proof">
+                <span class="system-module-proof-stat">£0</span>
+                <span class="system-module-proof-text">Replaces £2k/shoot photography + £500/graphic design</span>
               </div>
             </div>
           </div>
 
+          <!-- Card 5: Indexed Fast -->
           <div class="system-module">
-            <div class="system-module-num">05</div>
-            <div>
-              <h3 class="system-module-title">Faster Indexing Technique</h3>
-              <p class="system-module-subheadline">
-                Indexed in days instead of weeks. Why Superior got sales 48 hours after launch.
-              </p>
-              <div class="system-module-checks">
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Specific HTML/CSS structure
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Battle-tested across 200+ pieces
-                </div>
-                <div class="system-module-check-item">
-                  <span class="check-icon">✓</span> Built into automated workflow
-                </div>
+            <div class="system-module-top">
+              <div class="system-module-num">05</div>
+              <div class="system-module-icon indexed">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </div>
+            </div>
+            <div class="system-module-content">
+              <h3 class="system-module-title">Indexed In Days, Not Months</h3>
+              <p class="system-module-hook">If AI hasn&#39;t crawled it, it doesn&#39;t exist. This fixes that.</p>
+              <p class="system-module-body">Gets every piece of content in front of Google, ChatGPT, and Claude in days rather than weeks. The reason every practice using this system sees results faster than any traditional SEO timeline.</p>
+              <div class="system-module-proof">
+                <span class="system-module-proof-stat">48 hrs</span>
+                <span class="system-module-proof-text">Superior&#39;s first AI-driven sale after going live</span>
               </div>
             </div>
           </div>
@@ -3492,7 +3547,9 @@
           <div class="system-tier-card manual">
             <div class="system-tier-header">
               <div class="system-tier-header-left">
-                <div class="system-tier-icon">📚</div>
+                <div class="system-tier-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
                 <span class="system-tier-title">The Manual System</span>
               </div>
               <span class="system-tier-status available">Available Now</span>
@@ -3514,7 +3571,9 @@
           <div class="system-tier-card automated">
             <div class="system-tier-header">
               <div class="system-tier-header-left">
-                <div class="system-tier-icon">⚡</div>
+                <div class="system-tier-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
                 <span class="system-tier-title">The Automated System</span>
               </div>
               <span class="system-tier-status coming">4 Weeks</span>
@@ -3534,7 +3593,9 @@
           <div class="system-tier-card lifetime">
             <div class="system-tier-header">
               <div class="system-tier-header-left">
-                <div class="system-tier-icon">🤝</div>
+                <div class="system-tier-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              </div>
                 <span class="system-tier-title">Lifetime Support</span>
               </div>
               <span class="system-tier-status included">+ Free</span>
@@ -3920,7 +3981,9 @@
     <section class="guarantee-section">
       <div class="guarantee-inner">
         <div class="guarantee-badge">
-          <span class="guarantee-badge-icon">🛡</span>
+          <span class="guarantee-badge-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:block"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </span>
           <span class="guarantee-badge-text">Personal Implementation Guarantee</span>
         </div>
         <h2 class="guarantee-headline">If You Implement This, It Works</h2>
@@ -4022,8 +4085,8 @@
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-brand">
-            <a href="index.html" class="footer-brand-name">PharmoDigital</a>
-            <p class="footer-brand-tagline">AI Search for Healthcare</p>
+          <a href="index.html" class="footer-brand-name">Gildhart</a>
+          <p class="footer-brand-tagline">AI Search for Healthcare</p>
             <p class="footer-brand-desc">
               We get independent healthcare practices featured in ChatGPT, Claude, and Google AI Overviews—where
               patients actually search.
@@ -4052,7 +4115,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>© 2025 PharmoDigital. All rights reserved.</p>
+          <p>© 2026 Gildhart. All rights reserved.</p>
           <p style="color: rgba(255,255,255,0.3);">Healthcare AI Search Specialists</p>
         </div>
       </div>

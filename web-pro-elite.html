@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebPro Elite — PharmoDigital</title>
+    <title>WebPro Elite — Gildhart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,6 +24,11 @@
         --gray-400: #9ca3af;
         --gray-600: #4b5563;
         --white: #ffffff;
+        /* Gildhart brand tokens */
+        --gildhart-green: #1E3D2F;
+        --gildhart-gold: #C9A44A;
+        --gildhart-cream: #F0E6C8;
+        --gildhart-black: #0D1A12;
       }
 
       body {
@@ -280,7 +285,7 @@
         align-items: center;
         justify-content: center;
         padding: 1.1rem 2.5rem;
-        background: var(--teal);
+        background: var(--gildhart-green);
         color: white;
         font-family: inherit;
         font-size: 1.1rem;
@@ -289,12 +294,12 @@
         border: none;
         text-decoration: none;
         cursor: pointer;
-        box-shadow: 0 4px 20px rgba(20,184,166,0.35);
+        box-shadow: 0 4px 20px rgba(30,61,47,0.3);
         transition: all 0.25s ease;
       }
       .btn-primary-lg:hover {
-        background: var(--teal-dark);
-        box-shadow: 0 8px 30px rgba(20,184,166,0.5);
+        background: var(--gildhart-black);
+        box-shadow: 0 8px 30px rgba(30,61,47,0.45);
         transform: translateY(-2px);
       }
       .btn-outline-white {
@@ -711,7 +716,7 @@
         font-weight: 700;
         letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: var(--teal);
+        color: var(--gildhart-gold);
         display: block;
         margin-bottom: 1.25rem;
       }
@@ -769,7 +774,7 @@
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--teal);
+        color: var(--gildhart-green);
         margin-bottom: 0.5rem;
       }
 
@@ -1470,7 +1475,7 @@
       .wpe-form-btn {
         margin-top: 0.5rem;
         padding: 1rem 1.5rem;
-        background: var(--teal);
+        background: var(--gildhart-green);
         color: white;
         border: none;
         border-radius: 10px;
@@ -1478,14 +1483,14 @@
         font-size: 1.0625rem;
         font-weight: 700;
         cursor: pointer;
-        box-shadow: 0 4px 20px rgba(20,184,166,0.35);
+        box-shadow: 0 4px 20px rgba(30,61,47,0.3);
         transition: all 0.25s ease;
         text-align: center;
       }
 
       .wpe-form-btn:hover {
-        background: var(--teal-dark);
-        box-shadow: 0 8px 30px rgba(20,184,166,0.5);
+        background: var(--gildhart-black);
+        box-shadow: 0 8px 30px rgba(30,61,47,0.45);
         transform: translateY(-2px);
       }
 
@@ -1598,8 +1603,8 @@
       /* ─── Footer ─── */
       .footer {
         padding: 4rem 0 2rem;
-        background: var(--navy);
-        border-top: 1px solid rgba(255,255,255,0.1);
+        background: var(--gildhart-green);
+        border-top: 1px solid rgba(201,164,74,0.25);
       }
       .footer-inner {
         max-width: 1400px;
@@ -1634,7 +1639,7 @@
       }
       .footer-brand-link {
         display: inline-block;
-        color: #8B9D83;
+        color: var(--gildhart-gold);
         font-size: 0.875rem;
         font-weight: 600;
         text-decoration: none;
@@ -1656,13 +1661,13 @@
         margin-bottom: 0.75rem;
         transition: color 0.2s;
       }
-      .footer-col a:hover { color: white; }
+      .footer-col a:hover { color: var(--gildhart-gold); }
       .footer-bottom {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: 2rem;
-        border-top: 1px solid rgba(255,255,255,0.1);
+        border-top: 1px solid rgba(201,164,74,0.2);
       }
       .footer-bottom p {
         color: rgba(255,255,255,0.4);
@@ -1742,10 +1747,10 @@
     <!-- ═══ NAV ═══ -->
     <nav class="nav">
       <div class="nav-inner">
-        <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+        <a href="index.html" class="nav-brand">Gildhart</a>
         <div class="nav-links">
           <div class="nav-dropdown">
-            <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
+            <button class="nav-dropdown-trigger">Services <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu">
               <span class="dd-section-label">Complete Packages</span>
               <a href="web-pro-elite.html" class="dd-item dd-item--active">
@@ -1823,7 +1828,7 @@
         <button
           onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';"
         >
-          PharmoBoost ▼
+          Services ▼
         </button>
         <div style="display:none;">
           <span class="mobile-dd-section-label">Complete Packages</span>
@@ -2322,8 +2327,8 @@
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-brand">
-            <a href="index.html" class="footer-brand-name">PharmoDigital</a>
-            <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
+          <a href="index.html" class="footer-brand-name">Gildhart</a>
+          <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
             <p class="footer-brand-desc">
               Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices
               including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.
@@ -2346,13 +2351,13 @@
           </div>
           <div class="footer-col">
             <h4>Contact</h4>
-            <a href="mailto:hello@pharmodigital.com">hello@pharmodigital.com</a>
+            <a href="mailto:hello@gildhart.com">hello@gildhart.com</a>
             <a href="tel:+442035820064">020 3582 0064</a>
             <a href="#">London, UK</a>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>© 2026 PharmoDigital. Healthcare Marketing Agency.</p>
+          <p>© 2026 Gildhart. Healthcare Marketing Agency.</p>
           <div style="display:flex;gap:1.5rem;align-items:center;">
             <span style="color:rgba(255,255,255,0.4);font-size:0.75rem;">ISO 27001 Certified</span>
             <span style="color:rgba(255,255,255,0.4);font-size:0.75rem;">Top 40 Agency</span>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Case Study: Ealing Travel Clinic — 300% Revenue Growth | PharmoDigital</title>
+  <title>Case Study: Ealing Travel Clinic — 300% Revenue Growth | Gildhart</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -23,6 +23,11 @@
       --white: #ffffff;
       --sage: #4d7b6f;
       --sage-mid: #8B9D83;
+      /* Gildhart brand tokens */
+      --gildhart-green: #1E3D2F;
+      --gildhart-gold: #C9A44A;
+      --gildhart-cream: #F0E6C8;
+      --gildhart-black: #0D1A12;
     }
 
     body {
@@ -238,7 +243,7 @@
       font-family: 'Space Mono', monospace;
       font-size: 0.75rem;
       font-weight: 700;
-      color: var(--sage);
+      color: var(--gildhart-green);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       margin-bottom: 1.25rem;
@@ -251,8 +256,8 @@
       position: absolute;
       left: 0; bottom: 0;
       width: 100%; height: 2px;
-      background: var(--teal);
-      opacity: 0.6;
+      background: var(--gildhart-gold);
+      opacity: 0.7;
     }
     .cs-hero-title {
       font-family: 'Inter', sans-serif;
@@ -263,7 +268,7 @@
       letter-spacing: -0.02em;
       margin-bottom: 1.5rem;
     }
-    .cs-hero-title .accent { color: var(--teal); }
+    .cs-hero-title .accent { color: var(--gildhart-green); }
     .cs-hero-subtitle {
       font-size: 1.125rem;
       color: var(--gray-600);
@@ -336,7 +341,7 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--sage);
+      color: var(--gildhart-green);
       margin-bottom: 1rem;
     }
     .section-headline {
@@ -449,7 +454,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 2.5rem;
       font-weight: 800;
-      color: var(--teal);
+      color: var(--gildhart-gold);
       letter-spacing: -0.02em;
       margin-bottom: 0.375rem;
       line-height: 1;
@@ -590,7 +595,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 3.5rem;
       font-weight: 800;
-      color: var(--teal);
+      color: var(--gildhart-green);
       letter-spacing: -0.03em;
       line-height: 1;
       margin-bottom: 0.75rem;
@@ -661,7 +666,7 @@
       border: 1px solid rgba(20,184,166,0.08);
     }
     .results-keyword-check {
-      color: var(--teal);
+      color: var(--gildhart-green);
       font-weight: 700;
       flex-shrink: 0;
     }
@@ -925,10 +930,10 @@
       font-family: 'Inter', sans-serif;
       font-size: 4.5rem;
       font-weight: 800;
-      color: var(--teal);
+      color: var(--gildhart-gold);
       letter-spacing: -0.03em;
       line-height: 1;
-      text-shadow: 0 0 40px rgba(20,184,166,0.3);
+      text-shadow: 0 0 40px rgba(201,164,74,0.25);
     }
     .tm-after-num.counted { /* animated via JS */ }
     .tm-after-label {
@@ -963,7 +968,7 @@
       letter-spacing: -0.01em;
       line-height: 1.4;
     }
-    .transform-statement-text span { color: var(--teal); }
+    .transform-statement-text span { color: var(--gildhart-gold); }
     .transform-statement-sub {
       font-size: 0.9375rem;
       color: rgba(255,255,255,0.45);
@@ -1039,7 +1044,7 @@
       letter-spacing: -0.01em;
       line-height: 1.4;
     }
-    .urgency-closing span { color: var(--teal); }
+    .urgency-closing span { color: var(--gildhart-gold); }
 
     /* ─── CTA Section ─── */
     .cta-section {
@@ -1120,11 +1125,11 @@
       margin-top: auto;
     }
     .cta-card-btn.primary {
-      background: var(--teal);
+      background: var(--gildhart-green);
       color: white;
-      border: 2px solid var(--teal);
+      border: 2px solid var(--gildhart-green);
     }
-    .cta-card-btn.primary:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+    .cta-card-btn.primary:hover { background: var(--gildhart-black); border-color: var(--gildhart-black); }
     .cta-card-btn.outline {
       background: transparent;
       color: var(--navy);
@@ -1140,8 +1145,8 @@
     /* ─── Footer ─── */
     .footer {
       padding: 4rem 0 2rem;
-      background: var(--navy);
-      border-top: 1px solid rgba(255,255,255,0.1);
+      background: var(--gildhart-green);
+      border-top: 1px solid rgba(201,164,74,0.25);
     }
     .footer-inner {
       max-width: 1400px;
@@ -1175,7 +1180,7 @@
     }
     .footer-brand-link {
       display: inline-block;
-      color: #8B9D83;
+      color: var(--gildhart-gold);
       font-size: 0.875rem;
       font-weight: 600;
       transition: text-decoration 0.2s;
@@ -1195,13 +1200,13 @@
       margin-bottom: 0.75rem;
       transition: color 0.2s;
     }
-    .footer-col a:hover { color: white; }
+    .footer-col a:hover { color: var(--gildhart-gold); }
     .footer-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(201,164,74,0.2);
     }
     .footer-bottom p {
       color: rgba(255,255,255,0.4);
@@ -1229,10 +1234,10 @@
   <!-- Nav -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-brand">Pharmo<span>Digital</span></a>
+      <a href="index.html" class="nav-brand">Gildhart</a>
       <div class="nav-links">
         <div class="nav-dropdown">
-          <button class="nav-dropdown-trigger">PharmoBoost <span class="dd-arrow">▼</span></button>
+          <button class="nav-dropdown-trigger">Services <span class="dd-arrow">▼</span></button>
           <div class="nav-dropdown-menu">
             <span class="dd-section-label">Complete Packages</span>
             <a href="#" class="dd-item"><span class="dd-item-name">WebPro Elite</span><span class="dd-item-sub">Pillar Domination Framework™ + Website</span></a>
@@ -1258,7 +1263,7 @@
       </button>
     </div>
     <div class="nav-mobile-overlay">
-      <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">PharmoBoost ▼</button>
+      <button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';">Services ▼</button>
       <div style="display:none;">
         <span class="mobile-dd-section-label">Complete Packages</span>
         <a href="#" class="mobile-dd-item">WebPro Elite <span class="mobile-dd-item-sub">Pillar Domination Framework™ + Website</span></a>
@@ -1662,7 +1667,7 @@ Built for established practices turning over £1M+. We design, build, and manage
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="index.html" class="footer-brand-name">PharmoDigital</a>
+          <a href="index.html" class="footer-brand-name">Gildhart</a>
           <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
           <p class="footer-brand-desc">Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.</p>
           <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook — £497 →</a>
@@ -1683,13 +1688,13 @@ Built for established practices turning over £1M+. We design, build, and manage
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
-          <a href="mailto:hello@pharmodigital.com">hello@pharmodigital.com</a>
+          <a href="mailto:hello@gildhart.com">hello@gildhart.com</a>
           <a href="tel:+442035820064">020 3582 0064</a>
           <a href="#">London, UK</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 PharmoDigital. Healthcare Marketing Agency.</p>
+        <p>© 2026 Gildhart. Healthcare Marketing Agency.</p>
         <div class="footer-badges">
           <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">ISO 27001 Certified</span>
           <span style="color: rgba(255,255,255,0.4); font-size: 0.75rem;">Top 40 Agency</span>
