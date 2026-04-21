@@ -18,10 +18,53 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-21] — Step 5/5: Final CSS polish — animation, hover states, responsive ✅ NAV PLAN COMPLETE (index.html)
+- `.dd-item:hover .dd-item-name` brightness changed `#e0bf7a` → `#d4b35a` (desktop + mobile) per plan spec
+- `.dd-section-label`: added `pointer-events:none; background:transparent!important` — category labels never show hover bg
+- 1024px breakpoint: nav gap `2rem→1.25rem`, link font `1rem→0.875rem`, CTA shrunk — prevents wrapping on tablet
+- Dropdown shadow refined: `0 14px 44px rgba(201,164,74,0.10), 0 6px 20px rgba(0,0,0,0.18)` — slightly warmer/deeper
+- All 5 steps complete: structure, dropdowns, hover bridge, mobile overlay, polish. Ready for propagation to other 5 pages.
+
+### [2026-04-21] — Step 4/5: Update mobile overlay to match new 4-item structure (index.html)
+- Replaced mobile overlay content: added collapsible "Who We Help" (Pharmacy Groups / Private Clinics / Enterprise Healthcare)
+- Kept "Our Work" + "The Proof" collapsible sections, added plain "About" link before CTA
+- Animated expand/collapse via max-height + opacity transitions (0.3s ease) with rotating arrow indicator
+- Gold `.mobile-dd-item-name`, cream `.mobile-dd-item-sub`, `.mobile-dd-category-label` (gold small-caps), `.mobile-dd-divider` (gold 25%)
+- New CSS classes: `.mobile-nav-section-trigger`, `.mobile-dd-panel`, `.mobile-dd-category-label`, `.mobile-dd-divider`, `.mobile-nav-plain-link`
+
+### [2026-04-21] — Step 3/5: Hover bridge and seamless dropdown positioning (index.html)
+- Removed `border-top: 1px solid rgba(201,164,74,0.12)` from `.nav-dropdown-menu` for truly seamless flow
+- Added dual hover bridge: `::before` (24px tall, 16px wider each side) + `::after` (14px, full width) — diagonal mouse paths preserved
+- Per-dropdown widths: Who We Help `280px`, Our Work `360px` (default), The Proof `440px`
+- Kept `ddFadeIn` 150ms animation, centred `translateX(-50%)`, `top:100%` positioning unchanged
+
+### [2026-04-21] — Step 2/5: Restructure desktop nav HTML — 4 balanced items (index.html)
+- Left side (`.nav-links`): "Who We Help" dropdown (Pharmacy Groups, Private Clinics, Enterprise Healthcare — gold titles only) + "Our Work" dropdown (unchanged)
+- Right side (`.nav-links-right`): "The Proof" dropdown (moved from left), plain "About" link, "Join The Waitlist" CTA
+- Removed inline style overrides on `.dd-section-label` and `.dd-divider` — now rely on CSS defaults from step 1
+- "Who We Help" dropdown uses `min-width:300px` (narrower, no descriptors); "The Proof" keeps `min-width:420px`
+
+### [2026-04-21] — Step 1/5: Seamless dark forest green dropdown CSS (index.html)
+- Dropdown bg: white → `rgba(30,61,47,1)` matching nav bar exactly; removed `border-radius:14px`, `::before` arrow
+- Added `@keyframes ddFadeIn` 150ms opacity animation; `top:100%` with no gap for seamless flow
+- `.dd-item-name`: gold (`var(--gildhart-gold)`), `font-weight:600`, `letter-spacing:0.04em`; hover → brighter `#e0bf7a`
+- `.dd-item-sub`: `#F5ECD7` cream, `font-weight:300`, `0.8125rem`; `.dd-item` hover bg → gold 6% tint
+- `.dd-item` border-bottom: `1px solid rgba(201,164,74,0.1)` between items; `.dd-divider` now full gold
+- `.dd-section-label`: `letter-spacing:0.14em`, `font-variant:small-caps`; warm shadow on menu
+- Padding: `1rem 1.5rem` per item (was `0.625rem 1.25rem`)
+
+### [2026-04-21] — Redesign nav structure (index.html)
+- Replaced all nav items: "Services/Pharmacies/Clinics/Case Studies/The Playbook" → "Our Work" + "The Proof" dropdowns
+- Our Work: The Build, The Agent, The Method (3 items, no category labels)
+- The Proof: CLIENT RESULTS (Ealing/Superior/Puri) + LATEST BUILDS (Chiselhurst/Easy Clinic/Southdowns) with gold divider
+- Right side: removed all links, only "Join The Waitlist" CTA remains
+- Dropdown labels gold (`var(--gildhart-gold)`), hover state adds gold to item names
+- Mobile overlay updated to match — two collapsible sections + CTA
+- Still needs propagation to other 5 pages after user confirms index.html looks correct
+
 ### [2026-04-21] — Enlarge logo + nav typography (index.html)
 - Logo: 120→150px desktop, 96→120px tablet, 72→80px mobile — crest now dominant and legible
 - Nav link font: 0.9375rem→1rem (links + dropdown trigger) for visual balance with larger logo
-- Still needs propagation to other 5 pages after user confirms index.html looks correct
 
 ### [2026-04-21] — Fix logo too small to read (index.html)
 - Root cause: 72px max on a 400×400 detailed crest = unreadable at that scale

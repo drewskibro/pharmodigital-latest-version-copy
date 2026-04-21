@@ -17,6 +17,11 @@ Rules:
 </instructions>
 
 <todo>
+Propagate new nav to other 5 pages
+index.html nav redesign complete — replicate to homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite
+</todo>
+
+<todo>
 Build /services page for "Done For You" pathway
 homepage-v2.html links to /services — needs dedicated page with DFY packages, pricing, process
 </todo>
@@ -24,9 +29,4 @@ homepage-v2.html links to /services — needs dedicated page with DFY packages, 
 <todo>
 Build /choose vertical router page
 homepage-v2.html "Choose Your Type" card links to /choose — needs pharmacy/clinic/hospital selector
-</todo>
-
-<todo>
-A/B test homepage-v2 vs original index.html
-Compare conversion rates between the two homepage approaches before committing to one
 </todo>
