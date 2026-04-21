@@ -18,6 +18,13 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-21] — Redesign nav CTA as premium button (index.html)
+- Replaced gradient bg + flexbox centering with fixed `height:38px` + `line-height:38px` — bulletproof single-line text centering
+- Dark green text (`var(--gildhart-green)`) on solid gold bg — high contrast, premium feel
+- Uppercase + `letter-spacing:0.05em` + `font-size:0.8125rem` — luxury brand typography
+- Hover: darker gold bg + white text + subtle lift; removed text-shadow and inner border
+- Tablet (1024px): `height:34px; line-height:34px; padding:0 1.25rem` — proportional scale-down
+
 ### [2026-04-21] — Step 5/5: Final CSS polish — animation, hover states, responsive ✅ NAV PLAN COMPLETE (index.html)
 - `.dd-item:hover .dd-item-name` brightness changed `#e0bf7a` → `#d4b35a` (desktop + mobile) per plan spec
 - `.dd-section-label`: added `pointer-events:none; background:transparent!important` — category labels never show hover bg
