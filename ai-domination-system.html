@@ -179,58 +179,114 @@
         position: sticky;
         top: 0;
         z-index: 50;
-        background: rgba(254,247,237,0.97);
+        background: rgba(30,61,47,0.97);
         backdrop-filter: blur(8px);
-        border-bottom: 1px solid rgba(0,0,0,0.07);
+        border-bottom: 1px solid rgba(201,164,74,0.18);
       }
       .nav-inner {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 2rem;
-        height: 72px;
-        display: flex;
+        height: 110px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        justify-content: space-between;
       }
       .nav-brand {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.125rem;
-        font-weight: 700;
-        color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-decoration: none;
+        grid-column: 2;
+      }
+      .nav-brand img {
+        width: auto;
+        height: auto;
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: contain;
+        display: block;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        border-radius: 0;
+        overflow: visible;
+        flex-shrink: 0;
+        filter: drop-shadow(0 2px 8px rgba(201,164,74,0.25));
+        transition: filter 0.3s ease, transform 0.3s ease;
+      }
+      .nav-brand:hover img {
+        filter: drop-shadow(0 4px 16px rgba(201,164,74,0.4));
+        transform: scale(1.04);
       }
       .nav-brand span { color: var(--teal); }
       .nav-links {
         display: flex;
         align-items: center;
         gap: 2rem;
+        grid-column: 1;
       }
+      .nav-links-right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        grid-column: 3;
+        justify-content: flex-end;
+      }
+      .nav-links-right a,
       .nav-links a {
         font-size: 0.9375rem;
         font-weight: 500;
-        color: var(--gray-600);
+        letter-spacing: 0.04em;
+        color: #FAF5EE;
         text-decoration: none;
         transition: color 0.2s;
+        position: relative;
+        padding-bottom: 2px;
       }
-      .nav-links a:hover { color: var(--navy); }
+      .nav-links-right a::after,
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gildhart-gold);
+        border-radius: 1px;
+        transition: width 0.3s ease;
+      }
+      .nav-links-right a:hover,
+      .nav-links a:hover { color: var(--gildhart-gold); }
+      .nav-links-right a:hover::after,
+      .nav-links a:hover::after { width: 100%; }
       .nav-cta {
-        background: var(--navy);
-        color: white !important;
+        background: var(--gildhart-gold);
+        color: var(--gildhart-green) !important;
         padding: 0.625rem 1.25rem;
         border-radius: 8px;
         font-weight: 600 !important;
         font-size: 0.9rem !important;
+        letter-spacing: 0.04em;
+        transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: 0 2px 8px rgba(201,164,74,0.2);
       }
-      .nav-cta:hover { background: var(--navy-light) !important; }
+      .nav-cta:hover { background: #b8912f !important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,164,74,0.35); }
+      .nav-cta::after { display: none !important; }
 
       /* ─── PharmoBoost Dropdown ─── */
       .nav-dropdown { position: relative; }
       .nav-dropdown-trigger {
         display: inline-flex; align-items: center; gap: 0.3rem;
-        font-size: 0.9375rem; font-weight: 500; color: var(--gray-600);
-        cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; transition: color 0.2s;
+        font-size: 0.9375rem; font-weight: 500; letter-spacing: 0.04em; color: #FAF5EE;
+        cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; padding-bottom: 2px; transition: color 0.2s;
+        position: relative;
       }
-      .nav-dropdown-trigger:hover { color: var(--navy); }
+      .nav-dropdown-trigger::after {
+        content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px;
+        background: var(--gildhart-gold); border-radius: 1px; transition: width 0.3s ease;
+      }
+      .nav-dropdown-trigger:hover { color: var(--gildhart-gold); }
+      .nav-dropdown-trigger:hover::after { width: calc(100% - 1em); }
       .nav-dropdown-trigger .dd-arrow { font-size: 0.55rem; transition: transform 0.25s ease; margin-top: 1px; }
       .nav-dropdown:hover .dd-arrow, .nav-dropdown.open .dd-arrow { transform: rotate(180deg); }
       .nav-dropdown-menu {
@@ -264,35 +320,72 @@
       .dd-item-sub { font-size: 0.75rem; font-weight: 400; color: var(--gray-400); line-height: 1.4; display: block; margin-top: 1px; }
 
       /* Mobile hamburger */
-      .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--navy); }
+      .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: #FAF5EE; min-width: 48px; min-height: 48px; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.2s ease; }
+      .nav-hamburger:hover { background: rgba(250,245,238,0.08); }
       .nav-hamburger svg { display: block; }
+      .nav-hamburger .ham-close { color: var(--gildhart-gold); }
       .nav-mobile-overlay {
-        display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
-        background: rgba(254,247,237,0.99); backdrop-filter: blur(12px); z-index: 49;
-        padding: 2rem; flex-direction: column; gap: 0.25rem; overflow-y: auto;
+        position: fixed; top: 110px; left: 0; right: 0; bottom: 0;
+        background: rgba(30,61,47,0.99); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 49;
+        padding: 0 2rem 2rem; flex-direction: column; gap: 0.25rem; overflow-y: auto; -webkit-overflow-scrolling: touch;
+        display: flex; opacity: 0; transform: translateY(-12px); pointer-events: none; visibility: hidden;
+        transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1), visibility 0.35s;
       }
-      .nav-mobile-overlay.mobile-open { display: flex; }
+      .nav-mobile-overlay.mobile-open { opacity: 1; transform: translateY(0); pointer-events: auto; visibility: visible; }
+      .nav-mobile-overlay-logo { display: flex; align-items: center; justify-content: center; padding: 1.5rem 0 1.25rem; border-bottom: 1px solid rgba(201,164,74,0.15); margin-bottom: 0.75rem; flex-shrink: 0; }
+      .nav-mobile-overlay-logo img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(201,164,74,0.3)); }
       .nav-mobile-overlay a, .nav-mobile-overlay button {
-        font-size: 1.125rem; font-weight: 500; color: var(--gray-600); text-decoration: none;
-        padding: 0.75rem 0; border: none; background: none; font-family: inherit;
-        cursor: pointer; text-align: left; display: block; width: 100%;
+        font-size: 1.125rem; font-weight: 500; color: #FAF5EE; text-decoration: none;
+        padding: 0.875rem 0; border: none; background: none; font-family: inherit;
+        cursor: pointer; text-align: left; display: block; width: 100%; min-height: 48px; transition: color 0.2s ease;
       }
-      .nav-mobile-overlay a:hover, .nav-mobile-overlay button:hover { color: var(--navy); }
+      .nav-mobile-overlay a:hover, .nav-mobile-overlay button:hover { color: var(--gildhart-gold); }
       .nav-mobile-overlay .mobile-dd-section-label {
         font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700;
-        letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); padding: 0.75rem 0 0.25rem 1rem;
+        letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,245,238,0.45); padding: 0.75rem 0 0.25rem 1rem; min-height: auto;
       }
       .nav-mobile-overlay .mobile-dd-item { padding-left: 1rem; font-size: 1rem; }
-      .nav-mobile-overlay .mobile-dd-item-sub { display: block; font-size: 0.75rem; color: var(--gray-400); font-weight: 400; }
+      .nav-mobile-overlay .mobile-dd-item-sub { display: block; font-size: 0.75rem; color: rgba(250,245,238,0.45); font-weight: 400; }
       .nav-mobile-overlay .mobile-nav-cta {
-        display: inline-block; background: var(--navy); color: white !important;
-        padding: 0.875rem 1.75rem; border-radius: 8px; font-weight: 600 !important;
-        font-size: 1rem !important; text-align: center; margin-top: 1rem;
+        display: block; background: var(--gildhart-gold); color: var(--gildhart-black) !important;
+        padding: 1rem 1.75rem; border-radius: 10px; font-weight: 700 !important;
+        font-size: 1.05rem !important; text-align: center; margin-top: 1.5rem;
+        box-shadow: 0 4px 16px rgba(201,164,74,0.25); transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
       }
+      .nav-mobile-overlay .mobile-nav-cta:hover { background: #b8912f; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(201,164,74,0.35); }
 
+      @media (max-width: 1024px) {
+        .nav-brand img {
+          max-width: 80px;
+          max-height: 80px;
+        }
+        .nav-inner {
+          height: 96px;
+        }
+        .nav-mobile-overlay {
+          top: 96px;
+        }
+      }
       @media (max-width: 768px) {
         .nav-links { display: none; }
-        .nav-hamburger { display: block; }
+        .nav-links-right { display: none; }
+        .nav-hamburger { display: flex; }
+        .nav-inner {
+          display: flex;
+          justify-content: space-between;
+          height: 80px;
+          padding: 0 1.25rem;
+        }
+        .nav-brand { grid-column: unset; }
+        .nav-brand img { max-width: 64px; max-height: 64px; }
+        .nav-mobile-overlay { top: 80px; padding: 0 1.5rem 2rem; }
+        .nav-mobile-overlay-logo img { width: 64px; height: 64px; }
+      }
+      @media (max-width: 480px) {
+        .nav-mobile-overlay { padding: 0 1.25rem 1.5rem; }
+        .nav-mobile-overlay a, .nav-mobile-overlay button { font-size: 1rem; padding: 0.75rem 0; }
+        .nav-mobile-overlay-logo { padding: 1.25rem 0 1rem; }
+        .nav-mobile-overlay-logo img { width: 56px; height: 56px; }
       }
 
       /* ─── Hero ─── */
@@ -2857,7 +2950,9 @@
     <!-- Nav -->
     <nav class="nav">
       <div class="nav-inner">
-        <a href="index.html" class="nav-brand">Gildhart</a>
+        <a href="index.html" class="nav-brand">
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" loading="eager" decoding="async" fetchpriority="high" />
+        </a>
         <div class="nav-links">
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger">Services <span class="dd-arrow">▼</span></button>
@@ -2895,6 +2990,8 @@
           </div>
           <a href="#">Pharmacies</a>
           <a href="#">Clinics</a>
+        </div>
+        <div class="nav-links-right">
           <a href="case-study-ealing.html">Case Studies</a>
           <a href="ai-domination-system.html">The Playbook</a>
           <a href="index.html#contact" class="nav-cta">Book A Call</a>
@@ -2902,7 +2999,7 @@
         <button
           class="nav-hamburger"
           aria-label="Open menu"
-          onclick="document.querySelector('.nav-mobile-overlay').classList.toggle('mobile-open'); this.querySelector('.ham-open').style.display = this.querySelector('.ham-open').style.display === 'none' ? 'block' : 'none'; this.querySelector('.ham-close').style.display = this.querySelector('.ham-close').style.display === 'none' ? 'block' : 'none';"
+          onclick="var o=document.querySelector('.nav-mobile-overlay');o.classList.toggle('mobile-open');document.body.style.overflow=o.classList.contains('mobile-open')?'hidden':'';this.querySelector('.ham-open').style.display=this.querySelector('.ham-open').style.display==='none'?'block':'none';this.querySelector('.ham-close').style.display=this.querySelector('.ham-close').style.display==='none'?'block':'none';"
         >
           <svg
             class="ham-open"
@@ -2930,6 +3027,9 @@
         </button>
       </div>
       <div class="nav-mobile-overlay">
+        <div class="nav-mobile-overlay-logo">
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" />
+        </div>
         <button
           onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none';"
         >

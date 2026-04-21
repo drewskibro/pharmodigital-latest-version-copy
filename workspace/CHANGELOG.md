@@ -18,6 +18,92 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-21] — Enlarge logo + nav typography (index.html)
+- Logo: 120→150px desktop, 96→120px tablet, 72→80px mobile — crest now dominant and legible
+- Nav link font: 0.9375rem→1rem (links + dropdown trigger) for visual balance with larger logo
+- Still needs propagation to other 5 pages after user confirms index.html looks correct
+
+### [2026-04-21] — Fix logo too small to read (index.html)
+- Root cause: 72px max on a 400×400 detailed crest = unreadable at that scale
+- Fix: desktop 72→120px, tablet 64→96px, mobile 52→72px — detail now visible at all breakpoints
+- Two-row grid layout preserved; nav height auto-adjusts to larger logo
+
+### [2026-04-21] — Fix nav clipping + logo rendering (index.html)
+- Changed to `height:auto; min-height:80px` with two-row grid (logo row 1 spanning all cols, links row 2)
+- Removed `image-rendering: crisp-edges` → `auto` for smooth bicubic downscaling
+
+### [2026-04-21] — Step 7: Cross-page consistency pass — nav plan COMPLETE ✅
+- Verified all 6 pages: identical nav CSS, markup, logo URL, and mobile overlay
+- `web-pro-elite.html`: added 480px mobile breakpoint, fixed hamburger `display:flex`, responsive overlay padding + logo sizing
+- `homepage-v2.html`: PharmoBoost label already fixed in earlier step
+- No leftover cream backgrounds, teal nav accents, or old brand text remain in any nav section
+- Logo CDN URL `uploaded-asset-1776767932323-0.png` confirmed correct across all 6 files
+
+### [2026-04-21] — Step 5: Nav typography polish and micro-interactions across all 6 pages
+- `letter-spacing: 0.04em` added to all `.nav-links a`, `.nav-links-right a`, `.nav-dropdown-trigger`, `.nav-cta`
+- Gold underline-slide hover animation (::after pseudo, width 0→100%, ease 0.3s) on all nav links + dropdown trigger
+- `.nav-cta` text colour → `var(--gildhart-green)` for better contrast on gold bg; added subtle gold box-shadow + translateY(-1px) hover lift
+- `.nav-cta::after { display:none }` prevents underline animation on CTA button
+- Dropdown trigger underline stops short of arrow: `width: calc(100% - 1em)`
+- All 6 pages: index, homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite
+
+### [2026-04-21] — Step 4: Centre logo as dominant nav element across all 6 pages
+- Nav layout: `flex` → `grid-template-columns: 1fr auto 1fr` — three-column layout with logo centred
+- Links split: `.nav-links` (left: Services dropdown + Pharmacies + Clinics) and `.nav-links-right` (right: Case Studies + Playbook + CTA)
+- Logo: 80px → 100px desktop, 80px tablet, 64px mobile — gold drop-shadow + hover glow
+- Nav height: 100px → 110px desktop, 96px tablet, 80px mobile
+- Mobile: falls back to `display:flex` with logo left, hamburger right (both `.nav-links` and `.nav-links-right` hidden)
+- All 6 pages: index, homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite
+
+### [2026-04-21] — Step 3: Nav background + colour palette → forest green across all 6 pages
+- `.nav` bg: cream → `rgba(30,61,47,0.97)` (forest green) on index, homepage-v2, ai-dom, case-study, salesagent, web-pro-elite
+- `border-bottom`: black 7% → gold 18% (`rgba(201,164,74,0.18)`) — subtle luxury divider
+- `.nav-links a`, `.nav-dropdown-trigger`: gray-600 → `#FAF5EE` (cream/off-white); hover → `var(--gildhart-gold)`
+- `.nav-cta`: navy bg → `var(--gildhart-gold)` bg with dark text; hover → `#b8912f`
+- `.nav-hamburger`: navy → `#FAF5EE` (cream stroke)
+- `.nav-mobile-overlay`: cream bg → `rgba(30,61,47,0.99)` forest green; link colours → `#FAF5EE`, hover → gold
+- `.mobile-nav-cta`: navy → gold bg with dark text (matches desktop CTA)
+- Mobile section labels + sub-items: muted cream `rgba(250,245,238,0.45)`
+
+### [2026-04-21] — Nav audit: mapped structure across all 6 pages for premium green redesign
+- Audited nav markup (.nav, .nav-inner, .nav-brand, .nav-links, .nav-hamburger, .nav-mobile-overlay) on all 6 HTML files
+- Key findings: homepage-v2 still uses "PharmoBoost" dropdown label (all others say "Services"); homepage-v2 has slightly different bg opacity
+- Current nav bg: cream rgba(254,247,237,0.97) on 5 pages, rgba(245,242,236,0.97) on homepage-v2
+- Logo: uploaded-asset-1776767932323-0.png at 80×80 across all pages
+- Plan: steps 3–7 will change nav bg to #1E3D2F, text to white/cream, centre logo larger, fix homepage-v2 label
+
+### [2026-04-21] — Fix broken CSS on 5 pages: duplicate `.nav-brand {` selector
+- Root cause: during logo step 3, a duplicate `.nav-brand {` was introduced (unclosed first brace) on salesagent, web-pro-elite, ai-domination-system, case-study-ealing, homepage-v2
+- This broke all CSS rules after the nav section, causing completely unstyled pages
+- Fix: removed the extra `.nav-brand {` line on all 5 files; index.html was unaffected
+- All pages now render correctly with full styling restored
+
+### [2026-04-21] — Nav logo step 4: responsive sizing at tablet + mobile breakpoints
+- Added `@media (max-width: 1024px)` — logo 64px, nav 88px, overlay top 88px (all 6 pages)
+- Added `@media (max-width: 768px)` — logo 48px, nav 72px, overlay top 72px, tighter padding (all 6 pages)
+- Logo no longer dominates mobile nav; hamburger button has comfortable breathing room
+- Complete plan: steps 1–4 done across index, homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite
+
+### [2026-04-21] — Nav logo step 3: replicate logo across all 5 site pages
+- Added `.nav-brand img` CSS (max-width/max-height 80px, crisp-edges, no clipping) to: homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite
+- Replaced plain text "Gildhart" nav-brand with `<img>` tag (same src, width/height/loading/decoding/fetchpriority as index.html)
+- Bumped `.nav-inner` height from 72px→100px and `.nav-mobile-overlay` top from 72px→100px on all 5 pages
+- Logo now renders consistently site-wide across all 6 HTML files
+
+### [2026-04-21] — Nav logo step 2: img attributes + CSS max-width approach (index.html)
+- Added HTML `width="80" height="80" loading="eager" decoding="async" fetchpriority="high"` to nav logo `<img>`
+- CSS switched from fixed `width:80px;height:80px` to `max-width:80px;max-height:80px;width:auto;height:auto`
+- `image-rendering: crisp-edges` + `-webkit-optimize-contrast` for sharper browser downscaling
+- Prevents layout shift + ensures logo loads immediately as highest priority asset
+- Source image still oversized — user may want to re-upload web-optimised 200–300px version for best clarity
+
+### [2026-04-21] — Nav logo CSS fix step 1: sizing + rendering (index.html)
+- `.nav-brand img`: 70px→80×80px explicit width/height, `image-rendering:auto`, `border-radius:0`, `overflow:visible`, `flex-shrink:0`
+- `.nav-inner` height: 90px→100px for comfortable logo breathing room
+- `.nav-mobile-overlay` top: 90px→100px to match new nav height
+- Removed redundant "Gildhart" text previously (logo contains brand name)
+- Footer + gh-divider still reference old broken `uploaded-asset-1776672268791-0.png` — next step to update
+
 ### [2026-04-21] — Full teal purge on index.html: pathway section + all decorative teal replaced
 - SalesAgent Pro proof banner: `#14b8a6` → `var(--gildhart-green)` (inline style)
 - Featured DFY card: proof banner, recommended label, check marks, border → forest green / gold
