@@ -674,8 +674,11 @@
           /* Centred via flex on parent */
         }
         .nav-brand img {
-          max-width: 100px;
-          max-height: 100px;
+          max-width: 80px;
+          max-height: 80px;
+        }
+        .nav-brand {
+          overflow: hidden;
         }
         .nav-hamburger {
           position: absolute;
@@ -709,8 +712,8 @@
           min-height: 84px;
         }
         .nav-brand img {
-          max-width: 90px;
-          max-height: 90px;
+          max-width: 70px;
+          max-height: 70px;
         }
         /* Smaller nav bar — adjust padding-top */
         .nav-mobile-overlay {
@@ -4797,8 +4800,10 @@
       @media (max-width: 768px) {
         .hero {
           padding: 3rem 1.5rem;
+          padding-top: 4rem;
           min-height: auto;
           padding-bottom: 4rem;
+          margin-top: 0;
         }
 
         .hero-inner {

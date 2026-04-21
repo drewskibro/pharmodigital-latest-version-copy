@@ -18,6 +18,12 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-21] — Fix mobile logo overlap + hero top spacing
+- Shrunk mobile logo: 100px→80px (≤768px), 90px→70px (≤480px) to fit within nav bar height
+- Added `overflow: hidden` on `.nav-brand` at ≤768px so logo never bleeds past nav boundary
+- Hero on mobile: added `padding-top: 4rem` and `margin-top: 0` to create breathing room below nav
+- Files: index.html only
+
 ### [2026-04-21] — Fix nav border cutting through logo when mobile menu open
 - Added `.nav.nav-border-hidden` class that sets `border-bottom-color: transparent`
 - JS toggles this class on open/close so the gold border doesn't slice through the oversized logo
