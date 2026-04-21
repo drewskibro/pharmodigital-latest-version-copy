@@ -18,6 +18,18 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-21] — Full teal purge on index.html: pathway section + all decorative teal replaced
+- SalesAgent Pro proof banner: `#14b8a6` → `var(--gildhart-green)` (inline style)
+- Featured DFY card: proof banner, recommended label, check marks, border → forest green / gold
+- AI mockup #1 rank bubble: `var(--teal)` → `var(--gildhart-green)`
+- Revenue card accent strips + dividers: teal → gold gradient
+- Revenue card hover glows, featured card shadows, ambient glow → gold or removed
+- `featured-case-image::before` border: teal → forest green
+- `featured-cta-card:hover` border: teal → forest green
+- `scorecard-row.highlight` bg, `dd-item:hover`, `split-card:hover` border → forest green tints
+- Animation keyframes (`shiftAiGlow`, `tpSlideUpFeatured`) → gold/green
+- `shift-col-new` label bg, btn box-shadows: teal → gold/green equivalents
+
 ### [2026-04-21] — Sachin Mehta quote: highlighted text (300%, "patients actually booking appointments") → forest green
 - `.featured-quote strong` color: `var(--teal)` → `var(--gildhart-green)` (#1E3D2F) in index.html
 
