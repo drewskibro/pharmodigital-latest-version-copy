@@ -18,6 +18,14 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — salesagent.html: Mobile-only Live Right Now card layout improvement
+- Cards switch from horizontal carousel to full-width vertical stack on ≤768px
+- Screenshot aspect-ratio changed to 16/10 (480px: 16/11) for better visibility
+- Edge fade masks hidden on mobile; carousel nav arrows hidden
+- Gold border accent on mobile cards; footer/header padding adjusted
+- Desktop layout completely untouched
+- Files: salesagent.html
+
 ### [2026-04-22] — ai-domination-system.html: Remove hero bullets bar entirely
 - Deleted `.playbook-hero-bullets-bar` HTML block (5 bullet items) and all associated CSS
 - Removed `.phb-item`, `.phb-tick`, and all responsive overrides for the bar

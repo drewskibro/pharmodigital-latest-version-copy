@@ -3608,6 +3608,64 @@
         display: none;
       }
 
+      /* ─── Mobile: Live Right Now cards — full-width stacked layout ─── */
+      @media (max-width: 768px) {
+        .sa-live-carousel-wrap::before,
+        .sa-live-carousel-wrap::after {
+          display: none;
+        }
+        .sa-live-carousel-track {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          padding: 0 1.25rem;
+          overflow-x: visible;
+          overflow-y: visible;
+        }
+        .sa-live-card {
+          flex: none;
+          width: 100%;
+          border: 1px solid rgba(201,164,74,0.2);
+        }
+        .sa-live-card-screenshot {
+          height: auto;
+          aspect-ratio: 16 / 10;
+        }
+        .sa-live-card-screenshot img {
+          object-fit: cover;
+          object-position: top left;
+        }
+        .sa-live-card-footer {
+          padding: 1rem 1.25rem;
+        }
+        .sa-live-card-name {
+          font-size: 0.9375rem;
+        }
+        .sa-carousel-nav {
+          display: none;
+        }
+        .sa-live-clients {
+          padding: 4.5rem 0 3.5rem;
+        }
+        .sa-live-clients-header {
+          padding: 0 1.25rem;
+          margin-bottom: 2.5rem;
+        }
+        .sa-live-clients-footnote {
+          padding: 1.5rem 1.25rem 0;
+          font-size: 1rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .sa-live-carousel-track {
+          padding: 0 1rem;
+          gap: 1rem;
+        }
+        .sa-live-card-screenshot {
+          aspect-ratio: 16 / 11;
+        }
+      }
+
       /* ─── Responsive ─── */
       @media (max-width: 1024px) {
         .sa-hero-inner { grid-template-columns: 1fr; }
