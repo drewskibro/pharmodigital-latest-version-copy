@@ -21,6 +21,7 @@ Propagate nav fixes to homepage-v2
 Nav improvements now complete on 5 of 6 pages. Apply same CSS/JS to homepage-v2.html.
 </todo>
 
+
 <todo>
 Review all footer links across 6 pages
 Footer links still reference old nav structure (Services/Case Studies) — should match new nav items

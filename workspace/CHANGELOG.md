@@ -18,6 +18,35 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — ai-domination-system.html: Replace all teal with forest green & gold
+- Proof section: image border, client tags, result borders/labels, quote bg/border/strong → gold/green
+- Playing field: new-column label/dots, callout span → green/gold
+- Method: radial glow, step connector, mobile tab active → green/gold
+- System: early-buyers stripe/glow/eyebrow, tier card borders/status/checks, timeline nums → green
+- Math: audience card 1 labels, highlighted card border/totals, difference text, callout span → green/gold
+- Next steps: timeline line, circles, labels, final card accents → green/gold
+- FAQ: eyebrow, open-item bg/border, question nums, icon accents → green/gold
+- Guarantee: badge, proof-client labels, personal bg/border → gold/green
+- Final CTA: price link, choice label → green; inline math vals → green
+- Files: ai-domination-system.html
+
+### [2026-04-22] — salesagent.html Step 3/3: Replace teal in dark sections, flywheel, live clients, stat bars, & inline accents
+- Flywheel ring/loop/pill/connecting lines → gold; flywheel card top-bar/num ghost → gildhart-green
+- Live clients badge + badge-dot + footnote border + section top-line → gold
+- Carousel active dot → gold; stat compare fill/val → green/gold; saLivePulse dot → green/gold
+- Proof card label/border/divider, how-v2 step num/line/badge, timeline fill → gildhart-green/gold
+- FAQ chevron bg/border/stroke, closing card--popular border, closing-card-save colour → green
+- Pull-quote attribution, urgency span highlight, story em/punchline em, testimonial divider → gold/green
+- All radial-gradient glows, section ::before/::after gradient lines → rgba(30,61,47,...) or gold
+
+### [2026-04-22] — salesagent.html Step 1/3: Replace teal eyebrow/overline/label text colours
+- .sa-eyebrow-why, .sa-track-record-overline, .sa-faq-overline, .sa-closing-overline → var(--gildhart-gold)
+- .sa-eyebrow-teal (incl. decorative lines), .sa-live-clients-overline (incl. ::before/::after) → var(--gildhart-gold)
+- .sa-closing-stack-label, .sa-closing-eligibility-bar-label, .sa-closing-testimonials-label, .sa-closing-testimonial-metric → var(--gildhart-gold)
+- .sa-closing-promo, .sa-closing-proof-client, .sa-flywheel-loop-tag, .sa-how-v2-step-label → var(--gildhart-gold)
+- .sa-eyebrow-cream → var(--gildhart-green); .sa-why-lead-stat pill → gold bg/border/text
+- Files: salesagent.html
+
 ### [2026-04-22] — Propagate updated nav to case-study-ealing.html
 - Replaced old inline-onclick hamburger + overlay-inside-nav with same structure as index.html
 - Mobile overlay moved outside `<nav>` (fixes position:fixed on iOS); id="mobileNavOverlay" added
