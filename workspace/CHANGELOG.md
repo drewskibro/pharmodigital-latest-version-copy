@@ -18,6 +18,19 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — ai-domination-system.html: Widen YOUR TURN section v2
+- Container max-width 1100→1300px, grid split 1fr/380px with 4rem gap for more text breathing room
+- Bullets switched from 2-col grid to single-column flex layout at 0.9375rem for cleaner reading
+- Removed redundant mobile override (grid-template-columns:1fr) since bullets are already single-col
+- Files: ai-domination-system.html
+
+### [2026-04-22] — ai-domination-system.html: Redesign YOUR TURN + CHOICE 1/2 sections
+- YOUR TURN: new headline (Ealing Spent £497…), new body copy, 5 new bullet points, new closing line (navy, bold)
+- Price card: headline → "One System. Every AI Platform. Yours Forever." CTA bg green, secondary link gold
+- CHOICE cards: removed pink/teal badge labels, white bg + subtle shadow; Card 1 neutral, Card 2 forest green left border
+- Card 1: "Keep Doing What You're Doing" + new body; Card 2: "Do What Ealing Did" + new body
+- Files: ai-domination-system.html
+
 ### [2026-04-22] — ai-domination-system.html: Replace all teal with forest green & gold
 - Proof section: image border, client tags, result borders/labels, quote bg/border/strong → gold/green
 - Playing field: new-column label/dots, callout span → green/gold
