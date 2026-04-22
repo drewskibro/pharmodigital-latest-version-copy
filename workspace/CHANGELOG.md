@@ -18,9 +18,26 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — Fix mobile logo top clipping + increase bottom padding
+- Logo top was clipped: nav bar 110px was exactly equal to logo 110px with no top clearance
+- Nav bar height increased: 110px → 130px (≤768px), 105px → 118px (≤480px)
+- `.nav-brand` padding changed from `0 0 8px` → `10px 0 14px` (≤768px), `8px 0 12px` (≤480px)
+- Overlay `padding-top` synced to match new bar heights: 130px / 118px
+- Files: index.html only
+
+### [2026-04-21] — Add bottom padding to mobile logo
+- Logo was touching nav bar bottom edge — added `padding-bottom: 8px` to `.nav-brand` at ≤768px breakpoint
+- Increased ≤480px nav bar height from 100px → 105px to absorb the extra padding without clipping
+- Files: index.html only
+
+### [2026-04-21] — Enlarge mobile logo + taller nav bar
+- Mobile logo was too small (80px/70px) after previous shrink — now 110px (≤768px), 95px (≤480px)
+- Nav bar height increased to 110px (≤768px) and 100px (≤480px) to contain the larger logo
+- Removed `overflow: hidden` on `.nav-brand` — no longer needed with properly sized nav bar
+- Overlay `padding-top` synced: 110px (≤768px), 100px (≤480px)
+- Files: index.html only
+
 ### [2026-04-21] — Fix mobile logo overlap + hero top spacing
-- Shrunk mobile logo: 100px→80px (≤768px), 90px→70px (≤480px) to fit within nav bar height
-- Added `overflow: hidden` on `.nav-brand` at ≤768px so logo never bleeds past nav boundary
 - Hero on mobile: added `padding-top: 4rem` and `margin-top: 0` to create breathing room below nav
 - Files: index.html only
 

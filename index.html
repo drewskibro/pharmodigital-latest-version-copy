@@ -662,23 +662,23 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 90px;
-          min-height: 90px;
+          height: 130px;
+          min-height: 130px;
           padding: 0 1.25rem;
           position: relative;
         }
         .nav-brand {
           grid-column: unset;
           grid-row: unset;
-          padding: 0;
+          padding: 10px 0 14px;
           /* Centred via flex on parent */
         }
         .nav-brand img {
-          max-width: 80px;
-          max-height: 80px;
+          max-width: 110px;
+          max-height: 110px;
         }
         .nav-brand {
-          overflow: hidden;
+          overflow: visible;
         }
         .nav-hamburger {
           position: absolute;
@@ -689,7 +689,7 @@
         /* Full-screen overlay — padding-top clears the nav bar */
         .nav-mobile-overlay {
           top: 0;
-          padding-top: 90px;
+          padding-top: 130px;
         }
         .mobile-menu-content {
           padding: 2rem 2rem 1.5rem;
@@ -708,17 +708,20 @@
       }
       @media (max-width: 480px) {
         .nav-inner {
-          height: 84px;
-          min-height: 84px;
+          height: 118px;
+          min-height: 118px;
+        }
+        .nav-brand {
+          padding: 8px 0 12px;
         }
         .nav-brand img {
-          max-width: 70px;
-          max-height: 70px;
+          max-width: 95px;
+          max-height: 95px;
         }
         /* Smaller nav bar — adjust padding-top */
         .nav-mobile-overlay {
           top: 0;
-          padding-top: 84px;
+          padding-top: 118px;
         }
         .mobile-menu-content {
           padding: 1rem 1.25rem 1.25rem;
