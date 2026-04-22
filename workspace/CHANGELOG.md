@@ -18,6 +18,48 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — index.html: Increase "Trusted by" label font size
+- `font-size: 0.65rem` → `0.75rem` for better legibility above logo carousel
+
+### [2026-04-22] — index.html: Improve "Trusted by" label contrast
+- Color: `#9ca3af` (near-invisible warm gray) → `#1E3D2F` (Gildhart green) at `opacity: 0.75`
+- Stays premium and subtle but now reads clearly on `#fcf4e9` cream background
+
+### [2026-04-22] — salesagent.html: Move close button onto lightbox image (top-right corner)
+- Close button now `position: absolute` inside `.sa-lightbox-img-wrap`, pinned top-right of the image itself
+- Hint text moved below the image (in natural reading flow) instead of fixed bottom of viewport
+- Prevents users missing the exit — button is always visible adjacent to what they&#39;re looking at
+
+### [2026-04-22] — salesagent.html: Fix lightbox readability + chatbot card clipping
+- Close button: pure white, font-weight 700, larger (48px), stronger border + box-shadow — clearly readable
+- Hint text: color #ffffff + text-shadow — no longer lost against dark overlay
+- `.sa-live-card` overflow changed to `visible`; rounded corners moved to screenshot (top) + footer (bottom)
+- Chatbot widget right edge no longer clipped by card border-radius
+
+### [2026-04-22] — salesagent.html: Improve lightbox close affordance
+- Replaced small circle ✕ button with a labelled pill "✕ Close" (frosted-glass, fixed top-right)
+- Added `.sa-lightbox-hint` — "Press ESC or click outside to close" — fixed bottom-centre
+- ESC and click-outside close behaviour already existed; now clearly communicated to users
+
+### [2026-04-22] — salesagent.html: Fix hover affordance + mobile chatbot visibility
+- Added `.sa-live-card-screenshot::after` pseudo-element: expand icon ⤢ fades in on hover (bottom-right corner)
+- Mobile image zoom: replaced `transform:scale(1.6) + transform-origin:top right` with `object-position: 85% top`
+- 85% horizontal position reliably frames chatbot widgets (right-side of all 6 screenshots) on mobile
+
+### [2026-04-22] — index.html: Remove broken Gildhart divider below hero
+- Deleted `.gh-divider` block between hero and "Trusted by" logo bar
+- `uploaded-asset-1776672268791-0.png` was broken/empty — divider added dead space
+- Cleaner flow: hero → trusted-by label → logo scroll bar
+
+### [2026-04-22] — index.html: Hero top padding set to 2.5rem
+- `.hero` padding-top: `1.5rem` → `2rem` → `2.5rem` (user-specified exact value)
+- Files: index.html
+
+### [2026-04-22] — index.html: Eyebrow text forest green, underline gold
+- `.hero-eyebrow` color changed from `var(--gildhart-gold)` → `var(--gildhart-green)` (#1E3D2F)
+- `::after` underline stays `var(--gildhart-gold)`, opacity bumped to 0.9 for better contrast
+- Files: index.html
+
 ### [2026-04-22] — salesagent.html: Zoom into chatbot area on mobile screenshots
 - Added `transform: scale(1.6)` + `transform-origin: top right` on mobile screenshot imgs (≤768px)
 - Container overflow:hidden crops naturally — no quality loss, just tighter focus on chatbot widget

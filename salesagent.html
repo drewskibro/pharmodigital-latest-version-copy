@@ -3387,13 +3387,46 @@
         display: none;
       }
 
+      /* Lightbox zoom hint overlay */
+      .sa-live-card-screenshot {
+        position: relative;
+      }
+      .sa-live-card-screenshot::after {
+        content: '⤢';
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.55);
+        color: rgba(255,255,255,0.9);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        pointer-events: none;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255,255,255,0.12);
+        line-height: 34px;
+        text-align: center;
+      }
+      .sa-live-card:hover .sa-live-card-screenshot::after,
+      .sa-live-card-screenshot:focus-within::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+
       /* Individual client card */
       .sa-live-card {
         flex: 0 0 420px;
         background: rgba(255,255,255,0.03);
         border: 1px solid rgba(255,255,255,0.1);
         border-radius: 16px;
-        overflow: hidden;
+        overflow: visible;
         transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease, box-shadow 0.3s ease;
       }
       .sa-live-card:hover {
@@ -3407,6 +3440,7 @@
         overflow: hidden;
         display: block;
         background: #0c1220;
+        border-radius: 16px 16px 0 0;
       }
       .sa-live-card-screenshot img {
         width: 100%;
@@ -3425,6 +3459,8 @@
         align-items: center;
         justify-content: space-between;
         gap: 0.75rem;
+        border-radius: 0 0 16px 16px;
+        overflow: hidden;
       }
       .sa-live-card-name {
         font-family: 'Inter', sans-serif;
@@ -3494,6 +3530,14 @@
       .sa-lightbox-overlay.sa-lightbox-open .sa-lightbox-inner {
         transform: scale(1) translateY(0);
       }
+      /* Wrapper holds the image + the close button pinned to its corner */
+      .sa-lightbox-img-wrap {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
       .sa-lightbox-inner img {
         width: 100%;
         max-height: 80vh;
@@ -3509,27 +3553,53 @@
         color: rgba(255,255,255,0.7);
         letter-spacing: 0.01em;
       }
+      /* Close button: pinned to the top-right corner of the image wrapper */
       .sa-lightbox-close {
-        position: fixed;
-        top: 1.25rem;
-        right: 1.25rem;
-        width: 44px;
+        position: absolute;
+        top: 12px;
+        right: 12px;
         height: 44px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.15);
-        color: white;
-        font-size: 1.375rem;
-        line-height: 1;
+        padding: 0 1.25rem;
+        border-radius: 22px;
+        background: rgba(10, 10, 20, 0.72);
+        border: 1.5px solid rgba(255,255,255,0.55);
+        color: #ffffff;
+        font-size: 0.95rem;
+        font-weight: 700;
+        font-family: 'Outfit', sans-serif;
+        letter-spacing: 0.04em;
         cursor: pointer;
         display: flex;
         align-items: center;
-        justify-content: center;
-        transition: background 0.2s ease;
-        z-index: 10000;
+        gap: 0.45rem;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+        z-index: 2;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        white-space: nowrap;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.55);
       }
       .sa-lightbox-close:hover {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.18);
+        border-color: rgba(255,255,255,0.9);
+        transform: scale(1.05);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+      }
+      .sa-lightbox-close-x {
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+      /* Hint bar — sits below the image, always in view */
+      .sa-lightbox-hint {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.45);
+        pointer-events: none;
+        white-space: nowrap;
+        text-align: center;
       }
 
       /* Bottom footnote */
@@ -3633,9 +3703,8 @@
         }
         .sa-live-card-screenshot img {
           object-fit: cover;
-          object-position: top right;
-          transform: scale(1.6);
-          transform-origin: top right;
+          object-position: 85% top;
+          transform: none;
         }
         .sa-live-card-footer {
           padding: 1rem 1.25rem;
@@ -3811,11 +3880,11 @@
             <span class="line-3">Nobody Answered.</span>
           </h1>
           <div class="sa-hero-subtitle">
-            <p style="font-size:1.05rem;font-weight:400;color:#4b5563;line-height:1.75;margin-bottom:1rem;">Sachin at Ealing Travel Clinic joined those conversations. Within two days he had three HPV bookings he&#39;d never have seen.</p>
-            <p style="font-size:1.05rem;font-weight:400;color:#4b5563;line-height:1.75;margin-bottom:0;">Nemesh at Southdowns Pharmacy Group generates patient bookings at 11pm, 2am, 6am. While he's asleep, his practice is selling. That's what the right system does without him.</p>
+            <p style="font-size:1.05rem;font-weight:400;color:#4b5563;line-height:1.75;margin-bottom:1rem;">Sachin at Ealing Travel Clinic went from sporadic HPV bookings to 55 a month. The practice didn't change. The channel did.</p>
+            <p style="font-size:1.05rem;font-weight:400;color:#4b5563;line-height:1.75;margin-bottom:0;">£200k a year. Generated after hours. Southdowns Pharmacy Group doesn't have night staff. They have something better.</p>
           </div>
           <div class="sa-hero-cta">
-            <a href="#eligibility" class="btn-primary-lg">Deploy SalesAgent Pro This April</a>
+            <a href="#eligibility" class="btn-primary-lg">Deploy SalesAgent Pro This May</a>
           </div>
         </div>
         <div class="sa-hero-visual">
@@ -4033,7 +4102,10 @@
 
     <!-- Lightbox overlay -->
     <div class="sa-lightbox-overlay" id="saLightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
-      <button class="sa-lightbox-close" id="saLightboxClose" aria-label="Close preview">✕</button>
+      <button class="sa-lightbox-close" id="saLightboxClose" aria-label="Close preview">
+        <span class="sa-lightbox-close-x">✕</span> Close
+      </button>
+      <p class="sa-lightbox-hint">Press ESC or click outside to close</p>
       <div class="sa-lightbox-inner">
         <img id="saLightboxImg" src="" alt="" />
         <p class="sa-lightbox-caption" id="saLightboxCaption"></p>

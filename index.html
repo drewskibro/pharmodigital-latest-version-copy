@@ -775,9 +775,8 @@
       .hero {
         min-height: 100vh;
         display: flex;
-        align-items: center;
-        padding: 0 2rem;
-        padding-top: 0;
+        align-items: flex-start;
+        padding: 2.5rem 2rem 0;
         margin-top: 0;
         position: relative;
         overflow: hidden;
@@ -801,15 +800,17 @@
 
       .hero-eyebrow {
         font-family: 'Space Mono', monospace;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #4d7b6f;
-        margin-bottom: 1.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--gildhart-green);
+        margin-top: -1.5rem;
+        margin-bottom: 1.25rem;
         line-height: 1.6;
-        letter-spacing: 0.015em;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
         display: inline-block;
         position: relative;
-        padding-bottom: 4px;
+        padding-bottom: 6px;
         opacity: 0;
         transform: translateY(20px);
         animation: eyebrowReveal 0.6s ease-out 0.3s forwards;
@@ -823,7 +824,7 @@
         width: 100%;
         height: 2px;
         background: var(--gildhart-gold);
-        opacity: 0.7;
+        opacity: 0.9;
       }
 
       @keyframes eyebrowReveal {
@@ -4908,7 +4909,15 @@
     <nav class="nav">
       <div class="nav-inner">
         <a href="index.html" class="nav-brand">
-          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" loading="eager" decoding="async" fetchpriority="high" />
+          <img
+            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png"
+            alt="Gildhart"
+            width="80"
+            height="80"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
         </a>
         <div class="nav-links">
           <!-- Who We Help dropdown -->
@@ -4984,10 +4993,26 @@
         </div>
         <!-- Mobile hamburger -->
         <button class="nav-hamburger" aria-label="Open navigation menu">
-          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg
+            class="ham-open"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg
+            class="ham-close"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
@@ -4995,87 +5020,103 @@
     </nav>
     <!-- Mobile nav overlay — MUST be outside <nav> (position:sticky breaks position:fixed children on mobile) -->
     <div class="nav-mobile-overlay" id="mobileNavOverlay">
-        <div class="mobile-menu-content">
-          <!-- Who We Help -->
-          <button class="mobile-nav-section-trigger" data-accordion>Who We Help <span class="mobile-dd-arrow">&#9662;</span></button>
-          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Pharmacy Groups</span>
-            </a>
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Private Clinics</span>
-            </a>
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Enterprise Healthcare</span>
-            </a>
-          </div>
-
-          <!-- Our Work -->
-          <button class="mobile-nav-section-trigger" data-accordion>Our Work <span class="mobile-dd-arrow">&#9662;</span></button>
-          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
-            <a href="web-pro-elite.html" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">The Build</span>
-              <span class="mobile-dd-item-sub">Bespoke Healthcare Website</span>
-            </a>
-            <a href="salesagent.html" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">The Agent</span>
-              <span class="mobile-dd-item-sub">Your Practice Never Closes</span>
-            </a>
-            <a href="ai-domination-system.html" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">The Method</span>
-              <span class="mobile-dd-item-sub">DIY Access &#163;497</span>
-            </a>
-          </div>
-
-          <!-- The Proof -->
-          <button class="mobile-nav-section-trigger" data-accordion>The Proof <span class="mobile-dd-arrow">&#9662;</span></button>
-          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
-            <span class="mobile-dd-category-label">Client Results</span>
-            <a href="case-study-ealing.html" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Ealing Travel Clinic</span>
-              <span class="mobile-dd-item-sub">300% Revenue Growth</span>
-            </a>
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Superior Pharmacy</span>
-              <span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span>
-            </a>
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Puri Pharmacy</span>
-              <span class="mobile-dd-item-sub">Outranking Boots Nationally</span>
-            </a>
-            <div class="mobile-dd-divider"></div>
-            <span class="mobile-dd-category-label">Latest Builds</span>
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span>
-              <span class="mobile-dd-item-sub">Premium Multi-Site Build</span>
-            </a>
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Easy Clinic</span>
-              <span class="mobile-dd-item-sub">Premium Private Clinic Build</span>
-            </a>
-            <a href="#" class="mobile-dd-item">
-              <span class="mobile-dd-item-name">Southdowns Pharmacy Group</span>
-              <span class="mobile-dd-item-sub">AI Agent</span>
-            </a>
-          </div>
-
-          <!-- About (plain link) -->
-          <a href="#about" class="mobile-nav-plain-link">About</a>
-
-          <!-- Spacer pushes CTA to bottom -->
-          <div class="mobile-menu-spacer"></div>
+      <div class="mobile-menu-content">
+        <!-- Who We Help -->
+        <button class="mobile-nav-section-trigger" data-accordion>
+          Who We Help <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Pharmacy Groups</span>
+          </a>
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Private Clinics</span>
+          </a>
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Enterprise Healthcare</span>
+          </a>
         </div>
 
-        <!-- Sticky CTA at bottom -->
-        <div class="mobile-menu-cta-wrapper">
-          <a href="#contact" class="mobile-nav-cta">Join The Waitlist</a>
-          <span class="mobile-cta-subtext">Free AI visibility audit included</span>
+        <!-- Our Work -->
+        <button class="mobile-nav-section-trigger" data-accordion>
+          Our Work <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
+          <a href="web-pro-elite.html" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">The Build</span>
+            <span class="mobile-dd-item-sub">Bespoke Healthcare Website</span>
+          </a>
+          <a href="salesagent.html" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">The Agent</span>
+            <span class="mobile-dd-item-sub">Your Practice Never Closes</span>
+          </a>
+          <a href="ai-domination-system.html" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">The Method</span>
+            <span class="mobile-dd-item-sub">DIY Access &#163;497</span>
+          </a>
         </div>
+
+        <!-- The Proof -->
+        <button class="mobile-nav-section-trigger" data-accordion>
+          The Proof <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
+          <span class="mobile-dd-category-label">Client Results</span>
+          <a href="case-study-ealing.html" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Ealing Travel Clinic</span>
+            <span class="mobile-dd-item-sub">300% Revenue Growth</span>
+          </a>
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Superior Pharmacy</span>
+            <span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span>
+          </a>
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Puri Pharmacy</span>
+            <span class="mobile-dd-item-sub">Outranking Boots Nationally</span>
+          </a>
+          <div class="mobile-dd-divider"></div>
+          <span class="mobile-dd-category-label">Latest Builds</span>
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span>
+            <span class="mobile-dd-item-sub">Premium Multi-Site Build</span>
+          </a>
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Easy Clinic</span>
+            <span class="mobile-dd-item-sub">Premium Private Clinic Build</span>
+          </a>
+          <a href="#" class="mobile-dd-item">
+            <span class="mobile-dd-item-name">Southdowns Pharmacy Group</span>
+            <span class="mobile-dd-item-sub">AI Agent</span>
+          </a>
+        </div>
+
+        <!-- About (plain link) -->
+        <a href="#about" class="mobile-nav-plain-link">About</a>
+
+        <!-- Spacer pushes CTA to bottom -->
+        <div class="mobile-menu-spacer"></div>
+      </div>
+
+      <!-- Sticky CTA at bottom -->
+      <div class="mobile-menu-cta-wrapper">
+        <a href="#contact" class="mobile-nav-cta">Join The Waitlist</a>
+        <span class="mobile-cta-subtext">Free AI visibility audit included</span>
+      </div>
     </div>
     <!-- Hero -->
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-content">
+          <p class="hero-eyebrow">AI Search for Healthcare</p>
           <h1 class="hero-title">
             <span class="desktop-only"
               ><span class="line-1">National Chains Spend Millions.</span><span class="line-2">Still Lose to Our</span
@@ -5087,7 +5128,9 @@
             >
           </h1>
           <p class="hero-subtitle">
-            Rahul at Puri Pharmacy is outranking Boots nationally. Raman at Superior Pharmacy is on track for £500k this year. Sachin at Ealing Travel Clinic will generate £100,000 from a single service &#8212; HPV vaccinations &#8212; this year alone. No ad spend. Yours could be next.
+            Rahul at Puri Pharmacy is outranking Boots nationally. Raman at Superior Pharmacy is on track for £500k this
+            year. Sachin at Ealing Travel Clinic will generate £100,000 from a single service &#8212; HPV vaccinations
+            &#8212; this year alone. No ad spend. Yours could be next.
           </p>
           <div class="hero-cta">
             <a href="#contact" class="btn btn-primary">Get The System</a>
@@ -5110,14 +5153,13 @@
       </div>
     </section>
 
-    <!-- Gildhart section divider -->
-    <div class="gh-divider" style="background:#fef7ed;">
-      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776672268791-0.png" alt="Gildhart" />
-    </div>
-
     <!-- Trusted-by label above logo bar -->
     <div style="background:#fcf4e9; padding: 1.5rem 2rem 0; text-align:center;">
-      <p style="font-family:'Space Mono',monospace; font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#9ca3af; margin:0;">Trusted by healthcare practices across the UK</p>
+      <p
+        style="font-family:'Space Mono',monospace; font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#1E3D2F; margin:0; opacity:0.75;"
+      >
+        Trusted by healthcare practices across the UK &amp; Worldwide
+      </p>
     </div>
 
     <!-- Logo Bar -->
@@ -5591,7 +5633,7 @@
             <div
               class="two-paths-proof-banner two-paths-proof-banner--bold"
               style="background:var(--gildhart-green);color:white;border-bottom-color:rgba(201,164,74,0.2);"
-        style="background:var(--gildhart-green);color:white;border-bottom-color:rgba(201,164,74,0.2);"
+              style="background:var(--gildhart-green);color:white;border-bottom-color:rgba(201,164,74,0.2);"
             >
               LIVE ACROSS OUR GLOBAL NETWORK
             </div>
@@ -5907,7 +5949,6 @@
 
         <!-- Closing Section -->
         <div class="revenue-close-section">
-
           <p class="revenue-close-headline">These aren&#39;t projections. This is last month.</p>
 
           <!-- Isolated stat callout -->
@@ -5921,18 +5962,30 @@
 
           <!-- Left-aligned body copy -->
           <div class="revenue-close-body">
-            <p>Every week that passes, the shortlist gets harder to crack. The practices already on it aren&#39;t losing sleep over Google algorithm updates, AI shifts, or what Boots does next. They&#39;re already where patients are looking.</p>
-            <p>AI search isn&#39;t a trend. It&#39;s the new front door to every healthcare practice in the UK. The practices building their presence now aren&#39;t just winning this month — they&#39;re laying foundations that compound for years.</p>
+            <p>
+              Every week that passes, the shortlist gets harder to crack. The practices already on it aren&#39;t losing
+              sleep over Google algorithm updates, AI shifts, or what Boots does next. They&#39;re already where
+              patients are looking.
+            </p>
+            <p>
+              AI search isn&#39;t a trend. It&#39;s the new front door to every healthcare practice in the UK. The
+              practices building their presence now aren&#39;t just winning this month — they&#39;re laying foundations
+              that compound for years.
+            </p>
           </div>
 
           <!-- Isolated closing gut-punch -->
-          <p class="revenue-close-final">What you do in the next 90 days will determine where your practice stands when AI search becomes the only channel that matters.</p>
+          <p class="revenue-close-final">
+            What you do in the next 90 days will determine where your practice stands when AI search becomes the only
+            channel that matters.
+          </p>
 
           <div class="revenue-close-cta-buttons">
-            <a href="#contact" class="btn btn-primary revenue-close-btn-primary">See If You&#39;re On The AI Shortlist →</a>
+            <a href="#contact" class="btn btn-primary revenue-close-btn-primary"
+              >See If You&#39;re On The AI Shortlist →</a
+            >
             <a href="/services" class="revenue-close-btn-outline">See What We Build →</a>
           </div>
-
         </div>
       </div>
     </section>
@@ -5943,9 +5996,13 @@
         <div class="footer-top">
           <div class="footer-brand">
             <a href="/" class="footer-brand-name" style="display:flex;align-items:center;gap:0.625rem;">
-            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776672268791-0.png" alt="Gildhart" style="height:36px;width:auto;filter:brightness(0) invert(1);opacity:0.9;" />
-            Gildhart
-          </a>
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776672268791-0.png"
+                alt="Gildhart"
+                style="height:36px;width:auto;filter:brightness(0) invert(1);opacity:0.9;"
+              />
+              Gildhart
+            </a>
             <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
             <p class="footer-brand-desc">
               Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices
