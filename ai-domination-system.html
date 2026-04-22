@@ -1684,217 +1684,257 @@
         .sc-proof-card:first-child .sc-proof-img { object-position: 15% top; }
       }
 
-      /* ─── Three Tier Cards ─── */
+      /* ─── Three Tier Cards (homepage-matched design) ─── */
       .system-tiers {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 1.5rem;
         margin-bottom: 2rem;
+        align-items: stretch;
       }
       .system-tier-card {
-        border-radius: 20px;
-        padding: 0;
+        border-radius: 24px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
+        border: 1px solid rgba(0,0,0,0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .system-tier-card:hover {
         transform: translateY(-4px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.06);
       }
-      .system-tier-card.manual {
+      /* Light cards (card 1 + card 3) */
+      .system-tier-card.manual,
+      .system-tier-card.lifetime {
         background: white;
-        border: 1px solid rgba(0,0,0,0.07);
-        border-left: 4px solid var(--sage);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.04);
       }
-      .system-tier-card.manual:hover {
-        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      .system-tier-card.manual:hover,
+      .system-tier-card.lifetime:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.06);
       }
+      /* Featured dark card (card 2) */
       .system-tier-card.automated {
-        background: var(--navy);
-        border: 1px solid rgba(30,61,47,0.3);
-        border-left: 4px solid var(--gildhart-green);
-        box-shadow: 0 8px 30px rgba(30,61,47,0.1);
+        background: #0D1117;
+        border-color: rgba(30,61,47,0.35);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 12px 48px rgba(0,0,0,0.12);
+        position: relative;
+        z-index: 1;
       }
       .system-tier-card.automated:hover {
-        box-shadow: 0 16px 50px rgba(30,61,47,0.18);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.2), 0 16px 56px rgba(0,0,0,0.15);
       }
-      .system-tier-card.lifetime {
-        background: #fcf9f4;
-        border: 1px solid rgba(0,0,0,0.07);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      /* ── Proof banner — full-width bar across top of each card ── */
+      .system-tier-proof-banner {
+        padding: 8px 1.5rem;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-align: center;
+        border-bottom: 1px solid rgba(139,157,131,0.25);
+        line-height: 1.5;
       }
-      .system-tier-card.lifetime:hover {
-        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      .system-tier-card.manual .system-tier-proof-banner,
+      .system-tier-card.lifetime .system-tier-proof-banner {
+        background: rgba(139,157,131,0.18);
+        color: #3a5c4f;
       }
-      .system-tier-header {
-        padding: 1.75rem 1.75rem 1.5rem;
+      .system-tier-card.automated .system-tier-proof-banner {
+        background: rgba(30,61,47,0.5);
+        color: rgba(201,164,74,0.9);
+        border-bottom-color: rgba(201,164,74,0.2);
+      }
+      .system-tier-card.lifetime .system-tier-proof-banner {
+        background: var(--gildhart-green);
+        color: white;
+        border-bottom-color: rgba(201,164,74,0.2);
+      }
+      /* Card inner content area */
+      .system-tier-card-inner {
+        padding: 2.5rem;
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 0.75rem;
-        border-bottom: 1px solid rgba(0,0,0,0.06);
+        flex-direction: column;
+        gap: 1.25rem;
+        flex: 1;
       }
-      .system-tier-card.automated .system-tier-header {
-        border-bottom-color: rgba(255,255,255,0.08);
+      .system-tier-card.automated .system-tier-card-inner {
+        padding: 2.5rem 2.5rem 3rem;
       }
-      .system-tier-card.lifetime .system-tier-header {
-        border-bottom-color: rgba(0,0,0,0.06);
+      /* Category label (secondary — e.g. "DO IT YOURSELF") */
+      .system-tier-category {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin: 0;
       }
-      .system-tier-header-left {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+      .system-tier-card.manual .system-tier-category,
+      .system-tier-card.lifetime .system-tier-category { color: #4d7b6f; }
+      .system-tier-card.automated .system-tier-category { color: rgba(201,164,74,0.85); }
+      /* Top label (e.g. "INCLUDED TODAY") */
+      .system-tier-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--gildhart-gold);
+        margin: 0;
       }
-      .system-tier-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        flex-shrink: 0;
+      /* Recommended inline label */
+      .system-tier-recommended {
+        display: inline-block;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gildhart-gold);
+        margin-bottom: 0.5rem;
       }
-      .system-tier-card.manual .system-tier-icon {
-        background: rgba(77,123,111,0.12);
-      }
-      .system-tier-card.automated .system-tier-icon {
-        background: rgba(30,61,47,0.15);
-      }
-      .system-tier-card.lifetime .system-tier-icon {
-        background: rgba(180,160,130,0.15);
-      }
+      /* Title */
       .system-tier-title {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', 'Outfit', sans-serif;
         font-size: 1.375rem;
         font-weight: 700;
         letter-spacing: -0.01em;
         line-height: 1.25;
+        margin: 0;
       }
       .system-tier-card.manual .system-tier-title,
       .system-tier-card.lifetime .system-tier-title { color: var(--navy); }
       .system-tier-card.automated .system-tier-title { color: white; }
-      .system-tier-status {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.65rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 0.35rem 0.75rem;
-        border-radius: 100px;
-        white-space: nowrap;
+      /* Body text */
+      .system-tier-body-text {
+        font-size: 1rem;
+        line-height: 1.65;
+        margin: 0;
       }
-      .system-tier-status.available {
-        background: rgba(77,123,111,0.12);
-        color: var(--sage);
-      }
-      .system-tier-status.coming {
-        background: rgba(30,61,47,0.15);
-        color: var(--gildhart-green);
-      }
-      .system-tier-status.included {
-        background: rgba(30,61,47,0.15);
-        color: var(--gildhart-green);
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
-        padding: 0.4rem 0.9rem;
-        font-weight: 800;
-      }
-      .system-tier-count {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.6rem;
-        font-weight: 700;
-        color: var(--gray-500);
-        padding: 0.25rem 0.5rem;
-        background: rgba(0,0,0,0.04);
-        border-radius: 4px;
-      }
-      .system-tier-card.automated .system-tier-count {
-        color: rgba(255,255,255,0.5);
-        background: rgba(255,255,255,0.08);
-      }
-      .system-tier-body {
-        padding: 1.5rem 1.75rem 1.75rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
+      .system-tier-card.manual .system-tier-body-text,
+      .system-tier-card.lifetime .system-tier-body-text { color: var(--gray-600); }
+      .system-tier-card.automated .system-tier-body-text { color: rgba(255,255,255,0.75); }
+      /* Bullet list */
       .system-tier-list {
         list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.6rem;
+        flex: 1;
       }
       .system-tier-list li {
-        font-size: 1.125rem;
+        font-size: 0.9375rem;
         display: flex;
         align-items: flex-start;
         gap: 0.625rem;
-        line-height: 1.55;
+        line-height: 1.5;
       }
       .system-tier-card.manual .system-tier-list li,
       .system-tier-card.lifetime .system-tier-list li { color: #374151; }
-      .system-tier-card.automated .system-tier-list li { color: rgba(255,255,255,0.8); }
-      .system-tier-list li.highlight {
-        font-weight: 600;
-        padding: 0.625rem 0.75rem;
-        margin: 0.25rem -0.75rem;
-        border-radius: 10px;
-        font-size: 1.125rem;
-      }
-      .system-tier-card.manual .system-tier-list li.highlight {
-        background: rgba(77,123,111,0.08);
-        color: var(--sage);
-      }
-      .system-tier-card.automated .system-tier-list li.highlight {
-        background: rgba(30,61,47,0.12);
-        color: var(--gildhart-green);
-      }
-      .system-tier-card.lifetime .system-tier-list li.highlight {
-        background: rgba(180,160,130,0.1);
-        color: #6b5a40;
-      }
+      .system-tier-card.automated .system-tier-list li { color: rgba(255,255,255,0.85); }
       .system-tier-check {
-        color: var(--gildhart-green);
+        color: var(--gildhart-gold);
         font-weight: 700;
-        font-size: 1rem;
         flex-shrink: 0;
-        margin-top: 0.15em;
+        margin-top: 0.05em;
       }
-      .system-tier-card.manual .system-tier-check { color: var(--sage); }
-      .system-tier-card.lifetime .system-tier-check { color: #a08060; }
+      /* Light card check colour */
+      .system-tier-card.manual .system-tier-check,
+      .system-tier-card.lifetime .system-tier-check { color: #4d7b6f; }
+      .system-tier-card.automated .system-tier-check { color: var(--gildhart-gold); }
+      /* Price bar below cards */
       .system-tier-value-strap {
         background: var(--navy);
         border: none;
         border-radius: 16px;
         padding: 2rem 3rem;
-        text-align: center;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 0.75rem 2.5rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.5rem;
       }
-      .system-tier-value-strap span {
-        font-size: 1.25rem;
+      .system-tier-value-strap .strap-price {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--gildhart-gold);
+        letter-spacing: -0.02em;
+      }
+      .system-tier-value-strap .strap-desc {
+        font-size: 1.125rem;
         color: rgba(255,255,255,0.7);
         font-weight: 500;
       }
-      .system-tier-value-strap span strong {
-        color: var(--gildhart-gold);
-        font-weight: 700;
-        font-size: 1.375rem;
+      .system-tier-value-cta {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2.5rem;
       }
-      .system-tier-value-strap span:first-child strong {
+      .system-tier-value-cta a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.125rem 2.5rem;
+        background: var(--gildhart-green);
         color: white;
-        font-size: 1.5rem;
+        font-weight: 700;
+        font-size: 1.0625rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        letter-spacing: -0.01em;
+      }
+      .system-tier-value-cta a:hover {
+        background: var(--gildhart-black);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(30,61,47,0.3);
+      }
+      /* Scroll entrance animations */
+      .system-tier-card {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .system-tier-card.st-visible {
+        animation: stSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .system-tier-card:nth-child(2).st-visible {
+        animation: stSlideUpFeatured 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+      }
+      .system-tier-card:nth-child(3).st-visible {
+        animation: stSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+      }
+      @keyframes stSlideUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes stSlideUpFeatured {
+        0% { opacity: 0; transform: translateY(50px); box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 12px 48px rgba(0,0,0,0.12); }
+        70% { opacity: 1; transform: translateY(-4px); box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 12px 48px rgba(0,0,0,0.12), 0 0 24px rgba(201,164,74,0.2); }
+        100% { opacity: 1; transform: translateY(0); box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 12px 48px rgba(0,0,0,0.12), 0 0 0px rgba(201,164,74,0); }
+      }
+      .system-tier-card.st-visible:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 24px rgba(0,0,0,0.1), 0 16px 48px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .system-tier-card.automated.st-visible:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.2), 0 16px 56px rgba(0,0,0,0.15), 0 0 20px rgba(201,164,74,0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       @media (max-width: 900px) {
         .system-tiers { grid-template-columns: 1fr; }
-        .system-tier-card { border-left-width: 4px !important; }
+        .system-tier-card-inner { padding: 2.25rem 1.5rem 2.75rem; }
+      }
+      @media (max-width: 768px) {
+        .system-tier-card-inner { padding: 2rem 1.5rem; }
       }
 
       .system-timeline {
@@ -3124,9 +3164,9 @@
           <div class="proof-case reverse">
             <div class="proof-case-image-wrap">
               <img
-                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1773224605645-0.png"
-                alt="Raman Sangha – Superior Pharmacy"
-                style="object-position: center top;"
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776851159567-1.jpeg"
+                alt="AI Search Playbook for Healthcare — laptop and phone mockup with client logos"
+                style="object-position: center center; object-fit: contain; background: #e8e4de;"
               />
             </div>
             <div class="proof-case-content">
@@ -3360,7 +3400,7 @@
           <p class="section-eyebrow sage">THE SYSTEM</p>
           <h2 class="section-headline">What Ealing, Superior, and Puri Actually Used. Now Yours.</h2>
           <p class="section-subheadline" style="max-width: 700px; margin: 0 auto;">
-            The same five components. Used across three practices. Now generating five figures monthly, £500k annual revenue, and £100k from a single service. Fully automated. Yours today.
+            The same system. Used across three practices. Now generating five figures monthly, &#163;500k annual revenue, and &#163;100k from a single service. Fully automated. Yours today.
           </p>
         </div>
         <div class="system-modules">
@@ -3523,106 +3563,61 @@
     <!-- The System — Everything You Get -->
     <section class="system-section" style="padding-top: 4rem;">
       <div class="system-inner">
-        <div class="system-tiers">
-          <!-- Manual System Card -->
+        <div class="system-tiers" id="systemTierCards">
+          <!-- Card 1 — Light — The Complete Content System -->
           <div class="system-tier-card manual">
-            <div class="system-tier-header">
-              <div class="system-tier-header-left">
-                <div class="system-tier-icon">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-              </div>
-                <span class="system-tier-title">The Manual System</span>
-              </div>
-              <span class="system-tier-status available">Available Now</span>
-            </div>
-            <div class="system-tier-body">
-              <ul class="system-tier-list">
-                <li class="highlight"><span class="system-tier-check">✓</span> 5 video modules (2 hours total)</li>
-                <li><span class="system-tier-check">✓</span> Every prompt we use (200+ hrs testing)</li>
-                <li><span class="system-tier-check">✓</span> Claude Projects setup guide</li>
-                <li><span class="system-tier-check">✓</span> Pillar + cluster templates</li>
-                <li><span class="system-tier-check">✓</span> Interactive quiz builder</li>
-                <li><span class="system-tier-check">✓</span> Nano Banana visual guide</li>
-                <li><span class="system-tier-check">✓</span> Fast-indexing HTML/CSS</li>
-              </ul>
+            <div class="system-tier-proof-banner">Superior, Ealing and Puri used this to outrank Boots</div>
+            <div class="system-tier-card-inner">
+              <p class="system-tier-category">Do It Yourself</p>
+              <p class="system-tier-label">Included Today</p>
+              <h3 class="system-tier-title">The Complete Content System</h3>
+              <p class="system-tier-body-text">Every prompt, every template, every content architecture that put Ealing, Superior, and Puri on ChatGPT&#39;s shortlist. Refined across thousands of pieces of content. Copy-paste ready from day one. Built specifically for healthcare practices. Nothing generic. Nothing theoretical. Everything tested.</p>
             </div>
           </div>
 
-          <!-- Automated System Card -->
+          <!-- Card 2 — Dark Featured — Your Healthcare AI Engine -->
           <div class="system-tier-card automated">
-            <div class="system-tier-header">
-              <div class="system-tier-header-left">
-                <div class="system-tier-icon">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              </div>
-                <span class="system-tier-title">The Automated System</span>
-              </div>
-              <span class="system-tier-status coming">4 Weeks</span>
-            </div>
-            <div class="system-tier-body">
+            <div class="system-tier-proof-banner">Built for: Ealing &nbsp;|&nbsp; Superior &nbsp;|&nbsp; Puri &nbsp;|&nbsp; 50+ Healthcare Practices</div>
+            <div class="system-tier-card-inner">
+              <span class="system-tier-recommended">Recommended</span>
+              <p class="system-tier-category">The Automation Layer</p>
+              <h3 class="system-tier-title">Your Healthcare AI Engine</h3>
+              <p class="system-tier-body-text">This is where it gets powerful. Your Cowork setup comes pre-loaded with our proprietary healthcare knowledge base &#8212; refined across hundreds of thousands of AI conversations and thousands of pieces of content. One instruction triggers the entire content build. No manual friction. No starting from scratch. Claude does the work. You review the output.</p>
               <ul class="system-tier-list">
-                <li class="highlight"><span class="system-tier-check">✓</span> 100x volume, same quality</li>
-                <li><span class="system-tier-check">✓</span> One-instruction content builds</li>
-                <li><span class="system-tier-check">✓</span> Auto pillar + cluster generation</li>
-                <li><span class="system-tier-check">✓</span> Interactive tools created, not templated</li>
-                <li><span class="system-tier-check">✓</span> Early buyer exclusive — no upgrade fee</li>
+                <li><span class="system-tier-check">&#10003;</span> Pre-built healthcare knowledge base &#8212; installed, not built</li>
+                <li><span class="system-tier-check">&#10003;</span> One instruction builds entire content infrastructure</li>
+                <li><span class="system-tier-check">&#10003;</span> Runs automatically on your desktop via Cowork</li>
+                <li><span class="system-tier-check">&#10003;</span> No writers. No agencies. No monthly fees.</li>
               </ul>
             </div>
           </div>
 
-          <!-- Lifetime Support Card -->
+          <!-- Card 3 — Light — Updates For Life -->
           <div class="system-tier-card lifetime">
-            <div class="system-tier-header">
-              <div class="system-tier-header-left">
-                <div class="system-tier-icon">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-              </div>
-                <span class="system-tier-title">Lifetime Support</span>
-              </div>
-              <span class="system-tier-status included">+ Free</span>
-            </div>
-            <div class="system-tier-body">
+            <div class="system-tier-proof-banner">Live across our global network</div>
+            <div class="system-tier-card-inner">
+              <p class="system-tier-category">Lifetime Access</p>
+              <p class="system-tier-label">Included Free</p>
+              <h3 class="system-tier-title">Updates For Life. As Fast As AI Moves.</h3>
+              <p class="system-tier-body-text">AI isn&#39;t standing still. Claude updates. ChatGPT updates. Google&#39;s algorithms update. Every time they do, your system needs to evolve. That&#39;s why lifetime support isn&#39;t a bonus &#8212; it&#39;s essential. You get every update we release, every new skill we build, and monthly strategy calls to make sure your system stays ahead of every platform change.</p>
               <ul class="system-tier-list">
-                <li class="highlight"><span class="system-tier-check">✓</span> Monthly strategy calls</li>
-                <li><span class="system-tier-check">✓</span> Platform updates (ChatGPT, Claude, Google)</li>
-                <li><span class="system-tier-check">✓</span> Cowork training when it launches</li>
-                <li><span class="system-tier-check">✓</span> All future updates, no recurring fees</li>
+                <li><span class="system-tier-check">&#10003;</span> Monthly strategy calls &#8212; live and recorded</li>
+                <li><span class="system-tier-check">&#10003;</span> Platform updates as Claude, ChatGPT, and Google evolve</li>
+                <li><span class="system-tier-check">&#10003;</span> New skills added as AI capabilities expand</li>
+                <li><span class="system-tier-check">&#10003;</span> No recurring fees &#8212; ever</li>
               </ul>
             </div>
           </div>
         </div>
 
+        <!-- Price bar -->
         <div class="system-tier-value-strap">
-          <span><strong>£497 total</strong></span>
-          <span>Manual + Automated + Lifetime Support</span>
-          <span><strong>No recurring fees</strong></span>
+          <span class="strap-price">&#163;497 once.</span>
+          <span class="strap-desc">The Complete System. Cowork Included. Lifetime Support.</span>
         </div>
-
-        <div class="system-timeline" style="grid-template-columns: repeat(6,1fr);">
-          <div class="system-timeline-block">
-            <div class="system-timeline-num">2 hrs</div>
-            <div class="system-timeline-label">Setup</div>
-          </div>
-          <div class="system-timeline-block">
-            <div class="system-timeline-num">1-2 hrs/wk</div>
-            <div class="system-timeline-label">Building content</div>
-          </div>
-          <div class="system-timeline-block">
-            <div class="system-timeline-num">6 wks</div>
-            <div class="system-timeline-label">First ranking</div>
-          </div>
-          <div class="system-timeline-block">
-            <div class="system-timeline-num">4 weeks</div>
-            <div class="system-timeline-label">Cowork launches</div>
-          </div>
-          <div class="system-timeline-block">
-            <div class="system-timeline-num">Set &amp; forget</div>
-            <div class="system-timeline-label">Automated builds</div>
-          </div>
-          <div class="system-timeline-block">
-            <div class="system-timeline-num">100x scale</div>
-            <div class="system-timeline-label">Same quality</div>
-          </div>
+        <!-- CTA below price bar -->
+        <div class="system-tier-value-cta">
+          <a href="#buy-now">Get Instant Access &#8212; &#163;497 <span class="btn-arrow">&#8594;</span></a>
         </div>
 
         <div class="system-early-buyers">
@@ -4594,6 +4589,21 @@
           }
           requestAnimationFrame(step);
         }
+      })();
+
+      // ─── Tier Cards — Scroll-triggered entrance (homepage-matched) ───
+      (function() {
+        var cards = document.querySelectorAll('#systemTierCards .system-tier-card');
+        if (!cards.length) return;
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('st-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+        cards.forEach(function(c) { obs.observe(c); });
       })();
 
       // ─── 8. FAQ items fade in on scroll ───

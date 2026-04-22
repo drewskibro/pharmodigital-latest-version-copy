@@ -18,6 +18,29 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — ai-domination-system.html: Refine tier cards to match homepage £1bn aesthetic
+- Added `.system-tier-proof-banner` — full-width bar atop each card (e.g. "Superior, Ealing and Puri used this to outrank Boots")
+- Added `.system-tier-category` — secondary label ("Do It Yourself", "The Automation Layer", "Lifetime Access")
+- Added `.system-tier-recommended` — inline "RECOMMENDED" label on featured card
+- Light card check colour now sage green (#4d7b6f) vs gold on dark card — matches homepage two-paths-check pattern
+- Card 3 banner uses gildhart-green bg + white text matching homepage's "LIVE ACROSS OUR GLOBAL NETWORK" treatment
+- Files: ai-domination-system.html
+
+### [2026-04-22] — ai-domination-system.html: Redesign three-card section to match homepage
+- Replaced old Manual/Automated/Lifetime tier cards with homepage-matched 3-card layout (light/dark/light)
+- New card content: "The Complete Content System", "Your Healthcare AI Engine", "Updates For Life"
+- Centre card is dark featured (#0D1117) with gold label, bullet points with gold ticks
+- Removed 6-stat stats bar (2 hrs Setup, 1-2 hrs/wk, etc.) entirely
+- New price bar: "£497 once." + green CTA button below; scroll-triggered card entrance animations
+- CSS fully rewritten: .system-tier-card-inner, .system-tier-label, .system-tier-body-text, stSlideUp/stSlideUpFeatured keyframes
+- Files: ai-domination-system.html
+
+### [2026-04-22] — ai-domination-system.html: Swap broken Superior Pharmacy image
+- Replaced broken Raman photo (uploaded-asset-1773224605645-0.png) with new playbook mockup JPEG
+- New image: uploaded-asset-1776851159567-1.jpeg (laptop + phone + client logos composite)
+- Changed object-fit to contain with warm bg (#e8e4de) so full composition shows in proof card frame
+- Files: ai-domination-system.html
+
 ### [2026-04-22] — ai-domination-system.html: Replace amber #f59e0b with gildhart-gold in The Shift
 - `.ps-pair-stat-num` color: #f59e0b → var(--gildhart-gold) + matching text-shadow rgba
 - `.ps-pair-row` border-left: #f59e0b → var(--gildhart-gold) (desktop 4px + mobile 3px)
