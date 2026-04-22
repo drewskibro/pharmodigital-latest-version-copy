@@ -17,8 +17,8 @@ Rules:
 </instructions>
 
 <todo>
-Propagate mobile menu fixes to other 5 pages
-All 4 overlay fix steps complete on index.html. Apply the same CSS/JS to homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite.
+Propagate nav fixes to homepage-v2
+Nav improvements now complete on 5 of 6 pages. Apply same CSS/JS to homepage-v2.html.
 </todo>
 
 <todo>

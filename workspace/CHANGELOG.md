@@ -18,6 +18,91 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — Propagate updated nav to case-study-ealing.html
+- Replaced old inline-onclick hamburger + overlay-inside-nav with same structure as index.html
+- Mobile overlay moved outside `<nav>` (fixes position:fixed on iOS); id="mobileNavOverlay" added
+- Fixed z-index 50 → 10000, removed hardcoded min-height:80px from nav-inner
+- Added shrink-on-scroll CSS + JS (padding/logo reduction, hysteresis 80/25px, 50ms debounce)
+- Mobile bar heights synced: 130px (≤768px), 118px (≤480px); full accordion JS with panel collapse on close
+- Files: case-study-ealing.html
+
+### [2026-04-22] — Propagate updated nav to ai-domination-system.html
+- Replaced old inline overlay-inside-nav with overlay correctly placed outside `<nav>` (fixes position:fixed on iOS)
+- Fixed z-index 50 → 10000, removed hardcoded min-height:80px from nav-inner
+- Added shrink-on-scroll CSS + JS (same approach: padding/logo reduction, hysteresis 80/25px, 50ms debounce)
+- Mobile bar heights synced: 130px (≤768px), 118px (≤480px); overlay uses top:0 + padding-top strategy
+- Added nav-border-hidden, nav-open gold border, full accordion JS with panel collapse on close
+- Files: ai-domination-system.html
+
+### [2026-04-22] — Propagate updated nav to web-pro-elite.html
+- Replaced old inline-onclick hamburger + overlay-inside-nav with the same structure as index.html
+- Mobile overlay now correctly placed outside `<nav>` (fixes position:fixed on iOS)
+- Added shrink-on-scroll CSS + JS (same approach: padding/logo reduction, hysteresis 80/25px, 50ms debounce)
+- Fixed z-index 50 → 10000, removed hardcoded min-height:80px from nav-inner
+- Mobile dimensions match index.html: 130px bar (≤768px), 118px (≤480px), full staggered overlay animations
+- Files: web-pro-elite.html
+
+### [2026-04-22] — Propagate updated nav to salesagent.html
+- Replaced old inline-onclick hamburger + overlay-inside-nav with the same structure as index.html
+- Mobile overlay now correctly placed outside `<nav>` (fixes position:fixed on iOS)
+- Added shrink-on-scroll CSS + JS (same approach: padding/logo reduction, hysteresis 80/25px, 50ms debounce)
+- Fixed z-index 50 → 10000, removed hardcoded min-height:80px from nav-inner
+- Mobile dimensions match index.html: 130px bar (≤768px), 118px (≤480px), full staggered overlay animations
+- Files: salesagent.html
+
+### [2026-04-22] — Fix nav shrink v3: simple CSS property changes (no height/scale tricks)
+- Root cause of v1+v2: `overflow:hidden` + fixed `height` + `transform:scale()` created empty green space because container stayed large even when content was visually scaled down
+- New approach: `.nav-scrolled` simply reduces `.nav-brand` padding, logo max-width/height (60px), and `.nav-links` padding-bottom — container shrinks naturally with its content
+- No `overflow:hidden`, no CSS variables, no JS height measurement, no `transform:scale()`
+- JS simplified: just toggles `nav-scrolled` class with hysteresis (80/25px) + 50ms debounce
+- Files: index.html only
+
+### [2026-04-22] — Step 4/4: Remove hero negative margin-top — flicker fix COMPLETE
+- Removed `margin-top: -45px` from `.hero` desktop CSS → now `margin-top: 0`
+- Mobile already had `margin-top: 0` in `@media (max-width: 768px)` — no change needed there
+- Hero position is now fully independent of nav height changes — zero content jump possible
+- All 4 steps of the nav flicker fix plan are complete
+- Files: index.html only
+
+### [2026-04-22] — Step 3/4: Debounce scroll expand-back + will-change hints
+- Added 50ms debounce on expand-back (removing `nav-scrolled`) — prevents rapid toggling from micro-scroll bounces near threshold
+- Shrink (adding class) remains immediate via rAF — no perceptible delay when scrolling down
+- Debounce re-checks `scrollY` after timeout to avoid stale state (user may have scrolled back down)
+- Added `will-change: transform, filter` on `.nav-brand img` for GPU layer promotion
+- `.nav-inner` already had `will-change: transform` from Step 1 — verified still present
+- Files: index.html only (Step 3 of 4-step plan)
+
+### [2026-04-22] — Step 2/4: Pin nav height + inner transforms for flicker-free shrink
+- Key insight: Step 1's `max-height` still caused reflow — replaced with **fixed `height`** via `--nav-pinned-height` CSS variable
+- JS measures nav's natural height once on load, pins it permanently so layout box never changes
+- Scrolled state: `.nav-inner` gets `transform: scale(0.65) translateY(-12%)` — purely visual, GPU-composited
+- Scale changed from 0.55 → 0.65 for better readability; translateY keeps content visually centred
+- Resize handler re-measures height on viewport change; mobile bypassed entirely (no shrink behaviour)
+- Files: index.html only (Step 2 of 4-step plan)
+
+### [2026-04-22] — Step 1/4: Replace nav shrink with transform-based approach
+- Root cause of flicker: changing `min-height`, `padding`, `max-width/max-height` on logo triggers layout reflow → content shifts → scrollY changes → class toggles → repeat
+- Fix: replaced all layout-affecting properties with `transform: scale(0.55)` on `.nav-inner` — GPU-composited, no reflow
+- Nav uses `overflow: hidden` + `max-height` clip to visually shrink without changing layout flow
+- Added `will-change: transform` hints on `.nav` and `.nav-inner`
+- Hysteresis scroll logic (shrink@100px, expand@30px) preserved from prior fix
+- Files: index.html only (Step 1 of 4-step plan)
+
+### [2026-04-22] — [SUPERSEDED] Fix nav scroll flicker with hysteresis
+- Hysteresis alone wasn't sufficient — reflow-based properties still caused the loop
+- Logic preserved and reused in the transform-based approach
+
+### [2026-04-22] — [SUPERSEDED] Shrink desktop nav bar on scroll
+- Original implementation used layout properties (min-height, padding, max-width) — caused reflow flicker
+- Replaced by transform-based approach in step 1
+
+### [2026-04-22] — Remove duplicated hero subtitle + bullet points on mobile
+- Hero had two subtitle elements: `.hero-subtitle--desktop` (paragraph) and `.hero-subtitle--mobile` (`<ul>` with bullets)
+- Both were always visible — causing duplicate text + ugly bullet points on mobile
+- Replaced both with a single `<p class="hero-subtitle">` containing the correct copy
+- Desktop view completely untouched — same paragraph renders identically
+- Files: index.html only
+
 ### [2026-04-22] — Fix mobile logo top clipping + increase bottom padding
 - Logo top was clipped: nav bar 110px was exactly equal to logo 110px with no top clearance
 - Nav bar height increased: 110px → 130px (≤768px), 105px → 118px (≤480px)

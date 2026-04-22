@@ -175,8 +175,18 @@
       }
 
       /* ─── Nav ─── */
-      .nav { position: sticky; top: 0; z-index: 50; background: rgba(30,61,47,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(201,164,74,0.18); }
-      .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: auto; min-height: 80px; display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto; align-items: center; }
+      .nav { position: sticky; top: 0; z-index: 10000; background: rgba(30,61,47,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(201,164,74,0.18); transition: none; }
+
+      /* ─── Shrink-on-scroll (desktop only, >768px) ─── */
+      @media (min-width: 769px) {
+        .nav-brand img { transition: max-width 0.3s ease, max-height 0.3s ease, filter 0.3s ease; }
+        .nav-brand { transition: padding 0.3s ease; }
+        .nav-links, .nav-links-right { transition: padding-bottom 0.3s ease, gap 0.3s ease; }
+        .nav.nav-scrolled .nav-brand { padding: 0.25rem 0 0; }
+        .nav.nav-scrolled .nav-brand img { max-width: 60px; max-height: 60px; }
+        .nav.nav-scrolled .nav-links, .nav.nav-scrolled .nav-links-right { padding-bottom: 0.5rem; gap: 1.5rem; }
+      }
+      .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: auto; min-height: 0; display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto; align-items: center; }
       .nav-brand { display: flex; align-items: center; justify-content: center; text-decoration: none; grid-column: 1 / -1; grid-row: 1; position: relative; padding: 0.75rem 0 0.25rem; }
       .nav-brand img { width: auto; height: auto; max-width: 150px; max-height: 150px; object-fit: contain; display: block; image-rendering: auto; -webkit-image-rendering: auto; border-radius: 0; overflow: visible; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(201,164,74,0.25)); transition: filter 0.3s ease, transform 0.3s ease; }
       .nav-brand:hover img { filter: drop-shadow(0 4px 16px rgba(201,164,74,0.4)); transform: scale(1.04); }
@@ -217,11 +227,14 @@
       .nav-hamburger:active { background: rgba(250,245,238,0.12); }
       .nav-hamburger svg { display: block; }
       .nav-hamburger .ham-close { color: var(--gildhart-gold); }
+      .nav-hamburger.nav-open { background: rgba(201,164,74,0.12); border: 1px solid rgba(201,164,74,0.25); }
       /* CSS-driven icon swap */
       .nav-hamburger .ham-close { display: none; }
       .nav-hamburger.nav-open .ham-open { display: none; }
       .nav-hamburger.nav-open .ham-close { display: block; }
-      .nav-mobile-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(30,61,47,0.99); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 49; padding: 0; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; opacity: 0; transform: translateY(-12px); pointer-events: none; visibility: hidden; transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1), visibility 0.35s; }
+      /* Hide nav border when mobile menu is open */
+      .nav.nav-border-hidden { border-bottom-color: transparent; }
+      .nav-mobile-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(30,61,47,1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 9999; padding: 0; display: flex; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; opacity: 0; transform: translateY(-12px); pointer-events: none; visibility: hidden; transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1), visibility 0.35s; }
       .nav-mobile-overlay.mobile-open { opacity: 1; transform: translateY(0); pointer-events: auto; visibility: visible; }
       /* Staggered entrance */
       .nav-mobile-overlay .mobile-menu-content > * { opacity: 0; transform: translateY(16px); transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1); }
@@ -234,23 +247,25 @@
       .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(7){opacity:1;transform:translateY(0);transition-delay:0.44s;}
       .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(8){opacity:1;transform:translateY(0);transition-delay:0.50s;}
       .nav-mobile-overlay-logo { display: none; }
-      .mobile-menu-content { flex: 1; padding: 1.5rem 2rem 2rem; display: flex; flex-direction: column; gap: 0; }
+      .mobile-menu-content { flex: 1; padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.25rem; }
       .nav-mobile-overlay a, .nav-mobile-overlay button { font-size: 1.125rem; font-weight: 500; color: #FAF5EE; text-decoration: none; padding: 0; border: none; background: none; font-family: inherit; cursor: pointer; text-align: left; display: block; width: 100%; min-height: auto; transition: color 0.2s ease; }
       .nav-mobile-overlay a:hover, .nav-mobile-overlay button:hover { color: var(--gildhart-gold); }
-      .mobile-nav-section-trigger { display: flex; align-items: center; justify-content: space-between; font-size: 1.0625rem; font-weight: 600; letter-spacing: 0.02em; color: #FAF5EE; padding: 1.125rem 0; border: none; background: none; font-family: inherit; cursor: pointer; text-align: left; width: 100%; min-height: 52px; border-bottom: 1px solid rgba(201,164,74,0.12); transition: color 0.2s ease; }
+      .mobile-nav-section-trigger { display: flex; align-items: center; justify-content: space-between; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.01em; color: #FAF5EE; padding: 1.25rem 0; border: none; background: none; font-family: inherit; cursor: pointer; text-align: left; width: 100%; min-height: 56px; border-bottom: 1px solid rgba(201,164,74,0.18); transition: color 0.2s ease, background 0.15s ease; -webkit-tap-highlight-color: transparent; }
       .mobile-nav-section-trigger:hover { color: var(--gildhart-gold); }
-      .mobile-dd-arrow { font-size: 0.5rem; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); color: var(--gildhart-gold); opacity: 0.7; }
+      .mobile-nav-section-trigger:active { color: var(--gildhart-gold); background: rgba(201,164,74,0.06); }
+      .mobile-dd-arrow { font-size: 0.7rem; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); color: var(--gildhart-gold); opacity: 0.7; display: inline-block; line-height: 1; font-family: Arial, Helvetica, sans-serif; }
       .mobile-dd-panel { padding-left: 0.75rem; border-left: 2px solid rgba(201,164,74,0.15); margin-left: 0.25rem; }
       .mobile-dd-panel .mobile-dd-item { display: block; padding: 0.75rem 1rem; text-decoration: none; border-bottom: 1px solid rgba(201,164,74,0.06); transition: background 0.15s ease, padding-left 0.2s ease; min-height: auto; border-radius: 6px; margin-bottom: 2px; }
       .mobile-dd-panel .mobile-dd-item:last-child { border-bottom: none; }
       .mobile-dd-panel .mobile-dd-item:hover { background: rgba(201,164,74,0.06); padding-left: 1.25rem; }
-      .mobile-dd-item-name { display: block; font-size: 0.9375rem; font-weight: 600; color: var(--gildhart-gold); letter-spacing: 0.04em; line-height: 1.3; }
+      .mobile-dd-item-name { display: block; font-size: 1.0625rem; font-weight: 600; color: var(--gildhart-gold); letter-spacing: 0.04em; line-height: 1.3; }
       .mobile-dd-panel .mobile-dd-item:hover .mobile-dd-item-name { color: #e0bf7a; }
-      .mobile-dd-item-sub { display: block; font-size: 0.8125rem; font-weight: 300; color: rgba(245,236,215,0.75); line-height: 1.5; margin-top: 3px; }
+      .mobile-dd-item-sub { display: block; font-size: 0.9rem; font-weight: 300; color: rgba(245,236,215,0.75); line-height: 1.5; margin-top: 4px; }
       .mobile-dd-category-label { display: block; font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gildhart-gold); opacity: 0.65; padding: 0.75rem 1rem 0.25rem; min-height: auto; }
       .mobile-dd-divider { height: 1px; background: linear-gradient(90deg, rgba(201,164,74,0.3), rgba(201,164,74,0.05)); margin: 0.375rem 1rem; }
-      .mobile-nav-plain-link { display: flex; align-items: center; font-size: 1.0625rem; font-weight: 600; letter-spacing: 0.02em; color: #FAF5EE; text-decoration: none; padding: 1.125rem 0; border-bottom: 1px solid rgba(201,164,74,0.12); min-height: 52px; transition: color 0.2s ease; }
+      .mobile-nav-plain-link { display: flex; align-items: center; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.01em; color: #FAF5EE; text-decoration: none; padding: 1.25rem 0; border-bottom: 1px solid rgba(201,164,74,0.18); min-height: 56px; transition: color 0.2s ease, background 0.15s ease; -webkit-tap-highlight-color: transparent; }
       .mobile-nav-plain-link:hover { color: var(--gildhart-gold); }
+      .mobile-nav-plain-link:active { color: var(--gildhart-gold); background: rgba(201,164,74,0.06); }
       .mobile-menu-spacer { flex: 1; min-height: 1.5rem; }
       .mobile-menu-cta-wrapper { position: sticky; bottom: 0; padding: 1rem 2rem 1.5rem; background: linear-gradient(to top, rgba(30,61,47,1) 60%, rgba(30,61,47,0)); z-index: 2; flex-shrink: 0; }
       .nav-mobile-overlay .mobile-nav-cta { display: block; background: var(--gildhart-gold); color: var(--gildhart-green) !important; padding: 1rem 1.75rem; border-radius: 12px; font-weight: 700 !important; font-size: 1rem !important; letter-spacing: 0.04em; text-transform: uppercase; text-align: center; text-decoration: none; box-shadow: 0 4px 24px rgba(201,164,74,0.3), 0 1px 3px rgba(0,0,0,0.15); transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; }
@@ -268,21 +283,25 @@
         .nav-links { display: none; }
         .nav-links-right { display: none; }
         .nav-hamburger { display: flex; }
-        .nav-inner { display: flex; justify-content: center; align-items: center; height: 90px; min-height: 90px; padding: 0 1.25rem; position: relative; }
-        .nav-brand { grid-column: unset; grid-row: unset; padding: 0; }
-        .nav-brand img { max-width: 100px; max-height: 100px; }
+        .nav-inner { display: flex; justify-content: center; align-items: center; height: 130px; min-height: 130px; padding: 0 1.25rem; position: relative; }
+        .nav-brand { grid-column: unset; grid-row: unset; padding: 10px 0 14px; overflow: visible; }
+        .nav-brand img { max-width: 110px; max-height: 110px; }
         .nav-hamburger { position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); }
-        .nav-mobile-overlay { top: 90px; }
-        .mobile-menu-content { padding: 1.25rem 1.75rem 1.5rem; }
+        .nav-mobile-overlay { top: 0; padding-top: 130px; }
+        .mobile-menu-content { padding: 2rem 2rem 1.5rem; }
         .mobile-menu-cta-wrapper { padding: 1rem 1.75rem 1.5rem; }
+        .mobile-cta-subtext { display: none; }
+        .mobile-menu-content .mobile-nav-section-trigger:first-child { border-top: none; padding-top: 0.5rem; }
       }
       @media (max-width: 480px) {
-        .nav-inner { height: 84px; min-height: 84px; }
-        .nav-brand img { max-width: 90px; max-height: 90px; }
-        .nav-mobile-overlay { top: 84px; }
+        .nav-inner { height: 118px; min-height: 118px; }
+        .nav-brand { padding: 8px 0 12px; }
+        .nav-brand img { max-width: 95px; max-height: 95px; }
+        .nav-mobile-overlay { top: 0; padding-top: 118px; }
         .mobile-menu-content { padding: 1rem 1.25rem 1.25rem; }
         .mobile-menu-cta-wrapper { padding: 0.75rem 1.25rem 1.25rem; }
-        .mobile-nav-section-trigger, .mobile-nav-plain-link { font-size: 1rem; padding: 1rem 0; min-height: 48px; }
+        .mobile-nav-section-trigger, .mobile-nav-plain-link { font-size: 1.375rem; padding: 1.125rem 0; min-height: 52px; }
+        .mobile-dd-panel .mobile-dd-item { min-height: 44px; padding: 0.75rem 0.875rem; }
       }
 
       /* ─── Hero ─── */
@@ -2891,41 +2910,42 @@
           <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
         </button>
       </div>
-      <div class="nav-mobile-overlay">
-        <div class="mobile-menu-content">
-          <button class="mobile-nav-section-trigger" data-accordion>Who We Help <span class="mobile-dd-arrow">▼</span></button>
-          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1),opacity 0.25s ease;">
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Pharmacy Groups</span></a>
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Private Clinics</span></a>
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Enterprise Healthcare</span></a>
-          </div>
-          <button class="mobile-nav-section-trigger" data-accordion>Our Work <span class="mobile-dd-arrow">▼</span></button>
-          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1),opacity 0.25s ease;">
-            <a href="web-pro-elite.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Build</span><span class="mobile-dd-item-sub">Bespoke Healthcare Website</span></a>
-            <a href="salesagent.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Agent</span><span class="mobile-dd-item-sub">Your Practice Never Closes</span></a>
-            <a href="ai-domination-system.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Method</span><span class="mobile-dd-item-sub">DIY Access &#163;497</span></a>
-          </div>
-          <button class="mobile-nav-section-trigger" data-accordion>The Proof <span class="mobile-dd-arrow">▼</span></button>
-          <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1),opacity 0.25s ease;">
-            <span class="mobile-dd-category-label">Client Results</span>
-            <a href="case-study-ealing.html" class="mobile-dd-item"><span class="mobile-dd-item-name">Ealing Travel Clinic</span><span class="mobile-dd-item-sub">300% Revenue Growth</span></a>
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Superior Pharmacy</span><span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span></a>
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Puri Pharmacy</span><span class="mobile-dd-item-sub">Outranking Boots Nationally</span></a>
-            <div class="mobile-dd-divider"></div>
-            <span class="mobile-dd-category-label">Latest Builds</span>
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span><span class="mobile-dd-item-sub">Premium Multi-Site Build</span></a>
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Easy Clinic</span><span class="mobile-dd-item-sub">Premium Private Clinic Build</span></a>
-            <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Southdowns Pharmacy Group</span><span class="mobile-dd-item-sub">AI Agent</span></a>
-          </div>
-          <a href="index.html#about" class="mobile-nav-plain-link">About</a>
-          <div class="mobile-menu-spacer"></div>
-        </div>
-        <div class="mobile-menu-cta-wrapper">
-          <a href="index.html#contact" class="mobile-nav-cta">Join The Waitlist</a>
-          <span class="mobile-cta-subtext">Free AI visibility audit included</span>
-        </div>
-      </div>
     </nav>
+    <!-- Mobile nav overlay — MUST be outside <nav> (position:sticky breaks position:fixed children on mobile) -->
+    <div class="nav-mobile-overlay" id="mobileNavOverlay">
+      <div class="mobile-menu-content">
+        <button class="mobile-nav-section-trigger" data-accordion>Who We Help <span class="mobile-dd-arrow">&#9662;</span></button>
+        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Pharmacy Groups</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Private Clinics</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Enterprise Healthcare</span></a>
+        </div>
+        <button class="mobile-nav-section-trigger" data-accordion>Our Work <span class="mobile-dd-arrow">&#9662;</span></button>
+        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+          <a href="web-pro-elite.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Build</span><span class="mobile-dd-item-sub">Bespoke Healthcare Website</span></a>
+          <a href="salesagent.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Agent</span><span class="mobile-dd-item-sub">Your Practice Never Closes</span></a>
+          <a href="ai-domination-system.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Method</span><span class="mobile-dd-item-sub">DIY Access &#163;497</span></a>
+        </div>
+        <button class="mobile-nav-section-trigger" data-accordion>The Proof <span class="mobile-dd-arrow">&#9662;</span></button>
+        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+          <span class="mobile-dd-category-label">Client Results</span>
+          <a href="case-study-ealing.html" class="mobile-dd-item"><span class="mobile-dd-item-name">Ealing Travel Clinic</span><span class="mobile-dd-item-sub">300% Revenue Growth</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Superior Pharmacy</span><span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Puri Pharmacy</span><span class="mobile-dd-item-sub">Outranking Boots Nationally</span></a>
+          <div class="mobile-dd-divider"></div>
+          <span class="mobile-dd-category-label">Latest Builds</span>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span><span class="mobile-dd-item-sub">Premium Multi-Site Build</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Easy Clinic</span><span class="mobile-dd-item-sub">Premium Private Clinic Build</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Southdowns Pharmacy Group</span><span class="mobile-dd-item-sub">AI Agent</span></a>
+        </div>
+        <a href="index.html#about" class="mobile-nav-plain-link">About</a>
+        <div class="mobile-menu-spacer"></div>
+      </div>
+      <div class="mobile-menu-cta-wrapper">
+        <a href="index.html#contact" class="mobile-nav-cta">Join The Waitlist</a>
+        <span class="mobile-cta-subtext">Free AI visibility audit included</span>
+      </div>
+    </div>
 
     <!-- Hero -->
     <section class="playbook-hero">
@@ -4086,46 +4106,122 @@
       // ── Mobile nav toggle ──
       (function() {
         var hamburger = document.querySelector('.nav-hamburger');
-        var overlay = document.querySelector('.nav-mobile-overlay');
+        var overlay = document.getElementById('mobileNavOverlay');
         if (!hamburger || !overlay) return;
+
+        var isOpen = false;
+        var navEl = document.querySelector('.nav');
+
+        function openMenu() {
+          isOpen = true;
+          overlay.classList.add('mobile-open');
+          hamburger.classList.add('nav-open');
+          if (navEl) navEl.classList.add('nav-border-hidden');
+          hamburger.setAttribute('aria-label', 'Close navigation menu');
+          hamburger.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+
         function closeMenu() {
+          isOpen = false;
           overlay.classList.remove('mobile-open');
           hamburger.classList.remove('nav-open');
+          if (navEl) navEl.classList.remove('nav-border-hidden');
           hamburger.setAttribute('aria-label', 'Open navigation menu');
           hamburger.setAttribute('aria-expanded', 'false');
           document.body.style.overflow = '';
+          // Collapse all accordion panels on close
+          overlay.querySelectorAll('.mobile-dd-panel').forEach(function(p) {
+            p.style.maxHeight = '0px';
+            p.style.opacity = '0';
+          });
+          overlay.querySelectorAll('.mobile-dd-arrow').forEach(function(a) {
+            a.style.transform = 'rotate(0deg)';
+          });
         }
-        hamburger.addEventListener('click', function() {
-          var isOpen = overlay.classList.toggle('mobile-open');
-          hamburger.classList.toggle('nav-open', isOpen);
-          hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-          hamburger.setAttribute('aria-expanded', String(isOpen));
-          document.body.style.overflow = isOpen ? 'hidden' : '';
+
+        hamburger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isOpen) { closeMenu(); } else { openMenu(); }
         });
-        overlay.querySelectorAll('a').forEach(function(link) {
-          link.addEventListener('click', function() { closeMenu(); });
+
+        // Close overlay when a nav link inside it is clicked
+        overlay.addEventListener('click', function(e) {
+          var link = e.target.closest('a');
+          if (link) { closeMenu(); }
         });
+
         document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && overlay.classList.contains('mobile-open')) closeMenu();
+          if (e.key === 'Escape' && isOpen) { closeMenu(); }
         });
-        overlay.querySelectorAll('[data-accordion]').forEach(function(trigger) {
-          trigger.addEventListener('click', function() {
+
+        // ── Accordion toggles ──
+        var triggers = overlay.querySelectorAll('[data-accordion]');
+        triggers.forEach(function(trigger) {
+          trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             var panel = this.nextElementSibling;
             var arrow = this.querySelector('.mobile-dd-arrow');
-            if (!panel) return;
-            var isExpanded = panel.style.maxHeight && panel.style.maxHeight !== '0px';
-            overlay.querySelectorAll('[data-accordion]').forEach(function(ot) {
+            if (!panel || !panel.classList.contains('mobile-dd-panel')) return;
+            var isExpanded = parseInt(panel.style.maxHeight, 10) > 0;
+            // Close all other panels
+            triggers.forEach(function(ot) {
+              if (ot === trigger) return;
               var op = ot.nextElementSibling;
               var oa = ot.querySelector('.mobile-dd-arrow');
-              if (op && op !== panel) { op.style.maxHeight='0px'; op.style.opacity='0'; if(oa) oa.style.transform='rotate(0deg)'; }
+              if (op && op.classList.contains('mobile-dd-panel')) {
+                op.style.maxHeight = '0px'; op.style.opacity = '0';
+                if (oa) oa.style.transform = 'rotate(0deg)';
+              }
             });
             if (isExpanded) {
-              panel.style.maxHeight='0px'; panel.style.opacity='0'; if(arrow) arrow.style.transform='rotate(0deg)';
+              panel.style.maxHeight = '0px'; panel.style.opacity = '0';
+              if (arrow) arrow.style.transform = 'rotate(0deg)';
             } else {
-              panel.style.maxHeight=panel.scrollHeight+'px'; panel.style.opacity='1'; if(arrow) arrow.style.transform='rotate(180deg)';
+              panel.style.maxHeight = panel.scrollHeight + 'px'; panel.style.opacity = '1';
+              if (arrow) arrow.style.transform = 'rotate(180deg)';
             }
           });
         });
+      })();
+
+      // ── Shrink nav on scroll (desktop only) ──
+      (function() {
+        var nav = document.querySelector('.nav');
+        if (!nav) return;
+        var shrinkAt = 80;
+        var expandAt = 25;
+        var scrolled = false;
+        var expandTimer = null;
+        var EXPAND_DEBOUNCE = 50;
+        function checkScroll() {
+          if (window.innerWidth <= 768) return;
+          var y = window.scrollY;
+          if (!scrolled && y > shrinkAt) {
+            if (expandTimer) { clearTimeout(expandTimer); expandTimer = null; }
+            scrolled = true;
+            nav.classList.add('nav-scrolled');
+          } else if (scrolled && y < expandAt) {
+            if (!expandTimer) {
+              expandTimer = setTimeout(function() {
+                expandTimer = null;
+                if (window.scrollY < expandAt) { scrolled = false; nav.classList.remove('nav-scrolled'); }
+              }, EXPAND_DEBOUNCE);
+            }
+          } else {
+            if (expandTimer && y >= expandAt) { clearTimeout(expandTimer); expandTimer = null; }
+          }
+        }
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            window.requestAnimationFrame(function() { checkScroll(); ticking = false; });
+            ticking = true;
+          }
+        }, { passive: true });
+        checkScroll();
       })();
 
       // FAQ accordion

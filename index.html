@@ -95,13 +95,43 @@
         background: rgba(30,61,47,0.97);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid rgba(201,164,74,0.18);
+        transition: none;
+      }
+
+      /* ─── Shrink-on-scroll (desktop only, >768px) ─── */
+      /* Simple approach: reduce logo size + padding so container shrinks naturally */
+      @media (min-width: 769px) {
+        .nav-brand img {
+          transition: max-width 0.3s ease, max-height 0.3s ease, filter 0.3s ease;
+        }
+        .nav-brand {
+          transition: padding 0.3s ease;
+        }
+        .nav-links,
+        .nav-links-right {
+          transition: padding-bottom 0.3s ease, gap 0.3s ease;
+        }
+
+        /* Scrolled state — compact everything */
+        .nav.nav-scrolled .nav-brand {
+          padding: 0.25rem 0 0;
+        }
+        .nav.nav-scrolled .nav-brand img {
+          max-width: 60px;
+          max-height: 60px;
+        }
+        .nav.nav-scrolled .nav-links,
+        .nav.nav-scrolled .nav-links-right {
+          padding-bottom: 0.5rem;
+          gap: 1.5rem;
+        }
       }
       .nav-inner {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 2rem;
         height: auto;
-        min-height: 80px;
+        min-height: 0;
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         grid-template-rows: auto auto;
@@ -748,7 +778,7 @@
         align-items: center;
         padding: 0 2rem;
         padding-top: 0;
-        margin-top: -45px;
+        margin-top: 0;
         position: relative;
         overflow: hidden;
         background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
@@ -5057,9 +5087,7 @@
             >
           </h1>
           <p class="hero-subtitle">
-            Rahul at Puri Pharmacy is outranking Boots nationally. Raman at Superior Pharmacy is on track for £500k this
-            year. Sachin at Ealing Travel Clinic will generate £100,000 from a single service — HPV vaccinations — this
-            year alone. No ad spend. Yours could be next.
+            Rahul at Puri Pharmacy is outranking Boots nationally. Raman at Superior Pharmacy is on track for £500k this year. Sachin at Ealing Travel Clinic will generate £100,000 from a single service &#8212; HPV vaccinations &#8212; this year alone. No ad spend. Yours could be next.
           </p>
           <div class="hero-cta">
             <a href="#contact" class="btn btn-primary">Get The System</a>
@@ -6265,6 +6293,58 @@
           });
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         revObs.observe(revSection);
+      })();
+
+      // ── Shrink nav on scroll (desktop only) ──
+      (function() {
+        var nav = document.querySelector('.nav');
+        if (!nav) return;
+
+        // Hysteresis: shrink at 80px, expand back at 25px
+        var shrinkAt = 80;
+        var expandAt = 25;
+        var scrolled = false;
+
+        // Debounce timer for expand-back only
+        var expandTimer = null;
+        var EXPAND_DEBOUNCE = 50;
+
+        function checkScroll() {
+          if (window.innerWidth <= 768) return;
+          var y = window.scrollY;
+          if (!scrolled && y > shrinkAt) {
+            if (expandTimer) { clearTimeout(expandTimer); expandTimer = null; }
+            scrolled = true;
+            nav.classList.add('nav-scrolled');
+          } else if (scrolled && y < expandAt) {
+            if (!expandTimer) {
+              expandTimer = setTimeout(function() {
+                expandTimer = null;
+                if (window.scrollY < expandAt) {
+                  scrolled = false;
+                  nav.classList.remove('nav-scrolled');
+                }
+              }, EXPAND_DEBOUNCE);
+            }
+          } else {
+            if (expandTimer && y >= expandAt) {
+              clearTimeout(expandTimer);
+              expandTimer = null;
+            }
+          }
+        }
+
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            window.requestAnimationFrame(function() {
+              checkScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+        checkScroll();
       })();
 
       // Scroll-triggered hero image reveal

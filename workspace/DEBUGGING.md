@@ -61,6 +61,18 @@ CRITICAL: Keep this file under 300 lines. You are allowed to summarize, change t
 **Solution:** Added missing `</div>`, reverted to visibility-based show/hide, cleaned up JS to single click handler with `isOpen` flag, accordion panels reset on close. Fixed smooth scroll handler throwing SyntaxError on `querySelector("#")` for bare-hash overlay links.
 **Prevention:** Never place `position:fixed` overlays inside `position:sticky` containers. Always verify closing tags for overlay containers. Guard `querySelector()` calls against bare `#` selectors.
 
+### [2026-04-22] — Nav scroll flicker — 4-step fix plan in progress
+
+**Status:** Fixed (all 4 steps complete)
+**Symptoms:** Non-stop flickering when scrolling up/down on desktop. Nav bar rapidly toggles between expanded/collapsed states.
+**Root Cause:** `.nav-scrolled` class changed layout properties (`min-height`, `padding`, `max-width/height` on logo) → content shifted → `scrollY` changed → class toggled back → infinite reflow loop. Hysteresis alone (shrink@100px/expand@30px) insufficient because layout shift (~120px) jumped past the dead zone.
+**Solution (in progress — 4 steps):**
+1. ✅ Replace layout-affecting CSS with `transform: scale(0.55)` on `.nav-inner` — GPU-composited, no reflow
+2. ✅ Pin nav bar height (`--nav-pinned-height`) and use inner transforms (`scale(0.65) translateY(-12%)`) for shrink effect
+3. ✅ Debounce scroll expand-back (50ms) + `will-change: transform, filter` on `.nav-brand img`
+4. ✅ Remove negative `margin-top: -45px` on hero → `margin-top: 0` to stabilize content flow
+**Current status:** All 4 steps complete — nav flicker fix fully deployed
+
 <!-- Newest debugging entries first. Closed issues move to "Resolved Issues" below. -->
 
 ## Resolved Issues
