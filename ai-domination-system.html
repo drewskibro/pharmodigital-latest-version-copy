@@ -2051,7 +2051,6 @@
       .math-audience-card:nth-child(1) h3 { color: white; }
       .math-audience-card:nth-child(1) p { color: rgba(255,255,255,0.7); }
       .math-audience-card:nth-child(1) .math-audience-label { color: var(--gildhart-gold); }
-      .math-audience-card:nth-child(1) .math-audience-metric { color: var(--gildhart-gold); }
       /* Card 2 — White */
       .math-audience-card:nth-child(2) {
         background: white;
@@ -2092,15 +2091,6 @@
         margin-bottom: 0.625rem;
         line-height: 1.2;
       }
-      .math-audience-metric {
-        font-family: 'Inter', sans-serif;
-        font-size: 2rem;
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1;
-        margin-bottom: 1rem;
-        display: block;
-      }
       .math-audience-card p {
         font-size: 0.9375rem;
         color: var(--gray-600);
@@ -2109,7 +2099,6 @@
       @media (max-width: 768px) {
         .math-audience-grid { grid-template-columns: 1fr; }
         .math-audience-card { padding: 2rem 1.75rem 1.75rem; }
-        .math-audience-metric { font-size: 1.625rem; }
       }
 
       /* Comparison */
@@ -2207,6 +2196,32 @@
         line-height: 1.4;
       }
       .math-callout p span { color: var(--gildhart-gold); }
+
+      /* ── One-patient statement (standalone, no card bg) ── */
+      .math-one-patient-statement {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 5rem 2rem;
+      }
+      .math-one-patient-line1 {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.25rem;
+      }
+      .math-one-patient-line2 {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+        font-weight: 700;
+        color: var(--gildhart-gold);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
 
       @media (max-width: 768px) {
         .math-compare { grid-template-columns: 1fr; }
@@ -3636,86 +3651,54 @@
       </div>
     </section>
 
-    <!-- The Math -->
-    <section class="math-section">
+    <!-- Section 1 — One Patient Statement -->
+    <section class="math-section" style="padding-bottom: 0; border-bottom: none;">
+      <div class="math-one-patient-statement">
+        <p class="math-one-patient-line1">One new patient per month pays for this.</p>
+        <p class="math-one-patient-line2">Everything after that is profit.</p>
+      </div>
+    </section>
+
+    <!-- Section 2 — The Numbers / What This Actually Means For You -->
+    <section class="math-section" style="padding-top: 2rem;">
       <div class="math-inner">
         <div class="math-header">
           <p class="section-eyebrow sage">The Numbers</p>
-          <h2 class="section-headline">What This Actually Means for You</h2>
+          <h2 class="section-headline">What This Actually Means For You</h2>
+          <p class="section-subheadline" style="max-width: 700px; margin: 0.75rem auto 0;">The playbook costs &#163;497. But what you&#39;re really buying depends on who you are.</p>
         </div>
-        <p class="math-intro">The playbook costs £497. But what you're really buying depends on who you are.</p>
 
         <div class="math-audience-grid">
+          <!-- Card 1 — Dark featured -->
           <div class="math-audience-card">
-            <span class="math-audience-label">For Practice Owners</span>
-            <span class="math-audience-metric">£497 vs £60k</span>
-            <h3>Own the System. Fire the Agency.</h3>
-            <p>
-              Build in-house AI search capability instead of paying an agency £5k/month forever. Train your team. Keep
-              the knowledge. Keep the profit.
-            </p>
+            <span class="math-audience-label">For Pharmacy &amp; Clinic Owners</span>
+            <h3>Every Month You Wait Is Revenue You Won&#39;t Get Back.</h3>
+            <p>This is the exact system behind Ealing&#39;s &#163;100k HPV revenue, Superior&#39;s &#163;500k trajectory, and Puri outranking Boots nationally. Buy it once. Own it forever. Deploy it this week.</p>
           </div>
+          <!-- Card 2 — Light -->
           <div class="math-audience-card">
-            <span class="math-audience-label">For Marketing Managers</span>
-            <span class="math-audience-metric">Career Move</span>
-            <h3>The Person Who Brought AI to the Practice</h3>
-            <p>
-              That's a promotion-level skill. You'll own the fastest-growing channel in healthcare marketing — while
-              everyone else is still Googling what AI Overviews are.
-            </p>
+            <span class="math-audience-label">For Marketing Directors</span>
+            <h3>Be The Person Who Brought AI To The Practice.</h3>
+            <p>That&#39;s a promotion-level move. While everyone else is still Googling what AI Overviews are, you&#39;ll own the fastest-growing channel in healthcare marketing. One purchase. Career-defining skill.</p>
           </div>
+          <!-- Card 3 — Light -->
           <div class="math-audience-card">
-            <span class="math-audience-label">For Multi-Practice Groups</span>
-            <span class="math-audience-metric">1 → Unlimited</span>
-            <h3>One Purchase. Every Location.</h3>
-            <p>
-              Train your entire marketing team. Build the department. Deploy across every practice you operate. No
-              per-seat fees. No limits.
-            </p>
+            <span class="math-audience-label">For Multi-Site Groups</span>
+            <h3>One System. Every Location. No Per-Site Fees.</h3>
+            <p>Buy it once. Train your entire marketing team. Deploy across every practice you operate. The system scales with you &#8212; no limits, no recurring costs, no agencies taking a cut.</p>
           </div>
+          <!-- Card 4 — Light -->
           <div class="math-audience-card">
             <span class="math-audience-label">For Agencies &amp; Consultants</span>
-            <span class="math-audience-metric">120x ROI</span>
-            <h3>Our £5k/Month System. Your Clients.</h3>
-            <p>
-              You're getting the exact system we charge clients £5k/month for. Use it with your own clients. Build your
-              AI search service offering.
-            </p>
+            <h3>The &#163;5k/Month System. For &#163;497.</h3>
+            <p>We charge clients &#163;5k/month for this exact system. You&#39;re buying the system itself. Use it with your own clients. One client engagement pays for it thirty times over.</p>
           </div>
         </div>
 
-        <div class="math-compare">
-          <div class="math-card">
-            <div class="math-card-label old">The Old Way</div>
-            <div class="math-row">
-              <span class="math-row-name">Agency retainer</span><span class="math-row-val">£5k/month</span>
-            </div>
-            <div class="math-row">
-              <span class="math-row-name">Annual cost</span><span class="math-row-val">£60k/year</span>
-            </div>
-            <div class="math-total"><span class="math-total-label">You rent their expertise</span></div>
-          </div>
-          <div class="math-card highlighted">
-            <div class="math-card-label new">The New Way</div>
-            <div class="math-row">
-              <span class="math-row-name">The playbook</span
-              ><span class="math-row-val" style="color: var(--gildhart-green);">£497 once</span>
-            </div>
-            <div class="math-row">
-              <span class="math-row-name">Annual cost</span
-              ><span class="math-row-val" style="color: var(--gildhart-green);">£497 total</span>
-            </div>
-            <div class="math-total"><span class="math-total-label">You own the system</span></div>
-          </div>
-        </div>
-
-        <div class="math-difference">
-          <p class="math-difference-main">Difference: You keep £59,503 and own the IP</p>
-          <p class="math-difference-sub">Use for one practice or fifty. No limits. No ongoing fees.</p>
-        </div>
-
-        <div class="math-callout">
-          <p>One new patient per month pays for this.<br /><span>Everything after that is profit.</span></p>
+        <!-- Bottom statement -->
+        <div class="math-one-patient-statement" style="padding-top: 3rem; padding-bottom: 1rem;">
+          <p class="math-one-patient-line1">One new patient per month pays for this.</p>
+          <p class="math-one-patient-line2">Everything after that is profit.</p>
         </div>
       </div>
     </section>

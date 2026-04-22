@@ -18,6 +18,14 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — ai-domination-system.html: Redesign numbers section — statement + four avatar cards
+- Replaced Old Way / New Way comparison cards, £59,503 difference line, and metric-heavy audience cards
+- Section 1: standalone centred statement "One new patient per month pays for this / Everything after that is profit"
+- Section 2: four avatar cards with new copy (Pharmacy & Clinic Owners, Marketing Directors, Multi-Site Groups, Agencies & Consultants)
+- Removed .math-audience-metric, .math-compare, .math-difference, .math-callout HTML blocks
+- Added .math-one-patient-statement / .math-one-patient-line1 / .math-one-patient-line2 CSS
+- Files: ai-domination-system.html
+
 ### [2026-04-22] — ai-domination-system.html: Refine tier cards to match homepage £1bn aesthetic
 - Added `.system-tier-proof-banner` — full-width bar atop each card (e.g. "Superior, Ealing and Puri used this to outrank Boots")
 - Added `.system-tier-category` — secondary label ("Do It Yourself", "The Automation Layer", "Lifetime Access")
