@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — Bump scrolled nav logo from 60px to 90px on 4 pages
+- ai-domination-system.html, case-study-ealing.html, salesagent.html, web-pro-elite.html
+- `.nav.nav-scrolled .nav-brand img` max-width/max-height: 60px → 90px (desktop ≥769px)
+- Matches index.html which already had 90px; homepage-v2.html has no shrink-on-scroll CSS
+
 ### [2026-04-22] — ai-domination-system.html: Redesign numbers section — statement + four avatar cards
 - Replaced Old Way / New Way comparison cards, £59,503 difference line, and metric-heavy audience cards
 - Section 1: standalone centred statement "One new patient per month pays for this / Everything after that is profit"
