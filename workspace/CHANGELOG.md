@@ -18,6 +18,46 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — salesagent.html: Revert lightbox to working centred layout
+- Overlay: restored `display:flex; align-items:center; justify-content:center; padding:1.5rem`
+- Inner: `max-width:1100px; max-height:90vh` — constrained and centred in viewport
+- Image: `max-height:80vh; object-fit:contain` — full image visible, no clipping
+- Close button: moved back to top-right of image wrapper (frosted-glass pill)
+- Caption: bumped to `1.125rem`, `font-weight:700`, pure white with text-shadow — client name now stands out
+
+### [2026-04-22] — salesagent.html: Fix lightbox to show full unclipped screenshot
+- Overlay: removed `display:flex; align-items:flex-start; padding:1rem` → plain scrollable container
+- Inner: removed `max-width:1100px`, uses `width:100%` + `min-height:100%`, tiny scale(0.97) anim
+- Image: `width:auto; max-width:100%; max-height:none` — full natural size, no cropping at all
+- Close button: smaller pill (44px vs 56px), margin `0.375rem auto 0` — tight below image, no excess space
+- Overlay scrolls for tall images; close button always immediately below
+
+### [2026-04-22] — salesagent.html: Show full screenshot in lightbox (prior iteration)
+- Removed `max-height: calc(100vh - 140px)` and `object-fit: contain` from lightbox image
+- Image now renders at natural full size with `height: auto` — no cropping
+- Inner container uses `margin: 0 auto` (not `margin: auto`) so it starts from top, scrollable
+- Close button remains below image, accessible via scroll for tall screenshots
+
+### [2026-04-22] — salesagent.html: Make carousel arrows more visible
+- Arrow buttons changed from near-invisible white (`rgba(255,255,255,0.06)` bg, white text) to gold (`var(--gildhart-gold)`)
+- Background: `rgba(201,164,74,0.12)`, border: `rgba(201,164,74,0.45)` — clearly visible on dark navy
+- Hover: brighter gold background + white text — consistent with brand tokens
+
+### [2026-04-22] — salesagent.html: Fix lightbox image top clipping
+- Overlay changed from `align-items:center` → `flex-start` + `overflow-y:auto` so tall content scrolls instead of clipping
+- Removed fixed `max-height:90vh` from `.sa-lightbox-inner`; added `margin:auto` for vertical centering when content fits
+- Image max-height now `calc(100vh - 140px)` — uses full viewport minus close button space, no more top crop
+
+### [2026-04-22] — salesagent.html: Remove hint text + fix lightbox image clipping
+- Removed "or press ESC / click outside" hint text below close button — cleaner, less clutter
+- Reduced lightbox image max-height from 80vh → 70vh so full screenshot (inc. chatbot header) is visible
+- Deleted `.sa-lightbox-hint` CSS rule entirely
+
+### [2026-04-22] — salesagent.html: Redesign lightbox close — big centred pill below image
+- Moved close button from top-right overlay position to centred below the image
+- White pill (#fff on dark), 56px tall, bold "✕ Close Preview" text — unmissable
+- HTML restructured: button + hint now inside `.sa-lightbox-inner` for proper flow layout
+
 ### [2026-04-22] — index.html: Increase "Trusted by" label font size
 - `font-size: 0.65rem` → `0.75rem` for better legibility above logo carousel
 

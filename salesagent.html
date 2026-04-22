@@ -3523,7 +3523,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1.25rem;
+        gap: 1rem;
         transform: scale(0.94) translateY(16px);
         transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
       }
@@ -3548,10 +3548,11 @@
       }
       .sa-lightbox-caption {
         font-family: 'Inter', sans-serif;
-        font-size: 0.9375rem;
-        font-weight: 600;
-        color: rgba(255,255,255,0.7);
-        letter-spacing: 0.01em;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 0.02em;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.6);
       }
       /* Close button: pinned to the top-right corner of the image wrapper */
       .sa-lightbox-close {
@@ -3585,21 +3586,12 @@
         transform: scale(1.05);
         box-shadow: 0 4px 24px rgba(0,0,0,0.6);
       }
+      .sa-lightbox-close:active {
+        transform: scale(0.97);
+      }
       .sa-lightbox-close-x {
         font-size: 1.1rem;
         line-height: 1;
-      }
-      /* Hint bar — sits below the image, always in view */
-      .sa-lightbox-hint {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.45);
-        pointer-events: none;
-        white-space: nowrap;
-        text-align: center;
       }
 
       /* Bottom footnote */
@@ -3630,21 +3622,22 @@
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.15);
-        color: white;
+        background: rgba(201,164,74,0.12);
+        border: 1.5px solid rgba(201,164,74,0.45);
+        color: var(--gildhart-gold);
         font-size: 1.25rem;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
         flex-shrink: 0;
         line-height: 1;
       }
       .sa-carousel-btn:hover {
-        background: rgba(20,184,166,0.15);
-        border-color: rgba(20,184,166,0.45);
+        background: rgba(201,164,74,0.22);
+        border-color: var(--gildhart-gold);
+        color: #fff;
         transform: scale(1.08);
       }
       .sa-carousel-btn:active {
@@ -4102,12 +4095,13 @@
 
     <!-- Lightbox overlay -->
     <div class="sa-lightbox-overlay" id="saLightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
-      <button class="sa-lightbox-close" id="saLightboxClose" aria-label="Close preview">
-        <span class="sa-lightbox-close-x">✕</span> Close
-      </button>
-      <p class="sa-lightbox-hint">Press ESC or click outside to close</p>
       <div class="sa-lightbox-inner">
-        <img id="saLightboxImg" src="" alt="" />
+        <div class="sa-lightbox-img-wrap">
+          <img id="saLightboxImg" src="" alt="" />
+          <button class="sa-lightbox-close" id="saLightboxClose" aria-label="Close preview">
+            <span class="sa-lightbox-close-x">✕</span> Close
+          </button>
+        </div>
         <p class="sa-lightbox-caption" id="saLightboxCaption"></p>
       </div>
     </div>
@@ -5178,6 +5172,7 @@
           img.src = src;
           img.alt = cap;
           caption.textContent = cap;
+          overlay.scrollTop = 0;
           overlay.classList.add('sa-lightbox-open');
           document.body.style.overflow = 'hidden';
         }
