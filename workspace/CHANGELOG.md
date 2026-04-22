@@ -18,6 +18,12 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — ai-domination-system.html: Replace "Why Early Buyers Win" body copy
+- Removed Cowork launch / save £497 / manual-vs-automated framing
+- New 4-paragraph copy: Cowork live → weekly shortlist pressure → price reflects inclusions → closing statement
+- H3 heading retained; final line bolded as before
+- Files: ai-domination-system.html
+
 ### [2026-04-22] — Bump scrolled nav logo from 60px to 90px on 4 pages
 - ai-domination-system.html, case-study-ealing.html, salesagent.html, web-pro-elite.html
 - `.nav.nav-scrolled .nav-brand img` max-width/max-height: 60px → 90px (desktop ≥769px)
