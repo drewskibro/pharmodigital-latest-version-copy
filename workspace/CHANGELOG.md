@@ -18,6 +18,13 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — ai-domination-system.html: Replace amber #f59e0b with gildhart-gold in The Shift
+- `.ps-pair-stat-num` color: #f59e0b → var(--gildhart-gold) + matching text-shadow rgba
+- `.ps-pair-row` border-left: #f59e0b → var(--gildhart-gold) (desktop 4px + mobile 3px)
+- `arrowPulse` + `arrowPulseMobile` + `statGlow` keyframes: all rgba(245,158,11) → rgba(201,164,74)
+- `.ps-pair-win` bg, `.ps-pair-vs-label` color, hover box-shadow — all swapped to gold rgba
+- Files: ai-domination-system.html
+
 ### [2026-04-22] — ai-domination-system.html: Widen YOUR TURN section v2
 - Container max-width 1100→1300px, grid split 1fr/380px with 4rem gap for more text breathing room
 - Bullets switched from 2-col grid to single-column flex layout at 0.9375rem for cleaner reading
