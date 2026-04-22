@@ -18,6 +18,18 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — salesagent.html: Zoom into chatbot area on mobile screenshots
+- Added `transform: scale(1.6)` + `transform-origin: top right` on mobile screenshot imgs (≤768px)
+- Container overflow:hidden crops naturally — no quality loss, just tighter focus on chatbot widget
+- Desktop completely untouched
+- Files: salesagent.html
+
+### [2026-04-22] — salesagent.html: Fix mobile screenshot cropping to show chatbot widget
+- Changed `object-position` from `top left` → `top right` inside ≤768px media query
+- Chatbot widgets (positioned right side of every screenshot) now visible on mobile
+- Desktop completely untouched
+- Files: salesagent.html
+
 ### [2026-04-22] — salesagent.html: Mobile-only Live Right Now card layout improvement
 - Cards switch from horizontal carousel to full-width vertical stack on ≤768px
 - Screenshot aspect-ratio changed to 16/10 (480px: 16/11) for better visibility
