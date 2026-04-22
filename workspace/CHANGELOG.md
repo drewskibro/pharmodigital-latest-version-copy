@@ -18,6 +18,22 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — index.html: Gradient fade on founder photo + larger Gildhart seal
+- Added `::after` pseudo-element on `.founder-image` — 120px gradient fade from transparent → `#FAF8F3` cream
+- Makes natural mid-thigh photo crop look like intentional editorial treatment instead of abrupt clip
+- `.gh-divider img` enlarged from 140×140px → 220px wide (auto height), opacity 0.75→0.8 — seal is now clearly legible
+- Files: index.html
+
+### [2026-04-22] — index.html: Fix founder photo bottom clip + enlarge Gildhart divider (prior)
+- Removed `max-height:600px` from `.founder-image img` — photo now renders at full natural height, no bottom clip
+- `.gh-divider img` enlarged from 60×60px → 140×140px, opacity 0.55→0.75, removed border-radius — seal text now legible
+- Files: index.html
+
+### [2026-04-22] — index.html: Fix founder photo clipping + broken Gildhart logo (prior)
+- `.founder-section` changed `overflow:hidden` → `overflow:visible` so Drew's photo isn't clipped
+- Replaced broken `uploaded-asset-1776672268791-0.png` with new hosted Gildhart deer logo in gh-divider + footer
+- Files: index.html
+
 ### [2026-04-22] — salesagent.html: Revert lightbox to working centred layout
 - Overlay: restored `display:flex; align-items:center; justify-content:center; padding:1.5rem`
 - Inner: `max-width:1100px; max-height:90vh` — constrained and centred in viewport

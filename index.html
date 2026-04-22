@@ -1197,11 +1197,10 @@
         background: linear-gradient(270deg, transparent, rgba(201,164,74,0.35));
       }
       .gh-divider img {
-        width: 60px;
-        height: 60px;
-        opacity: 0.55;
+        width: 220px;
+        height: auto;
+        opacity: 0.8;
         filter: drop-shadow(0 2px 6px rgba(201,164,74,0.25));
-        border-radius: 50%;
       }
 
       /* Logo Bar - Full Width */
@@ -2396,7 +2395,7 @@
       .founder-section {
         background: #FAF8F3;
         padding: 5rem 2rem 0;
-        overflow: hidden;
+        overflow: visible;
       }
 
       .founder-inner {
@@ -2412,6 +2411,20 @@
         align-items: flex-end;
         justify-content: center;
         align-self: end;
+        position: relative;
+      }
+
+      /* Gradient fade at bottom — makes the natural photo crop look intentional */
+      .founder-image::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(to bottom, rgba(250,248,243,0) 0%, rgba(250,248,243,0.6) 40%, #FAF8F3 100%);
+        pointer-events: none;
+        z-index: 1;
       }
 
       .founder-image img {
@@ -5875,7 +5888,7 @@
 
     <!-- Gildhart section divider before closing CTA -->
     <div class="gh-divider" style="background:#FAF8F3;">
-      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776672268791-0.png" alt="Gildhart" />
+      <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776878499294-1.png" alt="Gildhart" />
     </div>
 
     <!-- Revenue Results Section -->
@@ -5997,7 +6010,7 @@
           <div class="footer-brand">
             <a href="/" class="footer-brand-name" style="display:flex;align-items:center;gap:0.625rem;">
               <img
-                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776672268791-0.png"
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776878499294-1.png"
                 alt="Gildhart"
                 style="height:36px;width:auto;filter:brightness(0) invert(1);opacity:0.9;"
               />
