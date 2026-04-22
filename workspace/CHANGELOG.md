@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-22] — ai-domination-system.html: Remove hero bullets bar entirely
+- Deleted `.playbook-hero-bullets-bar` HTML block (5 bullet items) and all associated CSS
+- Removed `.phb-item`, `.phb-tick`, and all responsive overrides for the bar
+- Files: ai-domination-system.html
+
 ### [2026-04-22] — ai-domination-system.html: Replace "Why Early Buyers Win" body copy
 - Removed Cowork launch / save £497 / manual-vs-automated framing
 - New 4-paragraph copy: Cowork live → weekly shortlist pressure → price reflects inclusions → closing statement
