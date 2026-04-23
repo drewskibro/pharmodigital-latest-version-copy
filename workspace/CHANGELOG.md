@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — Fix hero text cut off by fixed nav — spacer re-syncs after logo image loads
+- Root cause: `syncSpacer()` measured `nav.offsetHeight` before the 150px logo image loaded — spacer was ~40px instead of ~260px
+- Fix: added `logoImg.addEventListener('load', syncSpacer)` on all 6 pages so spacer height updates once the logo renders
+- Files: index.html, web-pro-elite.html, ai-domination-system.html, case-study-ealing.html, salesagent.html, homepage-v2.html
+
 ### [2026-04-23] — Step 5: Final verification — dropdowns, transitions, mobile all working with position:fixed
 - Audited all 6 pages: dropdowns use `position:absolute` inside fixed nav — render below nav with no clipping ✓
 - CSS transitions on logo size, padding, gap: all use 0.3s ease — smooth visual shrink on scroll ✓

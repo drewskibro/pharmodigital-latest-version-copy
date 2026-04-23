@@ -1616,6 +1616,15 @@
       function sync() { spacer.style.height = nav.offsetHeight + 'px'; }
       sync();
       window.addEventListener('resize', sync);
+      // Re-sync spacer once the logo image loads (nav height isn't correct until then)
+      var logoImg = nav.querySelector('.nav-brand img');
+      if (logoImg) {
+        if (logoImg.complete) {
+          sync();
+        } else {
+          logoImg.addEventListener('load', function() { sync(); });
+        }
+      }
     })();
 
     // Scroll-triggered reveal animations

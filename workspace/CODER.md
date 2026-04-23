@@ -24,7 +24,7 @@ Keep entries sorted in DESC order (newest first) so recent knowledge stays in pr
 
 ## Nav Fixed + Spacer (all 6 pages)
 - **Approach**: `position: fixed` nav + `.nav-spacer` div in document flow. Nav is completely out of flow — inner height changes can never shift scrollY.
-- **Spacer**: JS sets `spacer.style.height = nav.offsetHeight + 'px'` on load and resize (while nav is in expanded state)
+- **Spacer**: JS sets `spacer.style.height = nav.offsetHeight + 'px'` on load, resize, AND logo image load (critical — logo is ~150px and loads async, so nav height isn't correct until then)
 - **Scrolled state**: `.nav-scrolled .nav-brand { padding: 0.25rem 0 0 }`, logo 90×90px, `.nav-links` padding-bottom 0.5rem + gap 1.5rem
 - **CSS transitions**: 0.3s ease on padding, max-width/max-height, gap — smooth visual shrink
 - **JS**: simple class toggle at shrink@80px / expand@25px — no min-height pinning, no overflow manipulation

@@ -6418,6 +6418,19 @@
 
         syncSpacer();
         checkScroll();
+
+        // Re-sync spacer once the logo image loads (nav height isn't correct until then)
+        var logoImg = nav.querySelector('.nav-brand img');
+        if (logoImg) {
+          if (logoImg.complete) {
+            syncSpacer();
+          } else {
+            logoImg.addEventListener('load', function() {
+              syncSpacer();
+              checkScroll();
+            });
+          }
+        }
       })();
 
       // Scroll-triggered hero image reveal
