@@ -18,6 +18,14 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — Redesign "What You Get" two-card section with forest green + new copy
+- Changed `.wpe-package` background from dark navy gradient to `var(--gildhart-green)` (#1E3D2F)
+- All headings now white (#fff), all body/bullet text now cream (#F5ECD7), gold used only for ticks/borders/numbers
+- Cards: slightly lighter green (`rgba(255,255,255,0.07/0.11)`), 1.5px gold border, gold number labels
+- Replaced all bullet points and body copy in both cards per brief; section eyebrow/headline updated to match brief
+- Delivery timeline strip updated to match forest green palette
+- Files: web-pro-elite.html
+
 ### [2026-04-23] — Show full screenshots in all three portfolio cards (no cropping)
 - Removed fixed `height:380px` + `object-fit:cover` from all three card screenshot `<img>` tags
 - Changed to `height:auto` so each image renders at its natural full height inside the browser frame

@@ -794,10 +794,10 @@
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-         PACKAGE DETAILS — Premium Redesign
+         PACKAGE DETAILS — Forest Green Redesign
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       .wpe-package {
-        background: linear-gradient(180deg, #0a0f1c 0%, #0f172a 40%, #111d35 100%);
+        background: var(--gildhart-green);
         padding: 8rem 2rem 7rem;
         border-top: none;
         border-bottom: none;
@@ -813,7 +813,7 @@
         transform: translateX(-50%);
         width: 800px;
         height: 800px;
-        background: radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(201,164,74,0.04) 0%, transparent 70%);
         pointer-events: none;
         z-index: 0;
       }
@@ -836,19 +836,19 @@
       }
 
       .wpe-package-header .wpe-section-headline {
-        color: white;
+        color: #FAF5EE;
       }
 
       .wpe-package-subhead {
         font-size: 1.125rem;
-        color: rgba(255,255,255,0.55);
+        color: rgba(245,236,215,0.7);
         line-height: 1.75;
         margin-top: 1.5rem;
       }
 
       .wpe-package-subhead em {
         font-style: normal;
-        color: rgba(255,255,255,0.9);
+        color: #FAF5EE;
         font-weight: 600;
       }
 
@@ -860,74 +860,54 @@
       }
 
       .wpe-package-col {
-        background: rgba(255,255,255,0.03);
+        background: rgba(255,255,255,0.07);
         border-radius: 24px;
         padding: 3rem 2.75rem;
-        border: 1px solid rgba(255,255,255,0.06);
-        box-shadow: none;
+        border: 1.5px solid var(--gildhart-gold);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
         position: relative;
         overflow: hidden;
-        backdrop-filter: blur(12px);
         transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.45s ease;
       }
 
-      /* Accent strip on left */
+      /* No accent strip — gold border does the job */
       .wpe-package-col::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 3px;
-        height: 100%;
-        background: linear-gradient(180deg, rgba(201,164,74,0.6) 0%, rgba(201,164,74,0.15) 100%);
-        opacity: 0.6;
-        transition: opacity 0.35s ease;
+        display: none;
       }
-
-      .wpe-package-col:hover::before { opacity: 1; }
 
       .wpe-package-col:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(201,164,74,0.06);
-        border-color: rgba(255,255,255,0.12);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.28), 0 0 0 2px rgba(201,164,74,0.5);
+        border-color: var(--gildhart-gold);
       }
 
       .wpe-package-col--dark {
-        background: rgba(255,255,255,0.06);
-        border-color: rgba(255,255,255,0.1);
-        box-shadow: none;
+        background: rgba(255,255,255,0.11);
+        border-color: var(--gildhart-gold);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
       }
 
       .wpe-package-col--dark::before {
-        width: 4px;
-        opacity: 0.85;
-        background: linear-gradient(180deg, rgba(201,164,74,0.9) 0%, rgba(201,164,74,0.5) 50%, rgba(201,164,74,0.15) 100%);
+        display: none;
       }
 
       .wpe-package-col--dark::after {
-        content: '';
-        position: absolute;
-        top: -60px;
-        right: -60px;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(201,164,74,0.04) 0%, transparent 70%);
-        pointer-events: none;
+        display: none;
       }
 
       .wpe-package-col--dark:hover {
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,164,74,0.1);
-        border-color: rgba(255,255,255,0.15);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.28), 0 0 0 2px rgba(201,164,74,0.5);
+        border-color: var(--gildhart-gold);
       }
 
       .wpe-package-col-header {
         margin-bottom: 2.25rem;
         padding-bottom: 2rem;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid rgba(201,164,74,0.25);
       }
 
       .wpe-package-col--dark .wpe-package-col-header {
-        border-bottom-color: rgba(255,255,255,0.1);
+        border-bottom-color: rgba(201,164,74,0.25);
       }
 
       .wpe-package-col-icon {
@@ -942,7 +922,7 @@
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.45);
+        color: var(--gildhart-gold);
         margin-bottom: 1.75rem;
         padding-left: 0.125rem;
       }
@@ -954,21 +934,21 @@
         letter-spacing: -0.02em;
         line-height: 1.2;
         margin-bottom: 0.75rem;
-        color: #f0ede6;
+        color: #ffffff;
       }
 
       .wpe-package-col--dark .wpe-package-col-title {
-        color: #f0ede6;
+        color: #ffffff;
       }
 
       .wpe-package-col-sub {
         font-size: 1rem;
-        color: rgba(255,255,255,0.55);
+        color: #F5ECD7;
         line-height: 1.65;
       }
 
       .wpe-package-col--dark .wpe-package-col-sub {
-        color: rgba(255,255,255,0.6);
+        color: #F5ECD7;
       }
 
       .wpe-package-list {
@@ -985,12 +965,12 @@
         align-items: flex-start;
         gap: 0.875rem;
         font-size: 0.9375rem;
-        color: rgba(255,255,255,0.7);
+        color: #F5ECD7;
         line-height: 1.55;
       }
 
       .wpe-package-col--dark .wpe-package-list li {
-        color: rgba(255,255,255,0.75);
+        color: #F5ECD7;
       }
 
       .wpe-pkg-check {
@@ -1001,12 +981,12 @@
         font-size: 1rem;
       }
 
-      /* Delivery timeline strip — dark variant */
+      /* Delivery timeline strip — forest green variant */
       .wpe-delivery {
-        background: rgba(255,255,255,0.04);
+        background: rgba(255,255,255,0.06);
         border-radius: 20px;
         padding: 2.5rem 3rem;
-        border: 1px solid rgba(255,255,255,0.08);
+        border: 1px solid rgba(201,164,74,0.3);
         box-shadow: none;
       }
 
@@ -1016,7 +996,7 @@
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.4);
+        color: rgba(245,236,215,0.55);
         margin-bottom: 1.5rem;
       }
 
@@ -1045,13 +1025,13 @@
 
       .wpe-delivery-task {
         font-size: 0.9375rem;
-        color: rgba(255,255,255,0.85);
+        color: #F5ECD7;
         font-weight: 500;
         line-height: 1.4;
       }
 
       .wpe-delivery-arrow {
-        color: rgba(255,255,255,0.25);
+        color: rgba(245,236,215,0.3);
         font-size: 1.25rem;
         flex-shrink: 0;
         align-self: center;
@@ -2202,8 +2182,8 @@
     <section class="wpe-package" id="whats-included">
       <div class="wpe-package-inner">
         <div class="wpe-package-header wpe-reveal wpe-reveal-d1">
-          <span class="wpe-section-eyebrow">What You Get</span>
-          <h2 class="wpe-section-headline">WebPro Elite Is Two Things.<br />Most Agencies Only Do One.</h2>
+          <span class="wpe-section-eyebrow">What WebPro Elite Is</span>
+          <h2 class="wpe-section-headline">Every Other Agency Builds You a Website.<br />We Build You a Patient Acquisition Engine.</h2>
           <p class="wpe-package-subhead">
             Every other agency builds you a website. We build you a website <em>and</em> the AI search infrastructure
             that makes it generate patients. No extra fee. It&#39;s how we build everything.
@@ -2216,61 +2196,36 @@
           <div class="wpe-package-col wpe-reveal-card wpe-reveal-d2">
             <p class="wpe-package-col-num">01</p>
             <div class="wpe-package-col-header">
-              <h3 class="wpe-package-col-title">The WebPro Elite Site</h3>
+              <h3 class="wpe-package-col-title">The Website</h3>
               <p class="wpe-package-col-sub">
-                A premium healthcare website built from scratch — or rebuilt from yours. Custom design. Clinical
-                credibility. Conversion-optimised.
+                Most healthcare websites are invisible to the platforms patients now use to make decisions. Yours won&#39;t be. Every Gildhart build starts with Claude Code — the AI infrastructure that tells Google, ChatGPT, and Claude exactly what your practice does, who it serves, and why it should be recommended.
               </p>
             </div>
             <ul class="wpe-package-list">
-              <li>
-                <span class="wpe-pkg-check">✓</span> Fully custom design — your brand, your services, your patients
-              </li>
-              <li><span class="wpe-pkg-check">✓</span> Mobile-first, clinically credible, conversion-optimised</li>
-              <li>
-                <span class="wpe-pkg-check">✓</span> Dedicated service pages for every offering (vaccinations, weight
-                loss, private prescriptions etc.)
-              </li>
-              <li><span class="wpe-pkg-check">✓</span> Online booking integration</li>
-              <li><span class="wpe-pkg-check">✓</span> GPhC-compliant layout and clinical disclaimers</li>
-              <li>
-                <span class="wpe-pkg-check">✓</span> Fast load speed, structured data markup, clean URL architecture
-              </li>
+              <li><span class="wpe-pkg-check">✓</span> Built on Claude Code — architected for AI search from day one</li>
+              <li><span class="wpe-pkg-check">✓</span> Clinically credible design that converts high-intent patients</li>
+              <li><span class="wpe-pkg-check">✓</span> Dedicated service pages for every revenue-generating offering</li>
+              <li><span class="wpe-pkg-check">✓</span> GPhC-compliant throughout — no compromises on clinical standards</li>
+              <li><span class="wpe-pkg-check">✓</span> Online booking, fast load speed, structured data — all included</li>
               <li><span class="wpe-pkg-check">✓</span> Hosting, SSL, and 12 months technical support included</li>
             </ul>
           </div>
 
           <!-- Col 2: The Framework -->
           <div class="wpe-package-col wpe-package-col--dark wpe-reveal-card wpe-reveal-d3">
-            <p class="wpe-package-col-num" style="color: var(--gildhart-gold); opacity:0.7;">02</p>
+            <p class="wpe-package-col-num">02</p>
             <div class="wpe-package-col-header">
-              <h3 class="wpe-package-col-title">Pillar Domination Framework™</h3>
+              <h3 class="wpe-package-col-title">The Pillar Domination Framework™</h3>
               <p class="wpe-package-col-sub">
-                The AI search architecture that puts you above Boots in ChatGPT and Google AI Overviews. This is the
-                part no one else builds.
+                ChatGPT doesn&#39;t search Google. It searches Bing. Every day patients ask ChatGPT for a Mounjaro provider, a travel clinic, a private prescription service. Most practices have never touched Bing. That&#39;s why they&#39;re invisible. This framework fixes that — deliberately, specifically, permanently.
               </p>
             </div>
             <ul class="wpe-package-list">
-              <li>
-                <span class="wpe-pkg-check">✓</span> Full AI search audit — where you rank now across Google, Bing,
-                ChatGPT, Claude
-              </li>
-              <li>
-                <span class="wpe-pkg-check">✓</span> Pillar content strategy mapped to your top 5 revenue services
-              </li>
-              <li>
-                <span class="wpe-pkg-check">✓</span> AI-written, clinically grounded pillar content (not generic filler)
-              </li>
-              <li>
-                <span class="wpe-pkg-check">✓</span> Bing indexation protocol — the platform ChatGPT actually cites
-              </li>
-              <li>
-                <span class="wpe-pkg-check">✓</span> Google AI Overview optimisation for local and national queries
-              </li>
-              <li>
-                <span class="wpe-pkg-check">✓</span> Structured data &amp; entity markup so AI platforms trust your
-                content
-              </li>
+              <li><span class="wpe-pkg-check">✓</span> Bing indexation protocol — the exact reason Superior appeared on ChatGPT&#39;s shortlist in 48 hours</li>
+              <li><span class="wpe-pkg-check">✓</span> Pillar content strategy mapped to your five highest-revenue services</li>
+              <li><span class="wpe-pkg-check">✓</span> Google AI Overview optimisation for local and national queries</li>
+              <li><span class="wpe-pkg-check">✓</span> Structured data and entity markup so AI platforms trust your content</li>
+              <li><span class="wpe-pkg-check">✓</span> Full AI search audit across Google, Bing, ChatGPT, and Claude</li>
               <li><span class="wpe-pkg-check">✓</span> Monthly ranking report across all AI platforms for 12 months</li>
             </ul>
           </div>
