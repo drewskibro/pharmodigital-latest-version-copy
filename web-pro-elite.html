@@ -234,8 +234,8 @@
         margin: 0 auto;
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1.1fr;
-        gap: 3rem;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 2rem;
         align-items: center;
         position: relative;
         z-index: 1;
@@ -413,32 +413,39 @@
       .wpe-hero-image-stack {
         position: relative;
         width: 100%;
-        max-width: 720px;
+        max-width: 900px;
         overflow: visible;
       }
 
       .wpe-hero-image-stack img {
         width: 100%;
-        max-width: 720px;
+        max-width: 900px;
         height: auto;
-        border-radius: 20px;
+        border-radius: 16px;
         position: relative;
         border: none;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 8px 24px rgba(0, 0, 0, 0.1);
+        box-shadow:
+          0 32px 80px rgba(0, 0, 0, 0.22),
+          0 12px 32px rgba(0, 0, 0, 0.12);
         margin: 0 auto;
         display: block;
         opacity: 0;
-        transform: translateY(40px) scale(0.97);
+        transform: translateY(30px) scale(0.98);
         animation: wpeHeroImgIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+        background: transparent;
+        mix-blend-mode: multiply;
       }
 
       @keyframes wpeHeroImgIn {
-        to { opacity: 1; transform: translateY(0) scale(1) rotate(-2deg); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
       }
 
       .wpe-hero-image-stack img:hover {
-        transform: translateY(-6px) scale(1.02) rotate(-1deg);
-        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22), 0 12px 30px rgba(0, 0, 0, 0.12);
+        transform: translateY(-6px) scale(1.015);
+        box-shadow:
+          0 40px 90px rgba(0, 0, 0, 0.26),
+          0 16px 40px rgba(0, 0, 0, 0.14),
+          0 0 0 1px rgba(0, 0, 0, 0.04);
         transition: transform 0.4s ease, box-shadow 0.4s ease;
       }
 
@@ -1400,7 +1407,7 @@
       @media (max-width: 1024px) {
         .wpe-hero-inner {
           grid-template-columns: 1fr;
-          gap: 2.5rem;
+          gap: 2rem;
         }
         .wpe-hero {
           min-height: auto;
@@ -1440,16 +1447,16 @@
       }
 
       @media (max-width: 768px) {
-        .wpe-hero {
-          padding: 3rem 1.5rem 2rem;
-          min-height: auto;
-        }
-        .wpe-hero-inner {
-          gap: 2rem;
-        }
-        .wpe-hero-cta {
-          flex-direction: column;
-        }
+      .wpe-hero {
+        min-height: auto;
+        display: flex;
+        align-items: flex-start;
+        padding: 3rem 1.5rem 2rem;
+        margin-top: 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+      }
         .wpe-hero-content {
           text-align: center;
         }
@@ -1460,6 +1467,24 @@
         .wpe-hero-trust {
           text-align: center;
           margin-bottom: 1rem;
+        }
+        .wpe-hero-visual {
+          display: flex;
+          width: 100%;
+          margin: 0 auto;
+        }
+        .wpe-hero-image-stack {
+          width: 100%;
+          max-width: 100%;
+        }
+        .wpe-hero-image-stack img {
+          width: 100%;
+          max-width: 100%;
+          opacity: 1 !important;
+          transform: none !important;
+          animation: none !important;
+          mix-blend-mode: multiply;
+          display: block;
         }
 
         .wpe-portfolio {
@@ -1845,8 +1870,8 @@
         <div class="wpe-hero-visual">
           <div class="wpe-hero-image-stack">
             <img
-              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776952607543-0.jpeg"
-              alt="Three client websites shown in browser mockups on dark green background — Chiselhurst Pharmacy Group, Superior Pharmacy, and a third healthcare site"
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776953930768-0.png"
+              alt="Three client websites shown in browser mockups — Chiselhurst Pharmacy Group, Superior Pharmacy, and Easy Clinic"
             />
           </div>
         </div>

@@ -18,6 +18,26 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — WPE hero image: fix visibility on mobile — disable animation, force opacity:1
+- Hero image was invisible on mobile due to `opacity:0` entry animation not firing + `mix-blend-mode:multiply` interaction
+- Added explicit `≤768px` rules: `opacity:1 !important`, `transform:none !important`, `animation:none !important` on img
+- Also added `.wpe-hero-visual` and `.wpe-hero-image-stack` display/width rules at mobile breakpoint
+- Desktop completely untouched
+- Files: web-pro-elite.html
+
+### [2026-04-23] — WPE hero image: fix compressed display — wider column, no tilt, larger max-width, stronger shadow
+- Changed grid column ratio from `1fr 1.1fr` → `1fr 1.3fr` to give image more horizontal space
+- Increased `.wpe-hero-image-stack` and `img` `max-width` from 720px → 900px
+- Removed rotation from entry animation (`rotate(-2deg)` → none) so image lands flat and clean
+- Added `background:white` to img to prevent transparent-edge bleed; strengthened box-shadow for depth
+- Increased hero padding to `3rem` on all sides for breathing room
+
+### [2026-04-23] — WPE hero: replace image again with updated 3-browser-mockup (white background version)
+- Hosted user-supplied image → `uploaded-asset-1776953930768-0.png`
+- Replaced `uploaded-asset-1776952607543-0.jpeg` in `.wpe-hero-image-stack img` src
+- All other hero CSS, layout, and copy unchanged
+- Files: web-pro-elite.html
+
 ### [2026-04-23] — WPE hero: replace old image with new 3-browser-mockup hero shot
 - Hosted user-supplied image → `uploaded-asset-1776952607543-0.jpeg`
 - Swapped `uploaded-asset-1775811251244-0.jpeg` in `.wpe-hero-image-stack img` src
