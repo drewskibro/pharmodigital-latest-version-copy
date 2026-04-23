@@ -18,6 +18,19 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — Show full screenshots in all three portfolio cards (no cropping)
+- Removed fixed `height:380px` + `object-fit:cover` from all three card screenshot `<img>` tags
+- Changed to `height:auto` so each image renders at its natural full height inside the browser frame
+- All three cards (Chiselhurst, Easy Clinic, Superior Pharmacy) now show complete page designs
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Replace Puri Pharmacy card with Superior Pharmacy card on WPE page
+- Swapped phone mockup for laptop browser mockup frame (matching Chiselhurst/Easy Clinic style)
+- Screenshot: `uploaded-asset-1776956046915-0.png` (user-supplied Superior Pharmacy homepage)
+- New label: "SUPERIOR PHARMACY" (gold small-caps), headline: "Page One. Beating National Chains. Zero Ad Spend."
+- New body copy + 3 bullets (Mounjaro ranking / 50% AI revenue / £500k on track); URL: superiorpharmacy.co.uk
+- Files: web-pro-elite.html
+
 ### [2026-04-23] — WPE hero image: fix visibility on mobile — disable animation, force opacity:1
 - Hero image was invisible on mobile due to `opacity:0` entry animation not firing + `mix-blend-mode:multiply` interaction
 - Added explicit `≤768px` rules: `opacity:1 !important`, `transform:none !important`, `animation:none !important` on img
