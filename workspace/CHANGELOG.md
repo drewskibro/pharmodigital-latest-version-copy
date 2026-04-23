@@ -18,6 +18,13 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — WebPro Elite copy update: hero subhead + intro section + 3 client cards
+- Hero subhead: replaced with Superior Pharmacy £500k proof line + Claude Code + zero ad spend
+- Intro body: replaced with 4 new paragraphs (AI search demand, Claude Code, Pillar Domination Framework™, closing bold line)
+- 3 client cards: Ealing Travel Clinic (300% + £100k HPV), Superior Pharmacy (£500k + ChatGPT 48hrs), Puri Pharmacy (#1 UK Mounjaro)
+- Card labels styled: gold, small-caps, tracked out — matching brand palette
+- Files: web-pro-elite.html
+
 ### [2026-04-23] — Fix hero text cut off by fixed nav — spacer re-syncs after logo image loads
 - Root cause: `syncSpacer()` measured `nav.offsetHeight` before the 150px logo image loaded — spacer was ~40px instead of ~260px
 - Fix: added `logoImg.addEventListener('load', syncSpacer)` on all 6 pages so spacer height updates once the logo renders
