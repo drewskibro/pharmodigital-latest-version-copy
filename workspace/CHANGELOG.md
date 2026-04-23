@@ -18,6 +18,28 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — web-pro-elite.html: Replace all teal with forest green/gold
+- Audit found 17+ teal references across titles, icons, tick marks, decorative lines, and accents
+- Portfolio client tags (e.g. "Multi-Site Pharmacy Group") → `var(--gildhart-green)`
+- Tick marks (✓), highlight icons, accent strips, delivery week labels → `var(--gildhart-gold)`
+- Decorative left borders (proof cards, price block, package columns) → gold gradients
+- CTA headline accent, form focus states, "Investment" eyebrow — all updated; section bg gradients untouched
+- Files: web-pro-elite.html
+
+### [2026-04-23] — web-pro-elite.html: Tighten hero copy (Option 3)
+- Condensed 3-line headline to 2 lines: "Your last agency built a website. / We build a business."
+- Removed `.wpe-ht-line3` (hidden via `display:none`), reduced vertical bulk significantly
+- Rewrote subtitle to one punchy sentence hitting 3 proof points + product name
+- Tightened all animation delays (line2: 1.3→1.0s, subtitle: 2.3→1.6s, CTA: 2.7→2.0s, trust: 3.0→2.3s)
+- Files: web-pro-elite.html
+
+### [2026-04-23] — web-pro-elite.html: Radical hero upgrade to match homepage brand system
+- Added `.wpe-hero-eyebrow` (`<p>`) with gold underline — matches index.html `.hero-eyebrow` pattern
+- Replaced right-side testimonial card with `.wpe-hero-image-stack` using same hero image as homepage
+- All headline colors changed from `#1a2b3c` → `var(--gildhart-black)`, removed all teal/Cormorant Garamond
+- Added trust stats bar below CTA (`3 Live Clients | National Rankings | Zero Ad Spend`)
+- Buttons now gold primary + dark outline (matching homepage `.btn-primary` / `.btn-outline` exactly)
+
 ### [2026-04-22] — index.html: Gradient fade on founder photo + larger Gildhart seal
 - Added `::after` pseudo-element on `.founder-image` — 120px gradient fade from transparent → `#FAF8F3` cream
 - Makes natural mid-thigh photo crop look like intentional editorial treatment instead of abrupt clip
