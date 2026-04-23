@@ -42,7 +42,8 @@
     }
 
     /* ─── Nav (Gildhart unified — propagated from index.html) ─── */
-    .nav { position:sticky;top:0;z-index:50;background:rgba(30,61,47,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,164,74,0.18); }
+    .nav { position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(30,61,47,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,164,74,0.18); }
+    .nav-spacer { display:block; }
     .nav-inner { max-width:1200px;margin:0 auto;padding:0 2rem;height:auto;min-height:80px;display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto;align-items:center; }
     .nav-brand { display:flex;align-items:center;justify-content:center;text-decoration:none;grid-column:1/-1;grid-row:1;position:relative;padding:0.75rem 0 0.25rem; }
     .nav-brand img { width:auto;height:auto;max-width:150px;max-height:150px;object-fit:contain;display:block;image-rendering:auto;-webkit-image-rendering:auto;border-radius:0;overflow:visible;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(201,164,74,0.25));transition:filter 0.3s ease,transform 0.3s ease; }
@@ -1134,7 +1135,7 @@
 <body>
 
   <!-- Nav -->
-  <nav class="nav">
+  <nav class="nav" id="mainNav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
         <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" loading="eager" decoding="async" fetchpriority="high" />
@@ -1216,6 +1217,8 @@
     </div>
   </nav>
 
+  <!-- Nav spacer -->
+  <div class="nav-spacer" id="navSpacer"></div>
   <!-- ═══ SECTION 1: HERO — Two-column split ═══ -->
   <section class="hero">
     <div class="hero-inner">
@@ -1604,6 +1607,16 @@
         }
       });
     });
+
+    // ── Nav spacer height (homepage-v2 has no shrink logic) ──
+    (function() {
+      var nav = document.getElementById('mainNav');
+      var spacer = document.getElementById('navSpacer');
+      if (!nav || !spacer) return;
+      function sync() { spacer.style.height = nav.offsetHeight + 'px'; }
+      sync();
+      window.addEventListener('resize', sync);
+    })();
 
     // Scroll-triggered reveal animations
     (function() {

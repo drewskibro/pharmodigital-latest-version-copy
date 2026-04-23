@@ -73,6 +73,25 @@ CRITICAL: Keep this file under 300 lines. You are allowed to summarize, change t
 4. ✅ Remove negative `margin-top: -45px` on hero → `margin-top: 0` to stabilize content flow
 **Current status:** All 4 steps complete — nav flicker fix fully deployed
 
+### [2026-04-23] — Nav flicker audit: Step 1 complete (all 6 pages read)
+
+**Status:** Investigating — Step 1 of 5 complete
+**Symptoms:** Nav flicker persists despite multiple fix attempts. Dropdowns break when overflow:hidden is used; flicker returns when it's removed.
+**Audit findings:**
+- **5 pages** have shrink-on-scroll: index, web-pro-elite, ai-domination-system, case-study-ealing, salesagent
+- **1 page** has NO shrink logic: homepage-v2 (plain sticky nav, no `.nav-scrolled`)
+- **Current approach**: `position: sticky` + JS `min-height` pin + class toggle at 80px/25px hysteresis — NO overflow set
+- **Root cause**: `min-height` on a `sticky` nav doesn't truly decouple from document flow; when `.nav-scrolled` shrinks inner elements (logo 150→90px, padding changes), the sticky positioning context still allows reflow near the threshold
+- **Approved fix (Step 2)**: Replace `sticky` + `min-height` with `position: fixed` + spacer div. Nav fully removed from flow. Inner height changes never affect scrollY. Dropdowns work naturally since nothing is clipped.
+
+### [2026-04-23] — Dropdown menus invisible after flicker fix — RESOLVED
+
+**Status:** Fixed
+**Symptoms:** Hovering "Who We Help" / "Our Work" / "The Proof" shows nothing — dropdown menus don't appear on any page.
+**Root Cause:** The flicker fix added `nav.style.overflow = 'hidden'` to pin the nav height. This clipped `.nav-dropdown-menu` elements which render below the nav boundary via `position: absolute; top: 100%`.
+**Solution:** Removed `overflow: hidden` from the JS pin logic. The `min-height` pin alone prevents layout shift (and thus flicker) without clipping child content. Also removed the corresponding `overflow: ''` reset on resize.
+**Prevention:** Never apply `overflow: hidden` to a container that has absolutely-positioned children (dropdowns, tooltips) that render outside its bounds. Use `min-height` pinning alone for layout-shift prevention.
+
 <!-- Newest debugging entries first. Closed issues move to "Resolved Issues" below. -->
 
 ## Resolved Issues

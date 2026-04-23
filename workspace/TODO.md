@@ -17,8 +17,8 @@ Rules:
 </instructions>
 
 <todo>
-Propagate nav fixes to homepage-v2
-Nav improvements now complete on 5 of 6 pages. Apply same CSS/JS to homepage-v2.html.
+Smoke-test nav on real device / narrow browser — verify no flicker on scroll
+The 5-step plan is shipped. Worth a manual scroll test on mobile Safari and Chrome to confirm zero layout shift.
 </todo>
 
 

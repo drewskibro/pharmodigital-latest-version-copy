@@ -22,12 +22,15 @@ Keep entries sorted in DESC order (newest first) so recent knowledge stays in pr
 - **Logo img**: `uploaded-asset-1776767932323-0.png` at 150px max (desktop), 120px tablet, 80px mobile
 - **All 6 pages**: unified nav propagation COMPLETE (index, homepage-v2, ai-domination-system, case-study-ealing, salesagent, web-pro-elite)
 
-## Nav Shrink-on-Scroll (index.html)
-- **Approach**: simple CSS property changes — no fixed heights, no transforms, no overflow:hidden
-- **Scrolled state**: `.nav-scrolled .nav-brand { padding: 0.25rem 0 0 }`, logo 60×60px, `.nav-links` padding-bottom 0.5rem + gap 1.5rem
-- **Transitions**: 0.3s ease on padding, max-width/max-height, gap — smooth but no reflow flicker
-- **JS**: just toggles `.nav-scrolled` class; hysteresis shrink@80px, expand@25px with 50ms debounce
-- **Mobile (≤768px)**: bypassed entirely — no shrink applied
+## Nav Fixed + Spacer (all 6 pages)
+- **Approach**: `position: fixed` nav + `.nav-spacer` div in document flow. Nav is completely out of flow — inner height changes can never shift scrollY.
+- **Spacer**: JS sets `spacer.style.height = nav.offsetHeight + 'px'` on load and resize (while nav is in expanded state)
+- **Scrolled state**: `.nav-scrolled .nav-brand { padding: 0.25rem 0 0 }`, logo 90×90px, `.nav-links` padding-bottom 0.5rem + gap 1.5rem
+- **CSS transitions**: 0.3s ease on padding, max-width/max-height, gap — smooth visual shrink
+- **JS**: simple class toggle at shrink@80px / expand@25px — no min-height pinning, no overflow manipulation
+- **Resize**: resets scrolled state, re-syncs spacer height
+- **Mobile (≤768px)**: bypassed entirely — no shrink
+- **homepage-v2**: has fixed nav + spacer but NO shrink logic (plain nav)
 
 ## Known Gotchas
 - **Duplicate CSS selector bug**: When adding new CSS properties to `.nav-brand` across multiple HTML files via replace_in_file, the SEARCH block must include the full opening `{` context to avoid creating a duplicate unclosed brace. Always verify the replacement doesn't produce `selector {\nselector {` — this silently breaks all CSS that follows.

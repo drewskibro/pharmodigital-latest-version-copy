@@ -40,7 +40,8 @@
       }
 
       /* ─── Nav ─── */
-      .nav { position:sticky; top:0; z-index:10000; background:rgba(30,61,47,0.97); backdrop-filter:blur(8px); border-bottom:1px solid rgba(201,164,74,0.18); transition:none; }
+      .nav { position:fixed; top:0; left:0; right:0; z-index:10000; background:rgba(30,61,47,0.97); backdrop-filter:blur(8px); border-bottom:1px solid rgba(201,164,74,0.18); transition:none; }
+      .nav-spacer { display:block; }
 
       /* ─── Shrink-on-scroll (desktop only, >768px) ─── */
       @media (min-width: 769px) {
@@ -1533,7 +1534,7 @@
   </head>
   <body>
     <!-- ═══ NAV ═══ -->
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <div class="nav-inner">
         <a href="index.html" class="nav-brand">
           <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" loading="eager" decoding="async" fetchpriority="high" />
@@ -1585,7 +1586,9 @@
         </button>
       </div>
     </nav>
-    <!-- Mobile nav overlay — MUST be outside <nav> (position:sticky breaks position:fixed children on mobile) -->
+    <!-- Nav spacer -->
+    <div class="nav-spacer" id="navSpacer"></div>
+    <!-- Mobile nav overlay -->
     <div class="nav-mobile-overlay" id="mobileNavOverlay">
       <div class="mobile-menu-content">
         <!-- Who We Help -->
@@ -2241,32 +2244,29 @@
         });
       })();
 
-      // ── Shrink nav on scroll (desktop only) ──
+      // ── Nav spacer height + shrink-on-scroll (desktop only) ──
       (function() {
-        var nav = document.querySelector('.nav');
-        if (!nav) return;
+        var nav = document.getElementById('mainNav');
+        var spacer = document.getElementById('navSpacer');
+        if (!nav || !spacer) return;
         var shrinkAt = 80;
         var expandAt = 25;
         var scrolled = false;
-        var expandTimer = null;
-        var EXPAND_DEBOUNCE = 50;
+
+        function syncSpacer() {
+          nav.classList.remove('nav-scrolled');
+          spacer.style.height = nav.offsetHeight + 'px';
+        }
 
         function checkScroll() {
           if (window.innerWidth <= 768) return;
           var y = window.scrollY;
           if (!scrolled && y > shrinkAt) {
-            if (expandTimer) { clearTimeout(expandTimer); expandTimer = null; }
             scrolled = true;
             nav.classList.add('nav-scrolled');
           } else if (scrolled && y < expandAt) {
-            if (!expandTimer) {
-              expandTimer = setTimeout(function() {
-                expandTimer = null;
-                if (window.scrollY < expandAt) { scrolled = false; nav.classList.remove('nav-scrolled'); }
-              }, EXPAND_DEBOUNCE);
-            }
-          } else {
-            if (expandTimer && y >= expandAt) { clearTimeout(expandTimer); expandTimer = null; }
+            scrolled = false;
+            nav.classList.remove('nav-scrolled');
           }
         }
 
@@ -2277,6 +2277,15 @@
             ticking = true;
           }
         }, { passive: true });
+
+        window.addEventListener('resize', function() {
+          scrolled = false;
+          nav.classList.remove('nav-scrolled');
+          syncSpacer();
+          checkScroll();
+        });
+
+        syncSpacer();
         checkScroll();
       })();
 

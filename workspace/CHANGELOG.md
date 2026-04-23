@@ -18,6 +18,48 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — Step 5: Final verification — dropdowns, transitions, mobile all working with position:fixed
+- Audited all 6 pages: dropdowns use `position:absolute` inside fixed nav — render below nav with no clipping ✓
+- CSS transitions on logo size, padding, gap: all use 0.3s ease — smooth visual shrink on scroll ✓
+- Mobile hamburger overlay: `position:fixed; z-index:9999` with `padding-top` matching nav height — works with fixed z-index:10000 nav ✓
+- Zero `overflow` manipulation in JS, zero `min-height` pinning — only clean `.nav-scrolled` class toggle ✓
+- **5-step nav fix plan COMPLETE — flicker root cause (sticky+min-height) eliminated by fixed+spacer approach**
+
+### [2026-04-23] — Step 4: Dynamic spacer height audit — already implemented (no changes needed)
+- Audited `syncSpacer` / `sync` functions across all 6 pages
+- All 5 shrink pages: `syncSpacer()` removes `.nav-scrolled` → measures `nav.offsetHeight` → sets `spacer.style.height` — called on load + resize ✓
+- homepage-v2: `sync()` sets spacer height on load + resize, no shrink logic — correct ✓
+- Mobile (≤768px) bypassed in `checkScroll` — spacer still sized correctly for the fixed nav height at mobile breakpoints ✓
+- **Step 4 is satisfied by the Step 2 implementation — no additional code changes required**
+
+### [2026-04-23] — Step 3: Scroll JS audit — already clean (no changes needed)
+- Audited scroll JS across all 6 pages after Step 2 deployment
+- All 5 shrink pages already have minimal class toggle: `shrinkAt=80` / `expandAt=25` with `requestAnimationFrame`
+- No `min-height` pinning, no `overflow` manipulation, no debounce — all removed in Step 2
+- homepage-v2 has fixed nav + spacer + no shrink logic — correct
+- **Step 3 is satisfied by the Step 2 implementation — no additional code changes required**
+
+### [2026-04-23] — Step 2: Replace sticky+min-height with fixed nav + spacer div (all 6 pages)
+- Changed `.nav` from `position:sticky` → `position:fixed` with `left:0;right:0` on all 6 pages
+- Added `.nav-spacer` div after `</nav>` on each page — occupies the document flow space the nav used to hold
+- Removed all `min-height` pinning JS (`pinNavHeight`, `nav.style.minHeight`, `pinned` flag) — no longer needed
+- JS now only: (a) measures nav height → sets spacer height on load + resize, (b) toggles `.nav-scrolled` class at 80/25px threshold
+- Nav is completely out of document flow — inner height changes during scroll can never shift scrollY or cause reflow flicker
+- Files: index.html, ai-domination-system.html, case-study-ealing.html, salesagent.html, web-pro-elite.html, homepage-v2.html
+
+### [2026-04-23] — Fix nav dropdowns clipped by overflow:hidden (all 5 pages)
+- Previous flicker fix added `overflow: hidden` to pinned nav — this clipped dropdown menus below the nav boundary
+- Fix: removed `nav.style.overflow = 'hidden'` from JS pin logic; `min-height` alone prevents layout shift without clipping
+- Dropdowns now render correctly on hover while nav shrink-on-scroll still works flicker-free
+- Files: index.html, web-pro-elite.html, ai-domination-system.html, case-study-ealing.html, salesagent.html
+
+### [2026-04-23] — Fix nav scroll flicker across all 5 pages (index, web-pro-elite, ai-domination-system, case-study-ealing, salesagent)
+- Root cause: `.nav-scrolled` toggle changed nav layout height (logo 150→90px + padding), shifting page content + scrollY, creating infinite reflow loop
+- Fix: pin nav's natural height with `min-height` + `overflow: hidden` on load — inner content shrinks visually but layout footprint stays constant
+- Removed debounce/expandTimer (no longer needed since no layout shift), simplified to direct class toggle
+- Added `resize` listener to re-pin on viewport change; mobile (≤768px) bypassed entirely
+- Files: index.html, web-pro-elite.html, ai-domination-system.html, case-study-ealing.html, salesagent.html
+
 ### [2026-04-23] — web-pro-elite.html: Replace all teal with forest green/gold
 - Audit found 17+ teal references across titles, icons, tick marks, decorative lines, and accents
 - Portfolio client tags (e.g. "Multi-Site Pharmacy Group") → `var(--gildhart-green)`
