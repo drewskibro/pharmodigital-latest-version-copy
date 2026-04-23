@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — Reduce hero bottom empty space on homepage
+- Changed `.hero` `min-height` from `100vh` → `auto` — hero now wraps content naturally instead of filling full viewport
+- Added `2rem` bottom padding (was `0`) for a clean gap without excessive dead space
+- Files: index.html
+
 ### [2026-04-23] — WebPro Elite copy update: hero subhead + intro section + 3 client cards
 - Hero subhead: replaced with Superior Pharmacy £500k proof line + Claude Code + zero ad spend
 - Intro body: replaced with 4 new paragraphs (AI search demand, Claude Code, Pillar Domination Framework™, closing bold line)
