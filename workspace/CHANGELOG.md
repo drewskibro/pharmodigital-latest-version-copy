@@ -18,6 +18,59 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-23] — WPE hero: replace old image with new 3-browser-mockup hero shot
+- Hosted user-supplied image → `uploaded-asset-1776952607543-0.jpeg`
+- Swapped `uploaded-asset-1775811251244-0.jpeg` in `.wpe-hero-image-stack img` src
+- All other hero CSS, layout, and copy unchanged
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Puri Pharmacy phone mockup: update screenshot to new hosted image
+- Replaced `uploaded-asset-1776950767499-1.png` with newly hosted `uploaded-asset-1776951820706-0.png`
+- All other phone mockup structure (shell, notch, home bar, CSS) unchanged
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Puri Pharmacy card: swap browser mockup for phone mockup + mobile screenshot
+- Replaced `<iframe>` browser frame with a CSS-only phone shell mockup (dark body, notch, home bar)
+- Mobile screenshot `uploaded-asset-1776950767499-1.png` fills the phone screen, object-position top
+- Added `.wpe-phone-mockup`, `.wpe-phone-shell`, `.wpe-phone-screen`, `.wpe-phone-notch`, `.wpe-phone-home-bar` CSS
+- Card text (label, headline, bullets, link) all unchanged
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Update Easy Clinic card: real screenshot, new body copy, new 3 bullets
+- Replaced iframe with hosted screenshot `uploaded-asset-1776950767496-0.png` (real Easy Clinic site), full-bleed like Chiselhurst card
+- New body copy: EEAT compliance / medical verification / AI platform trust narrative
+- New bullets: Named medical verification / EEAT-compliant architecture / AI agent converting visitors
+- Label, headline, VIEW LIVE SITE link all unchanged
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Replace AI-hallucinated screenshot with real user-supplied Chiselhurst site screenshot
+- Hosted both user-attached images; identified image 2 as the real chislehurstpharmacygroup.co.uk site
+- Replaced `generated-image-1776942213601.png` (AI hallucination) with `uploaded-asset-1776942357581-1.png` (real site)
+- Added `object-position:top left` and `border:none;outline:none` to ensure clean full-bleed fill
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Update Chiselhurst card body copy and three bullet points on WPE page
+- Replaced paragraph with "Two locations. Twenty services. Built on Claude Code..." copy
+- Replaced 3 bullets: Pillar Domination Framework™ / Multi-site structure / AI-indexed day one (Google, ChatGPT, Claude, Perplexity)
+- All other card elements (label, headline, browser mockup, screenshot, VIEW LIVE SITE link) unchanged
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Add logo carousel + trusted-by label to WPE page below hero
+- Inserted "Trusted by healthcare practices across the UK & Worldwide" label and `.logo-bar` scrolling carousel
+- Copied CSS (`.logo-bar`, `.logo-bar-scroller`, `@keyframes logoScroll`) and identical HTML from index.html
+- Placed immediately after `</section>` of `.wpe-hero` and before the intro section
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Update WPE hero stats to match homepage
+- Replaced "3 Live Clients | National Rankings | Zero Ad Spend" with "£50M+ Revenue | 1000+ AI Rankings | 50+ Healthcare Clients"
+- Changed `.wpe-hero-trust` text-align from `left` to `center` to match homepage `.hero-trust-stats` layout
+- Files: web-pro-elite.html
+
+### [2026-04-23] — Reduce WPE hero bottom padding
+- Changed `.wpe-hero` `min-height` from `100vh` → `auto`, added `2rem` bottom padding (was `0`)
+- Mobile (≤768px): reduced `padding-bottom` from `4rem` → `2rem`
+- Files: web-pro-elite.html
+
 ### [2026-04-23] — Reduce hero bottom empty space on homepage
 - Changed `.hero` `min-height` from `100vh` → `auto` — hero now wraps content naturally instead of filling full viewport
 - Added `2rem` bottom padding (was `0`) for a clean gap without excessive dead space

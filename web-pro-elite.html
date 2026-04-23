@@ -216,10 +216,10 @@
          WPE HERO — matches homepage brand system
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       .wpe-hero {
-        min-height: 100vh;
+        min-height: auto;
         display: flex;
         align-items: flex-start;
-        padding: 2.5rem 2rem 0;
+        padding: 2.5rem 2rem 2rem;
         margin-top: 0;
         position: relative;
         overflow: hidden;
@@ -385,7 +385,7 @@
         font-weight: 500;
         color: #6B6B6B;
         letter-spacing: 0.01em;
-        text-align: left;
+        text-align: center;
         opacity: 0;
         transform: translateY(10px);
         animation: wpeFadeUp 0.4s ease-out 2.3s forwards;
@@ -1306,6 +1306,96 @@
         line-height: 1.65;
       }
 
+      /* ─── Phone mockup ─── */
+      .wpe-phone-mockup {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem 0;
+        transition: transform 0.4s ease, filter 0.4s ease;
+      }
+
+      .wpe-portfolio-card:hover .wpe-phone-mockup {
+        transform: translateY(-6px) rotate(0.5deg);
+      }
+
+      .wpe-phone-shell {
+        position: relative;
+        width: 220px;
+        background: #1a1a1a;
+        border-radius: 40px;
+        padding: 14px 10px 20px;
+        box-shadow:
+          0 0 0 1px #3a3a3a,
+          0 0 0 3px #1a1a1a,
+          0 0 0 4px #444,
+          0 20px 60px rgba(0,0,0,0.45),
+          0 6px 20px rgba(0,0,0,0.25),
+          inset 0 1px 0 rgba(255,255,255,0.08);
+      }
+
+      .wpe-phone-notch {
+        width: 80px;
+        height: 24px;
+        background: #1a1a1a;
+        border-radius: 0 0 16px 16px;
+        margin: 0 auto 8px;
+        position: relative;
+        z-index: 2;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+      }
+
+      .wpe-phone-screen {
+        border-radius: 24px;
+        overflow: hidden;
+        height: 400px;
+        background: #fff;
+        position: relative;
+      }
+
+      .wpe-phone-home-bar {
+        width: 80px;
+        height: 4px;
+        background: rgba(255,255,255,0.25);
+        border-radius: 2px;
+        margin: 10px auto 0;
+      }
+
+      /* ─── Logo Bar ─── */
+      .logo-bar {
+        width: 100%;
+        background: #fcf4e9;
+        border-top: 1px solid rgba(0,0,0,0.05);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding: 2rem 0;
+        overflow: hidden;
+      }
+
+      .logo-bar-scroller {
+        display: flex;
+        gap: 4rem;
+        animation: logoScroll 30s linear infinite;
+      }
+
+      .logo-bar-scroller img {
+        height: 50px;
+        width: auto;
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+
+      .logo-bar-scroller img:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+
+      @keyframes logoScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
       /* ─── Responsive: portfolio + package + CTA ─── */
       @media (max-width: 1024px) {
         .wpe-hero-inner {
@@ -1351,9 +1441,8 @@
 
       @media (max-width: 768px) {
         .wpe-hero {
-          padding: 3rem 1.5rem;
+          padding: 3rem 1.5rem 2rem;
           min-height: auto;
-          padding-bottom: 4rem;
         }
         .wpe-hero-inner {
           gap: 2rem;
@@ -1537,7 +1626,15 @@
     <nav class="nav" id="mainNav">
       <div class="nav-inner">
         <a href="index.html" class="nav-brand">
-          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" loading="eager" decoding="async" fetchpriority="high" />
+          <img
+            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png"
+            alt="Gildhart"
+            width="80"
+            height="80"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
         </a>
         <div class="nav-links">
           <div class="nav-dropdown">
@@ -1551,9 +1648,17 @@
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger">Our Work <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu">
-              <a href="web-pro-elite.html" class="dd-item"><span class="dd-item-name">The Build</span><span class="dd-item-sub">Bespoke Healthcare Website</span></a>
-              <a href="salesagent.html" class="dd-item"><span class="dd-item-name">The Agent</span><span class="dd-item-sub">Your Practice Never Closes</span></a>
-              <a href="ai-domination-system.html" class="dd-item"><span class="dd-item-name">The Method</span><span class="dd-item-sub">DIY Access &#163;497</span></a>
+              <a href="web-pro-elite.html" class="dd-item"
+                ><span class="dd-item-name">The Build</span
+                ><span class="dd-item-sub">Bespoke Healthcare Website</span></a
+              >
+              <a href="salesagent.html" class="dd-item"
+                ><span class="dd-item-name">The Agent</span
+                ><span class="dd-item-sub">Your Practice Never Closes</span></a
+              >
+              <a href="ai-domination-system.html" class="dd-item"
+                ><span class="dd-item-name">The Method</span><span class="dd-item-sub">DIY Access &#163;497</span></a
+              >
             </div>
           </div>
         </div>
@@ -1562,14 +1667,31 @@
             <button class="nav-dropdown-trigger">The Proof <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu" style="min-width:440px;">
               <span class="dd-section-label">Client Results</span>
-              <a href="case-study-ealing.html" class="dd-item"><span class="dd-item-name">Ealing Travel Clinic</span><span class="dd-item-sub">300% Revenue Growth</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Superior Pharmacy</span><span class="dd-item-sub">50% of Sales from ChatGPT</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Puri Pharmacy</span><span class="dd-item-sub">Outranking Boots Nationally</span></a>
+              <a href="case-study-ealing.html" class="dd-item"
+                ><span class="dd-item-name">Ealing Travel Clinic</span
+                ><span class="dd-item-sub">300% Revenue Growth</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Superior Pharmacy</span
+                ><span class="dd-item-sub">50% of Sales from ChatGPT</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Puri Pharmacy</span
+                ><span class="dd-item-sub">Outranking Boots Nationally</span></a
+              >
               <div class="dd-divider"></div>
               <span class="dd-section-label">Latest Builds</span>
-              <a href="#" class="dd-item"><span class="dd-item-name">Chiselhurst Pharmacy Group</span><span class="dd-item-sub">Premium Multi-Site Build</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Easy Clinic</span><span class="dd-item-sub">Premium Private Clinic Build</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Southdowns Pharmacy Group</span><span class="dd-item-sub">AI Agent</span></a>
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Chiselhurst Pharmacy Group</span
+                ><span class="dd-item-sub">Premium Multi-Site Build</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Easy Clinic</span
+                ><span class="dd-item-sub">Premium Private Clinic Build</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Southdowns Pharmacy Group</span><span class="dd-item-sub">AI Agent</span></a
+              >
             </div>
           </div>
           <a href="#about">About</a>
@@ -1577,10 +1699,26 @@
         </div>
         <!-- Mobile hamburger -->
         <button class="nav-hamburger" aria-label="Open navigation menu">
-          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg
+            class="ham-open"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg
+            class="ham-close"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
         </button>
@@ -1592,16 +1730,26 @@
     <div class="nav-mobile-overlay" id="mobileNavOverlay">
       <div class="mobile-menu-content">
         <!-- Who We Help -->
-        <button class="mobile-nav-section-trigger" data-accordion>Who We Help <span class="mobile-dd-arrow">&#9662;</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+        <button class="mobile-nav-section-trigger" data-accordion>
+          Who We Help <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
           <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Pharmacy Groups</span></a>
           <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Private Clinics</span></a>
           <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Enterprise Healthcare</span></a>
         </div>
 
         <!-- Our Work -->
-        <button class="mobile-nav-section-trigger" data-accordion>Our Work <span class="mobile-dd-arrow">&#9662;</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+        <button class="mobile-nav-section-trigger" data-accordion>
+          Our Work <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
           <a href="web-pro-elite.html" class="mobile-dd-item">
             <span class="mobile-dd-item-name">The Build</span>
             <span class="mobile-dd-item-sub">Bespoke Healthcare Website</span>
@@ -1617,8 +1765,13 @@
         </div>
 
         <!-- The Proof -->
-        <button class="mobile-nav-section-trigger" data-accordion>The Proof <span class="mobile-dd-arrow">&#9662;</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+        <button class="mobile-nav-section-trigger" data-accordion>
+          The Proof <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
           <span class="mobile-dd-category-label">Client Results</span>
           <a href="case-study-ealing.html" class="mobile-dd-item">
             <span class="mobile-dd-item-name">Ealing Travel Clinic</span>
@@ -1674,7 +1827,8 @@
           </h1>
 
           <p class="wpe-hero-subtitle">
-            Superior Pharmacy is on track for &#163;500k this year. The website did that. Built on Claude Code. Architected for AI search from day one. Zero ad spend.
+            Superior Pharmacy is on track for &#163;500k this year. The website did that. Built on Claude Code.
+            Architected for AI search from day one. Zero ad spend.
           </p>
 
           <div class="wpe-hero-cta">
@@ -1683,7 +1837,7 @@
           </div>
 
           <p class="wpe-hero-trust">
-            3 Live Clients<span>|</span>National Rankings<span>|</span>Zero Ad Spend
+            &#163;50M+ Revenue<span>|</span>1000+ AI Rankings<span>|</span>50+ Healthcare Clients
           </p>
         </div>
 
@@ -1691,11 +1845,100 @@
         <div class="wpe-hero-visual">
           <div class="wpe-hero-image-stack">
             <img
-              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1775811251244-0.jpeg"
-              alt="Phone showing booking confirmation surrounded by client logos and AI platform icons on dark navy background"
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776952607543-0.jpeg"
+              alt="Three client websites shown in browser mockups on dark green background — Chiselhurst Pharmacy Group, Superior Pharmacy, and a third healthcare site"
             />
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Trusted-by label above logo bar -->
+    <div style="background:#fcf4e9; padding: 1.5rem 2rem 0; text-align:center;">
+      <p
+        style="font-family:'Space Mono',monospace; font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#1E3D2F; margin:0; opacity:0.75;"
+      >
+        Trusted by healthcare practices across the UK &amp; Worldwide
+      </p>
+    </div>
+
+    <!-- Logo Bar -->
+    <section class="logo-bar">
+      <div class="logo-bar-scroller">
+        <!-- First set -->
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
+          alt="Raylane Pharmacy Group"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
+          alt="Raylane Pharmacy Group"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
+          alt="Raylane Pharmacy Group"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <!-- Duplicate set for seamless loop -->
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
+          alt="Raylane Pharmacy Group"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
+          alt="Raylane Pharmacy Group"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
+          alt="Superior Pharmacy"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
+          alt="Raylane Pharmacy Group"
+        />
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
+          alt="Ealing Travel Clinic"
+        />
       </div>
     </section>
 
@@ -1708,40 +1951,68 @@
             Every Other Agency Builds You a Website.<br />We Build You a Patient Acquisition Engine.
           </h2>
           <p class="wpe-section-body wpe-reveal wpe-reveal-d3">
-            Most healthcare websites were built to exist, not to perform. They look acceptable, they load, they have a contact form. And they bring in almost nothing. Not because the practice isn&#39;t good enough. Because the website was never built to do what AI search now demands.
+            Most healthcare websites were built to exist, not to perform. They look acceptable, they load, they have a
+            contact form. And they bring in almost nothing. Not because the practice isn&#39;t good enough. Because the
+            website was never built to do what AI search now demands.
           </p>
           <p class="wpe-section-body wpe-reveal wpe-reveal-d3">
-            WebPro Elite is built differently — on Claude Code, the same AI infrastructure that powers the most advanced content systems in the world. That&#39;s not a technology choice for the sake of it. It&#39;s the reason our sites get found by AI platforms that other agency builds never will.
+            WebPro Elite is built differently — on Claude Code, the same AI infrastructure that powers the most advanced
+            content systems in the world. That&#39;s not a technology choice for the sake of it. It&#39;s the reason our
+            sites get found by AI platforms that other agency builds never will.
           </p>
           <p class="wpe-section-body wpe-reveal wpe-reveal-d4">
-            Every site we build is architected around <strong>the Pillar Domination Framework™</strong> — the content system that put Ealing Travel Clinic at #1 in Google AI Overviews in six weeks and put Superior Pharmacy on ChatGPT&#39;s recommended list before their first month was out.
+            Every site below is currently ranking on Google, featured in ChatGPT, and generating revenue. Built once.
+            Compounding every month.
           </p>
-          <p class="wpe-section-body wpe-reveal wpe-reveal-d4" style="font-size:1.15rem;font-weight:700;color:var(--navy);">
+          <p
+            class="wpe-section-body wpe-reveal wpe-reveal-d4"
+            style="font-size:1.15rem;font-weight:700;color:var(--navy);"
+          >
             The website is the foundation. The framework is what generates revenue. You get both.
           </p>
-          <a href="#portfolio" class="btn-primary-lg wpe-reveal wpe-reveal-d5" style="margin-top:0.5rem;">See The Three Live Client Websites →</a>
+          <a href="#portfolio" class="btn-primary-lg wpe-reveal wpe-reveal-d5" style="margin-top:0.5rem;"
+            >See The Builds Behind The Results→</a
+          >
         </div>
 
         <div class="wpe-intro-proof">
           <div class="wpe-intro-proof-card wpe-reveal-card wpe-reveal-d2">
-            <p class="wpe-intro-proof-client" style="color:var(--gildhart-gold);font-variant:small-caps;letter-spacing:0.14em;">EALING TRAVEL CLINIC</p>
+            <p
+              class="wpe-intro-proof-client"
+              style="color:var(--gildhart-gold);font-variant:small-caps;letter-spacing:0.14em;"
+            >
+              EALING TRAVEL CLINIC
+            </p>
             <p class="wpe-intro-proof-stat">300% Revenue Growth</p>
             <p class="wpe-intro-proof-desc">
-              Zero AI visibility to #1 in Google AI Overviews for travel vaccinations. Six weeks. Zero ad spend. Now generating &#163;100k from HPV vaccinations alone.
+              Zero AI visibility to #1 in Google AI Overviews for travel vaccinations. Six weeks. Zero ad spend. Now
+              generating &#163;100k from HPV vaccinations alone.
             </p>
           </div>
           <div class="wpe-intro-proof-card wpe-reveal-card wpe-reveal-d3">
-            <p class="wpe-intro-proof-client" style="color:var(--gildhart-gold);font-variant:small-caps;letter-spacing:0.14em;">SUPERIOR PHARMACY</p>
+            <p
+              class="wpe-intro-proof-client"
+              style="color:var(--gildhart-gold);font-variant:small-caps;letter-spacing:0.14em;"
+            >
+              SUPERIOR PHARMACY
+            </p>
             <p class="wpe-intro-proof-stat">On Track For &#163;500k This Year</p>
             <p class="wpe-intro-proof-desc">
-              Built on WebPro Elite. First ChatGPT sale within 48 hours of launch. Now 50% of all revenue comes from AI search. Two-person team. No ad spend.
+              Built on WebPro Elite. First ChatGPT sale within 48 hours of launch. Now 50% of all revenue comes from AI
+              search. Two-person team. No ad spend.
             </p>
           </div>
           <div class="wpe-intro-proof-card wpe-reveal-card wpe-reveal-d4">
-            <p class="wpe-intro-proof-client" style="color:var(--gildhart-gold);font-variant:small-caps;letter-spacing:0.14em;">PURI PHARMACY</p>
+            <p
+              class="wpe-intro-proof-client"
+              style="color:var(--gildhart-gold);font-variant:small-caps;letter-spacing:0.14em;"
+            >
+              PURI PHARMACY
+            </p>
             <p class="wpe-intro-proof-stat">#1 UK Mounjaro Provider</p>
             <p class="wpe-intro-proof-desc">
-              Independent pharmacy outranking national chains for their most valuable search terms. Built from scratch on WebPro Elite. Now taking that presence national.
+              Independent pharmacy outranking national chains for their most valuable search terms. Built from scratch
+              on WebPro Elite. Now taking that presence national.
             </p>
           </div>
         </div>
@@ -1755,8 +2026,8 @@
           <span class="wpe-section-eyebrow">Three Live Client Websites</span>
           <h2 class="wpe-section-headline">These Aren&#39;t Mockups.<br />These Are Live Practices.</h2>
           <p class="wpe-portfolio-subhead">
-            Every site below is currently ranking on Google, featured in AI search, and generating patients. Built on
-            the same WebPro Elite framework.
+            Every site below is currently ranking on Google, featured in ChatGPT, and generating revenue. Built once.
+            Compounding every month.
           </p>
         </div>
 
@@ -1768,40 +2039,42 @@
                 <span class="wpe-preview-dot wpe-preview-dot--red"></span>
                 <span class="wpe-preview-dot wpe-preview-dot--amber"></span>
                 <span class="wpe-preview-dot wpe-preview-dot--green"></span>
-                <span class="wpe-preview-url">chiselhurst-pharmacy.co.uk</span>
+                <span class="wpe-preview-url">chislehurstpharmacygroup.co.uk</span>
               </div>
-              <iframe
-                src="https://chiselhurst-pharmacy.co.uk"
-                title="Chiselhurst Pharmacy Group website"
-                loading="lazy"
-                scrolling="no"
-                sandbox="allow-scripts allow-same-origin"
-              ></iframe>
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776942357581-1.png"
+                alt="Chiselhurst Pharmacy Group website homepage screenshot"
+                style="width:100%;height:380px;object-fit:cover;object-position:top left;display:block;margin:0;padding:0;border:none;outline:none;"
+              />
             </div>
           </div>
           <div class="wpe-portfolio-info">
             <span class="wpe-portfolio-client-tag">Multi-Site Pharmacy Group</span>
             <h3 class="wpe-portfolio-client-name">Chiselhurst Pharmacy Group</h3>
             <p class="wpe-portfolio-outcome">
-              A premium, patient-first website built to reflect the reputation of an established multi-site pharmacy
-              group — and to make sure new patients searching online find them first.
+              Two locations. Twenty services. Built on Claude Code from the ground up. Chiselhurst Pharmacy Group now
+              has the AI search infrastructure that most established pharmacy groups spend years trying to build — and
+              never quite get right.
             </p>
             <div class="wpe-portfolio-highlights">
               <div class="wpe-portfolio-highlight">
                 <span class="wpe-portfolio-highlight-icon">✓</span>
-                <span>Pillar Domination Framework™ architecture</span>
+                <span>Pillar Domination Framework™ — every service page architected for AI search</span>
               </div>
               <div class="wpe-portfolio-highlight">
                 <span class="wpe-portfolio-highlight-icon">✓</span>
-                <span>Multi-branch, multi-service structure</span>
+                <span
+                  >The HPV vaccine page alone contains more clinically verified content than most NHS trust pages on the
+                  same topic. That's what AI search rewards.</span
+                >
               </div>
               <div class="wpe-portfolio-highlight">
                 <span class="wpe-portfolio-highlight-icon">✓</span>
-                <span>AI-indexed content across every service page</span>
+                <span>AI-indexed from day one — Google, ChatGPT, Claude, Perplexity</span>
               </div>
             </div>
             <a
-              href="https://chiselhurst-pharmacy.co.uk"
+              href="https://chislehurstpharmacygroup.co.uk"
               target="_blank"
               rel="noopener noreferrer"
               class="wpe-portfolio-link"
@@ -1818,39 +2091,38 @@
                 <span class="wpe-preview-dot wpe-preview-dot--red"></span>
                 <span class="wpe-preview-dot wpe-preview-dot--amber"></span>
                 <span class="wpe-preview-dot wpe-preview-dot--green"></span>
-                <span class="wpe-preview-url">easyclinic.co.uk</span>
+                <span class="wpe-preview-url">theeasyclinic.co.uk</span>
               </div>
-              <iframe
-                src="https://easyclinic.co.uk"
-                title="Easy Clinic website"
-                loading="lazy"
-                scrolling="no"
-                sandbox="allow-scripts allow-same-origin"
-              ></iframe>
+              <img
+                src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776950767496-0.png"
+                alt="Easy Clinic website homepage screenshot"
+                style="width:100%;height:380px;object-fit:cover;object-position:top left;display:block;margin:0;padding:0;border:none;outline:none;"
+              />
             </div>
           </div>
           <div class="wpe-portfolio-info">
             <span class="wpe-portfolio-client-tag">Private Clinic &amp; Pharmacy</span>
             <h3 class="wpe-portfolio-client-name">Easy Clinic</h3>
             <p class="wpe-portfolio-outcome">
-              Built to convert — not just inform. Easy Clinic needed a website that positioned their full range of
-              private services and turned AI search traffic into booked appointments.
+              Every post medically verified. Every service page built for clinical authority. Easy Clinic&#39;s content
+              isn&#39;t just accurate. It&#39;s structured so Google, ChatGPT, and Claude treat it as a trusted source.
+              That&#39;s what EEAT compliance built into the architecture actually looks like.
             </p>
             <div class="wpe-portfolio-highlights">
               <div class="wpe-portfolio-highlight">
                 <span class="wpe-portfolio-highlight-icon">✓</span>
-                <span>Private services designed for high-intent patients</span>
+                <span>Named medical verification on every piece of content</span>
               </div>
               <div class="wpe-portfolio-highlight">
                 <span class="wpe-portfolio-highlight-icon">✓</span>
-                <span>ChatGPT and Google AI Overview optimised</span>
+                <span>EEAT-compliant architecture built for AI platform trust</span>
               </div>
               <div class="wpe-portfolio-highlight">
                 <span class="wpe-portfolio-highlight-icon">✓</span>
-                <span>Clinical authority content across all service pillars</span>
+                <span>AI agent embedded and converting visitors around the clock</span>
               </div>
             </div>
-            <a href="https://easyclinic.co.uk" target="_blank" rel="noopener noreferrer" class="wpe-portfolio-link"
+            <a href="https://theeasyclinic.co.uk" target="_blank" rel="noopener noreferrer" class="wpe-portfolio-link"
               >View Live Site <span>↗</span></a
             >
           </div>
@@ -1858,28 +2130,26 @@
 
         <!-- Client 3: Puri Pharmacy -->
         <div class="wpe-portfolio-card wpe-reveal-card wpe-reveal-d2" id="puripharmacy">
-          <div class="wpe-portfolio-preview">
-            <div class="wpe-preview-browser">
-              <div class="wpe-preview-bar">
-                <span class="wpe-preview-dot wpe-preview-dot--red"></span>
-                <span class="wpe-preview-dot wpe-preview-dot--amber"></span>
-                <span class="wpe-preview-dot wpe-preview-dot--green"></span>
-                <span class="wpe-preview-url">puripharmacy.co.uk</span>
+          <div class="wpe-portfolio-preview" style="display:flex;align-items:center;justify-content:center;">
+            <div class="wpe-phone-mockup">
+              <div class="wpe-phone-shell">
+                <div class="wpe-phone-notch"></div>
+                <div class="wpe-phone-screen">
+                  <img
+                    src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776951820706-0.png"
+                    alt="Puri Pharmacy mobile website screenshot"
+                    style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border:none;"
+                  />
+                </div>
+                <div class="wpe-phone-home-bar"></div>
               </div>
-              <iframe
-                src="https://puripharmacy.co.uk"
-                title="Puri Pharmacy website"
-                loading="lazy"
-                scrolling="no"
-                sandbox="allow-scripts allow-same-origin"
-              ></iframe>
             </div>
           </div>
           <div class="wpe-portfolio-info">
             <span class="wpe-portfolio-client-tag">Independent Pharmacy — National Rankings</span>
             <h3 class="wpe-portfolio-client-name">Puri Pharmacy</h3>
             <p class="wpe-portfolio-outcome">
-              "We&#39;re now outranking Boots and major chains in our area." — Rahul Puri. An independent pharmacy that
+              "We&#39;re now outranking Boots and major chains UK Wide." — Rahul Puri. An independent pharmacy grou that
               used WebPro Elite to compete nationally and win.
             </p>
             <div class="wpe-portfolio-highlights">
@@ -2115,8 +2385,8 @@
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-brand">
-          <a href="index.html" class="footer-brand-name">Gildhart</a>
-          <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
+            <a href="index.html" class="footer-brand-name">Gildhart</a>
+            <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
             <p class="footer-brand-desc">
               Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices
               including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.
