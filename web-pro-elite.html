@@ -981,13 +981,29 @@
         font-size: 1rem;
       }
 
-      /* Delivery timeline strip — forest green variant */
+      /* ── Outcome Momentum Timeline — Cinematic Reveal ── */
       .wpe-delivery {
-        background: rgba(255,255,255,0.06);
-        border-radius: 20px;
-        padding: 2.5rem 3rem;
-        border: 1px solid rgba(201,164,74,0.3);
-        box-shadow: none;
+        background: rgba(255,255,255,0.03);
+        border-radius: 24px;
+        padding: 4rem 4rem 3.5rem;
+        border: 1px solid rgba(201,164,74,0.2);
+        box-shadow: inset 0 1px 0 rgba(201,164,74,0.06);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Subtle radial glow behind the section */
+      .wpe-delivery::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 120%;
+        height: 200%;
+        background: radial-gradient(ellipse at center, rgba(201,164,74,0.03) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: 0;
       }
 
       .wpe-delivery-label {
@@ -996,50 +1012,168 @@
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(245,236,215,0.55);
-        margin-bottom: 1.5rem;
+        color: var(--gildhart-gold);
+        margin-bottom: 3.5rem;
+        position: relative;
+        z-index: 1;
+        opacity: 0.85;
+        text-shadow: 0 0 30px rgba(201,164,74,0.15);
       }
 
-      .wpe-delivery-steps {
+      /* The timeline track */
+      .wpe-timeline {
+        position: relative;
         display: flex;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
+        align-items: stretch;
+        z-index: 1;
       }
 
-      .wpe-delivery-step {
+      /* Gold connecting line — draws itself via animation */
+      .wpe-timeline::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(201,164,74,0.15) 0%, rgba(201,164,74,0.4) 40%, rgba(201,164,74,0.7) 100%);
+        z-index: 0;
+        transform-origin: left center;
+        transform: scaleX(0);
+        transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* When the delivery container is visible, draw the line */
+      .wpe-delivery.wpe-tl-active .wpe-timeline::before {
+        transform: scaleX(1);
+      }
+
+      /* Glow line on top of the base line */
+      .wpe-timeline::after {
+        content: '';
+        position: absolute;
+        top: 9px;
+        left: 10px;
+        right: 10px;
+        height: 3px;
+        background: linear-gradient(90deg, transparent 0%, rgba(201,164,74,0.0) 20%, rgba(201,164,74,0.12) 60%, rgba(201,164,74,0.25) 100%);
+        z-index: 0;
+        filter: blur(3px);
+        transform-origin: left center;
+        transform: scaleX(0);
+        transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+      }
+
+      .wpe-delivery.wpe-tl-active .wpe-timeline::after {
+        transform: scaleX(1);
+      }
+
+      /* Each milestone — starts hidden, reveals sequentially */
+      .wpe-milestone {
+        flex: 1;
+        position: relative;
+        padding: 0 1.5rem;
         display: flex;
         flex-direction: column;
-        gap: 0.3rem;
-        flex: 1;
-        min-width: 140px;
+        align-items: flex-start;
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      .wpe-delivery-week {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--gildhart-gold);
-        letter-spacing: 0.06em;
-      }
+      .wpe-milestone:first-child { padding-left: 0; }
+      .wpe-milestone:last-child { padding-right: 0; }
 
-      .wpe-delivery-task {
-        font-size: 0.9375rem;
-        color: #F5ECD7;
-        font-weight: 500;
-        line-height: 1.4;
-      }
+      /* Staggered reveal timing */
+      .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+      .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+      .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.9s; }
+      .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 1.2s; }
 
-      .wpe-delivery-arrow {
-        color: rgba(245,236,215,0.3);
-        font-size: 1.25rem;
+      /* The dot on the timeline */
+      .wpe-milestone-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--gildhart-gold);
+        position: relative;
+        z-index: 2;
         flex-shrink: 0;
-        align-self: center;
+        margin-bottom: 1.75rem;
+        opacity: 0.6;
+        box-shadow: none;
+        transition: all 0.4s ease;
       }
 
-      .wpe-delivery-step--accent .wpe-delivery-task {
-        color: var(--gildhart-gold);
+      .wpe-milestone:hover .wpe-milestone-dot {
+        opacity: 1;
+        box-shadow: 0 0 16px rgba(201,164,74,0.5);
+        transform: scale(1.3);
+      }
+
+      /* Final milestone dot — larger, pulsing glow */
+      .wpe-milestone--destination .wpe-milestone-dot {
+        width: 14px;
+        height: 14px;
+        opacity: 1;
+        box-shadow: 0 0 0 5px rgba(201,164,74,0.12), 0 0 24px rgba(201,164,74,0.3);
+        animation: wpeDestPulse 2.5s ease-in-out infinite 2s;
+      }
+
+      @keyframes wpeDestPulse {
+        0%, 100% { box-shadow: 0 0 0 5px rgba(201,164,74,0.12), 0 0 24px rgba(201,164,74,0.3); }
+        50% { box-shadow: 0 0 0 8px rgba(201,164,74,0.18), 0 0 36px rgba(201,164,74,0.45); }
+      }
+
+      .wpe-milestone--destination:hover .wpe-milestone-dot {
+        box-shadow: 0 0 0 8px rgba(201,164,74,0.2), 0 0 32px rgba(201,164,74,0.5);
+        animation: none;
+      }
+
+      /* Month label */
+      .wpe-milestone-month {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.68rem;
         font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gildhart-gold);
+        margin-bottom: 0.875rem;
+        white-space: nowrap;
+      }
+
+      /* Body text */
+      .wpe-milestone-body {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        color: rgba(255,255,255,0.65);
+        line-height: 1.7;
+        max-width: 260px;
+      }
+
+      /* Hover lift on milestone text area */
+      .wpe-milestone > div {
+        transition: transform 0.35s ease;
+      }
+      .wpe-milestone:hover > div {
+        transform: translateY(-3px);
+      }
+
+      /* Destination stage — gold text, bold, scaled up */
+      .wpe-milestone--destination .wpe-milestone-month {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-shadow: 0 0 20px rgba(201,164,74,0.2);
+      }
+
+      .wpe-milestone--destination .wpe-milestone-body {
+        color: var(--gildhart-gold);
+        font-weight: 600;
+        font-size: 1.0625rem;
+        line-height: 1.6;
+        max-width: 290px;
+        text-shadow: 0 0 40px rgba(201,164,74,0.08);
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1492,18 +1626,87 @@
         }
 
         .wpe-delivery {
-          padding: 1.75rem;
+          padding: 2rem 1.5rem 1.75rem;
         }
 
-        .wpe-delivery-steps {
+        .wpe-delivery-label {
+          margin-bottom: 2rem;
+        }
+
+        .wpe-delivery {
+          padding: 2.5rem 1.75rem 2rem;
+        }
+
+        .wpe-delivery-label {
+          margin-bottom: 2.5rem;
+        }
+
+        .wpe-timeline {
           flex-direction: column;
-          align-items: flex-start;
-          gap: 0.75rem;
+          gap: 0;
         }
 
-        .wpe-delivery-arrow {
-          transform: rotate(90deg);
-          align-self: auto;
+        /* Vertical line on mobile */
+        .wpe-timeline::before {
+          top: 6px;
+          left: 5px;
+          right: auto;
+          bottom: 6px;
+          width: 1px;
+          height: auto;
+          transform: scaleY(0);
+          transform-origin: top center;
+        }
+
+        .wpe-delivery.wpe-tl-active .wpe-timeline::before {
+          transform: scaleX(1) scaleY(1);
+        }
+
+        .wpe-timeline::after {
+          top: 6px;
+          left: 3px;
+          right: auto;
+          bottom: 6px;
+          width: 5px;
+          height: auto;
+          transform: scaleY(0);
+          transform-origin: top center;
+        }
+
+        .wpe-delivery.wpe-tl-active .wpe-timeline::after {
+          transform: scaleX(1) scaleY(1);
+        }
+
+        .wpe-milestone {
+          flex-direction: row;
+          align-items: flex-start;
+          gap: 1.5rem;
+          padding: 0 0 2.25rem 0;
+          transform: translateX(-20px);
+        }
+
+        .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(1),
+        .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(2),
+        .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(3),
+        .wpe-delivery.wpe-tl-active .wpe-milestone:nth-child(4) {
+          transform: translateX(0);
+        }
+
+        .wpe-milestone:first-child { padding-left: 0; }
+        .wpe-milestone:last-child { padding-right: 0; padding-bottom: 0; }
+
+        .wpe-milestone-dot {
+          margin-bottom: 0;
+          margin-top: 0.15rem;
+          flex-shrink: 0;
+        }
+
+        .wpe-milestone-body {
+          max-width: 100%;
+        }
+
+        .wpe-milestone--destination .wpe-milestone-body {
+          max-width: 100%;
         }
 
         .wpe-cta-section {
@@ -2231,28 +2434,37 @@
           </div>
         </div>
 
-        <!-- Delivery timeline -->
+        <!-- Outcome Momentum — Premium Timeline -->
         <div class="wpe-delivery wpe-reveal wpe-reveal-d3">
-          <p class="wpe-delivery-label">Typical Timeline</p>
-          <div class="wpe-delivery-steps">
-            <div class="wpe-delivery-step">
-              <span class="wpe-delivery-week">Week 1–2</span>
-              <span class="wpe-delivery-task">Discovery, strategy call, content brief</span>
+          <p class="wpe-delivery-label">What Happens After Launch</p>
+          <div class="wpe-timeline">
+            <div class="wpe-milestone">
+              <div class="wpe-milestone-dot"></div>
+              <div>
+                <p class="wpe-milestone-month">Month 1</p>
+                <p class="wpe-milestone-body">Your site goes live. AI indexation begins. First rankings start appearing across Google, ChatGPT, and Bing. Not a penny spent on ads.</p>
+              </div>
             </div>
-            <span class="wpe-delivery-arrow">→</span>
-            <div class="wpe-delivery-step">
-              <span class="wpe-delivery-week">Week 2–4</span>
-              <span class="wpe-delivery-task">Design, build, and AI content creation</span>
+            <div class="wpe-milestone">
+              <div class="wpe-milestone-dot"></div>
+              <div>
+                <p class="wpe-milestone-month">Month 2–3</p>
+                <p class="wpe-milestone-body">Content authority builds. AI platforms begin recommending your practice. First enquiries arrive from patients who found you through ChatGPT and Google AI Overviews.</p>
+              </div>
             </div>
-            <span class="wpe-delivery-arrow">→</span>
-            <div class="wpe-delivery-step">
-              <span class="wpe-delivery-week">Week 4–6</span>
-              <span class="wpe-delivery-task">Review, launch, and AI indexation protocol</span>
+            <div class="wpe-milestone">
+              <div class="wpe-milestone-dot"></div>
+              <div>
+                <p class="wpe-milestone-month">Month 3–6</p>
+                <p class="wpe-milestone-body">Sachin at Ealing Travel Clinic hit &#163;100k from HPV vaccinations alone. Rankings compounding. Revenue from AI search measurable and consistent.</p>
+              </div>
             </div>
-            <span class="wpe-delivery-arrow">→</span>
-            <div class="wpe-delivery-step wpe-delivery-step--accent">
-              <span class="wpe-delivery-week">Week 6+</span>
-              <span class="wpe-delivery-task">First AI rankings appear. Revenue starts.</span>
+            <div class="wpe-milestone wpe-milestone--destination">
+              <div class="wpe-milestone-dot"></div>
+              <div>
+                <p class="wpe-milestone-month">Month 6+</p>
+                <p class="wpe-milestone-body">Raman at Superior Pharmacy is on track for &#163;500k this year. Your practice established on the AI shortlist. Compounding every month.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -2264,47 +2476,30 @@
       <div class="wpe-cta-inner">
         <div class="wpe-cta-left wpe-reveal wpe-reveal-d1">
           <span class="wpe-section-eyebrow" style="color:var(--gildhart-gold);">Investment</span>
-          <h2 class="wpe-cta-headline">
-            Ready To Be The Next<br /><span class="wpe-cta-headline-accent">Puri, Chiselhurst, or Easy Clinic?</span>
-          </h2>
-          <p class="wpe-cta-body">
-            WebPro Elite is a custom build — every project is scoped based on the number of services, branches, and
-            content pillars we create for you.
-          </p>
+          <h2 class="wpe-cta-headline">Your Practice. Built To Generate Revenue. Not Just Look The Part.</h2>
+          <p class="wpe-cta-body">WebPro Elite is a custom build — every project is scoped based on the number of services, branches, and content pillars we create for you.</p>
           <div class="wpe-cta-price-block">
-            <p class="wpe-cta-price-from">Starts from</p>
-            <p class="wpe-cta-price">£3,500</p>
-            <p class="wpe-cta-price-note">One-off build fee + 12 months AI monitoring included</p>
+            <p class="wpe-cta-price-from">Custom Investment</p>
+            <p class="wpe-cta-price">Scoped To Your Practice.</p>
+            <p class="wpe-cta-price-note" style="color:#ffffff;">Every build includes 12 months of hands-on AI search refinement. We track your rankings across Google, ChatGPT, Claude, and Bing every month — and we keep optimising until the numbers move.</p>
           </div>
           <div class="wpe-cta-trust">
             <div class="wpe-cta-trust-item">
-              <span class="wpe-cta-trust-icon">🛡️</span>
               <div>
-                <p class="wpe-cta-trust-title">Performance Guarantee</p>
-                <p class="wpe-cta-trust-desc">
-                  If you&#39;re not ranking in Google AI Overviews within 90 days of launch, we keep working at no extra
-                  cost until you do.
-                </p>
+                <p class="wpe-cta-trust-title">We Don&#39;t Walk Away After Launch.</p>
+                <p class="wpe-cta-trust-desc">If your site isn&#39;t generating enquiries within 90 days we&#39;ll personally audit your AI search presence, identify what&#39;s missing, and fix it. No extra cost.</p>
               </div>
             </div>
             <div class="wpe-cta-trust-item">
-              <span class="wpe-cta-trust-icon">🏥</span>
               <div>
-                <p class="wpe-cta-trust-title">Healthcare-Exclusive</p>
-                <p class="wpe-cta-trust-desc">
-                  We only work with pharmacies, clinics, and healthcare practices. Every piece of content is written for
-                  your patients and GPhC-compliant.
-                </p>
+                <p class="wpe-cta-trust-title">Built For Healthcare. Only Healthcare.</p>
+                <p class="wpe-cta-trust-desc">Every build is GPhC-compliant, clinically credible, and written by people who understand the difference between a Mounjaro consultation and a private prescription. Generic web agencies don&#39;t know that. We do.</p>
               </div>
             </div>
             <div class="wpe-cta-trust-item">
-              <span class="wpe-cta-trust-icon">🔒</span>
               <div>
-                <p class="wpe-cta-trust-title">One Practice Per Area</p>
-                <p class="wpe-cta-trust-desc">
-                  We don&#39;t work with your local competitors. Once you&#39;re live, we won&#39;t build the same
-                  system for a practice in your area.
-                </p>
+                <p class="wpe-cta-trust-title">Dedicated Infrastructure. No Conflicts.</p>
+                <p class="wpe-cta-trust-desc">For independent practices — once you&#39;re live, we don&#39;t build the same system for a competitor in your area. For multi-site groups and national operators — each location gets its own dedicated AI search infrastructure. Your competitive advantage stays yours.</p>
               </div>
             </div>
           </div>
@@ -2339,10 +2534,11 @@
                 <select class="wpe-form-select" required>
                   <option value="" disabled selected>Select your type...</option>
                   <option>Independent Pharmacy</option>
-                  <option>Pharmacy Group (2+ sites)</option>
+                  <option>Multi-Site Pharmacy Group</option>
                   <option>Private Clinic</option>
+                  <option>Travel Clinic</option>
+                  <option>Enterprise Healthcare Group</option>
                   <option>Pharmacy + Clinic</option>
-                  <option>Other Healthcare Practice</option>
                 </select>
               </div>
               <button type="submit" class="wpe-form-btn">Join The Waitlist →</button>
@@ -2559,6 +2755,21 @@
           });
         }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
         els.forEach(function(el) { obs.observe(el); });
+      })();
+
+      // ── Timeline cinematic reveal ──
+      (function() {
+        var delivery = document.querySelector('.wpe-delivery');
+        if (!delivery) return;
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              delivery.classList.add('wpe-tl-active');
+              obs.unobserve(delivery);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+        obs.observe(delivery);
       })();
 
       // ── Form submit handler ──

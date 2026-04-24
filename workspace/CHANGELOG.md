@@ -18,6 +18,29 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-24] — Price box: custom investment label, scoped headline, white descriptor
+- Label: "CUSTOM INVESTMENT" (gold small-caps, replaces "Starts from")
+- Price figure: "Scoped To Your Practice." (white bold large, replaces £3,500)
+- Descriptor: pure white (#fff) — 12 months AI search refinement, monthly tracking across Google/ChatGPT/Claude/Bing
+- Box background, border, padding, corners all unchanged
+- Files: web-pro-elite.html
+
+### [2026-04-24] — Investment section: new copy, text-only trust signals, updated dropdown
+- Headline: "Your Practice. Built To Generate Revenue. Not Just Look The Part." (full white, no accent split)
+- Price descriptor: expanded to mention Google, ChatGPT, Claude, Bing monthly tracking
+- Trust signals: removed all emoji icons; replaced 3 items with text-only (Walk Away / Healthcare Only / No Conflicts)
+- Dropdown: replaced options with Independent Pharmacy / Multi-Site Pharmacy Group / Private Clinic / Travel Clinic / Enterprise Healthcare Group / Pharmacy + Clinic
+- Files: web-pro-elite.html
+
+### [2026-04-24] — Cinematic animated timeline with sequential scroll reveals
+- Gold line draws itself across (scaleX 0→1) when section enters viewport; glow line follows
+- Four milestones fade+slide in sequentially (300ms stagger) — feels like a story unfolding
+- Destination dot (Month 6+) pulses with a gentle gold glow animation after reveal completes
+- Each milestone lifts subtly on hover (dot scales, text shifts up) for tactile interactivity
+- Section label now gold with text-shadow glow; delivery container has radial glow backdrop
+- Mobile: vertical line draws downward (scaleY), milestones slide in from left
+- Files: web-pro-elite.html
+
 ### [2026-04-23] — Redesign "What You Get" two-card section with forest green + new copy
 - Changed `.wpe-package` background from dark navy gradient to `var(--gildhart-green)` (#1E3D2F)
 - All headings now white (#fff), all body/bullet text now cream (#F5ECD7), gold used only for ticks/borders/numbers
