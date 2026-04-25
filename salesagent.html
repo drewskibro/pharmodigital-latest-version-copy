@@ -2536,6 +2536,9 @@
         position: sticky;
         top: 100px;
         width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
       }
 
       /* ── Left column: value stack ── */
@@ -2574,6 +2577,7 @@
       .sa-closing-stack-icon {
         width: 32px;
         height: 32px;
+        min-width: 32px;
         border-radius: 50%;
         background: rgba(30,61,47,0.1);
         border: 1.5px solid rgba(30,61,47,0.3);
@@ -2797,6 +2801,9 @@
         border-radius: 20px;
         padding: 2.75rem 2.25rem 2.5rem;
         box-shadow: 0 8px 40px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
       }
       .sa-closing-promo {
         font-family: 'Space Mono', monospace;
@@ -3039,6 +3046,8 @@
         font-size: 0.9375rem;
         outline: none;
         transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        box-sizing: border-box;
+        max-width: 100%;
       }
       .sa-closing-form-input::placeholder {
         color: rgba(15,23,42,0.35);
@@ -3060,6 +3069,8 @@
         gap: 0.5rem;
         color: rgba(15,23,42,0.35);
         font-size: 0.875rem;
+        box-sizing: border-box;
+        max-width: 100%;
       }
       .sa-closing-stripe-placeholder svg {
         width: 20px;
@@ -3138,6 +3149,9 @@
         }
         .sa-closing-checkout-lane {
           position: static;
+          width: 100%;
+          max-width: 100%;
+          overflow: hidden;
         }
         /* Testimonials become horizontal scrollable trust strip above payment */
         .sa-closing-testimonials {
@@ -3159,21 +3173,92 @@
         .sa-closing-testimonials-label {
           flex: 0 0 100%;
         }
+        /* Ensure pricing box doesn't overflow */
+        .sa-closing-pricing {
+          max-width: 100%;
+          overflow: hidden;
+          box-sizing: border-box;
+        }
       }
       @media (max-width: 768px) {
-        .sa-closing { padding: 4rem 1.5rem 3.5rem; }
-        .sa-closing-cards { grid-template-columns: 1fr; }
+        .sa-closing { padding: 3rem 1rem 3rem; }
+        .sa-closing-top { margin-bottom: 2.5rem; }
+        .sa-closing-headline { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+        .sa-closing-anchor { font-size: 1.0625rem; }
+        .sa-closing-cards { grid-template-columns: 1fr; gap: 0.5rem; }
         .sa-closing-cards-or { padding: 0.25rem 0; }
-        .sa-closing-urgency { flex-direction: column; padding: 1.25rem 1.5rem; }
-        .sa-closing-eligibility-bar { flex-direction: column; gap: 0.75rem; }
-        .sa-closing-pricing { padding: 2rem 1.5rem 1.75rem; }
-        .sa-closing-proof-row { grid-template-columns: 1fr; gap: 1.5rem; }
-        .sa-closing-testimonial-card {
-          flex: 0 0 88%;
-          max-width: 340px;
-          padding: 1.25rem 1.375rem;
+        .sa-closing-urgency { flex-direction: column; padding: 1.25rem 1rem; }
+        .sa-closing-eligibility-bar { flex-direction: column; gap: 0.75rem; padding: 1.5rem 1.25rem; }
+        .sa-closing-pricing {
+          padding: 1.75rem 1.125rem 1.5rem;
+          border-radius: 16px;
         }
-        .sa-closing-testimonial-quote { font-size: 0.875rem; }
+        .sa-closing-promo { font-size: 0.7rem; margin-bottom: 1.25rem; }
+        .sa-closing-card { padding: 1.25rem 1rem; }
+        .sa-closing-card--popular { padding: 1.75rem 1rem 1.5rem; }
+        .sa-closing-card-price { font-size: 2rem; }
+        .sa-closing-card-save { font-size: 0.7rem; display: inline-block; white-space: normal; text-align: center; }
+        .sa-closing-card-save--gold { font-size: 0.7rem; white-space: normal; }
+        .sa-closing-card-total { font-size: 0.75rem; }
+        .sa-closing-price-lock { font-size: 0.75rem; }
+        .sa-closing-punchline { font-size: 0.875rem; margin-bottom: 1.25rem; }
+        .sa-closing-proof-row { grid-template-columns: 1fr; gap: 1.5rem; }
+        .sa-closing-proof-stat { font-size: 1.5rem; }
+        .sa-closing-proof-label { font-size: 0.75rem; }
+        .sa-closing-bridge { font-size: 0.9375rem; margin-bottom: 1.5rem; }
+        .sa-closing-bold-close { font-size: 1.125rem; }
+        .sa-closing-form-input { padding: 0.8125rem 1rem; font-size: 0.875rem; }
+        .sa-closing-stripe-placeholder { padding: 0.8125rem 1rem; font-size: 0.8125rem; }
+        .sa-closing-form-submit { padding: 1rem 1.5rem; font-size: 1rem; }
+
+        /* Testimonial cards: stack vertically instead of horizontal scroll */
+        .sa-closing-testimonials {
+          flex-direction: column;
+          overflow-x: visible;
+          scroll-snap-type: none;
+          gap: 1rem;
+          padding-bottom: 0;
+        }
+        .sa-closing-testimonial-card {
+          flex: none;
+          max-width: 100%;
+          width: 100%;
+          padding: 1.25rem 1.25rem;
+        }
+        .sa-closing-testimonial-quote { font-size: 0.875rem; line-height: 1.6; }
+        .sa-closing-testimonial-footer { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
+        .sa-closing-testimonial-metric { font-size: 0.65rem; }
+        .sa-closing-testimonial-avatar { width: 64px; height: 64px; }
+
+        /* What's Included tick marks — smaller circles, tighter spacing */
+        .sa-closing-stack-icon {
+          width: 26px;
+          height: 26px;
+          min-width: 26px;
+          font-size: 0.75rem;
+        }
+        .sa-closing-stack li { gap: 0.875rem; padding: 1rem 0; }
+        .sa-closing-stack-title { font-size: 1rem; }
+        .sa-closing-stack-desc { font-size: 0.9375rem; }
+      }
+
+      /* Extra small mobile tightening */
+      @media (max-width: 400px) {
+        .sa-closing { padding: 2.5rem 0.75rem 2.5rem; }
+        .sa-closing-pricing { padding: 1.5rem 0.875rem 1.25rem; }
+        .sa-closing-card { padding: 1rem 0.75rem; }
+        .sa-closing-card--popular { padding: 1.5rem 0.75rem 1.25rem; }
+        .sa-closing-card-price { font-size: 1.75rem; }
+        .sa-closing-form-label { font-size: 0.8125rem; }
+        .sa-closing-eligibility-bar { padding: 1.25rem 1rem; }
+        .sa-closing-elig-item { font-size: 1rem; }
+        .sa-closing-stack-icon {
+          width: 24px;
+          height: 24px;
+          min-width: 24px;
+          font-size: 0.7rem;
+        }
+        .sa-closing-testimonial-card { padding: 1rem 1rem; }
       }
 
       /* ─── Scroll Reveal ─── */

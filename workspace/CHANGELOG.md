@@ -18,6 +18,22 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-25] — SalesAgent closing section: comprehensive mobile responsiveness fixes
+- Testimonial cards: stack vertically on ≤768px instead of horizontal overflow scroll
+- Pricing box: added box-sizing, max-width:100%, overflow:hidden to prevent viewport bleed
+- Form inputs/Stripe placeholder: constrained with box-sizing + max-width on mobile
+- What's Included tick marks: added min-width + scaled down (26px/24px) at mobile breakpoints
+- Added ≤400px extra-small breakpoint for very narrow devices
+- Desktop layout completely unchanged
+- Files: salesagent.html
+
+### [2026-04-24] — Case study Ealing: purge all teal, replace with forest green + gold
+- Replaced 27 teal references (var(--teal), rgba(20,184,166,...), #14b8a6) across entire page
+- Accent colours now use var(--gildhart-gold) for eyebrows, arrows, proof cards, callout borders, quote marks, dividers
+- Body accent text (.teal class) now uses var(--gildhart-green) instead of teal
+- Background gradients (#ecfdf5 teal-green tints) replaced with warm gold tints (#f5f0e0, #f0e8d0)
+- Files: case-study-ealing.html
+
 ### [2026-04-24] — Price box: custom investment label, scoped headline, white descriptor
 - Label: "CUSTOM INVESTMENT" (gold small-caps, replaces "Starts from")
 - Price figure: "Scoped To Your Practice." (white bold large, replaces £3,500)
