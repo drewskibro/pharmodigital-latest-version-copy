@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Update hero subtitle copy (case-study-ealing.html)
+- Replaced single-sentence subtitle with three-beat version: bypass claim → content architecture → results
+- Added line breaks between beats for scan-friendly rhythm
+- Files: case-study-ealing.html
+
 ### [2026-04-26] — Step 5/5: Visual rhythm & gold border transitions (case-study-ealing.html)
 - Audited full page flow: Hero(cream)→Problem(cream)→Discovery(GREEN)→Proof(navy)→Mechanism(GREEN)→Results(cream)→ProofCards(navy)→Quote(GREEN)→Transform(navy)→Urgency(navy)→CTA(GREEN)→Footer(GREEN)
 - Added 1px gold `border-bottom` transitions on Discovery, Proof Screenshot, Mechanism, Proof Cards, Quote, Transform, Urgency, and CTA sections
