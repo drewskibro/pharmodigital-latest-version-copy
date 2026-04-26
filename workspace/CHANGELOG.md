@@ -18,6 +18,13 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Removed condensed proof strip section entirely (salesagent.html)
+- Deleted all `.sa-proof-strip` CSS (~120 lines) and HTML section between FAQ and Offer
+- Section was redundant with the full "Live Right Now" carousel higher up the page
+- Thumbnails were too small to show chatbot widgets properly, hurting visual quality
+- Page now flows cleanly from FAQ → Offer section with no redundant social proof
+- Files: salesagent.html
+
 ### [2026-04-26] — Update pricing card copy on salesagent.html (no date-specific language)
 - Monthly card descriptor replaced with evergreen copy about pay-as-you-go, 12-month agreement, online activation fee waiver, and annual plan savings
 - Annual card: "April only" pill → "online only"; "Total saving this April:" → "Total saving:"; "Price locked forever." prefix removed from price-lock line

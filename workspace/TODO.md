@@ -17,8 +17,8 @@ Rules:
 </instructions>
 
 <todo>
-Smoke-test nav on real device / narrow browser — verify no flicker on scroll
-The 5-step plan is shipped. Worth a manual scroll test on mobile Safari and Chrome to confirm zero layout shift.
+Smoke-test FAQ → Offer transition on mobile
+Proof strip removed. Verify the FAQ-to-Offer flow looks clean on narrow viewports with no excess whitespace.
 </todo>
 
 
