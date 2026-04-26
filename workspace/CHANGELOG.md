@@ -18,6 +18,13 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Add Raman photo to Superior Pharmacy testimonial card (salesagent.html)
+- Wrapped Superior Pharmacy card attribution in `.sa-closing-testimonial-meta-row` (same pattern as Sachin & Nemesh)
+- Added circular avatar: `uploaded-asset-1777207897627-0.png` (Raman headshot)
+- Updated attribution name from "Superior Pharmacy" to "Raman" with role "Superior Pharmacy"
+- No CSS changes needed — existing avatar styles already defined
+- Files: salesagent.html
+
 ### [2026-04-26] — Add client photo to Southdowns testimonial card (salesagent.html)
 - Wrapped Southdowns card attribution in `.sa-closing-testimonial-meta-row` (same pattern as Sachin Mehta)
 - Added circular avatar: `uploaded-asset-1777203891666-0.png` with `.sa-closing-testimonial-avatar` class
@@ -1273,7 +1280,7 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 
 ### [2026-04-12] — Replaced closing testimonial quotes with verbatim client text (salesagent.html)
 - Card 1: Sachin Mehta, Ealing Travel Clinic — "To be honest I wasn't expecting much…"
-- Card 2: Southdowns Pharmacy Group — "We didn't realise how many enquiries we were losing…"
+- Card 2: Southdowns Pharmacy Group — "We  realise how many enquiries we were losing…"
 - Card 3: Superior Pharmacy — "Half our weight loss bookings come through it now…"
 - Pull quote in right column updated to match Southdowns' new verbatim wording
 - Names/roles updated: Card 1 now shows "Sachin Mehta" as name, "Ealing Travel Clinic" as role
@@ -1604,7 +1611,7 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 ### [2026-04-08] — Ealing Case Study: Before/After → Transformation Timeline (case-study-ealing.html)
 - Replaced flat Before/After two-card section with dark immersive transformation timeline
 - Three metric rows with animated counters, gradient arrows, multiplier tags
-- Closing statement card: "The clinic didn't change. The visibility did."
+- Closing statement card: "The clinic  change. The visibility did."
 
 ### [2026-04-08] — Ealing Case Study: rankings section → proof cards (case-study-ealing.html)
 - Replaced leaderboard rows with two side-by-side proof cards on dark background
