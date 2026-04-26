@@ -17,6 +17,11 @@
         box-sizing: border-box;
       }
 
+      /* Prevent horizontal overflow on mobile — html+body combo required for iOS Safari */
+      html {
+        overflow-x: hidden;
+      }
+
       :root {
         --navy: #0f172a;
         --navy-light: #1e293b;
@@ -786,6 +791,7 @@
         margin-top: 0;
         position: relative;
         overflow: hidden;
+        overflow-x: clip;
         background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
       }
 
@@ -1217,6 +1223,7 @@
         border-bottom: 1px solid rgba(0,0,0,0.05);
         padding: 2rem 0;
         overflow: hidden;
+        max-width: 100vw;
       }
 
       .logo-bar-scroller {
@@ -1250,6 +1257,7 @@
         padding: 6rem 2rem;
         position: relative;
         overflow: hidden;
+        overflow-x: clip;
         border-top: 1px solid rgba(0,0,0,0.06);
         border-bottom: 1px solid rgba(0,0,0,0.06);
       }
@@ -1651,6 +1659,7 @@
       .carousel-container {
         overflow: hidden;
         padding: 0 2rem;
+        max-width: 100vw;
       }
 
       .carousel-track {
@@ -2401,7 +2410,7 @@
       .founder-section {
         background: #FAF8F3;
         padding: 5rem 2rem 0;
-        overflow: visible;
+        overflow: hidden;
       }
 
       .founder-inner {
@@ -2616,6 +2625,7 @@
         background: linear-gradient(180deg, #0a0f1c 0%, #0f172a 40%, #111d35 100%);
         padding: 8rem 2rem 7rem;
         overflow: hidden;
+        overflow-x: clip;
         position: relative;
       }
 
@@ -3201,6 +3211,7 @@
       .split-section {
         display: flex;
         width: 100%;
+        overflow: hidden;
       }
 
       .split-problem {
@@ -3471,6 +3482,7 @@
         padding: 7rem 2rem;
         background: var(--cream);
         border-top: 1px solid rgba(0,0,0,0.06);
+        overflow: hidden;
       }
 
       .shift-inner {
@@ -4250,6 +4262,7 @@
       .two-paths-section {
         background: #FAF8F3;
         padding: 5rem 2rem;
+        overflow: hidden;
       }
 
       .two-paths-inner {
@@ -4919,6 +4932,25 @@
           flex-direction: column;
           gap: 1.5rem;
           text-align: center;
+        }
+
+        /* Contain the Gildhart divider logo on mobile */
+        .gh-divider img {
+          max-width: 160px;
+        }
+
+        /* Ensure split CTA doesn't overflow */
+        .split-cta {
+          padding: 1.5rem;
+        }
+
+        .split-cta-text {
+          font-size: 1rem;
+        }
+
+        /* Constrain featured case image offset border */
+        .featured-case-image::before {
+          left: 0;
         }
       }
     </style>

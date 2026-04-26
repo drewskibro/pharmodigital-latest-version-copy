@@ -18,6 +18,20 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Add Puri Pharmacy card to Live Right Now carousel on salesagent page
+- Inserted new card between Ealing Travel Clinic and Easy Clinic
+- Same design pattern: screenshot, lightbox trigger, LIVE badge with pulse dot
+- Screenshot hosted: uploaded-asset-1777195719971-0.png
+- All other cards unchanged; carousel nav/dots auto-adapt to new card count
+- Files: salesagent.html
+
+### [2026-04-25] — Index page: fix mobile horizontal overflow (page sliding left)
+- Added `overflow-x: hidden` on `html` element (body alone insufficient for iOS Safari rubber-band scroll)
+- Added `overflow: hidden` / `overflow-x: clip` to 8 sections: hero, featured-case-study, split-section, shift-section, two-paths, founder, revenue, logo-bar, carousel
+- Contained `.featured-case-image::before` left offset and `.gh-divider img` max-width at ≤768px
+- Desktop layout completely unchanged — all fixes scoped to overflow containment
+- Files: index.html
+
 ### [2026-04-25] — SalesAgent closing section: comprehensive mobile responsiveness fixes
 - Testimonial cards: stack vertically on ≤768px instead of horizontal overflow scroll
 - Pricing box: added box-sizing, max-width:100%, overflow:hidden to prevent viewport bleed
