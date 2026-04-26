@@ -18,6 +18,19 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Wire Southdowns nav link to case-study-southdowns.html (all 6 pages)
+- Updated `href="#"` → `href="case-study-southdowns.html"` for Southdowns entry in "The Proof" dropdown
+- Applied to both desktop `.dd-item` and mobile `.mobile-dd-item` on all 6 pages
+- Pages: index.html, homepage-v2.html, ai-domination-system.html, case-study-ealing.html, salesagent.html, web-pro-elite.html
+
+### [2026-04-26] — Create Southdowns Pharmacy Group case study page (case-study-southdowns.html)
+- New 7-section page: Hero (green) → Numbers (cream stat bar) → Inbox / Proof (cream) → Lead (cream two-col) → What This Means (green 3-card) → Testimonial (cream card) → Closing CTA (green)
+- Forest green + gold palette throughout; no teal, no navy. All components repurposed from salesagent.html & web-pro-elite.html
+- Nav, mobile overlay, footer, scroll reveals, shrink-on-scroll — all replicated from existing pages
+- Screenshot placeholders labelled for Gmail inbox + Tracy Abraham lead
+- Gold border transitions between section pairs for visual rhythm
+- Files: case-study-southdowns.html (new)
+
 ### [2026-04-26] — Update hero subtitle copy (case-study-ealing.html)
 - Replaced single-sentence subtitle with three-beat version: bypass claim → content architecture → results
 - Added line breaks between beats for scan-friendly rhythm
