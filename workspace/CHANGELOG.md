@@ -18,6 +18,45 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Step 5/5: Visual rhythm & gold border transitions (case-study-ealing.html)
+- Audited full page flow: Hero(cream)→Problem(cream)→Discovery(GREEN)→Proof(navy)→Mechanism(GREEN)→Results(cream)→ProofCards(navy)→Quote(GREEN)→Transform(navy)→Urgency(navy)→CTA(GREEN)→Footer(GREEN)
+- Added 1px gold `border-bottom` transitions on Discovery, Proof Screenshot, Mechanism, Proof Cards, Quote, Transform, Urgency, and CTA sections
+- Varied gold opacity (0.15–0.3) to suit adjacency: stronger between same-tone pairs (navy→navy, green→green), subtler between contrasting pairs
+- Removed Footer `border-top` (CTA `border-bottom` now serves as the seam) to avoid double-line
+- All 5 steps of the Ealing design-system upgrade plan are now complete
+
+### [2026-04-26] — Step 4/5: Upgrade Quote section to forest-green premium (case-study-ealing.html)
+- Changed `.quote-section` bg from cream gradient to `var(--gildhart-green)` with `::before` radial glow
+- Quote text → `#FAF5EE`, quote mark → gold at 0.7 opacity, author name → cream, role → `rgba(245,236,215,0.6)`
+- Added `position: relative` + `z-index: 1` on `.quote-inner` for glow layering
+- Consistent with Mechanism, Discovery, and CTA green treatment pattern
+
+### [2026-04-26] — Step 3/5: Upgrade CTA section to forest-green premium (case-study-ealing.html)
+- Changed `.cta-section` bg from cream gradient to `var(--gildhart-green)` with `::before` radial glow
+- Cards: `rgba(255,255,255,0.07)` bg, 1.5px gold border, hover lift + gold glow shadow
+- Text: headline → cream, eyebrow → gold, body → `rgba(245,236,215,0.7)`, price → gold
+- Primary button flipped to gold bg/green text; outline button → white/transparent on green
+- Price divider now gold-tinted; card labels shifted from sage to gold
+
+### [2026-04-26] — Step 2/5: Upgrade Discovery section to forest-green + fix proof stat readability (case-study-ealing.html)
+- Changed `.discovery-section` bg from `#fef7ed` to `var(--gildhart-green)` with `::before` radial glow
+- Updated `.section-eyebrow` to gold, `.section-headline` to cream, body text to `rgba(245,236,215,0.7)`, strong → `#FAF5EE`, `.teal` → gold
+- Added relative/z-index layering for inner content above glow pseudo-element
+- Tightened proof-screenshot stat labels: "Prominently in AI Overviews" → "In AI Overviews", etc. — shorter, crisper hierarchy
+- Softened `.proof-screenshot-stat-sub` to 0.45 opacity, smaller font, better letter-spacing
+
+### [2026-04-26] — Step 1/5: Upgrade Mechanism section to forest-green premium (case-study-ealing.html)
+- Changed `.mechanism-section` background from `var(--cream)` to `var(--gildhart-green)` with `::before` radial glow
+- Updated `.section-eyebrow` to gold, `.section-headline` to cream (#FAF5EE), `.section-subheadline` to semi-transparent cream
+- Comparison columns: `.old` → `rgba(255,255,255,0.07)`, `.new` → `rgba(255,255,255,0.11)`, both with 1.5px gold border + hover lift
+- Body text shifted to cream tones, `.teal` accent → gold, strong text → white
+- Matches `.wpe-package` pattern from web-pro-elite.html (step 1 of 5-step design system upgrade)
+
+### [2026-04-26] — Replace Google Search Console images with natural screenshot (case-study-ealing.html)
+- Replaced both instances of old enhanced GSC image (`uploaded-asset-1770550188024-1.jpeg`) with new natural screenshot (`uploaded-asset-1777209039795-0.png`)
+- Affected sections: "Google Search Console Tells the Story" (proof-screenshot) + "From Invisible to Everywhere" results graph
+- Files: case-study-ealing.html
+
 ### [2026-04-26] — Add Raman photo to Superior Pharmacy testimonial card (salesagent.html)
 - Wrapped Superior Pharmacy card attribution in `.sa-closing-testimonial-meta-row` (same pattern as Sachin & Nemesh)
 - Added circular avatar: `uploaded-asset-1777207897627-0.png` (Raman headshot)
