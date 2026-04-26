@@ -18,6 +18,30 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Fix gap between qualification card intro paragraphs (salesagent.html)
+- Reduced margin-bottom on first eligibility intro paragraph from 1.5rem to 0.5rem
+- Second paragraph retains 1.5rem bottom margin for spacing before the label
+- No structural or copy changes
+
+### [2026-04-26] — Update qualification card copy on salesagent.html
+- Replaced eligibility intro with two plain paragraphs (no italic): "Most practices that come to us..." + "Every practice we've deployed..."
+- Criterion 1: "You offer at least one private service — weight loss, travel health, private prescriptions, or similar."
+- Criterion 2: "You have patients visiting your website who never make contact. Not because they changed their mind. Because nobody answered."
+- Card background, border, padding, shadow, label, tick styling all unchanged
+
+### [2026-04-26] — Update "The Process" section copy on salesagent.html
+- Updated section headline: "One client received their first weight loss booking five minutes after going live..."
+- Removed subhead ("One client booked their first weight loss appointment within five minutes of going live")
+- Step 01 Train: new headline "Built Around Your Practice. Not A Template." + expanded 2-para body
+- Step 02 Test: new headline "It Doesn't Go Near Your Patients Until We're Certain." + 2-para body
+- Step 03 Deploy: new headline "Seven Days. Then It's Yours." + 3-para body; removed closing badge
+- All design elements, classes, spacing, and CSS untouched — copy changes only
+
+### [2026-04-26] — Tighten padding on Track Record section (salesagent.html)
+- Reduced `.sa-track-record` padding from 8rem/8.5rem to 5rem/5.5rem (desktop)
+- Reduced mobile padding from 5.5rem/6rem to 3.5rem/4rem
+- Files: salesagent.html
+
 ### [2026-04-26] — Premium eyebrow styling for SalesAgent Pro hero
 - Matched `.sa-hero-eyebrow` to index.html `.hero-eyebrow` premium pattern
 - Changed: font-size 1rem→0.75rem, weight 600→700, color sage→var(--gildhart-green), letter-spacing 0.015em→0.14em
