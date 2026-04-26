@@ -18,6 +18,12 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Premium eyebrow styling for SalesAgent Pro hero
+- Matched `.sa-hero-eyebrow` to index.html `.hero-eyebrow` premium pattern
+- Changed: font-size 1rem→0.75rem, weight 600→700, color sage→var(--gildhart-green), letter-spacing 0.015em→0.14em
+- Added text-transform:uppercase, padding-bottom 4px→6px, gold underline opacity 0.7→0.9
+- Files: salesagent.html
+
 ### [2026-04-26] — Add Puri Pharmacy card to Live Right Now carousel on salesagent page
 - Inserted new card between Ealing Travel Clinic and Easy Clinic
 - Same design pattern: screenshot, lightbox trigger, LIVE badge with pulse dot
