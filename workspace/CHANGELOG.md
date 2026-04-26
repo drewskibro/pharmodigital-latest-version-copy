@@ -18,6 +18,11 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Update pricing card copy on salesagent.html (no date-specific language)
+- Monthly card descriptor replaced with evergreen copy about pay-as-you-go, 12-month agreement, online activation fee waiver, and annual plan savings
+- Annual card: "April only" pill → "online only"; "Total saving this April:" → "Total saving:"; "Price locked forever." prefix removed from price-lock line
+- No structural, CSS, or other content changes
+
 ### [2026-04-26] — Fix gap between qualification card intro paragraphs (salesagent.html)
 - Reduced margin-bottom on first eligibility intro paragraph from 1.5rem to 0.5rem
 - Second paragraph retains 1.5rem bottom margin for spacing before the label
