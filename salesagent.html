@@ -2485,41 +2485,54 @@
         font-weight: 700;
       }
 
-      /* ── Urgency notice (premium inline) ── */
-      .sa-closing-urgency {
+      /* Scannable offer paragraphs */
+      .sa-closing-copy-block {
         max-width: 720px;
-        margin: 0 auto 4rem;
-        position: relative;
-        z-index: 1;
+        margin: 0 auto;
         text-align: center;
-        padding: 0;
-        background: none;
-        border: none;
-        border-radius: 0;
-        display: block;
       }
-      .sa-closing-urgency-icon {
-        display: none;
+      .sa-closing-copy-block p {
+        font-size: 1.25rem;
+        color: var(--gray-600);
+        line-height: 1.7;
+        margin: 0 0 1.5rem;
       }
-      .sa-closing-urgency-text {
+      .sa-closing-copy-block p:last-child {
+        margin-bottom: 0;
+      }
+      .sa-closing-copy-names {
         font-family: 'Inter', sans-serif;
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: var(--navy);
-        line-height: 1.65;
-      }
-      .sa-closing-urgency-text span {
-        color: var(--gildhart-green);
+        font-size: 1.3125rem;
         font-weight: 700;
+        color: var(--navy);
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+        margin: 1.75rem 0;
+        padding: 1.25rem 0;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
       }
-      .sa-closing-urgency-rule {
-        display: block;
-        width: 48px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--gildhart-gold), rgba(201,164,74,0.2));
-        border-radius: 2px;
-        margin: 1.25rem auto 0;
+      .sa-closing-copy-punchline {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.55;
+        letter-spacing: -0.01em;
+        margin-top: 1.75rem;
       }
+      @media (max-width: 768px) {
+        .sa-closing-copy-block p {
+          font-size: 1.0625rem;
+        }
+        .sa-closing-copy-names {
+          font-size: 1.125rem;
+        }
+        .sa-closing-copy-punchline {
+          font-size: 1.0625rem;
+        }
+      }
+
 
       /* ── Two-column integrated layout ── */
       .sa-closing-inner {
@@ -3002,6 +3015,149 @@
         text-transform: lowercase;
         letter-spacing: 0.02em;
       }
+      /* Fee waiver savings callout */
+      .sa-fee-waiver-callout {
+        margin: 0 -0.25rem 1.75rem;
+        padding: 2rem 1.75rem 1.75rem;
+        background: linear-gradient(135deg, rgba(201,164,74,0.12) 0%, rgba(240,230,200,0.35) 50%, rgba(201,164,74,0.08) 100%);
+        border: 2px solid rgba(201,164,74,0.4);
+        border-radius: 16px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(201,164,74,0.1), 0 1px 4px rgba(0,0,0,0.04);
+      }
+      .sa-fee-waiver-callout::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent 5%, var(--gildhart-gold) 30%, var(--gildhart-gold) 70%, transparent 95%);
+        opacity: 0.7;
+        border-radius: 2px;
+      }
+      .sa-fee-waiver-callout::after {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(201,164,74,0.1) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .sa-fee-waiver-eyebrow {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gildhart-gold);
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .sa-fee-waiver-amount-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 0.625rem;
+        flex-wrap: wrap;
+      }
+      .sa-fee-waiver-amount {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2.25rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--gray-400);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        text-decoration: line-through;
+        text-decoration-color: rgba(201,164,74,0.8);
+        text-decoration-thickness: 3px;
+        display: inline-block;
+      }
+      .sa-fee-waiver-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: var(--gildhart-green);
+        color: #fff;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.375rem 0.875rem;
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(30,61,47,0.25);
+        line-height: 1;
+        white-space: nowrap;
+      }
+      .sa-fee-waiver-badge-icon {
+        font-size: 0.8rem;
+        line-height: 1;
+      }
+      .sa-fee-waiver-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.4;
+        margin-bottom: 0.625rem;
+      }
+      .sa-fee-waiver-divider {
+        width: 48px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gildhart-gold), transparent);
+        margin: 0.75rem auto;
+        border-radius: 2px;
+        opacity: 0.6;
+      }
+      .sa-fee-waiver-details {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        line-height: 1.65;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+      .sa-fee-waiver-details strong {
+        color: var(--navy);
+        font-weight: 600;
+      }
+      @media (max-width: 768px) {
+        .sa-fee-waiver-callout {
+          margin: 0 0 1.5rem;
+          padding: 1.5rem 1.125rem 1.25rem;
+        }
+        .sa-fee-waiver-amount {
+          font-size: 2rem;
+        }
+        .sa-fee-waiver-label {
+          font-size: 1rem;
+        }
+        .sa-fee-waiver-details {
+          font-size: 0.8125rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .sa-fee-waiver-callout {
+          padding: 1.25rem 0.875rem 1rem;
+          border-radius: 12px;
+        }
+        .sa-fee-waiver-amount {
+          font-size: 1.75rem;
+        }
+        .sa-fee-waiver-amount-row {
+          gap: 0.5rem;
+        }
+        .sa-fee-waiver-badge {
+          font-size: 0.6rem;
+          padding: 0.3rem 0.7rem;
+        }
+      }
+
       .sa-closing-punchline {
         font-family: 'Inter', sans-serif;
         font-size: 0.9375rem;
@@ -3190,7 +3346,6 @@
         .sa-closing-anchor { font-size: 1.0625rem; }
         .sa-closing-cards { grid-template-columns: 1fr; gap: 0.5rem; }
         .sa-closing-cards-or { padding: 0.25rem 0; }
-        .sa-closing-urgency { flex-direction: column; padding: 1.25rem 1rem; }
         .sa-closing-eligibility-bar { flex-direction: column; gap: 0.75rem; padding: 1.5rem 1.25rem; }
         .sa-closing-pricing {
           padding: 1.75rem 1.125rem 1.5rem;
@@ -4849,22 +5004,19 @@
       <div class="sa-closing-top">
         <span class="sa-closing-overline sa-reveal sa-reveal-d1">The Offer</span>
         <h2 class="sa-closing-headline sa-reveal sa-reveal-d2">
-          One Mounjaro Patient Pays<br />For This For The Year.
+          For The First Time,<br />Being Independent Is The Advantage.
         </h2>
-        <p class="sa-closing-anchor sa-reveal sa-reveal-d3">
-          A Mounjaro patient is worth <strong>£3,000+</strong> over their lifetime. A family travel booking is worth
-          <strong>£480</strong>. The Agent costs less than either.
-        </p>
+        <div class="sa-closing-copy-block sa-reveal sa-reveal-d3">
+          <p>The big chains have procurement committees. Board approvals. Six-month technology cycles. By the time they deploy AI that actually works, your practice has been live for a year — capturing patients they can&#39;t reach, answering questions they can&#39;t respond to, and compounding revenue they&#39;ll never recover.</p>
+
+          <p class="sa-closing-copy-names">Superior Pharmacy. Ealing Travel Clinic. Malvern Travel Clinic.</p>
+
+          <p>Independent practices now sitting at the top of their markets. Not because they outspent the chains. Because they outmoved them.</p>
+
+          <p class="sa-closing-copy-punchline">This is the technology that separates the top earning independents from everyone else. The practices already live know that. The ones still deciding are finding out.</p>
+        </div>
       </div>
 
-      <!-- Urgency notice -->
-      <div class="sa-closing-urgency sa-reveal sa-reveal-d3">
-        <p class="sa-closing-urgency-text">
-          If you already know you want it, you shouldn't have to pay for a conversation to confirm it. Activate The Agent directly online and <span>the £1,500 setup fee is waived entirely.</span> The system deploys in 7 days. No call needed. No onboarding queue.
-The setup fee is waived. The decision is yours. 
-        </p>
-        <span class="sa-closing-urgency-rule"></span>
-      </div>
 
       <div class="sa-closing-inner">
         <!-- LEFT COLUMN: Value Stack -->
@@ -5024,7 +5176,7 @@ The setup fee is waived. The decision is yours.
               <p class="sa-closing-card-price">
                 £125<span style="font-size:0.5em;font-weight:500;opacity:0.5;">/mo</span>
               </p>
-              <p class="sa-closing-card-detail" style="font-size:0.8125rem;color:#4b5563;line-height:1.55;margin-top:0.375rem;">For practices that want to start today and pay as they go. 12-month agreement. £1,500 setup fee waived for online activation. The annual plan saves you £505 — but the results are identical either way.</p>
+              <p class="sa-closing-card-detail" style="font-size:0.8125rem;color:#4b5563;line-height:1.55;margin-top:0.375rem;">For practices that want to start today and pay as they go. 12-month agreement. <strong style="color:#1E3D2F;">£1,500 setup fee waived</strong> — see below. The annual plan saves you £505, but the results are identical either way.</p>
             </div>
             <span class="sa-closing-cards-or">or</span>
             <div class="sa-closing-card sa-closing-card--popular">
@@ -5037,6 +5189,18 @@ The setup fee is waived. The decision is yours.
               <p class="sa-closing-card-total">Total saving: £2,005</p>
               <p class="sa-closing-price-lock">As demand grows and pricing increases, you renew at £995. Always.</p>
             </div>
+          </div>
+
+          <!-- Fee waiver savings callout -->
+          <div class="sa-fee-waiver-callout sa-reveal sa-reveal-d2">
+            <span class="sa-fee-waiver-eyebrow">Online Activation Bonus</span>
+            <div class="sa-fee-waiver-amount-row">
+              <span class="sa-fee-waiver-amount">£1,500</span>
+              <span class="sa-fee-waiver-badge"><span class="sa-fee-waiver-badge-icon">✓</span> Waived</span>
+            </div>
+            <p class="sa-fee-waiver-label">Setup fee waived entirely.</p>
+            <div class="sa-fee-waiver-divider"></div>
+            <p class="sa-fee-waiver-details"><strong>No call needed.</strong> No onboarding queue. Deploys in 7 days. The decision is yours.</p>
           </div>
 
           <p class="sa-closing-punchline">

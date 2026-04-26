@@ -18,6 +18,35 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Complete fee waiver integration plan (salesagent.html) — Steps 1–4
+- Step 1: Removed old `.sa-closing-urgency` block from between closing copy and What's Included
+- Step 2: Created `.sa-fee-waiver-callout` banner between pricing cards and punchline
+- Step 3: Styled callout with gold gradient, struck-through £1,500, green WAIVED badge, divider, scroll reveal, responsive breakpoints
+- Step 4: Simplified monthly card descriptor to bold "£1,500 setup fee waived — see below" cross-reference
+- Files: salesagent.html
+
+### [2026-04-26] — Style fee waiver callout for visual weight (salesagent.html)
+- Upgraded `.sa-fee-waiver-callout`: richer gold gradient bg, 2px gold top accent, decorative radial glow
+- Amount row: larger struck-through £1,500 (clamp 2.25–3rem) + green "✓ WAIVED" pill badge
+- Added `.sa-fee-waiver-amount-row`, `.sa-fee-waiver-badge`, `.sa-fee-waiver-divider` elements
+- Box-shadow, gold divider, bold "No call needed" for hierarchy; `sa-reveal` scroll entrance
+- Responsive: 768px + 480px breakpoints; step 3 of 4 complete, step 4 remaining
+- Files: salesagent.html
+
+### [2026-04-26] — Remove urgency block from between closing copy and What's Included (salesagent.html)
+- Deleted `.sa-closing-urgency`, `.sa-closing-urgency-icon`, `.sa-closing-urgency-text`, `.sa-closing-urgency-rule` CSS
+- Removed mobile override for `.sa-closing-urgency` at ≤768px
+- Deleted HTML div with "If you already know you want it…" copy and gold rule
+- Step 1 of 4: copy will be reintegrated as callout in pricing area (steps 2–3)
+- Files: salesagent.html
+
+### [2026-04-26] — Make Offer section copy scannable (salesagent.html)
+- Split dense single paragraph into 4 visual beats with proper spacing
+- Practice names (Superior, Ealing, Malvern) pulled into bold standalone line with top/bottom borders
+- Closing two sentences styled as heavier-weight punchline
+- New CSS classes: `.sa-closing-copy-block`, `.sa-closing-copy-names`, `.sa-closing-copy-punchline`
+- Zero copy changes — same words, better rhythm and readability
+
 ### [2026-04-26] — Removed condensed proof strip section entirely (salesagent.html)
 - Deleted all `.sa-proof-strip` CSS (~120 lines) and HTML section between FAQ and Offer
 - Section was redundant with the full "Live Right Now" carousel higher up the page
