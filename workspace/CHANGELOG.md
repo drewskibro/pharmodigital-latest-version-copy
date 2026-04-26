@@ -18,6 +18,12 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Add client photo to Southdowns testimonial card (salesagent.html)
+- Wrapped Southdowns card attribution in `.sa-closing-testimonial-meta-row` (same pattern as Sachin Mehta)
+- Added circular avatar: `uploaded-asset-1777203891666-0.png` with `.sa-closing-testimonial-avatar` class
+- No CSS changes needed — existing avatar styles already defined
+- Files: salesagent.html
+
 ### [2026-04-26] — Complete fee waiver integration plan (salesagent.html) — Steps 1–4
 - Step 1: Removed old `.sa-closing-urgency` block from between closing copy and What's Included
 - Step 2: Created `.sa-fee-waiver-callout` banner between pricing cards and punchline
