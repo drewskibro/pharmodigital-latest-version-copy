@@ -18,6 +18,14 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-27] — Rebuild client credibility strip to enterprise level
+- Replaced small inline bar with full-width 3-column grid panel (`.ab-who-client-cell` architecture)
+- Each cell now has: large stat headline (3.25rem), Space Mono client name, descriptive context line
+- Gold top border accent (2px gradient), vertical gold dividers between cells, radial glow per cell
+- Mobile: stacks single-column with horizontal gold dividers, label repositioned
+- Fixed weak Southdowns card quote to convey transformation ("zero digital presence → 250+ enquiries")
+- Files: about.html (CSS overhaul of `.ab-who-client-strip` + HTML restructure + card quote copy)
+
 ### [2026-04-27] — Add gold Gildhart logo marks to About page (hero + CTA)
 - Replaced faint hero logo mark (old asset, 0.35 opacity, 60px) with gold crest (120px, 0.6 opacity)
 - Added second logo mark above CTA headline as brand seal (100px, 0.5 opacity)

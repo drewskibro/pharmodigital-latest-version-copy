@@ -510,83 +510,102 @@
       .ab-who-card-quote::after { content: '\201D'; }
       .ab-who-closing { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--gray-600); line-height: 1.85; text-align: center; max-width: 760px; margin: 0 auto; }
 
-      /* Client credibility strip */
+      /* Client credibility strip — enterprise tier */
       .ab-who-client-strip {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 0;
-        margin: 0 auto 3.5rem;
-        padding: 2.5rem 2rem;
+        margin: 0 auto 4rem;
+        padding: 0;
         background: var(--gildhart-green);
-        border-radius: 16px;
+        border-radius: 24px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.12), inset 0 1px 0 rgba(201,164,74,0.1);
+        box-shadow: 0 12px 48px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.12), inset 0 1px 0 rgba(201,164,74,0.12);
       }
       .ab-who-client-strip::before {
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent 5%, rgba(201,164,74,0.4) 30%, rgba(201,164,74,0.4) 70%, transparent 95%);
+        height: 2px;
+        background: linear-gradient(90deg, transparent 2%, rgba(201,164,74,0.5) 20%, var(--gildhart-gold) 50%, rgba(201,164,74,0.5) 80%, transparent 98%);
+        z-index: 2;
       }
       .ab-who-client-strip::after {
         content: '';
         position: absolute;
         bottom: 0; left: 0; right: 0;
         height: 1px;
-        background: linear-gradient(90deg, transparent 5%, rgba(201,164,74,0.4) 30%, rgba(201,164,74,0.4) 70%, transparent 95%);
+        background: linear-gradient(90deg, transparent 5%, rgba(201,164,74,0.25) 30%, rgba(201,164,74,0.25) 70%, transparent 95%);
       }
       .ab-who-client-strip-label {
         position: absolute;
-        top: 0.75rem;
+        top: 1.25rem;
         left: 50%;
         transform: translateX(-50%);
         font-family: 'Space Mono', monospace;
-        font-size: 0.5625rem;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(201,164,74,0.55);
+        z-index: 3;
+        white-space: nowrap;
+      }
+      .ab-who-client-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 4rem 2rem 3.25rem;
+        position: relative;
+      }
+      .ab-who-client-cell::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(ellipse at center top, rgba(201,164,74,0.04) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      /* Vertical gold divider between cells */
+      .ab-who-client-cell + .ab-who-client-cell::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 15%;
+        bottom: 15%;
+        width: 1px;
+        background: linear-gradient(180deg, transparent, rgba(201,164,74,0.4) 30%, rgba(201,164,74,0.4) 70%, transparent);
+      }
+      .ab-who-client-cell-stat {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2.25rem, 3.5vw, 3.25rem);
+        font-weight: 800;
+        color: var(--gildhart-gold);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .ab-who-client-cell-name {
+        font-family: 'Space Mono', monospace;
+        font-size: clamp(0.6875rem, 1vw, 0.8125rem);
         font-weight: 700;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: rgba(201,164,74,0.45);
+        color: #ffffff;
+        margin-bottom: 0.75rem;
       }
-      .ab-who-client-name {
-        font-family: 'Space Mono', monospace;
-        font-size: clamp(0.6875rem, 1.1vw, 0.8125rem);
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--gildhart-gold);
-        white-space: nowrap;
-        padding: 0 1.75rem;
-        text-align: center;
-        line-height: 1.4;
-      }
-      .ab-who-client-name span {
-        display: block;
+      .ab-who-client-cell-desc {
         font-family: 'Outfit', sans-serif;
-        font-size: 0.6875rem;
+        font-size: 0.875rem;
         font-weight: 400;
-        letter-spacing: 0.04em;
-        text-transform: none;
-        color: rgba(245,236,215,0.5);
-        margin-top: 0.25rem;
-      }
-      .ab-who-client-divider {
-        width: 1px;
-        height: 38px;
-        background: linear-gradient(180deg, transparent, rgba(201,164,74,0.5), transparent);
-        flex-shrink: 0;
-      }
-      /* connecting line decoration on each side */
-      .ab-who-client-strip-line {
-        flex: 1;
-        max-width: 60px;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(201,164,74,0.3));
-      }
-      .ab-who-client-strip-line:last-child {
-        background: linear-gradient(270deg, transparent, rgba(201,164,74,0.3));
+        color: rgba(245,236,215,0.55);
+        line-height: 1.6;
+        max-width: 240px;
       }
 
       @media (max-width: 900px) {
@@ -597,22 +616,36 @@
         .ab-who-header-rule { width: 48px; margin-bottom: 1.5rem; }
         .ab-who-card-stat { font-size: clamp(1.75rem, 6vw, 2.5rem); }
         .ab-who-client-strip {
-          flex-direction: column;
-          gap: 0;
-          padding: 2rem 1.5rem;
-          border-radius: 14px;
+          grid-template-columns: 1fr;
+          border-radius: 20px;
         }
-        .ab-who-client-name {
-          padding: 1rem 0;
-          font-size: 0.75rem;
+        .ab-who-client-cell {
+          padding: 2.75rem 1.75rem 2.25rem;
         }
-        .ab-who-client-divider {
-          width: 60px;
+        .ab-who-client-cell:first-child {
+          padding-top: 3.5rem;
+        }
+        .ab-who-client-cell + .ab-who-client-cell::after {
+          top: 0;
+          bottom: auto;
+          left: 10%;
+          right: 10%;
+          width: auto;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(201,164,74,0.45), transparent);
+          background: linear-gradient(90deg, transparent, rgba(201,164,74,0.35), transparent);
         }
-        .ab-who-client-strip-line { display: none; }
-        .ab-who-client-strip-label { position: static; transform: none; margin-bottom: 0.5rem; }
+        .ab-who-client-cell-stat {
+          font-size: clamp(2rem, 8vw, 2.75rem);
+        }
+        .ab-who-client-strip-label {
+          position: static;
+          transform: none;
+          margin-bottom: 0;
+          padding-top: 1.5rem;
+          text-align: center;
+          width: 100%;
+          grid-column: 1;
+        }
       }
 
       .ab-cta { background: var(--gildhart-green); padding: 8rem 2rem 8rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
@@ -1039,20 +1072,31 @@
                 open now — and won&#39;t stay open.
               </p>
               <p class="ab-who-card-quote">
-                Southdowns captures 250+ private patient enquiries a month across 13 services.
+                Southdowns went from zero digital presence to 250+ private patient enquiries a month — across 13
+                services they&#39;d never marketed before.
               </p>
             </div>
           </div>
         </div>
         <div class="ab-who-client-strip ab-reveal ab-reveal-d5">
           <span class="ab-who-client-strip-label">Trusted By</span>
-          <div class="ab-who-client-strip-line"></div>
-          <div class="ab-who-client-name">Superior Pharmacy<span>&#163;500k+ AI Revenue</span></div>
-          <div class="ab-who-client-divider"></div>
-          <div class="ab-who-client-name">Ealing Travel Clinic<span>300% Revenue Growth</span></div>
-          <div class="ab-who-client-divider"></div>
-          <div class="ab-who-client-name">Southdowns Group<span>250+ Enquiries / Month</span></div>
-          <div class="ab-who-client-strip-line"></div>
+          <div class="ab-who-client-cell">
+            <span class="ab-who-client-cell-stat">&#163;500k+</span>
+            <span class="ab-who-client-cell-name">Superior Pharmacy</span>
+            <span class="ab-who-client-cell-desc">Annual revenue driven entirely through AI search infrastructure</span>
+          </div>
+          <div class="ab-who-client-cell">
+            <span class="ab-who-client-cell-stat">300%</span>
+            <span class="ab-who-client-cell-name">Ealing Travel Clinic</span>
+            <span class="ab-who-client-cell-desc">Revenue growth from a single high-value clinical service</span>
+          </div>
+          <div class="ab-who-client-cell">
+            <span class="ab-who-client-cell-stat">250+</span>
+            <span class="ab-who-client-cell-name">Southdowns Group</span>
+            <span class="ab-who-client-cell-desc"
+              >Private patient enquiries per month across 13 newly activated services</span
+            >
+          </div>
         </div>
         <p class="ab-who-closing ab-reveal ab-reveal-d5">
           They&#39;ve seen what Superior Pharmacy, Ealing Travel Clinic, and Southdowns Pharmacy Group have built. They
@@ -1074,7 +1118,7 @@
           waitlist.
         </h2>
         <p class="ab-cta-body ab-reveal ab-reveal-d2">
-          The cost question answers itself. Usually within the first week.
+          If Gildhart sounds like the right partner for your practice, the next step is straightforward.
         </p>
         <div class="ab-cta-buttons ab-reveal ab-reveal-d3">
           <a href="index.html#contact" class="ab-btn-primary">Join The Waitlist &#8594;</a>
