@@ -18,6 +18,19 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-27] — Fix stat panel overflow + remove count-up animation (salesagent.html)
+- Removed all data-countup attributes from 4 proof panel numbers — stats now render static
+- Added min-width:0; overflow:hidden to both .sa-proof-panel-stat and .sa-proof-panel-content
+- Added white-space:nowrap to .sa-proof-panel-number to prevent mid-animation text wrap into right column
+- Agreed with user: count-up animation is overused SaaS trope — static editorial numbers are more premium
+
+### [2026-04-27] — Redesign The Numbers section on The Agent page (salesagent.html)
+- Replaced headline with "10:47pm. A Patient Has A Question. Your Website Has Nothing To Say."
+- Removed 2×2 card grid entirely — replaced with 4 full-width stacked editorial panels
+- Each panel: large gold stat left (6.5rem), thin gold vertical divider, label + descriptor + body right
+- Alternating cream backgrounds (#f5f0e8 odd / #ede8df even) — no borders, no cards, no shadows
+- Mobile: stat stacks above content, divider hidden, stat scales down to ~3.5rem clamped
+
 ### [2026-04-27] — Step 3 fix: Retry z-index rule on ai-domination-system.html
 - Previous replace_in_file failed due to whitespace mismatch (`display:none` vs `display: none`)
 - Re-read file, confirmed exact text `display: none !important;` (with spaces), applied correct SEARCH block

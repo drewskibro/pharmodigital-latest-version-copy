@@ -1952,16 +1952,21 @@
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-         SECTION 4 — PROOF (Dark)
+         SECTION 4 — PROOF (Editorial Panels)
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       .sa-proof {
-        background: linear-gradient(180deg, #faf7f2 0%, #f5f0e8 40%, #ede8df 100%);
-        padding: 8rem 2rem 7rem;
         overflow: hidden;
         position: relative;
         border-top: 1px solid rgba(0,0,0,0.06);
+        padding: 0;
       }
-      .sa-proof::before {
+      .sa-proof-header-wrap {
+        background: linear-gradient(180deg, #faf7f2 0%, #f5f0e8 100%);
+        padding: 7rem 2rem 5rem;
+        text-align: center;
+        position: relative;
+      }
+      .sa-proof-header-wrap::before {
         content: '';
         position: absolute;
         top: -200px;
@@ -1980,7 +1985,7 @@
       }
       .sa-proof-header {
         text-align: center;
-        margin-bottom: 5rem;
+        margin-bottom: 0;
       }
       .sa-proof-sub {
         font-size: 1.25rem;
@@ -1994,99 +1999,127 @@
         color: var(--navy);
         font-weight: 700;
       }
-      .sa-proof-cards {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.75rem;
-      }
-      .sa-proof-card {
-        background: white;
-        border-radius: 24px;
-        padding: 3rem 2.75rem;
-        border: 1px solid rgba(0,0,0,0.08);
+
+      /* ── Editorial stat panels ── */
+      .sa-proof-panels {
         display: flex;
         flex-direction: column;
-        transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.45s ease;
+      }
+      .sa-proof-panel {
+        width: 100%;
+        padding: 5.5rem 0;
         position: relative;
+      }
+      .sa-proof-panel:nth-child(odd) {
+        background: #f5f0e8;
+      }
+      .sa-proof-panel:nth-child(even) {
+        background: #ede8df;
+      }
+      .sa-proof-panel-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 280px 1px 1fr;
+        gap: 0 3.5rem;
+        align-items: center;
+      }
+      /* Stat figure column */
+      .sa-proof-panel-stat {
+        text-align: right;
+        padding-right: 3.5rem;
+        min-width: 0;
         overflow: hidden;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.03);
       }
-      .sa-proof-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 3px;
-        height: 100%;
-        background: linear-gradient(180deg, var(--gildhart-green) 0%, rgba(30,61,47,0.2) 100%);
-        opacity: 0.7;
-        transition: opacity 0.35s ease;
-      }
-      .sa-proof-card:nth-child(2),
-      .sa-proof-card:nth-child(4) {
-        background: white;
-        border-color: rgba(30,61,47,0.15);
-      }
-      .sa-proof-card:nth-child(2)::before,
-      .sa-proof-card:nth-child(4)::before {
-        width: 4px;
-        opacity: 1;
-        background: linear-gradient(180deg, var(--gildhart-green) 0%, rgba(30,61,47,0.4) 100%);
-      }
-      .sa-proof-card:nth-child(2)::after,
-      .sa-proof-card:nth-child(4)::after {
-        content: '';
-        position: absolute;
-        top: -60px;
-        right: -60px;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(30,61,47,0.04) 0%, transparent 70%);
-        pointer-events: none;
-      }
-      .sa-proof-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 0 20px rgba(30,61,47,0.08);
-        border-color: rgba(30,61,47,0.3);
-      }
-      .sa-proof-card:hover::before { opacity: 1; }
-      .sa-proof-card-label {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--gildhart-gold);
-        margin-bottom: 1.75rem;
-      }
-      .sa-proof-card-number {
+      .sa-proof-panel-number {
         font-family: 'Inter', sans-serif;
-        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        font-size: clamp(3.5rem, 6vw, 6.5rem);
         font-weight: 800;
-        color: var(--navy);
+        color: var(--gildhart-gold);
         line-height: 1;
         letter-spacing: -0.04em;
-        margin-bottom: 0.75rem;
+        display: block;
+        white-space: nowrap;
       }
-      .sa-proof-card-descriptor {
-        font-size: 1.125rem;
+      /* Vertical gold divider */
+      .sa-proof-panel-divider {
+        width: 1px;
+        align-self: stretch;
+        min-height: 120px;
+        background: linear-gradient(180deg, transparent 0%, var(--gildhart-gold) 20%, var(--gildhart-gold) 80%, transparent 100%);
+        opacity: 0.45;
+        flex-shrink: 0;
+      }
+      /* Right content column */
+      .sa-proof-panel-content {
+        padding-left: 0;
+        min-width: 0;
+        overflow: hidden;
+      }
+      .sa-proof-panel-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
         font-weight: 700;
-        color: var(--navy);
-        line-height: 1.5;
-        margin-bottom: 2rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-variant: small-caps;
+        color: var(--gildhart-gold);
+        margin-bottom: 0.875rem;
+        display: block;
       }
-      .sa-proof-card-divider {
-        width: 48px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--gildhart-green), rgba(30,61,47,0.15));
-        margin-bottom: 1.5rem;
-        border-radius: 2px;
+      .sa-proof-panel-descriptor {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1.25rem, 2vw, 1.625rem);
+        font-weight: 700;
+        color: var(--gildhart-green);
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.25rem;
       }
-      .sa-proof-card-text {
-        font-size: 1rem;
-        color: var(--gray-600);
-        line-height: 1.7;
-        flex: 1;
+      .sa-proof-panel-text {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.0625rem;
+        color: #374151;
+        line-height: 1.75;
+        font-weight: 400;
+        max-width: 580px;
+      }
+
+      /* Mobile: stack vertically */
+      @media (max-width: 768px) {
+        .sa-proof-panel {
+          padding: 3.5rem 0;
+        }
+        .sa-proof-panel-inner {
+          grid-template-columns: 1fr;
+          gap: 1.5rem 0;
+          padding: 0 1.5rem;
+        }
+        .sa-proof-panel-stat {
+          text-align: left;
+          padding-right: 0;
+        }
+        .sa-proof-panel-divider {
+          display: none;
+        }
+        .sa-proof-panel-number {
+          font-size: clamp(3.5rem, 14vw, 5rem);
+        }
+        .sa-proof-panel-descriptor {
+          font-size: clamp(1.125rem, 4vw, 1.375rem);
+        }
+        .sa-proof-panel-text {
+          font-size: 1rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .sa-proof-panel-number {
+          font-size: clamp(3rem, 16vw, 4rem);
+        }
+        .sa-proof-header-wrap {
+          padding: 5rem 1.5rem 3.5rem;
+        }
       }
 
       /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -4757,56 +4790,82 @@
 
     <!-- ═══ SECTION 4: PROOF ═══ -->
     <section class="sa-proof" id="proof">
-      <div class="sa-proof-inner">
-        <div class="sa-proof-header">
-          <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">The Numbers</p>
-          <h2 class="sa-headline-dark sa-reveal sa-reveal-d2" style="max-width:820px;margin:0 auto;">What Happens When Nobody<br />Gets Left Behind.</h2>
-          <p class="sa-proof-sub sa-reveal sa-reveal-d3">
-            Not rankings. Not traffic. <strong>Revenue.</strong> Here&#39;s what it looks like in practice.
-          </p>
+      <!-- Section header — separate cream background wrapper -->
+      <div class="sa-proof-header-wrap">
+        <div class="sa-proof-inner">
+          <div class="sa-proof-header">
+            <p class="sa-eyebrow sa-eyebrow-cream sa-reveal sa-reveal-d1">The Numbers</p>
+            <h2 class="sa-headline-dark sa-reveal sa-reveal-d2" style="max-width:860px;margin:0 auto;font-size:clamp(1.875rem,4vw,3rem);letter-spacing:-0.03em;">10:47pm. A Patient Has A Question. Your Website Has Nothing To Say.</h2>
+            <p class="sa-proof-sub sa-reveal sa-reveal-d3">
+              Not rankings. Not traffic. <strong>Revenue.</strong> Here&#39;s what it looks like in practice.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editorial stat panels -->
+      <div class="sa-proof-panels">
+
+        <!-- Panel 1: Southdowns -->
+        <div class="sa-proof-panel sa-reveal sa-reveal-d2">
+          <div class="sa-proof-panel-inner">
+            <div class="sa-proof-panel-stat">
+              <span class="sa-proof-panel-number">£200k</span>
+            </div>
+            <div class="sa-proof-panel-divider"></div>
+            <div class="sa-proof-panel-content">
+              <span class="sa-proof-panel-label">Southdowns Pharmacy Group</span>
+              <p class="sa-proof-panel-descriptor">Annual revenue run rate from The Agent alone.</p>
+              <p class="sa-proof-panel-text">Ear wax removal at 9pm. Needle stick injury vaccines on a Saturday. Wegovy questions at midnight. Every enquiry captured. Every one converted. None of it requiring a single member of staff.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="sa-proof-cards">
-          <div class="sa-proof-card sa-reveal-card sa-reveal-d3">
-            <p class="sa-proof-card-label">South Downs Pharmacy Group</p>
-            <p class="sa-proof-card-number" data-countup="200" data-prefix="£" data-suffix="k">£200k</p>
-            <p class="sa-proof-card-descriptor">Projected annual revenue from their AI sales agent alone</p>
-            <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">
-              Patients arrive with specific clinical questions. The agent handles every one. Books the appointment.
-              Captures the data. Every single day.
-            </p>
-          </div>
-          <div class="sa-proof-card sa-reveal-card sa-reveal-d4">
-            <p class="sa-proof-card-label">Superior Pharmacy</p>
-            <p class="sa-proof-card-number" data-countup="50" data-suffix="%">50%</p>
-            <p class="sa-proof-card-descriptor">Of all weight loss sales now handled by AI</p>
-            <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">
-              Weight loss inquiries at 2am. Medication questions on Sunday afternoons. The agent answers every one and
-              converts.
-            </p>
-          </div>
-          <div class="sa-proof-card sa-reveal-card sa-reveal-d5">
-            <p class="sa-proof-card-label">Ealing Travel Clinic</p>
-            <p class="sa-proof-card-number" data-countup="25" data-suffix="%">25%</p>
-            <p class="sa-proof-card-descriptor">Conversion rate across all AI agent inquiries</p>
-            <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">
-              One in four inquiries becomes a booked appointment. The other three leave their data for follow-up.
-            </p>
-          </div>
-          <div class="sa-proof-card sa-reveal-card sa-reveal-d6">
-            <p class="sa-proof-card-label">Across Our Client Network</p>
-            <p class="sa-proof-card-number" data-countup="100000" data-suffix="+" data-format="number">100,000+</p>
-            <p class="sa-proof-card-descriptor">Real healthcare conversations handled and learned from</p>
-            <div class="sa-proof-card-divider"></div>
-            <p class="sa-proof-card-text">
-              Every conversation makes the agent smarter. It knows healthcare. It knows patients. It knows how to
-              convert.
-            </p>
+        <!-- Panel 2: Superior Pharmacy -->
+        <div class="sa-proof-panel sa-reveal sa-reveal-d3">
+          <div class="sa-proof-panel-inner">
+            <div class="sa-proof-panel-stat">
+              <span class="sa-proof-panel-number">50%</span>
+            </div>
+            <div class="sa-proof-panel-divider"></div>
+            <div class="sa-proof-panel-content">
+              <span class="sa-proof-panel-label">Superior Pharmacy</span>
+              <p class="sa-proof-panel-descriptor">Of all weight loss sales now closed through The Agent.</p>
+              <p class="sa-proof-panel-text">Mounjaro questions at 2am. Eligibility checks on Sunday afternoons. Medication queries that used to go unanswered. The Agent handles every one — and converts at a rate no static website ever will.</p>
+            </div>
           </div>
         </div>
+
+        <!-- Panel 3: Ealing Travel Clinic -->
+        <div class="sa-proof-panel sa-reveal sa-reveal-d4">
+          <div class="sa-proof-panel-inner">
+            <div class="sa-proof-panel-stat">
+              <span class="sa-proof-panel-number">25%</span>
+            </div>
+            <div class="sa-proof-panel-divider"></div>
+            <div class="sa-proof-panel-content">
+              <span class="sa-proof-panel-label">Ealing Travel Clinic</span>
+              <p class="sa-proof-panel-descriptor">Conversion rate across all AI agent enquiries.</p>
+              <p class="sa-proof-panel-text">One in four conversations becomes a booked appointment. The other three become patient intent data — the exact language, the exact questions, the exact services that drive content that ranks and compounds every month.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 4: Network -->
+        <div class="sa-proof-panel sa-reveal sa-reveal-d5">
+          <div class="sa-proof-panel-inner">
+            <div class="sa-proof-panel-stat">
+              <span class="sa-proof-panel-number">100,000+</span>
+            </div>
+            <div class="sa-proof-panel-divider"></div>
+            <div class="sa-proof-panel-content">
+              <span class="sa-proof-panel-label">Across Our Client Network</span>
+              <p class="sa-proof-panel-descriptor">Real patient conversations handled across our network.</p>
+              <p class="sa-proof-panel-text">Every conversation is a data point on what patients want, when they want it, and what makes them book. That intelligence builds clinical authority no competitor starting today can replicate.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
