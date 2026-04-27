@@ -18,6 +18,115 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-27] — Add gold Gildhart logo marks to About page (hero + CTA)
+- Replaced faint hero logo mark (old asset, 0.35 opacity, 60px) with gold crest (120px, 0.6 opacity)
+- Added second logo mark above CTA headline as brand seal (100px, 0.5 opacity)
+- Both use gold logo variant (uploaded-asset-1777284330379-2.png) for visibility on dark green backgrounds
+- Responsive: scales down to 80px hero / 68px CTA on mobile
+- Files: about.html (CSS + HTML in hero body + CTA section)
+
+### [2026-04-27] — Fix About nav link hover (gold-on-gold invisible text)
+- About link in about.html nav had `class="nav-cta"` + inline `color:var(--gildhart-gold)!important`
+- On hover, `.nav-cta:hover` applied gold background but inline `!important` color beat the white override → invisible text
+- Fix: removed nav-cta class and all inline styles — About is now a plain `<a>` like on all other pages
+- Files: about.html (nav HTML only)
+
+### [2026-04-27] — Remove broken logo dividers causing empty space on About page
+- Removed all 4 `.ab-section-logo-divider` HTML blocks (Hero→Drew, Drew→Team, Team→How, How→Who)
+- Removed all `.ab-section-logo-divider` CSS (~150 lines: base, dark, light, subtle variants, responsive)
+- Logo images weren't rendering visibly, leaving ~80-100px dead padding gaps between every section
+- Hero logo mark (`.ab-hero-logo-mark`) inside hero body retained — only the between-section dividers removed
+- Files: about.html (HTML + CSS cleanup)
+
+### [2026-04-27] — Responsive and visual QA adjustments (Logo Dividers plan step 5/5 — COMPLETE)
+- Removed unused `.ab-gold-divider` CSS rule (all HTML dividers already replaced in step 2)
+- Created `--subtle` variant for cream→cream transition (How→Who): 70px logo, 0.5 opacity, 0.18 line alpha
+- Removed `max-width` cap on flanking gradient lines at ≤768px and ≤480px — lines now fill full width via `flex: 1`
+- IO observer already targets `.ab-reveal` — all 4 dividers + hero mark confirmed triggering correctly
+- Files: about.html (CSS cleanup + subtle variant + mobile line fix)
+
+### [2026-04-27] — Add hero logo mark flourish (Logo Dividers plan step 4/5)
+- Inserted `.ab-hero-logo-mark` img inside `.ab-hero-body` after closing paragraph
+- 60px Gildhart logo at 0.35 opacity with gold drop-shadow — watermark-style brand closer
+- Custom `abHeroLogoFade` keyframe: fades + scales up from 0.85→1 with 1.2s delay (after hero text)
+- Responsive: 48px at ≤768px, 40px at ≤480px with tighter top margin
+- Files: about.html (CSS + HTML)
+
+### [2026-04-27] — Style light and dark variants with background blending (Logo Dividers plan step 3/5)
+- Light variant: gradient lines bumped from 0.28→0.3 opacity, radial glow removed (background: none) for clean cream bg
+- Mobile: logo 70px at ≤768px (was 80px), 60px at ≤480px (was 68px); padding tightened to 1.5rem
+- Dark variant unchanged — already correct (0.35 gradients, 0.1 radial glow, green bg)
+- All 4 dividers already have `ab-reveal` class from step 2 — scroll animation confirmed working
+- Files: about.html (CSS refinements only)
+
+### [2026-04-27] — Place logo dividers at 4 section transitions (Logo Dividers plan step 2/5)
+- Replaced 3 plain `.ab-gold-divider` elements with `.ab-section-logo-divider` components
+- Added new dark-variant divider between Hero (green) → Drew (cream) — previously had no divider
+- Drew→Team uses --light, Team→How uses --dark, How→Who uses --light (matches surrounding bg)
+- Did NOT add divider above CTA section (acts as its own branded sign-off)
+- Files: about.html (HTML only — 4 divider blocks inserted)
+
+### [2026-04-27] — Create reusable section logo divider component (Logo Dividers plan step 1/5)
+- Added `.ab-section-logo-divider` CSS component: centred logo with flanking gold gradient lines
+- Two variants: `--dark` (green bg, 0.35 gold gradients) and `--light` (cream bg, 0.28 gold gradients, green drop-shadow)
+- Radial gold glow behind logo via `::before` pseudo on `.ab-section-logo-divider-img`
+- Scroll-reveal integration: logo scales from 0.7→1 with 0.15s delay after container fades in
+- Responsive: 100px desktop → 80px tablet → 68px mobile; max-width on lines shrinks proportionally
+- Files: about.html (CSS only — no HTML placed yet)
+
+### [2026-04-27] — Add hover interactions and scroll-reveal stagger to Who We Work With cards (step 5/5 — plan complete)
+- Replaced per-card ab-reveal-d3/d4/d5 with ab-stagger-1/2/3 classes (0 → 120ms → 240ms sequential delay)
+- Enhanced hover: translateY(-10px), deeper shadow (28px 72px), 1.5px gold ring
+- Added ::after pseudo for gold bottom-border glow that expands from 10%→4% inset on hover
+- Card inner radial glow intensifies on hover (0.06→0.12 opacity)
+- Files: about.html (CSS + HTML class changes on .ab-who-card elements)
+
+### [2026-04-27] — Elevate Who We Work With section header with editorial treatment (step 4/5)
+- Centred header block (.ab-who-header) with text-align:center, max-width 780px, auto margins
+- Added gold gradient horizontal rule (.ab-who-header-rule) between eyebrow and headline
+- Tightened intro copy max-width from 820px → 640px for better readability
+- Mobile responsive: reduced bottom margin and rule width for compact spacing
+- Files: about.html (CSS + HTML in .ab-who section)
+
+### [2026-04-27] — Add client credibility strip between cards and closing copy (step 3/5)
+- Inserted `.ab-who-client-strip` — dark green bar with gold Space Mono tracked client names
+- Three named practices: Superior Pharmacy, Ealing Travel Clinic, Southdowns Group with stat subtitles
+- Gold vertical dividers between names, connecting line decorations on edges, top/bottom gold gradient borders
+- Mobile: stacks vertically with horizontal gold dividers, label repositioned above
+- Files: about.html (CSS + HTML in .ab-who section)
+
+### [2026-04-27] — Redesign "Who We Work With" cards into rich profile tiles (step 2/5)
+- Replaced plain white text-only cards with dark green (var(--gildhart-green)) immersive tiles
+- Each card now has: bold gold headline stat (£500k+, 300%, 250+), Space Mono stat subtitle, white Inter 800 title, tightened body copy, italic gold pull-quote soundbite
+- Gold left accent bar (4px gradient), inner radial glow, deeper shadows, translateY(-8px) hover
+- Visually distinct from .ab-team gold-bordered cards — different bg, structure, and typography
+- Files: about.html (CSS + HTML in .ab-who section)
+
+### [2026-04-27] — Audit "Who We Work With" section for redesign (step 1/5)
+- Read about.html — Section 5 (.ab-who) uses plain white cards with text only, no imagery/stats/quotes
+- 3 cards: Pharmacy Groups, Private Clinics, Enterprise — basic hover (translateY only)
+- Section 3 (.ab-team) uses gold-bordered cards on green bg — redesign must stay visually distinct
+- Plan: transform into rich client-profile tiles with imagery, stats, soundbites in step 2
+- Files: about.html (read only)
+
+### [2026-04-27] — Remove stat strip from About page
+- Deleted £500k / 250+ / £100k stat strip section from ab-hero bottom
+- Removed all .ab-stat-strip, .ab-stat-item, .ab-stat-num, .ab-stat-label CSS + responsive overrides
+- Files: about.html
+
+### [2026-04-27] — Harden dropdown close JS (step 3/4 — index.html + about.html)
+- Simplified plainLinks selector to `a:not(.nav-dropdown)` — catches CTA-styled About link on about.html
+- Scoped dd-force-closed removal to only the specific dropdown being entered (fixes race condition)
+- Added `pointerenter` backup on plain links + `mouseleave` on triggers with 80ms hover check
+- CSS bridge already clipped in step 2 (left/right: 0); z-index: 200 on plain links already in place
+- Files: index.html, about.html — remaining 6 pages in step 4
+
+### [2026-04-27] — Fix sticky nav dropdown on all 8 pages (original implementation)
+- Dropdowns used pure CSS `:hover` + a `::before` bridge that prevented them closing when moving to adjacent links
+- Added `.dd-force-closed` CSS override (opacity/visibility/pointer-events !important) + arrow reset
+- Added JS: `mouseenter` on plain nav links (About, CTAs) adds `.dd-force-closed` to all dropdowns; entering any dropdown removes it
+- Applied to: about.html, index.html, salesagent.html, web-pro-elite.html, ai-domination-system.html, case-study-ealing.html, homepage-v2.html, case-study-southdowns.html
+
 ### [2026-04-27] — Editorial typography upgrade on About hero green section (combinations 1+3+5)
 - Power line "Gildhart sits at that intersection deliberately." isolated with gold rules above/below, larger italic Inter 800
 - Client names extracted to .ab-hero-nameplate: gold, Space Mono, tracked, centred — above closing paragraph

@@ -54,7 +54,7 @@
       .nav-brand:hover img { filter: drop-shadow(0 4px 16px rgba(201,164,74,0.4)); transform: scale(1.04); }
       .nav-links { display: flex; align-items: center; justify-content: center; gap: 2rem; grid-column: 1; grid-row: 2; padding-bottom: 1.5rem; }
       .nav-links-right { display: flex; align-items: center; justify-content: center; gap: 2rem; grid-column: 3; grid-row: 2; padding-bottom: 1.5rem; }
-      .nav-links-right a, .nav-links a { font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; color: #FAF5EE; text-decoration: none; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+      .nav-links-right a, .nav-links a { font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; color: #FAF5EE; text-decoration: none; transition: color 0.2s; position: relative; padding-bottom: 2px; z-index: 200; }
       .nav-links-right a::after, .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--gildhart-gold); border-radius: 1px; transition: width 0.3s ease; }
       .nav-links-right a:hover, .nav-links a:hover { color: var(--gildhart-gold); }
       .nav-links-right a:hover::after, .nav-links a:hover::after { width: 100%; }
@@ -71,7 +71,9 @@
       @keyframes ddFadeIn { from { opacity: 0; } to { opacity: 1; } }
       .nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 360px; background: rgba(30,61,47,1); border-radius: 0 0 12px 12px; box-shadow: 0 14px 44px rgba(201,164,74,0.10), 0 6px 20px rgba(0,0,0,0.18); opacity: 0; visibility: hidden; pointer-events: none; z-index: 100; padding: 0.5rem 0; border-top: none; }
       .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; animation: ddFadeIn 150ms ease forwards; }
-      .nav-dropdown-menu::before { content: ''; position: absolute; top: -20px; left: -16px; right: -16px; height: 24px; background: transparent; pointer-events: auto; }
+      .nav-dropdown.dd-force-closed .nav-dropdown-menu { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; animation: none !important; }
+      .nav-dropdown.dd-force-closed .dd-arrow { transform: rotate(0deg) !important; }
+      .nav-dropdown-menu::before { content: ''; position: absolute; top: -20px; left: 0; right: 0; height: 24px; background: transparent; pointer-events: auto; }
       .nav-dropdown-menu::after { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; background: transparent; }
       .dd-section-label { font-family: 'Space Mono', monospace; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-variant: small-caps; color: var(--gildhart-gold); padding: 0.875rem 1.5rem 0.375rem; display: block; pointer-events: none; background: transparent!important; }
       .dd-divider { height: 1px; background: var(--gildhart-gold); opacity: 1; margin: 0.25rem 1.5rem; }
@@ -173,9 +175,14 @@
       .ab-reveal-card { opacity: 0; transform: translateY(50px) scale(0.96); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
       .ab-reveal-card.ab-visible { opacity: 1; transform: translateY(0) scale(1); }
 
+      /* Staggered card reveal — used by IntersectionObserver JS */
+      .ab-stagger-1 { transition-delay: 0s; }
+      .ab-stagger-2 { transition-delay: 0.12s; }
+      .ab-stagger-3 { transition-delay: 0.24s; }
+
       .ab-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; font-variant: small-caps; color: var(--gildhart-gold); display: block; margin-bottom: 1.5rem; }
 
-      .ab-gold-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(201,164,74,0.35) 30%, rgba(201,164,74,0.35) 70%, transparent 100%); }
+
 
       .ab-hero { background: var(--gildhart-green); padding: 7rem 2rem 0; position: relative; overflow: hidden; }
       .ab-hero::before { content: ''; position: absolute; top: -300px; left: 50%; transform: translateX(-50%); width: 1100px; height: 1100px; background: radial-gradient(circle, rgba(201,164,74,0.05) 0%, transparent 65%); pointer-events: none; }
@@ -203,6 +210,50 @@
         border-bottom: 1px solid rgba(201,164,74,0.25);
       }
 
+      /* Hero logo mark — gold Gildhart crest */
+      .ab-hero-logo-mark {
+        display: block;
+        margin: 3.5rem auto 0;
+        width: 120px;
+        height: auto;
+        opacity: 0;
+        filter: drop-shadow(0 4px 16px rgba(201,164,74,0.35));
+        animation: abHeroLogoFade 1s ease-out 1.2s forwards;
+        pointer-events: none;
+      }
+      @keyframes abHeroLogoFade {
+        from { opacity: 0; transform: translateY(16px) scale(0.8); }
+        to   { opacity: 0.6; transform: translateY(0) scale(1); }
+      }
+      @media (max-width: 768px) {
+        .ab-hero-logo-mark { width: 96px; margin-top: 2.75rem; }
+      }
+      @media (max-width: 480px) {
+        .ab-hero-logo-mark { width: 80px; margin-top: 2.25rem; }
+      }
+
+      /* CTA logo mark — brand seal above closing CTA */
+      .ab-cta-logo-mark {
+        display: block;
+        margin: 0 auto 2.5rem;
+        width: 100px;
+        height: auto;
+        opacity: 0.5;
+        filter: drop-shadow(0 3px 12px rgba(201,164,74,0.3));
+        pointer-events: none;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .ab-cta-logo-mark.ab-visible {
+        opacity: 0.5;
+        transform: translateY(0);
+      }
+      @media (max-width: 768px) {
+        .ab-cta-logo-mark { width: 80px; margin-bottom: 2rem; }
+      }
+      @media (max-width: 480px) {
+        .ab-cta-logo-mark { width: 68px; margin-bottom: 1.75rem; }
+      }
+
       /* Client nameplate row */
       .ab-hero-nameplate {
         display: block;
@@ -217,21 +268,11 @@
         line-height: 1.8;
       }
 
-      .ab-stat-strip { background: rgba(255,255,255,0.06); border-top: 1px solid rgba(201,164,74,0.2); margin-top: 4rem; }
-      .ab-stat-strip-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); }
-      .ab-stat-item { padding: 2.5rem 2rem; text-align: center; position: relative; }
-      .ab-stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 25%; height: 50%; width: 1px; background: rgba(201,164,74,0.2); }
-      .ab-stat-num { font-family: 'Inter', sans-serif; font-size: clamp(1.875rem, 3vw, 2.75rem); font-weight: 800; color: var(--gildhart-gold); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.625rem; }
-      .ab-stat-label { font-size: 0.9375rem; font-weight: 400; color: rgba(245,236,215,0.65); line-height: 1.5; }
 
       @media (max-width: 768px) {
         .ab-hero { padding: 5rem 1.5rem 0; }
         .ab-hero-headline { font-size: clamp(2rem, 7vw, 2.75rem); }
         .ab-hero-body p { font-size: 1.0625rem; }
-        .ab-stat-strip-inner { grid-template-columns: 1fr; }
-        .ab-stat-item::after { display: none; }
-        .ab-stat-item { padding: 1.75rem 1.5rem; border-bottom: 1px solid rgba(201,164,74,0.1); }
-        .ab-stat-item:last-child { border-bottom: none; }
       }
 
       .ab-drew { background: #fef7ed; padding: 7rem 2rem 7.5rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
@@ -351,17 +392,228 @@
       .ab-who { background: #fef7ed; padding: 7rem 2rem 7.5rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
       .ab-who::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,61,47,0.04) 0%, transparent 65%); pointer-events: none; }
       .ab-who-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-      .ab-who-header { max-width: 820px; margin-bottom: 1.75rem; }
+      .ab-who-header { max-width: 780px; margin: 0 auto 3.5rem; text-align: center; position: relative; }
+      .ab-who-header-rule {
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(201,164,74,0.15), var(--gildhart-gold), rgba(201,164,74,0.15));
+        margin: 0 auto 2rem;
+        border: none;
+        border-radius: 1px;
+      }
       .ab-who-headline { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 3.75vw, 3rem); font-weight: 800; color: var(--navy); line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
-      .ab-who-intro { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--gray-600); line-height: 1.85; margin-bottom: 3.5rem; max-width: 820px; }
-      .ab-who-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-bottom: 3.5rem; }
-      .ab-who-card { background: white; border-radius: 20px; padding: 2.75rem 2.25rem; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 6px 28px rgba(0,0,0,0.055), 0 1px 4px rgba(0,0,0,0.04); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
-      .ab-who-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,0,0,0.09), 0 2px 8px rgba(30,61,47,0.08); }
-      .ab-who-card-label { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gildhart-gold); margin-bottom: 1rem; display: block; }
-      .ab-who-card-body { font-size: 1rem; color: var(--gray-600); line-height: 1.75; }
+      .ab-who-intro { font-size: clamp(1.0625rem, 1.5vw, 1.125rem); color: var(--gray-600); line-height: 1.85; margin-bottom: 0; max-width: 640px; margin-left: auto; margin-right: auto; }
+      .ab-who-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3.5rem; }
+      .ab-who-card {
+        background: var(--gildhart-green);
+        border-radius: 20px;
+        padding: 0;
+        border: none;
+        box-shadow: 0 8px 36px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease;
+      }
+      .ab-who-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--gildhart-gold) 0%, rgba(201,164,74,0.25) 100%);
+        border-radius: 20px 0 0 20px;
+        z-index: 2;
+      }
+      .ab-who-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 28px 72px rgba(0,0,0,0.32), 0 0 0 1.5px rgba(201,164,74,0.35);
+      }
+      /* Gold bottom-border glow on hover */
+      .ab-who-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 10%;
+        right: 10%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--gildhart-gold), transparent);
+        border-radius: 0 0 20px 20px;
+        opacity: 0;
+        transition: opacity 0.45s ease, left 0.45s ease, right 0.45s ease;
+        z-index: 3;
+      }
+      .ab-who-card:hover::after {
+        opacity: 1;
+        left: 4%;
+        right: 4%;
+      }
+      /* Gold glow spread beneath card on hover */
+      .ab-who-card:hover .ab-who-card-inner::before {
+        background: radial-gradient(circle, rgba(201,164,74,0.12) 0%, transparent 70%);
+      }
+      .ab-who-card-inner { padding: 2.5rem 2.25rem 2.25rem; position: relative; z-index: 1; }
+      /* Subtle radial glow inside card */
+      .ab-who-card-inner::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(201,164,74,0.06) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .ab-who-card-stat {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2rem, 3vw, 2.75rem);
+        font-weight: 800;
+        color: var(--gildhart-gold);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0.375rem;
+      }
+      .ab-who-card-stat-sub {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(201,164,74,0.65);
+        margin-bottom: 1.5rem;
+        display: block;
+      }
+      .ab-who-card-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+        margin-bottom: 0.875rem;
+        display: block;
+        line-height: 1.2;
+      }
+      .ab-who-card-body { font-size: 0.9375rem; color: rgba(245,236,215,0.72); line-height: 1.75; margin-bottom: 1.375rem; }
+      .ab-who-card-quote {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        font-style: italic;
+        color: var(--gildhart-gold);
+        line-height: 1.55;
+        padding-top: 1.125rem;
+        border-top: 1px solid rgba(201,164,74,0.2);
+        letter-spacing: -0.005em;
+      }
+      .ab-who-card-quote::before { content: '\201C'; }
+      .ab-who-card-quote::after { content: '\201D'; }
       .ab-who-closing { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--gray-600); line-height: 1.85; text-align: center; max-width: 760px; margin: 0 auto; }
 
-      @media (max-width: 900px) { .ab-who-cards { grid-template-columns: 1fr; gap: 1.25rem; } .ab-who { padding: 5rem 1.5rem 5.5rem; } .ab-who-headline { font-size: clamp(1.75rem, 6.5vw, 2.5rem); } }
+      /* Client credibility strip */
+      .ab-who-client-strip {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        margin: 0 auto 3.5rem;
+        padding: 2.5rem 2rem;
+        background: var(--gildhart-green);
+        border-radius: 16px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.12), inset 0 1px 0 rgba(201,164,74,0.1);
+      }
+      .ab-who-client-strip::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 5%, rgba(201,164,74,0.4) 30%, rgba(201,164,74,0.4) 70%, transparent 95%);
+      }
+      .ab-who-client-strip::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 5%, rgba(201,164,74,0.4) 30%, rgba(201,164,74,0.4) 70%, transparent 95%);
+      }
+      .ab-who-client-strip-label {
+        position: absolute;
+        top: 0.75rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Space Mono', monospace;
+        font-size: 0.5625rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(201,164,74,0.45);
+      }
+      .ab-who-client-name {
+        font-family: 'Space Mono', monospace;
+        font-size: clamp(0.6875rem, 1.1vw, 0.8125rem);
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gildhart-gold);
+        white-space: nowrap;
+        padding: 0 1.75rem;
+        text-align: center;
+        line-height: 1.4;
+      }
+      .ab-who-client-name span {
+        display: block;
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.6875rem;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        color: rgba(245,236,215,0.5);
+        margin-top: 0.25rem;
+      }
+      .ab-who-client-divider {
+        width: 1px;
+        height: 38px;
+        background: linear-gradient(180deg, transparent, rgba(201,164,74,0.5), transparent);
+        flex-shrink: 0;
+      }
+      /* connecting line decoration on each side */
+      .ab-who-client-strip-line {
+        flex: 1;
+        max-width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(201,164,74,0.3));
+      }
+      .ab-who-client-strip-line:last-child {
+        background: linear-gradient(270deg, transparent, rgba(201,164,74,0.3));
+      }
+
+      @media (max-width: 900px) {
+        .ab-who-cards { grid-template-columns: 1fr; gap: 1.5rem; }
+        .ab-who { padding: 5rem 1.5rem 5.5rem; }
+        .ab-who-headline { font-size: clamp(1.75rem, 6.5vw, 2.5rem); }
+        .ab-who-header { margin-bottom: 2.5rem; }
+        .ab-who-header-rule { width: 48px; margin-bottom: 1.5rem; }
+        .ab-who-card-stat { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+        .ab-who-client-strip {
+          flex-direction: column;
+          gap: 0;
+          padding: 2rem 1.5rem;
+          border-radius: 14px;
+        }
+        .ab-who-client-name {
+          padding: 1rem 0;
+          font-size: 0.75rem;
+        }
+        .ab-who-client-divider {
+          width: 60px;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(201,164,74,0.45), transparent);
+        }
+        .ab-who-client-strip-line { display: none; }
+        .ab-who-client-strip-label { position: static; transform: none; margin-bottom: 0.5rem; }
+      }
 
       .ab-cta { background: var(--gildhart-green); padding: 8rem 2rem 8rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
       .ab-cta::before { content: ''; position: absolute; top: -250px; left: 50%; transform: translateX(-50%); width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(201,164,74,0.05) 0%, transparent 65%); pointer-events: none; }
@@ -466,12 +718,7 @@
               >
             </div>
           </div>
-          <a
-            href="about.html"
-            class="nav-cta"
-            style="background:transparent;border:1px solid rgba(201,164,74,0.5);color:var(--gildhart-gold)!important;line-height:36px;"
-            >About</a
-          >
+          <a href="about.html">About</a>
           <a href="index.html#contact" class="nav-cta">Join The Waitlist</a>
         </div>
         <button class="nav-hamburger" aria-label="Open navigation menu">
@@ -603,22 +850,11 @@
             These aren&#39;t case studies. They&#39;re proof of what happens when healthcare expertise meets AI
             infrastructure built specifically for how patients now find, trust, and choose their providers.
           </p>
-        </div>
-      </div>
-      <div class="ab-stat-strip ab-reveal ab-reveal-d4">
-        <div class="ab-stat-strip-inner">
-          <div class="ab-stat-item">
-            <p class="ab-stat-num">&#163;500k</p>
-            <p class="ab-stat-label">Superior Pharmacy — annual revenue trajectory</p>
-          </div>
-          <div class="ab-stat-item">
-            <p class="ab-stat-num">250+</p>
-            <p class="ab-stat-label">Southdowns — patient enquiries every month</p>
-          </div>
-          <div class="ab-stat-item">
-            <p class="ab-stat-num">&#163;100k</p>
-            <p class="ab-stat-label">Ealing — from a single service</p>
-          </div>
+          <img
+            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1777284330379-2.png"
+            alt="Gildhart"
+            class="ab-hero-logo-mark"
+          />
         </div>
       </div>
     </section>
@@ -693,8 +929,6 @@
       </div>
     </section>
 
-    <div class="ab-gold-divider"></div>
-
     <section class="ab-team">
       <div class="ab-team-inner">
         <div class="ab-team-header">
@@ -731,8 +965,6 @@
       </div>
     </section>
 
-    <div class="ab-gold-divider"></div>
-
     <section class="ab-how">
       <div class="ab-how-inner">
         <span class="ab-eyebrow ab-reveal ab-reveal-d1">How We Work</span>
@@ -756,39 +988,71 @@
       </div>
     </section>
 
-    <div class="ab-gold-divider"></div>
-
     <section class="ab-who">
       <div class="ab-who-inner">
-        <span class="ab-eyebrow ab-reveal ab-reveal-d1">Who We Work With</span>
-        <h2 class="ab-who-headline ab-reveal ab-reveal-d2">Built For The Practices Ready To Own Their Market.</h2>
-        <p class="ab-who-intro ab-reveal ab-reveal-d3">
-          We work with pharmacy groups, private clinic operators, and healthcare businesses that have made a decision —
-          not a consideration. The practices that come to Gildhart already understand that AI search is the most
-          significant shift in patient acquisition in twenty years.
-        </p>
+        <div class="ab-who-header">
+          <span class="ab-eyebrow ab-reveal ab-reveal-d1">Who We Work With</span>
+          <hr class="ab-who-header-rule ab-reveal ab-reveal-d1" />
+          <h2 class="ab-who-headline ab-reveal ab-reveal-d2">Built For The Practices Ready To Own Their Market.</h2>
+          <p class="ab-who-intro ab-reveal ab-reveal-d3">
+            We work with pharmacy groups, private clinic operators, and healthcare businesses that have made a decision
+            — not a consideration. They already understand that AI search is the most significant shift in patient
+            acquisition in twenty years.
+          </p>
+        </div>
         <div class="ab-who-cards">
-          <div class="ab-who-card ab-reveal-card ab-reveal-d3">
-            <span class="ab-who-card-label">Pharmacy Groups</span>
-            <p class="ab-who-card-body">
-              Independent pharmacy groups and multi-site operators ready to become the dominant practice in their
-              market. Not practices testing the water. Practices ready to move.
-            </p>
+          <div class="ab-who-card ab-reveal-card ab-stagger-1">
+            <div class="ab-who-card-inner">
+              <span class="ab-who-card-stat">&#163;500k+</span>
+              <span class="ab-who-card-stat-sub">Revenue Trajectory</span>
+              <span class="ab-who-card-label">Pharmacy Groups</span>
+              <p class="ab-who-card-body">
+                Independent pharmacy groups and multi-site operators ready to become the dominant practice in their
+                market. Not testing the water — ready to move.
+              </p>
+              <p class="ab-who-card-quote">
+                Superior Pharmacy went from invisible to &#163;500k annual revenue on AI search alone.
+              </p>
+            </div>
           </div>
-          <div class="ab-who-card ab-reveal-card ab-reveal-d4">
-            <span class="ab-who-card-label">Private Clinic Operators</span>
-            <p class="ab-who-card-body">
-              Private clinics and specialist practices with high-value services and the ambition to make AI search their
-              primary patient acquisition channel.
-            </p>
+          <div class="ab-who-card ab-reveal-card ab-stagger-2">
+            <div class="ab-who-card-inner">
+              <span class="ab-who-card-stat">300%</span>
+              <span class="ab-who-card-stat-sub">Revenue Growth</span>
+              <span class="ab-who-card-label">Private Clinic Operators</span>
+              <p class="ab-who-card-body">
+                Private clinics with high-value services and the ambition to make AI search their primary patient
+                acquisition channel.
+              </p>
+              <p class="ab-who-card-quote">
+                Ealing Travel Clinic generates &#163;100k from a single service we built infrastructure around.
+              </p>
+            </div>
           </div>
-          <div class="ab-who-card ab-reveal-card ab-reveal-d5">
-            <span class="ab-who-card-label">Enterprise Healthcare</span>
-            <p class="ab-who-card-body">
-              Healthcare businesses operating at scale who understand that the window to build AI search dominance is
-              open now — and won&#39;t stay open indefinitely.
-            </p>
+          <div class="ab-who-card ab-reveal-card ab-stagger-3">
+            <div class="ab-who-card-inner">
+              <span class="ab-who-card-stat">250+</span>
+              <span class="ab-who-card-stat-sub">Enquiries / Month</span>
+              <span class="ab-who-card-label">Enterprise Healthcare</span>
+              <p class="ab-who-card-body">
+                Healthcare businesses operating at scale who understand that the window to build AI search dominance is
+                open now — and won&#39;t stay open.
+              </p>
+              <p class="ab-who-card-quote">
+                Southdowns captures 250+ private patient enquiries a month across 13 services.
+              </p>
+            </div>
           </div>
+        </div>
+        <div class="ab-who-client-strip ab-reveal ab-reveal-d5">
+          <span class="ab-who-client-strip-label">Trusted By</span>
+          <div class="ab-who-client-strip-line"></div>
+          <div class="ab-who-client-name">Superior Pharmacy<span>&#163;500k+ AI Revenue</span></div>
+          <div class="ab-who-client-divider"></div>
+          <div class="ab-who-client-name">Ealing Travel Clinic<span>300% Revenue Growth</span></div>
+          <div class="ab-who-client-divider"></div>
+          <div class="ab-who-client-name">Southdowns Group<span>250+ Enquiries / Month</span></div>
+          <div class="ab-who-client-strip-line"></div>
         </div>
         <p class="ab-who-closing ab-reveal ab-reveal-d5">
           They&#39;ve seen what Superior Pharmacy, Ealing Travel Clinic, and Southdowns Pharmacy Group have built. They
@@ -800,7 +1064,15 @@
 
     <section class="ab-cta">
       <div class="ab-cta-inner">
-        <h2 class="ab-cta-headline ab-reveal ab-reveal-d1">A Slot Opens Rarely. When It Does, It Goes Quickly.</h2>
+        <img
+          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1777284330379-2.png"
+          alt="Gildhart"
+          class="ab-cta-logo-mark ab-reveal"
+        />
+        <h2 class="ab-cta-headline ab-reveal ab-reveal-d1">
+          Engagements begin with a conversation. If what you've read here resonates, that conversation starts with the
+          waitlist.
+        </h2>
         <p class="ab-cta-body ab-reveal ab-reveal-d2">
           The cost question answers itself. Usually within the first week.
         </p>
@@ -937,6 +1209,35 @@
         syncSpacer(); checkScroll();
         var logoImg = nav.querySelector('.nav-brand img');
         if (logoImg) { if (logoImg.complete) { syncSpacer(); } else { logoImg.addEventListener('load', function() { syncSpacer(); checkScroll(); }); } }
+      })();
+
+      // ── Desktop dropdown: close when hovering non-dropdown nav items ──
+      (function() {
+        var dropdowns = document.querySelectorAll('.nav-links .nav-dropdown, .nav-links-right .nav-dropdown');
+        var plainLinks = document.querySelectorAll('.nav-links > a:not(.nav-dropdown), .nav-links-right > a:not(.nav-dropdown)');
+        function closeAll() { dropdowns.forEach(function(dd) { dd.classList.add('dd-force-closed'); }); }
+        // Close dropdowns when hovering any plain link (About, CTA, etc.) — mouseenter + pointerenter for robustness
+        plainLinks.forEach(function(link) {
+          link.addEventListener('mouseenter', closeAll);
+          link.addEventListener('pointerenter', closeAll);
+        });
+        // Also close when the cursor leaves any dropdown trigger area entirely
+        dropdowns.forEach(function(dd) {
+          var trigger = dd.querySelector('.nav-dropdown-trigger');
+          if (trigger) {
+            trigger.addEventListener('mouseleave', function() {
+              // Small delay lets the cursor reach the menu; if it doesn't, force-close
+              setTimeout(function() {
+                var menu = dd.querySelector('.nav-dropdown-menu');
+                if (menu && !menu.matches(':hover') && !dd.matches(':hover')) {
+                  dd.classList.add('dd-force-closed');
+                }
+              }, 80);
+            });
+          }
+          // Only remove force-closed on the SPECIFIC dropdown being entered
+          dd.addEventListener('mouseenter', function() { dd.classList.remove('dd-force-closed'); });
+        });
       })();
 
       document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {

@@ -70,6 +70,8 @@
       @keyframes ddFadeIn { from{opacity:0;} to{opacity:1;} }
       .nav-dropdown-menu { position:absolute; top:100%; left:50%; transform:translateX(-50%); min-width:360px; background:rgba(30,61,47,1); border-radius:0 0 12px 12px; box-shadow:0 14px 44px rgba(201,164,74,0.10), 0 6px 20px rgba(0,0,0,0.18); opacity:0; visibility:hidden; pointer-events:none; z-index:100; padding:0.5rem 0; border-top:none; }
       .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown.open .nav-dropdown-menu { opacity:1; visibility:visible; pointer-events:auto; animation:ddFadeIn 150ms ease forwards; }
+      .nav-dropdown.dd-force-closed .nav-dropdown-menu { opacity:0 !important; visibility:hidden !important; pointer-events:none !important; animation:none !important; }
+      .nav-dropdown.dd-force-closed .dd-arrow { transform:rotate(0deg) !important; }
       .nav-dropdown-menu::before { content:''; position:absolute; top:-20px; left:-16px; right:-16px; height:24px; background:transparent; pointer-events:auto; }
       .nav-dropdown-menu::after { content:''; position:absolute; top:-14px; left:0; right:0; height:14px; background:transparent; }
       .dd-section-label { font-family:'Space Mono',monospace; font-size:0.625rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; font-variant:small-caps; color:var(--gildhart-gold); padding:0.875rem 1.5rem 0.375rem; display:block; pointer-events:none; background:transparent!important; }
@@ -785,6 +787,17 @@
           });
         }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
         els.forEach(function(el) { obs.observe(el); });
+      })();
+
+      // ── Desktop dropdown: close when hovering non-dropdown nav items ──
+      (function() {
+        var dropdowns = document.querySelectorAll('.nav-links .nav-dropdown, .nav-links-right .nav-dropdown');
+        var plainLinks = document.querySelectorAll('.nav-links > a:not(.nav-dropdown):not(.nav-cta), .nav-links-right > a:not(.nav-dropdown):not(.nav-cta), .nav-links-right > .nav-cta');
+        function closeAll() { dropdowns.forEach(function(dd) { dd.classList.add('dd-force-closed'); }); }
+        plainLinks.forEach(function(link) { link.addEventListener('mouseenter', closeAll); });
+        dropdowns.forEach(function(dd) {
+          dd.addEventListener('mouseenter', function() { dropdowns.forEach(function(d) { d.classList.remove('dd-force-closed'); }); });
+        });
       })();
 
       // ── Smooth scroll ──

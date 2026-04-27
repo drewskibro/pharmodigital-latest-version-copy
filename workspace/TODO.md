@@ -17,12 +17,6 @@ Rules:
 </instructions>
 
 <todo>
-Smoke-test FAQ → Offer transition on mobile
-Proof strip removed. Verify the FAQ-to-Offer flow looks clean on narrow viewports with no excess whitespace.
-</todo>
-
-
-<todo>
 Review all footer links across 6 pages
 Footer links still reference old nav structure (Services/Case Studies) — should match new nav items
 </todo>
@@ -30,4 +24,9 @@ Footer links still reference old nav structure (Services/Case Studies) — shoul
 <todo>
 User test mobile overlay on real device
 Verify touch targets, accordion smoothness, CTA tap feedback, and X button visibility on iOS/Android
+</todo>
+
+<todo>
+Scroll-test About page gold logo marks + card stagger on mobile
+Verify hero logo mark and CTA logo mark render visibly on narrow viewports with correct sizing
 </todo>

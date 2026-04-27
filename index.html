@@ -322,13 +322,15 @@
         pointer-events: auto;
         animation: ddFadeIn 150ms ease forwards;
       }
-      /* Invisible hover bridge — extends above menu to prevent gap-close */
+      .nav-dropdown.dd-force-closed .nav-dropdown-menu { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; animation: none !important; }
+      .nav-dropdown.dd-force-closed .dd-arrow { transform: rotate(0deg) !important; }
+      /* Invisible hover bridge — above menu to prevent gap-close */
       .nav-dropdown-menu::before {
         content: '';
         position: absolute;
         top: -20px;
-        left: -16px;
-        right: -16px;
+        left: 0;
+        right: 0;
         height: 24px;
         background: transparent;
         pointer-events: auto;
@@ -683,17 +685,12 @@
         .nav-links-right {
           gap: 1.25rem;
         }
-        .nav-links a,
-        .nav-links-right a,
-        .nav-dropdown-trigger {
-          font-size: 0.875rem;
-        }
-        .nav-cta {
-          font-size: 0.75rem !important;
-          height: 34px;
-          line-height: 34px;
-          padding: 0 1.25rem;
-        }
+      }
+      /* Plain nav links above dropdown panels */
+      .nav-links > a:not(.nav-dropdown),
+      .nav-links-right > a:not(.nav-dropdown) {
+        position: relative;
+        z-index: 200;
       }
       @media (max-width: 768px) {
         .nav-links { display: none; }
@@ -6163,6 +6160,35 @@
               if (arrow) arrow.style.transform = 'rotate(180deg)';
             }
           });
+        });
+      })();
+
+      // ── Desktop dropdown: close when hovering non-dropdown nav items ──
+      (function() {
+        var dropdowns = document.querySelectorAll('.nav-links .nav-dropdown, .nav-links-right .nav-dropdown');
+        var plainLinks = document.querySelectorAll('.nav-links > a:not(.nav-dropdown), .nav-links-right > a:not(.nav-dropdown)');
+        function closeAll() { dropdowns.forEach(function(dd) { dd.classList.add('dd-force-closed'); }); }
+        // Close dropdowns when hovering any plain link (About, CTA, etc.) — mouseenter + pointerenter for robustness
+        plainLinks.forEach(function(link) {
+          link.addEventListener('mouseenter', closeAll);
+          link.addEventListener('pointerenter', closeAll);
+        });
+        // Also close when the cursor leaves any dropdown trigger area entirely
+        dropdowns.forEach(function(dd) {
+          var trigger = dd.querySelector('.nav-dropdown-trigger');
+          if (trigger) {
+            trigger.addEventListener('mouseleave', function() {
+              // Small delay lets the cursor reach the menu; if it doesn't, force-close
+              setTimeout(function() {
+                var menu = dd.querySelector('.nav-dropdown-menu');
+                if (menu && !menu.matches(':hover') && !dd.matches(':hover')) {
+                  dd.classList.add('dd-force-closed');
+                }
+              }, 80);
+            });
+          }
+          // Only remove force-closed on the SPECIFIC dropdown being entered
+          dd.addEventListener('mouseenter', function() { dd.classList.remove('dd-force-closed'); });
         });
       })();
 
