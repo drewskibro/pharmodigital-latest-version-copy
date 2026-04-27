@@ -26,6 +26,7 @@ User test mobile overlay on real device
 Verify touch targets, accordion smoothness, CTA tap feedback, and X button visibility on iOS/Android
 </todo>
 
+
 <todo>
 Scroll-test About page gold logo marks + card stagger on mobile
 Verify hero logo mark and CTA logo mark render visibly on narrow viewports with correct sizing

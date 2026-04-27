@@ -18,6 +18,37 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-27] — Step 3 fix: Retry z-index rule on ai-domination-system.html
+- Previous replace_in_file failed due to whitespace mismatch (`display:none` vs `display: none`)
+- Re-read file, confirmed exact text `display: none !important;` (with spaces), applied correct SEARCH block
+- Rule added: `.nav-links > a:not(.nav-dropdown), .nav-links-right > a:not(.nav-dropdown), .nav-links-right > .nav-cta { position: relative; z-index: 101; }`
+
+### [2026-04-27] — Step 2: Add 8px top gap and gold border-top to dropdown — all 9 pages
+- Changed `top: 100%` → `top: calc(100% + 8px)` so nav bar items are never physically covered
+- Changed `border-top: none` → `border-top: 2px solid var(--gildhart-gold)` to visually anchor the panel
+- Applied to all 9 pages: index.html, homepage-v2.html, about.html, salesagent.html, web-pro-elite.html, ai-domination-system.html, case-study-ealing.html, case-study-southdowns.html, waitlist.html
+
+### [2026-04-27] — Step 1: Right-align and constrain The Proof dropdown on all 9 pages
+- Changed `.nav-dropdown-menu` from `left:50%; transform:translateX(-50%)` to `right:0; left:auto; transform:none`
+- Added `min-width:280px; max-width:320px` (was 360px base + inline 440px override on The Proof)
+- Removed inline `style="min-width:440px;"` from every The Proof dropdown HTML element on all 9 pages
+- Pages updated: index.html, homepage-v2.html, about.html, salesagent.html, web-pro-elite.html, ai-domination-system.html, case-study-ealing.html, case-study-southdowns.html, waitlist.html
+- CSS pattern differed slightly per file (multi-line vs single-line declaration) — handled each precisely
+
+### [2026-04-27] — Link all nav "Join The Waitlist" CTAs to waitlist.html
+- Updated desktop `.nav-cta` and mobile `.mobile-nav-cta` on all 8 pages to `href="waitlist.html"`
+- Pages updated: index.html, homepage-v2.html, about.html, salesagent.html, web-pro-elite.html, ai-domination-system.html, case-study-ealing.html, case-study-southdowns.html
+- TODO task "Update nav CTA links" now complete
+
+### [2026-04-27] — Create Waitlist page (waitlist.html)
+- New standalone page: 6 sections — Hero, Two Path Cards, LinkedIn Testimonial, Bespoke Form, Trust Signals, Contact Details
+- Design system 100% sourced from salesagent.html + web-pro-elite.html: same nav, footer, fonts, tokens, reveal animations
+- Dark green hero (matches Agent hero structure), cream body sections, gold accents throughout
+- Form: 6 fields (practice name, name, email, phone, practice type dropdown, open textarea), gold focus states
+- Testimonial card: Rahul Puri LinkedIn quote with pull-quote treatment, gold border, centred max-width 800px
+- Nav CTA and mobile CTA now link to waitlist.html instead of #contact
+- Files: waitlist.html (new), workspace/CHANGELOG.md
+
 ### [2026-04-27] — Rebuild client credibility strip to enterprise level
 - Replaced small inline bar with full-width 3-column grid panel (`.ab-who-client-cell` architecture)
 - Each cell now has: large stat headline (3.25rem), Space Mono client name, descriptive context line

@@ -301,10 +301,12 @@
       }
       .nav-dropdown-menu {
         position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        min-width: 360px;
+        top: calc(100% + 8px);
+        right: 0;
+        left: auto;
+        transform: none;
+        min-width: 280px;
+        max-width: 320px;
         background: rgba(30,61,47,1);
         border-radius: 0 0 12px 12px;
         box-shadow: 0 14px 44px rgba(201,164,74,0.10), 0 6px 20px rgba(0,0,0,0.18);
@@ -313,7 +315,7 @@
         pointer-events: none;
         z-index: 100;
         padding: 0.5rem 0;
-        border-top: none;
+        border-top: 2px solid var(--gildhart-gold);
       }
       .nav-dropdown:hover .nav-dropdown-menu,
       .nav-dropdown.open .nav-dropdown-menu {
@@ -686,11 +688,12 @@
           gap: 1.25rem;
         }
       }
-      /* Plain nav links above dropdown panels */
+      /* Plain nav links + CTA always above dropdown panel (z-index:100) */
       .nav-links > a:not(.nav-dropdown),
-      .nav-links-right > a:not(.nav-dropdown) {
+      .nav-links-right > a:not(.nav-dropdown),
+      .nav-links-right > .nav-cta {
         position: relative;
-        z-index: 200;
+        z-index: 101;
       }
       @media (max-width: 768px) {
         .nav-links { display: none; }
@@ -4975,7 +4978,7 @@
           <!-- The Proof dropdown -->
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger">The Proof <span class="dd-arrow">▼</span></button>
-            <div class="nav-dropdown-menu" style="min-width:440px;">
+            <div class="nav-dropdown-menu">
               <span class="dd-section-label">Client Results</span>
               <a href="case-study-ealing.html" class="dd-item">
                 <span class="dd-item-name">Ealing Travel Clinic</span>
@@ -5006,7 +5009,7 @@
             </div>
           </div>
           <a href="about.html">About</a>
-          <a href="#contact" class="nav-cta">Join The Waitlist</a>
+          <a href="waitlist.html" class="nav-cta">Join The Waitlist</a>
         </div>
         <!-- Mobile hamburger -->
         <button class="nav-hamburger" aria-label="Open navigation menu">
@@ -5127,7 +5130,7 @@
 
       <!-- Sticky CTA at bottom -->
       <div class="mobile-menu-cta-wrapper">
-        <a href="#contact" class="mobile-nav-cta">Join The Waitlist</a>
+        <a href="waitlist.html" class="mobile-nav-cta">Join The Waitlist</a>
         <span class="mobile-cta-subtext">Free AI visibility audit included</span>
       </div>
     </div>

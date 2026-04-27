@@ -101,6 +101,8 @@
       .nav-cta { background:var(--gildhart-gold); color:var(--gildhart-green)!important; padding:0 1.75rem; height:38px; border-radius:8px; font-weight:700!important; font-size:0.8125rem!important; letter-spacing:0.05em; text-transform:uppercase; line-height:38px; display:inline-block; text-align:center; text-decoration:none; transition:background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; box-shadow:0 2px 8px rgba(0,0,0,0.15); border:none; white-space:nowrap; }
       .nav-cta:hover { background:#b8912f!important; color:#fff!important; transform:translateY(-1px); box-shadow:0 4px 16px rgba(201,164,74,0.35); }
       .nav-cta::after { display:none!important; }
+      /* Plain nav links + CTA always above dropdown panel (z-index:100) */
+      .nav-links > a:not(.nav-dropdown), .nav-links-right > a:not(.nav-dropdown), .nav-links-right > .nav-cta { position:relative; z-index:101; }
       .nav-dropdown { position:relative; }
       .nav-dropdown-trigger { display:inline-flex; align-items:center; gap:0.3rem; font-size:1rem; font-weight:500; letter-spacing:0.04em; color:#FAF5EE; text-decoration:none; cursor:pointer; background:none; border:none; font-family:inherit; padding:0; padding-bottom:2px; transition:color 0.2s; position:relative; }
       .nav-dropdown-trigger::after { content:''; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--gildhart-gold); border-radius:1px; transition:width 0.3s ease; }
@@ -109,7 +111,7 @@
       .nav-dropdown-trigger .dd-arrow { font-size:0.55rem; transition:transform 0.25s ease; margin-top:1px; }
       .nav-dropdown:hover .dd-arrow, .nav-dropdown.open .dd-arrow { transform:rotate(180deg); }
       @keyframes ddFadeIn { from{opacity:0;} to{opacity:1;} }
-      .nav-dropdown-menu { position:absolute; top:100%; left:50%; transform:translateX(-50%); min-width:360px; background:rgba(30,61,47,1); border-radius:0 0 12px 12px; box-shadow:0 14px 44px rgba(201,164,74,0.10), 0 6px 20px rgba(0,0,0,0.18); opacity:0; visibility:hidden; pointer-events:none; z-index:100; padding:0.5rem 0; border-top:none; }
+      .nav-dropdown-menu { position:absolute; top:calc(100% + 8px); right:0; left:auto; transform:none; min-width:280px; max-width:320px; background:rgba(30,61,47,1); border-radius:0 0 12px 12px; box-shadow:0 14px 44px rgba(201,164,74,0.10), 0 6px 20px rgba(0,0,0,0.18); opacity:0; visibility:hidden; pointer-events:none; z-index:100; padding:0.5rem 0; border-top:2px solid var(--gildhart-gold); }
       .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown.open .nav-dropdown-menu { opacity:1; visibility:visible; pointer-events:auto; animation:ddFadeIn 150ms ease forwards; }
       .nav-dropdown.dd-force-closed .nav-dropdown-menu { opacity:0 !important; visibility:hidden !important; pointer-events:none !important; animation:none !important; }
       .nav-dropdown.dd-force-closed .dd-arrow { transform:rotate(0deg) !important; }
@@ -4038,7 +4040,7 @@
         <div class="nav-links-right">
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger">The Proof <span class="dd-arrow">▼</span></button>
-            <div class="nav-dropdown-menu" style="min-width:440px;">
+            <div class="nav-dropdown-menu">
               <span class="dd-section-label">Client Results</span>
               <a href="case-study-ealing.html" class="dd-item"><span class="dd-item-name">Ealing Travel Clinic</span><span class="dd-item-sub">300% Revenue Growth</span></a>
               <a href="#" class="dd-item"><span class="dd-item-name">Superior Pharmacy</span><span class="dd-item-sub">50% of Sales from ChatGPT</span></a>
@@ -4051,7 +4053,7 @@
             </div>
           </div>
           <a href="about.html">About</a>
-          <a href="#contact" class="nav-cta">Join The Waitlist</a>
+          <a href="waitlist.html" class="nav-cta">Join The Waitlist</a>
         </div>
         <!-- Mobile hamburger -->
         <button class="nav-hamburger" aria-label="Open navigation menu">
@@ -4107,7 +4109,7 @@
 
       <!-- Sticky CTA at bottom -->
       <div class="mobile-menu-cta-wrapper">
-        <a href="#contact" class="mobile-nav-cta">Join The Waitlist</a>
+        <a href="waitlist.html" class="mobile-nav-cta">Join The Waitlist</a>
         <span class="mobile-cta-subtext">Free AI visibility audit included</span>
       </div>
     </div>
