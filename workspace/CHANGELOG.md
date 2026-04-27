@@ -18,6 +18,12 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-27] — Editorial typography upgrade on About hero green section (combinations 1+3+5)
+- Power line "Gildhart sits at that intersection deliberately." isolated with gold rules above/below, larger italic Inter 800
+- Client names extracted to .ab-hero-nameplate: gold, Space Mono, tracked, centred — above closing paragraph
+- Max-width on .ab-hero-body tightened from 760px → 660px; body text opacity slightly reduced for hierarchy
+- Files: about.html
+
 ### [2026-04-27] — Replace Drew photo placeholder on about.html with blended photo
 - Removed .ab-drew-photo-card placeholder card + all placeholder CSS classes
 - Added .ab-drew-photo-wrap with bottom-fade gradient (matches homepage .founder-image::after pattern)
