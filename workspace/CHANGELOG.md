@@ -18,6 +18,18 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-27] — Replace Drew photo placeholder on about.html with blended photo
+- Removed .ab-drew-photo-card placeholder card + all placeholder CSS classes
+- Added .ab-drew-photo-wrap with bottom-fade gradient (matches homepage .founder-image::after pattern)
+- Gildhart logo divider below photo (matches .gh-divider pattern from index.html)
+- LinkedIn link below logo: same text + SVG icon as homepage founder section
+- Photo URL: uploaded-asset-1777273850424-0.png
+- Files: about.html
+
+### [2026-04-27] — Fix cream flicker between nav and hero on about.html
+- Changed body background-color from #fef7ed to var(--gildhart-green) to match hero section
+- Files: about.html
+
 ### [2026-04-26] — Rebuild About page with all-new copy across all 6 sections
 - Section 1: New headline, 4 new body paragraphs, gold stat strip (£500k / 250+ / £100k)
 - Section 2: New Drew copy, pull quote treatment, photo placeholder preserved

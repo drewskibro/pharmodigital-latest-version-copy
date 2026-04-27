@@ -6,7 +6,10 @@
     <title>About — Gildhart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -28,7 +31,7 @@
       body {
         font-family: 'Outfit', sans-serif;
         -webkit-font-smoothing: antialiased;
-        background-color: #fef7ed;
+        background-color: var(--gildhart-green);
         color: var(--navy);
         overflow-x: hidden;
       }
@@ -213,13 +216,82 @@
       .ab-drew-attribution-name { font-family: 'Inter', sans-serif; font-size: 1.125rem; font-weight: 800; color: var(--navy); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 0.25rem; }
       .ab-drew-attribution-role { font-size: 0.9375rem; font-weight: 500; color: var(--gray-600); }
 
-      .ab-drew-photo-card { background: #f0ece6; border-radius: 20px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); aspect-ratio: 4/5; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-      .ab-drew-photo-placeholder { text-align: center; padding: 3rem 2rem; }
-      .ab-drew-photo-placeholder-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gildhart-gold); margin-bottom: 1rem; display: block; }
-      .ab-drew-photo-placeholder-text { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: var(--gildhart-green); line-height: 1.5; }
-      .ab-drew-photo-placeholder-icon { font-size: 3rem; color: var(--gildhart-gold); opacity: 0.25; margin-bottom: 1.25rem; display: block; line-height: 1; }
+      /* Drew photo blended treatment */
+      .ab-drew-photo-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+      .ab-drew-photo-img-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        align-self: flex-end;
+      }
+      .ab-drew-photo-img-wrap img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: top center;
+      }
+      /* Bottom fade — same as homepage founder section */
+      .ab-drew-photo-img-wrap::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 180px;
+        background: linear-gradient(to bottom, rgba(254,247,237,0) 0%, rgba(254,247,237,0.55) 40%, #fef7ed 100%);
+        pointer-events: none;
+      }
+      /* Gildhart logo divider below photo */
+      .ab-drew-logo-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 1.25rem;
+        margin-top: -1rem;
+        position: relative;
+        z-index: 2;
+      }
+      .ab-drew-logo-divider::before,
+      .ab-drew-logo-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(201,164,74,0.35));
+      }
+      .ab-drew-logo-divider::after {
+        background: linear-gradient(270deg, transparent, rgba(201,164,74,0.35));
+      }
+      .ab-drew-logo-divider img {
+        width: 180px;
+        height: auto;
+        opacity: 0.75;
+        filter: drop-shadow(0 2px 6px rgba(201,164,74,0.2));
+      }
+      /* LinkedIn link below logo */
+      .ab-drew-linkedin {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #4b5563;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        line-height: 1.4;
+        text-align: center;
+      }
+      .ab-drew-linkedin:hover { color: #0A66C2; }
+      .ab-drew-linkedin svg { flex-shrink: 0; }
 
-      @media (max-width: 1024px) { .ab-drew-inner { grid-template-columns: 1fr; gap: 3rem; } .ab-drew-photo-card { aspect-ratio: 16/9; max-height: 420px; } }
+      @media (max-width: 1024px) { .ab-drew-inner { grid-template-columns: 1fr; gap: 3rem; } .ab-drew-photo-img-wrap { max-width: 340px; margin: 0 auto; } }
       @media (max-width: 768px) { .ab-drew { padding: 5rem 1.5rem 5.5rem; } .ab-drew-headline { font-size: clamp(1.625rem, 5.5vw, 2.25rem); } }
 
       .ab-team { background: var(--gildhart-green); padding: 7rem 2rem 7.5rem; position: relative; overflow: hidden; }
@@ -295,7 +367,15 @@
     <nav class="nav" id="mainNav">
       <div class="nav-inner">
         <a href="index.html" class="nav-brand">
-          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" loading="eager" decoding="async" fetchpriority="high" />
+          <img
+            src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png"
+            alt="Gildhart"
+            width="80"
+            height="80"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
         </a>
         <div class="nav-links">
           <div class="nav-dropdown">
@@ -309,9 +389,17 @@
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger">Our Work <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu">
-              <a href="web-pro-elite.html" class="dd-item"><span class="dd-item-name">The Build</span><span class="dd-item-sub">Bespoke Healthcare Website</span></a>
-              <a href="salesagent.html" class="dd-item"><span class="dd-item-name">The Agent</span><span class="dd-item-sub">Your Practice Never Closes</span></a>
-              <a href="ai-domination-system.html" class="dd-item"><span class="dd-item-name">The Method</span><span class="dd-item-sub">DIY Access &#163;497</span></a>
+              <a href="web-pro-elite.html" class="dd-item"
+                ><span class="dd-item-name">The Build</span
+                ><span class="dd-item-sub">Bespoke Healthcare Website</span></a
+              >
+              <a href="salesagent.html" class="dd-item"
+                ><span class="dd-item-name">The Agent</span
+                ><span class="dd-item-sub">Your Practice Never Closes</span></a
+              >
+              <a href="ai-domination-system.html" class="dd-item"
+                ><span class="dd-item-name">The Method</span><span class="dd-item-sub">DIY Access &#163;497</span></a
+              >
             </div>
           </div>
         </div>
@@ -320,22 +408,64 @@
             <button class="nav-dropdown-trigger">The Proof <span class="dd-arrow">▼</span></button>
             <div class="nav-dropdown-menu" style="min-width:440px;">
               <span class="dd-section-label">Client Results</span>
-              <a href="case-study-ealing.html" class="dd-item"><span class="dd-item-name">Ealing Travel Clinic</span><span class="dd-item-sub">300% Revenue Growth</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Superior Pharmacy</span><span class="dd-item-sub">50% of Sales from ChatGPT</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Puri Pharmacy</span><span class="dd-item-sub">Outranking Boots Nationally</span></a>
+              <a href="case-study-ealing.html" class="dd-item"
+                ><span class="dd-item-name">Ealing Travel Clinic</span
+                ><span class="dd-item-sub">300% Revenue Growth</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Superior Pharmacy</span
+                ><span class="dd-item-sub">50% of Sales from ChatGPT</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Puri Pharmacy</span
+                ><span class="dd-item-sub">Outranking Boots Nationally</span></a
+              >
               <div class="dd-divider"></div>
               <span class="dd-section-label">Latest Builds</span>
-              <a href="#" class="dd-item"><span class="dd-item-name">Chiselhurst Pharmacy Group</span><span class="dd-item-sub">Premium Multi-Site Build</span></a>
-              <a href="#" class="dd-item"><span class="dd-item-name">Easy Clinic</span><span class="dd-item-sub">Premium Private Clinic Build</span></a>
-              <a href="case-study-southdowns.html" class="dd-item"><span class="dd-item-name">Southdowns Pharmacy Group</span><span class="dd-item-sub">AI Agent</span></a>
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Chiselhurst Pharmacy Group</span
+                ><span class="dd-item-sub">Premium Multi-Site Build</span></a
+              >
+              <a href="#" class="dd-item"
+                ><span class="dd-item-name">Easy Clinic</span
+                ><span class="dd-item-sub">Premium Private Clinic Build</span></a
+              >
+              <a href="case-study-southdowns.html" class="dd-item"
+                ><span class="dd-item-name">Southdowns Pharmacy Group</span><span class="dd-item-sub">AI Agent</span></a
+              >
             </div>
           </div>
-          <a href="about.html" class="nav-cta" style="background:transparent;border:1px solid rgba(201,164,74,0.5);color:var(--gildhart-gold)!important;line-height:36px;">About</a>
+          <a
+            href="about.html"
+            class="nav-cta"
+            style="background:transparent;border:1px solid rgba(201,164,74,0.5);color:var(--gildhart-gold)!important;line-height:36px;"
+            >About</a
+          >
           <a href="index.html#contact" class="nav-cta">Join The Waitlist</a>
         </div>
         <button class="nav-hamburger" aria-label="Open navigation menu">
-          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
+          <svg
+            class="ham-open"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg
+            class="ham-close"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
         </button>
       </div>
     </nav>
@@ -343,29 +473,71 @@
 
     <div class="nav-mobile-overlay" id="mobileNavOverlay">
       <div class="mobile-menu-content">
-        <button class="mobile-nav-section-trigger" data-accordion>Who We Help <span class="mobile-dd-arrow">&#9662;</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+        <button class="mobile-nav-section-trigger" data-accordion>
+          Who We Help <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
           <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Pharmacy Groups</span></a>
           <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Private Clinics</span></a>
           <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Enterprise Healthcare</span></a>
         </div>
-        <button class="mobile-nav-section-trigger" data-accordion>Our Work <span class="mobile-dd-arrow">&#9662;</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
-          <a href="web-pro-elite.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Build</span><span class="mobile-dd-item-sub">Bespoke Healthcare Website</span></a>
-          <a href="salesagent.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Agent</span><span class="mobile-dd-item-sub">Your Practice Never Closes</span></a>
-          <a href="ai-domination-system.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Method</span><span class="mobile-dd-item-sub">DIY Access &#163;497</span></a>
+        <button class="mobile-nav-section-trigger" data-accordion>
+          Our Work <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
+          <a href="web-pro-elite.html" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">The Build</span
+            ><span class="mobile-dd-item-sub">Bespoke Healthcare Website</span></a
+          >
+          <a href="salesagent.html" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">The Agent</span
+            ><span class="mobile-dd-item-sub">Your Practice Never Closes</span></a
+          >
+          <a href="ai-domination-system.html" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">The Method</span
+            ><span class="mobile-dd-item-sub">DIY Access &#163;497</span></a
+          >
         </div>
-        <button class="mobile-nav-section-trigger" data-accordion>The Proof <span class="mobile-dd-arrow">&#9662;</span></button>
-        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+        <button class="mobile-nav-section-trigger" data-accordion>
+          The Proof <span class="mobile-dd-arrow">&#9662;</span>
+        </button>
+        <div
+          class="mobile-dd-panel"
+          style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;"
+        >
           <span class="mobile-dd-category-label">Client Results</span>
-          <a href="case-study-ealing.html" class="mobile-dd-item"><span class="mobile-dd-item-name">Ealing Travel Clinic</span><span class="mobile-dd-item-sub">300% Revenue Growth</span></a>
-          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Superior Pharmacy</span><span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span></a>
-          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Puri Pharmacy</span><span class="mobile-dd-item-sub">Outranking Boots Nationally</span></a>
+          <a href="case-study-ealing.html" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">Ealing Travel Clinic</span
+            ><span class="mobile-dd-item-sub">300% Revenue Growth</span></a
+          >
+          <a href="#" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">Superior Pharmacy</span
+            ><span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span></a
+          >
+          <a href="#" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">Puri Pharmacy</span
+            ><span class="mobile-dd-item-sub">Outranking Boots Nationally</span></a
+          >
           <div class="mobile-dd-divider"></div>
           <span class="mobile-dd-category-label">Latest Builds</span>
-          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span><span class="mobile-dd-item-sub">Premium Multi-Site Build</span></a>
-          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Easy Clinic</span><span class="mobile-dd-item-sub">Premium Private Clinic Build</span></a>
-          <a href="case-study-southdowns.html" class="mobile-dd-item"><span class="mobile-dd-item-name">Southdowns Pharmacy Group</span><span class="mobile-dd-item-sub">AI Agent</span></a>
+          <a href="#" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span
+            ><span class="mobile-dd-item-sub">Premium Multi-Site Build</span></a
+          >
+          <a href="#" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">Easy Clinic</span
+            ><span class="mobile-dd-item-sub">Premium Private Clinic Build</span></a
+          >
+          <a href="case-study-southdowns.html" class="mobile-dd-item"
+            ><span class="mobile-dd-item-name">Southdowns Pharmacy Group</span
+            ><span class="mobile-dd-item-sub">AI Agent</span></a
+          >
         </div>
         <a href="about.html" class="mobile-nav-plain-link">About</a>
         <div class="mobile-menu-spacer"></div>
@@ -378,13 +550,27 @@
 
     <section class="ab-hero">
       <div class="ab-hero-inner">
-        <span class="ab-eyebrow" style="opacity:0;animation:abFadeUp 0.5s ease-out 0.15s forwards;">About Gildhart</span>
+        <span class="ab-eyebrow" style="opacity:0;animation:abFadeUp 0.5s ease-out 0.15s forwards;"
+          >About Gildhart</span
+        >
         <h1 class="ab-hero-headline">The AI Infrastructure Company That Only Works In Healthcare.</h1>
         <div class="ab-hero-body">
-          <p>There are AI agencies. There are healthcare marketing agencies. There are very few people who understand both deeply enough to build systems that actually work in a regulated, clinically complex, patient-facing environment.</p>
+          <p>
+            There are AI agencies. There are healthcare marketing agencies. There are very few people who understand
+            both deeply enough to build systems that actually work in a regulated, clinically complex, patient-facing
+            environment.
+          </p>
           <p>Gildhart sits at that intersection deliberately.</p>
-          <p>Not because it&#39;s a good market. Because it&#39;s the only market where twenty years of immersion, genuine clinical understanding, and leading-edge AI architecture combine into something that produces results nobody else in the industry is producing.</p>
-          <p>Superior Pharmacy. Ealing Travel Clinic. Southdowns Pharmacy Group. These aren&#39;t case studies. They&#39;re proof of what happens when healthcare expertise meets AI infrastructure built specifically for how patients now find, trust, and choose their providers.</p>
+          <p>
+            Not because it&#39;s a good market. Because it&#39;s the only market where twenty years of immersion,
+            genuine clinical understanding, and leading-edge AI architecture combine into something that produces
+            results nobody else in the industry is producing.
+          </p>
+          <p>
+            Superior Pharmacy. Ealing Travel Clinic. Southdowns Pharmacy Group. These aren&#39;t case studies.
+            They&#39;re proof of what happens when healthcare expertise meets AI infrastructure built specifically for
+            how patients now find, trust, and choose their providers.
+          </p>
         </div>
       </div>
       <div class="ab-stat-strip ab-reveal ab-reveal-d4">
@@ -412,31 +598,65 @@
           <h2 class="ab-drew-headline ab-reveal ab-reveal-d2">Twenty Years In Healthcare. Built From The Inside.</h2>
           <div class="ab-drew-body ab-reveal ab-reveal-d3">
             <p>I&#39;ve spent my career inside healthcare — not observing it from the outside.</p>
-            <p>NHS campaigns. Bupa. Harley Street clinics. Bizitch Dental — one of the UK&#39;s largest dental groups. Twenty years working on the accounts that shaped how millions of patients find and choose their healthcare providers.</p>
-            <p>I also spend significantly on my own private healthcare. I understand the patient journey from both sides — as someone who has built the marketing systems and as someone who uses them. That dual perspective shapes everything Gildhart builds.</p>
+            <p>
+              NHS campaigns. Bupa. Harley Street clinics. Bizitch Dental — one of the UK&#39;s largest dental groups.
+              Twenty years working on the accounts that shaped how millions of patients find and choose their healthcare
+              providers.
+            </p>
           </div>
           <blockquote class="ab-pull-quote ab-reveal ab-reveal-d3">
-            "Then AI search happened. And everything I&#39;d learned about how patients make healthcare decisions became the foundation for something entirely new."
+            "Then AI search happened. And everything I&#39;d learned about how patients make healthcare decisions became
+            the foundation for something entirely new."
           </blockquote>
           <div class="ab-drew-body ab-reveal ab-reveal-d4">
-            <p>ChatGPT doesn&#39;t search Google. It searches Bing. Google AI Overviews don&#39;t reward brand size. They reward clinical authority and content architecture. AI platforms trust the practices that speak their language — and most healthcare practices don&#39;t know what that language is yet.</p>
-            <p>I do. And I&#39;ve spent the last few years building the infrastructure that puts our clients at the top of every AI platform patients now use to make healthcare decisions.</p>
-            <p>Superior Pharmacy is on track for &#163;500k this year. Ealing Travel Clinic generates &#163;100k from a single service. Southdowns Pharmacy Group captures 250+ patient enquiries a month across 13 services. That&#39;s not strategy. That&#39;s infrastructure working exactly as it was built to work.</p>
-            <p>I speak at healthcare and AI conferences because the opportunity is real and most of the industry doesn&#39;t know it yet. But every talk I give is grounded in the same thing — specific results from real practices, built on systems that compound over time.</p>
+            <p>
+              ChatGPT doesn&#39;t search Google. It searches Bing. Google AI Overviews don&#39;t reward brand size. They
+              reward clinical authority and content architecture. AI platforms trust the practices that speak their
+              language — and most healthcare practices don&#39;t know what that language is yet.
+            </p>
+            <p>
+              I do. And I&#39;ve spent the last few years building the infrastructure that puts our clients at the top
+              of every AI platform patients now use to make healthcare decisions.
+            </p>
+            <p>
+              Superior Pharmacy is on track for &#163;500k this year. Ealing Travel Clinic generates &#163;100k from a
+              single service. Southdowns Pharmacy Group captures 250+ extra private patient enquiries a month.
+              That&#39;s not strategy. That&#39;s infrastructure working exactly as it was built to work.
+            </p>
+            <p>
+              I speak at healthcare and AI conferences because the opportunity is real and most of the industry
+              doesn&#39;t know it yet. But every talk I give is grounded in the same thing — specific results from real
+              practices, built on systems that compound over time.
+            </p>
           </div>
           <div class="ab-drew-attribution ab-reveal ab-reveal-d5">
             <p class="ab-drew-attribution-name">Drew</p>
             <p class="ab-drew-attribution-role">Founder, Gildhart</p>
           </div>
         </div>
-        <div class="ab-reveal-card ab-reveal-d3">
-          <div class="ab-drew-photo-card">
-            <div class="ab-drew-photo-placeholder">
-              <span class="ab-drew-photo-placeholder-icon">&#9633;</span>
-              <span class="ab-drew-photo-placeholder-label">Photo Placeholder</span>
-              <p class="ab-drew-photo-placeholder-text">INSERT DREW PHOTO HERE</p>
-            </div>
+        <div class="ab-drew-photo-wrap ab-reveal-card ab-reveal-d3">
+          <div class="ab-drew-photo-img-wrap">
+            <img
+              src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1777273850424-0.png"
+              alt="Drew — Founder, Gildhart"
+            />
           </div>
+          <div class="ab-drew-logo-divider">
+            <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776878499294-1.png" alt="Gildhart" />
+          </div>
+          <a
+            href="https://www.linkedin.com/in/drew-s-clayton/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ab-drew-linkedin"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+            Connect with me on LinkedIn — 5,000+ healthcare professionals follow our AI search insights.
+          </a>
         </div>
       </div>
     </section>
@@ -447,20 +667,33 @@
       <div class="ab-team-inner">
         <div class="ab-team-header">
           <span class="ab-eyebrow ab-reveal ab-reveal-d1">The Team</span>
-          <h2 class="ab-team-headline ab-reveal ab-reveal-d2">Healthcare Depth. AI Architecture. Both. Simultaneously.</h2>
+          <h2 class="ab-team-headline ab-reveal ab-reveal-d2">
+            Healthcare Depth. AI Architecture. Both. Simultaneously.
+          </h2>
         </div>
         <div class="ab-team-cards">
           <div class="ab-team-card ab-reveal-card ab-reveal-d2">
             <h3 class="ab-team-card-title">AI Architecture</h3>
-            <p class="ab-team-card-body">Our AI architects have built and deployed systems for some of the world&#39;s most sophisticated technology organisations. They bring that technical depth to an industry where the stakes of getting it wrong are higher than almost anywhere else.</p>
+            <p class="ab-team-card-body">
+              Our AI architects have built and deployed systems for some of the world&#39;s most sophisticated
+              technology organisations. They bring that technical depth to an industry where the stakes of getting it
+              wrong are higher than almost anywhere else.
+            </p>
           </div>
           <div class="ab-team-card ab-reveal-card ab-reveal-d3">
             <h3 class="ab-team-card-title">Healthcare Expertise</h3>
-            <p class="ab-team-card-body">Every system we build is GPhC-compliant, clinically accurate, and written by people who understand the difference between a Mounjaro consultation and a private prescription. Generic AI agencies don&#39;t know that. We do.</p>
+            <p class="ab-team-card-body">
+              Every system we build is GPhC-compliant, clinically accurate, and written by people who understand the
+              difference between a Mounjaro consultation and a private prescription. Generic AI agencies don&#39;t know
+              that. We do.
+            </p>
           </div>
           <div class="ab-team-card ab-reveal-card ab-reveal-d4">
             <h3 class="ab-team-card-title">The Combination</h3>
-            <p class="ab-team-card-body">We don&#39;t name our team publicly. That&#39;s a deliberate decision. What matters is this — every person working on your account has done this before, at a level that most healthcare marketing teams never reach.</p>
+            <p class="ab-team-card-body">
+              We don&#39;t name our team publicly. That&#39;s a deliberate decision. What matters is this — every person
+              working on your account has done this before, at a level that most healthcare marketing teams never reach.
+            </p>
           </div>
         </div>
       </div>
@@ -474,9 +707,19 @@
         <h2 class="ab-how-headline ab-reveal ab-reveal-d2">We Don&#39;t Consult. We Deploy. Then We Compound.</h2>
         <div class="ab-how-body">
           <p class="ab-how-standalone ab-reveal ab-reveal-d3">Gildhart deploys infrastructure.</p>
-          <p class="ab-reveal ab-reveal-d3">AI search architecture that tells Google, ChatGPT, Claude, and Perplexity exactly who to recommend. Sales agents that capture patient revenue at midnight on a Tuesday. Content systems that build clinical authority that compounds every single month.</p>
-          <p class="ab-reveal ab-reveal-d4">Superior Pharmacy didn&#39;t get a strategy. They got a system that now drives 50% of their revenue from AI search. Southdowns didn&#39;t get recommendations. They got 250 patient enquiries a month across 13 services they&#39;d never actively marketed.</p>
-          <p class="ab-how-standalone ab-reveal ab-reveal-d5">That&#39;s what deploying looks like. That&#39;s what compounding looks like.</p>
+          <p class="ab-reveal ab-reveal-d3">
+            AI search architecture that tells Google, ChatGPT, Claude, and Perplexity exactly who to recommend. Sales
+            agents that capture patient revenue at midnight on a Tuesday. Content systems that build clinical authority
+            that compounds every single month.
+          </p>
+          <p class="ab-reveal ab-reveal-d4">
+            Superior Pharmacy didn&#39;t get a strategy. They got a system that now drives 50% of their revenue from AI
+            search. Southdowns didn&#39;t get recommendations. They got 250 patient enquiries a month across 13 services
+            they&#39;d never actively marketed.
+          </p>
+          <p class="ab-how-standalone ab-reveal ab-reveal-d5">
+            That&#39;s what deploying looks like. That&#39;s what compounding looks like.
+          </p>
         </div>
       </div>
     </section>
@@ -487,29 +730,48 @@
       <div class="ab-who-inner">
         <span class="ab-eyebrow ab-reveal ab-reveal-d1">Who We Work With</span>
         <h2 class="ab-who-headline ab-reveal ab-reveal-d2">Built For The Practices Ready To Own Their Market.</h2>
-        <p class="ab-who-intro ab-reveal ab-reveal-d3">We work with pharmacy groups, private clinic operators, and healthcare businesses that have made a decision — not a consideration. The practices that come to Gildhart already understand that AI search is the most significant shift in patient acquisition in twenty years.</p>
+        <p class="ab-who-intro ab-reveal ab-reveal-d3">
+          We work with pharmacy groups, private clinic operators, and healthcare businesses that have made a decision —
+          not a consideration. The practices that come to Gildhart already understand that AI search is the most
+          significant shift in patient acquisition in twenty years.
+        </p>
         <div class="ab-who-cards">
           <div class="ab-who-card ab-reveal-card ab-reveal-d3">
             <span class="ab-who-card-label">Pharmacy Groups</span>
-            <p class="ab-who-card-body">Independent pharmacy groups and multi-site operators ready to become the dominant practice in their market. Not practices testing the water. Practices ready to move.</p>
+            <p class="ab-who-card-body">
+              Independent pharmacy groups and multi-site operators ready to become the dominant practice in their
+              market. Not practices testing the water. Practices ready to move.
+            </p>
           </div>
           <div class="ab-who-card ab-reveal-card ab-reveal-d4">
             <span class="ab-who-card-label">Private Clinic Operators</span>
-            <p class="ab-who-card-body">Private clinics and specialist practices with high-value services and the ambition to make AI search their primary patient acquisition channel.</p>
+            <p class="ab-who-card-body">
+              Private clinics and specialist practices with high-value services and the ambition to make AI search their
+              primary patient acquisition channel.
+            </p>
           </div>
           <div class="ab-who-card ab-reveal-card ab-reveal-d5">
             <span class="ab-who-card-label">Enterprise Healthcare</span>
-            <p class="ab-who-card-body">Healthcare businesses operating at scale who understand that the window to build AI search dominance is open now — and won&#39;t stay open indefinitely.</p>
+            <p class="ab-who-card-body">
+              Healthcare businesses operating at scale who understand that the window to build AI search dominance is
+              open now — and won&#39;t stay open indefinitely.
+            </p>
           </div>
         </div>
-        <p class="ab-who-closing ab-reveal ab-reveal-d5">They&#39;ve seen what Superior Pharmacy, Ealing Travel Clinic, and Southdowns Pharmacy Group have built. They want the same infrastructure for their practice. They&#39;re not testing the water. They&#39;re ready to move. If that&#39;s you — the waitlist is the right next step.</p>
+        <p class="ab-who-closing ab-reveal ab-reveal-d5">
+          They&#39;ve seen what Superior Pharmacy, Ealing Travel Clinic, and Southdowns Pharmacy Group have built. They
+          want the same infrastructure for their practice. They&#39;re not testing the water. They&#39;re ready to move.
+          If that&#39;s you — the waitlist is the right next step.
+        </p>
       </div>
     </section>
 
     <section class="ab-cta">
       <div class="ab-cta-inner">
         <h2 class="ab-cta-headline ab-reveal ab-reveal-d1">A Slot Opens Rarely. When It Does, It Goes Quickly.</h2>
-        <p class="ab-cta-body ab-reveal ab-reveal-d2">The cost question answers itself. Usually within the first week.</p>
+        <p class="ab-cta-body ab-reveal ab-reveal-d2">
+          The cost question answers itself. Usually within the first week.
+        </p>
         <div class="ab-cta-buttons ab-reveal ab-reveal-d3">
           <a href="index.html#contact" class="ab-btn-primary">Join The Waitlist &#8594;</a>
           <a href="salesagent.html" class="ab-btn-outline">See Our Work &#8594;</a>
@@ -523,7 +785,10 @@
           <div class="footer-brand">
             <a href="index.html" class="footer-brand-name">Gildhart</a>
             <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
-            <p class="footer-brand-desc">Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.</p>
+            <p class="footer-brand-desc">
+              Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices
+              including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.
+            </p>
             <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook — &#163;497 &#8594;</a>
           </div>
           <div class="footer-col">
