@@ -18,6 +18,33 @@ You MUST maintain this file to track your work across messages. This is NON-NEGO
 </instructions>
 
 <changelog>
+### [2026-04-26] — Rebuild About page with all-new copy across all 6 sections
+- Section 1: New headline, 4 new body paragraphs, gold stat strip (£500k / 250+ / £100k)
+- Section 2: New Drew copy, pull quote treatment, photo placeholder preserved
+- Section 3: Converted from prose block → 3-card grid (AI Architecture / Healthcare Expertise / The Combination)
+- Section 4: New HOW WE WORK copy — bold standalone statements + body paragraphs
+- Section 5: Moved from green bg → cream bg; new WHO WE WORK WITH white cards + closing paragraph
+- Section 6: CTA copy updated; old Section 7 removed (now a single closing CTA)
+
+### [2026-04-26] — Wire About nav link to about.html across ALL pages
+- Updated desktop + mobile "About" links from `#about` / `index.html#about` → `about.html`
+- Pages updated: ai-domination-system.html, case-study-ealing.html, homepage-v2.html, case-study-southdowns.html
+- index.html, salesagent.html, web-pro-elite.html were already wired correctly from the About page creation session
+
+### [2026-04-26] — Create About page (about.html)
+- New 7-section page: Hero (green) → Drew two-col (cream) → Team (green) → Model (cream) → Who We Work With 3-cards (green) → Qualifying (cream) → CTA (green)
+- All CSS repurposed from salesagent.html and web-pro-elite.html design system — no new patterns invented
+- Gold border dividers between cream↔green section transitions; scroll reveals on all content blocks
+- Wired About nav link to about.html across index.html, salesagent.html, web-pro-elite.html
+- Files: about.html (new), index.html, salesagent.html, web-pro-elite.html
+
+### [2026-04-26] — Update three proof cards on homepage (index.html)
+- Replaced "Your Competitors" dark navy card with "Puri Pharmacy" cream card — all three now use light cream bg
+- Updated all labels to "CLIENT RESULT" (gold, small caps); removed teal label treatment entirely
+- Updated body copy and stat lines: Superior (£500k/50% AI), Ealing (300%/£100k HPV), Puri (#1 Mounjaro)
+- Removed dark navy background, teal accent colour, and `competitorGlow` animation from third card
+- Files: index.html
+
 ### [2026-04-26] — Wire Southdowns nav link to case-study-southdowns.html (all 6 pages)
 - Updated `href="#"` → `href="case-study-southdowns.html"` for Southdowns entry in "The Proof" dropdown
 - Applied to both desktop `.dd-item` and mobile `.mobile-dd-item` on all 6 pages

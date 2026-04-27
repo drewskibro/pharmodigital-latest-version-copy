@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Gildhart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --navy: #0f172a;
+        --navy-light: #1e293b;
+        --cream: #f5f3ef;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-400: #9ca3af;
+        --gray-600: #4b5563;
+        --white: #ffffff;
+        --gildhart-green: #1E3D2F;
+        --gildhart-gold: #C9A44A;
+        --gildhart-cream: #F0E6C8;
+        --gildhart-black: #0D1A12;
+      }
+
+      body {
+        font-family: 'Outfit', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fef7ed;
+        color: var(--navy);
+        overflow-x: hidden;
+      }
+
+      .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10000; background: rgba(30,61,47,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(201,164,74,0.18); transition: none; }
+      .nav-spacer { display: block; }
+
+      @media (min-width: 769px) {
+        .nav-brand img { transition: max-width 0.3s ease, max-height 0.3s ease, filter 0.3s ease; }
+        .nav-brand { transition: padding 0.3s ease; }
+        .nav-links, .nav-links-right { transition: padding-bottom 0.3s ease, gap 0.3s ease; }
+        .nav.nav-scrolled .nav-brand { padding: 0.25rem 0 0; }
+        .nav.nav-scrolled .nav-brand img { max-width: 90px; max-height: 90px; }
+        .nav.nav-scrolled .nav-links, .nav.nav-scrolled .nav-links-right { padding-bottom: 0.5rem; gap: 1.5rem; }
+      }
+
+      .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: auto; min-height: 0; display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto; align-items: center; }
+      .nav-brand { display: flex; align-items: center; justify-content: center; text-decoration: none; grid-column: 1/-1; grid-row: 1; position: relative; padding: 0.75rem 0 0.25rem; }
+      .nav-brand img { width: auto; height: auto; max-width: 150px; max-height: 150px; object-fit: contain; display: block; image-rendering: auto; border-radius: 0; overflow: visible; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(201,164,74,0.25)); transition: filter 0.3s ease, transform 0.3s ease; }
+      .nav-brand:hover img { filter: drop-shadow(0 4px 16px rgba(201,164,74,0.4)); transform: scale(1.04); }
+      .nav-links { display: flex; align-items: center; justify-content: center; gap: 2rem; grid-column: 1; grid-row: 2; padding-bottom: 1.5rem; }
+      .nav-links-right { display: flex; align-items: center; justify-content: center; gap: 2rem; grid-column: 3; grid-row: 2; padding-bottom: 1.5rem; }
+      .nav-links-right a, .nav-links a { font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; color: #FAF5EE; text-decoration: none; transition: color 0.2s; position: relative; padding-bottom: 2px; }
+      .nav-links-right a::after, .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--gildhart-gold); border-radius: 1px; transition: width 0.3s ease; }
+      .nav-links-right a:hover, .nav-links a:hover { color: var(--gildhart-gold); }
+      .nav-links-right a:hover::after, .nav-links a:hover::after { width: 100%; }
+      .nav-cta { background: var(--gildhart-gold); color: var(--gildhart-green)!important; padding: 0 1.75rem; height: 38px; border-radius: 8px; font-weight: 700!important; font-size: 0.8125rem!important; letter-spacing: 0.05em; text-transform: uppercase; line-height: 38px; display: inline-block; text-align: center; text-decoration: none; transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15); border: none; white-space: nowrap; }
+      .nav-cta:hover { background: #b8912f!important; color: #fff!important; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,164,74,0.35); }
+      .nav-cta::after { display: none!important; }
+      .nav-dropdown { position: relative; }
+      .nav-dropdown-trigger { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; color: #FAF5EE; text-decoration: none; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; padding-bottom: 2px; transition: color 0.2s; position: relative; }
+      .nav-dropdown-trigger::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--gildhart-gold); border-radius: 1px; transition: width 0.3s ease; }
+      .nav-dropdown-trigger:hover { color: var(--gildhart-gold); }
+      .nav-dropdown-trigger:hover::after { width: calc(100% - 1em); }
+      .nav-dropdown-trigger .dd-arrow { font-size: 0.55rem; transition: transform 0.25s ease; margin-top: 1px; }
+      .nav-dropdown:hover .dd-arrow, .nav-dropdown.open .dd-arrow { transform: rotate(180deg); }
+      @keyframes ddFadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 360px; background: rgba(30,61,47,1); border-radius: 0 0 12px 12px; box-shadow: 0 14px 44px rgba(201,164,74,0.10), 0 6px 20px rgba(0,0,0,0.18); opacity: 0; visibility: hidden; pointer-events: none; z-index: 100; padding: 0.5rem 0; border-top: none; }
+      .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; animation: ddFadeIn 150ms ease forwards; }
+      .nav-dropdown-menu::before { content: ''; position: absolute; top: -20px; left: -16px; right: -16px; height: 24px; background: transparent; pointer-events: auto; }
+      .nav-dropdown-menu::after { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; background: transparent; }
+      .dd-section-label { font-family: 'Space Mono', monospace; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-variant: small-caps; color: var(--gildhart-gold); padding: 0.875rem 1.5rem 0.375rem; display: block; pointer-events: none; background: transparent!important; }
+      .dd-divider { height: 1px; background: var(--gildhart-gold); opacity: 1; margin: 0.25rem 1.5rem; }
+      .dd-item { display: block; padding: 1rem 1.5rem; text-decoration: none; border-radius: 0; margin: 0; transition: background 0.15s ease; border-bottom: 1px solid rgba(201,164,74,0.1); }
+      .dd-item:last-child { border-bottom: none; }
+      .dd-item:hover { background: rgba(201,164,74,0.06); }
+      .dd-item:hover .dd-item-name { color: #d4b35a; }
+      .dd-item-name { font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gildhart-gold); line-height: 1.3; display: block; }
+      .dd-item-sub { font-size: 0.8125rem; font-weight: 300; color: #F5ECD7; line-height: 1.5; display: block; margin-top: 3px; }
+
+      .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: #FAF5EE; min-width: 48px; min-height: 48px; align-items: center; justify-content: center; border-radius: 8px; transition: background 0.2s ease; }
+      .nav-hamburger:hover { background: rgba(250,245,238,0.08); }
+      .nav-hamburger:active { background: rgba(250,245,238,0.12); }
+      .nav-hamburger svg { display: block; }
+      .nav-hamburger .ham-close { color: var(--gildhart-gold); }
+      .nav-hamburger.nav-open { background: rgba(201,164,74,0.12); border: 1px solid rgba(201,164,74,0.25); }
+      .nav-hamburger .ham-close { display: none; }
+      .nav-hamburger.nav-open .ham-open { display: none; }
+      .nav-hamburger.nav-open .ham-close { display: block; }
+      .nav.nav-border-hidden { border-bottom-color: transparent; }
+
+      .nav-mobile-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(30,61,47,1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 9999; padding: 0; display: flex; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; opacity: 0; transform: translateY(-12px); pointer-events: none; visibility: hidden; transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1), visibility 0.35s; }
+      .nav-mobile-overlay.mobile-open { opacity: 1; transform: translateY(0); pointer-events: auto; visibility: visible; }
+      .nav-mobile-overlay .mobile-menu-content > * { opacity: 0; transform: translateY(16px); transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.14s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.20s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.26s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.32s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.44s; }
+      .nav-mobile-overlay.mobile-open .mobile-menu-content > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.50s; }
+      .nav-mobile-overlay-logo { display: none; }
+      .mobile-menu-content { flex: 1; padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.25rem; }
+      .nav-mobile-overlay a, .nav-mobile-overlay button { font-size: 1.125rem; font-weight: 500; color: #FAF5EE; text-decoration: none; padding: 0; border: none; background: none; font-family: inherit; cursor: pointer; text-align: left; display: block; width: 100%; min-height: auto; transition: color 0.2s ease; }
+      .nav-mobile-overlay a:hover, .nav-mobile-overlay button:hover { color: var(--gildhart-gold); }
+      .mobile-nav-section-trigger { display: flex; align-items: center; justify-content: space-between; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.01em; color: #FAF5EE; padding: 1.25rem 0; border: none; background: none; font-family: inherit; cursor: pointer; text-align: left; width: 100%; min-height: 56px; border-bottom: 1px solid rgba(201,164,74,0.18); transition: color 0.2s ease, background 0.15s ease; -webkit-tap-highlight-color: transparent; }
+      .mobile-nav-section-trigger:hover { color: var(--gildhart-gold); }
+      .mobile-nav-section-trigger:active { color: var(--gildhart-gold); background: rgba(201,164,74,0.06); }
+      .mobile-dd-arrow { font-size: 0.7rem; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); color: var(--gildhart-gold); opacity: 0.7; display: inline-block; line-height: 1; font-family: Arial, Helvetica, sans-serif; }
+      .mobile-dd-panel { padding-left: 0.75rem; border-left: 2px solid rgba(201,164,74,0.15); margin-left: 0.25rem; }
+      .mobile-dd-panel .mobile-dd-item { display: block; padding: 0.875rem 1rem; text-decoration: none; border-bottom: 1px solid rgba(201,164,74,0.06); transition: background 0.15s ease, padding-left 0.2s ease; min-height: 48px; border-radius: 6px; margin-bottom: 2px; -webkit-tap-highlight-color: transparent; }
+      .mobile-dd-panel .mobile-dd-item:last-child { border-bottom: none; }
+      .mobile-dd-panel .mobile-dd-item:hover { background: rgba(201,164,74,0.06); padding-left: 1.25rem; }
+      .mobile-dd-item-name { display: block; font-size: 1.0625rem; font-weight: 600; color: var(--gildhart-gold); letter-spacing: 0.04em; line-height: 1.3; }
+      .mobile-dd-panel .mobile-dd-item:hover .mobile-dd-item-name { color: #e0bf7a; }
+      .mobile-dd-item-sub { display: block; font-size: 0.9rem; font-weight: 300; color: rgba(245,236,215,0.75); line-height: 1.5; margin-top: 4px; }
+      .mobile-dd-category-label { display: block; font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gildhart-gold); opacity: 0.65; padding: 0.75rem 1rem 0.25rem; min-height: auto; }
+      .mobile-dd-divider { height: 1px; background: linear-gradient(90deg, rgba(201,164,74,0.3), rgba(201,164,74,0.05)); margin: 0.375rem 1rem; }
+      .mobile-nav-plain-link { display: flex; align-items: center; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.01em; color: #FAF5EE; text-decoration: none; padding: 1.25rem 0; border-bottom: 1px solid rgba(201,164,74,0.18); min-height: 56px; transition: color 0.2s ease, background 0.15s ease; -webkit-tap-highlight-color: transparent; }
+      .mobile-nav-plain-link:hover { color: var(--gildhart-gold); }
+      .mobile-nav-plain-link:active { color: var(--gildhart-gold); background: rgba(201,164,74,0.06); }
+      .mobile-menu-spacer { flex: 1; min-height: 1.5rem; }
+      .mobile-menu-cta-wrapper { position: sticky; bottom: 0; padding: 1rem 2rem 1.5rem; background: linear-gradient(to top, rgba(30,61,47,1) 60%, rgba(30,61,47,0)); z-index: 2; flex-shrink: 0; }
+      .nav-mobile-overlay .mobile-nav-cta { display: block; background: var(--gildhart-gold); color: #fff!important; padding: 1rem 1.75rem; border-radius: 12px; font-weight: 700!important; font-size: 1rem!important; letter-spacing: 0.04em; text-transform: uppercase; text-align: center; text-decoration: none; box-shadow: 0 4px 24px rgba(201,164,74,0.3), 0 1px 3px rgba(0,0,0,0.15); transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; }
+      .nav-mobile-overlay .mobile-nav-cta:hover { background: #b8912f; transform: translateY(-1px); box-shadow: 0 6px 32px rgba(201,164,74,0.4), 0 2px 6px rgba(0,0,0,0.2); }
+      .nav-mobile-overlay .mobile-nav-cta:active { transform: scale(0.98); box-shadow: 0 2px 12px rgba(201,164,74,0.3); }
+      .mobile-cta-subtext { display: block; text-align: center; font-size: 0.75rem; font-weight: 400; color: rgba(250,245,238,0.4); margin-top: 0.625rem; letter-spacing: 0.02em; }
+
+      @media (max-width: 1024px) {
+        .nav-brand img { max-width: 120px; max-height: 120px; }
+        .nav-brand { padding: 0.5rem 0 0.125rem; }
+        .nav-links, .nav-links-right { gap: 1.25rem; }
+        .nav-links a, .nav-links-right a, .nav-dropdown-trigger { font-size: 0.875rem; }
+        .nav-cta { font-size: 0.75rem!important; height: 34px; line-height: 34px; padding: 0 1.25rem; }
+      }
+      @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .nav-links-right { display: none; }
+        .nav-hamburger { display: flex; }
+        .nav-inner { display: flex; justify-content: center; align-items: center; height: 130px; min-height: 130px; padding: 0 1.25rem; position: relative; }
+        .nav-brand { grid-column: unset; grid-row: unset; padding: 10px 0 14px; overflow: visible; }
+        .nav-brand img { max-width: 110px; max-height: 110px; }
+        .nav-hamburger { position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); }
+        .nav-mobile-overlay { top: 0; padding-top: 130px; }
+        .mobile-menu-content { padding: 2rem 2rem 1.5rem; }
+        .mobile-menu-cta-wrapper { padding: 1rem 1.75rem 1.5rem; }
+        .mobile-cta-subtext { display: none; }
+        .mobile-menu-content .mobile-nav-section-trigger:first-child { border-top: none; padding-top: 0.5rem; }
+      }
+      @media (max-width: 480px) {
+        .nav-inner { height: 118px; min-height: 118px; }
+        .nav-brand { padding: 8px 0 12px; }
+        .nav-brand img { max-width: 95px; max-height: 95px; }
+        .nav-mobile-overlay { top: 0; padding-top: 118px; }
+        .mobile-menu-content { padding: 1rem 1.25rem 1.25rem; }
+        .mobile-menu-cta-wrapper { padding: 0.75rem 1.25rem 1.25rem; }
+        .mobile-nav-section-trigger, .mobile-nav-plain-link { font-size: 1.375rem; padding: 1.125rem 0; min-height: 52px; }
+        .mobile-dd-panel .mobile-dd-item { min-height: 44px; padding: 0.75rem 0.875rem; }
+      }
+
+      .ab-reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+      .ab-reveal.ab-visible { opacity: 1; transform: translateY(0); }
+      .ab-reveal-d1 { transition-delay: 0.1s; }
+      .ab-reveal-d2 { transition-delay: 0.25s; }
+      .ab-reveal-d3 { transition-delay: 0.4s; }
+      .ab-reveal-d4 { transition-delay: 0.55s; }
+      .ab-reveal-d5 { transition-delay: 0.7s; }
+      .ab-reveal-card { opacity: 0; transform: translateY(50px) scale(0.96); transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+      .ab-reveal-card.ab-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+      .ab-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; font-variant: small-caps; color: var(--gildhart-gold); display: block; margin-bottom: 1.5rem; }
+
+      .ab-gold-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(201,164,74,0.35) 30%, rgba(201,164,74,0.35) 70%, transparent 100%); }
+
+      .ab-hero { background: var(--gildhart-green); padding: 7rem 2rem 0; position: relative; overflow: hidden; }
+      .ab-hero::before { content: ''; position: absolute; top: -300px; left: 50%; transform: translateX(-50%); width: 1100px; height: 1100px; background: radial-gradient(circle, rgba(201,164,74,0.05) 0%, transparent 65%); pointer-events: none; }
+      .ab-hero-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 1; padding-bottom: 5rem; }
+      .ab-hero-headline { font-family: 'Inter', sans-serif; font-size: clamp(2.25rem, 4.5vw, 3.5rem); font-weight: 800; color: #ffffff; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 3rem; opacity: 0; transform: translateY(20px); animation: abFadeUp 0.8s ease-out 0.4s forwards; }
+      @keyframes abFadeUp { to { opacity: 1; transform: translateY(0); } }
+      .ab-hero-body { max-width: 760px; margin: 0 auto; opacity: 0; animation: abFadeUp 0.6s ease-out 0.9s forwards; }
+      .ab-hero-body p { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); font-weight: 400; color: rgba(245,236,215,0.82); line-height: 1.85; margin-bottom: 1.75rem; }
+      .ab-hero-body p:last-child { margin-bottom: 0; }
+
+      .ab-stat-strip { background: rgba(255,255,255,0.06); border-top: 1px solid rgba(201,164,74,0.2); margin-top: 4rem; }
+      .ab-stat-strip-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); }
+      .ab-stat-item { padding: 2.5rem 2rem; text-align: center; position: relative; }
+      .ab-stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 25%; height: 50%; width: 1px; background: rgba(201,164,74,0.2); }
+      .ab-stat-num { font-family: 'Inter', sans-serif; font-size: clamp(1.875rem, 3vw, 2.75rem); font-weight: 800; color: var(--gildhart-gold); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.625rem; }
+      .ab-stat-label { font-size: 0.9375rem; font-weight: 400; color: rgba(245,236,215,0.65); line-height: 1.5; }
+
+      @media (max-width: 768px) {
+        .ab-hero { padding: 5rem 1.5rem 0; }
+        .ab-hero-headline { font-size: clamp(2rem, 7vw, 2.75rem); }
+        .ab-hero-body p { font-size: 1.0625rem; }
+        .ab-stat-strip-inner { grid-template-columns: 1fr; }
+        .ab-stat-item::after { display: none; }
+        .ab-stat-item { padding: 1.75rem 1.5rem; border-bottom: 1px solid rgba(201,164,74,0.1); }
+        .ab-stat-item:last-child { border-bottom: none; }
+      }
+
+      .ab-drew { background: #fef7ed; padding: 7rem 2rem 7.5rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
+      .ab-drew::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(30,61,47,0.04) 0%, transparent 70%); pointer-events: none; }
+      .ab-drew-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; position: relative; z-index: 1; }
+      .ab-drew-headline { font-family: 'Inter', sans-serif; font-size: clamp(1.75rem, 2.75vw, 2.5rem); font-weight: 800; color: var(--navy); line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 2.25rem; }
+      .ab-drew-body p { font-size: 1.0625rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 1.625rem; }
+      .ab-drew-body p:last-of-type { margin-bottom: 0; }
+
+      .ab-pull-quote { font-family: 'Inter', sans-serif; font-size: clamp(1.125rem, 1.75vw, 1.375rem); font-weight: 800; color: var(--navy); line-height: 1.4; letter-spacing: -0.02em; margin: 2rem 0; padding: 1.5rem 0; border-top: 2px solid var(--gildhart-gold); border-bottom: 2px solid rgba(201,164,74,0.15); }
+
+      .ab-drew-attribution { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
+      .ab-drew-attribution-name { font-family: 'Inter', sans-serif; font-size: 1.125rem; font-weight: 800; color: var(--navy); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 0.25rem; }
+      .ab-drew-attribution-role { font-size: 0.9375rem; font-weight: 500; color: var(--gray-600); }
+
+      .ab-drew-photo-card { background: #f0ece6; border-radius: 20px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); aspect-ratio: 4/5; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .ab-drew-photo-placeholder { text-align: center; padding: 3rem 2rem; }
+      .ab-drew-photo-placeholder-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gildhart-gold); margin-bottom: 1rem; display: block; }
+      .ab-drew-photo-placeholder-text { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; color: var(--gildhart-green); line-height: 1.5; }
+      .ab-drew-photo-placeholder-icon { font-size: 3rem; color: var(--gildhart-gold); opacity: 0.25; margin-bottom: 1.25rem; display: block; line-height: 1; }
+
+      @media (max-width: 1024px) { .ab-drew-inner { grid-template-columns: 1fr; gap: 3rem; } .ab-drew-photo-card { aspect-ratio: 16/9; max-height: 420px; } }
+      @media (max-width: 768px) { .ab-drew { padding: 5rem 1.5rem 5.5rem; } .ab-drew-headline { font-size: clamp(1.625rem, 5.5vw, 2.25rem); } }
+
+      .ab-team { background: var(--gildhart-green); padding: 7rem 2rem 7.5rem; position: relative; overflow: hidden; }
+      .ab-team::before { content: ''; position: absolute; top: -300px; left: 50%; transform: translateX(-50%); width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(201,164,74,0.04) 0%, transparent 65%); pointer-events: none; }
+      .ab-team-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+      .ab-team-header { text-align: center; max-width: 820px; margin: 0 auto 5rem; }
+      .ab-team-headline { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 3.75vw, 3rem); font-weight: 800; color: #ffffff; line-height: 1.15; letter-spacing: -0.03em; }
+      .ab-team-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+      .ab-team-card { background: rgba(255,255,255,0.07); border: 1.5px solid var(--gildhart-gold); border-radius: 20px; padding: 2.75rem 2.25rem; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s ease, border-color 0.45s ease, background 0.45s ease; }
+      .ab-team-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.11); box-shadow: 0 24px 64px rgba(0,0,0,0.28), 0 0 0 2px rgba(201,164,74,0.5); }
+      .ab-team-card-title { font-family: 'Inter', sans-serif; font-size: 1.375rem; font-weight: 800; color: #ffffff; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.125rem; }
+      .ab-team-card-body { font-size: 1rem; color: rgba(245,236,215,0.82); line-height: 1.75; }
+
+      @media (max-width: 900px) { .ab-team-cards { grid-template-columns: 1fr; gap: 1.25rem; } .ab-team { padding: 5rem 1.5rem 5.5rem; } .ab-team-header { margin-bottom: 3rem; } .ab-team-headline { font-size: clamp(1.75rem, 6.5vw, 2.5rem); } }
+
+      .ab-how { background: #fef7ed; padding: 7rem 2rem 7.5rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
+      .ab-how::before { content: ''; position: absolute; top: -200px; left: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(30,61,47,0.04) 0%, transparent 70%); pointer-events: none; }
+      .ab-how-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+      .ab-how-headline { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 3.75vw, 3rem); font-weight: 800; color: var(--navy); line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 3rem; }
+      .ab-how-body p { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--gray-600); line-height: 1.85; margin-bottom: 2rem; }
+      .ab-how-body p:last-child { margin-bottom: 0; }
+      .ab-how-standalone { font-family: 'Inter', sans-serif; font-size: clamp(1.25rem, 2vw, 1.625rem)!important; font-weight: 800!important; color: var(--navy)!important; line-height: 1.3!important; letter-spacing: -0.02em; }
+
+      @media (max-width: 768px) { .ab-how { padding: 5rem 1.5rem 5.5rem; } .ab-how-headline { font-size: clamp(1.75rem, 6.5vw, 2.5rem); } }
+
+      .ab-who { background: #fef7ed; padding: 7rem 2rem 7.5rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
+      .ab-who::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,61,47,0.04) 0%, transparent 65%); pointer-events: none; }
+      .ab-who-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+      .ab-who-header { max-width: 820px; margin-bottom: 1.75rem; }
+      .ab-who-headline { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 3.75vw, 3rem); font-weight: 800; color: var(--navy); line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+      .ab-who-intro { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--gray-600); line-height: 1.85; margin-bottom: 3.5rem; max-width: 820px; }
+      .ab-who-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-bottom: 3.5rem; }
+      .ab-who-card { background: white; border-radius: 20px; padding: 2.75rem 2.25rem; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 6px 28px rgba(0,0,0,0.055), 0 1px 4px rgba(0,0,0,0.04); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
+      .ab-who-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,0,0,0.09), 0 2px 8px rgba(30,61,47,0.08); }
+      .ab-who-card-label { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gildhart-gold); margin-bottom: 1rem; display: block; }
+      .ab-who-card-body { font-size: 1rem; color: var(--gray-600); line-height: 1.75; }
+      .ab-who-closing { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--gray-600); line-height: 1.85; text-align: center; max-width: 760px; margin: 0 auto; }
+
+      @media (max-width: 900px) { .ab-who-cards { grid-template-columns: 1fr; gap: 1.25rem; } .ab-who { padding: 5rem 1.5rem 5.5rem; } .ab-who-headline { font-size: clamp(1.75rem, 6.5vw, 2.5rem); } }
+
+      .ab-cta { background: var(--gildhart-green); padding: 8rem 2rem 8rem; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,74,0.18); }
+      .ab-cta::before { content: ''; position: absolute; top: -250px; left: 50%; transform: translateX(-50%); width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(201,164,74,0.05) 0%, transparent 65%); pointer-events: none; }
+      .ab-cta-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+      .ab-cta-headline { font-family: 'Inter', sans-serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 800; color: #ffffff; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+      .ab-cta-body { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); color: rgba(245,236,215,0.82); line-height: 1.75; margin-bottom: 3rem; font-weight: 400; }
+      .ab-cta-buttons { display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+      .ab-btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 1.1rem 2.5rem; background: var(--gildhart-green); color: white; font-family: inherit; font-size: 1.05rem; font-weight: 700; border-radius: 10px; border: 2px solid var(--gildhart-gold); text-decoration: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: all 0.25s ease; letter-spacing: 0.01em; }
+      .ab-btn-primary:hover { background: var(--gildhart-black); border-color: var(--gildhart-gold); box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 0 2px rgba(201,164,74,0.3); transform: translateY(-2px); }
+      .ab-btn-outline { display: inline-flex; align-items: center; justify-content: center; padding: 1.1rem 2.5rem; background: transparent; color: white; font-family: inherit; font-size: 1.05rem; font-weight: 600; border-radius: 10px; border: 2px solid rgba(255,255,255,0.45); text-decoration: none; cursor: pointer; transition: all 0.25s ease; }
+      .ab-btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); transform: translateY(-2px); }
+
+      @media (max-width: 768px) { .ab-cta { padding: 5.5rem 1.5rem 5.5rem; } .ab-cta-headline { font-size: clamp(1.75rem, 7vw, 2.75rem); } .ab-cta-buttons { flex-direction: column; } .ab-btn-primary, .ab-btn-outline { width: 100%; justify-content: center; } }
+
+      .footer { padding: 4rem 0 2rem; background: var(--gildhart-green); border-top: 1px solid rgba(201,164,74,0.25); }
+      .footer-inner { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+      .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+      .footer-brand-name { color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none; display: inline-block; margin-bottom: 0.375rem; }
+      .footer-brand-tagline { color: rgba(255,255,255,0.5); font-size: 0.875rem; margin-bottom: 0.875rem; }
+      .footer-brand-desc { color: rgba(255,255,255,0.6); line-height: 1.65; font-size: 0.9375rem; max-width: 300px; margin-bottom: 1.125rem; }
+      .footer-brand-link { display: inline-block; color: var(--gildhart-gold); font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: text-decoration 0.2s; }
+      .footer-brand-link:hover { text-decoration: underline; }
+      .footer-col h4 { font-size: 0.875rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.25rem; }
+      .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 0.75rem; transition: color 0.2s; }
+      .footer-col a:hover { color: var(--gildhart-gold); }
+      .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid rgba(201,164,74,0.2); }
+      .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.875rem; }
+      .footer-badges { display: flex; gap: 1.5rem; align-items: center; }
+
+      @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 2rem; } .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; } }
+    </style>
+  </head>
+  <body>
+    <nav class="nav" id="mainNav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776767932323-0.png" alt="Gildhart" width="80" height="80" loading="eager" decoding="async" fetchpriority="high" />
+        </a>
+        <div class="nav-links">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger">Who We Help <span class="dd-arrow">▼</span></button>
+            <div class="nav-dropdown-menu" style="min-width:280px;">
+              <a href="#" class="dd-item"><span class="dd-item-name">Pharmacy Groups</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">Private Clinics</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">Enterprise Healthcare</span></a>
+            </div>
+          </div>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger">Our Work <span class="dd-arrow">▼</span></button>
+            <div class="nav-dropdown-menu">
+              <a href="web-pro-elite.html" class="dd-item"><span class="dd-item-name">The Build</span><span class="dd-item-sub">Bespoke Healthcare Website</span></a>
+              <a href="salesagent.html" class="dd-item"><span class="dd-item-name">The Agent</span><span class="dd-item-sub">Your Practice Never Closes</span></a>
+              <a href="ai-domination-system.html" class="dd-item"><span class="dd-item-name">The Method</span><span class="dd-item-sub">DIY Access &#163;497</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-links-right">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger">The Proof <span class="dd-arrow">▼</span></button>
+            <div class="nav-dropdown-menu" style="min-width:440px;">
+              <span class="dd-section-label">Client Results</span>
+              <a href="case-study-ealing.html" class="dd-item"><span class="dd-item-name">Ealing Travel Clinic</span><span class="dd-item-sub">300% Revenue Growth</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">Superior Pharmacy</span><span class="dd-item-sub">50% of Sales from ChatGPT</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">Puri Pharmacy</span><span class="dd-item-sub">Outranking Boots Nationally</span></a>
+              <div class="dd-divider"></div>
+              <span class="dd-section-label">Latest Builds</span>
+              <a href="#" class="dd-item"><span class="dd-item-name">Chiselhurst Pharmacy Group</span><span class="dd-item-sub">Premium Multi-Site Build</span></a>
+              <a href="#" class="dd-item"><span class="dd-item-name">Easy Clinic</span><span class="dd-item-sub">Premium Private Clinic Build</span></a>
+              <a href="case-study-southdowns.html" class="dd-item"><span class="dd-item-name">Southdowns Pharmacy Group</span><span class="dd-item-sub">AI Agent</span></a>
+            </div>
+          </div>
+          <a href="about.html" class="nav-cta" style="background:transparent;border:1px solid rgba(201,164,74,0.5);color:var(--gildhart-gold)!important;line-height:36px;">About</a>
+          <a href="index.html#contact" class="nav-cta">Join The Waitlist</a>
+        </div>
+        <button class="nav-hamburger" aria-label="Open navigation menu">
+          <svg class="ham-open" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+          <svg class="ham-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" /></svg>
+        </button>
+      </div>
+    </nav>
+    <div class="nav-spacer" id="navSpacer"></div>
+
+    <div class="nav-mobile-overlay" id="mobileNavOverlay">
+      <div class="mobile-menu-content">
+        <button class="mobile-nav-section-trigger" data-accordion>Who We Help <span class="mobile-dd-arrow">&#9662;</span></button>
+        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Pharmacy Groups</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Private Clinics</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Enterprise Healthcare</span></a>
+        </div>
+        <button class="mobile-nav-section-trigger" data-accordion>Our Work <span class="mobile-dd-arrow">&#9662;</span></button>
+        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+          <a href="web-pro-elite.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Build</span><span class="mobile-dd-item-sub">Bespoke Healthcare Website</span></a>
+          <a href="salesagent.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Agent</span><span class="mobile-dd-item-sub">Your Practice Never Closes</span></a>
+          <a href="ai-domination-system.html" class="mobile-dd-item"><span class="mobile-dd-item-name">The Method</span><span class="mobile-dd-item-sub">DIY Access &#163;497</span></a>
+        </div>
+        <button class="mobile-nav-section-trigger" data-accordion>The Proof <span class="mobile-dd-arrow">&#9662;</span></button>
+        <div class="mobile-dd-panel" style="max-height:0px;opacity:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease;">
+          <span class="mobile-dd-category-label">Client Results</span>
+          <a href="case-study-ealing.html" class="mobile-dd-item"><span class="mobile-dd-item-name">Ealing Travel Clinic</span><span class="mobile-dd-item-sub">300% Revenue Growth</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Superior Pharmacy</span><span class="mobile-dd-item-sub">50% of Sales from ChatGPT</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Puri Pharmacy</span><span class="mobile-dd-item-sub">Outranking Boots Nationally</span></a>
+          <div class="mobile-dd-divider"></div>
+          <span class="mobile-dd-category-label">Latest Builds</span>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Chiselhurst Pharmacy Group</span><span class="mobile-dd-item-sub">Premium Multi-Site Build</span></a>
+          <a href="#" class="mobile-dd-item"><span class="mobile-dd-item-name">Easy Clinic</span><span class="mobile-dd-item-sub">Premium Private Clinic Build</span></a>
+          <a href="case-study-southdowns.html" class="mobile-dd-item"><span class="mobile-dd-item-name">Southdowns Pharmacy Group</span><span class="mobile-dd-item-sub">AI Agent</span></a>
+        </div>
+        <a href="about.html" class="mobile-nav-plain-link">About</a>
+        <div class="mobile-menu-spacer"></div>
+      </div>
+      <div class="mobile-menu-cta-wrapper">
+        <a href="index.html#contact" class="mobile-nav-cta">Join The Waitlist</a>
+        <span class="mobile-cta-subtext">Free AI visibility audit included</span>
+      </div>
+    </div>
+
+    <section class="ab-hero">
+      <div class="ab-hero-inner">
+        <span class="ab-eyebrow" style="opacity:0;animation:abFadeUp 0.5s ease-out 0.15s forwards;">About Gildhart</span>
+        <h1 class="ab-hero-headline">The AI Infrastructure Company That Only Works In Healthcare.</h1>
+        <div class="ab-hero-body">
+          <p>There are AI agencies. There are healthcare marketing agencies. There are very few people who understand both deeply enough to build systems that actually work in a regulated, clinically complex, patient-facing environment.</p>
+          <p>Gildhart sits at that intersection deliberately.</p>
+          <p>Not because it&#39;s a good market. Because it&#39;s the only market where twenty years of immersion, genuine clinical understanding, and leading-edge AI architecture combine into something that produces results nobody else in the industry is producing.</p>
+          <p>Superior Pharmacy. Ealing Travel Clinic. Southdowns Pharmacy Group. These aren&#39;t case studies. They&#39;re proof of what happens when healthcare expertise meets AI infrastructure built specifically for how patients now find, trust, and choose their providers.</p>
+        </div>
+      </div>
+      <div class="ab-stat-strip ab-reveal ab-reveal-d4">
+        <div class="ab-stat-strip-inner">
+          <div class="ab-stat-item">
+            <p class="ab-stat-num">&#163;500k</p>
+            <p class="ab-stat-label">Superior Pharmacy — annual revenue trajectory</p>
+          </div>
+          <div class="ab-stat-item">
+            <p class="ab-stat-num">250+</p>
+            <p class="ab-stat-label">Southdowns — patient enquiries every month</p>
+          </div>
+          <div class="ab-stat-item">
+            <p class="ab-stat-num">&#163;100k</p>
+            <p class="ab-stat-label">Ealing — from a single service</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ab-drew">
+      <div class="ab-drew-inner">
+        <div class="ab-drew-copy">
+          <span class="ab-eyebrow ab-reveal ab-reveal-d1">The Founder</span>
+          <h2 class="ab-drew-headline ab-reveal ab-reveal-d2">Twenty Years In Healthcare. Built From The Inside.</h2>
+          <div class="ab-drew-body ab-reveal ab-reveal-d3">
+            <p>I&#39;ve spent my career inside healthcare — not observing it from the outside.</p>
+            <p>NHS campaigns. Bupa. Harley Street clinics. Bizitch Dental — one of the UK&#39;s largest dental groups. Twenty years working on the accounts that shaped how millions of patients find and choose their healthcare providers.</p>
+            <p>I also spend significantly on my own private healthcare. I understand the patient journey from both sides — as someone who has built the marketing systems and as someone who uses them. That dual perspective shapes everything Gildhart builds.</p>
+          </div>
+          <blockquote class="ab-pull-quote ab-reveal ab-reveal-d3">
+            "Then AI search happened. And everything I&#39;d learned about how patients make healthcare decisions became the foundation for something entirely new."
+          </blockquote>
+          <div class="ab-drew-body ab-reveal ab-reveal-d4">
+            <p>ChatGPT doesn&#39;t search Google. It searches Bing. Google AI Overviews don&#39;t reward brand size. They reward clinical authority and content architecture. AI platforms trust the practices that speak their language — and most healthcare practices don&#39;t know what that language is yet.</p>
+            <p>I do. And I&#39;ve spent the last few years building the infrastructure that puts our clients at the top of every AI platform patients now use to make healthcare decisions.</p>
+            <p>Superior Pharmacy is on track for &#163;500k this year. Ealing Travel Clinic generates &#163;100k from a single service. Southdowns Pharmacy Group captures 250+ patient enquiries a month across 13 services. That&#39;s not strategy. That&#39;s infrastructure working exactly as it was built to work.</p>
+            <p>I speak at healthcare and AI conferences because the opportunity is real and most of the industry doesn&#39;t know it yet. But every talk I give is grounded in the same thing — specific results from real practices, built on systems that compound over time.</p>
+          </div>
+          <div class="ab-drew-attribution ab-reveal ab-reveal-d5">
+            <p class="ab-drew-attribution-name">Drew</p>
+            <p class="ab-drew-attribution-role">Founder, Gildhart</p>
+          </div>
+        </div>
+        <div class="ab-reveal-card ab-reveal-d3">
+          <div class="ab-drew-photo-card">
+            <div class="ab-drew-photo-placeholder">
+              <span class="ab-drew-photo-placeholder-icon">&#9633;</span>
+              <span class="ab-drew-photo-placeholder-label">Photo Placeholder</span>
+              <p class="ab-drew-photo-placeholder-text">INSERT DREW PHOTO HERE</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ab-gold-divider"></div>
+
+    <section class="ab-team">
+      <div class="ab-team-inner">
+        <div class="ab-team-header">
+          <span class="ab-eyebrow ab-reveal ab-reveal-d1">The Team</span>
+          <h2 class="ab-team-headline ab-reveal ab-reveal-d2">Healthcare Depth. AI Architecture. Both. Simultaneously.</h2>
+        </div>
+        <div class="ab-team-cards">
+          <div class="ab-team-card ab-reveal-card ab-reveal-d2">
+            <h3 class="ab-team-card-title">AI Architecture</h3>
+            <p class="ab-team-card-body">Our AI architects have built and deployed systems for some of the world&#39;s most sophisticated technology organisations. They bring that technical depth to an industry where the stakes of getting it wrong are higher than almost anywhere else.</p>
+          </div>
+          <div class="ab-team-card ab-reveal-card ab-reveal-d3">
+            <h3 class="ab-team-card-title">Healthcare Expertise</h3>
+            <p class="ab-team-card-body">Every system we build is GPhC-compliant, clinically accurate, and written by people who understand the difference between a Mounjaro consultation and a private prescription. Generic AI agencies don&#39;t know that. We do.</p>
+          </div>
+          <div class="ab-team-card ab-reveal-card ab-reveal-d4">
+            <h3 class="ab-team-card-title">The Combination</h3>
+            <p class="ab-team-card-body">We don&#39;t name our team publicly. That&#39;s a deliberate decision. What matters is this — every person working on your account has done this before, at a level that most healthcare marketing teams never reach.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ab-gold-divider"></div>
+
+    <section class="ab-how">
+      <div class="ab-how-inner">
+        <span class="ab-eyebrow ab-reveal ab-reveal-d1">How We Work</span>
+        <h2 class="ab-how-headline ab-reveal ab-reveal-d2">We Don&#39;t Consult. We Deploy. Then We Compound.</h2>
+        <div class="ab-how-body">
+          <p class="ab-how-standalone ab-reveal ab-reveal-d3">Gildhart deploys infrastructure.</p>
+          <p class="ab-reveal ab-reveal-d3">AI search architecture that tells Google, ChatGPT, Claude, and Perplexity exactly who to recommend. Sales agents that capture patient revenue at midnight on a Tuesday. Content systems that build clinical authority that compounds every single month.</p>
+          <p class="ab-reveal ab-reveal-d4">Superior Pharmacy didn&#39;t get a strategy. They got a system that now drives 50% of their revenue from AI search. Southdowns didn&#39;t get recommendations. They got 250 patient enquiries a month across 13 services they&#39;d never actively marketed.</p>
+          <p class="ab-how-standalone ab-reveal ab-reveal-d5">That&#39;s what deploying looks like. That&#39;s what compounding looks like.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ab-gold-divider"></div>
+
+    <section class="ab-who">
+      <div class="ab-who-inner">
+        <span class="ab-eyebrow ab-reveal ab-reveal-d1">Who We Work With</span>
+        <h2 class="ab-who-headline ab-reveal ab-reveal-d2">Built For The Practices Ready To Own Their Market.</h2>
+        <p class="ab-who-intro ab-reveal ab-reveal-d3">We work with pharmacy groups, private clinic operators, and healthcare businesses that have made a decision — not a consideration. The practices that come to Gildhart already understand that AI search is the most significant shift in patient acquisition in twenty years.</p>
+        <div class="ab-who-cards">
+          <div class="ab-who-card ab-reveal-card ab-reveal-d3">
+            <span class="ab-who-card-label">Pharmacy Groups</span>
+            <p class="ab-who-card-body">Independent pharmacy groups and multi-site operators ready to become the dominant practice in their market. Not practices testing the water. Practices ready to move.</p>
+          </div>
+          <div class="ab-who-card ab-reveal-card ab-reveal-d4">
+            <span class="ab-who-card-label">Private Clinic Operators</span>
+            <p class="ab-who-card-body">Private clinics and specialist practices with high-value services and the ambition to make AI search their primary patient acquisition channel.</p>
+          </div>
+          <div class="ab-who-card ab-reveal-card ab-reveal-d5">
+            <span class="ab-who-card-label">Enterprise Healthcare</span>
+            <p class="ab-who-card-body">Healthcare businesses operating at scale who understand that the window to build AI search dominance is open now — and won&#39;t stay open indefinitely.</p>
+          </div>
+        </div>
+        <p class="ab-who-closing ab-reveal ab-reveal-d5">They&#39;ve seen what Superior Pharmacy, Ealing Travel Clinic, and Southdowns Pharmacy Group have built. They want the same infrastructure for their practice. They&#39;re not testing the water. They&#39;re ready to move. If that&#39;s you — the waitlist is the right next step.</p>
+      </div>
+    </section>
+
+    <section class="ab-cta">
+      <div class="ab-cta-inner">
+        <h2 class="ab-cta-headline ab-reveal ab-reveal-d1">A Slot Opens Rarely. When It Does, It Goes Quickly.</h2>
+        <p class="ab-cta-body ab-reveal ab-reveal-d2">The cost question answers itself. Usually within the first week.</p>
+        <div class="ab-cta-buttons ab-reveal ab-reveal-d3">
+          <a href="index.html#contact" class="ab-btn-primary">Join The Waitlist &#8594;</a>
+          <a href="salesagent.html" class="ab-btn-outline">See Our Work &#8594;</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-brand-name">Gildhart</a>
+            <p class="footer-brand-tagline">The AI Search Playbook for Healthcare</p>
+            <p class="footer-brand-desc">Get featured in ChatGPT, Claude, and Google AI Overviews. The system used by 50+ healthcare practices including Ealing Travel Clinic, Superior Pharmacy, and Puri Pharmacy.</p>
+            <a href="ai-domination-system.html" class="footer-brand-link">Get The Playbook — &#163;497 &#8594;</a>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <a href="ai-domination-system.html">AI Search Playbook</a>
+            <a href="web-pro-elite.html">WebPro Elite</a>
+            <a href="salesagent.html">The Agent</a>
+            <a href="index.html#case-studies">Case Studies</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="about.html">About</a>
+            <a href="salesagent.html">How It Works</a>
+            <a href="index.html#case-studies">Case Studies</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:hello@gildhart.com">hello@gildhart.com</a>
+            <a href="tel:+442035820064">020 3582 0064</a>
+            <a href="#">London, UK</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&#169; 2026 Gildhart. Healthcare Marketing Agency.</p>
+          <div class="footer-badges">
+            <span style="color:rgba(255,255,255,0.4);font-size:0.75rem;">ISO 27001 Certified</span>
+            <span style="color:rgba(255,255,255,0.4);font-size:0.75rem;">Top 40 Agency</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function() {
+        var els = document.querySelectorAll('.ab-reveal, .ab-reveal-card');
+        if (!els.length) return;
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('ab-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        els.forEach(function(el) { obs.observe(el); });
+      })();
+
+      (function() {
+        var hamburger = document.querySelector('.nav-hamburger');
+        var overlay = document.getElementById('mobileNavOverlay');
+        if (!hamburger || !overlay) return;
+        var isOpen = false;
+        var navEl = document.querySelector('.nav');
+
+        function openMenu() {
+          isOpen = true;
+          overlay.classList.add('mobile-open');
+          hamburger.classList.add('nav-open');
+          if (navEl) navEl.classList.add('nav-border-hidden');
+          hamburger.setAttribute('aria-label', 'Close navigation menu');
+          hamburger.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+          isOpen = false;
+          overlay.classList.remove('mobile-open');
+          hamburger.classList.remove('nav-open');
+          if (navEl) navEl.classList.remove('nav-border-hidden');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+          overlay.querySelectorAll('.mobile-dd-panel').forEach(function(p) { p.style.maxHeight = '0px'; p.style.opacity = '0'; });
+          overlay.querySelectorAll('.mobile-dd-arrow').forEach(function(a) { a.style.transform = 'rotate(0deg)'; });
+        }
+        hamburger.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); if (isOpen) { closeMenu(); } else { openMenu(); } });
+        overlay.addEventListener('click', function(e) { var link = e.target.closest('a'); if (link) { closeMenu(); } });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && isOpen) { closeMenu(); } });
+
+        var triggers = overlay.querySelectorAll('[data-accordion]');
+        triggers.forEach(function(trigger) {
+          trigger.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            var panel = this.nextElementSibling;
+            var arrow = this.querySelector('.mobile-dd-arrow');
+            if (!panel || !panel.classList.contains('mobile-dd-panel')) return;
+            var isExpanded = parseInt(panel.style.maxHeight, 10) > 0;
+            triggers.forEach(function(ot) {
+              if (ot === trigger) return;
+              var op = ot.nextElementSibling; var oa = ot.querySelector('.mobile-dd-arrow');
+              if (op && op.classList.contains('mobile-dd-panel')) { op.style.maxHeight = '0px'; op.style.opacity = '0'; if (oa) oa.style.transform = 'rotate(0deg)'; }
+            });
+            if (isExpanded) { panel.style.maxHeight = '0px'; panel.style.opacity = '0'; if (arrow) arrow.style.transform = 'rotate(0deg)'; }
+            else { panel.style.maxHeight = panel.scrollHeight + 'px'; panel.style.opacity = '1'; if (arrow) arrow.style.transform = 'rotate(180deg)'; }
+          });
+        });
+      })();
+
+      (function() {
+        var nav = document.getElementById('mainNav');
+        var spacer = document.getElementById('navSpacer');
+        if (!nav || !spacer) return;
+        var shrinkAt = 80, expandAt = 25, scrolled = false;
+        function syncSpacer() { nav.classList.remove('nav-scrolled'); spacer.style.height = nav.offsetHeight + 'px'; }
+        function checkScroll() {
+          if (window.innerWidth <= 768) return;
+          var y = window.scrollY;
+          if (!scrolled && y > shrinkAt) { scrolled = true; nav.classList.add('nav-scrolled'); }
+          else if (scrolled && y < expandAt) { scrolled = false; nav.classList.remove('nav-scrolled'); }
+        }
+        var ticking = false;
+        window.addEventListener('scroll', function() { if (!ticking) { window.requestAnimationFrame(function() { checkScroll(); ticking = false; }); ticking = true; } }, { passive: true });
+        window.addEventListener('resize', function() { scrolled = false; nav.classList.remove('nav-scrolled'); syncSpacer(); checkScroll(); });
+        syncSpacer(); checkScroll();
+        var logoImg = nav.querySelector('.nav-brand img');
+        if (logoImg) { if (logoImg.complete) { syncSpacer(); } else { logoImg.addEventListener('load', function() { syncSpacer(); checkScroll(); }); } }
+      })();
+
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.querySelector(anchor.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    </script>
+  </body>
+</html>
