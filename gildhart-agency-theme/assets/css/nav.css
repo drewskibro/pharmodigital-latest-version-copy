@@ -77,7 +77,7 @@
   color: #FAF5EE;
   text-decoration: none;
   position: relative;
-  padding-bottom: 2px;
+  padding: 4px 0 6px;
   transition: color 0.2s;
 }
 .nav-links a::after,
@@ -107,8 +107,12 @@
   font-size: 0.8125rem !important;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  line-height: 38px;
-  text-align: center;
+  /* True vertical centering — old line-height:38px trick rendered Outfit
+     slightly above optical centre. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
@@ -149,7 +153,7 @@
   background: none;
   border: none;
   font-family: inherit;
-  padding: 0 0 2px;
+  padding: 4px 0 6px;
   position: relative;
   transition: color 0.2s;
 }
