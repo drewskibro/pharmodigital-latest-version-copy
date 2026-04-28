@@ -134,7 +134,16 @@ function gildhart_scripts() {
         gh_asset_ver( 'assets/css/footer.css' )
     );
 
-    // Per-page asset enqueues are added here as pages are built (Phases 3+).
+    // ── Per-page assets ───────────────────────────────────────────────
+    // Homepage
+    if ( is_page_template( 'page-templates/page-home.php' ) ) {
+        wp_enqueue_style(
+            'gildhart-home',
+            GILDHART_URI . '/assets/css/home.css',
+            array( 'gildhart-globals' ),
+            gh_asset_ver( 'assets/css/home.css' )
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'gildhart_scripts' );
 

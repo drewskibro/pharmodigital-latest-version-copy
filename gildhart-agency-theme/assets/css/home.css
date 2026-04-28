@@ -1,0 +1,292 @@
+/* =============================================================
+   Gildhart Agency — Homepage
+   Section-by-section styles, ported from index.html.
+   B1: Hero, Logo Bar
+   B2-B5: appended as each stage lands.
+   ============================================================= */
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+.hero {
+  display: flex;
+  align-items: flex-start;
+  padding: 2.5rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+  overflow-x: clip;
+  background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+}
+
+.hero-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gildhart-green);
+  margin-top: -1.5rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 6px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: eyebrowReveal 0.6s ease-out 0.3s forwards;
+}
+.hero-eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gildhart-gold);
+  opacity: 0.9;
+}
+@keyframes eyebrowReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.75rem, 5.5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: #1a2b3c;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+.hero-title .line-1 {
+  display: block;
+  font-size: 1em;
+  margin-bottom: 0.04em;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.8s ease-out 0.2s forwards;
+}
+.hero-title .line-2 {
+  display: block;
+  font-size: 1.18em;
+  line-height: 1.02;
+  margin-bottom: 0.02em;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.8s ease-out 1.3s forwards;
+}
+.hero-title .line-3 {
+  display: block;
+  font-size: 1.42em;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.8s ease-out 1.8s forwards;
+}
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Desktop/mobile headline swap */
+.hero-title .desktop-only { display: inline; }
+.hero-title .mobile-only  { display: none; }
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 560px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.6s ease-out 2.3s forwards;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.5s ease-out 2.7s forwards;
+}
+.hero-cta .btn-primary {
+  padding: 1rem 2rem;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.25);
+}
+.hero-cta .btn-outline {
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border: 2px solid #1a2b3c;
+  color: #1a2b3c;
+}
+.hero-cta .btn-outline:hover {
+  background: #1a2b3c;
+  color: white;
+}
+
+.hero-trust-stats {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #6B6B6B;
+  letter-spacing: 0.01em;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroFadeUp 0.4s ease-out 3.0s forwards;
+}
+.hero-trust-stats span {
+  margin: 0 0.75rem;
+  opacity: 0.5;
+}
+
+/* Hero visual / image stack */
+.hero-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+.hero-image-stack {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  overflow: visible;
+}
+.hero-image-stack img {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  border-radius: 20px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px) scale(0.97) rotate(0deg);
+  border: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease;
+  margin: 0 auto;
+  display: block;
+}
+.hero-image-stack img.active {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(-2deg);
+}
+.hero-image-stack img.active:hover {
+  transform: translateY(-6px) scale(1.02) rotate(-1deg);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22), 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Logo Bar ───────────────────────────────────────────────── */
+
+.logo-bar-eyebrow-band {
+  background: #fcf4e9;
+  padding: 1.5rem 2rem 0;
+  text-align: center;
+}
+.logo-bar-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gildhart-green);
+  margin: 0;
+  opacity: 0.75;
+}
+
+.logo-bar {
+  width: 100%;
+  background: #fcf4e9;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 2rem 0;
+  overflow: hidden;
+  max-width: 100vw;
+}
+.logo-bar-scroller {
+  display: flex;
+  gap: 4rem;
+  animation: logoScroll 30s linear infinite;
+}
+.logo-bar-scroller img {
+  height: 50px;
+  width: auto;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.logo-bar-scroller img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+@keyframes logoScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero-visual {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hero-image-stack,
+  .hero-image-stack img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1.5rem;
+    min-height: auto;
+    margin-top: 0;
+  }
+  .hero-inner {
+    gap: 2rem;
+  }
+  .hero-cta {
+    flex-direction: column;
+  }
+  .hero-trust-stats {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .hero-title .desktop-only { display: none; }
+  .hero-title .mobile-only  { display: inline; }
+  .hero-content {
+    text-align: center;
+  }
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

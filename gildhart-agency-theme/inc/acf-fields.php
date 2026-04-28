@@ -293,6 +293,143 @@ acf_add_local_field_group( array(
 ) );
 
 /**
+ * B1 — Home page · Hero
+ *
+ * Headline is a textarea: each line break becomes one of the three large
+ * stacked lines. Mobile override lets you swap copy on small screens
+ * (e.g. shorter wording). Leave blank to reuse the desktop copy.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_hero',
+    'title'    => 'Home · Hero',
+    'fields'   => array(
+        array(
+            'key'           => 'field_gh_home_hero_eyebrow',
+            'label'         => 'Eyebrow',
+            'name'          => 'hero_eyebrow',
+            'type'          => 'text',
+            'default_value' => 'AI Search for Healthcare',
+        ),
+        array(
+            'key'           => 'field_gh_home_hero_headline_desktop',
+            'label'         => 'Headline (Desktop)',
+            'name'          => 'hero_headline_desktop',
+            'type'          => 'textarea',
+            'rows'          => 3,
+            'instructions'  => 'One line per line break. Renders as three stacked lines with progressively larger sizes.',
+            'default_value' => "National Chains Spend Millions.\nStill Lose to Our\nClients.",
+        ),
+        array(
+            'key'          => 'field_gh_home_hero_headline_mobile',
+            'label'        => 'Headline (Mobile)',
+            'name'         => 'hero_headline_mobile',
+            'type'         => 'textarea',
+            'rows'         => 3,
+            'instructions' => 'Optional. Shorter mobile copy. Leave blank to reuse the desktop headline on mobile.',
+        ),
+        array(
+            'key'          => 'field_gh_home_hero_subtitle',
+            'label'        => 'Subtitle',
+            'name'         => 'hero_subtitle',
+            'type'         => 'textarea',
+            'rows'         => 4,
+        ),
+        array(
+            'key'           => 'field_gh_home_hero_primary_cta_label',
+            'label'         => 'Primary CTA — Label',
+            'name'          => 'hero_primary_cta_label',
+            'type'          => 'text',
+            'default_value' => 'Get The System',
+        ),
+        array(
+            'key'           => 'field_gh_home_hero_primary_cta_url',
+            'label'         => 'Primary CTA — URL',
+            'name'          => 'hero_primary_cta_url',
+            'type'          => 'text',
+            'instructions'  => 'Use a full URL or an anchor like #contact.',
+            'default_value' => '#contact',
+        ),
+        array(
+            'key'           => 'field_gh_home_hero_secondary_cta_label',
+            'label'         => 'Secondary CTA — Label',
+            'name'          => 'hero_secondary_cta_label',
+            'type'          => 'text',
+            'default_value' => 'See The Proof',
+        ),
+        array(
+            'key'           => 'field_gh_home_hero_secondary_cta_url',
+            'label'         => 'Secondary CTA — URL',
+            'name'          => 'hero_secondary_cta_url',
+            'type'          => 'text',
+            'default_value' => '#case-studies',
+        ),
+        array(
+            'key'           => 'field_gh_home_hero_trust_stats',
+            'label'         => 'Trust Stats',
+            'name'          => 'hero_trust_stats',
+            'type'          => 'text',
+            'instructions'  => 'Use | as a separator between stats. Example: £50M+ Revenue | 1000+ AI Rankings | 50+ Healthcare Clients',
+            'default_value' => '£50M+ Revenue | 1000+ AI Rankings | 50+ Healthcare Clients',
+        ),
+        array(
+            'key'           => 'field_gh_home_hero_image',
+            'label'         => 'Hero Image',
+            'name'          => 'hero_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
+ * B2 — Home page · Logo Bar
+ *
+ * Auto-loops the logos via CSS animation; we render the gallery twice for a
+ * seamless infinite scroll. Eyebrow text sits in the cream band above.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_logo_bar',
+    'title'    => 'Home · Logo Bar',
+    'fields'   => array(
+        array(
+            'key'           => 'field_gh_home_logo_bar_eyebrow',
+            'label'         => 'Eyebrow',
+            'name'          => 'logo_bar_eyebrow',
+            'type'          => 'text',
+            'default_value' => 'Trusted by healthcare practices across the UK & Worldwide',
+        ),
+        array(
+            'key'           => 'field_gh_home_logo_bar_logos',
+            'label'         => 'Client Logos',
+            'name'          => 'logo_bar_logos',
+            'type'          => 'gallery',
+            'return_format' => 'array',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Upload client logos. Order is preserved. The set is duplicated automatically for the seamless scroll loop.',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
  * Nav metadata — Service CPT.
  *
  * Adds a "Nav Subtitle" field to the Service edit screen, used as the smaller
