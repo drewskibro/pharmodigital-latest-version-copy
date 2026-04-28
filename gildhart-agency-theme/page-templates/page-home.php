@@ -19,7 +19,8 @@ get_header(); ?>
     <?php get_template_part( 'template-parts/section-shift' ); ?>
     <?php get_template_part( 'template-parts/section-two-paths' ); ?>
     <?php get_template_part( 'template-parts/section-case-studies' ); ?>
-    <?php /* Sections 8–9 (Founder + Revenue) land in B5 */ ?>
+    <?php get_template_part( 'template-parts/section-founder' ); ?>
+    <?php get_template_part( 'template-parts/section-revenue' ); ?>
 </main>
 
 <?php get_footer();

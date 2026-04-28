@@ -1081,6 +1081,280 @@ acf_add_local_field_group( array(
 ) );
 
 /**
+ * B8 — Home page · Founder
+ *
+ * Two-column section: portrait left (with a soft cream-fade gradient at the
+ * bottom) + ACF-driven copy block right. Body paragraphs reveal sequentially
+ * via .founder-visible scroll trigger.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_founder',
+    'title'    => 'Home · Founder',
+    'fields'   => array(
+        array(
+            'key'           => 'field_gh_home_founder_image',
+            'label'         => 'Portrait Image',
+            'name'          => 'founder_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+        ),
+        array(
+            'key'           => 'field_gh_home_founder_eyebrow',
+            'label'         => 'Eyebrow',
+            'name'          => 'founder_eyebrow',
+            'type'          => 'text',
+            'default_value' => 'The Person Behind The Results',
+        ),
+        array(
+            'key'   => 'field_gh_home_founder_headline',
+            'label' => 'Headline',
+            'name'  => 'founder_headline',
+            'type'  => 'text',
+        ),
+        array(
+            'key'          => 'field_gh_home_founder_paragraphs',
+            'label'        => 'Body Paragraphs',
+            'name'         => 'founder_paragraphs',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 5,
+            'instructions' => 'Each paragraph reveals sequentially. Last paragraph gets bold-emphasis styling.',
+            'sub_fields'   => array(
+                array(
+                    'key'   => 'field_gh_home_founder_paragraph_text',
+                    'label' => 'Paragraph',
+                    'name'  => 'text',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+            ),
+        ),
+        array(
+            'key'           => 'field_gh_home_founder_name',
+            'label'         => 'Founder Name',
+            'name'          => 'founder_name',
+            'type'          => 'text',
+            'default_value' => 'Drew',
+        ),
+        array(
+            'key'           => 'field_gh_home_founder_title',
+            'label'         => 'Founder Title',
+            'name'          => 'founder_title',
+            'type'          => 'text',
+            'default_value' => 'Founder, Gildhart',
+        ),
+        array(
+            'key'   => 'field_gh_home_founder_linkedin_url',
+            'label' => 'LinkedIn URL',
+            'name'  => 'founder_linkedin_url',
+            'type'  => 'url',
+        ),
+        array(
+            'key'           => 'field_gh_home_founder_linkedin_text',
+            'label'         => 'LinkedIn Pitch Text',
+            'name'          => 'founder_linkedin_text',
+            'type'          => 'text',
+            'default_value' => 'Connect with me on LinkedIn — 5,000+ healthcare professionals follow our AI search insights.',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
+ * B9 — Home page · Revenue Results
+ *
+ * Dark navy section with header + 2x2 grid of revenue cards (cards 2 and 4
+ * get the elevated/featured styling automatically) + a closing block with
+ * stat callout, body copy, gut-punch line, and dual CTAs.
+ *
+ * The optional gildhart logo divider sits above this section and can be
+ * toggled on/off.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_revenue',
+    'title'    => 'Home · Revenue Results',
+    'fields'   => array(
+        array(
+            'key'           => 'field_gh_home_revenue_show_divider',
+            'label'         => 'Show Gildhart Logo Divider Above',
+            'name'          => 'revenue_show_divider',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+
+        array(
+            'key'           => 'field_gh_home_revenue_eyebrow',
+            'label'         => 'Eyebrow',
+            'name'          => 'revenue_eyebrow',
+            'type'          => 'text',
+            'default_value' => 'The Numbers',
+        ),
+        array(
+            'key'   => 'field_gh_home_revenue_headline',
+            'label' => 'Headline (Top Line)',
+            'name'  => 'revenue_headline',
+            'type'  => 'text',
+        ),
+        array(
+            'key'          => 'field_gh_home_revenue_headline_accent',
+            'label'        => 'Headline (Accent — Gold Underline)',
+            'name'         => 'revenue_headline_accent',
+            'type'         => 'text',
+            'instructions' => 'Renders below the top line in cream with a gold underline.',
+        ),
+        array(
+            'key'          => 'field_gh_home_revenue_subheadline',
+            'label'        => 'Subheadline',
+            'name'         => 'revenue_subheadline',
+            'type'         => 'textarea',
+            'rows'         => 2,
+            'instructions' => 'Supports limited HTML (<strong>).',
+        ),
+
+        array(
+            'key'          => 'field_gh_home_revenue_cards',
+            'label'        => 'Revenue Cards',
+            'name'         => 'revenue_cards',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 4,
+            'instructions' => '2×2 grid. Cards 2 and 4 automatically get the elevated featured styling.',
+            'sub_fields'   => array(
+                array(
+                    'key'   => 'field_gh_home_revenue_card_label',
+                    'label' => 'Client / Label',
+                    'name'  => 'label',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'          => 'field_gh_home_revenue_card_number',
+                    'label'        => 'Big Number',
+                    'name'         => 'number',
+                    'type'         => 'text',
+                    'instructions' => 'Pre-formatted, e.g. "50%", "£99k/year", "£200k".',
+                ),
+                array(
+                    'key'   => 'field_gh_home_revenue_card_descriptor',
+                    'label' => 'Descriptor',
+                    'name'  => 'descriptor',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_home_revenue_card_proof',
+                    'label' => 'Proof Detail',
+                    'name'  => 'proof',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+            ),
+        ),
+
+        // Closing block
+        array(
+            'key'          => 'field_gh_home_revenue_close_headline',
+            'label'        => 'Closing · Headline',
+            'name'         => 'revenue_close_headline',
+            'type'         => 'text',
+            'instructions' => 'Italic centered headline above the stat callout.',
+        ),
+        array(
+            'key'          => 'field_gh_home_revenue_close_stat_num',
+            'label'        => 'Closing · Stat Number',
+            'name'         => 'revenue_close_stat_num',
+            'type'         => 'text',
+            'instructions' => 'e.g. 4.4×',
+        ),
+        array(
+            'key'   => 'field_gh_home_revenue_close_stat_strong',
+            'label' => 'Closing · Stat Label (Strong First Line)',
+            'name'  => 'revenue_close_stat_strong',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_home_revenue_close_stat_label',
+            'label' => 'Closing · Stat Label (Detail)',
+            'name'  => 'revenue_close_stat_label',
+            'type'  => 'textarea',
+            'rows'  => 2,
+        ),
+        array(
+            'key'        => 'field_gh_home_revenue_close_body',
+            'label'      => 'Closing · Body Paragraphs',
+            'name'       => 'revenue_close_body',
+            'type'       => 'repeater',
+            'layout'     => 'block',
+            'min'        => 0,
+            'max'        => 5,
+            'sub_fields' => array(
+                array(
+                    'key'   => 'field_gh_home_revenue_close_body_text',
+                    'label' => 'Paragraph',
+                    'name'  => 'text',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+            ),
+        ),
+        array(
+            'key'   => 'field_gh_home_revenue_close_final',
+            'label' => 'Closing · Final Line (Centered Italic)',
+            'name'  => 'revenue_close_final',
+            'type'  => 'textarea',
+            'rows'  => 3,
+        ),
+        array(
+            'key'           => 'field_gh_home_revenue_close_cta1_label',
+            'label'         => 'Closing · Primary CTA Label',
+            'name'          => 'revenue_close_cta_primary_label',
+            'type'          => 'text',
+            'default_value' => "See If You're On The AI Shortlist →",
+        ),
+        array(
+            'key'           => 'field_gh_home_revenue_close_cta1_url',
+            'label'         => 'Closing · Primary CTA URL',
+            'name'          => 'revenue_close_cta_primary_url',
+            'type'          => 'text',
+            'default_value' => '#contact',
+        ),
+        array(
+            'key'           => 'field_gh_home_revenue_close_cta2_label',
+            'label'         => 'Closing · Secondary CTA Label',
+            'name'          => 'revenue_close_cta_secondary_label',
+            'type'          => 'text',
+            'default_value' => 'See What We Build →',
+        ),
+        array(
+            'key'           => 'field_gh_home_revenue_close_cta2_url',
+            'label'         => 'Closing · Secondary CTA URL',
+            'name'          => 'revenue_close_cta_secondary_url',
+            'type'          => 'text',
+            'default_value' => '/services',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
  * Nav metadata — Service CPT.
  *
  * Adds a "Nav Subtitle" field to the Service edit screen, used as the smaller
