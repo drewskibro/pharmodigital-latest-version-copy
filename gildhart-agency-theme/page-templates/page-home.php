@@ -17,7 +17,9 @@ get_header(); ?>
     <?php get_template_part( 'template-parts/section-featured-case-study' ); ?>
     <?php get_template_part( 'template-parts/section-split' ); ?>
     <?php get_template_part( 'template-parts/section-shift' ); ?>
-    <?php /* Sections 6–9 land in B4–B5 */ ?>
+    <?php get_template_part( 'template-parts/section-two-paths' ); ?>
+    <?php get_template_part( 'template-parts/section-case-studies' ); ?>
+    <?php /* Sections 8–9 (Founder + Revenue) land in B5 */ ?>
 </main>
 
 <?php get_footer();

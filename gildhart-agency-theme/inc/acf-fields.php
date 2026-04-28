@@ -858,6 +858,229 @@ acf_add_local_field_group( array(
 ) );
 
 /**
+ * B6 — Home page · Two Paths
+ *
+ * Three-card pricing/offering block. Centre card can be marked "featured"
+ * for the dark-fill highlighted style (with a "Recommended" pill).
+ * Each card has an optional proof banner above (with a dark variant for
+ * green-fill banners). Price block accepts either a big number+note
+ * (e.g. "£497" / "One-time. Yours forever.") or a muted paragraph (used
+ * for the Done-For-You card's "ROI within 90 days..." copy) — or both,
+ * or neither.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_two_paths',
+    'title'    => 'Home · Two Paths',
+    'fields'   => array(
+        array(
+            'key'   => 'field_gh_home_two_paths_headline',
+            'label' => 'Headline',
+            'name'  => 'two_paths_headline',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_home_two_paths_subheadline',
+            'label' => 'Subheadline',
+            'name'  => 'two_paths_subheadline',
+            'type'  => 'text',
+        ),
+        array(
+            'key'        => 'field_gh_home_two_paths_cards',
+            'label'      => 'Cards',
+            'name'       => 'two_paths_cards',
+            'type'       => 'repeater',
+            'layout'     => 'block',
+            'min'        => 0,
+            'max'        => 6,
+            'instructions' => 'Three cards is the designed layout. Mark one as "featured" for the dark Recommended treatment.',
+            'sub_fields' => array(
+                array(
+                    'key'   => 'field_gh_home_tp_card_banner',
+                    'label' => 'Proof Banner Text',
+                    'name'  => 'banner',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'           => 'field_gh_home_tp_card_banner_dark',
+                    'label'         => 'Banner Style — Dark Green',
+                    'name'          => 'banner_dark',
+                    'type'          => 'true_false',
+                    'instructions'  => 'Use the green-fill banner style (white text on Gildhart green).',
+                    'default_value' => 0,
+                    'ui'            => 1,
+                ),
+                array(
+                    'key'           => 'field_gh_home_tp_card_featured',
+                    'label'         => 'Featured (Dark Card with "Recommended" pill)',
+                    'name'          => 'is_featured',
+                    'type'          => 'true_false',
+                    'default_value' => 0,
+                    'ui'            => 1,
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_label',
+                    'label' => 'Eyebrow Label',
+                    'name'  => 'label',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_title',
+                    'label' => 'Title',
+                    'name'  => 'title',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_body',
+                    'label' => 'Body',
+                    'name'  => 'body',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+                array(
+                    'key'        => 'field_gh_home_tp_card_features',
+                    'label'      => 'Feature List',
+                    'name'       => 'features',
+                    'type'       => 'repeater',
+                    'layout'     => 'table',
+                    'min'        => 0,
+                    'sub_fields' => array(
+                        array(
+                            'key'   => 'field_gh_home_tp_card_feature_text',
+                            'label' => 'Feature',
+                            'name'  => 'text',
+                            'type'  => 'text',
+                        ),
+                    ),
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_price',
+                    'label' => 'Price (Big Number)',
+                    'name'  => 'price_value',
+                    'type'  => 'text',
+                    'instructions' => 'e.g. £497. Leave blank to skip the big-number price.',
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_price_note',
+                    'label' => 'Price Note',
+                    'name'  => 'price_value_note',
+                    'type'  => 'text',
+                    'instructions' => 'Sub-label under the price, e.g. "One-time. Yours forever."',
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_price_muted',
+                    'label' => 'Price — Muted Paragraph',
+                    'name'  => 'price_muted_text',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                    'instructions' => 'Alternative to the big number — used for "investment ranges" or paragraph-style pricing.',
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_cta_label',
+                    'label' => 'CTA Button Label',
+                    'name'  => 'cta_label',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_home_tp_card_cta_url',
+                    'label' => 'CTA Button URL',
+                    'name'  => 'cta_url',
+                    'type'  => 'text',
+                ),
+            ),
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
+ * B7 — Home page · Case Studies Carousel
+ *
+ * Auto-pulls published case_study posts. Each card displays the post's
+ * featured image, first `industry` taxonomy term as the tag, title,
+ * excerpt as the description, and a CTA label that defaults to the
+ * carousel's default but can be overridden per-post.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_case_studies',
+    'title'    => 'Home · Case Studies Carousel',
+    'fields'   => array(
+        array(
+            'key'           => 'field_gh_home_cs_title',
+            'label'         => 'Section Title',
+            'name'          => 'cs_carousel_title',
+            'type'          => 'text',
+            'default_value' => 'Healthcare marketing success stories',
+        ),
+        array(
+            'key'           => 'field_gh_home_cs_subtitle',
+            'label'         => 'Section Subtitle',
+            'name'          => 'cs_carousel_subtitle',
+            'type'          => 'text',
+            'default_value' => "See how we've helped practices dominate AI search",
+        ),
+        array(
+            'key'           => 'field_gh_home_cs_default_cta',
+            'label'         => 'Default Card CTA',
+            'name'          => 'cs_carousel_default_cta',
+            'type'          => 'text',
+            'instructions'  => 'Default link label used on each card unless that case study overrides it on its own edit screen.',
+            'default_value' => 'See exactly how they did it →',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
+ * Per-Case-Study override — Card CTA label for the homepage carousel.
+ *
+ * Lives on the Case Study edit screen alongside the existing Nav Subtitle
+ * field group (positioned in the sidebar). Lets each case study tweak the
+ * "See exactly how they did it →" CTA text without changing the carousel
+ * default.
+ */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_case_study_card',
+    'title'      => 'Card / Carousel',
+    'fields'     => array(
+        array(
+            'key'          => 'field_gh_case_study_card_cta',
+            'label'        => 'Card CTA Label',
+            'name'         => 'case_study_card_cta_label',
+            'type'         => 'text',
+            'instructions' => 'Optional. Overrides the homepage carousel default for this case study.',
+            'placeholder'  => 'e.g. See how they did it →',
+        ),
+    ),
+    'location'   => array(
+        array(
+            array(
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'case_study',
+            ),
+        ),
+    ),
+    'menu_order' => -9,
+    'position'   => 'side',
+) );
+
+/**
  * Nav metadata — Service CPT.
  *
  * Adds a "Nav Subtitle" field to the Service edit screen, used as the smaller
