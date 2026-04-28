@@ -209,6 +209,15 @@ function gh_logo_url() {
 }
 
 /**
+ * Helper: Whether a real logo has been uploaded (vs. relying on the SVG fallback).
+ * Used so the footer can avoid duplicating "Gildhart" image + text when the
+ * fallback SVG (which includes the word "Gildhart") is in use.
+ */
+function gh_has_uploaded_logo() {
+    return (bool) ( gh_option( 'agency_logo' ) || get_theme_mod( 'custom_logo' ) );
+}
+
+/**
  * Helper: Agency name.
  */
 function gh_agency_name() {

@@ -291,3 +291,70 @@ acf_add_local_field_group( array(
         ),
     ),
 ) );
+
+/**
+ * Nav metadata — Service CPT.
+ *
+ * Adds a "Nav Subtitle" field to the Service edit screen, used as the smaller
+ * gold subtitle text in the "Our Work" dropdown (e.g. "Bespoke Healthcare
+ * Website" under "The Build"). The full Service field group lands in Chunk E.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_service_nav',
+    'title'    => 'Navigation',
+    'fields'   => array(
+        array(
+            'key'          => 'field_gh_service_nav_subtitle',
+            'label'        => 'Nav Subtitle',
+            'name'         => 'service_nav_subtitle',
+            'type'         => 'text',
+            'instructions' => 'Short tagline shown beneath the service name in the "Our Work" dropdown.',
+            'placeholder'  => 'e.g. Bespoke Healthcare Website',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'service',
+            ),
+        ),
+    ),
+    'menu_order' => -10,
+    'position'   => 'side',
+) );
+
+/**
+ * Nav metadata — Case Study CPT.
+ *
+ * Adds a "Nav Subtitle" field to the Case Study edit screen, used as the
+ * smaller gold subtitle text in the "The Proof" dropdown (e.g. "300% Revenue
+ * Growth" under "Ealing Travel Clinic"). Full Case Study field group lands
+ * in Chunk D.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_case_study_nav',
+    'title'    => 'Navigation',
+    'fields'   => array(
+        array(
+            'key'          => 'field_gh_case_study_nav_subtitle',
+            'label'        => 'Nav Subtitle',
+            'name'         => 'case_study_nav_subtitle',
+            'type'         => 'text',
+            'instructions' => 'Short result/headline shown beneath the case study title in the "The Proof" dropdown.',
+            'placeholder'  => 'e.g. 300% Revenue Growth',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'case_study',
+            ),
+        ),
+    ),
+    'menu_order' => -10,
+    'position'   => 'side',
+) );

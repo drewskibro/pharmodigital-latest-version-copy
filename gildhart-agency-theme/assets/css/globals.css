@@ -74,6 +74,21 @@ body {
   color: var(--navy);
   line-height: 1.5;
   overflow-x: hidden;
+  /* Sticky-footer layout: stretch main content so footer sits at the bottom
+     of the viewport when the page is short. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* The main content region grows to fill available space, keeping the
+   footer flush with the bottom on short pages. */
+main, .site-main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
 }
 
 img {
