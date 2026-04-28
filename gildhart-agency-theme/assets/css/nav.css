@@ -100,19 +100,16 @@
 .nav-cta {
   background: var(--gildhart-gold);
   color: var(--gildhart-green) !important;
-  padding: 0 2.5rem;
-  height: 44px;
+  padding: 0 1.75rem;
+  height: 38px;
   border-radius: 8px;
   font-weight: 700 !important;
   font-size: 0.8125rem !important;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  /* True vertical centering — line-height:height trick rendered Outfit
-     slightly above optical centre. */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
+  line-height: 38px;
+  display: inline-block;
+  text-align: center;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
