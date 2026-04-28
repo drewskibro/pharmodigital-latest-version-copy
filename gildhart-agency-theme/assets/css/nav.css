@@ -68,8 +68,8 @@
 .nav-links { grid-column: 1; }
 .nav-links-right { grid-column: 3; }
 
-.nav-links a,
-.nav-links-right a {
+.nav-links a:not(.nav-cta),
+.nav-links-right a:not(.nav-cta) {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5;
