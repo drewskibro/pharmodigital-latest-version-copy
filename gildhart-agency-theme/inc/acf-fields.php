@@ -430,6 +430,133 @@ acf_add_local_field_group( array(
 ) );
 
 /**
+ * B3 — Home page · Featured Case Study
+ *
+ * Quote-led testimonial card with author, stars, and a linked CTA card on
+ * the right summarising the result.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_featured_case',
+    'title'    => 'Home · Featured Case Study',
+    'fields'   => array(
+        array(
+            'key'           => 'field_gh_home_fcs_image',
+            'label'         => 'Image',
+            'name'          => 'fcs_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+        ),
+        array(
+            'key'          => 'field_gh_home_fcs_quote',
+            'label'        => 'Quote',
+            'name'         => 'fcs_quote',
+            'type'         => 'textarea',
+            'rows'         => 4,
+            'instructions' => 'Supports limited HTML (e.g. <strong> for emphasis on key words).',
+            'default_value' => '"Traffic\'s up <strong>300%</strong> and compounding every month. Not just traffic for the sake of it, but <strong>patients actually booking appointments.</strong>"',
+        ),
+        array(
+            'key'   => 'field_gh_home_fcs_author_name',
+            'label' => 'Author Name',
+            'name'  => 'fcs_author_name',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_home_fcs_author_title',
+            'label' => 'Author Title',
+            'name'  => 'fcs_author_title',
+            'type'  => 'text',
+        ),
+        array(
+            'key'           => 'field_gh_home_fcs_show_stars',
+            'label'         => 'Show 5 Stars',
+            'name'          => 'fcs_show_stars',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+
+        // CTA card (right column)
+        array(
+            'key'           => 'field_gh_home_fcs_cta_badge',
+            'label'         => 'CTA Card · Badge',
+            'name'          => 'fcs_cta_badge',
+            'type'          => 'text',
+            'default_value' => 'Full Case Study',
+        ),
+        array(
+            'key'           => 'field_gh_home_fcs_cta_text',
+            'label'         => 'CTA Card · Lead Text',
+            'name'          => 'fcs_cta_text',
+            'type'          => 'text',
+            'default_value' => 'See the 6-month transformation that generated',
+        ),
+        array(
+            'key'           => 'field_gh_home_fcs_cta_number',
+            'label'         => 'CTA Card · Big Number',
+            'name'          => 'fcs_cta_number',
+            'type'          => 'text',
+            'default_value' => '300%',
+        ),
+        array(
+            'key'           => 'field_gh_home_fcs_cta_label',
+            'label'         => 'CTA Card · Number Suffix',
+            'name'          => 'fcs_cta_label',
+            'type'          => 'text',
+            'default_value' => 'more patients →',
+        ),
+        array(
+            'key'   => 'field_gh_home_fcs_cta_meta',
+            'label' => 'CTA Card · Meta Line',
+            'name'  => 'fcs_cta_meta',
+            'type'  => 'text',
+            'default_value' => '6-month transformation • AI Overview rankings • Real booking data',
+        ),
+        array(
+            'key'   => 'field_gh_home_fcs_cta_how',
+            'label' => 'CTA Card · How Line',
+            'name'  => 'fcs_cta_how',
+            'type'  => 'text',
+            'default_value' => 'How: AI-optimised content. Zero ad spend. Six weeks to #1 in Google AI Overviews.',
+        ),
+        array(
+            'key'           => 'field_gh_home_fcs_cta_link_label',
+            'label'         => 'CTA Card · Link Label',
+            'name'          => 'fcs_cta_link_label',
+            'type'          => 'text',
+            'default_value' => 'See How We Did It',
+        ),
+        array(
+            'key'          => 'field_gh_home_fcs_case_study',
+            'label'        => 'CTA Card · Case Study',
+            'name'         => 'fcs_case_study',
+            'type'         => 'post_object',
+            'post_type'    => array( 'case_study' ),
+            'return_format' => 'id',
+            'allow_null'   => 1,
+            'instructions' => 'Optional. If selected, the CTA card links to this case study and overrides the URL field below.',
+        ),
+        array(
+            'key'          => 'field_gh_home_fcs_link_url',
+            'label'        => 'CTA Card · Link URL',
+            'name'         => 'fcs_link_url',
+            'type'         => 'text',
+            'instructions' => 'Used when no Case Study is selected above. Accepts full URLs or anchors.',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
  * Nav metadata — Service CPT.
  *
  * Adds a "Nav Subtitle" field to the Service edit screen, used as the smaller
