@@ -1,0 +1,47 @@
+name: Deploy Gildhart Theme to Kinsta
+
+on:
+  push:
+    branches:
+      - main
+      # Dev branch — auto-deploys during initial build so changes can be tested
+      # on Kinsta. Remove this once Gildhart is in production and you only want
+      # to deploy via merges to main.
+      - claude/gildhart-wordpress-theme-rse74
+    paths:
+      - 'gildhart-agency-theme/**'
+      - '.github/workflows/deploy-gildhart-to-kinsta.yml'
+  # Allow manual trigger from the GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Kinsta
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Deploy theme files to Kinsta
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.KINSTA_SSH_HOST }}
+          username: ${{ secrets.KINSTA_SSH_USER }}
+          password: ${{ secrets.KINSTA_SSH_PASSWORD }}
+          port: ${{ secrets.KINSTA_SSH_PORT }}
+          source: "gildhart-agency-theme/"
+          target: "~/public/wp-content/themes/"
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.KINSTA_SSH_HOST }}
+          username: ${{ secrets.KINSTA_SSH_USER }}
+          password: ${{ secrets.KINSTA_SSH_PASSWORD }}
+          port: ${{ secrets.KINSTA_SSH_PORT }}
+          script: |
+            echo "Checking deployed theme..."
+            ls -la ~/public/wp-content/themes/gildhart-agency-theme/style.css
+            head -7 ~/public/wp-content/themes/gildhart-agency-theme/style.css
+            echo "Deploy complete!"
