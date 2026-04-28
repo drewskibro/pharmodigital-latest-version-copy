@@ -27,7 +27,9 @@ $address = gh_option( 'agency_address' );
         <div class="footer-top">
             <div class="footer-brand">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-brand-name">
-                    <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $agency_name ); ?>">
+                    <?php if ( gh_has_uploaded_logo() ) : ?>
+                        <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $agency_name ); ?>">
+                    <?php endif; ?>
                     <?php echo esc_html( $agency_name ); ?>
                 </a>
                 <?php if ( $tagline ) : ?>
