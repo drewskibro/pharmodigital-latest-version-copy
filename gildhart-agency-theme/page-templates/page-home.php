@@ -14,7 +14,8 @@ get_header(); ?>
 <main id="main" class="site-main">
     <?php get_template_part( 'template-parts/section-hero' ); ?>
     <?php get_template_part( 'template-parts/section-logo-bar' ); ?>
-    <?php /* Sections 3–9 land in B2–B5 */ ?>
+    <?php get_template_part( 'template-parts/section-featured-case-study' ); ?>
+    <?php /* Sections 4–9 land in B3–B5 */ ?>
 </main>
 
 <?php get_footer();

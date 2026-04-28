@@ -143,6 +143,14 @@ function gildhart_scripts() {
             array( 'gildhart-globals' ),
             gh_asset_ver( 'assets/css/home.css' )
         );
+
+        wp_enqueue_script(
+            'gildhart-home',
+            GILDHART_URI . '/assets/js/home.js',
+            array(),
+            gh_asset_ver( 'assets/js/home.js' ),
+            true
+        );
     }
 }
 add_action( 'wp_enqueue_scripts', 'gildhart_scripts' );
