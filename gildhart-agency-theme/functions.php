@@ -17,6 +17,18 @@ define( 'GILDHART_DIR', get_template_directory() );
 define( 'GILDHART_URI', get_template_directory_uri() );
 
 /**
+ * Per-asset cache buster. Returns the mtime of a theme-relative file so that
+ * editing one CSS/JS file invalidates ONLY that file's URL (instead of every
+ * asset sharing the same version because they were all keyed off globals.css).
+ *
+ * Falls back to GILDHART_VERSION if the file does not exist.
+ */
+function gh_asset_ver( $relative_path ) {
+    $full = get_theme_file_path( $relative_path );
+    return file_exists( $full ) ? filemtime( $full ) : GILDHART_VERSION;
+}
+
+/**
  * Theme Setup
  */
 function gildhart_setup() {
@@ -87,7 +99,7 @@ function gildhart_scripts() {
         'gildhart-globals',
         GILDHART_URI . '/assets/css/globals.css',
         array( 'font-awesome' ),
-        GILDHART_VERSION
+        gh_asset_ver( 'assets/css/globals.css' )
     );
 
     // Theme stylesheet (style.css — metadata only, but WP convention to enqueue)
@@ -95,7 +107,7 @@ function gildhart_scripts() {
         'gildhart-style',
         get_stylesheet_uri(),
         array( 'gildhart-globals' ),
-        GILDHART_VERSION
+        gh_asset_ver( 'style.css' )
     );
 
     // Navigation (loaded on every page)
@@ -103,14 +115,14 @@ function gildhart_scripts() {
         'gildhart-nav',
         GILDHART_URI . '/assets/css/nav.css',
         array( 'gildhart-globals' ),
-        GILDHART_VERSION
+        gh_asset_ver( 'assets/css/nav.css' )
     );
 
     wp_enqueue_script(
         'gildhart-nav',
         GILDHART_URI . '/assets/js/nav.js',
         array(),
-        GILDHART_VERSION,
+        gh_asset_ver( 'assets/js/nav.js' ),
         true
     );
 
@@ -119,7 +131,7 @@ function gildhart_scripts() {
         'gildhart-footer',
         GILDHART_URI . '/assets/css/footer.css',
         array( 'gildhart-globals' ),
-        GILDHART_VERSION
+        gh_asset_ver( 'assets/css/footer.css' )
     );
 
     // Per-page asset enqueues are added here as pages are built (Phases 3+).
