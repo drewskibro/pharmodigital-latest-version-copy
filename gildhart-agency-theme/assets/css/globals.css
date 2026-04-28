@@ -1,0 +1,176 @@
+/* =============================================================
+   Gildhart Agency — Global Stylesheet
+   Tokens, base resets, and shared component styles.
+   Page-specific styles live in their own files in assets/css/.
+   ============================================================= */
+
+:root {
+  /* ---- Brand ---- */
+  --gildhart-green: #1E3D2F;       /* primary brand */
+  --gildhart-gold: #C9A44A;        /* accent — primary CTA */
+  --gildhart-cream: #F0E6C8;       /* warm accent */
+  --gildhart-black: #0D1A12;       /* on-gold text, deep contrast */
+
+  /* ---- Supporting palette ---- */
+  --navy: #0f172a;
+  --navy-light: #1e293b;
+  --teal: #14b8a6;
+  --teal-dark: #0d9488;
+  --teal-bright: #00B5A3;
+  --sage: #4d7b6f;
+  --sage-mid: #8B9D83;
+  --cream: #f5f3ef;
+  --cream-warm: #fef7ed;
+
+  /* ---- Greys ---- */
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ---- Typography ---- */
+  --font-primary: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  /* Optional display fonts (page-scoped, e.g. WebPro Elite uses these) */
+  --font-display-serif: 'Playfair Display', serif;
+  --font-display-soft: 'Cormorant Garamond', serif;
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-pad: 2rem;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* ---- Reset / base ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--cream-warm);
+  color: var(--navy);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ---- Layout helpers ---- */
+.section-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+/* ---- Buttons (shared) ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--gildhart-gold);
+  color: var(--gildhart-black);
+}
+.btn-primary:hover {
+  background: #b8912f;
+  color: var(--gildhart-black);
+}
+
+.btn-dark {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-dark:hover {
+  background: var(--navy-light);
+}
+
+.btn-outline {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--gray-200);
+}
+.btn-outline:hover {
+  border-color: var(--navy);
+  background: #fafafa;
+}
+
+/* ---- Responsive visibility ---- */
+.desktop-only { display: none; }
+.mobile-only { display: block; }
+
+@media (min-width: 1024px) {
+  .desktop-only { display: block; }
+  .mobile-only { display: none; }
+}
+
+/* ---- Skip link (accessibility) ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  background: var(--gildhart-green);
+  color: var(--white);
+  z-index: 99999;
+  border-radius: 6px;
+}
