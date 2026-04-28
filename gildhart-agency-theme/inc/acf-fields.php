@@ -557,6 +557,307 @@ acf_add_local_field_group( array(
 ) );
 
 /**
+ * B4 — Home page · Split (Problem / Solution)
+ *
+ * Two-column block: dark navy "Problem" copy on the left, warm gradient
+ * "Solution" with a card grid on the right. Full-width gold-on-green CTA
+ * strip beneath. Cards use Font Awesome icons; enter the icon name (e.g.
+ * "chart-line") and the gh_fa_class helper auto-prefixes "fas".
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_split',
+    'title'    => 'Home · Split (Problem / Solution)',
+    'fields'   => array(
+        // Problem (left)
+        array(
+            'key'           => 'field_gh_home_split_problem_eyebrow',
+            'label'         => 'Problem · Eyebrow',
+            'name'          => 'split_problem_eyebrow',
+            'type'          => 'text',
+            'default_value' => 'THE PROBLEM',
+        ),
+        array(
+            'key'   => 'field_gh_home_split_problem_title',
+            'label' => 'Problem · Title',
+            'name'  => 'split_problem_title',
+            'type'  => 'text',
+        ),
+        array(
+            'key'          => 'field_gh_home_split_problem_lines',
+            'label'        => 'Problem · Body Paragraphs',
+            'name'         => 'split_problem_lines',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 4,
+            'instructions' => 'Add up to 4 paragraphs. Each animates in sequentially when the section scrolls into view.',
+            'sub_fields'   => array(
+                array(
+                    'key'   => 'field_gh_home_split_problem_line_text',
+                    'label' => 'Paragraph',
+                    'name'  => 'text',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+            ),
+        ),
+
+        // Solution (right)
+        array(
+            'key'           => 'field_gh_home_split_solution_eyebrow',
+            'label'         => 'Solution · Eyebrow',
+            'name'          => 'split_solution_eyebrow',
+            'type'          => 'text',
+            'default_value' => 'THE SOLUTION',
+        ),
+        array(
+            'key'          => 'field_gh_home_split_cards',
+            'label'        => 'Solution · Cards',
+            'name'         => 'split_cards',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 6,
+            'instructions' => 'Up to 6 cards in a 2-column grid.',
+            'sub_fields'   => array(
+                array(
+                    'key'          => 'field_gh_home_split_card_icon',
+                    'label'        => 'Icon (Font Awesome name)',
+                    'name'         => 'icon',
+                    'type'         => 'text',
+                    'instructions' => 'e.g. "chart-line" or "magnifying-glass". Auto-prefixed "fas".',
+                ),
+                array(
+                    'key'   => 'field_gh_home_split_card_title',
+                    'label' => 'Title',
+                    'name'  => 'title',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_home_split_card_text',
+                    'label' => 'Body',
+                    'name'  => 'text',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+            ),
+        ),
+
+        // CTA strip
+        array(
+            'key'   => 'field_gh_home_split_cta_text',
+            'label' => 'CTA Strip · Text',
+            'name'  => 'split_cta_text',
+            'type'  => 'textarea',
+            'rows'  => 2,
+        ),
+        array(
+            'key'           => 'field_gh_home_split_cta_label',
+            'label'         => 'CTA Strip · Button Label',
+            'name'          => 'split_cta_label',
+            'type'          => 'text',
+            'default_value' => 'Get The System →',
+        ),
+        array(
+            'key'           => 'field_gh_home_split_cta_url',
+            'label'         => 'CTA Strip · Button URL',
+            'name'          => 'split_cta_url',
+            'type'          => 'text',
+            'default_value' => '#contact',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
+ * B5 — Home page · The Shift
+ *
+ * Three blocks: header, two-column comparison (Google search mockup vs
+ * ChatGPT mockup), and a row of three "client result" proof cards. The
+ * mockup decorations themselves (fake search-result bars, AI bubble
+ * styling) are hardcoded in the template part — only the editable copy
+ * (queries, captions, recommendations) is fielded here.
+ */
+acf_add_local_field_group( array(
+    'key'      => 'group_gh_home_shift',
+    'title'    => 'Home · The Shift',
+    'fields'   => array(
+        array(
+            'key'           => 'field_gh_home_shift_eyebrow',
+            'label'         => 'Eyebrow',
+            'name'          => 'shift_eyebrow',
+            'type'          => 'text',
+            'default_value' => 'The Shift',
+        ),
+        array(
+            'key'   => 'field_gh_home_shift_headline',
+            'label' => 'Headline',
+            'name'  => 'shift_headline',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_home_shift_subheadline',
+            'label' => 'Subheadline',
+            'name'  => 'shift_subheadline',
+            'type'  => 'textarea',
+            'rows'  => 2,
+        ),
+
+        // Old column
+        array(
+            'key'           => 'field_gh_home_shift_old_label',
+            'label'         => 'Old Column · Label',
+            'name'          => 'shift_old_label',
+            'type'          => 'text',
+            'default_value' => 'The Old Game',
+        ),
+        array(
+            'key'           => 'field_gh_home_shift_old_query',
+            'label'         => 'Old Column · Search Query',
+            'name'          => 'shift_old_query',
+            'type'          => 'text',
+            'instructions'  => 'Shown inside the fake Google search bar.',
+            'default_value' => 'Best Mounjaro provider',
+        ),
+        array(
+            'key'   => 'field_gh_home_shift_old_caption',
+            'label' => 'Old Column · Caption',
+            'name'  => 'shift_old_caption',
+            'type'  => 'textarea',
+            'rows'  => 2,
+            'instructions' => 'Supports limited HTML (<strong>).',
+        ),
+
+        // New column
+        array(
+            'key'           => 'field_gh_home_shift_new_label',
+            'label'         => 'New Column · Label',
+            'name'          => 'shift_new_label',
+            'type'          => 'text',
+            'default_value' => 'The New Reality',
+        ),
+        array(
+            'key'           => 'field_gh_home_shift_new_logo_label',
+            'label'         => 'New Column · AI Tool Name',
+            'name'          => 'shift_new_logo_label',
+            'type'          => 'text',
+            'default_value' => 'ChatGPT',
+        ),
+        array(
+            'key'           => 'field_gh_home_shift_new_query',
+            'label'         => 'New Column · User Query',
+            'name'          => 'shift_new_query',
+            'type'          => 'text',
+            'default_value' => 'Best Mounjaro provider UK?',
+        ),
+        array(
+            'key'   => 'field_gh_home_shift_new_response_intro',
+            'label' => 'New Column · AI Response Intro',
+            'name'  => 'shift_new_response_intro',
+            'type'  => 'textarea',
+            'rows'  => 2,
+            'default_value' => 'Here are the top providers currently recommended for Mounjaro in the UK:',
+        ),
+        array(
+            'key'          => 'field_gh_home_shift_new_recommendations',
+            'label'        => 'New Column · AI Recommendations',
+            'name'         => 'shift_new_recommendations',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 1,
+            'max'          => 3,
+            'sub_fields'   => array(
+                array(
+                    'key'   => 'field_gh_home_shift_new_rec_name',
+                    'label' => 'Name',
+                    'name'  => 'name',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_home_shift_new_rec_detail',
+                    'label' => 'Detail',
+                    'name'  => 'detail',
+                    'type'  => 'textarea',
+                    'rows'  => 2,
+                ),
+            ),
+        ),
+        array(
+            'key'           => 'field_gh_home_shift_new_shortlist_note',
+            'label'         => 'New Column · Shortlist Note',
+            'name'          => 'shift_new_shortlist_note',
+            'type'          => 'text',
+            'default_value' => "AI gives 3–5 recommendations. That's the entire market.",
+        ),
+        array(
+            'key'   => 'field_gh_home_shift_new_caption',
+            'label' => 'New Column · Caption',
+            'name'  => 'shift_new_caption',
+            'type'  => 'textarea',
+            'rows'  => 2,
+            'instructions' => 'Supports limited HTML (<strong>).',
+        ),
+
+        // Proof cards
+        array(
+            'key'          => 'field_gh_home_shift_proof_cards',
+            'label'        => 'Proof Cards',
+            'name'         => 'shift_proof_cards',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 6,
+            'instructions' => 'Three cards looks best. Each is one client result.',
+            'sub_fields'   => array(
+                array(
+                    'key'           => 'field_gh_home_shift_proof_label',
+                    'label'         => 'Label',
+                    'name'          => 'label',
+                    'type'          => 'text',
+                    'default_value' => 'CLIENT RESULT',
+                ),
+                array(
+                    'key'   => 'field_gh_home_shift_proof_name',
+                    'label' => 'Client Name',
+                    'name'  => 'name',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_home_shift_proof_win',
+                    'label' => 'Result Description',
+                    'name'  => 'win',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+                array(
+                    'key'   => 'field_gh_home_shift_proof_stat',
+                    'label' => 'Headline Stat',
+                    'name'  => 'stat',
+                    'type'  => 'text',
+                ),
+            ),
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'page_template',
+                'operator' => '==',
+                'value'    => 'page-templates/page-home.php',
+            ),
+        ),
+    ),
+) );
+
+/**
  * Nav metadata — Service CPT.
  *
  * Adds a "Nav Subtitle" field to the Service edit screen, used as the smaller
