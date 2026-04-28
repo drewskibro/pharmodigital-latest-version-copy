@@ -41,6 +41,8 @@
   reveal( '.featured-case-study', 'fcs-visible' );
   reveal( '.split-section',       'split-visible', { threshold: 0.12, rootMargin: '0px 0px -60px 0px' } );
   reveal( '.shift-section',       'shift-visible', { threshold: 0.08, rootMargin: '0px 0px -40px 0px' } );
+  // Two-paths cards reveal individually (each card has its own .tp-visible)
+  reveal( '.two-paths-card',      'tp-visible',    { threshold: 0.15, rootMargin: '0px 0px -60px 0px' } );
 
   // The CTA strip lives outside .split-section in the markup; piggy-back on
   // the same observer by adding .split-cta-visible at the same time.
