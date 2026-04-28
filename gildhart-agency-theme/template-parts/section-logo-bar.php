@@ -26,12 +26,21 @@ if ( empty( $logos ) ) {
 <section class="logo-bar">
     <div class="logo-bar-scroller">
         <?php
-        // Render the logo set twice for the seamless scroll loop.
+        // For a seamless infinite scroll the scroller needs total width >
+        // 2× viewport. We tile each unique logo enough times so each "set"
+        // has at least MIN_PER_SET items, then render the whole set twice
+        // (the CSS animation translates by -50% of the scroller's width).
+        $MIN_PER_SET = 9;
+        $count       = max( 1, count( $logos ) );
+        $repeats     = (int) ceil( $MIN_PER_SET / $count );
+
         for ( $pass = 0; $pass < 2; $pass++ ) {
-            foreach ( $logos as $logo ) {
-                $alt = ! empty( $logo['alt'] ) ? $logo['alt'] : ( ! empty( $logo['title'] ) ? $logo['title'] : '' );
-                $src = $logo['sizes']['medium'] ?? $logo['url'];
-                echo '<img src="' . esc_url( $src ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" />';
+            for ( $rep = 0; $rep < $repeats; $rep++ ) {
+                foreach ( $logos as $logo ) {
+                    $alt = ! empty( $logo['alt'] ) ? $logo['alt'] : ( ! empty( $logo['title'] ) ? $logo['title'] : '' );
+                    $src = $logo['sizes']['medium'] ?? $logo['url'];
+                    echo '<img src="' . esc_url( $src ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" />';
+                }
             }
         }
         ?>

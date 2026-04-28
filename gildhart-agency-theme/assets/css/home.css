@@ -232,14 +232,11 @@
 .logo-bar-scroller img {
   height: 50px;
   width: auto;
-  filter: grayscale(100%);
-  opacity: 0.7;
-  transition: all 0.3s;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 .logo-bar-scroller img:hover {
-  filter: grayscale(0%);
-  opacity: 1;
+  transform: scale(1.05);
 }
 @keyframes logoScroll {
   0%   { transform: translateX(0); }
