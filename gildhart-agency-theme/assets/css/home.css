@@ -1208,269 +1208,404 @@ a.featured-cta-card:hover .featured-cta-link {
   .shift-proof { grid-template-columns: 1fr; }
 }
 
-/* ── Two Paths ──────────────────────────────────────────────── */
+/* ── Three-Tier Pricing Cards ───────────────────────────────── */
 
 .two-paths-section {
   background: #FAF8F3;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem 5rem;
   overflow: hidden;
 }
 .two-paths-inner {
-  max-width: 1400px;
+  max-width: 1320px;
   margin: 0 auto;
 }
 
+/* Section header */
 .two-paths-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+}
+.two-paths-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1rem 0;
 }
 .two-paths-headline {
   font-family: 'Inter', 'Outfit', sans-serif;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: var(--navy);
+  font-size: clamp(2rem, 3.6vw, 2.875rem);
+  font-weight: 800;
+  color: var(--gildhart-green);
   letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
+  line-height: 1.15;
+  margin: 0 0 1rem 0;
+  max-width: 24ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 .two-paths-subheadline {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   color: var(--gray-600);
   font-weight: 400;
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0 auto;
 }
 
+/* Grid — equal-height stretch */
 .two-paths-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: stretch;
 }
 
+/* Base card */
 .two-paths-card {
-  background: white;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06),
-              0 8px 32px rgba(0, 0, 0, 0.04);
+  position: relative;
+  background: #FFFDF8;
+  border-radius: 20px;
+  overflow: visible;
+  box-shadow: 0 1px 2px rgba(13, 26, 18, 0.04),
+              0 12px 32px -16px rgba(13, 26, 18, 0.10);
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(30, 61, 47, 0.08);
   opacity: 0;
   transform: translateY(40px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.two-paths-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08),
-              0 12px 40px rgba(0, 0, 0, 0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.two-paths-card--featured {
-  background: #0D1117;
-  border-color: rgba(30, 61, 47, 0.35);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
-              0 12px 48px rgba(0, 0, 0, 0.12);
-  position: relative;
-  z-index: 1;
-}
-.two-paths-card--featured:hover {
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2),
-              0 16px 56px rgba(0, 0, 0, 0.15);
-}
-.two-paths-card--featured .two-paths-proof-banner {
-  background: rgba(30, 61, 47, 0.5);
-  color: rgba(201, 164, 74, 0.9);
-  border-bottom-color: rgba(201, 164, 74, 0.2);
-}
-.two-paths-card--featured .two-paths-card-inner { padding: 2.5rem 2.5rem 3rem; }
-.two-paths-card--featured .two-paths-label      { color: rgba(201, 164, 74, 0.85); }
-.two-paths-card--featured .two-paths-card-title { color: white; }
-.two-paths-card--featured .two-paths-card-body  { color: rgba(255, 255, 255, 0.75); }
-.two-paths-card--featured .two-paths-features li { color: rgba(255, 255, 255, 0.85); }
-.two-paths-card--featured .two-paths-check        { color: var(--gildhart-gold); }
-.two-paths-card--featured .two-paths-price-block  { border-top-color: rgba(255, 255, 255, 0.1); }
-.two-paths-card--featured .two-paths-price        { color: white; }
-.two-paths-card--featured .two-paths-price-note   { color: rgba(255, 255, 255, 0.45); }
-.two-paths-card--featured .two-paths-price-muted  {
-  color: rgba(255, 255, 255, 0.65);
-  font-style: normal;
-  font-weight: 400;
+/* Hero card — the priority sale. Dark forest green, gold inner border, ribbon, lifted. */
+.two-paths-card--hero {
+  background: var(--gildhart-green);
+  border: 0;
+  box-shadow:
+    inset 0 0 0 2px var(--gildhart-gold),
+    0 4px 16px rgba(13, 26, 18, 0.12),
+    0 28px 64px -24px rgba(13, 26, 18, 0.30);
+  margin-top: -16px;
+  margin-bottom: -16px;
+  z-index: 2;
 }
 
-.two-paths-recommended-label {
-  display: inline-block;
+/* Gold ribbon on the hero — pinned to the top, overlapping the border. */
+.two-paths-ribbon {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gildhart-gold);
+  color: var(--gildhart-black);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin-bottom: 0.5rem;
+  padding: 8px 1.25rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px -4px rgba(13, 26, 18, 0.4);
+  z-index: 3;
 }
 
-.two-paths-proof-banner {
-  background: rgba(139, 157, 131, 0.18);
-  padding: 8px 1.5rem;
+/* Quiet banner on outer cards. */
+.two-paths-banner {
+  background: rgba(30, 61, 47, 0.06);
+  color: var(--gildhart-green);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.6875rem;
   font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #3a5c4f;
   text-align: center;
-  border-bottom: 1px solid rgba(139, 157, 131, 0.25);
-}
-.two-paths-proof-banner--bold {
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  padding: 10px 1.5rem;
+  padding: 12px 1.25rem;
+  border-bottom: 1px solid rgba(30, 61, 47, 0.10);
+  border-radius: 20px 20px 0 0;
 }
 
+/* Inner content */
 .two-paths-card-inner {
-  padding: 2.5rem;
+  padding: 3rem 2.5rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
   flex: 1;
 }
+.two-paths-card--hero .two-paths-card-inner {
+  padding: 3.5rem 2.75rem 2.75rem;
+}
 
+/* Kicker — small italic above title */
+.two-paths-kicker {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--gray-600);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.01em;
+}
+.two-paths-card--hero .two-paths-kicker {
+  color: rgba(240, 230, 200, 0.7);
+}
+
+/* Eyebrow label — gold tracked-out caps */
 .two-paths-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #4d7b6f;
-  margin: 0;
-}
-.two-paths-card-title {
-  font-family: 'Inter', 'Outfit', sans-serif;
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-  margin: 0;
-}
-.two-paths-card-body {
-  font-size: 1rem;
-  color: var(--gray-600);
-  line-height: 1.65;
-  margin: 0;
+  color: var(--gildhart-gold);
+  margin: 0 0 1rem 0;
 }
 
+/* Title */
+.two-paths-card-title {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--gildhart-green);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin: 0 0 1.5rem 0;
+}
+.two-paths-card--hero .two-paths-card-title {
+  font-size: 1.875rem;
+  color: #FFFDF8;
+  line-height: 1.18;
+}
+
+/* Body — proof statement, italic with gold left border */
+.two-paths-card-body {
+  font-size: 1rem;
+  font-style: italic;
+  color: #2c3e36;
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--gildhart-gold);
+}
+.two-paths-card--hero .two-paths-card-body {
+  color: rgba(240, 230, 200, 0.95);
+  border-left-color: var(--gildhart-gold);
+  font-size: 1.0625rem;
+}
+
+/* Proof anchor — single big number + descriptor */
+.two-paths-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.25rem 0 1.5rem;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid rgba(30, 61, 47, 0.10);
+  border-bottom: 1px solid rgba(30, 61, 47, 0.10);
+}
+.two-paths-card--hero .two-paths-proof {
+  border-top-color: rgba(201, 164, 74, 0.25);
+  border-bottom-color: rgba(201, 164, 74, 0.25);
+}
+.two-paths-proof-number {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--gildhart-green);
+}
+.two-paths-card--hero .two-paths-proof-number {
+  color: var(--gildhart-gold);
+  font-size: 3.5rem;
+}
+.two-paths-proof-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+.two-paths-card--hero .two-paths-proof-label {
+  color: rgba(240, 230, 200, 0.75);
+}
+
+/* Bullets — no ticks. Outer cards plain, hero gets gold em-dash. */
 .two-paths-features {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 2rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 1rem;
   flex: 1;
 }
 .two-paths-features li {
   font-size: 0.9375rem;
-  color: #374151;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
-  line-height: 1.5;
+  color: #2c3e36;
+  line-height: 1.7;
+  position: relative;
 }
-.two-paths-check {
-  color: #4d7b6f;
+.two-paths-card--hero .two-paths-features li {
+  color: rgba(240, 230, 200, 0.92);
+  padding-left: 1.5rem;
+  font-size: 0.9375rem;
+}
+.two-paths-card--hero .two-paths-features li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gildhart-gold);
   font-weight: 700;
-  flex-shrink: 0;
-  margin-top: 0.05em;
 }
 
+/* Price block — understated, italic note */
 .two-paths-price-block {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  gap: 0.375rem;
+  padding-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid rgba(30, 61, 47, 0.10);
+}
+.two-paths-card--hero .two-paths-price-block {
+  border-top-color: rgba(201, 164, 74, 0.25);
 }
 .two-paths-price {
   font-family: 'Inter', 'Outfit', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-  line-height: 1;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gildhart-green);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.two-paths-card--hero .two-paths-price {
+  color: #FFFDF8;
 }
 .two-paths-price-note {
   font-size: 0.875rem;
-  color: #6b7280;
-  font-weight: 500;
-}
-.two-paths-price-muted {
-  font-size: 0.875rem;
-  color: #9ca3af;
   font-style: italic;
-  font-weight: 400;
-  line-height: 1.6;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+.two-paths-card--hero .two-paths-price-note {
+  color: rgba(240, 230, 200, 0.7);
 }
 
+/* CTA — full width, baseline-aligned via margin-top:auto */
 .two-paths-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 0.875rem 1.5rem;
+  padding: 1rem 1.5rem;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   margin-top: auto;
+  width: 100%;
+  border: 0;
 }
 .two-paths-btn-primary {
   background: var(--gildhart-green);
-  color: white;
-  border: 2px solid var(--gildhart-green);
+  color: #FFFDF8;
 }
 .two-paths-btn-primary:hover {
   background: var(--gildhart-black);
-  border-color: var(--gildhart-black);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgba(13, 26, 18, 0.4);
+}
+/* Hero CTA — reversed: gold bg, dark green text */
+.two-paths-card--hero .two-paths-btn-primary {
+  background: var(--gildhart-gold);
+  color: var(--gildhart-black);
+}
+.two-paths-card--hero .two-paths-btn-primary:hover {
+  background: #d4b358;
+  box-shadow: 0 10px 24px -8px rgba(201, 164, 74, 0.5);
+}
+
+/* Trust line below cards */
+.two-paths-trust-line {
+  text-align: center;
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--gray-600);
+  margin: 3rem auto 0;
+  max-width: 60ch;
 }
 
 /* Scroll entrance — .tp-visible added per-card by home.js */
 .two-paths-card.tp-visible {
   animation: tpSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
-.two-paths-card:nth-child(2).tp-visible {
-  animation: tpSlideUpFeatured 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+.two-paths-card--hero.tp-visible {
+  animation: tpSlideUpHero 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
 }
 .two-paths-card:nth-child(3).tp-visible {
-  animation: tpSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  animation-delay: 0.3s;
 }
 @keyframes tpSlideUp {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes tpSlideUpFeatured {
-  0%   { opacity: 0; transform: translateY(50px); }
-  70%  { opacity: 1; transform: translateY(-4px); box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 12px 48px rgba(0,0,0,0.12), 0 0 24px rgba(201,164,74,0.2); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes tpSlideUpHero {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(-16px); }
 }
 .two-paths-card.tp-visible:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1),
-              0 16px 48px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(13, 26, 18, 0.06),
+              0 24px 48px -16px rgba(13, 26, 18, 0.18);
 }
-.two-paths-card--featured.tp-visible:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2),
-              0 16px 56px rgba(0, 0, 0, 0.15),
-              0 0 20px rgba(201, 164, 74, 0.15);
+.two-paths-card--hero.tp-visible:hover {
+  transform: translateY(-20px);
+  box-shadow:
+    inset 0 0 0 2px var(--gildhart-gold),
+    0 8px 24px rgba(13, 26, 18, 0.16),
+    0 36px 80px -24px rgba(13, 26, 18, 0.36);
 }
 
-@media (max-width: 900px) {
-  .two-paths-grid { grid-template-columns: 1fr; }
-  .two-paths-card--featured .two-paths-card-inner { padding: 2.25rem 1.5rem 2.75rem; }
+/* Mobile — single column. Hero floats to top. */
+@media (max-width: 960px) {
+  .two-paths-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .two-paths-card--hero {
+    order: -1;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .two-paths-card--hero.tp-visible {
+    animation: tpSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes tpSlideUpHero {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .two-paths-card--hero.tp-visible:hover {
+    transform: translateY(-4px);
+  }
 }
 @media (max-width: 768px) {
-  .two-paths-card-inner { padding: 2rem 1.5rem; }
-  .two-paths-price { font-size: 1.625rem; }
+  .two-paths-section { padding: 4rem 1.25rem; }
+  .two-paths-header { margin-bottom: 2.75rem; }
+  .two-paths-card-inner,
+  .two-paths-card--hero .two-paths-card-inner {
+    padding: 2.5rem 1.75rem 2rem;
+  }
+  .two-paths-proof-number { font-size: 2.5rem; }
+  .two-paths-card--hero .two-paths-proof-number { font-size: 2.75rem; }
+  .two-paths-card-title { font-size: 1.5rem; }
+  .two-paths-card--hero .two-paths-card-title { font-size: 1.625rem; }
 }
 
 /* ── Case Studies Carousel ──────────────────────────────────── */

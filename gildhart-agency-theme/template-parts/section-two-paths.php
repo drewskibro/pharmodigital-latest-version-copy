@@ -1,18 +1,27 @@
 <?php
 /**
- * Section: Two Paths (homepage)
+ * Section: Three-tier pricing cards (homepage).
  *
- * Three-card pricing/offering block. Centre card flagged "featured"
- * gets the dark-fill highlighted style with a Recommended pill.
- * Cards stagger in from below as the section enters the viewport
- * (.tp-visible class added per-card via home.js).
+ * Three product cards arranged in a row. The card flagged "is_featured"
+ * gets the hero treatment: dark forest-green fill, 2px gold inner border,
+ * extra padding, gold ribbon at the top, and a reversed gold-button CTA.
+ * Outer cards stay quiet on cream so the hero anchors the eye.
+ *
+ * Each card supports: ribbon (hero only), banner (outer only), kicker,
+ * eyebrow label, title, proof body, numeric proof anchor, bullets, price
+ * + italic note, CTA. Tick icons removed by design — bullets render bare,
+ * with a gold em-dash on the hero card.
+ *
+ * Cards stagger in via .tp-visible (added per-card by home.js).
  *
  * @package Gildhart
  */
 
+$eyebrow     = gh_field( 'two_paths_eyebrow', 'CHOOSE YOUR ENTRY POINT' );
 $headline    = gh_field( 'two_paths_headline' );
 $subheadline = gh_field( 'two_paths_subheadline' );
 $cards       = gh_field( 'two_paths_cards', array() );
+$trust_line  = gh_field( 'two_paths_trust_line', "Every path is built on revenue we've already generated for real practices." );
 
 if ( empty( $cards ) ) {
     return;
@@ -22,8 +31,11 @@ if ( empty( $cards ) ) {
 <section class="two-paths-section" id="get-started">
     <div class="two-paths-inner">
 
-        <?php if ( $headline || $subheadline ) : ?>
+        <?php if ( $eyebrow || $headline || $subheadline ) : ?>
             <div class="two-paths-header">
+                <?php if ( $eyebrow ) : ?>
+                    <p class="two-paths-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
+                <?php endif; ?>
                 <?php if ( $headline ) : ?>
                     <h2 class="two-paths-headline"><?php echo esc_html( $headline ); ?></h2>
                 <?php endif; ?>
@@ -35,41 +47,39 @@ if ( empty( $cards ) ) {
 
         <div class="two-paths-grid">
             <?php foreach ( $cards as $card ) :
-                $banner          = $card['banner']           ?? '';
-                $banner_dark     = ! empty( $card['banner_dark'] );
-                $is_featured     = ! empty( $card['is_featured'] );
-                $label           = $card['label']            ?? '';
-                $title           = $card['title']            ?? '';
-                $body            = $card['body']             ?? '';
-                $features        = $card['features']         ?? array();
-                $price_value     = $card['price_value']      ?? '';
-                $price_note      = $card['price_value_note'] ?? '';
-                $price_muted     = $card['price_muted_text'] ?? '';
-                $cta_label       = $card['cta_label']        ?? '';
-                $cta_url         = $card['cta_url']          ?? '';
+                $banner       = $card['banner']       ?? '';
+                $is_hero      = ! empty( $card['is_featured'] );
+                $ribbon       = $card['ribbon_text']  ?? '';
+                $kicker       = $card['kicker']       ?? '';
+                $label        = $card['label']        ?? '';
+                $title        = $card['title']        ?? '';
+                $body         = $card['body']         ?? '';
+                $proof_num    = $card['proof_number'] ?? '';
+                $proof_label  = $card['proof_label']  ?? '';
+                $features     = $card['features']     ?? array();
+                $price_value  = $card['price_value']  ?? '';
+                $price_note   = $card['price_value_note'] ?? '';
+                $cta_label    = $card['cta_label']    ?? '';
+                $cta_url      = $card['cta_url']      ?? '';
 
                 $card_classes = 'two-paths-card';
-                if ( $is_featured ) {
-                    $card_classes .= ' two-paths-card--featured';
-                }
-
-                $banner_classes = 'two-paths-proof-banner two-paths-proof-banner--bold';
-                $banner_attr    = '';
-                if ( $banner_dark ) {
-                    $banner_attr = ' style="background:var(--gildhart-green);color:white;border-bottom-color:rgba(201,164,74,0.2);"';
+                if ( $is_hero ) {
+                    $card_classes .= ' two-paths-card--hero';
                 }
                 ?>
 
                 <div class="<?php echo esc_attr( $card_classes ); ?>">
-                    <?php if ( $banner ) : ?>
-                        <div class="<?php echo esc_attr( $banner_classes ); ?>"<?php echo $banner_attr; ?>>
-                            <?php echo esc_html( $banner ); ?>
-                        </div>
+                    <?php if ( $is_hero && $ribbon ) : ?>
+                        <span class="two-paths-ribbon"><?php echo esc_html( $ribbon ); ?></span>
+                    <?php endif; ?>
+
+                    <?php if ( ! $is_hero && $banner ) : ?>
+                        <div class="two-paths-banner"><?php echo esc_html( $banner ); ?></div>
                     <?php endif; ?>
 
                     <div class="two-paths-card-inner">
-                        <?php if ( $is_featured ) : ?>
-                            <span class="two-paths-recommended-label">Recommended</span>
+                        <?php if ( $kicker ) : ?>
+                            <p class="two-paths-kicker"><?php echo esc_html( $kicker ); ?></p>
                         <?php endif; ?>
 
                         <?php if ( $label ) : ?>
@@ -84,28 +94,33 @@ if ( empty( $cards ) ) {
                             <p class="two-paths-card-body"><?php echo esc_html( $body ); ?></p>
                         <?php endif; ?>
 
+                        <?php if ( $proof_num || $proof_label ) : ?>
+                            <div class="two-paths-proof">
+                                <?php if ( $proof_num ) : ?>
+                                    <span class="two-paths-proof-number"><?php echo esc_html( $proof_num ); ?></span>
+                                <?php endif; ?>
+                                <?php if ( $proof_label ) : ?>
+                                    <span class="two-paths-proof-label"><?php echo esc_html( $proof_label ); ?></span>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+
                         <?php if ( ! empty( $features ) ) : ?>
                             <ul class="two-paths-features">
                                 <?php foreach ( $features as $feature ) :
                                     if ( empty( $feature['text'] ) ) continue; ?>
-                                    <li>
-                                        <span class="two-paths-check">✓</span>
-                                        <?php echo esc_html( $feature['text'] ); ?>
-                                    </li>
+                                    <li><?php echo esc_html( $feature['text'] ); ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
 
-                        <?php if ( $price_value || $price_note || $price_muted ) : ?>
+                        <?php if ( $price_value || $price_note ) : ?>
                             <div class="two-paths-price-block">
                                 <?php if ( $price_value ) : ?>
                                     <span class="two-paths-price"><?php echo esc_html( $price_value ); ?></span>
                                 <?php endif; ?>
                                 <?php if ( $price_note ) : ?>
                                     <span class="two-paths-price-note"><?php echo esc_html( $price_note ); ?></span>
-                                <?php endif; ?>
-                                <?php if ( $price_muted ) : ?>
-                                    <span class="two-paths-price-muted"><?php echo esc_html( $price_muted ); ?></span>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
@@ -119,5 +134,10 @@ if ( empty( $cards ) ) {
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <?php if ( $trust_line ) : ?>
+            <p class="two-paths-trust-line"><?php echo esc_html( $trust_line ); ?></p>
+        <?php endif; ?>
+
     </div>
 </section>
