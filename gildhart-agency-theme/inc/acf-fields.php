@@ -302,6 +302,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_hero',
     'title'    => 'Home · Hero',
+    'menu_order' => 1,
     'fields'   => array(
         array(
             'key'           => 'field_gh_home_hero_eyebrow',
@@ -400,6 +401,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_logo_bar',
     'title'    => 'Home · Logo Bar',
+    'menu_order' => 2,
     'fields'   => array(
         array(
             'key'           => 'field_gh_home_logo_bar_eyebrow',
@@ -438,6 +440,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_featured_case',
     'title'    => 'Home · Featured Case Study',
+    'menu_order' => 3,
     'fields'   => array(
         array(
             'key'           => 'field_gh_home_fcs_image',
@@ -567,6 +570,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_split',
     'title'    => 'Home · Split (Problem / Solution)',
+    'menu_order' => 4,
     'fields'   => array(
         // Problem (left)
         array(
@@ -689,6 +693,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_shift',
     'title'    => 'Home · The Shift',
+    'menu_order' => 5,
     'fields'   => array(
         array(
             'key'           => 'field_gh_home_shift_eyebrow',
@@ -871,6 +876,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_two_paths',
     'title'    => 'Home · Two Paths',
+    'menu_order' => 6,
     'fields'   => array(
         array(
             'key'   => 'field_gh_home_two_paths_headline',
@@ -1011,6 +1017,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_case_studies',
     'title'    => 'Home · Case Studies Carousel',
+    'menu_order' => 7,
     'fields'   => array(
         array(
             'key'           => 'field_gh_home_cs_title',
@@ -1090,6 +1097,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_founder',
     'title'    => 'Home · Founder',
+    'menu_order' => 8,
     'fields'   => array(
         array(
             'key'           => 'field_gh_home_founder_image',
@@ -1183,6 +1191,7 @@ acf_add_local_field_group( array(
 acf_add_local_field_group( array(
     'key'      => 'group_gh_home_revenue',
     'title'    => 'Home · Revenue Results',
+    'menu_order' => 9,
     'fields'   => array(
         array(
             'key'           => 'field_gh_home_revenue_show_divider',
