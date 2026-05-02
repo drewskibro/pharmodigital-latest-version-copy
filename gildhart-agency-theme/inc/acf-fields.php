@@ -1203,6 +1203,25 @@ acf_add_local_field_group( array(
         ),
 
         array(
+            'key'               => 'field_gh_home_revenue_divider_logo',
+            'label'             => 'Divider Logo Override',
+            'name'              => 'revenue_divider_logo',
+            'type'              => 'image',
+            'return_format'     => 'id',
+            'preview_size'      => 'medium',
+            'instructions'      => 'Upload a logo specifically for this divider strip. Leave blank to use the global brand logo.',
+            'conditional_logic' => array(
+                array(
+                    array(
+                        'field'    => 'field_gh_home_revenue_show_divider',
+                        'operator' => '==',
+                        'value'    => '1',
+                    ),
+                ),
+            ),
+        ),
+
+        array(
             'key'           => 'field_gh_home_revenue_eyebrow',
             'label'         => 'Eyebrow',
             'name'          => 'revenue_eyebrow',

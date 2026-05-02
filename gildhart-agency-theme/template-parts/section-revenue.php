@@ -13,7 +13,8 @@
  * @package Gildhart
  */
 
-$show_divider     = (int) gh_field( 'revenue_show_divider', 1 );
+$show_divider        = (int) gh_field( 'revenue_show_divider', 1 );
+$divider_logo_id     = gh_field( 'revenue_divider_logo' );
 
 $eyebrow          = gh_field( 'revenue_eyebrow', 'The Numbers' );
 $headline         = gh_field( 'revenue_headline' );
@@ -39,7 +40,9 @@ if ( ! $headline && empty( $cards ) && ! $close_headline ) {
 }
 
 $allowed_inline = array( 'strong' => array(), 'em' => array(), 'br' => array() );
-$logo_url       = gh_logo_url();
+$logo_url       = $divider_logo_id
+    ? wp_get_attachment_image_url( $divider_logo_id, 'full' )
+    : gh_logo_url();
 ?>
 
 <?php if ( $show_divider ) : ?>
