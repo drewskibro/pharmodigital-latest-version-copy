@@ -53,12 +53,10 @@ $allowed_inline = array( 'strong' => array(), 'em' => array(), 'br' => array() )
             <?php if ( ! empty( $cards ) ) : ?>
                 <div class="split-cards">
                     <?php foreach ( $cards as $card ) :
-                        $icon  = ! empty( $card['icon'] ) ? gh_fa_class( 'fa-' . ltrim( $card['icon'], 'fa-' ) ) : 'fas fa-circle-check';
                         $title = $card['title'] ?? '';
                         $text  = $card['text']  ?? '';
                         ?>
                         <div class="split-card">
-                            <div class="split-card-icon"><i class="<?php echo esc_attr( $icon ); ?>"></i></div>
                             <?php if ( $title ) : ?>
                                 <h3 class="split-card-title"><?php echo esc_html( $title ); ?></h3>
                             <?php endif; ?>
