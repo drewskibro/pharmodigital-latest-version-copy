@@ -217,6 +217,16 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
     if ( get_post_type( $post_id ) !== 'service' ) {
         return $value;
     }
+    // Skip on auto-drafts — WP hasn't generated the slug yet, so we'd serve
+    // the fallback (Playbook) defaults and ACF would write them back to the
+    // post's meta on first publish. Returning $value (empty) means freshly
+    // created services have blank fields until the user publishes; the
+    // slug-matched defaults then populate after publish, when post_name is
+    // set. (The 'new' state is theoretical — WP uses 'auto-draft' in
+    // practice, but listed for safety.)
+    if ( in_array( get_post_status( $post_id ), array( 'auto-draft', 'new' ), true ) ) {
+        return $value;
+    }
     if ( $value !== '' && $value !== null && ! ( is_array( $value ) && empty( $value ) ) ) {
         return $value;
     }
