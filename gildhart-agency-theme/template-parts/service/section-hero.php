@@ -6,19 +6,23 @@
  * left, image right. Stats row separates the headline lockup from the CTAs
  * with a hairline divider. Mobile drops the image and stacks the stats.
  *
- * Renders inside the Flexible Content loop (have_rows('service_sections'))
- * so all field reads use gh_sub_field() / get_sub_field(). Falls back to
- * The Playbook copy from the static spec when ACF sub-fields are empty so
- * a freshly published service entry renders complete with no manual data.
+ * Reads from per-section ACF group `Service · Hero` registered against the
+ * service CPT. Returns early when the show toggle is off. Falls back to The
+ * Playbook copy from the static spec when ACF fields are empty so a freshly
+ * published service entry renders complete with no manual data entry.
  *
  * @package Gildhart
  */
 
-$eyebrow  = gh_sub_field( 'eyebrow',  'The AI Search Playbook' );
-$title    = gh_sub_field( 'title',    "While You're Reading This, ChatGPT Is Recommending Your Competitors." );
-$subtitle = gh_sub_field( 'subtitle', 'Rahul at Puri Pharmacy is now on that shortlist. So is Raman at Superior Pharmacy and Sachin at Ealing Travel Clinic. One playbook. Three practices. No ad spend.' );
+if ( ! gh_field( 'service_hero_show', 1 ) ) {
+    return;
+}
 
-$stats = get_sub_field( 'stats' );
+$eyebrow  = gh_field( 'service_hero_eyebrow',  'The AI Search Playbook' );
+$title    = gh_field( 'service_hero_title',    "While You're Reading This, ChatGPT Is Recommending Your Competitors." );
+$subtitle = gh_field( 'service_hero_subtitle', 'Rahul at Puri Pharmacy is now on that shortlist. So is Raman at Superior Pharmacy and Sachin at Ealing Travel Clinic. One playbook. Three practices. No ad spend.' );
+
+$stats = get_field( 'service_hero_stats' );
 if ( empty( $stats ) ) {
     $stats = array(
         array( 'number' => '300%',  'label' => 'Ealing Travel Clinic revenue growth' ),
@@ -27,12 +31,12 @@ if ( empty( $stats ) ) {
     );
 }
 
-$cta_primary_label   = gh_sub_field( 'cta_primary_label',   'Get The Playbook — £497' );
-$cta_primary_url     = gh_sub_field( 'cta_primary_url',     '#buy-now' );
-$cta_secondary_label = gh_sub_field( 'cta_secondary_label', "See What's Inside" );
-$cta_secondary_url   = gh_sub_field( 'cta_secondary_url',   '#what-you-get' );
+$cta_primary_label   = gh_field( 'service_hero_cta_primary_label',   'Get The Playbook — £497' );
+$cta_primary_url     = gh_field( 'service_hero_cta_primary_url',     '#buy-now' );
+$cta_secondary_label = gh_field( 'service_hero_cta_secondary_label', "See What's Inside" );
+$cta_secondary_url   = gh_field( 'service_hero_cta_secondary_url',   '#what-you-get' );
 
-$image_id = get_sub_field( 'image' );
+$image_id = get_field( 'service_hero_image' );
 ?>
 
 <section class="svc-hero">
