@@ -1,0 +1,200 @@
+/**
+ * Gildhart — Single Service page styles.
+ *
+ * Loaded only on single-service templates (CPT: service). Each section has a
+ * .svc-{section-name} prefix to avoid collisions with the homepage's section
+ * styles. Uses the same design tokens (--gildhart-green / --gildhart-gold /
+ * --gildhart-cream / --gildhart-black) as globals.css and home.css.
+ *
+ * Sections ship in chunks: S0 = hero. S1+ append below.
+ */
+
+/* ── Page base ──────────────────────────────────────────────── */
+
+.service-main {
+  background: #FAF8F3;
+}
+
+/* ── Shared button system (svc-*) ───────────────────────────── */
+
+.svc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.75rem;
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  border: 0;
+  white-space: nowrap;
+}
+.svc-btn-primary {
+  background: var(--gildhart-green);
+  color: #FFFDF8;
+}
+.svc-btn-primary:hover {
+  background: var(--gildhart-black);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -8px rgba(13, 26, 18, 0.4);
+}
+.svc-btn-outline {
+  background: transparent;
+  color: var(--gildhart-green);
+  border: 2px solid rgba(30, 61, 47, 0.25);
+}
+.svc-btn-outline:hover {
+  border-color: var(--gildhart-green);
+  background: rgba(30, 61, 47, 0.04);
+}
+.svc-btn-arrow {
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+.svc-btn:hover .svc-btn-arrow {
+  transform: translateX(2px);
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+
+.svc-hero {
+  padding: 6rem 2rem 5rem;
+  background: #FAF8F3;
+}
+.svc-hero-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Content column */
+.svc-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gildhart-gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem 0;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 6px;
+}
+.svc-hero-eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gildhart-gold);
+  opacity: 0.7;
+}
+.svc-hero-title {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--gildhart-green);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem 0;
+}
+.svc-hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin: 0 0 2.5rem 0;
+  max-width: 540px;
+}
+
+/* Stats row */
+.svc-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 0 0 2.5rem 0;
+  padding: 0 0 2rem 0;
+  border-bottom: 1px solid rgba(30, 61, 47, 0.12);
+}
+.svc-hero-stat-num {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  color: var(--gildhart-green);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.svc-hero-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* CTAs */
+.svc-hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Image column */
+.svc-hero-image {
+  position: relative;
+}
+.svc-hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow:
+    0 4px 6px -1px rgba(13, 26, 18, 0.05),
+    0 25px 50px -12px rgba(13, 26, 18, 0.18),
+    0 50px 80px -20px rgba(13, 26, 18, 0.10);
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.svc-hero-image:hover img {
+  transform: scale(1.01);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .svc-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .svc-hero-image {
+    display: none;
+  }
+  .svc-hero-subtitle {
+    max-width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .svc-hero {
+    padding: 4rem 1.25rem 3rem;
+  }
+  .svc-hero-stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  .svc-hero-cta {
+    flex-direction: column;
+  }
+  .svc-btn {
+    width: 100%;
+  }
+}

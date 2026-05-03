@@ -1496,3 +1496,126 @@ acf_add_local_field_group( array(
     'menu_order' => -10,
     'position'   => 'side',
 ) );
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * SERVICE CPT — Flexible Content sections.
+ *
+ * Each layout maps to template-parts/service/section-{layout-name}.php. Add,
+ * reorder, or remove sections per service entry. Template parts fall back to
+ * design defaults when sub-fields are empty so a freshly published service
+ * renders complete with no manual data entry.
+ *
+ * Layouts ship in chunks: S0 = hero. S1+ append further layouts here as
+ * Problem Shift, Three Proof Cases, Method, FAQ, etc.
+ * ───────────────────────────────────────────────────────────────────────── */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_sections',
+    'title'      => 'Service Page Sections',
+    'menu_order' => 0,
+    'fields'     => array(
+        array(
+            'key'          => 'field_gh_service_sections',
+            'label'        => 'Sections',
+            'name'         => 'service_sections',
+            'type'         => 'flexible_content',
+            'instructions' => 'Add, reorder, or remove page sections. Each layout maps to a section template part. Sub-fields left blank fall back to the design defaults from the static spec — a published service renders complete without any data entry.',
+            'button_label' => 'Add Section',
+            'layouts'      => array(
+                array(
+                    'key'        => 'layout_gh_svc_hero',
+                    'name'       => 'hero',
+                    'label'      => 'Hero',
+                    'display'    => 'block',
+                    'sub_fields' => array(
+                        array(
+                            'key'           => 'field_gh_svc_hero_eyebrow',
+                            'label'         => 'Eyebrow',
+                            'name'          => 'eyebrow',
+                            'type'          => 'text',
+                            'instructions'  => 'Small caps line above the title. Default: "The AI Search Playbook".',
+                        ),
+                        array(
+                            'key'   => 'field_gh_svc_hero_title',
+                            'label' => 'Title (H1)',
+                            'name'  => 'title',
+                            'type'  => 'text',
+                        ),
+                        array(
+                            'key'   => 'field_gh_svc_hero_subtitle',
+                            'label' => 'Subtitle',
+                            'name'  => 'subtitle',
+                            'type'  => 'textarea',
+                            'rows'  => 3,
+                        ),
+                        array(
+                            'key'        => 'field_gh_svc_hero_stats',
+                            'label'      => 'Stats Row',
+                            'name'       => 'stats',
+                            'type'       => 'repeater',
+                            'layout'     => 'table',
+                            'min'        => 0,
+                            'max'        => 4,
+                            'instructions' => 'Three stats is the designed layout. Big number + small uppercase descriptor.',
+                            'sub_fields' => array(
+                                array(
+                                    'key'   => 'field_gh_svc_hero_stat_num',
+                                    'label' => 'Number',
+                                    'name'  => 'number',
+                                    'type'  => 'text',
+                                ),
+                                array(
+                                    'key'   => 'field_gh_svc_hero_stat_label',
+                                    'label' => 'Label',
+                                    'name'  => 'label',
+                                    'type'  => 'text',
+                                ),
+                            ),
+                        ),
+                        array(
+                            'key'   => 'field_gh_svc_hero_cta1_label',
+                            'label' => 'Primary CTA — Label',
+                            'name'  => 'cta_primary_label',
+                            'type'  => 'text',
+                        ),
+                        array(
+                            'key'   => 'field_gh_svc_hero_cta1_url',
+                            'label' => 'Primary CTA — URL',
+                            'name'  => 'cta_primary_url',
+                            'type'  => 'text',
+                        ),
+                        array(
+                            'key'   => 'field_gh_svc_hero_cta2_label',
+                            'label' => 'Secondary CTA — Label',
+                            'name'  => 'cta_secondary_label',
+                            'type'  => 'text',
+                        ),
+                        array(
+                            'key'   => 'field_gh_svc_hero_cta2_url',
+                            'label' => 'Secondary CTA — URL',
+                            'name'  => 'cta_secondary_url',
+                            'type'  => 'text',
+                        ),
+                        array(
+                            'key'           => 'field_gh_svc_hero_image',
+                            'label'         => 'Hero Image',
+                            'name'          => 'image',
+                            'type'          => 'image',
+                            'return_format' => 'id',
+                            'preview_size'  => 'medium',
+                            'instructions'  => 'Right-column image. Hidden on mobile.',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'service',
+            ),
+        ),
+    ),
+) );
