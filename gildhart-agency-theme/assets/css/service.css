@@ -61,8 +61,14 @@
 
 /* ── Hero ───────────────────────────────────────────────────── */
 
+/* Hide the nav-spacer on single-service pages so the hero gradient extends all
+ * the way up under the fixed nav — eliminates the flat-cream horizontal seam
+ * where the spacer's body bg met the gradient's mint top-right. The hero's own
+ * padding uses --nav-h (set by nav.js) to keep the eyebrow clear of the nav. */
+.single-service .nav-spacer { display: none; }
+
 .svc-hero {
-  padding: 2.5rem 2rem 4rem;
+  padding: calc(2.5rem + var(--nav-h, 130px)) 2rem 4rem;
   background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
   position: relative;
   overflow: hidden;
@@ -193,7 +199,7 @@
 }
 @media (max-width: 640px) {
   .svc-hero {
-    padding: 4rem 1.25rem 3rem;
+    padding: calc(2rem + var(--nav-h, 130px)) 1.25rem 3rem;
   }
   .svc-hero-stats {
     grid-template-columns: 1fr;

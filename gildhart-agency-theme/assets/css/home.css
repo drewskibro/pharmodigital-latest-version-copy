@@ -7,10 +7,16 @@
 
 /* ── Hero ───────────────────────────────────────────────────── */
 
+/* Hide the nav-spacer on the homepage so the hero gradient extends all the way
+ * up under the fixed nav — eliminates the flat-cream horizontal seam where the
+ * spacer's body bg met the gradient's mint top-right. The hero's own padding
+ * uses --nav-h (set by nav.js) to keep the eyebrow clear of the nav. */
+.home .nav-spacer { display: none; }
+
 .hero {
   display: flex;
   align-items: flex-start;
-  padding: 2.5rem 2rem 2rem;
+  padding: calc(2.5rem + var(--nav-h, 130px)) 2rem 2rem;
   position: relative;
   overflow: hidden;
   overflow-x: clip;
@@ -263,7 +269,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 4rem 1.5rem;
+    padding: calc(2rem + var(--nav-h, 130px)) 1.5rem 4rem;
     min-height: auto;
     margin-top: 0;
   }
