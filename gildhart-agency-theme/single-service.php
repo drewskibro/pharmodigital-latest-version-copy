@@ -2,14 +2,18 @@
 /**
  * Single Service template.
  *
- * Service CPT entries (e.g. The Playbook, The Agent) compose their page from
- * the ACF Flexible Content field 'service_sections'. Each layout maps to a
- * template part at template-parts/service/section-{layout-name}.php.
+ * Service CPT entries (The Playbook, The Agent, Web Pro Elite) render a
+ * fixed sequence of section template parts. Each section is independently
+ * editable via its own ACF field group on the service CPT, mirroring the
+ * homepage pattern. Each section has a "Show this section" toggle so a
+ * service can hide sections that don't apply (e.g. Web Pro Elite might
+ * hide the math section).
  *
- * Editors: add/reorder/remove sections per service in WP Admin → Service →
- * Sections. Each section template falls back to the design defaults when its
- * ACF sub-fields are empty, so a freshly published service entry renders
- * complete without any data entry.
+ * Sections fall back to design defaults when their ACF fields are empty —
+ * a freshly published service entry renders complete with no data entry.
+ *
+ * Sections ship in chunks: S0 = Hero. S1+ uncomment further parts as they
+ * land.
  *
  * @package Gildhart
  */
@@ -19,19 +23,21 @@ get_header(); ?>
 <main id="main" class="site-main service-main">
     <?php
     if ( have_posts() ) :
-        while ( have_posts() ) : the_post();
-
-            if ( function_exists( 'have_rows' ) && have_rows( 'service_sections' ) ) :
-                while ( have_rows( 'service_sections' ) ) :
-                    the_row();
-                    $layout = get_row_layout();
-                    if ( is_string( $layout ) && preg_match( '/^[a-z0-9_-]+$/', $layout ) ) {
-                        get_template_part( 'template-parts/service/section', $layout );
-                    }
-                endwhile;
-            endif;
-
-        endwhile;
+        while ( have_posts() ) : the_post(); ?>
+            <?php get_template_part( 'template-parts/service/section-hero' ); ?>
+            <?php // get_template_part( 'template-parts/service/section-problem-shift' );  // S1 ?>
+            <?php // get_template_part( 'template-parts/service/section-proof-cases' );    // S1 ?>
+            <?php // get_template_part( 'template-parts/service/section-playing-field' );  // S2 ?>
+            <?php // get_template_part( 'template-parts/service/section-method' );         // S2 ?>
+            <?php // get_template_part( 'template-parts/service/section-what-you-get' );   // S3 ?>
+            <?php // get_template_part( 'template-parts/service/section-sub-case-proof' ); // S3 ?>
+            <?php // get_template_part( 'template-parts/service/section-early-buyers' );   // S4 ?>
+            <?php // get_template_part( 'template-parts/service/section-math' );           // S4 ?>
+            <?php // get_template_part( 'template-parts/service/section-next-steps' );     // S5 ?>
+            <?php // get_template_part( 'template-parts/service/section-faq' );            // S5 ?>
+            <?php // get_template_part( 'template-parts/service/section-guarantee' );      // S6 ?>
+            <?php // get_template_part( 'template-parts/service/section-final-cta' );      // S6 ?>
+        <?php endwhile;
     endif;
     ?>
 </main>
