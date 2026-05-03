@@ -179,14 +179,37 @@ add_filter( 'request', 'gildhart_service_request_filter' );
  * in BOTH the admin UI (pre-filled inputs) and the frontend. Saved non-empty
  * values always win; only empty / null values are backfilled.
  *
+ * Defaults are slug-aware: each service product (`the-playbook`, `the-agent`,
+ * `web-pro-elite`, …) has its own defaults map. The active map is picked from
+ * the post slug (post_name); unknown slugs fall back to The Playbook so a
+ * fresh service still renders complete copy.
+ *
  * Repeater rows are not backfilled here (ACF's load_value handling for
  * repeater parents is unreliable). The template-side fallback in each
  * section template part renders the default rows on the frontend; the admin
  * UI shows an empty repeater that the editor can fill if they want to
  * override the defaults.
  *
- * Adding new section defaults: append the field name and value to $defaults.
+ * Adding new defaults: extend the matching slug array in
+ * gildhart_service_defaults_by_slug().
  */
+function gildhart_service_defaults_by_slug() {
+    return array(
+        'the-agent' => array(
+            // Hero
+            'service_hero_eyebrow'             => 'The Agent',
+            'service_hero_title'               => "Someone Just Left Your Website.\nThey Had A Question.\nNobody Answered.",
+            'service_hero_subtitle'            => "Sachin at Ealing Travel Clinic went from sporadic HPV bookings to 55 a month. The practice didn't change. The channel did.\n\n£200k a year. Generated after hours. Southdowns Pharmacy Group doesn't have night staff. They have something better.",
+            'service_hero_cta_primary_label'   => 'Deploy The Agent This May',
+            'service_hero_cta_primary_url'     => '#eligibility',
+            'service_hero_cta_secondary_label' => '',
+            'service_hero_cta_secondary_url'   => '',
+            // Logo Bar
+            'service_logo_bar_label'           => 'Every practice live is generating enquiries they never had before',
+        ),
+    );
+}
+
 function gildhart_service_default_values( $value, $post_id, $field ) {
     if ( ! is_numeric( $post_id ) ) {
         return $value;
@@ -198,7 +221,11 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         return $value;
     }
 
-    $defaults = array(
+    $slug              = get_post_field( 'post_name', $post_id );
+    $defaults_by_slug  = gildhart_service_defaults_by_slug();
+    $slug_defaults     = $defaults_by_slug[ $slug ] ?? array();
+
+    $playbook_defaults = array(
         // Hero
         'service_hero_eyebrow'             => 'The AI Search Playbook',
         'service_hero_title'               => "While You're Reading This, ChatGPT Is Recommending Your Competitors.",
@@ -280,6 +307,9 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_final_price_cta_url'   => '#buy-now',
         'service_final_price_secondary' => 'Or <a href="#contact">talk to us about Done-For-You →</a>',
     );
+
+    // Slug-specific defaults override Playbook defaults (the fallback).
+    $defaults = array_merge( $playbook_defaults, $slug_defaults );
 
     if ( isset( $defaults[ $field['name'] ] ) ) {
         return $defaults[ $field['name'] ];

@@ -46,12 +46,29 @@ $image_id = get_field( 'service_hero_image' );
                 <p class="svc-hero-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
             <?php endif; ?>
 
-            <?php if ( $title ) : ?>
-                <h1 class="svc-hero-title"><?php echo esc_html( $title ); ?></h1>
+            <?php if ( $title ) :
+                // Split on newlines so multi-line titles (Agent: 3 stacked
+                // lines with progressive sizing) work alongside single-line
+                // titles (Playbook). CSS handles per-line sizing via
+                // .svc-hero-title-line:nth-child().
+                $title_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $title ) ) ); ?>
+                <h1 class="svc-hero-title<?php echo count( $title_lines ) > 1 ? ' svc-hero-title--stacked' : ''; ?>">
+                    <?php foreach ( $title_lines as $line ) : ?>
+                        <span class="svc-hero-title-line"><?php echo esc_html( $line ); ?></span>
+                    <?php endforeach; ?>
+                </h1>
             <?php endif; ?>
 
-            <?php if ( $subtitle ) : ?>
-                <p class="svc-hero-subtitle"><?php echo esc_html( $subtitle ); ?></p>
+            <?php if ( $subtitle ) :
+                // Split on blank lines so multi-paragraph subtitles (Agent
+                // hero) render as separate <p> tags. Single-paragraph
+                // subtitles (Playbook) render as a single <p> unchanged.
+                $subtitle_paras = array_filter( array_map( 'trim', preg_split( '/\r\n\r\n|\r\r|\n\n/', $subtitle ) ) ); ?>
+                <div class="svc-hero-subtitle">
+                    <?php foreach ( $subtitle_paras as $para ) : ?>
+                        <p><?php echo esc_html( $para ); ?></p>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
 
             <?php if ( ! empty( $stats ) ) : ?>

@@ -1551,10 +1551,13 @@ acf_add_local_field_group( array(
             'instructions'  => 'Small caps line above the title. Default: "The AI Search Playbook".',
         ),
         array(
-            'key'   => 'field_gh_service_hero_title',
-            'label' => 'Title (H1)',
-            'name'  => 'service_hero_title',
-            'type'  => 'text',
+            'key'          => 'field_gh_service_hero_title',
+            'label'        => 'Title (H1)',
+            'name'         => 'service_hero_title',
+            'type'         => 'textarea',
+            'rows'         => 3,
+            'new_lines'    => '',
+            'instructions' => 'Single line for a regular hero, or one line per row for a stacked title (lines progressively grow in size, like the Agent hero).',
         ),
         array(
             'key'   => 'field_gh_service_hero_subtitle',
@@ -2270,6 +2273,47 @@ acf_add_local_field_group( array(
                 array( 'key' => 'field_gh_service_final_choice_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
                 array( 'key' => 'field_gh_service_final_choice_text',  'label' => 'Body',  'name' => 'text',  'type' => 'textarea', 'rows' => 4 ),
             ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Logo Bar
+ * menu_order 1.5 doesn't exist (ACF integers only) — leaving the existing
+ * Hero=1 and Problem Shift=2 numbering intact and using a custom title prefix
+ * "Service · 01.5 Logo Bar" would clutter the admin. ACF sorts ties by post
+ * registration order; since this group registers AFTER Hero, it appears
+ * directly under it. Render order is controlled by single-service.php, not
+ * menu_order — menu_order only affects the admin meta-box stacking. */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_logo_bar',
+    'title'      => 'Service · Logo Bar',
+    'menu_order' => 1,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_logo_bar_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_logo_bar_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+            'instructions'  => 'Toggle off to hide the auto-scrolling client logo strip below the hero.',
+        ),
+        array(
+            'key'   => 'field_gh_service_logo_bar_label',
+            'label' => 'Label (above the strip)',
+            'name'  => 'service_logo_bar_label',
+            'type'  => 'text',
+            'instructions' => 'Optional caps line above the logos. Leave empty to render just the strip.',
+        ),
+        array(
+            'key'           => 'field_gh_service_logo_bar_logos',
+            'label'         => 'Client Logos',
+            'name'          => 'service_logo_bar_logos',
+            'type'          => 'gallery',
+            'return_format' => 'array',
+            'preview_size'  => 'thumbnail',
+            'instructions'  => 'Upload each client logo as a separate image. The strip auto-scrolls and loops seamlessly. Empty gallery = section renders nothing.',
         ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
