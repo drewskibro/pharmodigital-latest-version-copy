@@ -252,6 +252,16 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_math_eyebrow'     => 'The Numbers',
         'service_math_headline'    => 'What This Actually Means For You',
         'service_math_subheadline' => "The playbook costs £497. But what you're really buying depends on who you are.",
+        // Next Steps
+        'service_next_eyebrow'     => 'Your Timeline',
+        'service_next_headline'    => 'What Happens Next',
+        'service_next_subheadline' => 'From purchase to AI rankings — exactly as it happened for Ealing and Superior.',
+        // FAQ
+        'service_faq_eyebrow'   => 'No Surprises',
+        'service_faq_headline'  => "Questions You're Asking",
+        'service_faq_cta_text'  => 'Still have questions? <strong>Get the system now and ask me directly on the monthly calls.</strong>',
+        'service_faq_cta_label' => 'Get Instant Access — £497',
+        'service_faq_cta_url'   => '#buy-now',
     );
 
     if ( isset( $defaults[ $field['name'] ] ) ) {
