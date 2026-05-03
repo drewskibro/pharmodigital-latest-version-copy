@@ -2189,3 +2189,88 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Guarantee */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_guarantee',
+    'title'      => 'Service · Guarantee',
+    'menu_order' => 12,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_guarantee_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_guarantee_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_guarantee_badge', 'label' => 'Badge Text',  'name' => 'service_guarantee_badge_text', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_guarantee_h',     'label' => 'Headline',    'name' => 'service_guarantee_headline',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_guarantee_body',  'label' => 'Body',        'name' => 'service_guarantee_body',       'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_guarantee_proof', 'label' => 'Proof Cards', 'name' => 'service_guarantee_proof',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
+            'instructions' => 'Three cards is the designed default. Each card = client name + big stat + descriptor.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_guarantee_proof_client', 'label' => 'Client',     'name' => 'client', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_guarantee_proof_stat',   'label' => 'Stat',       'name' => 'stat',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_guarantee_proof_desc',   'label' => 'Descriptor', 'name' => 'desc',   'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_guarantee_personal', 'label' => 'Personal Promise', 'name' => 'service_guarantee_personal_text', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Final CTA */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_final_cta',
+    'title'      => 'Service · Final CTA',
+    'menu_order' => 13,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_final_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_final_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_final_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_final_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_h',        'label' => 'Headline', 'name' => 'service_final_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_body',     'label' => 'Body',     'name' => 'service_final_body',     'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_final_features', 'label' => 'Feature Bullets', 'name' => 'service_final_features',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 12,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_final_feature_text', 'label' => 'Bullet', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_final_footer', 'label' => 'Closing Footer Line', 'name' => 'service_final_footer_line', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_pe',     'label' => 'Price Card — Eyebrow',    'name' => 'service_final_price_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_pt',     'label' => 'Price Card — Title',      'name' => 'service_final_price_title',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_pv',     'label' => 'Price Card — Price',      'name' => 'service_final_price_value',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_pq',     'label' => 'Price Card — Qualifier',  'name' => 'service_final_price_qualifier', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_pcl',    'label' => 'Price Card — CTA Label',  'name' => 'service_final_price_cta_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_pcu',    'label' => 'Price Card — CTA URL',    'name' => 'service_final_price_cta_url',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_final_ps',     'label' => 'Price Card — Secondary Line', 'name' => 'service_final_price_secondary', 'type' => 'textarea', 'rows' => 2, 'instructions' => 'Inline <a href="">links</a> and <strong>tags allowed</strong>.' ),
+        array(
+            'key' => 'field_gh_service_final_choices', 'label' => 'Final Choices', 'name' => 'service_final_choices',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 4,
+            'instructions' => 'Two cards is the designed default. "Inaction" gets a red left border; "Action" gets a green left border.',
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_final_choice_kind', 'label' => 'Kind', 'name' => 'kind',
+                    'type' => 'select', 'default_value' => 'action',
+                    'choices' => array(
+                        'inaction' => 'Inaction (red left border)',
+                        'action'   => 'Action (green left border)',
+                    ),
+                ),
+                array( 'key' => 'field_gh_service_final_choice_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_final_choice_text',  'label' => 'Body',  'name' => 'text',  'type' => 'textarea', 'rows' => 4 ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
