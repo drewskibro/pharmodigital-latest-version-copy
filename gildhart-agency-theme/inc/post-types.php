@@ -254,6 +254,70 @@ function gildhart_service_section_roster( $slug ) {
     return $rosters[ $slug ] ?? $rosters['the-playbook'];
 }
 
+/**
+ * Map of ACF field group keys → section slugs.
+ *
+ * Drives the admin-side metabox filter below: any field group listed
+ * here is treated as a per-section group and only renders in the
+ * Service edit screen when its section slug is in the post's roster.
+ * Field groups NOT in this map (e.g. group_gh_service_nav) always
+ * render — those are product-agnostic.
+ */
+function gildhart_service_field_group_map() {
+    return array(
+        'group_gh_service_hero'             => 'hero',
+        'group_gh_service_logo_bar'         => 'logo-bar',
+        'group_gh_service_problem_shift'    => 'problem-shift',
+        'group_gh_service_proof_cases'      => 'proof-cases',
+        'group_gh_service_playing_field'    => 'playing-field',
+        'group_gh_service_method'           => 'method',
+        'group_gh_service_what_you_get'     => 'what-you-get',
+        'group_gh_service_sub_case_proof'   => 'sub-case-proof',
+        'group_gh_service_early_buyers'     => 'early-buyers',
+        'group_gh_service_math'             => 'math',
+        'group_gh_service_next_steps'       => 'next-steps',
+        'group_gh_service_faq'              => 'faq',
+        'group_gh_service_guarantee'        => 'guarantee',
+        'group_gh_service_final_cta'        => 'final-cta',
+    );
+}
+
+/**
+ * Hide ACF metaboxes for sections that aren't in the current post's
+ * roster, so the editor only sees fields that actually render.
+ *
+ * Runs after ACF has registered its metaboxes (priority 20 — ACF
+ * registers at default 10), and removes the metaboxes for any field
+ * group whose section isn't in the roster for this post's slug.
+ *
+ * Skips on auto-drafts (no slug yet) so the editor still sees every
+ * section while creating a new service. Once the post is published
+ * and reloaded, the filter kicks in and hides the irrelevant ones.
+ */
+function gildhart_service_filter_admin_metaboxes() {
+    global $post, $pagenow;
+
+    if ( ! in_array( $pagenow, array( 'post.php', 'post-new.php' ), true ) ) {
+        return;
+    }
+    if ( ! $post || $post->post_type !== 'service' ) {
+        return;
+    }
+    if ( empty( $post->post_name ) ) {
+        return; // auto-draft — show everything until publish.
+    }
+
+    $roster        = gildhart_service_section_roster( $post->post_name );
+    $field_groups  = gildhart_service_field_group_map();
+
+    foreach ( $field_groups as $group_key => $section_slug ) {
+        if ( ! in_array( $section_slug, $roster, true ) ) {
+            remove_meta_box( 'acf-' . $group_key, 'service', 'normal' );
+        }
+    }
+}
+add_action( 'add_meta_boxes', 'gildhart_service_filter_admin_metaboxes', 20 );
+
 function gildhart_service_default_values( $value, $post_id, $field ) {
     if ( ! is_numeric( $post_id ) ) {
         return $value;
