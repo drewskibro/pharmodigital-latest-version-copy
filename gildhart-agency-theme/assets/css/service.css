@@ -76,6 +76,11 @@
   gap: 5rem;
   align-items: flex-start;
 }
+.svc-hero-inner--no-image {
+  grid-template-columns: 1fr;
+  max-width: 780px;
+  margin-left: 0;
+}
 
 /* Content column */
 .svc-hero-eyebrow {

@@ -40,7 +40,7 @@ $image_id = get_field( 'service_hero_image' );
 ?>
 
 <section class="svc-hero">
-    <div class="svc-hero-inner">
+    <div class="svc-hero-inner<?php echo $image_id ? '' : ' svc-hero-inner--no-image'; ?>">
         <div class="svc-hero-content">
             <?php if ( $eyebrow ) : ?>
                 <p class="svc-hero-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
