@@ -207,6 +207,17 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_hero_cta_primary_url'     => '#buy-now',
         'service_hero_cta_secondary_label' => "See What's Inside",
         'service_hero_cta_secondary_url'   => '#what-you-get',
+        // Problem Shift
+        'service_problem_shift_label'           => 'The Shift',
+        'service_problem_shift_headline'        => "In Two Years, The Practices On ChatGPT's Shortlist Will Own Your Market.",
+        'service_problem_shift_intro'           => "That shortlist is being built right now. Every week a practice claims a spot. Every week it gets harder to displace them. And the patients those practices are capturing — Semrush confirmed it across hundreds of sites — convert 4.4 times better than Google organic visitors. Not because of the platform. Because by the time they click a name on ChatGPT's recommendation, the decision is already made.",
+        'service_problem_shift_strip_text'      => 'First time in 20 years independent practices can outrank national chains. Not in 5 years. In weeks.',
+        'service_problem_shift_strip_cta_label' => 'Get The System',
+        'service_problem_shift_strip_cta_url'   => '#buy-now',
+        // Three Proof Cases
+        'service_proof_cases_eyebrow'     => 'Three Practices. Same Result.',
+        'service_proof_cases_headline'    => 'Three Different Approaches. One Outcome: Domination.',
+        'service_proof_cases_subheadline' => 'Same foundation. Different implementations. All outranking national chains.',
     );
 
     if ( isset( $defaults[ $field['name'] ] ) ) {
