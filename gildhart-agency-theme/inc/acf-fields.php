@@ -1613,3 +1613,226 @@ acf_add_local_field_group( array(
         ),
     ),
 ) );
+
+/* Service · Problem Shift */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_problem_shift',
+    'title'      => 'Service · Problem Shift',
+    'menu_order' => 2,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_ps_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_problem_shift_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+            'instructions'  => 'Toggle off to hide the Problem Shift section on this service.',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_label',
+            'label' => 'Eyebrow Label',
+            'name'  => 'service_problem_shift_label',
+            'type'  => 'text',
+            'instructions' => 'Small caps label above the headline. Default: "The Shift".',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_headline',
+            'label' => 'Headline (H2)',
+            'name'  => 'service_problem_shift_headline',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_intro',
+            'label' => 'Intro Paragraph',
+            'name'  => 'service_problem_shift_intro',
+            'type'  => 'textarea',
+            'rows'  => 5,
+        ),
+        array(
+            'key'        => 'field_gh_service_ps_pairs',
+            'label'      => 'Win / Consequence Pairs',
+            'name'       => 'service_problem_shift_pairs',
+            'type'       => 'repeater',
+            'layout'     => 'row',
+            'min'        => 0,
+            'max'        => 8,
+            'instructions' => 'Each row pairs a gold-stat win on the left with a red-x consequence on the right. Five rows is the designed default.',
+            'sub_fields' => array(
+                array(
+                    'key'   => 'field_gh_service_ps_pair_num',
+                    'label' => 'Stat Number',
+                    'name'  => 'number',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_service_ps_pair_stat',
+                    'label' => 'Stat Description',
+                    'name'  => 'stat_text',
+                    'type'  => 'textarea',
+                    'rows'  => 2,
+                ),
+                array(
+                    'key'   => 'field_gh_service_ps_pair_lose',
+                    'label' => 'Consequence (without the system)',
+                    'name'  => 'lose_text',
+                    'type'  => 'textarea',
+                    'rows'  => 2,
+                ),
+            ),
+        ),
+        array(
+            'key'           => 'field_gh_service_ps_strip_show',
+            'label'         => 'Show Teal CTA Strip',
+            'name'          => 'service_problem_shift_strip_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+            'instructions'  => 'Toggle off to hide the green strip + button below the pairs.',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_strip_text',
+            'label' => 'Teal Strip — Text',
+            'name'  => 'service_problem_shift_strip_text',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_strip_cta_label',
+            'label' => 'Teal Strip — CTA Label',
+            'name'  => 'service_problem_shift_strip_cta_label',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_strip_cta_url',
+            'label' => 'Teal Strip — CTA URL',
+            'name'  => 'service_problem_shift_strip_cta_url',
+            'type'  => 'text',
+            'instructions' => 'Anchor (#buy-now) or full URL.',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'service',
+            ),
+        ),
+    ),
+) );
+
+/* Service · Three Proof Cases */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_proof_cases',
+    'title'      => 'Service · Three Proof Cases',
+    'menu_order' => 3,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_proof_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_proof_cases_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array(
+            'key'   => 'field_gh_service_proof_eyebrow',
+            'label' => 'Eyebrow',
+            'name'  => 'service_proof_cases_eyebrow',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_service_proof_headline',
+            'label' => 'Headline (H2)',
+            'name'  => 'service_proof_cases_headline',
+            'type'  => 'text',
+        ),
+        array(
+            'key'   => 'field_gh_service_proof_subheadline',
+            'label' => 'Sub-headline',
+            'name'  => 'service_proof_cases_subheadline',
+            'type'  => 'textarea',
+            'rows'  => 3,
+        ),
+        array(
+            'key'        => 'field_gh_service_proof_items',
+            'label'      => 'Cases',
+            'name'       => 'service_proof_cases_items',
+            'type'       => 'repeater',
+            'layout'     => 'block',
+            'min'        => 0,
+            'max'        => 6,
+            'instructions' => 'Cases alternate left/right automatically. Result, How and Quote accept inline <strong> markup for emphasis.',
+            'sub_fields' => array(
+                array(
+                    'key'   => 'field_gh_service_proof_item_name',
+                    'label' => 'Client Name',
+                    'name'  => 'client_name',
+                    'type'  => 'text',
+                ),
+                array(
+                    'key'   => 'field_gh_service_proof_item_tag',
+                    'label' => 'Sector Tag',
+                    'name'  => 'client_tag',
+                    'type'  => 'text',
+                    'instructions' => 'e.g. Travel Clinic, Pharmacy, Dental.',
+                ),
+                array(
+                    'key'           => 'field_gh_service_proof_item_image',
+                    'label'         => 'Case Image',
+                    'name'          => 'image',
+                    'type'          => 'image',
+                    'return_format' => 'id',
+                    'preview_size'  => 'medium',
+                ),
+                array(
+                    'key'   => 'field_gh_service_proof_item_result',
+                    'label' => 'The Result',
+                    'name'  => 'result_text',
+                    'type'  => 'textarea',
+                    'rows'  => 4,
+                    'instructions' => 'Inline <strong>tags allowed</strong>.',
+                ),
+                array(
+                    'key'   => 'field_gh_service_proof_item_how',
+                    'label' => 'How',
+                    'name'  => 'how_text',
+                    'type'  => 'textarea',
+                    'rows'  => 5,
+                    'instructions' => 'Inline <strong>tags allowed</strong>.',
+                ),
+                array(
+                    'key'   => 'field_gh_service_proof_item_quote',
+                    'label' => 'Quote (optional)',
+                    'name'  => 'quote_text',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+                array(
+                    'key'   => 'field_gh_service_proof_item_attr',
+                    'label' => 'Quote Attribution',
+                    'name'  => 'quote_attr',
+                    'type'  => 'text',
+                ),
+            ),
+        ),
+        array(
+            'key'           => 'field_gh_service_proof_bing',
+            'label'         => 'Bing Rankings Image (optional)',
+            'name'          => 'service_proof_cases_bing_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Full-bleed proof image rendered below the cases.',
+        ),
+    ),
+    'location' => array(
+        array(
+            array(
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'service',
+            ),
+        ),
+    ),
+) );

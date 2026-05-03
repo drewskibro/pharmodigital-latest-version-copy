@@ -35,4 +35,10 @@
   }
 
   window.svcReveal = reveal;
+
+  // ── S1: Problem Shift + Three Proof Cases reveals ──────────────
+  // Headline / intro fade up as the section enters; rows have their own
+  // staggered transition (the wrapper class triggers child opacity/transform).
+  reveal('.svc-ps-label, .svc-ps-headline, .svc-ps-intro', 'is-visible');
+  reveal('.svc-ps-row', 'is-visible', { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
 })();

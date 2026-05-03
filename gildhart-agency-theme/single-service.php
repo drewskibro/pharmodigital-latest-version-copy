@@ -25,8 +25,8 @@ get_header(); ?>
     if ( have_posts() ) :
         while ( have_posts() ) : the_post(); ?>
             <?php get_template_part( 'template-parts/service/section-hero' ); ?>
-            <?php // get_template_part( 'template-parts/service/section-problem-shift' );  // S1 ?>
-            <?php // get_template_part( 'template-parts/service/section-proof-cases' );    // S1 ?>
+            <?php get_template_part( 'template-parts/service/section-problem-shift' ); ?>
+            <?php get_template_part( 'template-parts/service/section-proof-cases' ); ?>
             <?php // get_template_part( 'template-parts/service/section-playing-field' );  // S2 ?>
             <?php // get_template_part( 'template-parts/service/section-method' );         // S2 ?>
             <?php // get_template_part( 'template-parts/service/section-what-you-get' );   // S3 ?>
