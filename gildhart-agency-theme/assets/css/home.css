@@ -1274,7 +1274,7 @@ a.featured-cta-card:hover .featured-cta-link {
   position: relative;
   background: #FFFDF8;
   border-radius: 20px;
-  overflow: visible;
+  overflow: hidden;
   box-shadow: 0 1px 2px rgba(13, 26, 18, 0.04),
               0 12px 32px -16px rgba(13, 26, 18, 0.10);
   display: flex;
@@ -1285,7 +1285,7 @@ a.featured-cta-card:hover .featured-cta-link {
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Hero card — the priority sale. Dark forest green, gold inner border, ribbon, lifted. */
+/* Hero card — the priority sale. Forest green, gold inner border, lifted. */
 .two-paths-card--hero {
   background: var(--gildhart-green);
   border: 0;
@@ -1298,27 +1298,69 @@ a.featured-cta-card:hover .featured-cta-link {
   z-index: 2;
 }
 
-/* Gold ribbon on the hero — pinned to the top, overlapping the border. */
-.two-paths-ribbon {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--gildhart-gold);
-  color: var(--gildhart-black);
+/* Dark card — always-on agent product. Navy fill, cream type. */
+.two-paths-card--dark {
+  background: var(--navy);
+  border: 0;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 1px 2px rgba(13, 26, 18, 0.04),
+    0 16px 36px -18px rgba(13, 26, 18, 0.30);
+}
+
+/* Hero image at the very top of every card — flush with top edge, top
+ * corners rounded via the card's overflow:hidden + border-radius. */
+.two-paths-card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(30, 61, 47, 0.06);
+}
+.two-paths-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.two-paths-card--hero .two-paths-card-image {
+  height: 220px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.two-paths-card--dark .two-paths-card-image {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Placeholder shown when no image is uploaded. Uses each card's tone so
+ * the placeholder reads as part of the card, not a stray empty box. */
+.two-paths-card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 61, 47, 0.08), rgba(30, 61, 47, 0.04));
+}
+.two-paths-card-image-placeholder span {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 8px 1.25rem;
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px -4px rgba(13, 26, 18, 0.4);
-  z-index: 3;
+  color: var(--gildhart-gold);
+  line-height: 1.6;
+}
+.two-paths-card--hero .two-paths-card-image-placeholder {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+}
+.two-paths-card--dark .two-paths-card-image-placeholder {
+  background: linear-gradient(135deg, rgba(201, 164, 74, 0.06), rgba(255, 255, 255, 0.02));
 }
 
-/* Quiet banner on outer cards. */
+/* Quiet banner on outer cards. Sits below the image, square corners. */
 .two-paths-banner {
   background: rgba(30, 61, 47, 0.06);
   color: var(--gildhart-green);
@@ -1330,7 +1372,11 @@ a.featured-cta-card:hover .featured-cta-link {
   text-align: center;
   padding: 12px 1.25rem;
   border-bottom: 1px solid rgba(30, 61, 47, 0.10);
-  border-radius: 20px 20px 0 0;
+}
+.two-paths-card--dark .two-paths-banner {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--gildhart-cream);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
 /* Inner content */
@@ -1341,7 +1387,10 @@ a.featured-cta-card:hover .featured-cta-link {
   flex: 1;
 }
 .two-paths-card--hero .two-paths-card-inner {
-  padding: 3.5rem 2.75rem 2.75rem;
+  padding: 4rem 2.75rem 3.25rem;
+}
+.two-paths-card--dark .two-paths-card-inner {
+  padding: 3rem 2.5rem 2.5rem;
 }
 
 /* Kicker — small italic above title */
@@ -1354,6 +1403,9 @@ a.featured-cta-card:hover .featured-cta-link {
   letter-spacing: 0.01em;
 }
 .two-paths-card--hero .two-paths-kicker {
+  color: rgba(240, 230, 200, 0.7);
+}
+.two-paths-card--dark .two-paths-kicker {
   color: rgba(240, 230, 200, 0.7);
 }
 
@@ -1383,6 +1435,10 @@ a.featured-cta-card:hover .featured-cta-link {
   color: #FFFDF8;
   line-height: 1.18;
 }
+.two-paths-card--dark .two-paths-card-title {
+  color: #FFFDF8;
+  line-height: 1.25;
+}
 
 /* Body — proof statement, italic with gold left border */
 .two-paths-card-body {
@@ -1399,6 +1455,10 @@ a.featured-cta-card:hover .featured-cta-link {
   border-left-color: var(--gildhart-gold);
   font-size: 1.0625rem;
 }
+.two-paths-card--dark .two-paths-card-body {
+  color: var(--gildhart-cream);
+  border-left-color: var(--gildhart-gold);
+}
 
 /* Proof anchor — single big number + descriptor */
 .two-paths-proof {
@@ -1410,7 +1470,8 @@ a.featured-cta-card:hover .featured-cta-link {
   border-top: 1px solid rgba(30, 61, 47, 0.10);
   border-bottom: 1px solid rgba(30, 61, 47, 0.10);
 }
-.two-paths-card--hero .two-paths-proof {
+.two-paths-card--hero .two-paths-proof,
+.two-paths-card--dark .two-paths-proof {
   border-top-color: rgba(201, 164, 74, 0.25);
   border-bottom-color: rgba(201, 164, 74, 0.25);
 }
@@ -1426,6 +1487,9 @@ a.featured-cta-card:hover .featured-cta-link {
   color: var(--gildhart-gold);
   font-size: 3.5rem;
 }
+.two-paths-card--dark .two-paths-proof-number {
+  color: var(--gildhart-gold);
+}
 .two-paths-proof-label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -1435,7 +1499,8 @@ a.featured-cta-card:hover .featured-cta-link {
   color: var(--gray-600);
   line-height: 1.5;
 }
-.two-paths-card--hero .two-paths-proof-label {
+.two-paths-card--hero .two-paths-proof-label,
+.two-paths-card--dark .two-paths-proof-label {
   color: rgba(240, 230, 200, 0.75);
 }
 
@@ -1467,6 +1532,9 @@ a.featured-cta-card:hover .featured-cta-link {
   color: var(--gildhart-gold);
   font-weight: 700;
 }
+.two-paths-card--dark .two-paths-features li {
+  color: var(--gildhart-cream);
+}
 
 /* Price block — understated, italic note */
 .two-paths-price-block {
@@ -1477,7 +1545,8 @@ a.featured-cta-card:hover .featured-cta-link {
   margin-bottom: 1.5rem;
   border-top: 1px solid rgba(30, 61, 47, 0.10);
 }
-.two-paths-card--hero .two-paths-price-block {
+.two-paths-card--hero .two-paths-price-block,
+.two-paths-card--dark .two-paths-price-block {
   border-top-color: rgba(201, 164, 74, 0.25);
 }
 .two-paths-price {
@@ -1488,7 +1557,8 @@ a.featured-cta-card:hover .featured-cta-link {
   letter-spacing: -0.015em;
   line-height: 1.1;
 }
-.two-paths-card--hero .two-paths-price {
+.two-paths-card--hero .two-paths-price,
+.two-paths-card--dark .two-paths-price {
   color: #FFFDF8;
 }
 .two-paths-price-note {
@@ -1497,7 +1567,8 @@ a.featured-cta-card:hover .featured-cta-link {
   color: var(--gray-600);
   line-height: 1.5;
 }
-.two-paths-card--hero .two-paths-price-note {
+.two-paths-card--hero .two-paths-price-note,
+.two-paths-card--dark .two-paths-price-note {
   color: rgba(240, 230, 200, 0.7);
 }
 
@@ -1528,10 +1599,11 @@ a.featured-cta-card:hover .featured-cta-link {
   transform: translateY(-1px);
   box-shadow: 0 8px 20px -8px rgba(13, 26, 18, 0.4);
 }
-/* Hero CTA — reversed: gold bg, dark green text */
+/* Hero CTA — reversed: gold bg, forest-green text */
 .two-paths-card--hero .two-paths-btn-primary {
   background: var(--gildhart-gold);
-  color: var(--gildhart-black);
+  color: var(--gildhart-green);
+  font-weight: 700;
 }
 .two-paths-card--hero .two-paths-btn-primary:hover {
   background: #d4b358;
@@ -1604,8 +1676,11 @@ a.featured-cta-card:hover .featured-cta-link {
 @media (max-width: 768px) {
   .two-paths-section { padding: 4rem 1.25rem; }
   .two-paths-header { margin-bottom: 2.75rem; }
+  .two-paths-card-image { height: 180px; }
+  .two-paths-card--hero .two-paths-card-image { height: 200px; }
   .two-paths-card-inner,
-  .two-paths-card--hero .two-paths-card-inner {
+  .two-paths-card--hero .two-paths-card-inner,
+  .two-paths-card--dark .two-paths-card-inner {
     padding: 2.5rem 1.75rem 2rem;
   }
   .two-paths-proof-number { font-size: 2.5rem; }
