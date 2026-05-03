@@ -1942,3 +1942,83 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · What You Get */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_what_you_get',
+    'title'      => 'Service · What You Get',
+    'menu_order' => 6,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_wyg_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_what_you_get_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_wyg_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_what_you_get_eyebrow',     'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wyg_headline',    'label' => 'Headline',    'name' => 'service_what_you_get_headline',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wyg_subheadline', 'label' => 'Subheadline', 'name' => 'service_what_you_get_subheadline', 'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_wyg_modules', 'label' => 'Modules', 'name' => 'service_what_you_get_modules',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 12,
+            'instructions' => 'Numbered automatically (01, 02…). Two-column grid; if the count is odd the last card centres in its row.',
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_wyg_module_kind', 'label' => 'Icon Kind', 'name' => 'icon_kind',
+                    'type' => 'select', 'default_value' => 'engine',
+                    'choices' => array(
+                        'engine'      => 'Engine (forest green)',
+                        'pillar'      => 'Pillar (indigo)',
+                        'interactive' => 'Interactive (amber)',
+                        'visuals'     => 'Visuals (sage)',
+                        'indexed'     => 'Indexed (emerald)',
+                    ),
+                ),
+                array( 'key' => 'field_gh_service_wyg_module_title', 'label' => 'Title',          'name' => 'title',      'type' => 'text' ),
+                array( 'key' => 'field_gh_service_wyg_module_hook',  'label' => 'Hook Line',      'name' => 'hook',       'type' => 'text' ),
+                array( 'key' => 'field_gh_service_wyg_module_body',  'label' => 'Body',           'name' => 'body',       'type' => 'textarea', 'rows' => 4 ),
+                array( 'key' => 'field_gh_service_wyg_module_stat',  'label' => 'Proof — Stat',   'name' => 'proof_stat', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_wyg_module_ptxt',  'label' => 'Proof — Text',   'name' => 'proof_text', 'type' => 'textarea', 'rows' => 2 ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Sub-case Proof */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_sub_case_proof',
+    'title'      => 'Service · Sub-case Proof',
+    'menu_order' => 7,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_sc_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_sub_case_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_sc_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_sub_case_eyebrow',     'type' => 'text' ),
+        array( 'key' => 'field_gh_service_sc_headline',    'label' => 'Headline',    'name' => 'service_sub_case_headline',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_sc_subheadline', 'label' => 'Subheadline', 'name' => 'service_sub_case_subheadline', 'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_sc_cards', 'label' => 'Cards', 'name' => 'service_sub_case_cards',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
+            'instructions' => 'Two cards is the designed default. Each card = a Search Console screenshot + a caption block.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_sc_card_name', 'label' => 'Client Name', 'name' => 'name', 'type' => 'text' ),
+                array(
+                    'key' => 'field_gh_service_sc_card_image', 'label' => 'Screenshot',  'name' => 'image',
+                    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+                ),
+                array( 'key' => 'field_gh_service_sc_card_result', 'label' => 'Result Line', 'name' => 'result', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+                array( 'key' => 'field_gh_service_sc_card_data',   'label' => 'Data Line',   'name' => 'data',   'type' => 'text', 'instructions' => 'Mono caps line. e.g. "5.93K clicks · 1.07M impressions · 3 months".' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_sc_footer', 'label' => 'Footer Line', 'name' => 'service_sub_case_footer', 'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
