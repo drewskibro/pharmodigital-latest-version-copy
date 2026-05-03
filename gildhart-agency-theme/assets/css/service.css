@@ -121,13 +121,31 @@
   letter-spacing: -0.02em;
   margin: 0 0 1.5rem 0;
 }
+.svc-hero-title-line { display: block; }
+/* Stacked variant — multi-line title where each line grows progressively
+ * larger (matches the homepage hero + the Agent hero pattern). Single-
+ * line titles only get one .svc-hero-title-line so this rule is a no-op. */
+.svc-hero-title--stacked { line-height: 1.1; }
+.svc-hero-title--stacked .svc-hero-title-line:nth-child(2) {
+  font-size: 1.18em;
+  line-height: 1.02;
+}
+.svc-hero-title--stacked .svc-hero-title-line:nth-child(3) {
+  font-size: 1.42em;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
 .svc-hero-subtitle {
-  font-size: 1.125rem;
-  color: var(--gray-600);
-  line-height: 1.7;
   margin: 0 0 2.5rem 0;
   max-width: 540px;
 }
+.svc-hero-subtitle p {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin: 0;
+}
+.svc-hero-subtitle p + p { margin-top: 1rem; }
 
 /* Stats row */
 .svc-hero-stats {
@@ -2483,4 +2501,80 @@
   .svc-final-price-card { position: static; }
   .svc-final-choices { grid-template-columns: 1fr; }
   .svc-final { padding: 3.5rem 1.5rem; }
+}
+
+/* ── Logo Bar (sits flush below the hero gradient) ──────────── */
+
+.svc-logo-bar {
+  background: #fef7ed;
+  padding: 2.5rem 0;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.svc-logo-bar::before,
+.svc-logo-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.svc-logo-bar::before {
+  left: 0;
+  background: linear-gradient(90deg, #fef7ed 0%, transparent 100%);
+}
+.svc-logo-bar::after {
+  right: 0;
+  background: linear-gradient(270deg, #fef7ed 0%, transparent 100%);
+}
+.svc-logo-bar-label {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.55);
+  margin: 0 0 1.75rem;
+  padding: 0 1.5rem;
+}
+.svc-logo-bar-track {
+  width: 100%;
+  overflow: hidden;
+}
+.svc-logo-bar-scroller {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: max-content;
+  animation: svcLogoScroll 30s linear infinite;
+}
+.svc-logo-bar-scroller:hover { animation-play-state: paused; }
+.svc-logo-bar-scroller img {
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.7;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  flex-shrink: 0;
+}
+.svc-logo-bar-scroller img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+@keyframes svcLogoScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .svc-logo-bar { padding: 2rem 0; }
+  .svc-logo-bar::before,
+  .svc-logo-bar::after { width: 60px; }
+  .svc-logo-bar-scroller img { height: 50px; }
+  .svc-logo-bar-scroller { gap: 3rem; }
 }
