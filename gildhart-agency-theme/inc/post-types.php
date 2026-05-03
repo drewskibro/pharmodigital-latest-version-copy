@@ -134,15 +134,19 @@ function gildhart_register_industry_taxonomy() {
 add_action( 'init', 'gildhart_register_industry_taxonomy' );
 
 /**
- * Render Service CPT entries at the root: /the-agent/ rather than
- * /services/the-agent/. Two pieces:
+ * Render Service CPT entries at the root: /the-playbook/ rather than
+ * /services/the-playbook/. Two pieces:
  *
  *   1. post_type_link filter — outputs the public permalink as /{slug}/.
- *   2. add_rewrite_rule at 'bottom' priority — maps root-level URLs to the
- *      service post type ONLY if no Page (or higher-priority rule) matches
- *      first. Pages always win, so a Page slug "the-agent" would shadow a
- *      Service slug "the-agent". The /services/ archive still resolves via
- *      has_archive on the CPT registration.
+ *   2. request filter — when WordPress resolves a single-segment URL to
+ *      ?name=foo with no post_type set (the default catch-all behaviour),
+ *      we check if a Service exists with that slug and switch post_type
+ *      to 'service'. Pages still resolve first because page rules set
+ *      pagename instead of name. Doesn't touch the rewrite rule table,
+ *      so no flush is needed for it to work.
+ *
+ *   The /services/ archive still resolves via has_archive on the CPT
+ *   registration.
  */
 function gildhart_service_root_permalink( $post_link, $post ) {
     if ( 'service' === $post->post_type && 'publish' === $post->post_status ) {
@@ -152,25 +156,74 @@ function gildhart_service_root_permalink( $post_link, $post ) {
 }
 add_filter( 'post_type_link', 'gildhart_service_root_permalink', 10, 2 );
 
-function gildhart_service_root_rewrite() {
-    add_rewrite_rule(
-        '^([^/]+)/?$',
-        'index.php?post_type=service&name=$matches[1]',
-        'bottom'
-    );
+function gildhart_service_request_filter( $vars ) {
+    if ( is_admin() && ! wp_doing_ajax() ) {
+        return $vars;
+    }
+    if ( empty( $vars['name'] ) || ! empty( $vars['post_type'] ) || ! empty( $vars['pagename'] ) ) {
+        return $vars;
+    }
+    $service = get_page_by_path( $vars['name'], OBJECT, 'service' );
+    if ( $service ) {
+        $vars['post_type'] = 'service';
+    }
+    return $vars;
 }
-add_action( 'init', 'gildhart_service_root_rewrite', 11 );
+add_filter( 'request', 'gildhart_service_request_filter' );
+
+/**
+ * Pre-populate Service CPT field values when they are empty.
+ *
+ * Backfills the static-spec defaults via acf/load_value so freshly published
+ * service entries — and any service field saved as empty — render complete
+ * in BOTH the admin UI (pre-filled inputs) and the frontend. Saved non-empty
+ * values always win; only empty / null values are backfilled.
+ *
+ * Repeater rows are not backfilled here (ACF's load_value handling for
+ * repeater parents is unreliable). The template-side fallback in each
+ * section template part renders the default rows on the frontend; the admin
+ * UI shows an empty repeater that the editor can fill if they want to
+ * override the defaults.
+ *
+ * Adding new section defaults: append the field name and value to $defaults.
+ */
+function gildhart_service_default_values( $value, $post_id, $field ) {
+    if ( ! is_numeric( $post_id ) ) {
+        return $value;
+    }
+    if ( get_post_type( $post_id ) !== 'service' ) {
+        return $value;
+    }
+    if ( $value !== '' && $value !== null && ! ( is_array( $value ) && empty( $value ) ) ) {
+        return $value;
+    }
+
+    $defaults = array(
+        // Hero
+        'service_hero_eyebrow'             => 'The AI Search Playbook',
+        'service_hero_title'               => "While You're Reading This, ChatGPT Is Recommending Your Competitors.",
+        'service_hero_subtitle'            => 'Rahul at Puri Pharmacy is now on that shortlist. So is Raman at Superior Pharmacy and Sachin at Ealing Travel Clinic. One playbook. Three practices. No ad spend.',
+        'service_hero_cta_primary_label'   => 'Get The Playbook — £497',
+        'service_hero_cta_primary_url'     => '#buy-now',
+        'service_hero_cta_secondary_label' => "See What's Inside",
+        'service_hero_cta_secondary_url'   => '#what-you-get',
+    );
+
+    if ( isset( $defaults[ $field['name'] ] ) ) {
+        return $defaults[ $field['name'] ];
+    }
+    return $value;
+}
+add_filter( 'acf/load_value', 'gildhart_service_default_values', 10, 3 );
 
 /**
  * Flush rewrite rules once after CPT/taxonomy registration so /case-studies/
- * and root-level /service-slug/ URLs work immediately. Uses an option flag
- * so we only flush once (flushing on every load is expensive). Bump the
- * suffix to force a re-flush after rewrite rule changes.
+ * URLs work immediately. Uses an option flag so we only flush once.
  */
 function gildhart_maybe_flush_rewrites_for_cpts() {
-    if ( get_option( 'gildhart_cpt_rewrites_flushed' ) !== '3_root_service_explicit' ) {
+    if ( get_option( 'gildhart_cpt_rewrites_flushed' ) !== '4_request_filter' ) {
         flush_rewrite_rules();
-        update_option( 'gildhart_cpt_rewrites_flushed', '3_root_service_explicit' );
+        update_option( 'gildhart_cpt_rewrites_flushed', '4_request_filter' );
     }
 }
 add_action( 'init', 'gildhart_maybe_flush_rewrites_for_cpts', 20 );
