@@ -206,26 +206,52 @@ function gildhart_service_defaults_by_slug() {
             'service_hero_cta_secondary_url'   => '',
             // Logo Bar
             'service_logo_bar_label'           => 'Every practice live is generating enquiries they never had before',
-            // Hide Playbook-specific sections on the Agent. Each "show" toggle
-            // defaults to 1 on the field group; setting 0 here flips a fresh
-            // Agent post off for sections that don't apply to it. As Agent-
-            // specific sections (carousel, manifesto, flywheel, etc.) ship in
-            // A1+, they get their own dedicated section templates that the
-            // Playbook will toggle off in turn.
-            'service_problem_shift_show'       => 0,
-            'service_proof_cases_show'         => 0,
-            'service_playing_field_show'       => 0,
-            'service_method_show'              => 0,
-            'service_what_you_get_show'        => 0,
-            'service_sub_case_show'            => 0,
-            'service_early_buyers_show'        => 0,
-            'service_math_show'                => 0,
-            'service_next_show'                => 0,
-            // FAQ, Guarantee and Final CTA stay enabled — those patterns
-            // re-skin cleanly for the Agent. Agent-specific copy lands in
-            // later A-chunks; for now they show Playbook copy as scaffolding.
         ),
     );
+}
+
+/**
+ * Section roster for each service product.
+ *
+ * Returns the ordered list of section slugs that single-service.php
+ * renders for a given service post_name. This is the single source of
+ * truth for "which sections appear on this product's page" — the per-
+ * section "Show this section" toggles in the admin still work as a
+ * per-instance hide, but the roster decides whether the section is
+ * even considered.
+ *
+ * Why a roster (vs. show toggles alone): ACF field-level default_value
+ * pre-populates show toggles as 1 on a fresh post; once saved that
+ * value sticks and can't be overridden by my acf/load_value filter.
+ * The roster sidesteps the whole loop — single-service.php only loops
+ * over the products's roster, regardless of what any post has saved.
+ *
+ * Adding a section to a product = append the section slug here.
+ * Section slugs map to template-parts/service/section-{slug}.php.
+ *
+ * @param string $slug Service post_name.
+ * @return string[]
+ */
+function gildhart_service_section_roster( $slug ) {
+    $rosters = array(
+        'the-playbook' => array(
+            'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'playing-field',
+            'method', 'what-you-get', 'sub-case-proof', 'early-buyers', 'math',
+            'next-steps', 'faq', 'guarantee', 'final-cta',
+        ),
+        'the-agent' => array(
+            // A0 — shipped
+            'hero', 'logo-bar',
+            // A1+ append here as each chunk lands. The Agent reuses the FAQ /
+            // Guarantee / Final CTA templates (with Agent copy) once their
+            // A-chunks land in A2 / A5 / A6 — until then those sections are
+            // intentionally not in the roster, so the Agent page ends after
+            // the logo bar.
+        ),
+    );
+    // Unknown slug falls back to the Playbook roster as the longest-running
+    // baseline — adding a new product = add a new entry above.
+    return $rosters[ $slug ] ?? $rosters['the-playbook'];
 }
 
 function gildhart_service_default_values( $value, $post_id, $field ) {

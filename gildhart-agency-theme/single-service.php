@@ -2,18 +2,22 @@
 /**
  * Single Service template.
  *
- * Service CPT entries (The Playbook, The Agent, Web Pro Elite) render a
- * fixed sequence of section template parts. Each section is independently
- * editable via its own ACF field group on the service CPT, mirroring the
- * homepage pattern. Each section has a "Show this section" toggle so a
- * service can hide sections that don't apply (e.g. Web Pro Elite might
- * hide the math section).
+ * Service CPT entries (The Playbook, The Agent, Web Pro Elite, …) each
+ * render a different ordered set of sections. The set is defined by
+ * gildhart_service_section_roster( $slug ) in inc/post-types.php — that
+ * function is the single source of truth for "which sections live on
+ * which product's page." Adding/removing a section per product = edit
+ * the roster array, not this template.
  *
- * Sections fall back to design defaults when their ACF fields are empty —
- * a freshly published service entry renders complete with no data entry.
+ * Each section template part is independently editable via its own ACF
+ * field group on the service CPT, mirroring the homepage pattern. Most
+ * sections also carry a "Show this section" toggle so an editor can
+ * temporarily hide a section in the roster without removing it.
  *
- * Sections ship in chunks: S0 = Hero. S1+ uncomment further parts as they
- * land.
+ * Sections fall back to design defaults when their ACF fields are empty
+ * — a freshly published service entry renders complete with no data
+ * entry. Defaults live in gildhart_service_defaults_by_slug() and are
+ * picked by post_name (slug-aware).
  *
  * @package Gildhart
  */
@@ -23,22 +27,13 @@ get_header(); ?>
 <main id="main" class="site-main service-main">
     <?php
     if ( have_posts() ) :
-        while ( have_posts() ) : the_post(); ?>
-            <?php get_template_part( 'template-parts/service/section-hero' ); ?>
-            <?php get_template_part( 'template-parts/service/section-logo-bar' ); ?>
-            <?php get_template_part( 'template-parts/service/section-problem-shift' ); ?>
-            <?php get_template_part( 'template-parts/service/section-proof-cases' ); ?>
-            <?php get_template_part( 'template-parts/service/section-playing-field' ); ?>
-            <?php get_template_part( 'template-parts/service/section-method' ); ?>
-            <?php get_template_part( 'template-parts/service/section-what-you-get' ); ?>
-            <?php get_template_part( 'template-parts/service/section-sub-case-proof' ); ?>
-            <?php get_template_part( 'template-parts/service/section-early-buyers' ); ?>
-            <?php get_template_part( 'template-parts/service/section-math' ); ?>
-            <?php get_template_part( 'template-parts/service/section-next-steps' ); ?>
-            <?php get_template_part( 'template-parts/service/section-faq' ); ?>
-            <?php get_template_part( 'template-parts/service/section-guarantee' ); ?>
-            <?php get_template_part( 'template-parts/service/section-final-cta' ); ?>
-        <?php endwhile;
+        while ( have_posts() ) : the_post();
+            $slug     = get_post_field( 'post_name', get_the_ID() );
+            $sections = gildhart_service_section_roster( $slug );
+            foreach ( $sections as $section ) {
+                get_template_part( 'template-parts/service/section-' . $section );
+            }
+        endwhile;
     endif;
     ?>
 </main>
