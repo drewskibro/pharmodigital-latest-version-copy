@@ -41,4 +41,60 @@
   // staggered transition (the wrapper class triggers child opacity/transform).
   reveal('.svc-ps-label, .svc-ps-headline, .svc-ps-intro', 'is-visible');
   reveal('.svc-ps-row', 'is-visible', { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+  // ── S2: Method — reveal each step + sync active state ─────────
+  // The first step is rendered .is-active by PHP. As the user scrolls,
+  // whichever step's circle is closest to the top of the viewport (below
+  // the nav) takes over .is-active, and the matching timeline block
+  // mirrors it via data-week-block.
+  reveal('.svc-method-step', 'is-visible', { threshold: 0.25 });
+
+  var steps = document.querySelectorAll('.svc-method-step');
+  var weekBlocks = document.querySelectorAll('.svc-method-week');
+  if (steps.length && 'IntersectionObserver' in window) {
+    function setActive(stepEl) {
+      steps.forEach(function (s) { s.classList.remove('is-active'); });
+      stepEl.classList.add('is-active');
+      var wbIdx = stepEl.getAttribute('data-week-block');
+      weekBlocks.forEach(function (wb) {
+        wb.classList.toggle('is-active', wb.getAttribute('data-week') === wbIdx);
+      });
+    }
+
+    // Find the step whose top is closest to (just past) the nav bottom.
+    function syncActive() {
+      var navOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 130;
+      var anchor = navOffset + 120;
+      var current = steps[0];
+      steps.forEach(function (s) {
+        var rect = s.getBoundingClientRect();
+        if (rect.top <= anchor) {
+          current = s;
+        }
+      });
+      if (current && !current.classList.contains('is-active')) {
+        setActive(current);
+      }
+    }
+    window.addEventListener('scroll', syncActive, { passive: true });
+    syncActive();
+
+    // Clicking a week-block jumps to the first step in that block.
+    weekBlocks.forEach(function (wb) {
+      wb.addEventListener('click', function () {
+        var wbIdx = wb.getAttribute('data-week');
+        var match;
+        steps.forEach(function (s) {
+          if (!match && s.getAttribute('data-week-block') === wbIdx) {
+            match = s;
+          }
+        });
+        if (match) {
+          var navOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 130;
+          var top = match.getBoundingClientRect().top + window.pageYOffset - navOffset - 24;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+  }
 })();

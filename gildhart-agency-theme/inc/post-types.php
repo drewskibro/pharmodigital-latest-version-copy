@@ -218,6 +218,21 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_proof_cases_eyebrow'     => 'Three Practices. Same Result.',
         'service_proof_cases_headline'    => 'Three Different Approaches. One Outcome: Domination.',
         'service_proof_cases_subheadline' => 'Same foundation. Different implementations. All outranking national chains.',
+        // Playing Field
+        'service_playing_field_eyebrow'           => 'The Opportunity',
+        'service_playing_field_headline'          => 'AI Search Killed Brand Authority',
+        'service_playing_field_subheadline'       => "Traditional search rewarded authority. Boots wins because they've spent 50 years building links you'll never match. AI search doesn't care.",
+        'service_playing_field_old_label'         => 'The Old Game',
+        'service_playing_field_old_caption'       => "Boots, Bupa, Superdrug — they own Google because they've spent decades and millions you'll never match.",
+        'service_playing_field_new_label'         => 'The New Reality',
+        'service_playing_field_new_caption'       => '<strong>Ealing outranked Boots in 6 weeks. On this new playing field, the best answer wins — not the biggest brand.</strong>',
+        'service_playing_field_callout_text'      => 'Same foundation Ealing used. Same foundation Superior used.',
+        'service_playing_field_callout_highlight' => 'Level playing field. Finally.',
+        // Method
+        'service_method_eyebrow'        => 'The Method',
+        'service_method_headline'       => 'How We Get You Featured in ChatGPT, Claude & Google AI Overviews',
+        'service_method_proof_line'     => 'Four steps. <strong>Six weeks to first rankings.</strong> The exact system that put Ealing Travel Clinic and Superior Pharmacy on the AI shortlist — ahead of Boots and Bupa.',
+        'service_method_timeline_label' => 'Typical client timeline',
     );
 
     if ( isset( $defaults[ $field['name'] ] ) ) {

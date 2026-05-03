@@ -27,8 +27,8 @@ get_header(); ?>
             <?php get_template_part( 'template-parts/service/section-hero' ); ?>
             <?php get_template_part( 'template-parts/service/section-problem-shift' ); ?>
             <?php get_template_part( 'template-parts/service/section-proof-cases' ); ?>
-            <?php // get_template_part( 'template-parts/service/section-playing-field' );  // S2 ?>
-            <?php // get_template_part( 'template-parts/service/section-method' );         // S2 ?>
+            <?php get_template_part( 'template-parts/service/section-playing-field' ); ?>
+            <?php get_template_part( 'template-parts/service/section-method' ); ?>
             <?php // get_template_part( 'template-parts/service/section-what-you-get' );   // S3 ?>
             <?php // get_template_part( 'template-parts/service/section-sub-case-proof' ); // S3 ?>
             <?php // get_template_part( 'template-parts/service/section-early-buyers' );   // S4 ?>
