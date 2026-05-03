@@ -155,7 +155,7 @@ add_filter( 'post_type_link', 'gildhart_service_root_permalink', 10, 2 );
 function gildhart_service_root_rewrite() {
     add_rewrite_rule(
         '^([^/]+)/?$',
-        'index.php?service=$matches[1]',
+        'index.php?post_type=service&name=$matches[1]',
         'bottom'
     );
 }
@@ -168,9 +168,9 @@ add_action( 'init', 'gildhart_service_root_rewrite', 11 );
  * suffix to force a re-flush after rewrite rule changes.
  */
 function gildhart_maybe_flush_rewrites_for_cpts() {
-    if ( get_option( 'gildhart_cpt_rewrites_flushed' ) !== '2_root_service' ) {
+    if ( get_option( 'gildhart_cpt_rewrites_flushed' ) !== '3_root_service_explicit' ) {
         flush_rewrite_rules();
-        update_option( 'gildhart_cpt_rewrites_flushed', '2_root_service' );
+        update_option( 'gildhart_cpt_rewrites_flushed', '3_root_service_explicit' );
     }
 }
 add_action( 'init', 'gildhart_maybe_flush_rewrites_for_cpts', 20 );
