@@ -35,8 +35,8 @@ get_header(); ?>
             <?php get_template_part( 'template-parts/service/section-math' ); ?>
             <?php get_template_part( 'template-parts/service/section-next-steps' ); ?>
             <?php get_template_part( 'template-parts/service/section-faq' ); ?>
-            <?php // get_template_part( 'template-parts/service/section-guarantee' );      // S6 ?>
-            <?php // get_template_part( 'template-parts/service/section-final-cta' );      // S6 ?>
+            <?php get_template_part( 'template-parts/service/section-guarantee' ); ?>
+            <?php get_template_part( 'template-parts/service/section-final-cta' ); ?>
         <?php endwhile;
     endif;
     ?>
