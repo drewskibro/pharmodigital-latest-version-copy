@@ -85,8 +85,13 @@
 }
 .svc-hero-inner--no-image {
   grid-template-columns: 1fr;
+}
+/* Constrain the text column to a comfortable reading width but keep it
+ * inside the centered 1400px outer container, so the eyebrow/title align
+ * with where the with-image hero's left column would be (matches the
+ * homepage and Playbook hero left edges). */
+.svc-hero-inner--no-image .svc-hero-content {
   max-width: 780px;
-  margin-left: 0;
 }
 
 /* Content column */

@@ -206,6 +206,24 @@ function gildhart_service_defaults_by_slug() {
             'service_hero_cta_secondary_url'   => '',
             // Logo Bar
             'service_logo_bar_label'           => 'Every practice live is generating enquiries they never had before',
+            // Hide Playbook-specific sections on the Agent. Each "show" toggle
+            // defaults to 1 on the field group; setting 0 here flips a fresh
+            // Agent post off for sections that don't apply to it. As Agent-
+            // specific sections (carousel, manifesto, flywheel, etc.) ship in
+            // A1+, they get their own dedicated section templates that the
+            // Playbook will toggle off in turn.
+            'service_problem_shift_show'       => 0,
+            'service_proof_cases_show'         => 0,
+            'service_playing_field_show'       => 0,
+            'service_method_show'              => 0,
+            'service_what_you_get_show'        => 0,
+            'service_sub_case_show'            => 0,
+            'service_early_buyers_show'        => 0,
+            'service_math_show'                => 0,
+            'service_next_show'                => 0,
+            // FAQ, Guarantee and Final CTA stay enabled — those patterns
+            // re-skin cleanly for the Agent. Agent-specific copy lands in
+            // later A-chunks; for now they show Playbook copy as scaffolding.
         ),
     );
 }
