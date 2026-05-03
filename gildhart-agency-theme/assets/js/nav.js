@@ -148,11 +148,17 @@
   onScroll();
 
   // ── Update nav-spacer height to match nav (so fixed nav doesn't overlap content)
+  // Also expose nav height as --nav-h on the document root so hero sections can
+  // extend their gradient up under the nav (the spacer is hidden on hero pages
+  // — the hero's own padding-top covers the offset using --nav-h).
   var spacer = document.getElementById('navSpacer');
   function syncSpacer() {
-    if (navEl && spacer) {
-      spacer.style.height = navEl.offsetHeight + 'px';
+    if (!navEl) return;
+    var h = navEl.offsetHeight;
+    if (spacer) {
+      spacer.style.height = h + 'px';
     }
+    document.documentElement.style.setProperty('--nav-h', h + 'px');
   }
   window.addEventListener('load', syncSpacer);
   window.addEventListener('resize', syncSpacer);
