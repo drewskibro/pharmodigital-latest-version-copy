@@ -152,6 +152,24 @@ function gildhart_scripts() {
             true
         );
     }
+
+    // Single Service (Flexible Content composed page)
+    if ( is_singular( 'service' ) ) {
+        wp_enqueue_style(
+            'gildhart-service',
+            GILDHART_URI . '/assets/css/service.css',
+            array( 'gildhart-globals' ),
+            gh_asset_ver( 'assets/css/service.css' )
+        );
+
+        wp_enqueue_script(
+            'gildhart-service',
+            GILDHART_URI . '/assets/js/service.js',
+            array(),
+            gh_asset_ver( 'assets/js/service.js' ),
+            true
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'gildhart_scripts' );
 
@@ -196,6 +214,21 @@ function gh_option( $field_name, $default = '' ) {
 function gh_field( $field_name, $default = '' ) {
     if ( function_exists( 'get_field' ) ) {
         $value = get_field( $field_name );
+        if ( $value === null || $value === '' ) {
+            return $default;
+        }
+        return $value;
+    }
+    return $default;
+}
+
+/**
+ * Helper: Get ACF sub-field (inside a Flexible Content row or repeater)
+ * with strict null-or-empty default. Use inside have_rows() / the_row().
+ */
+function gh_sub_field( $field_name, $default = '' ) {
+    if ( function_exists( 'get_sub_field' ) ) {
+        $value = get_sub_field( $field_name );
         if ( $value === null || $value === '' ) {
             return $default;
         }
