@@ -2,15 +2,16 @@
 /**
  * Section: Three-tier pricing cards (homepage).
  *
- * Three product cards arranged in a row. The card flagged "is_featured"
- * gets the hero treatment: dark forest-green fill, 2px gold inner border,
- * extra padding, gold ribbon at the top, and a reversed gold-button CTA.
- * Outer cards stay quiet on cream so the hero anchors the eye.
+ * Three product cards arranged in a row. Card 2 ("is_featured") gets the
+ * forest-green hero treatment with reversed gold-button CTA. Card 3
+ * ("is_dark") gets the navy treatment for the always-on agent product.
+ * Card 1 stays cream as the entry-level offer.
  *
- * Each card supports: ribbon (hero only), banner (outer only), kicker,
- * eyebrow label, title, proof body, numeric proof anchor, bullets, price
- * + italic note, CTA. Tick icons removed by design — bullets render bare,
- * with a gold em-dash on the hero card.
+ * Each card supports: optional hero image at the very top (flush, top
+ * corners rounded), banner (outer cards only), kicker, eyebrow label,
+ * title, proof body, numeric proof anchor, bullets, price + italic note,
+ * CTA. Tick icons removed by design — bullets render bare on outer cards
+ * and with a gold em-dash on the hero card.
  *
  * Cards stagger in via .tp-visible (added per-card by home.js).
  *
@@ -49,7 +50,8 @@ if ( empty( $cards ) ) {
             <?php foreach ( $cards as $card ) :
                 $banner       = $card['banner']       ?? '';
                 $is_hero      = ! empty( $card['is_featured'] );
-                $ribbon       = $card['ribbon_text']  ?? '';
+                $is_dark      = ! empty( $card['is_dark'] );
+                $image_id     = $card['image']        ?? 0;
                 $kicker       = $card['kicker']       ?? '';
                 $label        = $card['label']        ?? '';
                 $title        = $card['title']        ?? '';
@@ -65,13 +67,28 @@ if ( empty( $cards ) ) {
                 $card_classes = 'two-paths-card';
                 if ( $is_hero ) {
                     $card_classes .= ' two-paths-card--hero';
+                } elseif ( $is_dark ) {
+                    $card_classes .= ' two-paths-card--dark';
                 }
+
+                // Default placeholder copy when no image is uploaded yet.
+                $placeholder_text = $is_hero ? 'Insert Three Browser Mockup Image'
+                    : ( $is_dark ? 'Insert Booking Notification Image' : 'Insert Playbook Device Mockup' );
                 ?>
 
                 <div class="<?php echo esc_attr( $card_classes ); ?>">
-                    <?php if ( $is_hero && $ribbon ) : ?>
-                        <span class="two-paths-ribbon"><?php echo esc_html( $ribbon ); ?></span>
-                    <?php endif; ?>
+                    <div class="two-paths-card-image">
+                        <?php if ( $image_id ) : ?>
+                            <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
+                                'alt'     => esc_attr( $title ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        <?php else : ?>
+                            <div class="two-paths-card-image-placeholder" aria-hidden="true">
+                                <span><?php echo esc_html( $placeholder_text ); ?></span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
 
                     <?php if ( ! $is_hero && $banner ) : ?>
                         <div class="two-paths-banner"><?php echo esc_html( $banner ); ?></div>
