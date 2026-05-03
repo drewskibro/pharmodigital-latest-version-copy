@@ -97,4 +97,26 @@
       });
     });
   }
+
+  // ── S5: FAQ accordion ─────────────────────────────────────────
+  // One-at-a-time toggle: clicking a question opens its answer and
+  // closes any other open item. aria-expanded mirrors .is-open so
+  // screen readers stay in sync.
+  var faqItems = document.querySelectorAll('.svc-faq-item');
+  faqItems.forEach(function (item) {
+    var btn = item.querySelector('.svc-faq-question');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var willOpen = !item.classList.contains('is-open');
+      faqItems.forEach(function (other) {
+        other.classList.remove('is-open');
+        var otherBtn = other.querySelector('.svc-faq-question');
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+      });
+      if (willOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 })();

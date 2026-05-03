@@ -2118,3 +2118,74 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Next Steps */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_next_steps',
+    'title'      => 'Service · Next Steps',
+    'menu_order' => 10,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_next_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_next_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_next_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_next_eyebrow',     'type' => 'text' ),
+        array( 'key' => 'field_gh_service_next_headline',    'label' => 'Headline',    'name' => 'service_next_headline',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_next_subheadline', 'label' => 'Subheadline', 'name' => 'service_next_subheadline', 'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_next_steps', 'label' => 'Timeline Steps', 'name' => 'service_next_steps',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 12,
+            'instructions' => 'Numbers (1, 2, 3…) auto-render based on row order. Mark the last row "Final Step" for the navy destination card.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_next_step_label', 'label' => 'Time Label', 'name' => 'label', 'type' => 'text', 'instructions' => 'e.g. "Today", "This Week", "Day 90".' ),
+                array( 'key' => 'field_gh_service_next_step_title', 'label' => 'Step Title', 'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_next_step_text',  'label' => 'Body Text',  'name' => 'text',  'type' => 'textarea', 'rows' => 3 ),
+                array(
+                    'key' => 'field_gh_service_next_step_final', 'label' => 'Final Step (navy card)', 'name' => 'is_final',
+                    'type' => 'true_false', 'default_value' => 0, 'ui' => 1,
+                ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · FAQ */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_faq',
+    'title'      => 'Service · FAQ',
+    'menu_order' => 11,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_faq_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_faq_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_faq_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_faq_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_faq_headline', 'label' => 'Headline', 'name' => 'service_faq_headline', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_faq_items', 'label' => 'Q & A', 'name' => 'service_faq_items',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 20,
+            'instructions' => 'One row per question. Numbers auto-render (01, 02…). Answers accept inline <strong>tags</strong>.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_faq_item_q', 'label' => 'Question', 'name' => 'question', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_faq_item_a', 'label' => 'Answer',   'name' => 'answer',   'type' => 'textarea', 'rows' => 4 ),
+            ),
+        ),
+        array(
+            'key' => 'field_gh_service_faq_cta_show', 'label' => 'Show Bottom CTA', 'name' => 'service_faq_cta_show',
+            'type' => 'true_false', 'default_value' => 1, 'ui' => 1,
+        ),
+        array( 'key' => 'field_gh_service_faq_cta_text',  'label' => 'Bottom CTA — Tag Line',    'name' => 'service_faq_cta_text',  'type' => 'textarea', 'rows' => 2, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+        array( 'key' => 'field_gh_service_faq_cta_label', 'label' => 'Bottom CTA — Button Label', 'name' => 'service_faq_cta_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_faq_cta_url',   'label' => 'Bottom CTA — URL',          'name' => 'service_faq_cta_url',   'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
