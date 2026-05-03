@@ -45,7 +45,7 @@ function gildhart_register_service_cpt() {
         'menu_icon'          => 'dashicons-portfolio',
         'menu_position'      => 22,
         'query_var'          => true,
-        'rewrite'            => array( 'slug' => 'services', 'with_front' => false ),
+        'rewrite'            => false,
         'capability_type'    => 'post',
         'has_archive'        => 'services',
         'hierarchical'       => false,
@@ -134,14 +134,43 @@ function gildhart_register_industry_taxonomy() {
 add_action( 'init', 'gildhart_register_industry_taxonomy' );
 
 /**
- * Flush rewrite rules once after CPT/taxonomy registration so /case-studies/ and
- * /services/ URLs work immediately. Uses an option flag so we only flush once
- * (flushing on every load is expensive).
+ * Render Service CPT entries at the root: /the-agent/ rather than
+ * /services/the-agent/. Two pieces:
+ *
+ *   1. post_type_link filter — outputs the public permalink as /{slug}/.
+ *   2. add_rewrite_rule at 'bottom' priority — maps root-level URLs to the
+ *      service post type ONLY if no Page (or higher-priority rule) matches
+ *      first. Pages always win, so a Page slug "the-agent" would shadow a
+ *      Service slug "the-agent". The /services/ archive still resolves via
+ *      has_archive on the CPT registration.
+ */
+function gildhart_service_root_permalink( $post_link, $post ) {
+    if ( 'service' === $post->post_type && 'publish' === $post->post_status ) {
+        $post_link = home_url( '/' . $post->post_name . '/' );
+    }
+    return $post_link;
+}
+add_filter( 'post_type_link', 'gildhart_service_root_permalink', 10, 2 );
+
+function gildhart_service_root_rewrite() {
+    add_rewrite_rule(
+        '^([^/]+)/?$',
+        'index.php?service=$matches[1]',
+        'bottom'
+    );
+}
+add_action( 'init', 'gildhart_service_root_rewrite', 11 );
+
+/**
+ * Flush rewrite rules once after CPT/taxonomy registration so /case-studies/
+ * and root-level /service-slug/ URLs work immediately. Uses an option flag
+ * so we only flush once (flushing on every load is expensive). Bump the
+ * suffix to force a re-flush after rewrite rule changes.
  */
 function gildhart_maybe_flush_rewrites_for_cpts() {
-    if ( get_option( 'gildhart_cpt_rewrites_flushed' ) !== '1' ) {
+    if ( get_option( 'gildhart_cpt_rewrites_flushed' ) !== '2_root_service' ) {
         flush_rewrite_rules();
-        update_option( 'gildhart_cpt_rewrites_flushed', '1' );
+        update_option( 'gildhart_cpt_rewrites_flushed', '2_root_service' );
     }
 }
 add_action( 'init', 'gildhart_maybe_flush_rewrites_for_cpts', 20 );
