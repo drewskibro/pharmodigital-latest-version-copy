@@ -31,8 +31,8 @@ get_header(); ?>
             <?php get_template_part( 'template-parts/service/section-method' ); ?>
             <?php get_template_part( 'template-parts/service/section-what-you-get' ); ?>
             <?php get_template_part( 'template-parts/service/section-sub-case-proof' ); ?>
-            <?php // get_template_part( 'template-parts/service/section-early-buyers' );   // S4 ?>
-            <?php // get_template_part( 'template-parts/service/section-math' );           // S4 ?>
+            <?php get_template_part( 'template-parts/service/section-early-buyers' ); ?>
+            <?php get_template_part( 'template-parts/service/section-math' ); ?>
             <?php // get_template_part( 'template-parts/service/section-next-steps' );     // S5 ?>
             <?php // get_template_part( 'template-parts/service/section-faq' );            // S5 ?>
             <?php // get_template_part( 'template-parts/service/section-guarantee' );      // S6 ?>

@@ -2022,3 +2022,99 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Early Buyers */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_early_buyers',
+    'title'      => 'Service · Early Buyers',
+    'menu_order' => 8,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_eb_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_early_buyers_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array(
+            'key' => 'field_gh_service_eb_tiers', 'label' => 'Tier Cards', 'name' => 'service_early_buyers_tiers',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 4,
+            'instructions' => 'Three cards is the designed default. "Kind" picks the colour treatment; "Automated" is the centre dark featured card.',
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_eb_tier_kind', 'label' => 'Kind', 'name' => 'kind',
+                    'type' => 'select', 'default_value' => 'manual',
+                    'choices' => array(
+                        'manual'    => 'Manual (light card, sage banner)',
+                        'automated' => 'Automated (dark featured card)',
+                        'lifetime'  => 'Lifetime (light card, green banner)',
+                    ),
+                ),
+                array( 'key' => 'field_gh_service_eb_tier_banner',  'label' => 'Proof Banner Text', 'name' => 'proof_banner', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_eb_tier_recom',   'label' => 'Recommended Label (optional)', 'name' => 'recommended', 'type' => 'text', 'instructions' => 'Inline gold caps label, typically "Recommended" on the Automated card.' ),
+                array( 'key' => 'field_gh_service_eb_tier_cat',     'label' => 'Category Label',   'name' => 'category',  'type' => 'text', 'instructions' => 'e.g. "Do It Yourself", "The Automation Layer".' ),
+                array( 'key' => 'field_gh_service_eb_tier_top',     'label' => 'Top Label (gold, optional)', 'name' => 'top_label', 'type' => 'text', 'instructions' => 'e.g. "Included Today", "Included Free". Skipped on the Automated card.' ),
+                array( 'key' => 'field_gh_service_eb_tier_title',   'label' => 'Title',            'name' => 'title',     'type' => 'text' ),
+                array( 'key' => 'field_gh_service_eb_tier_body',    'label' => 'Body',             'name' => 'body',      'type' => 'textarea', 'rows' => 5 ),
+                array(
+                    'key' => 'field_gh_service_eb_tier_bullets', 'label' => 'Bullet List (optional)', 'name' => 'bullets',
+                    'type' => 'repeater', 'layout' => 'table', 'min' => 0,
+                    'sub_fields' => array(
+                        array( 'key' => 'field_gh_service_eb_tier_bullet_text', 'label' => 'Bullet', 'name' => 'text', 'type' => 'text' ),
+                    ),
+                ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_eb_strap_price', 'label' => 'Price Strap — Price',     'name' => 'service_early_buyers_strap_price', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_eb_strap_desc',  'label' => 'Price Strap — Descriptor', 'name' => 'service_early_buyers_strap_desc',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_eb_cta_label',   'label' => 'CTA Label',                'name' => 'service_early_buyers_cta_label',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_eb_cta_url',     'label' => 'CTA URL',                  'name' => 'service_early_buyers_cta_url',     'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_eb_callout_show', 'label' => 'Show "Why Early Buyers Win" Callout', 'name' => 'service_early_buyers_callout_show',
+            'type' => 'true_false', 'default_value' => 1, 'ui' => 1,
+        ),
+        array( 'key' => 'field_gh_service_eb_callout_eyebrow',  'label' => 'Callout — Eyebrow (optional)', 'name' => 'service_early_buyers_callout_eyebrow', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_eb_callout_headline', 'label' => 'Callout — Headline',           'name' => 'service_early_buyers_callout_headline', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_eb_callout_paras', 'label' => 'Callout — Paragraphs', 'name' => 'service_early_buyers_callout_paragraphs',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
+            'instructions' => 'Each row is one paragraph. Inline <strong>tags allowed</strong>.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_eb_callout_para_text', 'label' => 'Paragraph', 'name' => 'text', 'type' => 'textarea', 'rows' => 4 ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Math */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_math',
+    'title'      => 'Service · Math (The Numbers)',
+    'menu_order' => 9,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_math_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_math_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_math_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_math_eyebrow',     'type' => 'text' ),
+        array( 'key' => 'field_gh_service_math_headline',    'label' => 'Headline',    'name' => 'service_math_headline',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_math_subheadline', 'label' => 'Subheadline', 'name' => 'service_math_subheadline', 'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_math_cards', 'label' => 'Audience Cards', 'name' => 'service_math_cards',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
+            'instructions' => 'Card colour rotates by row index (navy / white / sage / cream-warm) and repeats every four cards.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_math_card_label',    'label' => 'Audience Label', 'name' => 'label',    'type' => 'text' ),
+                array( 'key' => 'field_gh_service_math_card_headline', 'label' => 'Headline',       'name' => 'headline', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_math_card_body',     'label' => 'Body',           'name' => 'body',     'type' => 'textarea', 'rows' => 4 ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
