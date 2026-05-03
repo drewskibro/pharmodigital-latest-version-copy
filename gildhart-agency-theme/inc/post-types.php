@@ -233,6 +233,25 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_method_headline'       => 'How We Get You Featured in ChatGPT, Claude & Google AI Overviews',
         'service_method_proof_line'     => 'Four steps. <strong>Six weeks to first rankings.</strong> The exact system that put Ealing Travel Clinic and Superior Pharmacy on the AI shortlist — ahead of Boots and Bupa.',
         'service_method_timeline_label' => 'Typical client timeline',
+        // What You Get
+        'service_what_you_get_eyebrow'     => 'The System',
+        'service_what_you_get_headline'    => 'What Ealing, Superior, and Puri Actually Used. Now Yours.',
+        'service_what_you_get_subheadline' => 'The same system. Used across three practices. Now generating five figures monthly, £500k annual revenue, and £100k from a single service. Fully automated. Yours today.',
+        // Sub-case Proof
+        'service_sub_case_eyebrow'     => 'The Proof',
+        'service_sub_case_headline'    => 'Real Traffic. Real Results. Real Data.',
+        'service_sub_case_subheadline' => 'Google Search Console screenshots from clients who used this system.',
+        'service_sub_case_footer'      => 'Verified Search Console data. No invented numbers. Just results.',
+        // Early Buyers
+        'service_early_buyers_strap_price'      => '£497 once.',
+        'service_early_buyers_strap_desc'       => 'The Complete System. Cowork Included. Lifetime Support.',
+        'service_early_buyers_cta_label'        => 'Get Instant Access — £497',
+        'service_early_buyers_cta_url'          => '#buy-now',
+        'service_early_buyers_callout_headline' => 'Why Early Buyers Win',
+        // Math
+        'service_math_eyebrow'     => 'The Numbers',
+        'service_math_headline'    => 'What This Actually Means For You',
+        'service_math_subheadline' => "The playbook costs £497. But what you're really buying depends on who you are.",
     );
 
     if ( isset( $defaults[ $field['name'] ] ) ) {
