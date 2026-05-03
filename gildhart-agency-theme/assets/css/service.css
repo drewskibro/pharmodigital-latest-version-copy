@@ -69,12 +69,18 @@
   overflow-x: clip;
 }
 .svc-hero-inner {
-  max-width: 1320px;
+  max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 5rem;
-  align-items: flex-start;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.svc-hero-inner--no-image {
+  grid-template-columns: 1fr;
+  max-width: 780px;
+  margin-left: 0;
 }
 
 /* Content column */
