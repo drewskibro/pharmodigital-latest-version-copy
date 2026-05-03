@@ -62,8 +62,11 @@
 /* ── Hero ───────────────────────────────────────────────────── */
 
 .svc-hero {
-  padding: 6rem 2rem 5rem;
-  background: #FAF8F3;
+  padding: 2.5rem 2rem 4rem;
+  background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+  position: relative;
+  overflow: hidden;
+  overflow-x: clip;
 }
 .svc-hero-inner {
   max-width: 1320px;
@@ -71,7 +74,7 @@
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 /* Content column */
@@ -100,8 +103,8 @@
 .svc-hero-title {
   font-family: 'Inter', 'Outfit', sans-serif;
   font-size: clamp(2.25rem, 4.5vw, 3.5rem);
-  font-weight: 800;
-  color: var(--gildhart-green);
+  font-weight: 700;
+  color: #1a2b3c;
   line-height: 1.12;
   letter-spacing: -0.02em;
   margin: 0 0 1.5rem 0;
@@ -127,7 +130,7 @@
   font-family: 'Inter', 'Outfit', sans-serif;
   font-size: clamp(1.75rem, 2.5vw, 2.25rem);
   font-weight: 800;
-  color: var(--gildhart-green);
+  color: #1a2b3c;
   letter-spacing: -0.02em;
   line-height: 1;
   margin-bottom: 0.5rem;
