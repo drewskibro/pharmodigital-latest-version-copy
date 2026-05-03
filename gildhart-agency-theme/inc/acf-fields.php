@@ -1854,3 +1854,91 @@ acf_add_local_field_group( array(
         ),
     ),
 ) );
+
+/* Service · Playing Field */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_playing_field',
+    'title'      => 'Service · Playing Field',
+    'menu_order' => 4,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_pf_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_playing_field_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_pf_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_playing_field_eyebrow',     'type' => 'text' ),
+        array( 'key' => 'field_gh_service_pf_headline',    'label' => 'Headline',    'name' => 'service_playing_field_headline',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_pf_subheadline', 'label' => 'Subheadline', 'name' => 'service_playing_field_subheadline', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_pf_old_label',   'label' => 'Old Column — Label',   'name' => 'service_playing_field_old_label',   'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_pf_old_rows', 'label' => 'Old Column — Rows', 'name' => 'service_playing_field_old_rows',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 8,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_pf_old_row_text', 'label' => 'Text', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_pf_old_caption', 'label' => 'Old Column — Caption', 'name' => 'service_playing_field_old_caption', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+        array( 'key' => 'field_gh_service_pf_new_label',   'label' => 'New Column — Label',   'name' => 'service_playing_field_new_label',   'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_pf_new_rows', 'label' => 'New Column — Rows', 'name' => 'service_playing_field_new_rows',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 8,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_pf_new_row_text', 'label' => 'Text', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_pf_new_caption',     'label' => 'New Column — Caption',     'name' => 'service_playing_field_new_caption',     'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+        array( 'key' => 'field_gh_service_pf_callout_text',    'label' => 'Callout — Main Line',      'name' => 'service_playing_field_callout_text',    'type' => 'text' ),
+        array( 'key' => 'field_gh_service_pf_callout_high',    'label' => 'Callout — Gold Highlight', 'name' => 'service_playing_field_callout_highlight', 'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Method */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_method',
+    'title'      => 'Service · Method',
+    'menu_order' => 5,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_method_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_method_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_method_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_method_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_method_headline', 'label' => 'Headline', 'name' => 'service_method_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_method_proof',    'label' => 'Proof Line', 'name' => 'service_method_proof_line', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+        array( 'key' => 'field_gh_service_method_tl_label', 'label' => 'Timeline Label', 'name' => 'service_method_timeline_label', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_method_weeks', 'label' => 'Timeline Blocks', 'name' => 'service_method_weeks',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
+            'instructions' => 'Three blocks is the designed default. Each is clickable and scrolls to the first matching step.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_method_week_range',   'label' => 'Range Label', 'name' => 'range',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_method_week_summary', 'label' => 'Summary',     'name' => 'summary', 'type' => 'text' ),
+            ),
+        ),
+        array(
+            'key' => 'field_gh_service_method_steps', 'label' => 'Steps', 'name' => 'service_method_steps',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
+            'instructions' => 'Numbered automatically (01, 02, 03…). The first step is active by default; scroll updates which step is highlighted.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_method_step_week',  'label' => 'Week Label (gold)', 'name' => 'week_label', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_method_step_title', 'label' => 'Step Title',        'name' => 'title',      'type' => 'text' ),
+                array( 'key' => 'field_gh_service_method_step_text',  'label' => 'Body Text',         'name' => 'text',       'type' => 'textarea', 'rows' => 4 ),
+                array( 'key' => 'field_gh_service_method_step_proof', 'label' => 'Proof Pill (optional)', 'name' => 'proof_pill', 'type' => 'text' ),
+                array(
+                    'key' => 'field_gh_service_method_step_block', 'label' => 'Linked Timeline Block', 'name' => 'week_block',
+                    'type' => 'number', 'min' => 0, 'max' => 5, 'default_value' => 0,
+                    'instructions' => 'Index of the timeline block this step belongs to (0 = first block, 1 = second, etc.).',
+                ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
