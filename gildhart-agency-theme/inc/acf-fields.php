@@ -2562,3 +2562,78 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Content Flywheel (Agent A4) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_flywheel',
+    'title'      => 'Service · Content Flywheel',
+    'menu_order' => 8,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_fw_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_flywheel_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_fw_eyebrow',  'label' => 'Eyebrow',     'name' => 'service_flywheel_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_fw_headline', 'label' => 'Headline',    'name' => 'service_flywheel_headline', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_fw_desc',     'label' => 'Description', 'name' => 'service_flywheel_desc',     'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_fw_cards', 'label' => 'Flywheel Cards (4 max)', 'name' => 'service_flywheel_cards',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 4,
+            'instructions' => 'Four cards in a 2×2 grid around the centre loop. Cards 1+2 = top row (capture / intel). Cards 3+4 = bottom row (content / rank).',
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_fw_card_kind', 'label' => 'Icon Kind', 'name' => 'icon_kind',
+                    'type' => 'select', 'default_value' => 'capture',
+                    'choices' => array(
+                        'capture' => 'Capture (💬, green tint)',
+                        'intel'   => 'Intel (🧠, amber tint)',
+                        'content' => 'Content (📄, indigo tint)',
+                        'rank'    => 'Rank (🔍, emerald tint)',
+                    ),
+                ),
+                array( 'key' => 'field_gh_service_fw_card_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_fw_card_text',  'label' => 'Body',  'name' => 'text',  'type' => 'textarea', 'rows' => 3 ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_fw_loop_label', 'label' => 'Centre Loop Label', 'name' => 'service_flywheel_loop_label', 'type' => 'text', 'instructions' => 'Caps tag below the spinning ring. Default: "Continuous Loop".' ),
+        array( 'key' => 'field_gh_service_fw_loop_pill',  'label' => 'Loop Pill Text',    'name' => 'service_flywheel_loop_pill',  'type' => 'text', 'instructions' => 'Gold caps pill below the grid.' ),
+        array( 'key' => 'field_gh_service_fw_closing',    'label' => 'Closing Line',      'name' => 'service_flywheel_closing',    'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <em>tags allowed</em> — em renders as gold accent.' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Editorial Proof (Agent A4) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_editorial_proof',
+    'title'      => 'Service · Editorial Proof',
+    'menu_order' => 9,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_ep_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_editorial_proof_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_ep_eyebrow',  'label' => 'Eyebrow',     'name' => 'service_editorial_proof_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_ep_headline', 'label' => 'Headline',    'name' => 'service_editorial_proof_headline', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_ep_sub',      'label' => 'Sub-headline', 'name' => 'service_editorial_proof_sub',      'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+        array(
+            'key' => 'field_gh_service_ep_panels', 'label' => 'Editorial Panels', 'name' => 'service_editorial_proof_panels',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
+            'instructions' => 'Each panel = one full-bleed cream row with a huge gold stat number, gold divider, and a content block. Panels alternate between two cream tones automatically.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_ep_panel_num',  'label' => 'Stat Number',          'name' => 'number',     'type' => 'text' ),
+                array( 'key' => 'field_gh_service_ep_panel_lab',  'label' => 'Label (gold caps)',    'name' => 'label',      'type' => 'text' ),
+                array( 'key' => 'field_gh_service_ep_panel_desc', 'label' => 'Descriptor (green)',   'name' => 'descriptor', 'type' => 'textarea', 'rows' => 2 ),
+                array( 'key' => 'field_gh_service_ep_panel_text', 'label' => 'Body Text',            'name' => 'text',       'type' => 'textarea', 'rows' => 4 ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );

@@ -235,6 +235,17 @@ function gildhart_service_defaults_by_slug() {
             'service_intel_eyebrow'            => 'The Intelligence Engine',
             'service_intel_headline'           => 'Every Patient Question Is A Revenue Signal.',
             'service_intel_sub'                => "Your AI agent doesn't just answer — it captures the exact language patients use, the clinical questions they ask, and the services they're ready to pay for. Then we turn that into content that ranks.",
+            // Content Flywheel (A4)
+            'service_flywheel_eyebrow'         => 'The Content Flywheel',
+            'service_flywheel_headline'        => "Your Patients Write Your Marketing For You.\nThen It Brings You More Patients.",
+            'service_flywheel_desc'            => 'Every question a patient asks your agent becomes content that ranks in Google, ChatGPT, and Claude. That content brings new patients. Those patients ask new questions. The machine feeds itself.',
+            'service_flywheel_loop_label'      => 'Continuous Loop',
+            'service_flywheel_loop_pill'       => 'Accelerates over time — the longer you run it, the wider the gap',
+            'service_flywheel_closing'         => 'Your competitors are guessing what patients want. Your patients are <em>telling</em> you. Every single day.',
+            // Editorial Proof (A4)
+            'service_editorial_proof_eyebrow'  => 'The Numbers',
+            'service_editorial_proof_headline' => '10:47pm. A Patient Has A Question. Your Website Has Nothing To Say.',
+            'service_editorial_proof_sub'      => 'Not rankings. Not traffic. <strong>Revenue.</strong> Here&rsquo;s what it looks like in practice.',
         ),
     );
 }
@@ -277,7 +288,9 @@ function gildhart_service_section_roster( $slug ) {
             'track-record', 'sales-agent-pro',
             // A3
             'testimonial', 'intelligence-engine',
-            // A4+ append here as each chunk lands. The Agent reuses the FAQ /
+            // A4
+            'flywheel', 'editorial-proof',
+            // A5+ append here as each chunk lands. The Agent reuses the FAQ /
             // Guarantee / Final CTA templates (with Agent copy) once their
             // A-chunks land in A5 / A6 — until then those sections are
             // intentionally not in the roster.
@@ -307,6 +320,8 @@ function gildhart_service_field_group_map() {
         'group_gh_service_sales_agent_pro'  => 'sales-agent-pro',
         'group_gh_service_testimonial'      => 'testimonial',
         'group_gh_service_intelligence_engine' => 'intelligence-engine',
+        'group_gh_service_flywheel'         => 'flywheel',
+        'group_gh_service_editorial_proof'  => 'editorial-proof',
         'group_gh_service_problem_shift'    => 'problem-shift',
         'group_gh_service_proof_cases'      => 'proof-cases',
         'group_gh_service_playing_field'    => 'playing-field',
