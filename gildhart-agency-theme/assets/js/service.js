@@ -223,4 +223,29 @@
       if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
     });
   }
+  // ── A2: SalesAgent Pro comparison-bar reveals ─────────────────
+  // Each compare-fill bar has a data-fill-pct attribute. Once its
+  // parent stat card scrolls into view, set the width to the real
+  // percentage — the CSS transition (1.2s cubic-bezier) handles the
+  // animation from 0. Reveal triggers once per bar; re-scrolling
+  // doesn't re-animate.
+  var compareBars = document.querySelectorAll('.svc-sa-pro-stat-compare-fill');
+  if (compareBars.length && 'IntersectionObserver' in window) {
+    var barObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var pct = entry.target.getAttribute('data-fill-pct');
+          if (pct) entry.target.style.width = pct + '%';
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    compareBars.forEach(function (bar) { barObserver.observe(bar); });
+  } else if (compareBars.length) {
+    // No IO support → render bars immediately at full width.
+    compareBars.forEach(function (bar) {
+      var pct = bar.getAttribute('data-fill-pct');
+      if (pct) bar.style.width = pct + '%';
+    });
+  }
 })();
