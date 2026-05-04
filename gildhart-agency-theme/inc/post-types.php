@@ -261,6 +261,31 @@ function gildhart_service_defaults_by_slug() {
             'service_faq_cta_text'             => '',
             'service_faq_cta_label'            => '',
             'service_faq_cta_url'              => '',
+            // Closing Offer (A6) — header + waiver + form copy
+            'service_closing_overline'         => 'The Offer',
+            'service_closing_headline'         => "For The First Time,\nBeing Independent Is The Advantage.",
+            'service_closing_copy_intro'       => "The big chains have procurement committees. Board approvals. Six-month technology cycles. By the time they deploy AI that actually works, your practice has been live for a year — capturing patients they can't reach, answering questions they can't respond to, and compounding revenue they'll never recover.",
+            'service_closing_copy_names'       => 'Superior Pharmacy. Ealing Travel Clinic. Malvern Travel Clinic.',
+            'service_closing_copy_mid'         => 'Independent practices now sitting at the top of their markets. Not because they outspent the chains. Because they outmoved them.',
+            'service_closing_copy_punch'       => 'This is the technology that separates the top earning independents from everyone else. The practices already live know that. The ones still deciding are finding out.',
+            'service_closing_stack_label'      => "What's included",
+            'service_closing_elig_intro1'      => "Most practices that come to us have the same concern. They're not sure if they're ready. They are.",
+            'service_closing_elig_intro2'      => "Every practice we've deployed this for was live within a week. Every single one started generating enquiries they didn't have before.",
+            'service_closing_elig_label'       => 'This was built for you if',
+            'service_closing_test_label'       => 'From practices already live',
+            'service_closing_pricing_promo'    => 'Choose Your Plan',
+            'service_closing_waiver_eyebrow'   => 'Online Activation Bonus',
+            'service_closing_waiver_amount'    => '£1,500',
+            'service_closing_waiver_badge'     => 'Waived',
+            'service_closing_waiver_label'     => 'Setup fee waived entirely.',
+            'service_closing_waiver_details'   => '<strong>No call needed.</strong> No onboarding queue. Deploys in 7 days. The decision is yours.',
+            'service_closing_punchline'        => 'One family travel booking covers the monthly plan for four months. One Mounjaro patient covers the annual plan entirely.',
+            'service_closing_pull_quote_text'  => 'Patients use it at all hours. We just see the bookings come in.',
+            'service_closing_pull_quote_attr'  => '— Southdowns Pharmacy Group',
+            'service_closing_bold_close'       => 'The cost question answers itself. Usually within the first week.',
+            'service_closing_submit_label'     => 'Deploy The Agent',
+            'service_closing_secure_note'      => 'Payments processed securely via Stripe.',
+            'service_closing_joining_note'     => 'Joining 50+ practices across the UK, US, and beyond.',
         ),
     );
 }
@@ -307,8 +332,11 @@ function gildhart_service_section_roster( $slug ) {
             'flywheel', 'editorial-proof',
             // A5
             'how-it-works', 'faq',
-            // A6+ append here. The Agent reuses the Guarantee / Final CTA
-            // templates (with Agent copy) once their A-chunk lands.
+            // A6 — closes the page. The Agent's "closing offer" replaces the
+            // Playbook's separate Guarantee + Final CTA pair with a single
+            // consolidated section (header → value stack + eligibility +
+            // testimonials | proof row + pricing + form on the right).
+            'closing-offer',
         ),
     );
     // Unknown slug falls back to the Playbook roster as the longest-running
@@ -338,6 +366,7 @@ function gildhart_service_field_group_map() {
         'group_gh_service_flywheel'         => 'flywheel',
         'group_gh_service_editorial_proof'  => 'editorial-proof',
         'group_gh_service_how_it_works'     => 'how-it-works',
+        'group_gh_service_closing_offer'    => 'closing-offer',
         'group_gh_service_problem_shift'    => 'problem-shift',
         'group_gh_service_proof_cases'      => 'proof-cases',
         'group_gh_service_playing_field'    => 'playing-field',

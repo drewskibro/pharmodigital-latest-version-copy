@@ -2677,3 +2677,118 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Closing Offer (Agent A6) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_closing_offer',
+    'title'      => 'Service · Closing Offer',
+    'menu_order' => 11,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_cls_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_closing_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        // Top header
+        array( 'key' => 'field_gh_service_cls_overline',   'label' => 'Top — Overline',     'name' => 'service_closing_overline',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_headline',   'label' => 'Top — Headline',     'name' => 'service_closing_headline',   'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_cls_copy_intro', 'label' => 'Top — Intro Copy',   'name' => 'service_closing_copy_intro', 'type' => 'textarea', 'rows' => 5 ),
+        array( 'key' => 'field_gh_service_cls_copy_names', 'label' => 'Top — Names Line',   'name' => 'service_closing_copy_names', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_copy_mid',   'label' => 'Top — Mid Copy',     'name' => 'service_closing_copy_mid',   'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_gh_service_cls_copy_punch', 'label' => 'Top — Punchline',    'name' => 'service_closing_copy_punch', 'type' => 'textarea', 'rows' => 4 ),
+        // Value stack
+        array( 'key' => 'field_gh_service_cls_stack_label', 'label' => 'Stack Label', 'name' => 'service_closing_stack_label', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_cls_stack_items', 'label' => "What's Included Items", 'name' => 'service_closing_stack_items',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 12,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_cls_stack_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_stack_desc',  'label' => 'Description', 'name' => 'desc', 'type' => 'textarea', 'rows' => 3 ),
+            ),
+        ),
+        // Eligibility
+        array( 'key' => 'field_gh_service_cls_elig_intro1', 'label' => 'Eligibility — Intro 1', 'name' => 'service_closing_elig_intro1', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_cls_elig_intro2', 'label' => 'Eligibility — Intro 2', 'name' => 'service_closing_elig_intro2', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_cls_elig_label',  'label' => 'Eligibility — Bar Label', 'name' => 'service_closing_elig_label', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_cls_elig_items', 'label' => 'Eligibility — Items', 'name' => 'service_closing_elig_items',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_cls_elig_text', 'label' => 'Text', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        // Testimonials
+        array( 'key' => 'field_gh_service_cls_test_label', 'label' => 'Testimonials — Label', 'name' => 'service_closing_test_label', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_cls_test_cards', 'label' => 'Testimonial Cards', 'name' => 'service_closing_test_cards',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_cls_test_quote',  'label' => 'Quote',     'name' => 'quote',  'type' => 'textarea', 'rows' => 3 ),
+                array( 'key' => 'field_gh_service_cls_test_name',   'label' => 'Name',      'name' => 'name',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_test_role',   'label' => 'Role',      'name' => 'role',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_test_metric', 'label' => 'Metric',    'name' => 'metric', 'type' => 'text' ),
+                array(
+                    'key' => 'field_gh_service_cls_test_avatar', 'label' => 'Avatar', 'name' => 'avatar',
+                    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail',
+                ),
+            ),
+        ),
+        // Proof row (right column)
+        array(
+            'key' => 'field_gh_service_cls_proof_cols', 'label' => 'Proof Columns', 'name' => 'service_closing_proof_cols',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_cls_proof_client', 'label' => 'Client', 'name' => 'client', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_proof_stat',   'label' => 'Stat',   'name' => 'stat',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_proof_label',  'label' => 'Label',  'name' => 'label',  'type' => 'textarea', 'rows' => 3 ),
+            ),
+        ),
+        // Pricing cards
+        array( 'key' => 'field_gh_service_cls_pricing_promo', 'label' => 'Pricing — Promo Label', 'name' => 'service_closing_pricing_promo', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_cls_pricing_cards', 'label' => 'Pricing Cards', 'name' => 'service_closing_pricing_cards',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 4,
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_cls_card_pop', 'label' => 'Most Popular', 'name' => 'is_popular',
+                    'type' => 'true_false', 'default_value' => 0, 'ui' => 1,
+                ),
+                array( 'key' => 'field_gh_service_cls_card_badge',  'label' => 'Badge Text',     'name' => 'badge',        'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_label',  'label' => 'Label',          'name' => 'label',        'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_price',  'label' => 'Price',          'name' => 'price',        'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_suff',   'label' => 'Price Suffix',   'name' => 'price_suffix', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_detail', 'label' => 'Detail',         'name' => 'detail',       'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong> tags allowed.' ),
+                array( 'key' => 'field_gh_service_cls_card_savg',   'label' => 'Save (green pill)', 'name' => 'save_green', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_savgo',  'label' => 'Save (gold pill)',  'name' => 'save_gold',  'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_total',  'label' => 'Total Bar Text',  'name' => 'total',         'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_lock',   'label' => 'Price-lock Line', 'name' => 'price_lock',    'type' => 'text' ),
+            ),
+        ),
+        // Fee waiver callout
+        array(
+            'key'           => 'field_gh_service_cls_waiver_show',
+            'label'         => 'Show Fee Waiver Callout',
+            'name'          => 'service_closing_waiver_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_cls_waiver_eyebrow', 'label' => 'Waiver — Eyebrow', 'name' => 'service_closing_waiver_eyebrow', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_waiver_amount',  'label' => 'Waiver — Amount',  'name' => 'service_closing_waiver_amount',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_waiver_badge',   'label' => 'Waiver — Badge',   'name' => 'service_closing_waiver_badge',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_waiver_label',   'label' => 'Waiver — Label',   'name' => 'service_closing_waiver_label',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_waiver_details', 'label' => 'Waiver — Details', 'name' => 'service_closing_waiver_details', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong> tags allowed.' ),
+        // Punchline + form
+        array( 'key' => 'field_gh_service_cls_punchline',    'label' => 'Punchline',         'name' => 'service_closing_punchline',    'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_cls_pq_text',      'label' => 'Form — Pull Quote', 'name' => 'service_closing_pull_quote_text', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_service_cls_pq_attr',      'label' => 'Form — Quote Attr', 'name' => 'service_closing_pull_quote_attr', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_bold_close',   'label' => 'Form — Bold Close Line',  'name' => 'service_closing_bold_close',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_submit',       'label' => 'Form — Submit Label',     'name' => 'service_closing_submit_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_secure',       'label' => 'Form — Secure Note',      'name' => 'service_closing_secure_note',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_cls_joining',      'label' => 'Form — Joining Note',     'name' => 'service_closing_joining_note', 'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
