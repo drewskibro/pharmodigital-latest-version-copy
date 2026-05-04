@@ -2399,3 +2399,104 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Track Record (Agent A2) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_track_record',
+    'title'      => 'Service · Track Record',
+    'menu_order' => 4,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_tr_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_track_record_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_tr_overline', 'label' => 'Overline', 'name' => 'service_track_record_overline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_tr_headline', 'label' => 'Headline', 'name' => 'service_track_record_headline', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_tr_body',     'label' => 'Body',     'name' => 'service_track_record_body',     'type' => 'textarea', 'rows' => 6 ),
+        array( 'key' => 'field_gh_service_tr_close',    'label' => 'Closing line', 'name' => 'service_track_record_close', 'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · SalesAgent Pro (Agent A2) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_sales_agent_pro',
+    'title'      => 'Service · SalesAgent Pro',
+    'menu_order' => 5,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_sap_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_sa_pro_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_sap_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_sa_pro_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_sap_headline', 'label' => 'Headline', 'name' => 'service_sa_pro_headline', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'Each line wraps onto its own line in the rendered H2.' ),
+        array(
+            'key' => 'field_gh_service_sap_story', 'label' => 'Story', 'name' => 'service_sa_pro_story',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 30,
+            'instructions' => 'Each row is one beat of the story. "Line" = regular paragraph (allows inline <strong> + <em>). "Break" = blank vertical spacer (text ignored). "Punchline" = bold closing line.',
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_sap_story_type', 'label' => 'Type', 'name' => 'type',
+                    'type' => 'select', 'default_value' => 'line',
+                    'choices' => array( 'line' => 'Line', 'break' => 'Break (spacer)', 'punchline' => 'Punchline (bold)' ),
+                ),
+                array( 'key' => 'field_gh_service_sap_story_text', 'label' => 'Text', 'name' => 'text', 'type' => 'textarea', 'rows' => 2, 'instructions' => 'Inline <strong> + <em> allowed. Em-tags render as gold accent.' ),
+            ),
+        ),
+        array(
+            'key' => 'field_gh_service_sap_image', 'label' => 'Story Image', 'name' => 'service_sa_pro_image',
+            'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+            'instructions' => 'Right-column visual. The phone-with-booking-notification screenshot fits the original spec.',
+        ),
+        array(
+            'key' => 'field_gh_service_sap_stats', 'label' => 'Stat Cards', 'name' => 'service_sa_pro_stats',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 5,
+            'instructions' => 'Three cards is the designed default. "Kind" picks the body shape — Simple = number + label + sub. Compare = number + label + comparison bars + sub. Text = phrase headline + sub.',
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_sap_stat_kind', 'label' => 'Kind', 'name' => 'kind',
+                    'type' => 'select', 'default_value' => 'simple',
+                    'choices' => array( 'simple' => 'Simple (number + label + sub)', 'compare' => 'Compare (with bars)', 'text' => 'Text headline (smaller)' ),
+                ),
+                array( 'key' => 'field_gh_service_sap_stat_num',   'label' => 'Number / phrase', 'name' => 'num',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_sap_stat_label', 'label' => 'Label',           'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_sap_stat_sub',   'label' => 'Sub-text',        'name' => 'sub',   'type' => 'textarea', 'rows' => 3 ),
+                array(
+                    'key' => 'field_gh_service_sap_stat_compare', 'label' => 'Comparison Rows (Compare kind only)', 'name' => 'compare_rows',
+                    'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 4,
+                    'sub_fields' => array(
+                        array( 'key' => 'field_gh_service_sap_cmp_label', 'label' => 'Label',     'name' => 'label',    'type' => 'text' ),
+                        array( 'key' => 'field_gh_service_sap_cmp_pct',   'label' => 'Fill %',    'name' => 'fill_pct', 'type' => 'number', 'min' => 0, 'max' => 100, 'default_value' => 100 ),
+                        array( 'key' => 'field_gh_service_sap_cmp_val',   'label' => 'Value',     'name' => 'value',    'type' => 'text' ),
+                        array(
+                            'key' => 'field_gh_service_sap_cmp_us', 'label' => 'Us (gold)', 'name' => 'is_us',
+                            'type' => 'true_false', 'default_value' => 0, 'ui' => 1,
+                            'instructions' => 'On = gold gradient bar, gold value text. Off = grey bar, grey value text.',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        array(
+            'key' => 'field_gh_service_sap_revenue', 'label' => 'Revenue Dashboard', 'name' => 'service_sa_pro_revenue',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
+            'instructions' => 'Three items is the designed default. Each item = big number + gold label + attribution.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_sap_rev_num',   'label' => 'Number',      'name' => 'num',         'type' => 'text' ),
+                array( 'key' => 'field_gh_service_sap_rev_label', 'label' => 'Label',       'name' => 'label',       'type' => 'text' ),
+                array( 'key' => 'field_gh_service_sap_rev_attr',  'label' => 'Attribution', 'name' => 'attribution', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_sap_cta_label', 'label' => 'CTA Label', 'name' => 'service_sa_pro_cta_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_sap_cta_url',   'label' => 'CTA URL',   'name' => 'service_sa_pro_cta_url',   'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );

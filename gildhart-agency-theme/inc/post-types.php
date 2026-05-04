@@ -216,6 +216,16 @@ function gildhart_service_defaults_by_slug() {
             'service_why_headline'             => "Your Patients Are Asking Thousands of Clinical Questions.\nRight Now, They're Getting the Answers Somewhere Else.",
             'service_why_lead'                 => "Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can't answer them in that moment — they leave. They don't come back.",
             'service_why_lead_stat'            => '↓  Where they go instead: NHS.uk · Fit for Travel · patient.info',
+            // Track Record (A2)
+            'service_track_record_overline'    => 'The Track Record',
+            'service_track_record_headline'    => '18 months. 100,000+ patient conversations. Every single practice wondered if it would work for them. It did.',
+            'service_track_record_body'        => "We have never deployed an agent that didn't find revenue a practice didn't know it was missing. Southdowns found commercial needle stick contracts at midnight. Ealing filled HPV slots that used to sit empty. Not once have we deployed one that stayed quiet. That record matters to us more than anything else on this page.",
+            'service_track_record_close'       => 'Your practice will be no different.',
+            // SalesAgent Pro (A2)
+            'service_sa_pro_eyebrow'           => 'The Agent',
+            'service_sa_pro_headline'          => "ChatGPT Recommended You.\nThe Patient Had Questions.\nYour Competitor's AI Agent Answered First.",
+            'service_sa_pro_cta_label'         => 'See The System',
+            'service_sa_pro_cta_url'           => '#eligibility',
         ),
     );
 }
@@ -254,9 +264,11 @@ function gildhart_service_section_roster( $slug ) {
             'hero', 'logo-bar',
             // A1
             'live-clients', 'why-this-exists',
-            // A2+ append here as each chunk lands. The Agent reuses the FAQ /
+            // A2
+            'track-record', 'sales-agent-pro',
+            // A3+ append here as each chunk lands. The Agent reuses the FAQ /
             // Guarantee / Final CTA templates (with Agent copy) once their
-            // A-chunks land in A2 / A5 / A6 — until then those sections are
+            // A-chunks land in A5 / A6 — until then those sections are
             // intentionally not in the roster.
         ),
     );
@@ -280,6 +292,8 @@ function gildhart_service_field_group_map() {
         'group_gh_service_logo_bar'         => 'logo-bar',
         'group_gh_service_live_clients'     => 'live-clients',
         'group_gh_service_why_this_exists'  => 'why-this-exists',
+        'group_gh_service_track_record'     => 'track-record',
+        'group_gh_service_sales_agent_pro'  => 'sales-agent-pro',
         'group_gh_service_problem_shift'    => 'problem-shift',
         'group_gh_service_proof_cases'      => 'proof-cases',
         'group_gh_service_playing_field'    => 'playing-field',
