@@ -2318,3 +2318,84 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Live Clients (Agent A1) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_live_clients',
+    'title'      => 'Service · Live Clients',
+    'menu_order' => 2,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_lc_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_live_clients_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_lc_eyebrow',  'label' => 'Eyebrow',     'name' => 'service_live_clients_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_lc_headline', 'label' => 'Headline',    'name' => 'service_live_clients_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_lc_sub',      'label' => 'Sub-headline', 'name' => 'service_live_clients_sub',      'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_lc_cards', 'label' => 'Client Cards', 'name' => 'service_live_clients_cards',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 20,
+            'instructions' => 'Each row is one carousel card. Upload the website screenshot — the image gets rendered at 420×260px in the carousel and full-resolution inside the lightbox preview.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_lc_card_name',  'label' => 'Client Name', 'name' => 'name',  'type' => 'text' ),
+                array(
+                    'key' => 'field_gh_service_lc_card_image', 'label' => 'Screenshot', 'name' => 'image',
+                    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+                ),
+                array( 'key' => 'field_gh_service_lc_card_badge', 'label' => 'Badge Text (optional)', 'name' => 'badge', 'type' => 'text', 'instructions' => 'Defaults to "Live" if empty.' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_lc_footnote', 'label' => 'Footnote', 'name' => 'service_live_clients_footnote', 'type' => 'textarea', 'rows' => 4 ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Why This Exists (Agent A1) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_why_this_exists',
+    'title'      => 'Service · Why This Exists',
+    'menu_order' => 3,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_why_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_why_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_why_eyebrow',   'label' => 'Eyebrow',           'name' => 'service_why_eyebrow',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_why_headline',  'label' => 'Headline',          'name' => 'service_why_headline',  'type' => 'textarea', 'rows' => 3, 'instructions' => 'Each line wraps onto its own line in the rendered H2.' ),
+        array( 'key' => 'field_gh_service_why_lead',      'label' => 'Lead Paragraph',    'name' => 'service_why_lead',      'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_gh_service_why_lead_stat', 'label' => 'Lead Stat Pill',    'name' => 'service_why_lead_stat', 'type' => 'text', 'instructions' => 'Optional. Gold caps pill below the lead. Leave empty to hide.' ),
+        array(
+            'key' => 'field_gh_service_why_blocks', 'label' => 'Feature Blocks', 'name' => 'service_why_blocks',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
+            'instructions' => 'Three blocks is the designed default. Each block carries an icon kind, title, and bulleted list.',
+            'sub_fields' => array(
+                array(
+                    'key' => 'field_gh_service_why_block_kind', 'label' => 'Icon Kind', 'name' => 'icon_kind',
+                    'type' => 'select', 'default_value' => 'instant',
+                    'choices' => array(
+                        'instant'      => 'Instant (circle + check)',
+                        'intelligence' => 'Intelligence (building)',
+                        'moat'         => 'Moat (trending up)',
+                    ),
+                ),
+                array( 'key' => 'field_gh_service_why_block_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
+                array(
+                    'key' => 'field_gh_service_why_block_bullets', 'label' => 'Bullets', 'name' => 'bullets',
+                    'type' => 'repeater', 'layout' => 'table', 'min' => 0,
+                    'sub_fields' => array(
+                        array( 'key' => 'field_gh_service_why_block_bullet_text', 'label' => 'Bullet', 'name' => 'text', 'type' => 'text' ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );

@@ -206,6 +206,16 @@ function gildhart_service_defaults_by_slug() {
             'service_hero_cta_secondary_url'   => '',
             // Logo Bar
             'service_logo_bar_label'           => 'Every practice live is generating enquiries they never had before',
+            // Live Clients (A1)
+            'service_live_clients_eyebrow'     => 'Live Right Now',
+            'service_live_clients_headline'    => 'The Practices That Saw Where Healthcare Was Going.',
+            'service_live_clients_sub'         => 'Seven from our global network, already operating with AI at the core of their patient acquisition. Not piloting it. Not planning it. Running it.',
+            'service_live_clients_footnote'    => 'Every practice shown is generating revenue automatically, capturing patient intent data on every interaction, and building a compounding commercial advantage across their entire service portfolio. What you see here is a fraction of our active client network.',
+            // Why This Exists (A1)
+            'service_why_eyebrow'              => 'Why This Exists',
+            'service_why_headline'             => "Your Patients Are Asking Thousands of Clinical Questions.\nRight Now, They're Getting the Answers Somewhere Else.",
+            'service_why_lead'                 => "Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can't answer them in that moment — they leave. They don't come back.",
+            'service_why_lead_stat'            => '↓  Where they go instead: NHS.uk · Fit for Travel · patient.info',
         ),
     );
 }
@@ -240,13 +250,14 @@ function gildhart_service_section_roster( $slug ) {
             'next-steps', 'faq', 'guarantee', 'final-cta',
         ),
         'the-agent' => array(
-            // A0 — shipped
+            // A0
             'hero', 'logo-bar',
-            // A1+ append here as each chunk lands. The Agent reuses the FAQ /
+            // A1
+            'live-clients', 'why-this-exists',
+            // A2+ append here as each chunk lands. The Agent reuses the FAQ /
             // Guarantee / Final CTA templates (with Agent copy) once their
             // A-chunks land in A2 / A5 / A6 — until then those sections are
-            // intentionally not in the roster, so the Agent page ends after
-            // the logo bar.
+            // intentionally not in the roster.
         ),
     );
     // Unknown slug falls back to the Playbook roster as the longest-running
@@ -267,6 +278,8 @@ function gildhart_service_field_group_map() {
     return array(
         'group_gh_service_hero'             => 'hero',
         'group_gh_service_logo_bar'         => 'logo-bar',
+        'group_gh_service_live_clients'     => 'live-clients',
+        'group_gh_service_why_this_exists'  => 'why-this-exists',
         'group_gh_service_problem_shift'    => 'problem-shift',
         'group_gh_service_proof_cases'      => 'proof-cases',
         'group_gh_service_playing_field'    => 'playing-field',
