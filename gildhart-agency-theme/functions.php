@@ -399,3 +399,27 @@ function gildhart_ensure_permalinks() {
     }
 }
 add_action( 'init', 'gildhart_ensure_permalinks' );
+
+/**
+ * Lossless image handling for premium product visuals.
+ *
+ * 1. Bump JPEG re-encode quality from WordPress's default 82 → 100. WP
+ *    re-saves any uploaded image larger than the big_image_size_threshold
+ *    (2560px) AND every generated intermediate size (medium, large, …).
+ *    The default 82% strips visible quality on UI mockups — text inside
+ *    phone screens picks up mosquito-noise around the edges and cream
+ *    backgrounds get faint banding. 100% keeps the bits we asked for.
+ *
+ * 2. Disable the big_image_size_threshold entirely. By default WP
+ *    silently shrinks anything over 2560px on its longest side and
+ *    re-saves at the JPEG quality above. For our hero / product visuals
+ *    we'd rather serve the original at whatever the editor uploaded —
+ *    srcset still emits smaller variants for responsive selection, but
+ *    the "full" size really is the original.
+ *
+ * Together: editors can upload a 4000×3000 PNG mockup and the page
+ * serves that exact file when the layout renders the largest variant.
+ */
+add_filter( 'jpeg_quality',          function () { return 100; } );
+add_filter( 'wp_editor_set_quality', function () { return 100; } );
+add_filter( 'big_image_size_threshold', '__return_false' );
