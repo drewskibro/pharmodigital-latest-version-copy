@@ -151,6 +151,12 @@
   // Also expose nav height as --nav-h on the document root so hero sections can
   // extend their gradient up under the nav (the spacer is hidden on hero pages
   // — the hero's own padding-top covers the offset using --nav-h).
+  //
+  // ResizeObserver re-fires syncSpacer whenever the nav's actual offsetHeight
+  // changes — including when the .nav-scrolled class toggles its smaller/
+  // larger size on scroll. Without it, --nav-h would drift out of sync if the
+  // browser ever measured the nav while it was in the shrunk state, causing
+  // the hero content to slide under the nav once the page scrolled back up.
   var spacer = document.getElementById('navSpacer');
   function syncSpacer() {
     if (!navEl) return;
@@ -163,4 +169,8 @@
   window.addEventListener('load', syncSpacer);
   window.addEventListener('resize', syncSpacer);
   syncSpacer();
+  if ('ResizeObserver' in window) {
+    var navResizeObserver = new ResizeObserver(syncSpacer);
+    navResizeObserver.observe(navEl);
+  }
 })();
