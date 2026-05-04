@@ -2,12 +2,16 @@
 /**
  * Service: Why This Exists section.
  *
- * Cream-warm section with a centred header (eyebrow + H2 + lead
- * paragraph + optional "where they go instead" gold pill stat) and a
- * 3-column grid of feature blocks below. Each block is a white card
- * with a green-gradient accent bar, a tonal SVG icon (kind picked
- * via ACF select), title, and a bulleted list with custom checkmark
- * markers.
+ * Cream-warm section with a 2-column editorial header (copy left,
+ * product visual right) that collapses to a stacked centred layout
+ * at <960px. Below the header sits a 3-column grid of feature cards
+ * — each card carries an image area at the top (or a styled
+ * placeholder when empty), a giant outlined number, the icon block
+ * collapsed when an image is present, title, and bulleted list.
+ *
+ * Background carries two soft brand-tinted radial halos (forest
+ * green top-left, gold bottom-right) so the cream sits on a deliberate
+ * brand-coloured wash rather than a flat fill.
  *
  * Reads from per-section ACF group `Service · Why This Exists`.
  * Returns early when the show toggle is off. Falls back to The Agent
@@ -20,16 +24,18 @@ if ( ! gh_field( 'service_why_show', 1 ) ) {
     return;
 }
 
-$eyebrow   = gh_field( 'service_why_eyebrow',   'Why This Exists' );
-$headline  = gh_field( 'service_why_headline',  "Your Patients Are Asking Thousands of Clinical Questions.\nRight Now, They're Getting the Answers Somewhere Else." );
-$lead      = gh_field( 'service_why_lead',      "Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can't answer them in that moment — they leave. They don't come back." );
-$lead_stat = gh_field( 'service_why_lead_stat', '↓  Where they go instead: NHS.uk · Fit for Travel · patient.info' );
+$eyebrow      = gh_field( 'service_why_eyebrow',   'Why This Exists' );
+$headline     = gh_field( 'service_why_headline',  "Your Patients Are Asking Thousands of Clinical Questions.\nRight Now, They're Getting the Answers Somewhere Else." );
+$lead         = gh_field( 'service_why_lead',      "Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can't answer them in that moment — they leave. They don't come back." );
+$lead_stat    = gh_field( 'service_why_lead_stat', 'Their question gets answered. Just not by you.' );
+$header_image = get_field( 'service_why_header_image' );
 
 $blocks = get_field( 'service_why_blocks' );
 if ( empty( $blocks ) ) {
     $blocks = array(
         array(
             'icon_kind' => 'instant',
+            'image'     => 0,
             'title'     => 'Answers Every Question. Instantly.',
             'bullets'   => array(
                 array( 'text' => 'Clinical depth of a qualified pharmacist, any hour, any question.' ),
@@ -39,6 +45,7 @@ if ( empty( $blocks ) ) {
         ),
         array(
             'icon_kind' => 'intelligence',
+            'image'     => 0,
             'title'     => 'Every Conversation Becomes Intelligence.',
             'bullets'   => array(
                 array( 'text' => 'Intent data on every interaction — exactly what patients ask, how they ask it, and when.' ),
@@ -48,6 +55,7 @@ if ( empty( $blocks ) ) {
         ),
         array(
             'icon_kind' => 'moat',
+            'image'     => 0,
             'title'     => 'You Become Impossible to Displace.',
             'bullets'   => array(
                 array( 'text' => 'Every patient conversation adds to your clinical authority.' ),
@@ -68,46 +76,86 @@ $icon_svg = function( $kind ) {
     return $icons[ $kind ] ?? $icons['instant'];
 };
 
-// Headline split for line-break support (textarea).
+/** Placeholder hint per icon-kind so the empty state reads as designed. */
+$placeholder_hint = function( $kind ) {
+    $hints = array(
+        'instant'      => 'Insert chat preview',
+        'intelligence' => 'Insert dashboard / data viz',
+        'moat'         => 'Insert search-result mockup',
+    );
+    return $hints[ $kind ] ?? 'Insert visual';
+};
+
 $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $headline ) ) );
 ?>
 
 <section class="svc-why">
     <div class="svc-why-inner">
         <div class="svc-why-header">
-            <?php if ( $eyebrow ) : ?>
-                <span class="svc-why-eyebrow"><?php echo esc_html( $eyebrow ); ?></span>
-            <?php endif; ?>
-            <?php if ( ! empty( $headline_lines ) ) : ?>
-                <h2 class="svc-why-headline">
-                    <?php echo implode( '<br />', array_map( 'esc_html', $headline_lines ) ); ?>
-                </h2>
-            <?php endif; ?>
-            <?php if ( $lead ) : ?>
-                <p class="svc-why-lead"><?php echo esc_html( $lead ); ?></p>
-            <?php endif; ?>
-            <?php if ( $lead_stat ) : ?>
-                <div class="svc-why-lead-stat-wrap">
-                    <span class="svc-why-lead-stat"><?php echo esc_html( $lead_stat ); ?></span>
-                </div>
-            <?php endif; ?>
+            <div class="svc-why-header-copy">
+                <?php if ( $eyebrow ) : ?>
+                    <span class="svc-why-eyebrow"><?php echo esc_html( $eyebrow ); ?></span>
+                <?php endif; ?>
+                <?php if ( ! empty( $headline_lines ) ) : ?>
+                    <h2 class="svc-why-headline">
+                        <?php echo implode( '<br />', array_map( 'esc_html', $headline_lines ) ); ?>
+                    </h2>
+                <?php endif; ?>
+                <?php if ( $lead ) : ?>
+                    <p class="svc-why-lead"><?php echo esc_html( $lead ); ?></p>
+                <?php endif; ?>
+                <?php if ( $lead_stat ) : ?>
+                    <div class="svc-why-lead-stat-wrap">
+                        <span class="svc-why-lead-stat"><?php echo esc_html( $lead_stat ); ?></span>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <div class="svc-why-header-visual">
+                <?php if ( $header_image ) : ?>
+                    <?php echo wp_get_attachment_image( $header_image, 'large', false, array(
+                        'alt'     => 'Agent in conversation with a patient',
+                        'loading' => 'lazy',
+                    ) ); ?>
+                <?php else : ?>
+                    <div class="svc-why-header-visual-placeholder" aria-hidden="true">
+                        <span>Insert product visual<br>e.g. agent mid-conversation</span>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
 
         <?php if ( ! empty( $blocks ) ) : ?>
             <div class="svc-why-blocks">
                 <?php foreach ( $blocks as $i => $block ) :
-                    $kind    = $block['icon_kind'] ?? 'instant';
-                    $title   = $block['title']     ?? '';
-                    $bullets = $block['bullets']   ?? array();
+                    $kind     = $block['icon_kind'] ?? 'instant';
+                    $image_id = $block['image']     ?? 0;
+                    $title    = $block['title']     ?? '';
+                    $bullets  = $block['bullets']   ?? array();
                     if ( ! $title && empty( $bullets ) ) continue;
-                    $num     = sprintf( '%02d', $i + 1 );
+                    $num      = sprintf( '%02d', $i + 1 );
+                    $classes  = 'svc-why-block' . ( $image_id ? ' svc-why-block--has-image' : '' );
                 ?>
-                    <article class="svc-why-block">
+                    <article class="<?php echo esc_attr( $classes ); ?>">
                         <div class="svc-why-block-accent" aria-hidden="true"></div>
                         <span class="svc-why-block-num" aria-hidden="true"><?php echo esc_html( $num ); ?></span>
-                        <div class="svc-why-block-icon">
-                            <?php echo $icon_svg( $kind ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — static SVG ?>
+
+                        <div class="svc-why-block-image">
+                            <?php if ( $image_id ) : ?>
+                                <?php echo wp_get_attachment_image( $image_id, 'medium_large', false, array(
+                                    'alt'     => esc_attr( $title ),
+                                    'loading' => 'lazy',
+                                ) ); ?>
+                            <?php else : ?>
+                                <div class="svc-why-block-image-placeholder" aria-hidden="true">
+                                    <div class="svc-why-block-image-placeholder-icon">
+                                        <?php echo $icon_svg( $kind ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — static SVG ?>
+                                    </div>
+                                    <span><?php echo esc_html( $placeholder_hint( $kind ) ); ?></span>
+                                </div>
+                            <?php endif; ?>
                         </div>
+
                         <?php if ( $title ) : ?>
                             <h3 class="svc-why-block-title"><?php echo esc_html( $title ); ?></h3>
                         <?php endif; ?>
