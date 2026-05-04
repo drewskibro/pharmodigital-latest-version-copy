@@ -3024,26 +3024,97 @@
   position: relative;
   overflow: hidden;
 }
+/* Two layered radial halos — forest green top-left, gold bottom-right.
+ * Pulls the brand palette into the section's atmosphere without
+ * competing with the cards. */
 .svc-why::before {
   content: '';
   position: absolute;
-  top: -200px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(30, 61, 47, 0.04) 0%, transparent 70%);
+  top: -220px;
+  left: -220px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(30, 61, 47, 0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+.svc-why::after {
+  content: '';
+  position: absolute;
+  bottom: -240px;
+  right: -240px;
+  width: 720px;
+  height: 720px;
+  background: radial-gradient(circle, rgba(201, 164, 74, 0.07) 0%, transparent 65%);
   pointer-events: none;
 }
 .svc-why-inner {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
+
+/* Editorial split header — copy left, product visual right at 960px+,
+ * stacked + centred at mobile. */
 .svc-why-header {
   text-align: center;
-  margin: 0 auto 3.5rem;
+  margin: 0 auto 4.5rem;
   max-width: 860px;
+}
+.svc-why-header-copy { width: 100%; }
+.svc-why-header-visual {
+  display: none;
+}
+@media (min-width: 960px) {
+  .svc-why-header {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 4rem;
+    align-items: center;
+    text-align: left;
+    max-width: 1200px;
+  }
+  .svc-why-header-visual {
+    display: block;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow:
+      0 4px 12px -4px rgba(13, 26, 18, 0.08),
+      0 25px 50px -12px rgba(13, 26, 18, 0.18),
+      0 50px 80px -20px rgba(13, 26, 18, 0.10);
+  }
+  .svc-why-header-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .svc-why-header-visual-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(30, 61, 47, 0.10) 0%, rgba(201, 164, 74, 0.08) 100%);
+    border: 2px dashed rgba(201, 164, 74, 0.40);
+    border-radius: 20px;
+  }
+  .svc-why-header-visual-placeholder span {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gildhart-gold);
+    text-align: center;
+    padding: 0 2rem;
+    line-height: 1.7;
+  }
+  .svc-why-lead-stat-wrap {
+    justify-content: flex-start;
+  }
 }
 .svc-why-eyebrow {
   font-family: var(--font-mono);
@@ -3140,7 +3211,10 @@
   margin: 0;
   width: auto;
 }
-/* Giant outlined number anchoring the top-right corner of each card. */
+/* Giant outlined number anchoring the top-right corner of each card.
+ * Hidden when the card has an image — the image takes over as the
+ * dominant visual anchor and the navy 10% number would compete with
+ * (or sit awkwardly on top of) the photo. */
 .svc-why-block-num {
   position: absolute;
   top: 1.5rem;
@@ -3152,7 +3226,80 @@
   line-height: 1;
   letter-spacing: -0.04em;
   pointer-events: none;
+  z-index: 2;
 }
+.svc-why-block--has-image .svc-why-block-num { display: none; }
+/* Card image area — sits flush at the top of the card, full width.
+ * Negative margins pull the image past the card's 2.5rem side padding
+ * and 3rem top padding so it bleeds edge-to-edge. The card's
+ * overflow:hidden + border-radius handles top-corner rounding.
+ * When an ACF image is set the icon block + corner number are hidden
+ * (the image carries the visual weight). When empty, a styled
+ * placeholder shows the card's icon centred with a hint label. */
+.svc-why-block-image {
+  position: relative;
+  width: calc(100% + 5rem);
+  height: 180px;
+  margin: -3rem -2.5rem 1.75rem;
+  overflow: hidden;
+  background: rgba(30, 61, 47, 0.04);
+}
+.svc-why-block-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.svc-why-block:hover .svc-why-block-image img {
+  transform: scale(1.03);
+}
+.svc-why-block-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  background: linear-gradient(135deg, rgba(30, 61, 47, 0.10) 0%, rgba(201, 164, 74, 0.08) 100%);
+  border-bottom: 1px dashed rgba(201, 164, 74, 0.45);
+}
+.svc-why-block-image-placeholder-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(30, 61, 47, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gildhart-green);
+}
+.svc-why-block-image-placeholder-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.svc-why-block-image-placeholder span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  text-align: center;
+  padding: 0 1rem;
+  line-height: 1.6;
+}
+
+/* Tonal icon block — kept as a small accent below the title when no
+ * image is set. When the card has an ACF image, the icon block is
+ * hidden because the image carries the visual weight. */
 .svc-why-block-icon {
   width: 72px;
   height: 72px;
@@ -3166,6 +3313,7 @@
   color: var(--gildhart-green);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.svc-why-block--has-image .svc-why-block-icon { display: none; }
 .svc-why-block:hover .svc-why-block-icon {
   background: rgba(30, 61, 47, 0.14);
   border-color: rgba(30, 61, 47, 0.30);
@@ -3232,6 +3380,12 @@
 }
 @media (max-width: 640px) {
   .svc-why-block { padding: 2rem 1.5rem 1.875rem; }
+  /* Re-pin the bleeding image to the smaller mobile padding. */
+  .svc-why-block-image {
+    width: calc(100% + 3rem);
+    height: 160px;
+    margin: -2rem -1.5rem 1.5rem;
+  }
 }
 
 /* ── A2: Track Record section ───────────────────────────────── */

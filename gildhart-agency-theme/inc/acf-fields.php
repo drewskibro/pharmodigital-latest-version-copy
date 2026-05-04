@@ -2373,9 +2373,18 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_service_why_lead',      'label' => 'Lead Paragraph',    'name' => 'service_why_lead',      'type' => 'textarea', 'rows' => 4 ),
         array( 'key' => 'field_gh_service_why_lead_stat', 'label' => 'Lead Stat Pill',    'name' => 'service_why_lead_stat', 'type' => 'text', 'instructions' => 'Optional. Gold caps pill below the lead. Leave empty to hide.' ),
         array(
+            'key'           => 'field_gh_service_why_header_image',
+            'label'         => 'Header — Product Visual',
+            'name'          => 'service_why_header_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Right-column visual on desktop (>960px). Phone or laptop mockup of the agent in a patient conversation works best — same visual vocabulary as the page hero. Renders a styled placeholder when empty. Hidden on mobile.',
+        ),
+        array(
             'key' => 'field_gh_service_why_blocks', 'label' => 'Feature Blocks', 'name' => 'service_why_blocks',
             'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
-            'instructions' => 'Three blocks is the designed default. Each block carries an icon kind, title, and bulleted list.',
+            'instructions' => 'Three blocks is the designed default. Each block carries an icon kind, an optional product image, title, and bulleted list. When the image is set, the icon block + corner number hide so the image carries the visual weight.',
             'sub_fields' => array(
                 array(
                     'key' => 'field_gh_service_why_block_kind', 'label' => 'Icon Kind', 'name' => 'icon_kind',
@@ -2385,6 +2394,16 @@ acf_add_local_field_group( array(
                         'intelligence' => 'Intelligence (building)',
                         'moat'         => 'Moat (trending up)',
                     ),
+                    'instructions' => 'Icon shown only when no image is set on this block. Also drives the placeholder hint label.',
+                ),
+                array(
+                    'key'           => 'field_gh_service_why_block_image',
+                    'label'         => 'Image',
+                    'name'          => 'image',
+                    'type'          => 'image',
+                    'return_format' => 'id',
+                    'preview_size'  => 'medium',
+                    'instructions'  => 'Optional. Renders flush at the top of the card, ~180px tall. Photo, mockup, or stylised UI all work. When empty, a placeholder shows the icon + a hint label so the card still reads as designed.',
                 ),
                 array( 'key' => 'field_gh_service_why_block_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
                 array(
