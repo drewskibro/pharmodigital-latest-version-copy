@@ -119,4 +119,108 @@
       }
     });
   });
+
+  // ── A1: Live Clients carousel ─────────────────────────────────
+  // Native horizontal scroll on the track; arrow buttons + dots step
+  // the scroll one card at a time. Active dot/disabled arrow updates
+  // mirror the scroll position so dragging or trackpad scroll stays
+  // in sync. Mobile collapses to a stacked column and CSS hides the
+  // arrow nav, so the JS becomes a no-op there.
+  var carouselTrack = document.getElementById('liveCarouselTrack');
+  if (carouselTrack) {
+    var carouselCards = carouselTrack.querySelectorAll('.svc-live-card');
+    var carouselPrev  = document.getElementById('carouselPrev');
+    var carouselNext  = document.getElementById('carouselNext');
+    var carouselDots  = document.getElementById('carouselDots');
+
+    if (carouselCards.length && carouselDots) {
+      carouselCards.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'svc-carousel-dot';
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', function () { scrollToCard(i); });
+        carouselDots.appendChild(dot);
+      });
+    }
+    var carouselDotEls = carouselDots ? carouselDots.querySelectorAll('.svc-carousel-dot') : [];
+
+    function getActiveIndex() {
+      var trackLeft = carouselTrack.getBoundingClientRect().left;
+      var bestIdx   = 0;
+      var bestDist  = Infinity;
+      carouselCards.forEach(function (card, i) {
+        var dist = Math.abs(card.getBoundingClientRect().left - trackLeft);
+        if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+      });
+      return bestIdx;
+    }
+    function scrollToCard(i) {
+      var card = carouselCards[i];
+      if (!card) return;
+      var trackLeft = carouselTrack.getBoundingClientRect().left;
+      var offset    = card.getBoundingClientRect().left - trackLeft + carouselTrack.scrollLeft;
+      // 32px back-padding so the card sits flush with the track padding edge.
+      carouselTrack.scrollTo({ left: Math.max(0, offset - 32), behavior: 'smooth' });
+    }
+    function syncCarouselNav() {
+      var idx = getActiveIndex();
+      carouselDotEls.forEach(function (d, i) { d.classList.toggle('is-active', i === idx); });
+      if (carouselPrev) carouselPrev.disabled = idx === 0;
+      if (carouselNext) carouselNext.disabled = idx === carouselCards.length - 1;
+    }
+    if (carouselPrev) {
+      carouselPrev.addEventListener('click', function () {
+        scrollToCard(Math.max(0, getActiveIndex() - 1));
+      });
+    }
+    if (carouselNext) {
+      carouselNext.addEventListener('click', function () {
+        scrollToCard(Math.min(carouselCards.length - 1, getActiveIndex() + 1));
+      });
+    }
+    carouselTrack.addEventListener('scroll', syncCarouselNav, { passive: true });
+    syncCarouselNav();
+  }
+
+  // ── A1: Screenshot lightbox ───────────────────────────────────
+  // Any element with .svc-lightbox-trigger opens the shared overlay
+  // (rendered inside section-live-clients.php). data-src + data-caption
+  // attributes drive the displayed image; Escape or close button or
+  // backdrop click dismiss.
+  var lightbox        = document.getElementById('saLightbox');
+  var lightboxImg     = document.getElementById('saLightboxImg');
+  var lightboxCaption = document.getElementById('saLightboxCaption');
+  var lightboxClose   = document.getElementById('saLightboxClose');
+  if (lightbox && lightboxImg) {
+    function openLightbox(src, alt, caption) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      if (lightboxCaption) lightboxCaption.textContent = caption || '';
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+      // Defer src clear so the close transition doesn't flash a blank image.
+      setTimeout(function () { lightboxImg.src = ''; }, 350);
+    }
+    document.querySelectorAll('.svc-lightbox-trigger').forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        var src     = trigger.getAttribute('data-src');
+        var caption = trigger.getAttribute('data-caption') || '';
+        var img     = trigger.querySelector('img');
+        var alt     = img ? img.alt : '';
+        if (src) openLightbox(src, alt, caption);
+      });
+    });
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  }
 })();
