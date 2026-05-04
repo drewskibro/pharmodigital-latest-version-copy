@@ -2415,9 +2415,20 @@ acf_add_local_field_group( array(
             'ui'            => 1,
         ),
         array( 'key' => 'field_gh_service_tr_overline', 'label' => 'Overline', 'name' => 'service_track_record_overline', 'type' => 'text' ),
-        array( 'key' => 'field_gh_service_tr_headline', 'label' => 'Headline', 'name' => 'service_track_record_headline', 'type' => 'textarea', 'rows' => 3 ),
-        array( 'key' => 'field_gh_service_tr_body',     'label' => 'Body',     'name' => 'service_track_record_body',     'type' => 'textarea', 'rows' => 6 ),
-        array( 'key' => 'field_gh_service_tr_close',    'label' => 'Closing line', 'name' => 'service_track_record_close', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_tr_headline', 'label' => 'Headline', 'name' => 'service_track_record_headline', 'type' => 'textarea', 'rows' => 5, 'instructions' => 'Each newline becomes its own block in the rendered H2. The last line auto-bumps to crescendo size.' ),
+        array( 'key' => 'field_gh_service_tr_intro',    'label' => 'Intro Paragraph',  'name' => 'service_track_record_intro', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Single paragraph that sits below the headline, above the proof points.' ),
+        array(
+            'key' => 'field_gh_service_tr_proofs', 'label' => 'Proof Points', 'name' => 'service_track_record_proofs',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
+            'instructions' => 'Three points is the designed default. Each row = gold caps client label + navy bold body line. Renders as a horizontal trio between hairline rules.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_tr_proof_label', 'label' => 'Client / Label', 'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_tr_proof_text',  'label' => 'Body Line',      'name' => 'text',  'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_tr_kicker',   'label' => 'Closing Kicker', 'name' => 'service_track_record_kicker', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Italic navy paragraph above the close line, separated by a gold-tinted top border.' ),
+        array( 'key' => 'field_gh_service_tr_close',    'label' => 'Crescendo Line', 'name' => 'service_track_record_close',  'type' => 'text', 'instructions' => 'Bold one-liner that closes the section. Renders with a 60px centred gold underline accent.' ),
+        array( 'key' => 'field_gh_service_tr_body',     'label' => 'Body (deprecated)', 'name' => 'service_track_record_body', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'No longer rendered as of the cinematic redesign. Field kept for legacy data only — leave empty.' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
