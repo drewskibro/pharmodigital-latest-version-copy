@@ -2500,3 +2500,65 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · Testimonial (Agent A3) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_testimonial',
+    'title'      => 'Service · Testimonial',
+    'menu_order' => 6,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_testimonial_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_testimonial_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array(
+            'key' => 'field_gh_service_testimonial_photo', 'label' => 'Photo', 'name' => 'service_testimonial_photo',
+            'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+            'instructions' => 'Portrait orientation works best (260×300 desktop / 200×230 mobile).',
+        ),
+        array( 'key' => 'field_gh_service_testimonial_badge', 'label' => 'Badge Text',  'name' => 'service_testimonial_badge', 'type' => 'text', 'instructions' => 'Caps label below the photo, e.g. "Pharmacy Client".' ),
+        array( 'key' => 'field_gh_service_testimonial_quote', 'label' => 'Quote',       'name' => 'service_testimonial_quote', 'type' => 'textarea', 'rows' => 8, 'instructions' => 'Inline <strong> + <em> allowed. Em-tags render as forest-green. Blank lines become paragraph breaks.' ),
+        array( 'key' => 'field_gh_service_testimonial_name',  'label' => 'Name',        'name' => 'service_testimonial_name',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_testimonial_role',  'label' => 'Role',        'name' => 'service_testimonial_role',  'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Service · Intelligence Engine (Agent A3) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_intelligence_engine',
+    'title'      => 'Service · Intelligence Engine',
+    'menu_order' => 7,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_intel_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_intel_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_intel_eyebrow',  'label' => 'Eyebrow',     'name' => 'service_intel_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_intel_headline', 'label' => 'Headline',    'name' => 'service_intel_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_intel_sub',      'label' => 'Sub-headline', 'name' => 'service_intel_sub',      'type' => 'textarea', 'rows' => 4 ),
+        array(
+            'key' => 'field_gh_service_intel_image', 'label' => 'Hero Image (optional)', 'name' => 'service_intel_image',
+            'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+        ),
+        array(
+            'key' => 'field_gh_service_intel_cards', 'label' => 'Query Cards', 'name' => 'service_intel_cards',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
+            'instructions' => 'Each card walks Patient Query → Agent Outcome → Content Signal. Inline <strong> allowed in the Content Signal block.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_intel_card_query',   'label' => 'Patient Query',  'name' => 'query',   'type' => 'textarea', 'rows' => 3 ),
+                array( 'key' => 'field_gh_service_intel_card_outcome', 'label' => 'Agent Outcome',  'name' => 'outcome', 'type' => 'textarea', 'rows' => 3 ),
+                array( 'key' => 'field_gh_service_intel_card_intel',   'label' => 'Content Signal', 'name' => 'intel',   'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong> tags allowed.' ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );

@@ -226,6 +226,15 @@ function gildhart_service_defaults_by_slug() {
             'service_sa_pro_headline'          => "ChatGPT Recommended You.\nThe Patient Had Questions.\nYour Competitor's AI Agent Answered First.",
             'service_sa_pro_cta_label'         => 'See The System',
             'service_sa_pro_cta_url'           => '#eligibility',
+            // Testimonial (A3)
+            'service_testimonial_badge'        => 'Pharmacy Client',
+            'service_testimonial_quote'        => "<strong>We're now outranking Boots and major chains in our area.</strong> But what changed everything was the AI sales agent. It handles patient inquiries around the clock, converts the traffic we're driving, and books appointments without us lifting a finger.\n\nWe're now <em>taking that national.</em>\n\nDrew builds pharmacy growth engines. <strong>I trust him because he understands both pharmacy and digital, that's rare to find.</strong>",
+            'service_testimonial_name'         => 'Rahul Puri',
+            'service_testimonial_role'         => 'Owner, Puri Pharmacy',
+            // Intelligence Engine (A3)
+            'service_intel_eyebrow'            => 'The Intelligence Engine',
+            'service_intel_headline'           => 'Every Patient Question Is A Revenue Signal.',
+            'service_intel_sub'                => "Your AI agent doesn't just answer — it captures the exact language patients use, the clinical questions they ask, and the services they're ready to pay for. Then we turn that into content that ranks.",
         ),
     );
 }
@@ -266,7 +275,9 @@ function gildhart_service_section_roster( $slug ) {
             'live-clients', 'why-this-exists',
             // A2
             'track-record', 'sales-agent-pro',
-            // A3+ append here as each chunk lands. The Agent reuses the FAQ /
+            // A3
+            'testimonial', 'intelligence-engine',
+            // A4+ append here as each chunk lands. The Agent reuses the FAQ /
             // Guarantee / Final CTA templates (with Agent copy) once their
             // A-chunks land in A5 / A6 — until then those sections are
             // intentionally not in the roster.
@@ -294,6 +305,8 @@ function gildhart_service_field_group_map() {
         'group_gh_service_why_this_exists'  => 'why-this-exists',
         'group_gh_service_track_record'     => 'track-record',
         'group_gh_service_sales_agent_pro'  => 'sales-agent-pro',
+        'group_gh_service_testimonial'      => 'testimonial',
+        'group_gh_service_intelligence_engine' => 'intelligence-engine',
         'group_gh_service_problem_shift'    => 'problem-shift',
         'group_gh_service_proof_cases'      => 'proof-cases',
         'group_gh_service_playing_field'    => 'playing-field',
