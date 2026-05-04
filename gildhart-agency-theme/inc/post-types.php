@@ -215,7 +215,7 @@ function gildhart_service_defaults_by_slug() {
             'service_why_eyebrow'              => 'Why This Exists',
             'service_why_headline'             => "Your Patients Are Asking Thousands of Clinical Questions.\nRight Now, They're Getting the Answers Somewhere Else.",
             'service_why_lead'                 => "Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can't answer them in that moment — they leave. They don't come back.",
-            'service_why_lead_stat'            => '↓  Where they go instead: NHS.uk · Fit for Travel · patient.info',
+            'service_why_lead_stat'            => 'Their question gets answered. Just not by you.',
             // Track Record (A2)
             'service_track_record_overline'    => 'The Track Record',
             'service_track_record_headline'    => '18 months. 100,000+ patient conversations. Every single practice wondered if it would work for them. It did.',
