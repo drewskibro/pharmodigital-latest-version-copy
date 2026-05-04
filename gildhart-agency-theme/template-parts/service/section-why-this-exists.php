@@ -113,7 +113,7 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
 
             <div class="svc-why-header-visual">
                 <?php if ( $header_image ) : ?>
-                    <?php echo wp_get_attachment_image( $header_image, 'large', false, array(
+                    <?php echo wp_get_attachment_image( $header_image, 'full', false, array(
                         'alt'     => 'Agent in conversation with a patient',
                         'loading' => 'lazy',
                     ) ); ?>
