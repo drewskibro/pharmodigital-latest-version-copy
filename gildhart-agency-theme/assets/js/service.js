@@ -223,6 +223,12 @@
       if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
     });
   }
+  // ── A5: How It Works timeline reveal ──────────────────────────
+  // The .svc-how-timeline track has a width-animated green fill. Add
+  // .is-visible when the bar enters the viewport so the CSS
+  // transition kicks in. One-shot reveal.
+  reveal('.svc-how-timeline', 'is-visible', { threshold: 0.5 });
+
   // ── A2: SalesAgent Pro comparison-bar reveals ─────────────────
   // Each compare-fill bar has a data-fill-pct attribute. Once its
   // parent stat card scrolls into view, set the width to the real

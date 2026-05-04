@@ -2637,3 +2637,43 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* Service · How It Works (Agent A5) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_how_it_works',
+    'title'      => 'Service · How It Works',
+    'menu_order' => 10,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_how_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_how_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_how_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_how_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_how_headline', 'label' => 'Headline', 'name' => 'service_how_headline', 'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_how_steps', 'label' => 'Steps', 'name' => 'service_how_steps',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
+            'instructions' => 'Each step is a circle marker (numbered automatically) connected to the next via a vertical line. Body text supports blank-line-separated paragraphs.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_how_step_label', 'label' => 'Label (gold caps)', 'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_how_step_title', 'label' => 'Title',             'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_how_step_text',  'label' => 'Body Text',         'name' => 'text',  'type' => 'textarea', 'rows' => 6 ),
+            ),
+        ),
+        array(
+            'key'           => 'field_gh_service_how_timeline_show',
+            'label'         => 'Show Timeline Bar',
+            'name'          => 'service_how_timeline_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_how_timeline_start', 'label' => 'Timeline — Start Label', 'name' => 'service_how_timeline_start', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_how_timeline_end',   'label' => 'Timeline — End Label',   'name' => 'service_how_timeline_end',   'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );

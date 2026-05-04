@@ -246,6 +246,21 @@ function gildhart_service_defaults_by_slug() {
             'service_editorial_proof_eyebrow'  => 'The Numbers',
             'service_editorial_proof_headline' => '10:47pm. A Patient Has A Question. Your Website Has Nothing To Say.',
             'service_editorial_proof_sub'      => 'Not rankings. Not traffic. <strong>Revenue.</strong> Here&rsquo;s what it looks like in practice.',
+            // How It Works (A5)
+            'service_how_eyebrow'              => 'The Process',
+            'service_how_headline'             => "One client received their first weight loss booking five minutes after going live. Here's how we get you there in seven days.",
+            'service_how_timeline_start'       => 'Day 1',
+            'service_how_timeline_end'         => 'Day 7 — Go Live',
+            // FAQ (A5) — eyebrow / headline / cta_show overridden so the
+            // Agent FAQ doesn't render with Playbook copy or the £497 CTA.
+            // The full Agent items list lives in gildhart_service_faq_defaults()
+            // because repeater rows aren't reliably backfilled via load_value.
+            'service_faq_eyebrow'              => 'Frequently Asked Questions',
+            'service_faq_headline'             => 'Everything You Need to Know Before You Deploy.',
+            'service_faq_cta_show'             => 0,
+            'service_faq_cta_text'             => '',
+            'service_faq_cta_label'            => '',
+            'service_faq_cta_url'              => '',
         ),
     );
 }
@@ -290,10 +305,10 @@ function gildhart_service_section_roster( $slug ) {
             'testimonial', 'intelligence-engine',
             // A4
             'flywheel', 'editorial-proof',
-            // A5+ append here as each chunk lands. The Agent reuses the FAQ /
-            // Guarantee / Final CTA templates (with Agent copy) once their
-            // A-chunks land in A5 / A6 — until then those sections are
-            // intentionally not in the roster.
+            // A5
+            'how-it-works', 'faq',
+            // A6+ append here. The Agent reuses the Guarantee / Final CTA
+            // templates (with Agent copy) once their A-chunk lands.
         ),
     );
     // Unknown slug falls back to the Playbook roster as the longest-running
@@ -322,6 +337,7 @@ function gildhart_service_field_group_map() {
         'group_gh_service_intelligence_engine' => 'intelligence-engine',
         'group_gh_service_flywheel'         => 'flywheel',
         'group_gh_service_editorial_proof'  => 'editorial-proof',
+        'group_gh_service_how_it_works'     => 'how-it-works',
         'group_gh_service_problem_shift'    => 'problem-shift',
         'group_gh_service_proof_cases'      => 'proof-cases',
         'group_gh_service_playing_field'    => 'playing-field',
@@ -335,6 +351,124 @@ function gildhart_service_field_group_map() {
         'group_gh_service_guarantee'        => 'guarantee',
         'group_gh_service_final_cta'        => 'final-cta',
     );
+}
+
+/**
+ * Slug-aware FAQ defaults for section-faq.php.
+ *
+ * The FAQ section template is shared between products (the Playbook
+ * and the Agent both use the same accordion + ACF group), but each
+ * product needs its own copy. This helper returns the eyebrow,
+ * headline, items, and bottom-CTA defaults keyed by post slug — used
+ * as the gh_field() / get_field() fallbacks inside section-faq.php
+ * when the user hasn't populated the corresponding ACF fields.
+ *
+ * Items are returned in full here (not via acf/load_value) because
+ * ACF repeater parents can't be reliably backfilled by load_value;
+ * the template-side fallback handles them.
+ *
+ * Adding a third product = add a third entry. Unknown slugs fall
+ * back to the Playbook copy.
+ *
+ * @param string $slug Service post_name.
+ * @return array
+ */
+function gildhart_service_faq_defaults( $slug ) {
+    $defaults = array(
+        'the-playbook' => array(
+            'eyebrow'   => 'No Surprises',
+            'headline'  => "Questions You're Asking",
+            'cta_show'  => 1,
+            'cta_text'  => 'Still have questions? <strong>Get the system now and ask me directly on the monthly calls.</strong>',
+            'cta_label' => 'Get Instant Access — £497',
+            'cta_url'   => '#buy-now',
+            'items'     => array(
+                array(
+                    'question' => "\"I'm not technical. Can I do this?\"",
+                    'answer'   => "If you can copy and paste, yes. Module 1 walks you through setup step by step. All prompts are written — you paste them in. And if you can't figure it out after the modules, <strong>I'll personally walk you through it on a call.</strong>",
+                ),
+                array(
+                    'question' => '"Will this work for my specialty?"',
+                    'answer'   => 'Yes. Ealing is a travel clinic. Superior is a pharmacy. Works for <strong>private clinics, IVF clinics, dental practices, specialist consultants, private hospitals</strong> — any private healthcare where patients search online. The method is identical. Only the keywords change.',
+                ),
+                array(
+                    'question' => '"How long until I see results?"',
+                    'answer'   => 'Ealing: <strong>6 weeks to first Google AI Overview feature</strong>. Superior: <strong>first ChatGPT sale in 48 hours</strong>. Typical range: 6–12 weeks for solid AI presence. Some practices see features in 2–4 weeks. Depends on how competitive your niche is and how quickly you publish.',
+                ),
+                array(
+                    'question' => '"I don\'t have time."',
+                    'answer'   => "1 hour per week. One pillar. Four clusters. Five pieces. The prompts are written — you're not starting from scratch. If you can't find 1 hour per week, the done-for-you option (starting at £5k/month) might suit you better.",
+                ),
+                array(
+                    'question' => '"What if AI platforms change their algorithm?"',
+                    'answer'   => "Monthly calls cover this. ChatGPT updates. Google changes. Claude features. <strong>You'll know what to adjust before your competitors do.</strong> Every call is recorded so you never miss an update.",
+                ),
+                array(
+                    'question' => '"Can I use this for multiple practices?"',
+                    'answer'   => 'Yes. You own it. <strong>One practice or fifty. No limits.</strong> The prompts work across any healthcare specialty. One purchase covers everything.',
+                ),
+                array(
+                    'question' => '"Why not just hire you to do it?"',
+                    'answer'   => 'You can. Done-for-you starts at £5k/month. But if you want to own the system — no ongoing fees, no dependency on an agency — this is for you. <strong>£497 once vs £60k/year.</strong> Same results.',
+                ),
+                array(
+                    'question' => '"Is there a refund policy?"',
+                    'answer'   => "No refunds — because this works. It's documented. The screenshots don't lie. But if you go through all 5 modules and still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call at no extra charge.</strong> You're not buying a course. You're getting a system that works.",
+                ),
+            ),
+        ),
+        'the-agent' => array(
+            'eyebrow'   => 'Frequently Asked Questions',
+            'headline'  => 'Everything You Need to Know Before You Deploy.',
+            'cta_show'  => 0,
+            'cta_text'  => '',
+            'cta_label' => '',
+            'cta_url'   => '',
+            'items'     => array(
+                array(
+                    'question' => 'Is this medically compliant?',
+                    'answer'   => 'Yes. The agent draws only from medically verified sources and your own practice website. It never gives medical advice. Its job is to reassure patients, answer their questions, and guide them toward booking. Clinical judgment stays with your team. Always.',
+                ),
+                array(
+                    'question' => 'What guardrails are in place?',
+                    'answer'   => "We've spent 18 months testing this against real patient scenarios. The agent knows exactly what it can say and what it can't. When a question falls outside its scope it doesn't guess — it directs the patient appropriately. Across 50+ practices and hundreds of thousands of conversations, it has never given unsafe medical information. That's not luck. That's 18 months of deliberate refinement.",
+                ),
+                array(
+                    'question' => 'How is this different from a standard chatbot?',
+                    'answer'   => 'A standard chatbot follows a decision tree. Ask it something unexpected and it falls over. The Agent holds a real conversation. It listens. It responds. It handles objections, answers follow-up questions, and moves patients toward booking naturally. Underneath it is a medically verified knowledge base built over 18 months, intent data capture on every conversation, and Microsoft Clarity showing you exactly where each patient came from. A standard chatbot is a script. <strong>This is infrastructure.</strong>',
+                ),
+                array(
+                    'question' => 'Where do patient enquiries go?',
+                    'answer'   => 'Wherever you want them. CRM, spreadsheet, email, or all three. Every conversation is fully transcribed so you know exactly what was asked, what was answered, and how close that patient is to booking. Nothing gets lost.',
+                ),
+                array(
+                    'question' => 'What services can it be trained on?',
+                    'answer'   => 'All of them. Weight loss, travel health, aesthetics, occupational health, ear wax removal, private GP. There are no limitations. If you offer it, the agent can handle it.',
+                ),
+                array(
+                    'question' => 'How does it know my specific services and pricing?',
+                    'answer'   => 'We start with our medically verified knowledge base built over 18 months. Then we layer in your services, your pricing, your processes, and your practice personality. By the time it goes live it sounds like your team. Not a generic bot. Not a template. Yours.',
+                ),
+                array(
+                    'question' => 'How long does setup take?',
+                    'answer'   => "Seven days. We build it, test it, and deploy it. You don't touch a single line of code. You review it, approve it, and it goes live.",
+                ),
+                array(
+                    'question' => 'Do I need any technical knowledge?',
+                    'answer'   => 'None. You approve the agent before it goes live. After that it runs itself. Every update as the AI space evolves gets rolled in automatically. You always have the most current version without doing anything.',
+                ),
+                array(
+                    'question' => 'Is patient data secure and GDPR compliant?',
+                    'answer'   => "Fully. Every agent includes compliant patient messaging explaining how their data is used. We update your privacy policy as part of setup. Everything is handled in accordance with UK GDPR. You're covered from day one.",
+                ),
+                array(
+                    'question' => 'What happens after 12 months?',
+                    'answer'   => "If you paid upfront, your price is locked in. Renews at the same rate regardless of what happens to pricing in the market. You also get every update we make as AI continues to evolve — included, no extra cost. If you're on the monthly plan it rolls over automatically. Either way the authority, the intent data, and the patient conversations you've built keep compounding. The agent gets more valuable every month it runs.",
+                ),
+            ),
+        ),
+    );
+    return $defaults[ $slug ] ?? $defaults['the-playbook'];
 }
 
 /**

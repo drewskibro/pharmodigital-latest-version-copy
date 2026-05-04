@@ -11,9 +11,13 @@
  * green button echoing the buy-now anchor.
  *
  * Reads from per-section ACF group `Service · FAQ`. Returns early
- * when the show toggle is off. Falls back to The Playbook copy from
- * the static spec when ACF fields are empty. Answers accept inline
- * <strong> via wp_kses_post.
+ * when the show toggle is off. The eyebrow / headline / items / CTA
+ * defaults are slug-aware via gildhart_service_faq_defaults() so the
+ * Playbook and Agent share the same template + ACF group but each
+ * surfaces its own copy. Saved ACF values still win — the slug
+ * defaults are only the fallback when fields are empty.
+ *
+ * Answers accept inline <strong> via wp_kses_post.
  *
  * @package Gildhart
  */
@@ -22,51 +26,21 @@ if ( ! gh_field( 'service_faq_show', 1 ) ) {
     return;
 }
 
-$eyebrow  = gh_field( 'service_faq_eyebrow',  'No Surprises' );
-$headline = gh_field( 'service_faq_headline', "Questions You're Asking" );
+$slug     = get_post_field( 'post_name', get_the_ID() );
+$defaults = gildhart_service_faq_defaults( $slug );
+
+$eyebrow  = gh_field( 'service_faq_eyebrow',  $defaults['eyebrow'] );
+$headline = gh_field( 'service_faq_headline', $defaults['headline'] );
 
 $items = get_field( 'service_faq_items' );
 if ( empty( $items ) ) {
-    $items = array(
-        array(
-            'question' => "\"I'm not technical. Can I do this?\"",
-            'answer'   => "If you can copy and paste, yes. Module 1 walks you through setup step by step. All prompts are written — you paste them in. And if you can't figure it out after the modules, <strong>I'll personally walk you through it on a call.</strong>",
-        ),
-        array(
-            'question' => '"Will this work for my specialty?"',
-            'answer'   => 'Yes. Ealing is a travel clinic. Superior is a pharmacy. Works for <strong>private clinics, IVF clinics, dental practices, specialist consultants, private hospitals</strong> — any private healthcare where patients search online. The method is identical. Only the keywords change.',
-        ),
-        array(
-            'question' => '"How long until I see results?"',
-            'answer'   => 'Ealing: <strong>6 weeks to first Google AI Overview feature</strong>. Superior: <strong>first ChatGPT sale in 48 hours</strong>. Typical range: 6–12 weeks for solid AI presence. Some practices see features in 2–4 weeks. Depends on how competitive your niche is and how quickly you publish.',
-        ),
-        array(
-            'question' => '"I don\'t have time."',
-            'answer'   => "1 hour per week. One pillar. Four clusters. Five pieces. The prompts are written — you're not starting from scratch. If you can't find 1 hour per week, the done-for-you option (starting at £5k/month) might suit you better.",
-        ),
-        array(
-            'question' => '"What if AI platforms change their algorithm?"',
-            'answer'   => "Monthly calls cover this. ChatGPT updates. Google changes. Claude features. <strong>You'll know what to adjust before your competitors do.</strong> Every call is recorded so you never miss an update.",
-        ),
-        array(
-            'question' => '"Can I use this for multiple practices?"',
-            'answer'   => 'Yes. You own it. <strong>One practice or fifty. No limits.</strong> The prompts work across any healthcare specialty. One purchase covers everything.',
-        ),
-        array(
-            'question' => '"Why not just hire you to do it?"',
-            'answer'   => 'You can. Done-for-you starts at £5k/month. But if you want to own the system — no ongoing fees, no dependency on an agency — this is for you. <strong>£497 once vs £60k/year.</strong> Same results.',
-        ),
-        array(
-            'question' => '"Is there a refund policy?"',
-            'answer'   => "No refunds — because this works. It's documented. The screenshots don't lie. But if you go through all 5 modules and still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call at no extra charge.</strong> You're not buying a course. You're getting a system that works.",
-        ),
-    );
+    $items = $defaults['items'];
 }
 
-$cta_show  = gh_field( 'service_faq_cta_show',  1 );
-$cta_text  = gh_field( 'service_faq_cta_text',  'Still have questions? <strong>Get the system now and ask me directly on the monthly calls.</strong>' );
-$cta_label = gh_field( 'service_faq_cta_label', 'Get Instant Access — £497' );
-$cta_url   = gh_field( 'service_faq_cta_url',   '#buy-now' );
+$cta_show  = gh_field( 'service_faq_cta_show',  $defaults['cta_show'] );
+$cta_text  = gh_field( 'service_faq_cta_text',  $defaults['cta_text'] );
+$cta_label = gh_field( 'service_faq_cta_label', $defaults['cta_label'] );
+$cta_url   = gh_field( 'service_faq_cta_url',   $defaults['cta_url'] );
 ?>
 
 <section class="svc-faq">
