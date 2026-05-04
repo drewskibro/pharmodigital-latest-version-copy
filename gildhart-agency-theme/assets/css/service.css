@@ -3047,12 +3047,24 @@
 .svc-why-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gildhart-gold);
   margin: 0 0 1.5rem;
-  display: block;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 6px;
+}
+.svc-why-eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gildhart-gold);
+  opacity: 0.7;
 }
 .svc-why-headline {
   font-family: 'Inter', sans-serif;
@@ -3080,16 +3092,18 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1.125rem;
-  background: rgba(201, 164, 74, 0.07);
-  border: 1px solid rgba(201, 164, 74, 0.2);
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 50px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--gildhart-gold);
-  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--navy);
+  text-transform: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .svc-why-blocks {
@@ -3100,45 +3114,65 @@
 }
 .svc-why-block {
   position: relative;
-  padding: 2.5rem 2rem 2.25rem;
+  padding: 3rem 2.5rem 2.5rem;
   background: white;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.07);
   box-shadow: 0 6px 28px rgba(0, 0, 0, 0.055), 0 1px 4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .svc-why-block:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.09), 0 2px 8px rgba(30, 61, 47, 0.08);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10), 0 4px 14px rgba(30, 61, 47, 0.10);
   border-color: rgba(30, 61, 47, 0.25);
 }
+/* Full-width gold-to-green gradient top bar — replaces the old 36px dash. */
 .svc-why-block-accent {
-  width: 36px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--gildhart-green), #4a7a5e);
-  border-radius: 3px;
-  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, var(--gildhart-gold), var(--gildhart-green));
+  border-radius: 3px 3px 0 0;
+  margin: 0;
+  width: auto;
+}
+/* Giant outlined number anchoring the top-right corner of each card. */
+.svc-why-block-num {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: rgba(30, 61, 47, 0.10);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  pointer-events: none;
 }
 .svc-why-block-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
   background: rgba(30, 61, 47, 0.08);
   border: 1px solid rgba(30, 61, 47, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.375rem;
+  margin-bottom: 1.75rem;
   color: var(--gildhart-green);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .svc-why-block:hover .svc-why-block-icon {
   background: rgba(30, 61, 47, 0.14);
-  border-color: rgba(30, 61, 47, 0.3);
+  border-color: rgba(30, 61, 47, 0.30);
+  transform: scale(1.04);
 }
 .svc-why-block-icon svg {
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   stroke: currentColor;
   fill: none;
   stroke-width: 2;
@@ -3147,12 +3181,12 @@
 }
 .svc-why-block-title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-size: 1.375rem;
+  font-weight: 800;
   color: var(--navy);
-  line-height: 1.3;
-  margin: 0 0 0.875rem;
-  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0 0 1.125rem;
+  letter-spacing: -0.02em;
 }
 .svc-why-block-bullets {
   list-style: none;

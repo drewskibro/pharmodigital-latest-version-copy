@@ -95,14 +95,16 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
 
         <?php if ( ! empty( $blocks ) ) : ?>
             <div class="svc-why-blocks">
-                <?php foreach ( $blocks as $block ) :
+                <?php foreach ( $blocks as $i => $block ) :
                     $kind    = $block['icon_kind'] ?? 'instant';
                     $title   = $block['title']     ?? '';
                     $bullets = $block['bullets']   ?? array();
                     if ( ! $title && empty( $bullets ) ) continue;
+                    $num     = sprintf( '%02d', $i + 1 );
                 ?>
                     <article class="svc-why-block">
                         <div class="svc-why-block-accent" aria-hidden="true"></div>
+                        <span class="svc-why-block-num" aria-hidden="true"><?php echo esc_html( $num ); ?></span>
                         <div class="svc-why-block-icon">
                             <?php echo $icon_svg( $kind ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — static SVG ?>
                         </div>
