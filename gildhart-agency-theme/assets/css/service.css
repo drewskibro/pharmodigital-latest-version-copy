@@ -2897,13 +2897,14 @@
   text-align: center;
   margin: 2.5rem auto 0;
   padding: 1.75rem 2rem 0;
-  font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.7);
-  font-style: italic;
-  letter-spacing: 0.01em;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.005em;
   line-height: 1.75;
   max-width: 860px;
-  border-top: 1px solid rgba(201, 164, 74, 0.2);
+  border-top: 1px solid rgba(201, 164, 74, 0.25);
 }
 
 /* Lightbox overlay (shared by all .svc-lightbox-trigger on the page) */
