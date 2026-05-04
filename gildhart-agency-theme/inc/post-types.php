@@ -216,10 +216,11 @@ function gildhart_service_defaults_by_slug() {
             'service_why_headline'             => "Your Patients Are Asking Thousands of Clinical Questions.\nRight Now, They're Getting the Answers Somewhere Else.",
             'service_why_lead'                 => "Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can't answer them in that moment — they leave. They don't come back.",
             'service_why_lead_stat'            => 'Their question gets answered. Just not by you.',
-            // Track Record (A2)
+            // Track Record (A2 — cinematic redesign)
             'service_track_record_overline'    => 'The Track Record',
-            'service_track_record_headline'    => '18 months. 100,000+ patient conversations. Every single practice wondered if it would work for them. It did.',
-            'service_track_record_body'        => "We have never deployed an agent that didn't find revenue a practice didn't know it was missing. Southdowns found commercial needle stick contracts at midnight. Ealing filled HPV slots that used to sit empty. Not once have we deployed one that stayed quiet. That record matters to us more than anything else on this page.",
+            'service_track_record_headline'    => "Last Tuesday. 9:47pm.\nSomeone landed on your website with a specific question about Mounjaro.\nYour website had nothing to say.\nSo they went back to Google. Found another practice. Booked. Paid.\nNever came back.",
+            'service_track_record_intro'       => "We have never deployed an agent that didn't find revenue a practice didn't know it was missing.",
+            'service_track_record_kicker'      => "That record matters to us more than anything else on this page. The practices already live aren't reading pages like this anymore. They're reading their booking confirmations.",
             'service_track_record_close'       => 'Your practice will be no different.',
             // SalesAgent Pro (A2)
             'service_sa_pro_eyebrow'           => 'The Agent',
