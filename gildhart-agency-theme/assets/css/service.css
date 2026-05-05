@@ -3068,19 +3068,19 @@
 @media (min-width: 960px) {
   .svc-why-header {
     display: grid;
-    grid-template-columns: 1fr 1.05fr;
-    gap: 4rem;
+    grid-template-columns: 0.85fr 1.25fr;
+    gap: 3.5rem;
     align-items: center;
     text-align: left;
-    max-width: 1200px;
+    max-width: 1320px;
   }
-  /* Mirrors the homepage hero treatment exactly: the dark card surface
-   * is baked into the image asset itself; CSS only adds rounded corners,
-   * a soft drop shadow, and a subtle tilt. */
+  /* Mirrors the homepage hero: the dark card surface is baked into
+   * the image asset itself; CSS only adds rounded corners and a soft
+   * drop shadow. No rotation here — at this scale + rounded corners
+   * subpixel rotation softens edges. */
   .svc-why-header-visual {
     display: block;
     position: relative;
-    perspective: 1000px;
   }
   .svc-why-header-visual img {
     width: 100%;
@@ -3090,12 +3090,11 @@
     box-shadow:
       0 20px 60px rgba(0, 0, 0, 0.18),
       0 8px 24px rgba(0, 0, 0, 0.10);
-    transform: rotate(-2deg);
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
                 box-shadow 0.4s ease;
   }
   .svc-why-header-visual img:hover {
-    transform: translateY(-6px) rotate(-1deg) scale(1.02);
+    transform: translateY(-6px);
     box-shadow:
       0 28px 70px rgba(0, 0, 0, 0.22),
       0 12px 30px rgba(0, 0, 0, 0.12);
