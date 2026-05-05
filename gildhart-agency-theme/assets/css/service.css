@@ -3249,7 +3249,7 @@
 .svc-why-block-image {
   position: relative;
   width: calc(100% + 5rem);
-  height: 180px;
+  aspect-ratio: 3 / 2;
   margin: -3rem -2.5rem 1.75rem;
   overflow: hidden;
   background: rgba(30, 61, 47, 0.04);
