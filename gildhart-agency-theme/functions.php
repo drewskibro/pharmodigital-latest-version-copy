@@ -423,3 +423,23 @@ add_action( 'init', 'gildhart_ensure_permalinks' );
 add_filter( 'jpeg_quality',          function () { return 100; } );
 add_filter( 'wp_editor_set_quality', function () { return 100; } );
 add_filter( 'big_image_size_threshold', '__return_false' );
+
+/**
+ * Strip WordPress 6.7's `sizes="auto, …"` prefix from all image output.
+ *
+ * For lazy-loaded images, WP 6.7 prepends `auto` to the sizes attribute,
+ * intending to let the browser pick a srcset variant matching the actual
+ * rendered width. In practice, when the image is below the fold at first
+ * paint the rendered width evaluates to zero, so the browser picks the
+ * smallest srcset entry (300w) and upscales it — producing visible blur.
+ *
+ * Stripping the `auto,` token returns the browser to the explicit sizes
+ * value (or WP's default), which selects the correct variant from the
+ * srcset and renders crisply.
+ */
+add_filter( 'wp_get_attachment_image', function ( $html ) {
+    return preg_replace( '/(\bsizes=")auto,\s*/', '$1', $html );
+}, 99 );
+add_filter( 'wp_content_img_tag', function ( $img ) {
+    return preg_replace( '/(\bsizes=")auto,\s*/', '$1', $img );
+}, 99 );
