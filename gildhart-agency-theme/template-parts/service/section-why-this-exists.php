@@ -117,10 +117,6 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                         'alt'     => 'Agent in conversation with a patient',
                         'loading' => 'lazy',
                     ) ); ?>
-                    <div class="svc-why-header-visual-labels" aria-hidden="true">
-                        <span class="svc-why-header-visual-label svc-why-header-visual-label--muted">What patients use today</span>
-                        <span class="svc-why-header-visual-label svc-why-header-visual-label--brand">What you should be</span>
-                    </div>
                 <?php else : ?>
                     <div class="svc-why-header-visual-placeholder" aria-hidden="true">
                         <span>Insert product visual<br>e.g. agent mid-conversation</span>
