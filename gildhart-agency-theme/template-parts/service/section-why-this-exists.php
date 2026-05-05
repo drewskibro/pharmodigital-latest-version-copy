@@ -115,8 +115,9 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                 <?php if ( $header_image ) : ?>
                     <?php echo wp_get_attachment_image( $header_image, 'full', false, array(
                         'alt'     => 'Agent in conversation with a patient',
-                        'loading' => 'lazy',
-                        'sizes'   => '(min-width: 960px) 760px, 100vw',
+                        'loading' => 'eager',
+                        'fetchpriority' => 'high',
+                        'sizes'   => '(min-width: 960px) 600px, 100vw',
                     ) ); ?>
                 <?php else : ?>
                     <div class="svc-why-header-visual-placeholder" aria-hidden="true">
