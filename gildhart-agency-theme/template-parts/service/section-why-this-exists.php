@@ -144,9 +144,10 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
 
                         <div class="svc-why-block-image">
                             <?php if ( $image_id ) : ?>
-                                <?php echo wp_get_attachment_image( $image_id, 'medium_large', false, array(
+                                <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
                                     'alt'     => esc_attr( $title ),
                                     'loading' => 'lazy',
+                                    'sizes'   => '(min-width: 960px) 430px, 100vw',
                                 ) ); ?>
                             <?php else : ?>
                                 <div class="svc-why-block-image-placeholder" aria-hidden="true">
