@@ -3074,23 +3074,48 @@
     text-align: left;
     max-width: 1200px;
   }
+  /* No card: transparent PNG sits directly on the cream section
+   * background. Image dictates its own shape; labels underneath
+   * provide editorial framing instead of a frame. */
   .svc-why-header-visual {
     display: block;
     position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow:
-      0 4px 12px -4px rgba(13, 26, 18, 0.08),
-      0 25px 50px -12px rgba(13, 26, 18, 0.18),
-      0 50px 80px -20px rgba(13, 26, 18, 0.10);
   }
-  /* Image keeps its natural aspect ratio — container resizes to fit.
-   * No object-fit / fixed height because we don't want any cropping
-   * or stretching once the editor uploads a real image. */
   .svc-why-header-visual img {
     width: 100%;
     height: auto;
     display: block;
+  }
+  .svc-why-header-visual-labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    padding: 0 0.5rem;
+  }
+  .svc-why-header-visual-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .svc-why-header-visual-label--muted {
+    color: rgba(13, 26, 18, 0.45);
+  }
+  .svc-why-header-visual-label--brand {
+    color: var(--gildhart-green);
+    position: relative;
+  }
+  .svc-why-header-visual-label--brand::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--gildhart-gold);
+    margin: 0.55rem auto 0;
   }
   /* Placeholder still gets the 4:3 fallback box so the empty state
    * keeps its designed proportions. */
