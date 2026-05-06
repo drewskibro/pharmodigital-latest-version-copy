@@ -221,6 +221,7 @@ function gildhart_service_defaults_by_slug() {
             'service_track_record_headline'    => "Last Tuesday. 9:47pm.\nSomeone landed on your website with a specific question about Mounjaro.\nYour website had nothing to say.\nSo they went back to Google. Found another practice. Booked. Paid.\nNever came back.",
             'service_track_record_intro'       => "We have never deployed an agent that didn't find revenue a practice didn't know it was missing.",
             'service_track_record_kicker'      => "That record matters to us more than anything else on this page. The practices already live aren't reading pages like this anymore. They're reading their booking confirmations.",
+            'service_track_record_kicker_attribution' => '— The Pharmodigital team',
             'service_track_record_close'       => 'Your practice will be no different.',
             // SalesAgent Pro (A2)
             'service_sa_pro_eyebrow'           => 'The Agent',
