@@ -35,9 +35,9 @@ $intro    = gh_field( 'service_track_record_intro',    "We have never deployed a
 $stats = get_field( 'service_track_record_stats' );
 if ( empty( $stats ) ) {
     $stats = array(
-        array( 'value' => '6',    'label' => 'Deployments live' ),
+        array( 'value' => '50',   'label' => 'Agents deployed globally' ),
         array( 'value' => '100%', 'label' => 'Found new revenue' ),
-        array( 'value' => '0',    'label' => 'Stayed quiet' ),
+        array( 'value' => '0',    'label' => 'Exceptions' ),
     );
 }
 
@@ -93,14 +93,14 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
         <?php if ( ! empty( $stats ) ) : ?>
             <div class="svc-track-record-stats" role="list">
                 <?php foreach ( $stats as $stat ) :
-                    $stat_value = $stat['value'] ?? '';
-                    $stat_label = $stat['label'] ?? '';
-                    if ( ! $stat_value && ! $stat_label ) continue; ?>
+                    $stat_value = (string) ( $stat['value'] ?? '' );
+                    $stat_label = (string) ( $stat['label'] ?? '' );
+                    if ( '' === $stat_value && '' === $stat_label ) continue; ?>
                     <div class="svc-track-record-stat" role="listitem">
-                        <?php if ( $stat_value ) : ?>
+                        <?php if ( '' !== $stat_value ) : ?>
                             <span class="svc-track-record-stat-value"><?php echo esc_html( $stat_value ); ?></span>
                         <?php endif; ?>
-                        <?php if ( $stat_label ) : ?>
+                        <?php if ( '' !== $stat_label ) : ?>
                             <span class="svc-track-record-stat-label"><?php echo esc_html( $stat_label ); ?></span>
                         <?php endif; ?>
                     </div>
@@ -111,22 +111,22 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
         <?php if ( ! empty( $proofs ) ) : ?>
             <div class="svc-track-record-proofs">
                 <?php foreach ( $proofs as $proof ) :
-                    $metric = $proof['metric'] ?? '';
-                    $label  = $proof['label']  ?? '';
-                    $text   = $proof['text']   ?? '';
-                    $period = $proof['period'] ?? '';
-                    if ( ! $metric && ! $label && ! $text && ! $period ) continue; ?>
+                    $metric = (string) ( $proof['metric'] ?? '' );
+                    $label  = (string) ( $proof['label']  ?? '' );
+                    $text   = (string) ( $proof['text']   ?? '' );
+                    $period = (string) ( $proof['period'] ?? '' );
+                    if ( '' === $metric && '' === $label && '' === $text && '' === $period ) continue; ?>
                     <div class="svc-track-record-proof">
-                        <?php if ( $metric ) : ?>
+                        <?php if ( '' !== $metric ) : ?>
                             <p class="svc-track-record-proof-metric"><?php echo esc_html( $metric ); ?></p>
                         <?php endif; ?>
-                        <?php if ( $label ) : ?>
+                        <?php if ( '' !== $label ) : ?>
                             <p class="svc-track-record-proof-label"><?php echo esc_html( $label ); ?></p>
                         <?php endif; ?>
-                        <?php if ( $text ) : ?>
+                        <?php if ( '' !== $text ) : ?>
                             <p class="svc-track-record-proof-text"><?php echo esc_html( $text ); ?></p>
                         <?php endif; ?>
-                        <?php if ( $period ) : ?>
+                        <?php if ( '' !== $period ) : ?>
                             <p class="svc-track-record-proof-period"><?php echo esc_html( $period ); ?></p>
                         <?php endif; ?>
                     </div>
