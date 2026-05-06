@@ -3188,71 +3188,55 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
+/* Editorial stacked rows: each block fills the section width as a
+ * 2-column grid with image on one side and copy on the other. Even
+ * rows flip the image to the left for editorial rhythm. The card
+ * chrome (white background, border, shadow) is dropped entirely —
+ * each row sits on the section's cream background. */
 .svc-why-blocks {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  margin-top: 5rem;
 }
 .svc-why-block {
   position: relative;
-  padding: 3rem 2.5rem 2.5rem;
-  background: white;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.055), 0 1px 4px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "image content";
+  gap: 5rem;
+  align-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  overflow: visible;
 }
-.svc-why-block:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10), 0 4px 14px rgba(30, 61, 47, 0.10);
-  border-color: rgba(30, 61, 47, 0.25);
+.svc-why-block:nth-child(even) {
+  grid-template-areas: "content image";
 }
-/* Full-width gold-to-green gradient top bar — replaces the old 36px dash. */
-.svc-why-block-accent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gildhart-gold), var(--gildhart-green));
-  border-radius: 3px 3px 0 0;
-  margin: 0;
-  width: auto;
-}
-/* Giant outlined number anchoring the top-right corner of each card.
- * Hidden when the card has an image — the image takes over as the
- * dominant visual anchor and the navy 10% number would compete with
- * (or sit awkwardly on top of) the photo. */
-.svc-why-block-num {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.75rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 2.75rem;
-  font-weight: 800;
-  color: rgba(30, 61, 47, 0.10);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  z-index: 2;
-}
-.svc-why-block--has-image .svc-why-block-num { display: none; }
-/* Card image area — sits flush at the top of the card, full width.
- * Negative margins pull the image past the card's 2.5rem side padding
- * and 3rem top padding so it bleeds edge-to-edge. The card's
- * overflow:hidden + border-radius handles top-corner rounding.
- * When an ACF image is set the icon block + corner number are hidden
- * (the image carries the visual weight). When empty, a styled
- * placeholder shows the card's icon centred with a hint label. */
+/* Decorative accent + corner number from the old card layout are
+ * superseded by the in-content number; hide rather than remove so
+ * any cached markup still renders cleanly. */
+.svc-why-block-accent { display: none; }
+/* Image area now occupies a full grid column — no negative-margin
+ * bleed, native aspect ratio, soft drop shadow + rounded corners
+ * matching the homepage hero treatment. Renders at ~580px wide on
+ * desktop, large enough that 1024w / 1536w srcset variants give
+ * pristine downscaling on retina displays. */
 .svc-why-block-image {
+  grid-area: image;
   position: relative;
-  width: calc(100% + 5rem);
+  width: 100%;
   aspect-ratio: 3 / 2;
-  margin: -3rem -2.5rem 1.75rem;
+  margin: 0;
+  border-radius: 20px;
   overflow: hidden;
   background: rgba(30, 61, 47, 0.04);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.16),
+    0 8px 24px rgba(0, 0, 0, 0.08);
 }
 .svc-why-block-image img {
   width: 100%;
@@ -3262,8 +3246,32 @@
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .svc-why-block:hover .svc-why-block-image img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
+.svc-why-block-content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 520px;
+}
+/* Editorial number above the title — small uppercase brand tag,
+ * not the giant outlined corner number. Always visible (the old
+ * "hide when image present" rule no longer applies). */
+.svc-why-block-num {
+  position: static;
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--gildhart-gold);
+  line-height: 1;
+  text-transform: uppercase;
+  pointer-events: none;
+  margin: 0;
+}
+.svc-why-block--has-image .svc-why-block-num { display: block; }
 .svc-why-block-image-placeholder {
   width: 100%;
   height: 100%;
@@ -3340,11 +3348,11 @@
 }
 .svc-why-block-title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.375rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.375rem);
   font-weight: 800;
   color: var(--navy);
-  line-height: 1.25;
-  margin: 0 0 1.125rem;
+  line-height: 1.15;
+  margin: 0;
   letter-spacing: -0.02em;
 }
 .svc-why-block-bullets {
@@ -3353,26 +3361,26 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
+  gap: 1rem;
 }
 .svc-why-block-bullets li {
   display: flex;
   align-items: flex-start;
-  gap: 0.625rem;
-  font-size: 0.9375rem;
+  gap: 0.875rem;
+  font-size: 1.0625rem;
   color: var(--gray-600);
   line-height: 1.55;
 }
 .svc-why-block-bullets li::before {
   content: '';
   display: block;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: rgba(30, 61, 47, 0.10);
   border: 1.5px solid rgba(30, 61, 47, 0.35);
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 3px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4.5 8l2.5 2.5 4.5-5' stroke='%231E3D2F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-size: 14px;
   background-repeat: no-repeat;
@@ -3383,19 +3391,20 @@
   font-weight: 700;
 }
 
+/* Below 900px: collapse to a single column with image always above
+ * copy. The :nth-child(even) flip is overridden so all rows share
+ * the same orientation on mobile. */
 @media (max-width: 900px) {
-  .svc-why-blocks { grid-template-columns: 1fr; gap: 1.5rem; }
+  .svc-why-blocks { gap: 3.5rem; margin-top: 3rem; }
+  .svc-why-block,
+  .svc-why-block:nth-child(even) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "image" "content";
+    gap: 1.75rem;
+  }
+  .svc-why-block-content { max-width: none; }
   .svc-why { padding: 5rem 1.5rem 5.5rem; }
   .svc-why-headline { font-size: clamp(1.75rem, 6vw, 2.5rem); }
-}
-@media (max-width: 640px) {
-  .svc-why-block { padding: 2rem 1.5rem 1.875rem; }
-  /* Re-pin the bleeding image to the smaller mobile padding. */
-  .svc-why-block-image {
-    width: calc(100% + 3rem);
-    height: 160px;
-    margin: -2rem -1.5rem 1.5rem;
-  }
 }
 
 /* ── A2: Track Record section ───────────────────────────────── */
