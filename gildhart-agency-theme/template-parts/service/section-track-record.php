@@ -32,17 +32,42 @@ $overline = gh_field( 'service_track_record_overline', 'The Track Record' );
 $headline = gh_field( 'service_track_record_headline', "Last Tuesday. 9:47pm.\nSomeone landed on your website with a specific question about Mounjaro.\nYour website had nothing to say.\nSo they went back to Google. Found another practice. Booked. Paid.\nNever came back." );
 $intro    = gh_field( 'service_track_record_intro',    "We have never deployed an agent that didn't find revenue a practice didn't know it was missing." );
 
-$proofs = get_field( 'service_track_record_proofs' );
-if ( empty( $proofs ) ) {
-    $proofs = array(
-        array( 'label' => 'Southdowns',   'text' => 'Found commercial needle stick contracts at midnight.' ),
-        array( 'label' => 'Ealing',       'text' => 'Filled HPV slots that used to sit empty.' ),
-        array( 'label' => 'Our network',  'text' => 'Not once have we deployed one that stayed quiet.' ),
+$stats = get_field( 'service_track_record_stats' );
+if ( empty( $stats ) ) {
+    $stats = array(
+        array( 'value' => '6',    'label' => 'Deployments live' ),
+        array( 'value' => '100%', 'label' => 'Found new revenue' ),
+        array( 'value' => '0',    'label' => 'Stayed quiet' ),
     );
 }
 
-$kicker = gh_field( 'service_track_record_kicker', "That record matters to us more than anything else on this page. The practices already live aren't reading pages like this anymore. They're reading their booking confirmations." );
-$close  = gh_field( 'service_track_record_close',  'Your practice will be no different.' );
+$proofs = get_field( 'service_track_record_proofs' );
+if ( empty( $proofs ) ) {
+    $proofs = array(
+        array(
+            'metric' => '£200K/yr',
+            'label'  => 'Southdowns',
+            'text'   => 'Generated after hours. No night staff required.',
+            'period' => 'Last 12 months',
+        ),
+        array(
+            'metric' => '55/mo',
+            'label'  => 'Ealing',
+            'text'   => 'HPV bookings — up from sporadic.',
+            'period' => 'Since deploy',
+        ),
+        array(
+            'metric' => '6/6',
+            'label'  => 'Our network',
+            'text'   => 'Practices in revenue. None stayed quiet.',
+            'period' => 'Across all deployments',
+        ),
+    );
+}
+
+$kicker             = gh_field( 'service_track_record_kicker', "That record matters to us more than anything else on this page. The practices already live aren't reading pages like this anymore. They're reading their booking confirmations." );
+$kicker_attribution = gh_field( 'service_track_record_kicker_attribution', '— The Pharmodigital team' );
+$close              = gh_field( 'service_track_record_close', 'Your practice will be no different.' );
 
 $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $headline ) ) );
 ?>
@@ -65,18 +90,44 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
             <p class="svc-track-record-intro"><?php echo wp_kses_post( $intro ); ?></p>
         <?php endif; ?>
 
+        <?php if ( ! empty( $stats ) ) : ?>
+            <div class="svc-track-record-stats" role="list">
+                <?php foreach ( $stats as $stat ) :
+                    $stat_value = $stat['value'] ?? '';
+                    $stat_label = $stat['label'] ?? '';
+                    if ( ! $stat_value && ! $stat_label ) continue; ?>
+                    <div class="svc-track-record-stat" role="listitem">
+                        <?php if ( $stat_value ) : ?>
+                            <span class="svc-track-record-stat-value"><?php echo esc_html( $stat_value ); ?></span>
+                        <?php endif; ?>
+                        <?php if ( $stat_label ) : ?>
+                            <span class="svc-track-record-stat-label"><?php echo esc_html( $stat_label ); ?></span>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
         <?php if ( ! empty( $proofs ) ) : ?>
             <div class="svc-track-record-proofs">
                 <?php foreach ( $proofs as $proof ) :
-                    $label = $proof['label'] ?? '';
-                    $text  = $proof['text']  ?? '';
-                    if ( ! $label && ! $text ) continue; ?>
+                    $metric = $proof['metric'] ?? '';
+                    $label  = $proof['label']  ?? '';
+                    $text   = $proof['text']   ?? '';
+                    $period = $proof['period'] ?? '';
+                    if ( ! $metric && ! $label && ! $text && ! $period ) continue; ?>
                     <div class="svc-track-record-proof">
+                        <?php if ( $metric ) : ?>
+                            <p class="svc-track-record-proof-metric"><?php echo esc_html( $metric ); ?></p>
+                        <?php endif; ?>
                         <?php if ( $label ) : ?>
                             <p class="svc-track-record-proof-label"><?php echo esc_html( $label ); ?></p>
                         <?php endif; ?>
                         <?php if ( $text ) : ?>
                             <p class="svc-track-record-proof-text"><?php echo esc_html( $text ); ?></p>
+                        <?php endif; ?>
+                        <?php if ( $period ) : ?>
+                            <p class="svc-track-record-proof-period"><?php echo esc_html( $period ); ?></p>
                         <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
@@ -84,7 +135,13 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
         <?php endif; ?>
 
         <?php if ( $kicker ) : ?>
-            <p class="svc-track-record-kicker"><?php echo wp_kses_post( $kicker ); ?></p>
+            <figure class="svc-track-record-kicker-wrap">
+                <span class="svc-track-record-kicker-mark" aria-hidden="true">&ldquo;</span>
+                <blockquote class="svc-track-record-kicker"><?php echo wp_kses_post( $kicker ); ?></blockquote>
+                <?php if ( $kicker_attribution ) : ?>
+                    <figcaption class="svc-track-record-kicker-attribution"><?php echo esc_html( $kicker_attribution ); ?></figcaption>
+                <?php endif; ?>
+            </figure>
         <?php endif; ?>
 
         <?php if ( $close ) : ?>

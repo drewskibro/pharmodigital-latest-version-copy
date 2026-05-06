@@ -3502,29 +3502,85 @@
   font-weight: 400;
 }
 
-/* Proof trio — proper cards now (was hairline-bordered table-style row).
- * Each "moment" sits in a white card with a navy-tinted border, soft
- * shadow, and a small gold accent bar below the label so it reads as a
- * named credibility moment rather than a tabulated cell. */
+/* Stat strip — aggregate metrics shown above the proof trio. Three big
+ * numbers with mono uppercase labels, separated by hairline rules.
+ * Sits on cream directly (no card chrome) for an editorial feel. */
+.svc-track-record-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 3.5rem auto 0;
+  max-width: 880px;
+  padding: 1.75rem 0;
+  border-top: 1px solid rgba(13, 26, 18, 0.10);
+  border-bottom: 1px solid rgba(13, 26, 18, 0.10);
+}
+.svc-track-record-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1.25rem;
+  border-right: 1px solid rgba(13, 26, 18, 0.10);
+}
+.svc-track-record-stat:last-child { border-right: none; }
+.svc-track-record-stat-value {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.svc-track-record-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.55);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Proof trio — case-study cards. Each card now leads with a big metric
+ * (gold display number), then a small uppercase practice label, then
+ * the bold outcome line, then a mono period stamp. The metric carries
+ * the visual weight; everything else is supporting context. */
 .svc-track-record-proofs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin: 4rem 0;
+  margin: 2.75rem 0 4rem;
 }
 .svc-track-record-proof {
   background: white;
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 16px;
-  padding: 1.875rem 1.5rem 1.625rem;
+  padding: 2.25rem 1.5rem 1.75rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
   box-shadow: 0 6px 24px rgba(13, 26, 18, 0.06), 0 1px 3px rgba(13, 26, 18, 0.04);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .svc-track-record-proof:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(13, 26, 18, 0.10), 0 2px 6px rgba(30, 61, 47, 0.06);
-  border-color: rgba(30, 61, 47, 0.20);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(13, 26, 18, 0.12), 0 3px 8px rgba(30, 61, 47, 0.08);
+  border-color: rgba(201, 164, 74, 0.45);
+}
+.svc-track-record-proof-metric {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  font-weight: 800;
+  color: var(--gildhart-gold);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 0.25rem;
+  font-variant-numeric: tabular-nums;
 }
 .svc-track-record-proof-label {
   font-family: var(--font-mono);
@@ -3532,51 +3588,76 @@
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin: 0 0 0.875rem;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.625rem;
-}
-.svc-track-record-proof-label::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 28px;
-  height: 2px;
-  background: var(--gildhart-gold);
-  opacity: 0.65;
-  border-radius: 2px;
+  color: rgba(13, 26, 18, 0.55);
+  margin: 0;
 }
 .svc-track-record-proof-text {
   font-size: 1rem;
   color: var(--navy);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.5;
-  margin: 0;
+  margin: 0.25rem 0 0;
+}
+.svc-track-record-proof-period {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.40);
+  margin: 0.25rem 0 0;
+  padding-top: 0.875rem;
+  border-top: 1px solid rgba(13, 26, 18, 0.06);
 }
 
-/* Kicker — pull quote. Drop italic, navy left-border, soft cream-deeper-
- * than-bg tint, bumped weight + size. Reads as the founder's note set
- * apart from the intro / proofs above. */
+/* Kicker — pull quote with a giant decorative gold opening mark, the
+ * quote body in italic-weight navy, and a mono uppercase attribution
+ * line below. Reads as a named, owned conviction rather than floating
+ * marketing copy. */
+.svc-track-record-kicker-wrap {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem 0 4.5rem;
+  text-align: left;
+}
+.svc-track-record-kicker-mark {
+  position: absolute;
+  top: -0.9rem;
+  left: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 6rem;
+  font-weight: 800;
+  color: var(--gildhart-gold);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.85;
+}
 .svc-track-record-kicker {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1.25rem, 1.85vw, 1.4375rem);
-  font-weight: 700;
-  font-style: normal;
+  font-weight: 600;
+  font-style: italic;
   color: var(--navy);
   line-height: 1.55;
   letter-spacing: -0.01em;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 1.75rem 2rem;
-  background: rgba(201, 164, 74, 0.06);
-  border: 1px solid rgba(201, 164, 74, 0.18);
-  border-left: 4px solid var(--gildhart-green);
-  border-radius: 0 14px 14px 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   text-align: left;
+}
+.svc-track-record-kicker-attribution {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.55);
+  margin: 1.25rem 0 0;
+  display: block;
 }
 
 /* Close — verdict stamp. Larger font, flanked by horizontal gold lines
@@ -3611,13 +3692,33 @@
 @media (max-width: 768px) {
   .svc-track-record { padding: 4.5rem 1.5rem 4.5rem; }
   .svc-track-record-headline { margin-bottom: 2rem; }
+  .svc-track-record-stats {
+    grid-template-columns: 1fr;
+    margin-top: 2.5rem;
+    padding: 1.25rem 0;
+    max-width: 360px;
+  }
+  .svc-track-record-stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(13, 26, 18, 0.10);
+    padding: 1rem 0.5rem;
+  }
+  .svc-track-record-stat:last-child { border-bottom: none; }
   .svc-track-record-proofs {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-    margin: 2.5rem 0;
+    margin: 2rem 0 3rem;
   }
-  .svc-track-record-proof { padding: 1.5rem 1.25rem 1.375rem; }
-  .svc-track-record-kicker { padding: 1.5rem 1.5rem; font-size: 1.125rem; }
+  .svc-track-record-proof { padding: 2rem 1.25rem 1.5rem; }
+  .svc-track-record-kicker-wrap {
+    padding: 0 1rem 0 3rem;
+  }
+  .svc-track-record-kicker-mark {
+    font-size: 4.5rem;
+    top: -0.5rem;
+    left: 0.25rem;
+  }
+  .svc-track-record-kicker { font-size: 1.125rem; }
   .svc-track-record-close {
     margin-top: 3rem;
     flex-direction: column;
