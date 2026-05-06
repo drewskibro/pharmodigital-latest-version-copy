@@ -139,15 +139,12 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                     $classes  = 'svc-why-block' . ( $image_id ? ' svc-why-block--has-image' : '' );
                 ?>
                     <article class="<?php echo esc_attr( $classes ); ?>">
-                        <div class="svc-why-block-accent" aria-hidden="true"></div>
-                        <span class="svc-why-block-num" aria-hidden="true"><?php echo esc_html( $num ); ?></span>
-
                         <div class="svc-why-block-image">
                             <?php if ( $image_id ) : ?>
                                 <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
                                     'alt'     => esc_attr( $title ),
                                     'loading' => 'lazy',
-                                    'sizes'   => '(min-width: 960px) 430px, 100vw',
+                                    'sizes'   => '(min-width: 960px) 580px, 100vw',
                                 ) ); ?>
                             <?php else : ?>
                                 <div class="svc-why-block-image-placeholder" aria-hidden="true">
@@ -159,18 +156,21 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                             <?php endif; ?>
                         </div>
 
-                        <?php if ( $title ) : ?>
-                            <h3 class="svc-why-block-title"><?php echo esc_html( $title ); ?></h3>
-                        <?php endif; ?>
-                        <?php if ( ! empty( $bullets ) ) : ?>
-                            <ul class="svc-why-block-bullets">
-                                <?php foreach ( $bullets as $bullet ) :
-                                    $text = $bullet['text'] ?? '';
-                                    if ( ! $text ) continue; ?>
-                                    <li><?php echo wp_kses_post( $text ); ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
+                        <div class="svc-why-block-content">
+                            <span class="svc-why-block-num" aria-hidden="true"><?php echo esc_html( $num ); ?></span>
+                            <?php if ( $title ) : ?>
+                                <h3 class="svc-why-block-title"><?php echo esc_html( $title ); ?></h3>
+                            <?php endif; ?>
+                            <?php if ( ! empty( $bullets ) ) : ?>
+                                <ul class="svc-why-block-bullets">
+                                    <?php foreach ( $bullets as $bullet ) :
+                                        $text = $bullet['text'] ?? '';
+                                        if ( ! $text ) continue; ?>
+                                        <li><?php echo wp_kses_post( $text ); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
                     </article>
                 <?php endforeach; ?>
             </div>
