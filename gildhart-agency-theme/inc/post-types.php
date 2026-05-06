@@ -229,7 +229,8 @@ function gildhart_service_defaults_by_slug() {
             'service_sa_pro_cta_label'         => 'See The System',
             'service_sa_pro_cta_url'           => '#eligibility',
             // Testimonial (A3)
-            'service_testimonial_badge'        => 'Pharmacy Client',
+            'service_testimonial_metric_value' => '#1',
+            'service_testimonial_metric_label' => 'Outranks Boots in local search',
             'service_testimonial_quote'        => "<strong>We're now outranking Boots and major chains in our area.</strong> But what changed everything was the AI sales agent. It handles patient inquiries around the clock, converts the traffic we're driving, and books appointments without us lifting a finger.\n\nWe're now <em>taking that national.</em>\n\nDrew builds pharmacy growth engines. <strong>I trust him because he understands both pharmacy and digital, that's rare to find.</strong>",
             'service_testimonial_name'         => 'Rahul Puri',
             'service_testimonial_role'         => 'Owner, Puri Pharmacy',
