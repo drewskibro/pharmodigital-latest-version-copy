@@ -76,26 +76,39 @@ if ( empty( $cards ) ) {
 
         <?php if ( ! empty( $cards ) ) : ?>
             <div class="svc-intel-cards">
-                <?php foreach ( $cards as $card ) :
+                <?php foreach ( $cards as $i => $card ) :
                     $query   = $card['query']   ?? '';
                     $outcome = $card['outcome'] ?? '';
                     $intel   = $card['intel']   ?? '';
                     if ( ! $query && ! $outcome && ! $intel ) continue;
+                    $num = sprintf( '%02d', $i + 1 );
                 ?>
                     <article class="svc-intel-card">
+                        <div class="svc-intel-card-status" aria-hidden="true">
+                            <span class="svc-intel-card-status-dot"></span>
+                            <span>Intelligence Moment &mdash; <?php echo esc_html( $num ); ?></span>
+                        </div>
+
                         <?php if ( $query ) : ?>
-                            <p class="svc-intel-card-label svc-intel-card-label--patient">Patient Query</p>
-                            <p class="svc-intel-card-text"><?php echo esc_html( $query ); ?></p>
-                            <div class="svc-intel-card-divider" aria-hidden="true"></div>
+                            <div class="svc-intel-card-moment">
+                                <p class="svc-intel-card-label svc-intel-card-label--patient">Patient Query</p>
+                                <p class="svc-intel-card-text"><?php echo esc_html( $query ); ?></p>
+                            </div>
                         <?php endif; ?>
                         <?php if ( $outcome ) : ?>
-                            <p class="svc-intel-card-label svc-intel-card-label--agent">Agent Outcome</p>
-                            <p class="svc-intel-card-outcome"><?php echo esc_html( $outcome ); ?></p>
-                            <div class="svc-intel-card-divider" aria-hidden="true"></div>
+                            <div class="svc-intel-card-moment">
+                                <p class="svc-intel-card-label svc-intel-card-label--agent">Agent Outcome</p>
+                                <p class="svc-intel-card-outcome"><?php echo esc_html( $outcome ); ?></p>
+                            </div>
                         <?php endif; ?>
                         <?php if ( $intel ) : ?>
-                            <p class="svc-intel-card-label svc-intel-card-label--intel">Content Signal</p>
-                            <p class="svc-intel-card-intel"><?php echo wp_kses_post( $intel ); ?></p>
+                            <div class="svc-intel-card-moment svc-intel-card-moment--intel">
+                                <p class="svc-intel-card-label svc-intel-card-label--intel">Content Signal</p>
+                                <div class="svc-intel-card-asset">
+                                    <span class="svc-intel-card-asset-chip" aria-hidden="true">&#8599; Ranking Live</span>
+                                    <p class="svc-intel-card-asset-body"><?php echo wp_kses_post( $intel ); ?></p>
+                                </div>
+                            </div>
                         <?php endif; ?>
                     </article>
                 <?php endforeach; ?>
