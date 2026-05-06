@@ -4308,10 +4308,36 @@
   background: var(--cream);
   padding: 7rem 2rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+/* Dual radial halos — forest green top-left, gold bottom-right.
+ * Atmospheric depth matching Track Record + Why This Exists. */
+.svc-intel::before {
+  content: '';
+  position: absolute;
+  top: -180px;
+  left: -160px;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, rgba(30, 61, 47, 0.10) 0%, transparent 65%);
+  pointer-events: none;
+}
+.svc-intel::after {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  right: -180px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201, 164, 74, 0.10) 0%, transparent 65%);
+  pointer-events: none;
 }
 .svc-intel-inner {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 .svc-intel-hero {
   display: flex;
@@ -4372,31 +4398,103 @@
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
+/* Card chrome: white surface, soft shadow, no more heavy green left-
+ * border (replaced by an internal gold timeline). Extra left padding
+ * holds the timeline gutter. */
 .svc-intel-card {
   background: white;
   border-radius: 16px;
-  padding: 2rem 1.75rem;
+  padding: 1.5rem 1.75rem 1.875rem 2.875rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  border-left: 4px solid var(--gildhart-green);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 24px rgba(13, 26, 18, 0.06), 0 1px 3px rgba(13, 26, 18, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
 }
 .svc-intel-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(30, 61, 47, 0.25);
+  box-shadow: 0 18px 50px rgba(13, 26, 18, 0.10), 0 0 0 1px rgba(30, 61, 47, 0.18);
+  border-color: rgba(30, 61, 47, 0.15);
 }
+/* Vertical timeline line down the left, faded gold gradient. Spans
+ * from below the status header to just above the bottom edge. The
+ * three timeline dots (one per moment) sit on top of this line. */
+.svc-intel-card::before {
+  content: '';
+  position: absolute;
+  left: 1.65rem;
+  top: 4.25rem;
+  bottom: 1.875rem;
+  width: 1.5px;
+  background: linear-gradient(180deg, rgba(201, 164, 74, 0.7) 0%, rgba(201, 164, 74, 0.20) 100%);
+}
+
+/* Status header — pulse dot + mono uppercase moment number. Negative
+ * margins pull it edge-to-edge across the top of the card, with its
+ * own padding and a hairline bottom border. */
+.svc-intel-card-status {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.50);
+  margin: -1.5rem -1.75rem 1.5rem -2.875rem;
+  padding: 1.125rem 1.75rem 1.125rem 2.875rem;
+  border-bottom: 1px solid rgba(13, 26, 18, 0.06);
+  background: linear-gradient(180deg, rgba(245, 240, 232, 0.45), rgba(255, 255, 255, 0));
+  border-radius: 16px 16px 0 0;
+}
+.svc-intel-card-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  box-shadow: 0 0 6px rgba(201, 164, 74, 0.65);
+  animation: svcLivePulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Each labelled moment — query / outcome / intel. Hairline bottom
+ * border separates moments (except the last). The leading timeline
+ * dot is anchored on the left edge, sitting on the card's gold line. */
+.svc-intel-card-moment {
+  position: relative;
+  padding-bottom: 1.125rem;
+  margin-bottom: 1.125rem;
+  border-bottom: 1px solid rgba(13, 26, 18, 0.05);
+}
+.svc-intel-card-moment:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.svc-intel-card-moment::before {
+  content: '';
+  position: absolute;
+  left: -1.55rem;
+  top: 0.4rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  box-shadow: 0 0 0 3px white, 0 0 0 4px rgba(201, 164, 74, 0.30);
+}
+
 .svc-intel-card-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.10em;
+  font-weight: 800;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin: 0 0 0.875rem;
+  margin: 0 0 0.625rem;
 }
-.svc-intel-card-label--patient { color: var(--gray-400); }
+.svc-intel-card-label--patient { color: rgba(13, 26, 18, 0.55); }
 .svc-intel-card-label--agent   { color: var(--gildhart-green); }
-.svc-intel-card-label--intel   { color: #b45309; }
+.svc-intel-card-label--intel   { color: var(--gildhart-gold); }
+
 .svc-intel-card-text {
   font-size: 0.9375rem;
   color: var(--navy);
@@ -4404,31 +4502,59 @@
   font-weight: 500;
   margin: 0;
 }
-.svc-intel-card-divider {
-  width: 100%;
-  height: 1px;
-  background: var(--gray-100);
-  margin: 1.125rem 0;
-}
 .svc-intel-card-outcome {
   font-size: 0.9375rem;
   color: var(--gray-600);
   line-height: 1.6;
   margin: 0;
 }
-.svc-intel-card-intel {
-  font-size: 0.8125rem;
-  color: #92400e;
-  line-height: 1.5;
-  background: rgba(180, 83, 9, 0.06);
-  border: 1px solid rgba(180, 83, 9, 0.12);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  margin: 0;
+
+/* Deployed asset — navy mini-card replacing the old amber callout.
+ * Gold "↗ Ranking Live" chip + white body reads as a published,
+ * indexed intelligence asset rather than a warning state. The
+ * subtle gold corner halo gives the card depth. */
+.svc-intel-card-asset {
+  background: linear-gradient(135deg, #0f172a 0%, #131c33 60%, #18213a 100%);
+  border-radius: 10px;
+  padding: 1rem 1.125rem 1.125rem;
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
 }
-.svc-intel-card-intel strong {
+.svc-intel-card-asset::before {
+  content: '';
+  position: absolute;
+  top: -28px;
+  right: -28px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(201, 164, 74, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.svc-intel-card-asset-chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 0.625rem;
+  position: relative;
+  z-index: 1;
+}
+.svc-intel-card-asset-body {
+  font-size: 0.825rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+.svc-intel-card-asset-body strong {
   font-weight: 700;
-  color: #78350f;
+  color: white;
 }
 
 @media (max-width: 900px) {
