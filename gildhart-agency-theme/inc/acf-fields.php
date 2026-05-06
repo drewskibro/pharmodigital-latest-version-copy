@@ -2562,10 +2562,12 @@ acf_add_local_field_group( array(
             'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
             'instructions' => 'Portrait orientation works best (260×300 desktop / 200×230 mobile).',
         ),
-        array( 'key' => 'field_gh_service_testimonial_badge', 'label' => 'Badge Text',  'name' => 'service_testimonial_badge', 'type' => 'text', 'instructions' => 'Caps label below the photo, e.g. "Pharmacy Client".' ),
+        array( 'key' => 'field_gh_service_testimonial_metric_value', 'label' => 'Metric Value', 'name' => 'service_testimonial_metric_value', 'type' => 'text', 'instructions' => 'Big result number/anchor below the photo. e.g. "#1", "+£89K", "55/mo", "47×".' ),
+        array( 'key' => 'field_gh_service_testimonial_metric_label', 'label' => 'Metric Label', 'name' => 'service_testimonial_metric_label', 'type' => 'text', 'instructions' => 'Mono uppercase line under the metric value. e.g. "Outranks Boots in local search".' ),
         array( 'key' => 'field_gh_service_testimonial_quote', 'label' => 'Quote',       'name' => 'service_testimonial_quote', 'type' => 'textarea', 'rows' => 8, 'instructions' => 'Inline <strong> + <em> allowed. Em-tags render as forest-green. Blank lines become paragraph breaks.' ),
         array( 'key' => 'field_gh_service_testimonial_name',  'label' => 'Name',        'name' => 'service_testimonial_name',  'type' => 'text' ),
         array( 'key' => 'field_gh_service_testimonial_role',  'label' => 'Role',        'name' => 'service_testimonial_role',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_testimonial_badge', 'label' => 'Badge Text (deprecated)', 'name' => 'service_testimonial_badge', 'type' => 'text', 'instructions' => 'No longer rendered as of the result-metric redesign. Field kept for legacy data only — leave empty.' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );

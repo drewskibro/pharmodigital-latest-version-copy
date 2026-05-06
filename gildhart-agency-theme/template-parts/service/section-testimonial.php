@@ -3,18 +3,23 @@
  * Service: Testimonial section.
  *
  * Cream-warm two-column section with a portrait photo on the left
- * (with a gold-pulse "client kind" badge below it) and the quote on
- * the right — gold quotation mark, body quote with inline <strong> +
- * <em> accents (em renders forest-green), gold gradient divider, and
- * name + role meta.
+ * (with a result-metric card below) and the quote on the right —
+ * a large watermark gold quote-mark anchors the content, body quote
+ * with inline <strong> + <em> accents (em renders forest-green),
+ * gold gradient divider, and name + role meta.
  *
  * Reads from per-section ACF group `Service · Testimonial`. Returns
  * early when the show toggle is off. Falls back to the Rahul Puri /
  * Puri Pharmacy testimonial from the static spec.
  *
  * Generic enough that other services can reuse it for their own
- * testimonials — the badge text, photo, quote, and meta are all ACF-
+ * testimonials — the photo, metric, quote, and meta are all ACF-
  * controlled.
+ *
+ * Legacy: the `service_testimonial_badge` ACF field is no longer
+ * rendered as of the result-metric redesign (the "PHARMACY CLIENT"
+ * pill read as tacky and disconnected from outcomes). The metric
+ * card carries that visual weight now and ties to a real number.
  *
  * @package Gildhart
  */
@@ -23,11 +28,12 @@ if ( ! gh_field( 'service_testimonial_show', 1 ) ) {
     return;
 }
 
-$photo_id = get_field( 'service_testimonial_photo' );
-$badge    = gh_field( 'service_testimonial_badge', 'Pharmacy Client' );
-$quote    = gh_field( 'service_testimonial_quote', "<strong>We're now outranking Boots and major chains in our area.</strong> But what changed everything was the AI sales agent. It handles patient inquiries around the clock, converts the traffic we're driving, and books appointments without us lifting a finger.\n\nWe're now <em>taking that national.</em>\n\nDrew builds pharmacy growth engines. <strong>I trust him because he understands both pharmacy and digital, that's rare to find.</strong>" );
-$name     = gh_field( 'service_testimonial_name', 'Rahul Puri' );
-$role     = gh_field( 'service_testimonial_role', 'Owner, Puri Pharmacy' );
+$photo_id     = get_field( 'service_testimonial_photo' );
+$metric_value = gh_field( 'service_testimonial_metric_value', '#1' );
+$metric_label = gh_field( 'service_testimonial_metric_label', 'Outranks Boots in local search' );
+$quote        = gh_field( 'service_testimonial_quote', "<strong>We're now outranking Boots and major chains in our area.</strong> But what changed everything was the AI sales agent. It handles patient inquiries around the clock, converts the traffic we're driving, and books appointments without us lifting a finger.\n\nWe're now <em>taking that national.</em>\n\nDrew builds pharmacy growth engines. <strong>I trust him because he understands both pharmacy and digital, that's rare to find.</strong>" );
+$name         = gh_field( 'service_testimonial_name', 'Rahul Puri' );
+$role         = gh_field( 'service_testimonial_role', 'Owner, Puri Pharmacy' );
 
 // Quote can be authored with blank lines as paragraph breaks; render
 // each chunk as its own block separated by <br><br> so inline
@@ -42,7 +48,7 @@ if ( $quote ) {
 
 <section class="svc-testimonial">
     <div class="svc-testimonial-inner">
-        <?php if ( $photo_id || $badge ) : ?>
+        <?php if ( $photo_id || $metric_value ) : ?>
             <div class="svc-testimonial-photo-col">
                 <?php if ( $photo_id ) : ?>
                     <div class="svc-testimonial-photo-wrap">
@@ -52,10 +58,14 @@ if ( $quote ) {
                         ) ); ?>
                     </div>
                 <?php endif; ?>
-                <?php if ( $badge ) : ?>
-                    <div class="svc-testimonial-badge">
-                        <span class="svc-testimonial-badge-dot" aria-hidden="true"></span>
-                        <?php echo esc_html( $badge ); ?>
+                <?php if ( $metric_value || $metric_label ) : ?>
+                    <div class="svc-testimonial-metric">
+                        <?php if ( $metric_value ) : ?>
+                            <span class="svc-testimonial-metric-value"><?php echo esc_html( $metric_value ); ?></span>
+                        <?php endif; ?>
+                        <?php if ( $metric_label ) : ?>
+                            <span class="svc-testimonial-metric-label"><?php echo esc_html( $metric_label ); ?></span>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             </div>
