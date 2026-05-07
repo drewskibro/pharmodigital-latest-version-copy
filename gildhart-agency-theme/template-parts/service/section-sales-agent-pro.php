@@ -36,7 +36,7 @@ $headline = gh_field( 'service_sa_pro_headline', "ChatGPT Recommended You.\nThe 
 $story = get_field( 'service_sa_pro_story' );
 if ( empty( $story ) ) {
     $story = array(
-        array( 'type' => 'line',      'text' => '<strong>10:47pm. Tuesday.</strong>' ),
+        array( 'type' => 'line',      'text' => 'Tuesday · 10:47 PM' ),
         array( 'type' => 'line',      'text' => 'A patient Googles weight loss injections. ChatGPT recommends <em>your clinic.</em>' ),
         array( 'type' => 'line',      'text' => 'She clicks through. Lands on your site. Reads the services page.' ),
         array( 'type' => 'break',     'text' => '' ),
@@ -113,9 +113,24 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
             <div class="svc-sa-pro-story-grid">
                 <?php if ( ! empty( $story ) ) : ?>
                     <div class="svc-sa-pro-story">
-                        <?php foreach ( $story as $row ) :
+                        <?php foreach ( $story as $idx => $row ) :
                             $type = $row['type'] ?? 'line';
                             $text = $row['text'] ?? '';
+
+                            // First row is promoted into the cinematic
+                            // timestamp opener regardless of its repeater
+                            // type. HTML is stripped (CSS handles the
+                            // mono-uppercase typography); break rows in
+                            // index 0 still get skipped to "" so an empty
+                            // first row collapses cleanly.
+                            if ( 0 === $idx ) {
+                                $opener = trim( wp_strip_all_tags( $text ) );
+                                if ( '' !== $opener ) : ?>
+                                    <div class="svc-sa-pro-story-timestamp"><?php echo esc_html( $opener ); ?></div>
+                                <?php endif;
+                                continue;
+                            }
+
                             if ( 'break' === $type ) : ?>
                                 <div class="svc-sa-pro-story-break" aria-hidden="true"></div>
                             <?php elseif ( 'punchline' === $type && $text ) : ?>
