@@ -57,36 +57,30 @@ $stats = get_field( 'service_sa_pro_stats' );
 if ( empty( $stats ) ) {
     $stats = array(
         array(
-            'kind'  => 'simple',
-            'num'   => '100,000+',
-            'label' => 'Patient conversations',
-            'sub'   => 'Patient conversations captured across our network — every one a data point on what patients want, when they want it, and what makes them book.',
-        ),
-        array(
             'kind'         => 'compare',
+            'client'       => 'Southdowns Pharmacy Group',
             'num'          => '25%',
             'label'        => 'Conversion rate',
-            'sub'          => 'Conversion rate — Southdowns Pharmacy Group',
+            'sub'          => 'Patients who reach The Agent convert at five to twelve times the practice\'s typical site rate — same traffic, different surface area.',
             'compare_rows' => array(
                 array( 'label' => 'Industry', 'fill_pct' => 20,  'value' => '2–5%', 'is_us' => 0 ),
                 array( 'label' => 'Ours',     'fill_pct' => 100, 'value' => '25%',  'is_us' => 1 ),
             ),
         ),
         array(
-            'kind'  => 'text',
-            'num'   => 'Every Conversation',
-            'label' => '',
-            'sub'   => 'Captured as patient intent data — building a commercial intelligence layer that makes your AI agent more effective every single month.',
+            'kind'   => 'simple',
+            'client' => 'Southdowns Pharmacy Group',
+            'num'    => '£200K+',
+            'label'  => 'Annual revenue run rate',
+            'sub'    => 'Generated after hours by The Agent. No night staff, no missed bookings — booking flow that previously dropped at 9pm now runs through the night.',
         ),
-    );
-}
-
-$revenue = get_field( 'service_sa_pro_revenue' );
-if ( empty( $revenue ) ) {
-    $revenue = array(
-        array( 'num' => '£200k+', 'label' => 'Annual revenue run rate',     'attribution' => 'Southdowns Pharmacy Group' ),
-        array( 'num' => '50%',    'label' => 'Weight loss sales via AI',    'attribution' => 'Superior Pharmacy' ),
-        array( 'num' => '1 in 4', 'label' => 'Enquiries convert to bookings', 'attribution' => 'Southdowns Pharmacy Group' ),
+        array(
+            'kind'   => 'simple',
+            'client' => 'Superior Pharmacy',
+            'num'    => '50%',
+            'label'  => 'Weight loss sales via AI',
+            'sub'    => 'Half of all weight-loss revenue at this branch now arrives via The Agent — patients qualify, book, and pay without speaking to staff.',
+        ),
     );
 }
 
@@ -158,14 +152,22 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
         <?php if ( ! empty( $stats ) ) : ?>
             <div class="svc-sa-pro-stats">
                 <?php foreach ( $stats as $stat ) :
-                    $kind  = $stat['kind']  ?? 'simple';
-                    $num   = $stat['num']   ?? '';
-                    $label = $stat['label'] ?? '';
-                    $sub   = $stat['sub']   ?? '';
-                    $rows  = $stat['compare_rows'] ?? array();
+                    $kind   = $stat['kind']   ?? 'simple';
+                    $client = $stat['client'] ?? '';
+                    $num    = $stat['num']    ?? '';
+                    $label  = $stat['label']  ?? '';
+                    $sub    = $stat['sub']    ?? '';
+                    $rows   = $stat['compare_rows'] ?? array();
                     $card_classes = 'svc-sa-pro-stat svc-sa-pro-stat--' . esc_attr( $kind );
                 ?>
                     <article class="<?php echo esc_attr( $card_classes ); ?>">
+                        <?php if ( $client ) : ?>
+                            <div class="svc-sa-pro-stat-client" aria-hidden="true">
+                                <span class="svc-sa-pro-stat-client-dot"></span>
+                                <span class="svc-sa-pro-stat-client-name"><?php echo esc_html( $client ); ?></span>
+                            </div>
+                        <?php endif; ?>
+
                         <?php if ( $num ) : ?>
                             <p class="svc-sa-pro-stat-num"><?php echo esc_html( $num ); ?></p>
                         <?php endif; ?>
@@ -199,31 +201,6 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                         <?php endif; ?>
                     </article>
                 <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if ( ! empty( $revenue ) ) : ?>
-            <div class="svc-sa-pro-dashboard">
-                <div class="svc-sa-pro-revenue-bar">
-                    <?php foreach ( $revenue as $item ) :
-                        $r_num   = $item['num']         ?? '';
-                        $r_label = $item['label']       ?? '';
-                        $r_attr  = $item['attribution'] ?? '';
-                        if ( ! $r_num && ! $r_label ) continue;
-                    ?>
-                        <div class="svc-sa-pro-revenue-item">
-                            <?php if ( $r_num ) : ?>
-                                <p class="svc-sa-pro-revenue-num"><?php echo esc_html( $r_num ); ?></p>
-                            <?php endif; ?>
-                            <?php if ( $r_label ) : ?>
-                                <p class="svc-sa-pro-revenue-label"><?php echo esc_html( $r_label ); ?></p>
-                            <?php endif; ?>
-                            <?php if ( $r_attr ) : ?>
-                                <p class="svc-sa-pro-revenue-attribution"><?php echo esc_html( $r_attr ); ?></p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
             </div>
         <?php endif; ?>
 

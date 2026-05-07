@@ -4002,7 +4002,7 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 20px;
-  padding: 2.5rem 2rem 2.25rem;
+  padding: 2rem 2rem 2.25rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -4017,16 +4017,63 @@
   transform: translateX(-50%);
   width: 80px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gildhart-green), transparent);
-  opacity: 0.5;
+  background: linear-gradient(90deg, transparent, var(--gildhart-gold), transparent);
+  opacity: 0.55;
   transition: opacity 0.4s ease;
 }
 .svc-sa-pro-stat:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(30, 61, 47, 0.12);
-  border-color: rgba(30, 61, 47, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(201, 164, 74, 0.12);
+  border-color: rgba(201, 164, 74, 0.30);
 }
 .svc-sa-pro-stat:hover::before { opacity: 1; }
+
+/* Client chip — gold pulse dot + mono uppercase practice name at the
+ * top of each card. Replaces the barely-visible attribution footer
+ * from the old Revenue Dashboard row; reads as a verified-client
+ * stamp rather than a grey footnote. The hairline gold-fade divider
+ * separates the chip from the headline number below. */
+.svc-sa-pro-stat-client {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 auto 1.5rem;
+  padding-bottom: 1.125rem;
+  width: 100%;
+  max-width: 280px;
+  position: relative;
+}
+.svc-sa-pro-stat-client::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 164, 74, 0.45), transparent);
+}
+.svc-sa-pro-stat-client-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  box-shadow: 0 0 6px rgba(201, 164, 74, 0.70);
+  animation: svcLivePulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.svc-sa-pro-stat-client-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .svc-sa-pro-stat-num {
   font-family: 'Inter', sans-serif;
