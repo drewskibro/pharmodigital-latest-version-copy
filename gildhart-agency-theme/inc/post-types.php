@@ -331,8 +331,13 @@ function gildhart_service_section_roster( $slug ) {
             'track-record', 'sales-agent-pro',
             // A3
             'testimonial', 'intelligence-engine',
-            // A4
-            'flywheel', 'editorial-proof',
+            // A4 — editorial-proof was retired from this roster as of the
+            // SA Pro stats consolidation. Its proofs (£200K Southdowns,
+            // 50% Superior, 25% Ealing, 100K network) are now redundant
+            // with the SA Pro stat cards above + the Track Record + the
+            // cinematic story punchline. ACF data and the section file
+            // are preserved — re-add 'editorial-proof' below to revive.
+            'flywheel',
             // A5
             'how-it-works', 'faq',
             // A6 — closes the page. The Agent's "closing offer" replaces the
