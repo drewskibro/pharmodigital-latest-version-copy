@@ -2501,13 +2501,14 @@ acf_add_local_field_group( array(
         array(
             'key' => 'field_gh_service_sap_stats', 'label' => 'Stat Cards', 'name' => 'service_sa_pro_stats',
             'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 5,
-            'instructions' => 'Three cards is the designed default. "Kind" picks the body shape — Simple = number + label + sub. Compare = number + label + comparison bars + sub. Text = phrase headline + sub.',
+            'instructions' => 'Three cards is the designed default. "Kind" picks the body shape — Simple = number + label + sub. Compare = number + label + comparison bars + sub. Text = phrase headline + sub. The Client chip renders as a gold mono-uppercase tag at the top of the card with a pulse dot.',
             'sub_fields' => array(
                 array(
                     'key' => 'field_gh_service_sap_stat_kind', 'label' => 'Kind', 'name' => 'kind',
                     'type' => 'select', 'default_value' => 'simple',
                     'choices' => array( 'simple' => 'Simple (number + label + sub)', 'compare' => 'Compare (with bars)', 'text' => 'Text headline (smaller)' ),
                 ),
+                array( 'key' => 'field_gh_service_sap_stat_client', 'label' => 'Client', 'name' => 'client', 'type' => 'text', 'instructions' => 'Practice name shown as a gold uppercase chip at the top of the card. e.g. "Southdowns Pharmacy Group". Leave empty for stats that span the whole network.' ),
                 array( 'key' => 'field_gh_service_sap_stat_num',   'label' => 'Number / phrase', 'name' => 'num',   'type' => 'text' ),
                 array( 'key' => 'field_gh_service_sap_stat_label', 'label' => 'Label',           'name' => 'label', 'type' => 'text' ),
                 array( 'key' => 'field_gh_service_sap_stat_sub',   'label' => 'Sub-text',        'name' => 'sub',   'type' => 'textarea', 'rows' => 3 ),
@@ -2528,9 +2529,9 @@ acf_add_local_field_group( array(
             ),
         ),
         array(
-            'key' => 'field_gh_service_sap_revenue', 'label' => 'Revenue Dashboard', 'name' => 'service_sa_pro_revenue',
+            'key' => 'field_gh_service_sap_revenue', 'label' => 'Revenue Dashboard (deprecated)', 'name' => 'service_sa_pro_revenue',
             'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
-            'instructions' => 'Three items is the designed default. Each item = big number + gold label + attribution.',
+            'instructions' => 'No longer rendered as of the unified 3-card stats redesign. Field kept for legacy data only — the same numbers + attributions now live as Client-tagged Stat Cards above.',
             'sub_fields' => array(
                 array( 'key' => 'field_gh_service_sap_rev_num',   'label' => 'Number',      'name' => 'num',         'type' => 'text' ),
                 array( 'key' => 'field_gh_service_sap_rev_label', 'label' => 'Label',       'name' => 'label',       'type' => 'text' ),
