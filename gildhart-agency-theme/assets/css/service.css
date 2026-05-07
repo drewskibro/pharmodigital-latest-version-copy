@@ -3815,6 +3815,20 @@
   align-items: center;
   margin-top: 0.5rem;
 }
+/* Story column — cinematic narrative.
+ *   - Gold gradient timeline runs down the left edge (matches the
+ *     Intelligence Engine treatment for cross-section cohesion).
+ *   - The first row is promoted to a magazine cold-open timestamp
+ *     block: large mono uppercase, gold, hairline divider beneath.
+ *   - Scene-start dots (gold, ringed) sit on the timeline at the
+ *     first line of each scene — i.e. the line right after the
+ *     timestamp and the line right after each scene break.
+ *   - Scene breaks are hairline gold-fade rules instead of empty
+ *     spacers, signalling "fade to next scene" rather than padding.
+ *   - The closing punchline is a verdict block: hairline gold border
+ *     above + extra weight, isolated from the lines that build to it.
+ *   - Body text bumped to 0.82 opacity, line-height 1.8, padding
+ *     dropped — let the line-height do the work for cleaner rhythm. */
 .svc-sa-pro-story {
   max-width: 660px;
   margin: 0;
@@ -3828,19 +3842,47 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, rgba(30, 61, 47, 0.6) 0%, rgba(30, 61, 47, 0.1) 100%);
+  width: 1.5px;
+  background: linear-gradient(180deg, rgba(201, 164, 74, 0.65) 0%, rgba(201, 164, 74, 0.15) 100%);
   border-radius: 2px;
 }
+
+/* Cinematic timestamp opener — promoted from the first story row. */
+.svc-sa-pro-story-timestamp {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1.5rem;
+  padding: 0 0 1rem;
+  line-height: 1;
+}
+.svc-sa-pro-story-timestamp::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gildhart-gold), transparent);
+}
+
 .svc-sa-pro-story-line {
+  position: relative;
   font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.8;
   margin: 0;
-  padding: 0.35rem 0;
+  padding: 0;
+}
+.svc-sa-pro-story-line + .svc-sa-pro-story-line {
+  margin-top: 0.625rem;
 }
 .svc-sa-pro-story-line strong {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.98);
   font-weight: 600;
 }
 .svc-sa-pro-story-line em {
@@ -3848,15 +3890,68 @@
   font-style: normal;
   font-weight: 600;
 }
-.svc-sa-pro-story-break { height: 0.65rem; }
+
+/* Scene-start dots: anchored on the gold timeline at the start of
+ * each narrative scene — i.e. the first line after the timestamp
+ * and the first line after each scene break. The ring colour matches
+ * the section's dark-navy gradient so the dot reads as "on" the line
+ * rather than "above" it. */
+.svc-sa-pro-story-timestamp + .svc-sa-pro-story-line::before,
+.svc-sa-pro-story-break + .svc-sa-pro-story-line::before {
+  content: '';
+  position: absolute;
+  left: -2.05rem;
+  top: 0.6rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  box-shadow:
+    0 0 0 3px #0c1220,
+    0 0 0 4.5px rgba(201, 164, 74, 0.35);
+}
+
+/* Scene break — hairline horizontal rule instead of empty space.
+ * Subtle gold-fade signals "scene fades, next scene starts" rather
+ * than dead padding. */
+.svc-sa-pro-story-break {
+  position: relative;
+  height: 1.5rem;
+  margin: 0.5rem 0;
+}
+.svc-sa-pro-story-break::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 72px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 164, 74, 0.45), transparent);
+  transform: translateY(-50%);
+}
+
+/* Punchline as a verdict block — hairline gold border-top isolates
+ * it from the narrative above, larger weight + extra padding lets
+ * the eye register "this is the conclusion" before reading. */
 .svc-sa-pro-story-punchline {
+  position: relative;
   font-family: 'Inter', sans-serif;
-  font-size: 1.1875rem;
+  font-size: 1.3125rem;
   font-weight: 700;
   color: white;
-  padding: 0.75rem 0 0.25rem;
   line-height: 1.5;
-  margin: 0;
+  margin: 1.5rem 0 0;
+  padding: 1.5rem 0 0.25rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.22);
+}
+.svc-sa-pro-story-punchline::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 90px;
+  height: 1px;
+  background: var(--gildhart-gold);
 }
 .svc-sa-pro-story-punchline em {
   color: var(--gildhart-gold);
