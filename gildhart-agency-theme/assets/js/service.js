@@ -254,4 +254,48 @@
       if (pct) bar.style.width = pct + '%';
     });
   }
+
+  // ── A6: Closing Offer pricing-card plan selector ──────────────
+  // Pricing cards are rendered as <button role="radio" data-plan="…">
+  // siblings inside a [role="radiogroup"]. Clicking (or activating
+  // via Enter/Space) toggles the selected card and writes the
+  // active plan slug into the hidden #svcClosingPlan input that
+  // sits inside the lead form below. Phase 2's backend reads that
+  // slug to pick the right Stripe price ID.
+  var planCards = document.querySelectorAll('.svc-closing-card[data-plan]');
+  var planInput = document.getElementById('svcClosingPlan');
+  if (planCards.length) {
+    var selectPlanCard = function (card) {
+      planCards.forEach(function (c) {
+        c.classList.remove('svc-closing-card--selected');
+        c.setAttribute('aria-checked', 'false');
+        c.setAttribute('tabindex', '-1');
+      });
+      card.classList.add('svc-closing-card--selected');
+      card.setAttribute('aria-checked', 'true');
+      card.setAttribute('tabindex', '0');
+      if (planInput) planInput.value = card.getAttribute('data-plan') || '';
+    };
+    planCards.forEach(function (card) {
+      card.addEventListener('click', function () { selectPlanCard(card); });
+      card.addEventListener('keydown', function (e) {
+        // Arrow-key navigation inside the radiogroup (a11y).
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          var next = card.nextElementSibling;
+          while (next && !next.matches('.svc-closing-card[data-plan]')) next = next.nextElementSibling;
+          if (next) { selectPlanCard(next); next.focus(); }
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          var prev = card.previousElementSibling;
+          while (prev && !prev.matches('.svc-closing-card[data-plan]')) prev = prev.previousElementSibling;
+          if (prev) { selectPlanCard(prev); prev.focus(); }
+        }
+      });
+    });
+    // Initial selection — popular card if present, otherwise first.
+    var initialCard = document.querySelector('.svc-closing-card--popular[data-plan]')
+      || planCards[0];
+    if (initialCard) selectPlanCard(initialCard);
+  }
 })();
