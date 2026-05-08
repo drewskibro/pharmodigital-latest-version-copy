@@ -356,10 +356,18 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
  *
  * Validates the ID format defensively before hitting Stripe (saves a
  * round-trip on garbage input). Returns the metadata fields we wrote
- * during checkout — email + plan_label — plus the live status string.
+ * during checkout (email, plan_label, first_name) plus the live
+ * status, the formatted total paid, and the subscription's next
+ * charge date — everything the receipt card on the thank-you page
+ * needs to render.
+ *
+ * Subscription / next-charge resolution is best-effort: if the
+ * invoice or subscription retrieve fails we return an empty
+ * next_charge_date and the JS hides that row rather than the whole
+ * page breaking.
  *
  * @param string $payment_intent_id
- * @return array { email, plan_label, status }
+ * @return array { email, plan_label, first_name, amount_formatted, next_charge_date, status }
  * @throws \Exception On invalid input or Stripe API error.
  */
 function gildhart_stripe_get_payment_intent_summary( $payment_intent_id ) {
@@ -373,10 +381,55 @@ function gildhart_stripe_get_payment_intent_summary( $payment_intent_id ) {
 
     $pi = \Stripe\PaymentIntent::retrieve( $payment_intent_id );
 
+    // Format amount paid for display. amount_received is set once the
+    // payment has succeeded; on a still-processing PI we fall back to
+    // amount (the requested charge). Both are pence.
+    $amount_pence = isset( $pi->amount_received ) && $pi->amount_received > 0
+        ? (int) $pi->amount_received
+        : (int) ( $pi->amount ?? 0 );
+    $currency     = isset( $pi->currency ) ? strtoupper( $pi->currency ) : 'GBP';
+    $currency_sym = ( 'GBP' === $currency ) ? '£' : ( 'USD' === $currency ? '$' : ( 'EUR' === $currency ? '€' : '' ) );
+    $amount_decimal   = $amount_pence / 100;
+    $amount_formatted = $currency_sym . ( fmod( $amount_decimal, 1 ) === 0.0
+        ? number_format( $amount_decimal, 0 )
+        : number_format( $amount_decimal, 2 ) );
+
+    // Next charge date — best-effort hop PI → Invoice → Subscription.
+    // SDK v17 puts current_period_end on the subscription item rather
+    // than the subscription root, so we check both.
+    $next_charge_date = '';
+    try {
+        $invoice_id = $pi->invoice ?? null;
+        if ( $invoice_id ) {
+            $invoice = \Stripe\Invoice::retrieve( $invoice_id );
+            $sub_id  = null;
+            if ( ! empty( $invoice->subscription ) && is_string( $invoice->subscription ) ) {
+                $sub_id = $invoice->subscription;
+            } elseif ( ! empty( $invoice->parent->subscription_details->subscription ) ) {
+                $sub_id = $invoice->parent->subscription_details->subscription;
+            }
+            if ( $sub_id ) {
+                $sub        = \Stripe\Subscription::retrieve( $sub_id );
+                $period_end = isset( $sub->current_period_end ) ? (int) $sub->current_period_end : 0;
+                if ( ! $period_end && ! empty( $sub->items->data[0]->current_period_end ) ) {
+                    $period_end = (int) $sub->items->data[0]->current_period_end;
+                }
+                if ( $period_end > 0 ) {
+                    $next_charge_date = date_i18n( 'j F Y', $period_end );
+                }
+            }
+        }
+    } catch ( \Exception $e ) {
+        /* swallow — next_charge_date stays empty, JS hides the row */
+    }
+
     return array(
-        'email'      => $pi->metadata['customer_email'] ?? ( $pi->receipt_email ?? '' ),
-        'plan_label' => $pi->metadata['plan_label']     ?? '',
-        'status'     => $pi->status, // 'succeeded' | 'requires_action' | 'requires_payment_method' | etc.
+        'email'            => $pi->metadata['customer_email'] ?? ( $pi->receipt_email ?? '' ),
+        'plan_label'       => $pi->metadata['plan_label']     ?? '',
+        'first_name'       => $pi->metadata['first_name']     ?? '',
+        'amount_formatted' => $amount_formatted,
+        'next_charge_date' => $next_charge_date,
+        'status'           => $pi->status,
     );
 }
 
@@ -442,7 +495,7 @@ function gildhart_rest_agent_checkout( WP_REST_Request $request ) {
 /**
  * GET /gildhart/v1/payment-intent?id=pi_xxx
  *
- * Response: { email, plan_label, status }
+ * Response: { email, plan_label, first_name, amount_formatted, next_charge_date, status }
  * Errors: 400 invalid_input, 502 stripe_api_error, 503 stripe_not_configured.
  */
 function gildhart_rest_payment_intent( WP_REST_Request $request ) {
