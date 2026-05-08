@@ -237,11 +237,27 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
 
     $cfg = gildhart_stripe_config();
 
+    // Read the computed total from the latest invoice. Stripe Tax has
+    // already added VAT at this point so amount_due is the final
+    // checkout figure (£1,194 for annual, £150 for monthly with UK 20%
+    // VAT). amount_due is in pence; format for the Pay button label.
+    $invoice      = $subscription->latest_invoice;
+    $amount_due   = is_object( $invoice ) && isset( $invoice->amount_due ) ? (int) $invoice->amount_due : 0;
+    $currency     = is_object( $invoice ) && isset( $invoice->currency )   ? strtoupper( $invoice->currency ) : 'GBP';
+    $currency_sym = ( 'GBP' === $currency ) ? '£' : ( 'USD' === $currency ? '$' : ( 'EUR' === $currency ? '€' : '' ) );
+    $amount_decimal = $amount_due / 100;
+    $amount_formatted = $currency_sym . ( fmod( $amount_decimal, 1 ) === 0.0
+        ? number_format( $amount_decimal, 0 )
+        : number_format( $amount_decimal, 2 ) );
+
     return array(
-        'client_secret'   => $payment_intent->client_secret,
-        'subscription_id' => $subscription->id,
-        'publishable_key' => $cfg['publishable'],
-        'plan_label'      => $plan_info['label'],
+        'client_secret'    => $payment_intent->client_secret,
+        'subscription_id'  => $subscription->id,
+        'publishable_key'  => $cfg['publishable'],
+        'plan_label'       => $plan_info['label'],
+        'amount_total'     => $amount_due,           // integer, pence
+        'amount_formatted' => $amount_formatted,     // e.g. "£1,194" or "£150"
+        'currency'         => $currency,             // e.g. "GBP"
     );
 }
 

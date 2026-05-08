@@ -416,7 +416,7 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
 
                 <div class="svc-closing-form-divider" aria-hidden="true"></div>
 
-                <form class="svc-closing-form" action="" method="post" onsubmit="event.preventDefault();">
+                <form class="svc-closing-form" id="svcClosingForm" action="" method="post" novalidate>
                     <input type="hidden" name="plan" id="svcClosingPlan" value="annual" />
 
                     <div class="svc-closing-form-group">
@@ -443,11 +443,15 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                     </div>
                     <div class="svc-closing-form-group">
                         <span class="svc-closing-form-label">Card Payment</span>
-                        <div class="svc-closing-stripe-placeholder" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                            <span>Stripe payment fields load here</span>
+                        <div id="svcClosingPaymentMount" class="svc-closing-payment-mount" aria-live="polite">
+                            <div class="svc-closing-payment-empty" id="svcClosingPaymentEmpty">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                <span>Fill in your details above &mdash; secure card fields will appear here.</span>
+                            </div>
+                            <!-- Stripe Payment Element mounts inside this container after Continue is clicked. -->
                         </div>
                     </div>
+                    <div id="svcClosingFormError" class="svc-closing-form-error" role="alert" hidden></div>
 
                     <?php if ( $pull_quote_text || $pull_quote_attr ) : ?>
                         <div class="svc-closing-pull-quote">

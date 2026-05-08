@@ -169,6 +169,54 @@ function gildhart_scripts() {
             gh_asset_ver( 'assets/js/service.js' ),
             true
         );
+
+        // Stripe checkout flow — only enqueue when wp-config.php has
+        // the four required constants. If Stripe isn't configured, the
+        // form's <button type="submit"> just no-ops gracefully (no JS,
+        // no console errors), and the placeholder copy in
+        // #svcClosingPaymentEmpty stays visible.
+        if ( function_exists( 'gildhart_stripe_is_configured' ) && gildhart_stripe_is_configured() ) {
+            wp_enqueue_script(
+                'stripe-js',
+                'https://js.stripe.com/v3/',
+                array(),
+                null, // No version pin — Stripe maintains the v3 endpoint indefinitely.
+                true
+            );
+            wp_enqueue_script(
+                'gildhart-closing-checkout',
+                GILDHART_URI . '/assets/js/closing-checkout.js',
+                array( 'stripe-js' ),
+                gh_asset_ver( 'assets/js/closing-checkout.js' ),
+                true
+            );
+            wp_localize_script( 'gildhart-closing-checkout', 'GildhartCheckout', array(
+                'restUrl'     => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
+                'thankYouUrl' => esc_url_raw( home_url( '/agent-thank-you/' ) ),
+            ) );
+        }
+    }
+
+    // Agent thank-you page template — shares the service.css design
+    // system (cream backdrop + halos + brand typography) plus its own
+    // small JS for personalising email + plan from the redirect URL.
+    if ( is_page_template( 'page-templates/page-agent-thank-you.php' ) ) {
+        wp_enqueue_style(
+            'gildhart-service',
+            GILDHART_URI . '/assets/css/service.css',
+            array( 'gildhart-globals' ),
+            gh_asset_ver( 'assets/css/service.css' )
+        );
+        wp_enqueue_script(
+            'gildhart-agent-thank-you',
+            GILDHART_URI . '/assets/js/agent-thank-you.js',
+            array(),
+            gh_asset_ver( 'assets/js/agent-thank-you.js' ),
+            true
+        );
+        wp_localize_script( 'gildhart-agent-thank-you', 'GildhartThankYou', array(
+            'restUrl' => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
+        ) );
     }
 }
 add_action( 'wp_enqueue_scripts', 'gildhart_scripts' );

@@ -2917,7 +2917,7 @@ acf_add_local_field_group( array(
     ),
     'location' => array(
         array(
-            array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-agent-thank-you.php' ),
+            array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-agent-thank-you.php' ),
         ),
     ),
 ) );
