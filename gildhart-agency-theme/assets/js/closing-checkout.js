@@ -35,7 +35,7 @@
   var form          = document.getElementById('svcClosingForm');
   var submitBtn     = form && form.querySelector('.svc-closing-form-submit');
   var paymentMount  = document.getElementById('svcClosingPaymentMount');
-  var emptyState    = document.getElementById('svcClosingPaymentEmpty');
+  var paymentSection = document.getElementById('svcClosingPaymentSection');
   var errorBanner   = document.getElementById('svcClosingFormError');
 
   if (!form || !submitBtn || !paymentMount) return;
@@ -47,7 +47,13 @@
   var elements      = null;
   var paymentEl     = null;
   var clientSecret  = null;
-  var initialBtnHTML = submitBtn.innerHTML;
+
+  // Override the ACF-driven "Deploy The Agent" label on page load so the
+  // initial button text reflects the actual Step 1 action. After Step 1
+  // succeeds the label is rewritten again to "Pay £X →" using the
+  // VAT-inclusive total returned by the WP REST endpoint.
+  var step1Label = 'Continue to Payment';
+  submitBtn.innerHTML = step1Label + ' <span aria-hidden="true">→</span>';
 
   // ── UI helpers ────────────────────────────────────────────────
   function setError(msg) {
@@ -151,12 +157,22 @@
         }
       });
       paymentEl = elements.create('payment', { layout: 'tabs' });
+
+      // Reveal the Card Payment section (hidden in the markup until
+      // Step 1 succeeds), THEN mount — mounting into a hidden parent
+      // can produce a zero-height iframe in some browsers.
+      if (paymentSection) paymentSection.hidden = false;
       paymentEl.mount(paymentMount);
 
-      if (emptyState) emptyState.hidden = true;
       lockLeadFields();
       setSubmitState('idle', 'Pay ' + (data.amount_formatted || ''));
       setError(null);
+
+      // Smoothly scroll the new card section into view so the user sees
+      // it without having to hunt — the form might be tall on mobile.
+      if (paymentSection && typeof paymentSection.scrollIntoView === 'function') {
+        paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     });
   }
 
@@ -213,7 +229,7 @@
       submitBtn.dataset.payLabel = submitBtn.textContent.replace(/\s*→\s*$/, '').trim();
     }).catch(function (err) {
       setError(err.message);
-      setSubmitState('idle', initialBtnHTML.replace(/<span[^>]*>.*?<\/span>/, '').trim() || 'Continue to Payment');
+      setSubmitState('idle', step1Label);
     });
   });
 })();

@@ -229,22 +229,47 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
         ),
         'automatic_tax' => array( 'enabled' => true ),
         'metadata'      => $metadata,
-        'expand'        => array( 'latest_invoice.payment_intent' ),
+        // Expand the invoice so we can read confirmation_secret + amount_due
+        // from a single call without a second round-trip.
+        'expand'        => array( 'latest_invoice' ),
     ) );
 
-    $payment_intent = $subscription->latest_invoice->payment_intent ?? null;
-    if ( ! $payment_intent || empty( $payment_intent->client_secret ) ) {
-        throw new \Exception( 'Stripe did not return a PaymentIntent client_secret.' );
+    $invoice = $subscription->latest_invoice;
+    if ( ! is_object( $invoice ) ) {
+        throw new \Exception( 'Stripe subscription created but no invoice was returned.' );
     }
 
-    // Mirror metadata onto the PaymentIntent + set receipt_email so the
-    // thank-you page can read the customer email + plan label without a
-    // second round-trip, and so Stripe sends the automatic email receipt
-    // on payment success.
-    \Stripe\PaymentIntent::update( $payment_intent->id, array(
-        'metadata'      => array_merge( $metadata, array( 'customer_email' => $email ) ),
-        'receipt_email' => $email,
-    ) );
+    // Stripe SDK v17 (and the matching API version) returns the first
+    // payment's client_secret on Invoice.confirmation_secret; older API
+    // versions had Invoice.payment_intent as a nested PaymentIntent
+    // object. Try the new shape first, fall back to the old shape so
+    // accounts on either API version both work.
+    $client_secret = null;
+    if ( ! empty( $invoice->confirmation_secret->client_secret ) ) {
+        $client_secret = $invoice->confirmation_secret->client_secret;
+    } elseif ( ! empty( $invoice->payment_intent->client_secret ) ) {
+        $client_secret = $invoice->payment_intent->client_secret;
+    }
+    if ( ! $client_secret ) {
+        throw new \Exception( 'Stripe did not return a client_secret for the new subscription.' );
+    }
+
+    // Derive the PaymentIntent ID from the client_secret. Stripe's
+    // format is pi_XXX_secret_YYY — the prefix before "_secret_" is
+    // the PI ID. We need this ID to write metadata onto the
+    // PaymentIntent (so the thank-you page can read it back) and so
+    // Stripe sends a receipt email on payment success.
+    $payment_intent_id = null;
+    if ( preg_match( '/^(pi_[A-Za-z0-9]+)_secret_/', $client_secret, $m ) ) {
+        $payment_intent_id = $m[1];
+    }
+
+    if ( $payment_intent_id ) {
+        \Stripe\PaymentIntent::update( $payment_intent_id, array(
+            'metadata'      => array_merge( $metadata, array( 'customer_email' => $email ) ),
+            'receipt_email' => $email,
+        ) );
+    }
 
     $cfg = gildhart_stripe_config();
 
@@ -252,9 +277,8 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
     // already added VAT at this point so amount_due is the final
     // checkout figure (£1,194 for annual, £150 for monthly with UK 20%
     // VAT). amount_due is in pence; format for the Pay button label.
-    $invoice      = $subscription->latest_invoice;
-    $amount_due   = is_object( $invoice ) && isset( $invoice->amount_due ) ? (int) $invoice->amount_due : 0;
-    $currency     = is_object( $invoice ) && isset( $invoice->currency )   ? strtoupper( $invoice->currency ) : 'GBP';
+    $amount_due   = isset( $invoice->amount_due ) ? (int) $invoice->amount_due : 0;
+    $currency     = isset( $invoice->currency )   ? strtoupper( $invoice->currency ) : 'GBP';
     $currency_sym = ( 'GBP' === $currency ) ? '£' : ( 'USD' === $currency ? '$' : ( 'EUR' === $currency ? '€' : '' ) );
     $amount_decimal = $amount_due / 100;
     $amount_formatted = $currency_sym . ( fmod( $amount_decimal, 1 ) === 0.0
@@ -262,7 +286,7 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
         : number_format( $amount_decimal, 2 ) );
 
     return array(
-        'client_secret'    => $payment_intent->client_secret,
+        'client_secret'    => $client_secret,
         'subscription_id'  => $subscription->id,
         'publishable_key'  => $cfg['publishable'],
         'plan_label'       => $plan_info['label'],
