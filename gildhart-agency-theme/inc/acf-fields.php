@@ -2798,6 +2798,12 @@ acf_add_local_field_group( array(
             'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 4,
             'sub_fields' => array(
                 array(
+                    'key' => 'field_gh_service_cls_card_plan', 'label' => 'Plan ID', 'name' => 'plan_id',
+                    'type' => 'select', 'default_value' => 'monthly',
+                    'choices' => array( 'monthly' => 'Monthly', 'annual' => 'Annual' ),
+                    'instructions' => 'Determines which Stripe price the card maps to when the customer selects it. Backend wiring uses this slug to look up the corresponding price ID.',
+                ),
+                array(
                     'key' => 'field_gh_service_cls_card_pop', 'label' => 'Most Popular', 'name' => 'is_popular',
                     'type' => 'true_false', 'default_value' => 0, 'ui' => 1,
                 ),
@@ -2805,6 +2811,7 @@ acf_add_local_field_group( array(
                 array( 'key' => 'field_gh_service_cls_card_label',  'label' => 'Label',          'name' => 'label',        'type' => 'text' ),
                 array( 'key' => 'field_gh_service_cls_card_price',  'label' => 'Price',          'name' => 'price',        'type' => 'text' ),
                 array( 'key' => 'field_gh_service_cls_card_suff',   'label' => 'Price Suffix',   'name' => 'price_suffix', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_cls_card_tax',    'label' => 'Tax Note',       'name' => 'tax_note',     'type' => 'text', 'instructions' => 'Small mono-uppercase line under the price, e.g. "+ 20% VAT". Stripe Tax adds this on top of the headline price at checkout.' ),
                 array( 'key' => 'field_gh_service_cls_card_detail', 'label' => 'Detail',         'name' => 'detail',       'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong> tags allowed.' ),
                 array( 'key' => 'field_gh_service_cls_card_savg',   'label' => 'Save (green pill)', 'name' => 'save_green', 'type' => 'text' ),
                 array( 'key' => 'field_gh_service_cls_card_savgo',  'label' => 'Save (gold pill)',  'name' => 'save_gold',  'type' => 'text' ),

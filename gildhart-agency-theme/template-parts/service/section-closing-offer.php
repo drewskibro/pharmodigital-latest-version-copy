@@ -125,11 +125,13 @@ $pricing_cards = get_field( 'service_closing_pricing_cards' );
 if ( empty( $pricing_cards ) ) {
     $pricing_cards = array(
         array(
+            'plan_id'      => 'monthly',
             'is_popular'   => 0,
             'badge'        => '',
             'label'        => 'Pay Monthly',
             'price'        => '£125',
             'price_suffix' => '/mo',
+            'tax_note'     => '+ 20% VAT',
             'detail'       => 'For practices that want to start today and pay as they go. 12-month agreement. <strong>£1,500 setup fee waived</strong> — see below. The annual plan saves you £505, but the results are identical either way.',
             'save_green'   => '',
             'save_gold'    => '',
@@ -137,11 +139,13 @@ if ( empty( $pricing_cards ) ) {
             'price_lock'   => '',
         ),
         array(
+            'plan_id'      => 'annual',
             'is_popular'   => 1,
             'badge'        => 'Most Popular',
             'label'        => 'Pay Upfront',
             'price'        => '£995',
             'price_suffix' => '',
+            'tax_note'     => '+ 20% VAT',
             'detail'       => 'Full year',
             'save_green'   => 'Save £505 vs monthly',
             'save_gold'    => '£1,500 setup fee waived — online only',
@@ -318,13 +322,15 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                 <?php endif; ?>
 
                 <?php if ( ! empty( $pricing_cards ) ) : ?>
-                    <div class="svc-closing-cards">
+                    <div class="svc-closing-cards" role="radiogroup" aria-label="Choose a billing plan">
                         <?php $card_count = count( $pricing_cards ); foreach ( $pricing_cards as $i => $card ) :
+                            $plan_id      = $card['plan_id']      ?? ( $i === 0 ? 'monthly' : 'annual' );
                             $is_popular   = ! empty( $card['is_popular'] );
                             $badge        = $card['badge']        ?? '';
                             $label        = $card['label']        ?? '';
                             $price        = $card['price']        ?? '';
                             $price_suffix = $card['price_suffix'] ?? '';
+                            $tax_note     = $card['tax_note']     ?? '';
                             $detail       = $card['detail']       ?? '';
                             $save_green   = $card['save_green']   ?? '';
                             $save_gold    = $card['save_gold']    ?? '';
@@ -332,10 +338,17 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                             $price_lock   = $card['price_lock']   ?? '';
                             $card_class   = 'svc-closing-card' . ( $is_popular ? ' svc-closing-card--popular' : '' );
                         ?>
-                            <div class="<?php echo esc_attr( $card_class ); ?>">
+                            <button
+                                type="button"
+                                class="<?php echo esc_attr( $card_class ); ?>"
+                                data-plan="<?php echo esc_attr( $plan_id ); ?>"
+                                role="radio"
+                                aria-checked="<?php echo $is_popular ? 'true' : 'false'; ?>"
+                            >
                                 <?php if ( $is_popular && $badge ) : ?>
                                     <span class="svc-closing-card-badge"><?php echo esc_html( $badge ); ?></span>
                                 <?php endif; ?>
+                                <span class="svc-closing-card-tick" aria-hidden="true">✓</span>
                                 <?php if ( $label ) : ?>
                                     <p class="svc-closing-card-label"><?php echo esc_html( $label ); ?></p>
                                 <?php endif; ?>
@@ -346,6 +359,9 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                                             <span class="svc-closing-card-price-suffix"><?php echo esc_html( $price_suffix ); ?></span>
                                         <?php endif; ?>
                                     </p>
+                                <?php endif; ?>
+                                <?php if ( $tax_note ) : ?>
+                                    <p class="svc-closing-card-tax-note"><?php echo esc_html( $tax_note ); ?></p>
                                 <?php endif; ?>
                                 <?php if ( $detail ) : ?>
                                     <p class="svc-closing-card-detail"><?php echo wp_kses_post( $detail ); ?></p>
@@ -362,7 +378,7 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                                 <?php if ( $price_lock ) : ?>
                                     <p class="svc-closing-card-price-lock"><?php echo esc_html( $price_lock ); ?></p>
                                 <?php endif; ?>
-                            </div>
+                            </button>
                             <?php // "or" separator between adjacent cards on desktop. ?>
                             <?php if ( $i === 0 && $card_count > 1 ) : ?>
                                 <span class="svc-closing-cards-or" aria-hidden="true">or</span>
@@ -401,13 +417,21 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                 <div class="svc-closing-form-divider" aria-hidden="true"></div>
 
                 <form class="svc-closing-form" action="" method="post" onsubmit="event.preventDefault();">
+                    <input type="hidden" name="plan" id="svcClosingPlan" value="annual" />
+
                     <div class="svc-closing-form-group">
                         <label class="svc-closing-form-label" for="svcClosingPractice">Practice Name</label>
                         <input type="text" id="svcClosingPractice" name="practice" class="svc-closing-form-input" placeholder="e.g. Ealing Travel Clinic" />
                     </div>
-                    <div class="svc-closing-form-group">
-                        <label class="svc-closing-form-label" for="svcClosingName">Your Name</label>
-                        <input type="text" id="svcClosingName" name="name" class="svc-closing-form-input" placeholder="e.g. Dr Sarah Jones" />
+                    <div class="svc-closing-form-row">
+                        <div class="svc-closing-form-group">
+                            <label class="svc-closing-form-label" for="svcClosingFirstName">First Name</label>
+                            <input type="text" id="svcClosingFirstName" name="first_name" class="svc-closing-form-input" placeholder="e.g. Sarah" />
+                        </div>
+                        <div class="svc-closing-form-group">
+                            <label class="svc-closing-form-label" for="svcClosingLastName">Last Name</label>
+                            <input type="text" id="svcClosingLastName" name="last_name" class="svc-closing-form-input" placeholder="e.g. Jones" />
+                        </div>
                     </div>
                     <div class="svc-closing-form-group">
                         <label class="svc-closing-form-label" for="svcClosingEmail">Email</label>

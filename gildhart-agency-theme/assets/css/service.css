@@ -5698,18 +5698,33 @@
   text-transform: lowercase;
   letter-spacing: 0.02em;
 }
+/* Cards are <button role="radio"> — reset native button chrome and
+ * make them keyboard-focusable. The .--selected modifier is toggled
+ * by service.js on click / keyboard activation. */
 .svc-closing-card {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  cursor: pointer;
   background: var(--cream);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 14px;
   padding: 1.625rem 1.25rem;
   text-align: center;
   position: relative;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease, background 0.3s ease;
 }
 .svc-closing-card:hover {
   border-color: rgba(30, 61, 47, 0.30);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+.svc-closing-card:focus-visible {
+  outline: 2px solid var(--gildhart-gold);
+  outline-offset: 3px;
 }
 .svc-closing-card--popular {
   border: 2px solid var(--gildhart-green);
@@ -5723,6 +5738,40 @@
   border-color: var(--gildhart-black);
   box-shadow: 0 16px 48px rgba(30, 61, 47, 0.22), 0 4px 16px rgba(0, 0, 0, 0.08);
   transform: translateY(-4px);
+}
+/* Selected state — gold ring + tick badge in the corner. The selected
+ * card is the one the form will submit as `plan` (Phase 2 picks the
+ * Stripe price ID from this slug). */
+.svc-closing-card--selected {
+  border-color: var(--gildhart-gold);
+  box-shadow: 0 0 0 3px rgba(201, 164, 74, 0.22), 0 8px 32px rgba(30, 61, 47, 0.10);
+}
+.svc-closing-card--popular.svc-closing-card--selected {
+  border-color: var(--gildhart-gold);
+  box-shadow: 0 0 0 3px rgba(201, 164, 74, 0.30), 0 16px 48px rgba(30, 61, 47, 0.18);
+}
+.svc-closing-card-tick {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  color: var(--navy);
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.svc-closing-card--selected .svc-closing-card-tick {
+  opacity: 1;
+  transform: scale(1);
 }
 .svc-closing-card-badge {
   position: absolute;
@@ -5762,6 +5811,19 @@
   font-size: 0.5em;
   font-weight: 500;
   opacity: 0.5;
+}
+/* Tax note — small mono uppercase below the price (e.g. "+ 20% VAT").
+ * Stripe Tax adds VAT on top at checkout; this primes the user's
+ * expectations so the checkout total isn't a surprise. */
+.svc-closing-card-tax-note {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.50);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
 }
 .svc-closing-card-detail {
   font-size: 0.8125rem;
@@ -5929,6 +5991,16 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+}
+/* Two-column row for First Name + Last Name on desktop. Collapses
+ * to a single column at narrow widths so the fields stay legible. */
+.svc-closing-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+@media (max-width: 600px) {
+  .svc-closing-form-row { grid-template-columns: 1fr; gap: 1.125rem; }
 }
 .svc-closing-form-label {
   font-family: 'Inter', sans-serif;
