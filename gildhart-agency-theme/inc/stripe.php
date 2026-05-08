@@ -198,10 +198,21 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
         'plan_label'    => $plan_info['label'],
     );
 
-    // Customer
+    // Customer.
+    //
+    // address.country is required by Stripe Tax (automatic_tax) so the
+    // VAT jurisdiction can be determined at invoice creation — without
+    // it the subscription create call rejects with "The customer's
+    // location isn't recognized." We hardcode 'GB' because the product
+    // is UK-targeted; if/when we sell internationally we'll add a
+    // country picker to the lead form and pass the user-selected value
+    // here instead. The Payment Element collects a full billing
+    // address from the card during confirmation, but that arrives too
+    // late for Stripe Tax to lock VAT onto the first invoice.
     $customer = \Stripe\Customer::create( array(
         'email'    => $email,
         'name'     => trim( $first_name . ' ' . $last_name ),
+        'address'  => array( 'country' => 'GB' ),
         'metadata' => $metadata,
     ) );
 
