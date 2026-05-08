@@ -2914,6 +2914,7 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_aty_founder_body',  'label' => 'Founder — Body',          'name' => 'agent_thank_you_founder_body',  'type' => 'textarea', 'rows' => 3 ),
         array( 'key' => 'field_gh_aty_founder_name',  'label' => 'Founder — Signoff Name',  'name' => 'agent_thank_you_founder_name',  'type' => 'text', 'instructions' => 'Default: "Drew Clayton".' ),
         array( 'key' => 'field_gh_aty_founder_role',  'label' => 'Founder — Signoff Role',  'name' => 'agent_thank_you_founder_role',  'type' => 'text', 'instructions' => 'Default: "The Gildhart team".' ),
+        array( 'key' => 'field_gh_aty_founder_photo', 'label' => 'Founder — Photo',         'name' => 'agent_thank_you_founder_photo', 'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail', 'instructions' => 'Optional headshot to display next to the founder signoff. Square crop works best — renders as a 56px circular avatar with a thin gold border.' ),
     ),
     'location' => array(
         array(

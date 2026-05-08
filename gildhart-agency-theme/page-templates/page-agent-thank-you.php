@@ -81,6 +81,7 @@ $founder_title = gh_field( 'agent_thank_you_founder_title', 'Welcome to the netw
 $founder_body  = gh_field( 'agent_thank_you_founder_body',  "Any questions while you wait, hit reply on the confirmation email — it goes straight to me." );
 $founder_name  = gh_field( 'agent_thank_you_founder_name',  'Drew Clayton' );
 $founder_role  = gh_field( 'agent_thank_you_founder_role',  'The Gildhart team' );
+$founder_photo = get_field( 'agent_thank_you_founder_photo' );
 ?>
 
 <main id="main" class="site-main">
@@ -197,12 +198,20 @@ $founder_role  = gh_field( 'agent_thank_you_founder_role',  'The Gildhart team' 
                         <p class="svc-thank-you-founder-body"><?php echo esc_html( $founder_body ); ?></p>
                     <?php endif; ?>
                     <?php if ( $founder_name || $founder_role ) : ?>
-                        <p class="svc-thank-you-founder-signoff">
-                            &mdash; <?php echo esc_html( $founder_name ); ?>
-                            <?php if ( $founder_role ) : ?>
-                                <br><span class="svc-thank-you-founder-role"><?php echo esc_html( $founder_role ); ?></span>
+                        <div class="svc-thank-you-founder-signoff-block">
+                            <?php if ( $founder_photo ) : ?>
+                                <?php echo wp_get_attachment_image( $founder_photo, 'thumbnail', false, array(
+                                    'class' => 'svc-thank-you-founder-photo',
+                                    'alt'   => esc_attr( $founder_name ),
+                                ) ); ?>
                             <?php endif; ?>
-                        </p>
+                            <p class="svc-thank-you-founder-signoff">
+                                &mdash; <?php echo esc_html( $founder_name ); ?>
+                                <?php if ( $founder_role ) : ?>
+                                    <br><span class="svc-thank-you-founder-role"><?php echo esc_html( $founder_role ); ?></span>
+                                <?php endif; ?>
+                            </p>
+                        </div>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

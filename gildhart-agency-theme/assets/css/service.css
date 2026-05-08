@@ -6247,12 +6247,21 @@
  * agent-thank-you.js after a fetch to /wp-json/gildhart/v1/payment-intent.
  * Static fallback copy reads naturally if JS doesn't run.
  * ────────────────────────────────────────────────────────────── */
+/* Hide the nav-spacer on the thank-you page so the cream backdrop
+ * extends up under the fixed nav — same pattern as .single-service
+ * and .home. Without this, the body's --cream-warm shows through
+ * between the nav bottom and the section's --cream top, creating a
+ * visible horizontal seam right under the menu. */
+.page-template-page-agent-thank-you .nav-spacer { display: none; }
+
 .svc-thank-you {
   background: var(--cream);
-  padding: 7rem 2rem 7.5rem;
+  /* Top padding compensates for the now-hidden nav-spacer using --nav-h
+   * (set by nav.js). Bottom keeps generous breathing room. */
+  padding: calc(5rem + var(--nav-h, 80px)) 2rem 7.5rem;
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - var(--nav-h, 80px));
+  min-height: 100vh;
 }
 .svc-thank-you::before {
   content: '';
@@ -6332,18 +6341,24 @@
   color: var(--navy);
   font-weight: 700;
 }
+/* Deployment-kicks-off line — promoted from a faint gold-on-cream
+ * caption (barely readable) to a high-contrast navy-on-gold pill so
+ * the customer's eye lands on it as the key timeline commitment. */
 .svc-thank-you-hero-line--accent {
+  display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   font-weight: 800;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(201, 164, 74, 0.30);
-  width: 100%;
-  max-width: 320px;
+  color: var(--navy);
+  background: rgba(201, 164, 74, 0.20);
+  border: 1px solid rgba(201, 164, 74, 0.40);
+  padding: 0.875rem 1.5rem;
+  border-radius: 999px;
+  margin: 1.75rem 0 0;
+  width: auto;
+  max-width: none;
 }
 
 /* Welcome video — eyebrow + 16:9 oEmbed frame + caption. */
@@ -6548,6 +6563,27 @@
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
+}
+/* Optional founder photo + signoff layout. Photo (when set via ACF)
+ * sits as a 56px circular avatar with a thin gold border, beside the
+ * italicised name + role. When no photo is set, the block collapses
+ * to text-only and stays centred. */
+.svc-thank-you-founder-signoff-block {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto;
+  text-align: left;
+}
+.svc-thank-you-founder-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--gildhart-gold);
+  box-shadow: 0 6px 16px rgba(13, 26, 18, 0.12);
 }
 .svc-thank-you-founder-signoff {
   font-family: 'Inter', sans-serif;
