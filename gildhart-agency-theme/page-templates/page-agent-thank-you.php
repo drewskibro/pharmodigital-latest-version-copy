@@ -30,13 +30,13 @@ $hero_sub   = gh_field( 'agent_thank_you_hero_sub',   'Deployment kicks off in 7
 
 /* Welcome video */
 $video_show    = gh_field( 'agent_thank_you_video_show', 1 );
-$video_url     = gh_field( 'agent_thank_you_video_url',  '' );
 $video_eyebrow = gh_field( 'agent_thank_you_video_eyebrow', 'Welcome from Drew' );
 $video_caption = gh_field( 'agent_thank_you_video_caption', 'A quick word from Drew — what happens next.' );
-$video_embed   = '';
-if ( $video_show && $video_url ) {
-    $video_embed = wp_oembed_get( $video_url );
-}
+// ACF's oembed field returns the rendered iframe HTML directly when the
+// editor pastes a Vimeo / YouTube URL. Don't run it through wp_oembed_get
+// again — that takes a URL and would receive HTML, returning false (which
+// is why the video previously didn't render even though the URL was set).
+$video_embed = $video_show ? gh_field( 'agent_thank_you_video_url', '' ) : '';
 
 /* Timeline */
 $timeline_eyebrow = gh_field( 'agent_thank_you_timeline_eyebrow', 'What happens next' );
@@ -95,6 +95,8 @@ $founder_photo = get_field( 'agent_thank_you_founder_photo' );
                         <polyline points="4 12 10 18 20 6"/>
                     </svg>
                 </div>
+
+                <span class="svc-thank-you-hero-eyebrow">Payment confirmed</span>
 
                 <?php if ( $hero_title ) : ?>
                     <h1 class="svc-thank-you-hero-title"><?php echo esc_html( $hero_title ); ?></h1>
@@ -197,21 +199,21 @@ $founder_photo = get_field( 'agent_thank_you_founder_photo' );
                     <?php if ( $founder_body ) : ?>
                         <p class="svc-thank-you-founder-body"><?php echo esc_html( $founder_body ); ?></p>
                     <?php endif; ?>
-                    <?php if ( $founder_name || $founder_role ) : ?>
-                        <div class="svc-thank-you-founder-signoff-block">
-                            <?php if ( $founder_photo ) : ?>
-                                <?php echo wp_get_attachment_image( $founder_photo, 'thumbnail', false, array(
-                                    'class' => 'svc-thank-you-founder-photo',
-                                    'alt'   => esc_attr( $founder_name ),
-                                ) ); ?>
-                            <?php endif; ?>
-                            <p class="svc-thank-you-founder-signoff">
-                                &mdash; <?php echo esc_html( $founder_name ); ?>
-                                <?php if ( $founder_role ) : ?>
-                                    <br><span class="svc-thank-you-founder-role"><?php echo esc_html( $founder_role ); ?></span>
-                                <?php endif; ?>
-                            </p>
+                    <?php if ( $founder_photo ) : ?>
+                        <div class="svc-thank-you-founder-photo-wrap">
+                            <?php echo wp_get_attachment_image( $founder_photo, 'medium', false, array(
+                                'class' => 'svc-thank-you-founder-photo',
+                                'alt'   => esc_attr( $founder_name ),
+                            ) ); ?>
                         </div>
+                    <?php endif; ?>
+                    <?php if ( $founder_name || $founder_role ) : ?>
+                        <p class="svc-thank-you-founder-signoff">
+                            &mdash; <?php echo esc_html( $founder_name ); ?>
+                            <?php if ( $founder_role ) : ?>
+                                <br><span class="svc-thank-you-founder-role"><?php echo esc_html( $founder_role ); ?></span>
+                            <?php endif; ?>
+                        </p>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
