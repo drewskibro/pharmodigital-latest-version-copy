@@ -2844,3 +2844,80 @@ acf_add_local_field_group( array(
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
+
+/* ─────────────────────────────────────────────────────────────────
+ * Service · Agent Thank-you Page
+ *
+ * Bound to the page-agent-thank-you.php page template (a regular WP
+ * Page, not a Service post). Renders post-payment confirmation copy
+ * with email + plan personalisation read from the PaymentIntent ID
+ * passed in the redirect URL.
+ *
+ * Most fields have sensible defaults baked into the template via
+ * gh_field() — so an editor only needs to fill in the Vimeo video URL
+ * to get a fully-styled page. Empty fields fall back to the static
+ * spec.
+ * ───────────────────────────────────────────────────────────────── */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_agent_thank_you',
+    'title'      => 'Service · Agent Thank-you Page',
+    'menu_order' => 20,
+    'fields'     => array(
+        // Confirmation hero
+        array( 'key' => 'field_gh_aty_hero_title', 'label' => 'Hero — Title',    'name' => 'agent_thank_you_hero_title', 'type' => 'text', 'instructions' => 'Default: "You\'re in."' ),
+        array( 'key' => 'field_gh_aty_hero_sub',   'label' => 'Hero — Subtitle', 'name' => 'agent_thank_you_hero_sub',   'type' => 'textarea', 'rows' => 3, 'instructions' => 'Static lines below the personalised email + plan. Default: "Deployment kicks off in 7 days."' ),
+
+        // Welcome video
+        array(
+            'key'           => 'field_gh_aty_video_show',
+            'label'         => 'Show Welcome Video',
+            'name'          => 'agent_thank_you_video_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+            'instructions'  => 'Section auto-hides if the Video URL field is empty regardless of this toggle.',
+        ),
+        array( 'key' => 'field_gh_aty_video_eyebrow', 'label' => 'Video — Eyebrow', 'name' => 'agent_thank_you_video_eyebrow', 'type' => 'text', 'instructions' => 'Default: "Welcome from Drew".' ),
+        array( 'key' => 'field_gh_aty_video_url',     'label' => 'Video — URL',     'name' => 'agent_thank_you_video_url',     'type' => 'oembed', 'instructions' => 'Paste a Vimeo or YouTube URL. ACF auto-renders the embed. Section hides when empty.' ),
+        array( 'key' => 'field_gh_aty_video_caption', 'label' => 'Video — Caption', 'name' => 'agent_thank_you_video_caption', 'type' => 'text', 'instructions' => 'Default: "A quick word from Drew — what happens next."' ),
+
+        // Timeline
+        array( 'key' => 'field_gh_aty_timeline_eyebrow', 'label' => 'Timeline — Eyebrow', 'name' => 'agent_thank_you_timeline_eyebrow', 'type' => 'text', 'instructions' => 'Default: "What happens next".' ),
+        array(
+            'key' => 'field_gh_aty_timeline_items', 'label' => 'Timeline — Items', 'name' => 'agent_thank_you_timeline_items',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
+            'instructions' => 'Three items is the designed default — Today / Day 1–3 / Day 7. Each item has a mono-uppercase label, a bold title, and a body line.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_aty_tli_label', 'label' => 'Label', 'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_gh_aty_tli_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_aty_tli_body',  'label' => 'Body',  'name' => 'body',  'type' => 'textarea', 'rows' => 2 ),
+            ),
+        ),
+
+        // While you wait
+        array( 'key' => 'field_gh_aty_wait_eyebrow', 'label' => 'While You Wait — Eyebrow', 'name' => 'agent_thank_you_wait_eyebrow', 'type' => 'text', 'instructions' => 'Default: "While you wait".' ),
+        array( 'key' => 'field_gh_aty_wait_intro',   'label' => 'While You Wait — Intro',   'name' => 'agent_thank_you_wait_intro',   'type' => 'textarea', 'rows' => 2 ),
+        array(
+            'key' => 'field_gh_aty_wait_items', 'label' => 'While You Wait — Items', 'name' => 'agent_thank_you_wait_items',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 4,
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_aty_wi_text', 'label' => 'Text', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+
+        // Reassurance / testimonial
+        array( 'key' => 'field_gh_aty_reassure_quote', 'label' => 'Reassurance — Quote',       'name' => 'agent_thank_you_reassure_quote', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_aty_reassure_attr',  'label' => 'Reassurance — Attribution', 'name' => 'agent_thank_you_reassure_attr',  'type' => 'text' ),
+
+        // Founder note
+        array( 'key' => 'field_gh_aty_founder_title', 'label' => 'Founder — Title',         'name' => 'agent_thank_you_founder_title', 'type' => 'text' ),
+        array( 'key' => 'field_gh_aty_founder_body',  'label' => 'Founder — Body',          'name' => 'agent_thank_you_founder_body',  'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_aty_founder_name',  'label' => 'Founder — Signoff Name',  'name' => 'agent_thank_you_founder_name',  'type' => 'text', 'instructions' => 'Default: "Drew Clayton".' ),
+        array( 'key' => 'field_gh_aty_founder_role',  'label' => 'Founder — Signoff Role',  'name' => 'agent_thank_you_founder_role',  'type' => 'text', 'instructions' => 'Default: "The Gildhart team".' ),
+    ),
+    'location' => array(
+        array(
+            array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-agent-thank-you.php' ),
+        ),
+    ),
+) );
