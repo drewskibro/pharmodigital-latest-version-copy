@@ -6293,20 +6293,26 @@
   gap: 5.5rem;
 }
 
-/* Confirmation hero — animated gold check, big title, personalised lines. */
+/* Confirmation hero — animated gold check, big title, personalised lines.
+ * Sized confidently so the hero earns its space rather than feeling like
+ * a small island floating in the cream backdrop. Generous vertical
+ * rhythm between check / eyebrow / title / lines / pill. */
 .svc-thank-you-hero {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.25rem;
+  padding: 2rem 1rem 1rem;
+  max-width: 880px;
+  margin: 0 auto;
 }
 /* Hero check — premium gold-gradient circle with two ambient rings,
  * deeper shadow, more cinematic entrance. Replaces the previous
  * smaller, flatter 84px treatment. */
 .svc-thank-you-hero-check {
-  width: 116px;
-  height: 116px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   background: linear-gradient(135deg, #c89d3f 0%, var(--gildhart-gold) 50%, #e0c178 100%);
   color: white;
@@ -6331,8 +6337,8 @@
   pointer-events: none;
 }
 .svc-thank-you-hero-check svg {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 2px 6px rgba(13, 26, 18, 0.20));
@@ -6360,12 +6366,12 @@
 }
 .svc-thank-you-hero-title {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-size: clamp(3.25rem, 7vw, 5.25rem);
   font-weight: 800;
   color: var(--navy);
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  margin: 0 0 1rem;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  margin: 0 0 1.25rem;
 }
 .svc-thank-you-hero-line {
   font-family: 'Inter', sans-serif;
@@ -6692,10 +6698,11 @@
   margin: 0 auto 1.25rem;
 }
 .svc-thank-you-founder-photo {
-  width: 116px;
-  height: 116px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 50% 25%;
   border: 3px solid var(--gildhart-gold);
   box-shadow:
     0 0 0 6px rgba(201, 164, 74, 0.08),
@@ -6741,10 +6748,10 @@
     padding: calc(3rem + var(--nav-h, 80px)) 1.5rem 5.5rem;
   }
   .svc-thank-you-inner { gap: 3.5rem; }
-  .svc-thank-you-hero-title { font-size: clamp(2rem, 8vw, 2.75rem); }
-  .svc-thank-you-hero-check { width: 88px; height: 88px; }
-  .svc-thank-you-hero-check svg { width: 38px; height: 38px; }
-  .svc-thank-you-founder-photo { width: 88px; height: 88px; }
+  .svc-thank-you-hero-title { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+  .svc-thank-you-hero-check { width: 104px; height: 104px; }
+  .svc-thank-you-hero-check svg { width: 44px; height: 44px; }
+  .svc-thank-you-founder-photo { width: 120px; height: 120px; }
   .svc-thank-you-reassure {
     padding: 0 1rem 0 3rem;
   }
