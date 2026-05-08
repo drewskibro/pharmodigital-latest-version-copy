@@ -192,6 +192,18 @@ if ( file_exists( GILDHART_DIR . '/inc/post-types.php' ) ) {
 }
 
 /**
+ * Stripe integration — config, SDK loader, helpers, REST endpoints.
+ * Reads keys + price IDs from wp-config.php constants. Loads the
+ * official Stripe PHP SDK from vendor/stripe-php/ on demand. If the
+ * required constants aren't defined the file loads but all helpers
+ * no-op gracefully — REST endpoints respond with a 503 instead of
+ * fataling.
+ */
+if ( file_exists( GILDHART_DIR . '/inc/stripe.php' ) ) {
+    require_once GILDHART_DIR . '/inc/stripe.php';
+}
+
+/**
  * Helper: Get ACF option field with fallback.
  *
  * Strict null/empty-string check so true_false fields (which return 0 for "No")
