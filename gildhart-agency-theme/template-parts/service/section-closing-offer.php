@@ -441,15 +441,16 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                         <label class="svc-closing-form-label" for="svcClosingWebsite">Website URL</label>
                         <input type="url" id="svcClosingWebsite" name="website" class="svc-closing-form-input" placeholder="https://yourpractice.co.uk" />
                     </div>
-                    <div class="svc-closing-form-group">
+                    <!--
+                    Card Payment section is hidden until Step 1 (lead form) succeeds.
+                    JS reveals it + mounts the Stripe Payment Element after the WP
+                    REST endpoint returns a client_secret. Hidden state avoids the
+                    awkward "fill in your details above" empty-state placeholder
+                    when the user has clearly already done so.
+                    -->
+                    <div class="svc-closing-form-group" id="svcClosingPaymentSection" hidden>
                         <span class="svc-closing-form-label">Card Payment</span>
-                        <div id="svcClosingPaymentMount" class="svc-closing-payment-mount" aria-live="polite">
-                            <div class="svc-closing-payment-empty" id="svcClosingPaymentEmpty">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                                <span>Fill in your details above &mdash; secure card fields will appear here.</span>
-                            </div>
-                            <!-- Stripe Payment Element mounts inside this container after Continue is clicked. -->
-                        </div>
+                        <div id="svcClosingPaymentMount" class="svc-closing-payment-mount" aria-live="polite"></div>
                     </div>
                     <div id="svcClosingFormError" class="svc-closing-form-error" role="alert" hidden></div>
 
