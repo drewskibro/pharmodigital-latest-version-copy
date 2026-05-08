@@ -251,7 +251,22 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
         $client_secret = $invoice->payment_intent->client_secret;
     }
     if ( ! $client_secret ) {
-        throw new \Exception( 'Stripe did not return a client_secret for the new subscription.' );
+        // Capture diagnostic context so we can see why both the new
+        // and old shapes came back empty. Most common causes:
+        //   - Invoice failed to finalize (last_finalization_error has the reason)
+        //   - Subscription status is 'incomplete_expired' (took too long, recreated)
+        //   - Stripe Tax silently rejected the customer location (despite address.country)
+        $diag = sprintf(
+            'sub_status=%s, invoice_status=%s, confirmation_secret=%s, payment_intent=%s',
+            isset( $subscription->status ) ? $subscription->status : 'null',
+            isset( $invoice->status ) ? $invoice->status : 'null',
+            isset( $invoice->confirmation_secret ) ? ( ! empty( $invoice->confirmation_secret->client_secret ) ? 'with_secret' : 'no_secret' ) : 'absent',
+            isset( $invoice->payment_intent ) ? ( ! empty( $invoice->payment_intent->client_secret ) ? 'with_secret' : 'no_secret' ) : 'absent'
+        );
+        if ( ! empty( $invoice->last_finalization_error->message ) ) {
+            $diag .= ', finalization_error=' . $invoice->last_finalization_error->message;
+        }
+        throw new \Exception( 'Stripe did not return a client_secret for the new subscription. (' . $diag . ')' );
     }
 
     // Derive the PaymentIntent ID from the client_secret. Stripe's

@@ -5992,6 +5992,11 @@
   flex-direction: column;
   gap: 0.4rem;
 }
+/* The HTML `hidden` attribute applies `display: none`, but `display: flex`
+ * on the class above wins on specificity — without this override, the
+ * Card Payment section would still render its label + empty mount slot
+ * before Step 1 completes. */
+.svc-closing-form-group[hidden] { display: none; }
 /* Two-column row for First Name + Last Name on desktop. Collapses
  * to a single column at narrow widths so the fields stay legible. */
 .svc-closing-form-row {
