@@ -249,19 +249,59 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
         $client_secret = $invoice->confirmation_secret->client_secret;
     } elseif ( ! empty( $invoice->payment_intent->client_secret ) ) {
         $client_secret = $invoice->payment_intent->client_secret;
+    } elseif ( is_string( $invoice->payment_intent ?? null ) ) {
+        // Older API: payment_intent is a string ID. Retrieve the PI
+        // directly to fetch its client_secret.
+        try {
+            $pi_lookup = \Stripe\PaymentIntent::retrieve( $invoice->payment_intent );
+            if ( $pi_lookup && ! empty( $pi_lookup->client_secret ) ) {
+                $client_secret = $pi_lookup->client_secret;
+            }
+        } catch ( \Exception $e ) { /* fall through to diagnostic */ }
     }
+
+    // Last-resort fallback: re-retrieve the invoice with explicit
+    // expand. Sometimes the original Subscription::create response
+    // omits confirmation_secret (account-specific API quirk) but a
+    // direct Invoice::retrieve with expansion populates it.
+    if ( ! $client_secret && ! empty( $invoice->id ) ) {
+        try {
+            $invoice_fresh = \Stripe\Invoice::retrieve( array(
+                'id'     => $invoice->id,
+                'expand' => array( 'confirmation_secret', 'payments.data.payment.payment_intent' ),
+            ) );
+            if ( ! empty( $invoice_fresh->confirmation_secret->client_secret ) ) {
+                $client_secret = $invoice_fresh->confirmation_secret->client_secret;
+            } elseif ( ! empty( $invoice_fresh->payments->data[0]->payment->payment_intent->client_secret ) ) {
+                $client_secret = $invoice_fresh->payments->data[0]->payment->payment_intent->client_secret;
+            }
+            // Update $invoice so subsequent diagnostic + amount reads use the fresh data.
+            $invoice = $invoice_fresh;
+        } catch ( \Exception $e ) { /* fall through to diagnostic */ }
+    }
+
     if ( ! $client_secret ) {
         // Capture diagnostic context so we can see why both the new
         // and old shapes came back empty. Most common causes:
         //   - Invoice failed to finalize (last_finalization_error has the reason)
         //   - Subscription status is 'incomplete_expired' (took too long, recreated)
         //   - Stripe Tax silently rejected the customer location (despite address.country)
+        //   - Account on an unusual API version with different field names
+        $invoice_keys = '';
+        if ( is_object( $invoice ) && method_exists( $invoice, 'toArray' ) ) {
+            $arr = $invoice->toArray();
+            if ( is_array( $arr ) ) {
+                $invoice_keys = substr( implode( ',', array_keys( $arr ) ), 0, 600 );
+            }
+        }
         $diag = sprintf(
-            'sub_status=%s, invoice_status=%s, confirmation_secret=%s, payment_intent=%s',
+            'sub_status=%s, invoice_status=%s, invoice_id=%s, confirmation_secret=%s, payment_intent=%s, invoice_keys=[%s]',
             isset( $subscription->status ) ? $subscription->status : 'null',
             isset( $invoice->status ) ? $invoice->status : 'null',
+            isset( $invoice->id ) ? $invoice->id : 'null',
             isset( $invoice->confirmation_secret ) ? ( ! empty( $invoice->confirmation_secret->client_secret ) ? 'with_secret' : 'no_secret' ) : 'absent',
-            isset( $invoice->payment_intent ) ? ( ! empty( $invoice->payment_intent->client_secret ) ? 'with_secret' : 'no_secret' ) : 'absent'
+            isset( $invoice->payment_intent ) ? ( is_string( $invoice->payment_intent ) ? 'string_id' : ( ! empty( $invoice->payment_intent->client_secret ) ? 'with_secret' : 'object_no_secret' ) ) : 'absent',
+            $invoice_keys
         );
         if ( ! empty( $invoice->last_finalization_error->message ) ) {
             $diag .= ', finalization_error=' . $invoice->last_finalization_error->message;
