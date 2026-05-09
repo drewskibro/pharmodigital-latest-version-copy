@@ -2915,6 +2915,39 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_aty_founder_name',  'label' => 'Founder — Signoff Name',  'name' => 'agent_thank_you_founder_name',  'type' => 'text', 'instructions' => 'Default: "Drew Clayton".' ),
         array( 'key' => 'field_gh_aty_founder_role',  'label' => 'Founder — Signoff Role',  'name' => 'agent_thank_you_founder_role',  'type' => 'text', 'instructions' => 'Default: "The Gildhart team".' ),
         array( 'key' => 'field_gh_aty_founder_photo', 'label' => 'Founder — Photo',         'name' => 'agent_thank_you_founder_photo', 'type' => 'image', 'return_format' => 'id', 'preview_size' => 'thumbnail', 'instructions' => 'Optional headshot to display next to the founder signoff. Square crop works best — renders as a 56px circular avatar with a thin gold border.' ),
+
+        // ── Playbook Upsell ────────────────────────────────────────────
+        // Cross-sell block immediately above the footer that pitches the
+        // £497 Playbook to a buyer who's already in "spending money"
+        // mode. Two-column split: copy on the left, playbook image on
+        // the right. Image defaults to the playbook service post's hero
+        // image (so a single asset upload powers both pages); upsell_image
+        // overrides if set.
+        array(
+            'key'           => 'field_gh_aty_upsell_show',
+            'label'         => 'Playbook Upsell — Show this section',
+            'name'          => 'agent_thank_you_upsell_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+            'instructions'  => 'Toggle off to hide the entire upsell block.',
+        ),
+        array( 'key' => 'field_gh_aty_upsell_eyebrow',  'label' => 'Playbook Upsell — Eyebrow',  'name' => 'agent_thank_you_upsell_eyebrow',  'type' => 'text',     'instructions' => 'Default: "Complete the system".' ),
+        array( 'key' => 'field_gh_aty_upsell_headline', 'label' => 'Playbook Upsell — Headline', 'name' => 'agent_thank_you_upsell_headline', 'type' => 'text',     'instructions' => 'Default: "Your agent converts. Now let\'s fill it."' ),
+        array( 'key' => 'field_gh_aty_upsell_subhead',  'label' => 'Playbook Upsell — Subhead',  'name' => 'agent_thank_you_upsell_subhead',  'type' => 'textarea', 'rows' => 2, 'instructions' => 'Default: "The AI Search Playbook — the exact system that drove Ealing\'s £100k HPV revenue to their agent."' ),
+        array( 'key' => 'field_gh_aty_upsell_body',     'label' => 'Playbook Upsell — Body',     'name' => 'agent_thank_you_upsell_body',     'type' => 'textarea', 'rows' => 4 ),
+        array(
+            'key'           => 'field_gh_aty_upsell_image',
+            'label'         => 'Playbook Upsell — Image (override)',
+            'name'          => 'agent_thank_you_upsell_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Optional. Leave empty to auto-pull the hero image from the Playbook service post (/the-playbook/) so a single asset powers both pages.',
+        ),
+        array( 'key' => 'field_gh_aty_upsell_cta_label', 'label' => 'Playbook Upsell — CTA Label', 'name' => 'agent_thank_you_upsell_cta_label', 'type' => 'text', 'instructions' => 'Default: "Complete the flywheel — £497 →".' ),
+        array( 'key' => 'field_gh_aty_upsell_cta_url',   'label' => 'Playbook Upsell — CTA URL',   'name' => 'agent_thank_you_upsell_cta_url',   'type' => 'url',  'instructions' => 'Default: "/the-playbook/".' ),
+        array( 'key' => 'field_gh_aty_upsell_footnote',  'label' => 'Playbook Upsell — Footnote',  'name' => 'agent_thank_you_upsell_footnote',  'type' => 'text', 'instructions' => 'Small uppercase text below the CTA. Default: "Price increases Q3 2026. Early buyers lock in today."' ),
     ),
     'location' => array(
         array(
