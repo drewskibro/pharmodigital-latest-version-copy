@@ -140,10 +140,6 @@ $founder_photo = get_field( 'agent_thank_you_founder_photo' );
                                     <span class="svc-thank-you-receipt-vat">incl. VAT</span>
                                 </dd>
                             </div>
-                            <div class="svc-thank-you-receipt-row" data-personalise-row="next_charge_date">
-                                <dt>Next charge</dt>
-                                <dd data-personalise="next_charge_date">—</dd>
-                            </div>
                         </dl>
 
                         <p class="svc-thank-you-receipt-foot">
