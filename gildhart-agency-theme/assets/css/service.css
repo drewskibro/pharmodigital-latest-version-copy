@@ -6949,38 +6949,46 @@
     top: -1.5rem;
     left: 0.25rem;
   }
-  .svc-thank-you-upsell { padding: 4rem 1.5rem 5rem; }
-  .svc-thank-you-upsell-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .svc-thank-you-upsell { padding: 4rem 1.25rem 5rem; }
+  .svc-thank-you-upsell-pitch { gap: 1rem; }
   .svc-thank-you-upsell-headline { font-size: clamp(2rem, 8vw, 2.75rem); }
-  .svc-thank-you-upsell-media { order: -1; max-width: 320px; margin: 0 auto; }
+  .svc-thank-you-upsell-subhead { font-size: 1.0625rem; }
+  .svc-thank-you-upsell-media { margin-top: 1.5rem; }
+  .svc-thank-you-upsell-proof { gap: 1.5rem; padding-top: 3rem; }
+  .svc-thank-you-upsell-proof-body { font-size: 1rem; }
+  .svc-thank-you-upsell-proof-emphasis { font-size: 1.0625rem; }
   .svc-thank-you-upsell-cta { font-size: 0.9375rem; padding: 1rem 1.625rem; }
+  .wa-card { border-radius: 14px; }
+  .wa-card-body { padding: 1rem 0.75rem 1.25rem; min-height: 200px; }
+  .wa-bubble { max-width: 88%; padding: 0.5rem 0.75rem 0.4rem; }
+  .wa-bubble-text { font-size: 0.875rem; }
 }
 
 /* ─────────────────────────────────────────────────────────────────
- * Playbook Upsell — cross-sell block above the footer.
+ * Playbook Upsell — two-stage cross-sell above the footer.
  *
- * Sits as its own <section> (outside .svc-thank-you-inner) so it can
- * carry a slightly different background tone than the confirmation
- * content above it — a subtle gradient from cream to warm-cream that
- * signals a shift in intent ("this is the next move") without breaking
- * the page's overall feel. Top hairline border + a tiny gold "next"
- * marker centred at the top reinforce the section break.
+ * Sits as its own <section> (outside .svc-thank-you-inner) so it
+ * carries a subtle cream→warm-cream gradient — signals a shift in
+ * intent ("here's what's next") without breaking the page's feel.
+ * Top hairline border + a tiny gold marker reinforce the break.
  *
- * Two-column split: copy on the left (eyebrow / headline / subhead /
- * body / gold CTA / footnote), playbook image on the right. Mobile
- * collapses to single column with image stacked above copy so the
- * device shot acts as a visual anchor before the pitch.
+ * Two distinct stages, both centred (not 2-col):
+ *   .svc-thank-you-upsell-pitch — narrative block, max ~720px.
+ *     Eyebrow / headline / subhead / body / framed playbook image.
+ *   .svc-thank-you-upsell-proof — proof stack, max ~620px.
+ *     Gold label / WhatsApp-style chat card / supporting paragraph /
+ *     italic gold takeaway / gold CTA / optional footnote.
+ *
+ * The narrower proof column lets the WhatsApp card read at a believable
+ * phone-conversation width rather than stretching across the whole page.
  * ─────────────────────────────────────────────────────────────────── */
 .svc-thank-you-upsell {
   position: relative;
   padding: 6rem 2rem 7rem;
-  background:
-    linear-gradient(180deg, var(--cream, #f5f3ef) 0%, #efece5 100%);
+  background: linear-gradient(180deg, var(--cream, #f5f3ef) 0%, #efece5 100%);
   border-top: 1px solid rgba(13, 26, 18, 0.06);
   overflow: hidden;
 }
-/* Gold "next" marker centred at the top edge — quiet visual cue that
- * this is a deliberate next step, not a spam upsell. */
 .svc-thank-you-upsell::before {
   content: '';
   position: absolute;
@@ -6997,20 +7005,15 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-.svc-thank-you-upsell-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-  gap: 4rem;
-  align-items: center;
-}
 
-/* LEFT — copy column. Same eyebrow + big-headline rhythm as the rest
- * of the page so the upsell reads as part of the design system, not
- * a foreign cross-sell drop-in. */
-.svc-thank-you-upsell-copy {
+/* ── Stage 1 — pitch ─────────────────────────────────────────────── */
+.svc-thank-you-upsell-pitch {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 1.25rem;
 }
 .svc-thank-you-upsell-eyebrow {
@@ -7041,6 +7044,7 @@
   color: var(--navy);
   line-height: 1.45;
   margin: 0;
+  max-width: 60ch;
 }
 .svc-thank-you-upsell-body {
   font-family: 'Inter', sans-serif;
@@ -7048,19 +7052,88 @@
   color: var(--gray-600);
   line-height: 1.65;
   margin: 0;
-  max-width: 56ch;
+  max-width: 60ch;
 }
-.svc-thank-you-upsell-cta-wrap {
-  margin-top: 0.75rem;
+
+/* Framed playbook image — radius + drop-shadow treatment so it reads
+ * as a deliberate hero asset rather than a floating PNG. Gold halo
+ * underneath echoes the receipt card / founder photo treatment. */
+.svc-thank-you-upsell-media {
+  position: relative;
+  margin: 1.5rem auto 0;
+  max-width: 720px;
+  width: 100%;
+}
+.svc-thank-you-upsell-media::before {
+  content: '';
+  position: absolute;
+  inset: 8% 6% 4% 6%;
+  border-radius: 24px;
+  background: radial-gradient(ellipse at center, rgba(201, 164, 74, 0.22) 0%, rgba(201, 164, 74, 0) 70%);
+  z-index: 0;
+  filter: blur(24px);
+}
+.svc-thank-you-upsell-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(13, 26, 18, 0.04),
+    0 24px 48px rgba(13, 26, 18, 0.16),
+    0 8px 18px rgba(13, 26, 18, 0.08);
+}
+
+/* ── Stage 2 — proof ─────────────────────────────────────────────── */
+.svc-thank-you-upsell-proof {
+  max-width: 620px;
+  margin: 0 auto;
+  padding-top: 4.5rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 1.75rem;
+  text-align: center;
+}
+.svc-thank-you-upsell-proof-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+}
+.svc-thank-you-upsell-proof-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  color: var(--navy);
+  line-height: 1.65;
+  margin: 0;
+}
+/* Gold italic takeaway — the line that tells the reader what the
+ * WhatsApp screenshot proves, in case they skimmed it. */
+.svc-thank-you-upsell-proof-emphasis {
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.45;
+  color: #b88a30;
+  margin: 0;
+  max-width: 50ch;
+}
+
+/* CTA wrap — centred under the proof stack. */
+.svc-thank-you-upsell-cta-wrap {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 0.875rem;
 }
-/* Gold CTA button — premium gradient, deeper shadow on hover. Anchors
- * the section as the moment-of-decision while staying on-brand with
- * the gold thread used throughout the page (eyebrow, status strip,
- * receipt accent). */
 .svc-thank-you-upsell-cta {
   display: inline-flex;
   align-items: center;
@@ -7100,29 +7173,144 @@
   margin: 0;
 }
 
-/* RIGHT — playbook image. Subtle drop shadow + slight rotation cancel
- * to keep the device shot grounded; gold ambient ring underneath
- * mirrors the founder photo + receipt card design language. */
-.svc-thank-you-upsell-media {
-  position: relative;
+/* ─────────────────────────────────────────────────────────────────
+ * WhatsApp-style chat card (.wa-card)
+ *
+ * Pure-CSS recreation of a WhatsApp conversation — readable on every
+ * device, edits via ACF (no screenshot churn), and stays on-brand
+ * with the page's premium card treatment. The container card uses
+ * the same radius + shadow pattern as the receipt card; inside, we
+ * recreate WhatsApp's authentic visual language: green header bar
+ * (#075e54 brand colour), avatar circle with contact initial, name +
+ * "online" status, header utility icons (video / call / overflow),
+ * faint chat-pattern background on the body, grey incoming bubbles
+ * with the characteristic left-pointing tail.
+ * ─────────────────────────────────────────────────────────────────── */
+.wa-card {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(13, 26, 18, 0.04),
+    0 22px 44px rgba(13, 26, 18, 0.16),
+    0 6px 14px rgba(13, 26, 18, 0.06);
+  text-align: left;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Green header bar — WhatsApp's signature dark teal. */
+.wa-card-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #075e54;
+  color: #ffffff;
 }
-.svc-thank-you-upsell-media::before {
+.wa-card-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.85);
+  flex-shrink: 0;
+}
+.wa-card-back svg { width: 22px; height: 22px; }
+.wa-card-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #128c7e 0%, #25d366 100%);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.wa-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.wa-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wa-card-status {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.2;
+}
+.wa-card-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  color: rgba(255, 255, 255, 0.92);
+  flex-shrink: 0;
+}
+.wa-card-icons svg { width: 18px; height: 18px; }
+
+/* Body — WhatsApp's signature beige/cream chat background with a faint
+ * dotted texture (SVG-encoded so no image asset needed). */
+.wa-card-body {
+  padding: 1.25rem 1rem 1.5rem;
+  background: #ece5dd;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23d6cfc6' opacity='0.6'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 220px;
+}
+
+/* Incoming bubble — white with a left-pointing tail at the top-left
+ * via a ::before pseudo, mirroring WhatsApp's actual bubble shape. */
+.wa-bubble {
+  position: relative;
+  background: #ffffff;
+  border-radius: 0 8px 8px 8px;
+  padding: 0.625rem 0.875rem 0.5rem;
+  max-width: 85%;
+  align-self: flex-start;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+  margin-left: 0.5rem;
+}
+.wa-bubble::before {
   content: '';
   position: absolute;
-  inset: 12% 8% 10% 8%;
-  border-radius: 24px;
-  background: radial-gradient(ellipse at center, rgba(201, 164, 74, 0.25) 0%, rgba(201, 164, 74, 0) 70%);
-  z-index: 0;
-  filter: blur(20px);
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 8px 0;
+  border-color: transparent #ffffff transparent transparent;
 }
-.svc-thank-you-upsell-image {
-  position: relative;
-  z-index: 1;
-  max-width: 100%;
-  height: auto;
+.wa-bubble-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: #111b21;
+  margin: 0;
+  white-space: pre-line;
+}
+.wa-bubble-time {
   display: block;
-  filter: drop-shadow(0 24px 48px rgba(13, 26, 18, 0.18)) drop-shadow(0 8px 16px rgba(13, 26, 18, 0.08));
+  font-size: 0.6875rem;
+  color: rgba(17, 27, 33, 0.45);
+  text-align: right;
+  margin-top: 0.25rem;
 }

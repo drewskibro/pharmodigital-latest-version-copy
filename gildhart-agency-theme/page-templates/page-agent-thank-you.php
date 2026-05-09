@@ -84,18 +84,27 @@ $founder_role  = gh_field( 'agent_thank_you_founder_role',  'The Gildhart team' 
 $founder_photo = get_field( 'agent_thank_you_founder_photo' );
 
 /* Playbook upsell — cross-sell block above the footer pitching the
- * £497 Playbook to a buyer already in "spending money" mode. The
- * image defaults to the Playbook service post's hero image so a
+ * £497 Playbook to a buyer already in "spending money" mode.
+ *
+ * The section renders in TWO stages:
+ *   Stage 1 — the pitch  (eyebrow / headline / subhead / body / framed
+ *                         playbook image, all centred in a ~720px column)
+ *   Stage 2 — the proof  (gold label / WhatsApp-style chat card /
+ *                         supporting paragraph / italic takeaway / gold
+ *                         CTA, centred in a tighter ~620px column so the
+ *                         WhatsApp card reads at a believable phone width)
+ *
+ * The image defaults to the Playbook service post's hero image so a
  * single asset upload powers /the-playbook/ AND this upsell; the
  * upsell_image ACF field overrides if explicitly set. */
 $upsell_show     = gh_field( 'agent_thank_you_upsell_show',      1 );
 $upsell_eyebrow  = gh_field( 'agent_thank_you_upsell_eyebrow',   'Complete the system' );
-$upsell_headline = gh_field( 'agent_thank_you_upsell_headline',  "Your agent converts. Now let's fill it." );
-$upsell_subhead  = gh_field( 'agent_thank_you_upsell_subhead',   "The AI Search Playbook — the exact system that drove Ealing's £100k HPV revenue to their agent." );
-$upsell_body     = gh_field( 'agent_thank_you_upsell_body',      'Your Agent converts the patients who find you. The Playbook is how patients find you — the AI-search ranking system that put Ealing Travel Clinic at the top of ChatGPT and Perplexity for HPV vaccinations, sending £100k of new patient revenue straight to their agent. One-time fee. Compounds for years.' );
-$upsell_cta_lbl  = gh_field( 'agent_thank_you_upsell_cta_label', 'Complete the flywheel — £497 →' );
-$upsell_cta_url  = gh_field( 'agent_thank_you_upsell_cta_url',   '/the-playbook/' );
-$upsell_footnote = gh_field( 'agent_thank_you_upsell_footnote',  'Price increases Q3 2026. Early buyers lock in today.' );
+$upsell_headline = gh_field( 'agent_thank_you_upsell_headline',  'Your agent is ready. Now send it patients.' );
+$upsell_subhead  = gh_field( 'agent_thank_you_upsell_subhead',   'The AI Search Playbook — how Ealing Travel Clinic filled their agent with £100k of HPV patients. From one service. In one year.' );
+$upsell_body     = gh_field( 'agent_thank_you_upsell_body',      "The Playbook is the traffic system. Every piece of content you publish through it gets you featured on ChatGPT, Claude, Perplexity, and Google AI Overviews — sending pre-sold patients straight to your agent around the clock. Ealing didn't run ads. They didn't hire a marketing team. They followed the system. £100k from HPV alone. Every other service they publish compounds on top of that. The agent converts them. The Playbook fills it. That's the flywheel." );
+$upsell_cta_lbl  = gh_field( 'agent_thank_you_upsell_cta_label', 'Get the Playbook — £497 →' );
+$upsell_cta_url  = gh_field( 'agent_thank_you_upsell_cta_url',   'https://pharmodigital.kinsta.cloud/the-playbook/' );
+$upsell_footnote = gh_field( 'agent_thank_you_upsell_footnote',  '' ); // Optional, hidden by default per current spec.
 $upsell_image_id = get_field( 'agent_thank_you_upsell_image' );
 if ( ! $upsell_image_id ) {
     // Fallback: pull the hero image attachment ID off the Playbook
@@ -107,6 +116,30 @@ if ( ! $upsell_image_id ) {
         $upsell_image_id = (int) get_field( 'service_hero_image', $playbook_post->ID );
     }
 }
+
+/* Proof block (stage 2) — WhatsApp testimonial. Strongest evidence on
+ * the page so it gets its own dedicated stack. Messages are an ACF
+ * repeater so the editor can add/edit/reorder bubbles. */
+$upsell_proof_label    = gh_field( 'agent_thank_you_upsell_proof_label',    'What happens when the Playbook compounds' );
+$upsell_chat_name      = gh_field( 'agent_thank_you_upsell_chat_name',      'Sachin — Ealing Travel Clinic' );
+$upsell_chat_messages  = get_field( 'agent_thank_you_upsell_chat_messages' );
+if ( empty( $upsell_chat_messages ) ) {
+    $upsell_chat_messages = array(
+        array(
+            'text' => 'September 2024–Aug 2025 we did 18 HPV vaccines. September 2025 to now — we’ve done 33.',
+            'time' => '',
+        ),
+        array(
+            'text' => 'Just had a call from an IVF clinic — they’re sending us all their Zika virus referrals. The SEO is defo working.',
+            'time' => '',
+        ),
+    );
+}
+$upsell_proof_body     = gh_field( 'agent_thank_you_upsell_proof_body',     'Ealing ranked page one for Zika virus London. An IVF clinic found them. Called them. And started sending referrals. That’s not a patient booking — that’s an institution generating recurring revenue on autopilot. The Playbook did that.' );
+$upsell_proof_emphasis = gh_field( 'agent_thank_you_upsell_proof_emphasis', 'Individual patients. Then institutions. That’s what compounding looks like.' );
+
+// Pull the contact's first initial for the WhatsApp avatar circle.
+$chat_initial = $upsell_chat_name ? strtoupper( mb_substr( ltrim( $upsell_chat_name ), 0, 1 ) ) : 'S';
 ?>
 
 <main id="main" class="site-main">
@@ -291,53 +324,115 @@ if ( ! $upsell_image_id ) {
         </div>
     </section>
 
-    <!-- Playbook upsell — cross-sell block above the footer. Sits as its
-         own <section> (not inside .svc-thank-you-inner) so it can carry
-         a slightly different background tone, signalling a shift in
-         intent from "confirming your purchase" to "here's what's next."
-         Two-column split: copy on the left, playbook image on the right.
+    <!-- Playbook upsell — two-stage cross-sell above the footer.
+         STAGE 1 (.svc-thank-you-upsell-pitch): centred narrative block —
+                 eyebrow, headline, subhead, body, framed playbook image.
+         STAGE 2 (.svc-thank-you-upsell-proof): centred proof stack —
+                 gold label, WhatsApp-style chat card, supporting
+                 paragraph, italic takeaway, gold CTA, optional footnote.
          Hides entirely when the upsell_show toggle is off. -->
     <?php if ( $upsell_show && ( $upsell_headline || $upsell_subhead || $upsell_body ) ) : ?>
         <section class="svc-thank-you-upsell" aria-labelledby="svcThankYouUpsellHeading">
             <div class="svc-thank-you-upsell-inner">
-                <div class="svc-thank-you-upsell-grid">
 
-                    <div class="svc-thank-you-upsell-copy">
-                        <?php if ( $upsell_eyebrow ) : ?>
-                            <span class="svc-thank-you-upsell-eyebrow"><?php echo esc_html( $upsell_eyebrow ); ?></span>
-                        <?php endif; ?>
-                        <?php if ( $upsell_headline ) : ?>
-                            <h2 id="svcThankYouUpsellHeading" class="svc-thank-you-upsell-headline"><?php echo esc_html( $upsell_headline ); ?></h2>
-                        <?php endif; ?>
-                        <?php if ( $upsell_subhead ) : ?>
-                            <p class="svc-thank-you-upsell-subhead"><?php echo esc_html( $upsell_subhead ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $upsell_body ) : ?>
-                            <p class="svc-thank-you-upsell-body"><?php echo esc_html( $upsell_body ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $upsell_cta_lbl && $upsell_cta_url ) : ?>
-                            <div class="svc-thank-you-upsell-cta-wrap">
-                                <a class="svc-thank-you-upsell-cta" href="<?php echo esc_url( $upsell_cta_url ); ?>">
-                                    <?php echo esc_html( $upsell_cta_lbl ); ?>
-                                </a>
-                                <?php if ( $upsell_footnote ) : ?>
-                                    <p class="svc-thank-you-upsell-footnote"><?php echo esc_html( $upsell_footnote ); ?></p>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-
-                    <?php if ( $upsell_image_id ) : ?>
-                        <div class="svc-thank-you-upsell-media">
-                            <?php echo wp_get_attachment_image( $upsell_image_id, 'large', false, array(
-                                'class' => 'svc-thank-you-upsell-image',
-                                'alt'   => esc_attr( $upsell_headline ),
-                                'loading' => 'lazy',
-                            ) ); ?>
-                        </div>
+                <!-- STAGE 1 — the pitch -->
+                <div class="svc-thank-you-upsell-pitch">
+                    <?php if ( $upsell_eyebrow ) : ?>
+                        <span class="svc-thank-you-upsell-eyebrow"><?php echo esc_html( $upsell_eyebrow ); ?></span>
+                    <?php endif; ?>
+                    <?php if ( $upsell_headline ) : ?>
+                        <h2 id="svcThankYouUpsellHeading" class="svc-thank-you-upsell-headline"><?php echo esc_html( $upsell_headline ); ?></h2>
+                    <?php endif; ?>
+                    <?php if ( $upsell_subhead ) : ?>
+                        <p class="svc-thank-you-upsell-subhead"><?php echo esc_html( $upsell_subhead ); ?></p>
+                    <?php endif; ?>
+                    <?php if ( $upsell_body ) : ?>
+                        <p class="svc-thank-you-upsell-body"><?php echo esc_html( $upsell_body ); ?></p>
                     <?php endif; ?>
 
+                    <?php if ( $upsell_image_id ) : ?>
+                        <figure class="svc-thank-you-upsell-media">
+                            <?php echo wp_get_attachment_image( $upsell_image_id, 'large', false, array(
+                                'class'   => 'svc-thank-you-upsell-image',
+                                'alt'     => esc_attr( $upsell_headline ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </figure>
+                    <?php endif; ?>
                 </div>
+
+                <!-- STAGE 2 — the proof -->
+                <div class="svc-thank-you-upsell-proof">
+                    <?php if ( $upsell_proof_label ) : ?>
+                        <span class="svc-thank-you-upsell-proof-label"><?php echo esc_html( $upsell_proof_label ); ?></span>
+                    <?php endif; ?>
+
+                    <?php if ( ! empty( $upsell_chat_messages ) ) : ?>
+                        <!-- WhatsApp-style chat card. Recreated in pure CSS rather
+                             than embedding a screenshot — readable on mobile,
+                             editable when copy changes, on-brand with the page. -->
+                        <article class="wa-card" aria-label="WhatsApp message from <?php echo esc_attr( $upsell_chat_name ); ?>">
+                            <header class="wa-card-header">
+                                <span class="wa-card-back" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="15 6 9 12 15 18"/>
+                                    </svg>
+                                </span>
+                                <span class="wa-card-avatar" aria-hidden="true"><?php echo esc_html( $chat_initial ); ?></span>
+                                <span class="wa-card-meta">
+                                    <span class="wa-card-name"><?php echo esc_html( $upsell_chat_name ); ?></span>
+                                    <span class="wa-card-status">online</span>
+                                </span>
+                                <span class="wa-card-icons" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M23 7l-7 5 7 5V7z"/>
+                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="5" r="1.5"/>
+                                        <circle cx="12" cy="12" r="1.5"/>
+                                        <circle cx="12" cy="19" r="1.5"/>
+                                    </svg>
+                                </span>
+                            </header>
+                            <div class="wa-card-body">
+                                <?php foreach ( $upsell_chat_messages as $msg ) :
+                                    $text = trim( $msg['text'] ?? '' );
+                                    $time = trim( $msg['time'] ?? '' );
+                                    if ( ! $text ) continue; ?>
+                                    <div class="wa-bubble wa-bubble--in">
+                                        <p class="wa-bubble-text"><?php echo esc_html( $text ); ?></p>
+                                        <?php if ( $time ) : ?>
+                                            <span class="wa-bubble-time"><?php echo esc_html( $time ); ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </article>
+                    <?php endif; ?>
+
+                    <?php if ( $upsell_proof_body ) : ?>
+                        <p class="svc-thank-you-upsell-proof-body"><?php echo esc_html( $upsell_proof_body ); ?></p>
+                    <?php endif; ?>
+                    <?php if ( $upsell_proof_emphasis ) : ?>
+                        <p class="svc-thank-you-upsell-proof-emphasis"><?php echo esc_html( $upsell_proof_emphasis ); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ( $upsell_cta_lbl && $upsell_cta_url ) : ?>
+                        <div class="svc-thank-you-upsell-cta-wrap">
+                            <a class="svc-thank-you-upsell-cta" href="<?php echo esc_url( $upsell_cta_url ); ?>">
+                                <?php echo esc_html( $upsell_cta_lbl ); ?>
+                            </a>
+                            <?php if ( $upsell_footnote ) : ?>
+                                <p class="svc-thank-you-upsell-footnote"><?php echo esc_html( $upsell_footnote ); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
             </div>
         </section>
     <?php endif; ?>
