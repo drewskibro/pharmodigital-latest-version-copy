@@ -6951,6 +6951,16 @@
   }
   .svc-thank-you-upsell { padding: 4rem 1.25rem 5rem; }
   .svc-thank-you-upsell-stack { gap: 2.5rem; }
+  /* Break the image out of the section's 1.25rem horizontal padding
+   * so it goes edge-to-edge on phones — every pixel of width helps
+   * when the source has dense detail (multiple chat cards). */
+  .svc-thank-you-upsell-media {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    width: calc(100% + 2.5rem);
+    max-width: none;
+  }
+  .svc-thank-you-upsell-image { border-radius: 0; }
   .svc-thank-you-upsell-headline { font-size: clamp(2rem, 8vw, 2.75rem); }
   .svc-thank-you-upsell-subhead { font-size: 1.0625rem; }
   .svc-thank-you-upsell-proof-body { font-size: 1rem; }
