@@ -2949,27 +2949,10 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_aty_upsell_cta_url',   'label' => 'Playbook Upsell — CTA URL',   'name' => 'agent_thank_you_upsell_cta_url',   'type' => 'url',  'instructions' => 'Default: "/the-playbook/".' ),
         array( 'key' => 'field_gh_aty_upsell_footnote',  'label' => 'Playbook Upsell — Footnote (optional)', 'name' => 'agent_thank_you_upsell_footnote', 'type' => 'text', 'instructions' => 'Optional small uppercase text below the CTA. Leave empty to hide.' ),
 
-        // ── Proof block (stage 2) ─────────────────────────────────────
-        // The WhatsApp testimonial that anchors the upsell. This is the
-        // strongest evidence on the page — a real screenshot from a real
-        // client — so it gets its own dedicated stack: gold label →
-        // WhatsApp-style chat card → supporting paragraph → italic
-        // takeaway → CTA.
-        array( 'key' => 'field_gh_aty_upsell_proof_label',    'label' => 'Playbook Upsell — Proof Label',    'name' => 'agent_thank_you_upsell_proof_label',    'type' => 'text',     'instructions' => 'Small gold uppercase label above the WhatsApp card. Default: "What happens when the Playbook compounds".' ),
-        array( 'key' => 'field_gh_aty_upsell_chat_name',      'label' => 'Playbook Upsell — Chat Contact Name', 'name' => 'agent_thank_you_upsell_chat_name',      'type' => 'text',     'instructions' => 'The name shown in the WhatsApp header. Default: "Sachin — Ealing Travel Clinic".' ),
-        array(
-            'key'         => 'field_gh_aty_upsell_chat_messages',
-            'label'       => 'Playbook Upsell — Chat Messages',
-            'name'        => 'agent_thank_you_upsell_chat_messages',
-            'type'        => 'repeater',
-            'layout'      => 'block',
-            'button_label' => 'Add message',
-            'instructions' => 'Each row renders as one grey incoming WhatsApp bubble. Order is top-down.',
-            'sub_fields'  => array(
-                array( 'key' => 'field_gh_aty_upsell_chat_msg_text', 'label' => 'Message text',          'name' => 'text', 'type' => 'textarea', 'rows' => 3, 'required' => 1 ),
-                array( 'key' => 'field_gh_aty_upsell_chat_msg_time', 'label' => 'Timestamp (optional)',  'name' => 'time', 'type' => 'text', 'instructions' => 'e.g. "11:48". Leave empty to omit.' ),
-            ),
-        ),
+        // ── Proof block (lives in the left copy column) ────────────────
+        // Supporting prose under the body copy: gold label, paragraph,
+        // italic takeaway. Each line hides if you blank the field.
+        array( 'key' => 'field_gh_aty_upsell_proof_label',    'label' => 'Playbook Upsell — Proof Label',    'name' => 'agent_thank_you_upsell_proof_label',    'type' => 'text',     'instructions' => 'Small gold uppercase label above the proof paragraph. Default: "What happens when the Playbook compounds".' ),
         array( 'key' => 'field_gh_aty_upsell_proof_body',     'label' => 'Playbook Upsell — Proof Paragraph', 'name' => 'agent_thank_you_upsell_proof_body', 'type' => 'textarea', 'rows' => 4 ),
         array( 'key' => 'field_gh_aty_upsell_proof_emphasis', 'label' => 'Playbook Upsell — Italic Takeaway', 'name' => 'agent_thank_you_upsell_proof_emphasis', 'type' => 'text', 'instructions' => 'Italic gold one-liner under the proof paragraph. Default: "Individual patients. Then institutions. That\'s what compounding looks like."' ),
     ),

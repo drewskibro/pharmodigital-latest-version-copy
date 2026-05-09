@@ -117,29 +117,13 @@ if ( ! $upsell_image_id ) {
     }
 }
 
-/* Proof block (stage 2) — WhatsApp testimonial. Strongest evidence on
- * the page so it gets its own dedicated stack. Messages are an ACF
- * repeater so the editor can add/edit/reorder bubbles. */
+/* Proof block — supporting copy that lives inside the left column of
+ * the upsell. Carries the IVF/Zika compounding story as plain prose
+ * (no WhatsApp card). Editor can blank these fields to hide each
+ * line independently. */
 $upsell_proof_label    = gh_field( 'agent_thank_you_upsell_proof_label',    'What happens when the Playbook compounds' );
-$upsell_chat_name      = gh_field( 'agent_thank_you_upsell_chat_name',      'Sachin — Ealing Travel Clinic' );
-$upsell_chat_messages  = get_field( 'agent_thank_you_upsell_chat_messages' );
-if ( empty( $upsell_chat_messages ) ) {
-    $upsell_chat_messages = array(
-        array(
-            'text' => 'September 2024–Aug 2025 we did 18 HPV vaccines. September 2025 to now — we’ve done 33.',
-            'time' => '',
-        ),
-        array(
-            'text' => 'Just had a call from an IVF clinic — they’re sending us all their Zika virus referrals. The SEO is defo working.',
-            'time' => '',
-        ),
-    );
-}
 $upsell_proof_body     = gh_field( 'agent_thank_you_upsell_proof_body',     'Ealing ranked page one for Zika virus London. An IVF clinic found them. Called them. And started sending referrals. That’s not a patient booking — that’s an institution generating recurring revenue on autopilot. The Playbook did that.' );
 $upsell_proof_emphasis = gh_field( 'agent_thank_you_upsell_proof_emphasis', 'Individual patients. Then institutions. That’s what compounding looks like.' );
-
-// Pull the contact's first initial for the WhatsApp avatar circle.
-$chat_initial = $upsell_chat_name ? strtoupper( mb_substr( ltrim( $upsell_chat_name ), 0, 1 ) ) : 'S';
 ?>
 
 <main id="main" class="site-main">
@@ -324,31 +308,56 @@ $chat_initial = $upsell_chat_name ? strtoupper( mb_substr( ltrim( $upsell_chat_n
         </div>
     </section>
 
-    <!-- Playbook upsell — two-stage cross-sell above the footer.
-         STAGE 1 (.svc-thank-you-upsell-pitch): centred narrative block —
-                 eyebrow, headline, subhead, body, framed playbook image.
-         STAGE 2 (.svc-thank-you-upsell-proof): centred proof stack —
-                 gold label, WhatsApp-style chat card, supporting
-                 paragraph, italic takeaway, gold CTA, optional footnote.
-         Hides entirely when the upsell_show toggle is off. -->
+    <!-- Playbook upsell — full-width 2-col cross-sell above the footer.
+         LEFT (7fr): copy stack — eyebrow, headline, subhead, body, gold
+                     proof label + paragraph + italic takeaway, CTA.
+         RIGHT (5fr): framed playbook image, vertically centred against
+                      the copy column so the section fills the 1200px
+                      container with no narrow centred islands. -->
     <?php if ( $upsell_show && ( $upsell_headline || $upsell_subhead || $upsell_body ) ) : ?>
         <section class="svc-thank-you-upsell" aria-labelledby="svcThankYouUpsellHeading">
             <div class="svc-thank-you-upsell-inner">
+                <div class="svc-thank-you-upsell-grid">
 
-                <!-- STAGE 1 — the pitch -->
-                <div class="svc-thank-you-upsell-pitch">
-                    <?php if ( $upsell_eyebrow ) : ?>
-                        <span class="svc-thank-you-upsell-eyebrow"><?php echo esc_html( $upsell_eyebrow ); ?></span>
-                    <?php endif; ?>
-                    <?php if ( $upsell_headline ) : ?>
-                        <h2 id="svcThankYouUpsellHeading" class="svc-thank-you-upsell-headline"><?php echo esc_html( $upsell_headline ); ?></h2>
-                    <?php endif; ?>
-                    <?php if ( $upsell_subhead ) : ?>
-                        <p class="svc-thank-you-upsell-subhead"><?php echo esc_html( $upsell_subhead ); ?></p>
-                    <?php endif; ?>
-                    <?php if ( $upsell_body ) : ?>
-                        <p class="svc-thank-you-upsell-body"><?php echo esc_html( $upsell_body ); ?></p>
-                    <?php endif; ?>
+                    <div class="svc-thank-you-upsell-copy">
+                        <?php if ( $upsell_eyebrow ) : ?>
+                            <span class="svc-thank-you-upsell-eyebrow"><?php echo esc_html( $upsell_eyebrow ); ?></span>
+                        <?php endif; ?>
+                        <?php if ( $upsell_headline ) : ?>
+                            <h2 id="svcThankYouUpsellHeading" class="svc-thank-you-upsell-headline"><?php echo esc_html( $upsell_headline ); ?></h2>
+                        <?php endif; ?>
+                        <?php if ( $upsell_subhead ) : ?>
+                            <p class="svc-thank-you-upsell-subhead"><?php echo esc_html( $upsell_subhead ); ?></p>
+                        <?php endif; ?>
+                        <?php if ( $upsell_body ) : ?>
+                            <p class="svc-thank-you-upsell-body"><?php echo esc_html( $upsell_body ); ?></p>
+                        <?php endif; ?>
+
+                        <?php if ( $upsell_proof_label || $upsell_proof_body || $upsell_proof_emphasis ) : ?>
+                            <div class="svc-thank-you-upsell-proof">
+                                <?php if ( $upsell_proof_label ) : ?>
+                                    <span class="svc-thank-you-upsell-proof-label"><?php echo esc_html( $upsell_proof_label ); ?></span>
+                                <?php endif; ?>
+                                <?php if ( $upsell_proof_body ) : ?>
+                                    <p class="svc-thank-you-upsell-proof-body"><?php echo esc_html( $upsell_proof_body ); ?></p>
+                                <?php endif; ?>
+                                <?php if ( $upsell_proof_emphasis ) : ?>
+                                    <p class="svc-thank-you-upsell-proof-emphasis"><?php echo esc_html( $upsell_proof_emphasis ); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ( $upsell_cta_lbl && $upsell_cta_url ) : ?>
+                            <div class="svc-thank-you-upsell-cta-wrap">
+                                <a class="svc-thank-you-upsell-cta" href="<?php echo esc_url( $upsell_cta_url ); ?>">
+                                    <?php echo esc_html( $upsell_cta_lbl ); ?>
+                                </a>
+                                <?php if ( $upsell_footnote ) : ?>
+                                    <p class="svc-thank-you-upsell-footnote"><?php echo esc_html( $upsell_footnote ); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
 
                     <?php if ( $upsell_image_id ) : ?>
                         <figure class="svc-thank-you-upsell-media">
@@ -359,80 +368,8 @@ $chat_initial = $upsell_chat_name ? strtoupper( mb_substr( ltrim( $upsell_chat_n
                             ) ); ?>
                         </figure>
                     <?php endif; ?>
+
                 </div>
-
-                <!-- STAGE 2 — the proof -->
-                <div class="svc-thank-you-upsell-proof">
-                    <?php if ( $upsell_proof_label ) : ?>
-                        <span class="svc-thank-you-upsell-proof-label"><?php echo esc_html( $upsell_proof_label ); ?></span>
-                    <?php endif; ?>
-
-                    <?php if ( ! empty( $upsell_chat_messages ) ) : ?>
-                        <!-- WhatsApp-style chat card. Recreated in pure CSS rather
-                             than embedding a screenshot — readable on mobile,
-                             editable when copy changes, on-brand with the page. -->
-                        <article class="wa-card" aria-label="WhatsApp message from <?php echo esc_attr( $upsell_chat_name ); ?>">
-                            <header class="wa-card-header">
-                                <span class="wa-card-back" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="15 6 9 12 15 18"/>
-                                    </svg>
-                                </span>
-                                <span class="wa-card-avatar" aria-hidden="true"><?php echo esc_html( $chat_initial ); ?></span>
-                                <span class="wa-card-meta">
-                                    <span class="wa-card-name"><?php echo esc_html( $upsell_chat_name ); ?></span>
-                                    <span class="wa-card-status">online</span>
-                                </span>
-                                <span class="wa-card-icons" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M23 7l-7 5 7 5V7z"/>
-                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-                                    </svg>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                    </svg>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="5" r="1.5"/>
-                                        <circle cx="12" cy="12" r="1.5"/>
-                                        <circle cx="12" cy="19" r="1.5"/>
-                                    </svg>
-                                </span>
-                            </header>
-                            <div class="wa-card-body">
-                                <?php foreach ( $upsell_chat_messages as $msg ) :
-                                    $text = trim( $msg['text'] ?? '' );
-                                    $time = trim( $msg['time'] ?? '' );
-                                    if ( ! $text ) continue; ?>
-                                    <div class="wa-bubble wa-bubble--in">
-                                        <p class="wa-bubble-text"><?php echo esc_html( $text ); ?></p>
-                                        <?php if ( $time ) : ?>
-                                            <span class="wa-bubble-time"><?php echo esc_html( $time ); ?></span>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </article>
-                    <?php endif; ?>
-
-                    <?php if ( $upsell_proof_body ) : ?>
-                        <p class="svc-thank-you-upsell-proof-body"><?php echo esc_html( $upsell_proof_body ); ?></p>
-                    <?php endif; ?>
-                    <?php if ( $upsell_proof_emphasis ) : ?>
-                        <p class="svc-thank-you-upsell-proof-emphasis"><?php echo esc_html( $upsell_proof_emphasis ); ?></p>
-                    <?php endif; ?>
-
-                    <?php if ( $upsell_cta_lbl && $upsell_cta_url ) : ?>
-                        <div class="svc-thank-you-upsell-cta-wrap">
-                            <a class="svc-thank-you-upsell-cta" href="<?php echo esc_url( $upsell_cta_url ); ?>">
-                                <?php echo esc_html( $upsell_cta_lbl ); ?>
-                            </a>
-                            <?php if ( $upsell_footnote ) : ?>
-                                <p class="svc-thank-you-upsell-footnote"><?php echo esc_html( $upsell_footnote ); ?></p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-
             </div>
         </section>
     <?php endif; ?>
