@@ -6596,13 +6596,13 @@
 }
 .svc-thank-you-video-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   font-weight: 800;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
+  color: #9a7a2a;
   padding-bottom: 0.875rem;
-  border-bottom: 1px solid rgba(201, 164, 74, 0.30);
+  border-bottom: 1px solid rgba(154, 122, 42, 0.45);
   margin: 0 auto;
   display: inline-block;
 }
@@ -6641,14 +6641,14 @@
 .svc-thank-you-section-eyebrow {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 800;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
+  color: #9a7a2a;
   margin-bottom: 2rem;
   padding-bottom: 0.875rem;
-  border-bottom: 1px solid rgba(201, 164, 74, 0.30);
+  border-bottom: 1px solid rgba(154, 122, 42, 0.45);
   text-align: center;
 }
 
