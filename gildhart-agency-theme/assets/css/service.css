@@ -6293,64 +6293,93 @@
   gap: 5.5rem;
 }
 
-/* Confirmation hero — animated gold check, big title, personalised lines.
- * Sized confidently so the hero earns its space rather than feeling like
- * a small island floating in the cream backdrop. Generous vertical
- * rhythm between check / eyebrow / title / lines / pill. */
+/* Confirmation hero — full-width 2-column "order confirmation" layout.
+ *
+ * The previous centred 880px treatment read as a small island in the
+ * 1200px container. This version uses the full container width with a
+ * 2-column grid (message on the left, order-summary receipt card on
+ * the right) so the hero earns its space the same way the timeline
+ * does. Below both columns sits a full-width status strip carrying
+ * the "Deployment kicks off in 7 days" commitment.
+ *
+ * Mobile collapses to a single column (receipt card stacked under the
+ * message) at 880px; the inline gold tick + eyebrow row stays inline
+ * at every breakpoint. */
 .svc-thank-you-hero {
-  text-align: center;
+  /* No max-width / no margin auto — span the full .svc-thank-you-inner
+   * (1200px) so the hero matches the timeline's full-bleed feel. */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 2rem 1rem 1rem;
-  max-width: 880px;
-  margin: 0 auto;
+  gap: 2rem;
+  padding: 1rem 0 0;
 }
-/* Hero check — premium gold-gradient circle with two ambient rings,
- * deeper shadow, more cinematic entrance. Replaces the previous
- * smaller, flatter 84px treatment. */
-.svc-thank-you-hero-check {
-  width: 140px;
-  height: 140px;
+.svc-thank-you-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+/* LEFT — confirmation message. Left-aligned, tighter rhythm than the
+ * old centred stack so the eye flows top→bottom without each element
+ * feeling isolated. */
+.svc-thank-you-hero-message {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Inline tick + eyebrow on a single row. Replaces the previous giant
+ * centred 140px tick badge with a compact 56px gold disc that sits
+ * inline next to the eyebrow pill — much tighter, more confident. */
+.svc-thank-you-hero-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.svc-thank-you-hero-tick {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
   border-radius: 50%;
   background: linear-gradient(135deg, #c89d3f 0%, var(--gildhart-gold) 50%, #e0c178 100%);
   color: white;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   box-shadow:
-    0 0 0 8px rgba(201, 164, 74, 0.10),
-    0 0 0 18px rgba(201, 164, 74, 0.05),
-    0 24px 48px rgba(201, 164, 74, 0.30),
-    0 8px 24px rgba(13, 26, 18, 0.18);
-  margin-bottom: 1.75rem;
-  animation: svcThankYouCheck 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    0 0 0 4px rgba(201, 164, 74, 0.10),
+    0 8px 18px rgba(201, 164, 74, 0.28),
+    0 4px 10px rgba(13, 26, 18, 0.12);
   position: relative;
+  animation: svcThankYouTick 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-.svc-thank-you-hero-check::after {
+.svc-thank-you-hero-tick::after {
   content: '';
   position: absolute;
-  inset: 8px;
+  inset: 4px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   pointer-events: none;
 }
-.svc-thank-you-hero-check svg {
-  width: 60px;
-  height: 60px;
+.svc-thank-you-hero-tick svg {
+  width: 26px;
+  height: 26px;
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 2px 6px rgba(13, 26, 18, 0.20));
+  filter: drop-shadow(0 1px 3px rgba(13, 26, 18, 0.20));
 }
-@keyframes svcThankYouCheck {
+@keyframes svcThankYouTick {
   0%   { transform: scale(0.4) rotate(-12deg); opacity: 0; }
   60%  { transform: scale(1.06) rotate(2deg);  opacity: 1; }
   100% { transform: scale(1)    rotate(0);     opacity: 1; }
 }
 
-/* Hero eyebrow — small mono uppercase tag above the title, gold,
- * frames the moment as confirmed/locked-in. */
+/* Hero eyebrow — same gold mono pill as before, now inline next to
+ * the tick rather than stacked above the title. */
 .svc-thank-you-hero-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -6358,12 +6387,15 @@
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gildhart-gold);
-  margin-bottom: 1rem;
   padding: 0.5rem 1rem;
   border: 1px solid rgba(201, 164, 74, 0.40);
   border-radius: 999px;
   background: rgba(201, 164, 74, 0.06);
+  white-space: nowrap;
 }
+
+/* Big left-aligned headline. clamp(3.25rem, 7vw, 5.25rem) carries real
+ * typographic weight at desktop; downscales gracefully on tablet. */
 .svc-thank-you-hero-title {
   font-family: 'Inter', sans-serif;
   font-size: clamp(3.25rem, 7vw, 5.25rem);
@@ -6371,39 +6403,183 @@
   color: var(--navy);
   letter-spacing: -0.035em;
   line-height: 1.02;
-  margin: 0 0 1.25rem;
+  margin: 0.5rem 0 0.75rem;
+  text-align: left;
 }
-.svc-thank-you-hero-line {
+.svc-thank-you-hero-lead {
   font-family: 'Inter', sans-serif;
-  font-size: 1.0625rem;
+  font-size: 1.1875rem;
   color: var(--gray-600);
-  line-height: 1.65;
+  line-height: 1.55;
   margin: 0;
-  max-width: 540px;
 }
-.svc-thank-you-hero-line strong,
-.svc-thank-you-hero-line [data-personalise] {
+
+/* Confirmation-email row. Mono uppercase label + bold navy value,
+ * mirrors the receipt card's row treatment so the two halves of the
+ * hero read as one cohesive design system. */
+.svc-thank-you-hero-meta {
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.625rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+.svc-thank-you-hero-meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.55);
+}
+.svc-thank-you-hero-meta-value {
   color: var(--navy);
   font-weight: 700;
 }
-/* Deployment-kicks-off line — promoted from a faint gold-on-cream
- * caption (barely readable) to a high-contrast navy-on-gold pill so
- * the customer's eye lands on it as the key timeline commitment. */
-.svc-thank-you-hero-line--accent {
-  display: inline-block;
+
+/* RIGHT — order-summary receipt card. White card matching the
+ * timeline-card design language: 16px radius, hairline border, deep
+ * shadow, gold accent strip down the left edge as a quiet brand
+ * thread. */
+.svc-thank-you-receipt {
+  background: #ffffff;
+  border: 1px solid rgba(13, 26, 18, 0.06);
+  border-radius: 16px;
+  padding: 2rem 2.25rem;
+  box-shadow:
+    0 1px 0 rgba(13, 26, 18, 0.03),
+    0 18px 40px rgba(13, 26, 18, 0.10),
+    0 4px 12px rgba(13, 26, 18, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+.svc-thank-you-receipt::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.25rem;
+  bottom: 1.25rem;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, var(--gildhart-gold) 0%, rgba(201, 164, 74, 0.30) 100%);
+}
+.svc-thank-you-receipt-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid rgba(13, 26, 18, 0.08);
+}
+.svc-thank-you-receipt-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.svc-thank-you-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.svc-thank-you-receipt-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.55);
+  margin: 0;
+}
+.svc-thank-you-receipt-row dd {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0;
+  text-align: right;
+}
+/* Total paid — emphasised row. Larger value anchors the hero's "this
+ * is what you paid" moment; small mono "incl. VAT" label sits below. */
+.svc-thank-you-receipt-row--total {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(13, 26, 18, 0.08);
+}
+.svc-thank-you-receipt-row--total dd {
+  font-size: 1.625rem;
+  letter-spacing: -0.02em;
+}
+.svc-thank-you-receipt-vat {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.45);
+  margin-top: 0.25rem;
+}
+.svc-thank-you-receipt-foot {
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(13, 26, 18, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.55);
+}
+.svc-thank-you-receipt-foot-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--gildhart-gold);
+  flex-shrink: 0;
+}
+
+/* BELOW BOTH COLUMNS — full-width status strip. Replaces the squeezed
+ * centred "Deployment kicks off in 7 days" pill with a proper
+ * full-bleed gold-tinted strip and a pulsing gold dot. */
+.svc-thank-you-hero-status {
+  margin: 1rem 0 0;
+  padding: 1.125rem 1.75rem;
+  background: linear-gradient(90deg, rgba(201, 164, 74, 0.10) 0%, rgba(201, 164, 74, 0.18) 50%, rgba(201, 164, 74, 0.10) 100%);
+  border: 1px solid rgba(201, 164, 74, 0.32);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
   font-family: var(--font-mono);
   font-size: 0.875rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--navy);
-  background: rgba(201, 164, 74, 0.20);
-  border: 1px solid rgba(201, 164, 74, 0.40);
-  padding: 0.875rem 1.5rem;
-  border-radius: 999px;
-  margin: 1.75rem 0 0;
-  width: auto;
-  max-width: none;
+}
+.svc-thank-you-hero-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  box-shadow: 0 0 0 4px rgba(201, 164, 74, 0.20);
+  flex-shrink: 0;
+  animation: svcThankYouStatusPulse 2s ease-in-out infinite;
+}
+@keyframes svcThankYouStatusPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(201, 164, 74, 0.18); }
+  50%      { box-shadow: 0 0 0 8px rgba(201, 164, 74, 0.06); }
 }
 
 /* Welcome video — full-width container, prominent gold eyebrow with
@@ -6728,9 +6904,17 @@
   font-style: normal;
 }
 
-/* Tablet — collapse the 3-column timeline to a 1-column stack of
- * cards; keep the wait split if it still reads well, else collapse. */
+/* Tablet — collapse the 2-col hero grid to a single column (receipt
+ * card stacks under the message), and the 3-column timeline + wait
+ * splits to single columns. */
 @media (max-width: 960px) {
+  .svc-thank-you-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .svc-thank-you-receipt {
+    padding: 1.75rem 1.75rem;
+  }
   .svc-thank-you-timeline-list {
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -6748,9 +6932,14 @@
     padding: calc(3rem + var(--nav-h, 80px)) 1.5rem 5.5rem;
   }
   .svc-thank-you-inner { gap: 3.5rem; }
+  .svc-thank-you-hero { gap: 1.5rem; }
   .svc-thank-you-hero-title { font-size: clamp(2.5rem, 10vw, 3.5rem); }
-  .svc-thank-you-hero-check { width: 104px; height: 104px; }
-  .svc-thank-you-hero-check svg { width: 44px; height: 44px; }
+  .svc-thank-you-hero-tick { width: 48px; height: 48px; flex-basis: 48px; }
+  .svc-thank-you-hero-tick svg { width: 22px; height: 22px; }
+  .svc-thank-you-hero-eyebrow { font-size: 0.70rem; letter-spacing: 0.22em; padding: 0.4rem 0.8rem; }
+  .svc-thank-you-hero-lead { font-size: 1.0625rem; }
+  .svc-thank-you-receipt-row--total dd { font-size: 1.375rem; }
+  .svc-thank-you-hero-status { font-size: 0.75rem; padding: 0.875rem 1.25rem; letter-spacing: 0.18em; }
   .svc-thank-you-founder-photo { width: 120px; height: 120px; }
   .svc-thank-you-reassure {
     padding: 0 1rem 0 3rem;
