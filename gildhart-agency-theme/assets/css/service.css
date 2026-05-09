@@ -6950,8 +6950,7 @@
     left: 0.25rem;
   }
   .svc-thank-you-upsell { padding: 4rem 1.25rem 5rem; }
-  .svc-thank-you-upsell-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .svc-thank-you-upsell-media { order: -1; max-width: 480px; margin: 0 auto; }
+  .svc-thank-you-upsell-stack { gap: 2.5rem; }
   .svc-thank-you-upsell-headline { font-size: clamp(2rem, 8vw, 2.75rem); }
   .svc-thank-you-upsell-subhead { font-size: 1.0625rem; }
   .svc-thank-you-upsell-proof-body { font-size: 1rem; }
@@ -6960,21 +6959,19 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────
- * Playbook Upsell — full-width 2-col cross-sell above the footer.
+ * Playbook Upsell — stacked cross-sell above the footer.
  *
  * Lives as its own <section> (outside .svc-thank-you-inner) so it
  * carries a subtle cream→warm-cream gradient — signals a shift in
  * intent ("here's what's next") without breaking the page's feel.
  * Top hairline border + a tiny gold marker reinforce the break.
  *
- * Inside: a 2-col 7fr/5fr grid that fills the full 1200px container
- * (no narrow centred islands).
- *   LEFT  — copy stack: eyebrow / headline / subhead / body / proof
- *           label + paragraph + italic takeaway / gold CTA + footnote
- *   RIGHT — framed playbook image, vertically centred
- *
- * Mobile collapses to single column with the image stacked above the
- * copy so it acts as a visual anchor before the pitch.
+ * Vertical stack inside a 1200px container:
+ *   TOP    — full-width proof image (WhatsApp screenshot / playbook
+ *            shot), 16px radius + halo. Acts as the visual anchor.
+ *   BOTTOM — copy column centred to a comfortable reading width
+ *            (~760px): eyebrow / headline / subhead / body / proof
+ *            label + paragraph + italic takeaway / gold CTA + footnote
  * ─────────────────────────────────────────────────────────────────── */
 .svc-thank-you-upsell {
   position: relative;
@@ -6999,19 +6996,23 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-.svc-thank-you-upsell-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 4rem;
+.svc-thank-you-upsell-stack {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 4rem;
 }
 
-/* LEFT — copy column. Left-aligned, fills its 7fr share. */
+/* Copy column. Centred under the image at a comfortable reading
+ * width — keeps line length sane on wide monitors while the
+ * section above goes full-bleed for visual impact. */
 .svc-thank-you-upsell-copy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.25rem;
+  width: 100%;
+  max-width: 760px;
 }
 .svc-thank-you-upsell-eyebrow {
   font-family: var(--font-mono);
@@ -7133,12 +7134,16 @@
   margin: 0;
 }
 
-/* RIGHT — framed playbook image. 16px radius + deep shadow + soft gold
- * halo behind it; mirrors the receipt card / founder photo language so
- * the upsell reads as part of the page's design system. */
+/* Proof image — sits at the top of the stack as the visual anchor.
+ * 16px radius + deep shadow + soft gold halo behind it; mirrors the
+ * receipt card / founder photo language so the upsell reads as part
+ * of the page's design system. Width capped slightly under the
+ * container so the halo can breathe. */
 .svc-thank-you-upsell-media {
   position: relative;
   margin: 0;
+  width: 100%;
+  max-width: 1100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7146,11 +7151,11 @@
 .svc-thank-you-upsell-media::before {
   content: '';
   position: absolute;
-  inset: 8% 6% 4% 6%;
+  inset: 4% 4% 4% 4%;
   border-radius: 24px;
   background: radial-gradient(ellipse at center, rgba(201, 164, 74, 0.22) 0%, rgba(201, 164, 74, 0) 70%);
   z-index: 0;
-  filter: blur(24px);
+  filter: blur(28px);
 }
 .svc-thank-you-upsell-image {
   position: relative;
