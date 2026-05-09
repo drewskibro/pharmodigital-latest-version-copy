@@ -308,16 +308,27 @@ $upsell_proof_emphasis = gh_field( 'agent_thank_you_upsell_proof_emphasis', 'Ind
         </div>
     </section>
 
-    <!-- Playbook upsell — full-width 2-col cross-sell above the footer.
-         LEFT (7fr): copy stack — eyebrow, headline, subhead, body, gold
-                     proof label + paragraph + italic takeaway, CTA.
-         RIGHT (5fr): framed playbook image, vertically centred against
-                      the copy column so the section fills the 1200px
-                      container with no narrow centred islands. -->
+    <!-- Playbook upsell — stacked cross-sell above the footer.
+         TOP: full-width proof image (WhatsApp screenshot or playbook shot)
+              acts as the visual anchor — visitor sees the proof before
+              the pitch.
+         BELOW: copy stack centred in a comfortable reading column
+                (max-width ~760px) — eyebrow, headline, subhead, body,
+                proof block, CTA. -->
     <?php if ( $upsell_show && ( $upsell_headline || $upsell_subhead || $upsell_body ) ) : ?>
         <section class="svc-thank-you-upsell" aria-labelledby="svcThankYouUpsellHeading">
             <div class="svc-thank-you-upsell-inner">
-                <div class="svc-thank-you-upsell-grid">
+                <div class="svc-thank-you-upsell-stack">
+
+                    <?php if ( $upsell_image_id ) : ?>
+                        <figure class="svc-thank-you-upsell-media">
+                            <?php echo wp_get_attachment_image( $upsell_image_id, 'full', false, array(
+                                'class'   => 'svc-thank-you-upsell-image',
+                                'alt'     => esc_attr( $upsell_headline ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </figure>
+                    <?php endif; ?>
 
                     <div class="svc-thank-you-upsell-copy">
                         <?php if ( $upsell_eyebrow ) : ?>
@@ -358,16 +369,6 @@ $upsell_proof_emphasis = gh_field( 'agent_thank_you_upsell_proof_emphasis', 'Ind
                             </div>
                         <?php endif; ?>
                     </div>
-
-                    <?php if ( $upsell_image_id ) : ?>
-                        <figure class="svc-thank-you-upsell-media">
-                            <?php echo wp_get_attachment_image( $upsell_image_id, 'large', false, array(
-                                'class'   => 'svc-thank-you-upsell-image',
-                                'alt'     => esc_attr( $upsell_headline ),
-                                'loading' => 'lazy',
-                            ) ); ?>
-                        </figure>
-                    <?php endif; ?>
 
                 </div>
             </div>
