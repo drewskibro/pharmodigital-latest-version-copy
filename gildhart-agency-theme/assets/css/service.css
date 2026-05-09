@@ -6949,4 +6949,180 @@
     top: -1.5rem;
     left: 0.25rem;
   }
+  .svc-thank-you-upsell { padding: 4rem 1.5rem 5rem; }
+  .svc-thank-you-upsell-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .svc-thank-you-upsell-headline { font-size: clamp(2rem, 8vw, 2.75rem); }
+  .svc-thank-you-upsell-media { order: -1; max-width: 320px; margin: 0 auto; }
+  .svc-thank-you-upsell-cta { font-size: 0.9375rem; padding: 1rem 1.625rem; }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+ * Playbook Upsell — cross-sell block above the footer.
+ *
+ * Sits as its own <section> (outside .svc-thank-you-inner) so it can
+ * carry a slightly different background tone than the confirmation
+ * content above it — a subtle gradient from cream to warm-cream that
+ * signals a shift in intent ("this is the next move") without breaking
+ * the page's overall feel. Top hairline border + a tiny gold "next"
+ * marker centred at the top reinforce the section break.
+ *
+ * Two-column split: copy on the left (eyebrow / headline / subhead /
+ * body / gold CTA / footnote), playbook image on the right. Mobile
+ * collapses to single column with image stacked above copy so the
+ * device shot acts as a visual anchor before the pitch.
+ * ─────────────────────────────────────────────────────────────────── */
+.svc-thank-you-upsell {
+  position: relative;
+  padding: 6rem 2rem 7rem;
+  background:
+    linear-gradient(180deg, var(--cream, #f5f3ef) 0%, #efece5 100%);
+  border-top: 1px solid rgba(13, 26, 18, 0.06);
+  overflow: hidden;
+}
+/* Gold "next" marker centred at the top edge — quiet visual cue that
+ * this is a deliberate next step, not a spam upsell. */
+.svc-thank-you-upsell::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  box-shadow: 0 0 0 4px var(--cream, #f5f3ef);
+}
+.svc-thank-you-upsell-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.svc-thank-you-upsell-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+/* LEFT — copy column. Same eyebrow + big-headline rhythm as the rest
+ * of the page so the upsell reads as part of the design system, not
+ * a foreign cross-sell drop-in. */
+.svc-thank-you-upsell-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+.svc-thank-you-upsell-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(201, 164, 74, 0.40);
+  border-radius: 999px;
+  background: rgba(201, 164, 74, 0.06);
+}
+.svc-thank-you-upsell-headline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+}
+.svc-thank-you-upsell-subhead {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.45;
+  margin: 0;
+}
+.svc-thank-you-upsell-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 56ch;
+}
+.svc-thank-you-upsell-cta-wrap {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+/* Gold CTA button — premium gradient, deeper shadow on hover. Anchors
+ * the section as the moment-of-decision while staying on-brand with
+ * the gold thread used throughout the page (eyebrow, status strip,
+ * receipt accent). */
+.svc-thank-you-upsell-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.125rem 2rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #c89d3f 0%, var(--gildhart-gold) 50%, #d4ad55 100%);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid rgba(201, 164, 74, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 10px 22px rgba(201, 164, 74, 0.32),
+    0 4px 10px rgba(13, 26, 18, 0.10);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.svc-thank-you-upsell-cta:hover,
+.svc-thank-you-upsell-cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.30) inset,
+    0 16px 30px rgba(201, 164, 74, 0.40),
+    0 6px 14px rgba(13, 26, 18, 0.12);
+  background: linear-gradient(135deg, #b88a30 0%, var(--gildhart-gold) 50%, #c89d3f 100%);
+}
+.svc-thank-you-upsell-footnote {
+  font-family: var(--font-mono);
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(13, 26, 18, 0.55);
+  margin: 0;
+}
+
+/* RIGHT — playbook image. Subtle drop shadow + slight rotation cancel
+ * to keep the device shot grounded; gold ambient ring underneath
+ * mirrors the founder photo + receipt card design language. */
+.svc-thank-you-upsell-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.svc-thank-you-upsell-media::before {
+  content: '';
+  position: absolute;
+  inset: 12% 8% 10% 8%;
+  border-radius: 24px;
+  background: radial-gradient(ellipse at center, rgba(201, 164, 74, 0.25) 0%, rgba(201, 164, 74, 0) 70%);
+  z-index: 0;
+  filter: blur(20px);
+}
+.svc-thank-you-upsell-image {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 24px 48px rgba(13, 26, 18, 0.18)) drop-shadow(0 8px 16px rgba(13, 26, 18, 0.08));
 }
