@@ -88,31 +88,80 @@ $founder_photo = get_field( 'agent_thank_you_founder_photo' );
     <section class="svc-thank-you">
         <div class="svc-thank-you-inner">
 
-            <!-- Confirmation hero -->
+            <!-- Confirmation hero — full-width 2-column. Left: confirmation
+                 message with inline gold tick, big personalised headline,
+                 lead line, email confirmation. Right: order-summary
+                 receipt card (plan / total / next charge). Below:
+                 full-width status strip ("Deployment kicks off in 7 days").
+                 The headline is personalised at runtime by agent-thank-you.js
+                 — when first_name is returned, "You're in." becomes
+                 "You're in, [First Name]." -->
             <div class="svc-thank-you-hero">
-                <div class="svc-thank-you-hero-check" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="4 12 10 18 20 6"/>
-                    </svg>
+                <div class="svc-thank-you-hero-grid">
+
+                    <!-- LEFT: confirmation message -->
+                    <div class="svc-thank-you-hero-message">
+                        <div class="svc-thank-you-hero-eyebrow-row">
+                            <span class="svc-thank-you-hero-tick" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="4 12 10 18 20 6"/>
+                                </svg>
+                            </span>
+                            <span class="svc-thank-you-hero-eyebrow">Payment confirmed</span>
+                        </div>
+
+                        <?php if ( $hero_title ) : ?>
+                            <h1 class="svc-thank-you-hero-title" data-personalise="title"><?php echo esc_html( $hero_title ); ?></h1>
+                        <?php endif; ?>
+
+                        <p class="svc-thank-you-hero-lead">
+                            Your subscription to The Agent is active.
+                        </p>
+
+                        <p class="svc-thank-you-hero-meta">
+                            <span class="svc-thank-you-hero-meta-label">Confirmation sent to</span>
+                            <strong class="svc-thank-you-hero-meta-value" data-personalise="email">your inbox</strong>
+                        </p>
+                    </div>
+
+                    <!-- RIGHT: order summary receipt card -->
+                    <aside class="svc-thank-you-receipt" aria-label="Order summary">
+                        <span class="svc-thank-you-receipt-eyebrow">Order summary</span>
+
+                        <dl class="svc-thank-you-receipt-list">
+                            <div class="svc-thank-you-receipt-row">
+                                <dt>Plan</dt>
+                                <dd data-personalise="plan_label">Your subscription</dd>
+                            </div>
+                            <div class="svc-thank-you-receipt-row svc-thank-you-receipt-row--total">
+                                <dt>Total paid</dt>
+                                <dd>
+                                    <span data-personalise="amount_formatted">—</span>
+                                    <span class="svc-thank-you-receipt-vat">incl. VAT</span>
+                                </dd>
+                            </div>
+                            <div class="svc-thank-you-receipt-row" data-personalise-row="next_charge_date">
+                                <dt>Next charge</dt>
+                                <dd data-personalise="next_charge_date">—</dd>
+                            </div>
+                        </dl>
+
+                        <p class="svc-thank-you-receipt-foot">
+                            <svg class="svc-thank-you-receipt-foot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="4" y="11" width="16" height="10" rx="2"/>
+                                <path d="M8 11V7a4 4 0 1 1 8 0v4"/>
+                            </svg>
+                            Stripe-secured · Auto-renews
+                        </p>
+                    </aside>
+
                 </div>
 
-                <span class="svc-thank-you-hero-eyebrow">Payment confirmed</span>
-
-                <?php if ( $hero_title ) : ?>
-                    <h1 class="svc-thank-you-hero-title"><?php echo esc_html( $hero_title ); ?></h1>
-                <?php endif; ?>
-
-                <p class="svc-thank-you-hero-line">
-                    Your subscription to The Agent is active.
-                </p>
-                <p class="svc-thank-you-hero-line">
-                    Confirmation sent to <strong data-personalise="email">your inbox</strong>.
-                </p>
-                <p class="svc-thank-you-hero-line">
-                    <span data-personalise="plan_label">Your subscription</span>.
-                </p>
                 <?php if ( $hero_sub ) : ?>
-                    <p class="svc-thank-you-hero-line svc-thank-you-hero-line--accent"><?php echo esc_html( $hero_sub ); ?></p>
+                    <p class="svc-thank-you-hero-status" role="status">
+                        <span class="svc-thank-you-hero-status-dot" aria-hidden="true"></span>
+                        <span class="svc-thank-you-hero-status-text"><?php echo esc_html( $hero_sub ); ?></span>
+                    </p>
                 <?php endif; ?>
             </div>
 
