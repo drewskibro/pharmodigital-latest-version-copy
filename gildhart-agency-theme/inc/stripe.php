@@ -140,12 +140,18 @@ function gildhart_stripe_boot() {
  * per the dashboard config). Customer sees £1,194 total at checkout
  * for the annual plan, £150 for monthly.
  *
- * Lead metadata is mirrored across three Stripe objects so Make.com
+ * Lead metadata is mirrored across four Stripe objects so Make.com
  * picks it up regardless of which webhook event their scenario triggers
  * on:
- *   - Customer.metadata
- *   - Subscription.metadata (lives on every recurring invoice)
- *   - PaymentIntent.metadata (read by the thank-you page)
+ *   - Customer.metadata        (persists for the lifetime of the customer)
+ *   - Subscription.metadata    (read on subscription.* events)
+ *   - Invoice.metadata         (read on invoice.payment_succeeded — the
+ *                               canonical event for subscription billing.
+ *                               Stripe doesn't auto-inherit metadata from
+ *                               the parent Subscription onto auto-
+ *                               generated invoices, so we write it onto
+ *                               the first invoice explicitly.)
+ *   - PaymentIntent.metadata   (read by the thank-you page)
  *
  * @param array $lead {
  *   plan          string  Required. 'monthly' | 'annual'.
@@ -324,6 +330,29 @@ function gildhart_stripe_create_subscription_for_lead( array $lead ) {
             'metadata'      => array_merge( $metadata, array( 'customer_email' => $email ) ),
             'receipt_email' => $email,
         ) );
+    }
+
+    // Mirror lead metadata onto the first invoice so Make.com receives
+    // first_name / last_name / plan_label directly in the
+    // invoice.payment_succeeded webhook payload — no extra Customer
+    // lookup needed in the scenario. Renewal invoices (auto-generated
+    // by Stripe at each billing cycle) won't carry this metadata; for
+    // those, Make should read from Customer.metadata via a Stripe
+    // lookup. The first invoice is the one that triggers Kartra
+    // onboarding, so this covers the critical path.
+    //
+    // Wrapped in try/catch so a metadata write failure doesn't break
+    // the checkout — the invoice is already created and the customer
+    // can still pay; missing invoice metadata only degrades Make's
+    // first-invoice convenience, not the transaction itself.
+    if ( ! empty( $invoice->id ) ) {
+        try {
+            \Stripe\Invoice::update( $invoice->id, array(
+                'metadata' => $metadata,
+            ) );
+        } catch ( \Exception $e ) {
+            /* swallow — see comment above */
+        }
     }
 
     $cfg = gildhart_stripe_config();
