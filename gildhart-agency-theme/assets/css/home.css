@@ -212,13 +212,12 @@
 }
 .logo-bar-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gildhart-green);
   margin: 0;
-  opacity: 0.75;
 }
 
 .logo-bar {
