@@ -3,9 +3,21 @@
  * Service: Early Buyers section.
  *
  * Cream-warm offer block with three sub-blocks:
- *   1. Three tier cards in a row — each "kind" controls the colour
- *      treatment (manual = white card, automated = dark featured,
- *      lifetime = green-banner light card).
+ *   1. Three tier cards in a row built on the same design system as
+ *      the homepage Two Paths cards (`.two-paths-card`):
+ *        - Outer cards (manual / lifetime): cream-white #FFFDF8
+ *          background, 20px radius, subtle green border + shadow.
+ *        - Featured (automated): forest-green background with a 2px
+ *          gold inset ring, physically lifted via -16px top/bottom
+ *          margin, deeper drop shadow.
+ *        - Each card opens with a 200-220px image at the very top
+ *          (gold-mono placeholder when no image uploaded).
+ *        - Outer cards carry a quiet mono uppercase banner below the
+ *          image; featured card skips the banner.
+ *        - Body sits in italic with a 2px gold left border (the
+ *          "proof statement" treatment).
+ *        - Bullets render as plain list items on outer cards, with
+ *          a gold em-dash on the featured card.
  *   2. A navy price-strap below the cards (gold price + descriptor).
  *   3. A centered green "Get Instant Access" CTA below the strap.
  *   4. A navy "Why Early Buyers Win" callout with eyebrow, H3, and
@@ -93,6 +105,7 @@ if ( empty( $callout_paragraphs ) ) {
             <div class="svc-tiers">
                 <?php foreach ( $tier_cards as $tier ) :
                     $kind         = $tier['kind']         ?? 'manual';
+                    $image_id     = $tier['image']        ?? 0;
                     $proof_banner = $tier['proof_banner'] ?? '';
                     $recommended  = $tier['recommended']  ?? '';
                     $category     = $tier['category']     ?? '';
@@ -100,11 +113,35 @@ if ( empty( $callout_paragraphs ) ) {
                     $title        = $tier['title']        ?? '';
                     $body         = $tier['body']         ?? '';
                     $bullets      = $tier['bullets']      ?? array();
+
+                    $is_featured = ( 'automated' === $kind );
+
+                    // Placeholder copy when no image is uploaded yet,
+                    // so editors see what each card slot expects.
+                    $placeholder_text = $is_featured
+                        ? 'Insert Automation Visual'
+                        : ( 'lifetime' === $kind
+                            ? 'Insert Lifetime Image'
+                            : 'Insert Playbook Image' );
                 ?>
                     <div class="svc-tier-card svc-tier-card--<?php echo esc_attr( $kind ); ?>">
-                        <?php if ( $proof_banner ) : ?>
+                        <div class="svc-tier-card-image">
+                            <?php if ( $image_id ) : ?>
+                                <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
+                                    'alt'     => esc_attr( $title ),
+                                    'loading' => 'lazy',
+                                ) ); ?>
+                            <?php else : ?>
+                                <div class="svc-tier-card-image-placeholder" aria-hidden="true">
+                                    <span><?php echo esc_html( $placeholder_text ); ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <?php if ( ! $is_featured && $proof_banner ) : ?>
                             <div class="svc-tier-proof-banner"><?php echo esc_html( $proof_banner ); ?></div>
                         <?php endif; ?>
+
                         <div class="svc-tier-card-inner">
                             <?php if ( $recommended ) : ?>
                                 <span class="svc-tier-recommended"><?php echo esc_html( $recommended ); ?></span>
@@ -126,7 +163,7 @@ if ( empty( $callout_paragraphs ) ) {
                                     <?php foreach ( $bullets as $bullet ) :
                                         $text = $bullet['text'] ?? '';
                                         if ( ! $text ) continue; ?>
-                                        <li><span class="svc-tier-check" aria-hidden="true">✓</span><?php echo esc_html( $text ); ?></li>
+                                        <li><?php echo esc_html( $text ); ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
