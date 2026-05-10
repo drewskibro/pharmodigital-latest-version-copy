@@ -41,6 +41,15 @@ $cta_show  = gh_field( 'service_faq_cta_show',  $defaults['cta_show'] );
 $cta_text  = gh_field( 'service_faq_cta_text',  $defaults['cta_text'] );
 $cta_label = gh_field( 'service_faq_cta_label', $defaults['cta_label'] );
 $cta_url   = gh_field( 'service_faq_cta_url',   $defaults['cta_url'] );
+
+// Agent page never shows the FAQ CTA. The "Get Instant Access — £497"
+// copy is Playbook-only; the agent has its own dual-plan checkout in
+// the Closing Offer section above. Force off regardless of ACF state
+// so stale Playbook defaults can't leak onto the agent if the field
+// was saved with cta_show=1 during early setup.
+if ( 'the-agent' === $slug ) {
+    $cta_show = 0;
+}
 ?>
 
 <section class="svc-faq">
