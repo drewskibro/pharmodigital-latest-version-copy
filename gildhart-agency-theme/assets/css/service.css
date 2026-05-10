@@ -5755,6 +5755,26 @@
     0 20px 56px rgba(30, 61, 47, 0.20),
     0 4px 14px rgba(201, 164, 74, 0.22);
 }
+/* Hover-on-selected — generic .svc-closing-card:hover would otherwise
+ * win on cascade order and strip the gold halo while the cursor is
+ * over a selected card. Re-state the selected styles here with a
+ * slightly stronger halo + a bigger lift so hover still feels alive. */
+.svc-closing-card--selected:hover {
+  border-color: var(--gildhart-gold);
+  box-shadow:
+    0 0 0 4px rgba(201, 164, 74, 0.40),
+    0 20px 56px rgba(30, 61, 47, 0.18),
+    0 4px 14px rgba(201, 164, 74, 0.26);
+  transform: translateY(-3px);
+}
+.svc-closing-card--popular.svc-closing-card--selected:hover {
+  border-color: var(--gildhart-gold);
+  box-shadow:
+    0 0 0 4px rgba(201, 164, 74, 0.40),
+    0 24px 64px rgba(30, 61, 47, 0.22),
+    0 4px 16px rgba(201, 164, 74, 0.28);
+  transform: translateY(-5px);
+}
 .svc-closing-card-tick {
   position: absolute;
   top: 0.625rem;
