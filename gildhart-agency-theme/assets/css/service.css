@@ -539,20 +539,21 @@
   text-shadow: 0 2px 16px rgba(201, 164, 74, 0.18);
 }
 .svc-ps-stat-text {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.96);
   line-height: 1.55;
+  font-weight: 500;
   margin: 0;
 }
 .svc-ps-stat-source {
   font-family: 'Inter', sans-serif;
   font-style: italic;
-  font-size: 0.8125rem;
-  color: rgba(201, 164, 74, 0.85);
+  font-size: 0.875rem;
+  color: var(--gildhart-gold);
   line-height: 1.5;
   margin: 0.25rem 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(201, 164, 74, 0.18);
+  padding-top: 0.875rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.30);
 }
 
 @media (max-width: 768px) {
