@@ -1677,8 +1677,8 @@ acf_add_local_field_group( array(
             'type'       => 'repeater',
             'layout'     => 'row',
             'min'        => 0,
-            'max'        => 8,
-            'instructions' => 'Each row pairs a gold-stat win on the left with a red-x consequence on the right. Five rows is the designed default.',
+            'max'        => 12,
+            'instructions' => 'Each row is a stacked-card stat: gold stat number + supporting subtext + optional source attribution on the left, gold arrow gutter, red-x pain statement on the right. The dashboard reads top-to-bottom; designed for 8–10 rows.',
             'sub_fields' => array(
                 array(
                     'key'   => 'field_gh_service_ps_pair_num',
@@ -1691,11 +1691,18 @@ acf_add_local_field_group( array(
                     'label' => 'Stat Description',
                     'name'  => 'stat_text',
                     'type'  => 'textarea',
-                    'rows'  => 2,
+                    'rows'  => 3,
+                ),
+                array(
+                    'key'   => 'field_gh_service_ps_pair_source',
+                    'label' => 'Source Attribution (optional)',
+                    'name'  => 'source_text',
+                    'type'  => 'text',
+                    'instructions' => 'e.g. "Source: Semrush, across hundreds of healthcare sites." Renders italic gold beneath the stat description. Leave blank to hide.',
                 ),
                 array(
                     'key'   => 'field_gh_service_ps_pair_lose',
-                    'label' => 'Consequence (without the system)',
+                    'label' => 'Consequence (pain statement)',
                     'name'  => 'lose_text',
                     'type'  => 'textarea',
                     'rows'  => 2,
