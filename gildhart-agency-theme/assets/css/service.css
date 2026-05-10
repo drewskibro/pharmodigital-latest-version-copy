@@ -1572,80 +1572,150 @@
 }
 
 /* Three tier cards */
+/* Tier cards — adopt the homepage Two Paths card system 1:1 so the
+ * Playbook offer sits inside the same brand language as the homepage
+ * "Choose Your Entry Point" cards.
+ *
+ * Outer cards (manual / lifetime): cream-white #FFFDF8, 20px radius,
+ *   subtle green-tinted border, 2-layer shadow.
+ * Featured card (automated): forest green backdrop with a 2px gold
+ *   inset ring, physically lifted via -16px top/bottom margin so it
+ *   reads as the priority sale, deeper drop shadow, z-index above
+ *   siblings.
+ *
+ * Each card opens with a 200-220px image at the very top (gold-mono
+ * placeholder when no image uploaded), then a quiet mono uppercase
+ * banner on outer cards (skipped on featured), then the inner block.
+ *
+ * Body sits in italic with a 2px gold left border — the proof
+ * statement treatment that ties this card system together. Bullets
+ * are plain on outer cards; featured uses gold em-dash markers.
+ * CTAs (when present) baseline-align via margin-top: auto. */
 .svc-tiers {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
   margin-bottom: 2rem;
   align-items: stretch;
 }
 .svc-tier-card {
-  border-radius: 24px;
+  position: relative;
+  background: #FFFDF8;
+  border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(30, 61, 47, 0.08);
+  box-shadow:
+    0 1px 2px rgba(13, 26, 18, 0.04),
+    0 12px 32px -16px rgba(13, 26, 18, 0.10);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 .svc-tier-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 12px 40px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 12px rgba(13, 26, 18, 0.06),
+    0 24px 48px -16px rgba(13, 26, 18, 0.16);
 }
-.svc-tier-card--manual,
-.svc-tier-card--lifetime {
-  background: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.04);
-}
+/* Featured card — forest green, gold inset ring, lifted above siblings. */
 .svc-tier-card--automated {
-  background: #0D1117;
-  border-color: rgba(30, 61, 47, 0.35);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 12px 48px rgba(0, 0, 0, 0.12);
-  position: relative;
-  z-index: 1;
+  background: var(--gildhart-green);
+  border: 0;
+  box-shadow:
+    inset 0 0 0 2px var(--gildhart-gold),
+    0 4px 16px rgba(13, 26, 18, 0.12),
+    0 28px 64px -24px rgba(13, 26, 18, 0.30);
+  margin-top: -16px;
+  margin-bottom: -16px;
+  z-index: 2;
 }
 .svc-tier-card--automated:hover {
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2), 0 16px 56px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 0 0 2px var(--gildhart-gold),
+    0 8px 24px rgba(13, 26, 18, 0.18),
+    0 36px 80px -24px rgba(13, 26, 18, 0.36);
 }
-.svc-tier-proof-banner {
-  padding: 8px 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+
+/* Top image — flush with the top edge, corners masked by the card's
+ * overflow:hidden + radius. */
+.svc-tier-card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(30, 61, 47, 0.06);
+}
+.svc-tier-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.svc-tier-card--automated .svc-tier-card-image {
+  height: 220px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Placeholder shown when no image is uploaded — gold mono caps on a
+ * tone-matched gradient so the empty slot reads as part of the card,
+ * not a stray empty box. */
+.svc-tier-card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  border-bottom: 1px solid rgba(139, 157, 131, 0.25);
-  line-height: 1.5;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 61, 47, 0.08), rgba(30, 61, 47, 0.04));
 }
-.svc-tier-card--manual .svc-tier-proof-banner {
-  background: rgba(139, 157, 131, 0.18);
-  color: #3a5c4f;
+.svc-tier-card-image-placeholder span {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  line-height: 1.6;
 }
-.svc-tier-card--automated .svc-tier-proof-banner {
-  background: rgba(30, 61, 47, 0.5);
-  color: rgba(201, 164, 74, 0.9);
-  border-bottom-color: rgba(201, 164, 74, 0.2);
+.svc-tier-card--automated .svc-tier-card-image-placeholder {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
 }
-.svc-tier-card--lifetime .svc-tier-proof-banner {
-  background: var(--gildhart-green);
-  color: white;
-  border-bottom-color: rgba(201, 164, 74, 0.2);
+
+/* Quiet banner sits directly under the image on outer cards.
+ * Featured card omits the banner (PHP only renders it when not the
+ * automated tier). */
+.svc-tier-proof-banner {
+  background: rgba(30, 61, 47, 0.06);
+  color: var(--gildhart-green);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px 1.25rem;
+  border-bottom: 1px solid rgba(30, 61, 47, 0.10);
 }
+
 .svc-tier-card-inner {
-  padding: 2.5rem;
+  padding: 3rem 2.5rem 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   flex: 1;
 }
 .svc-tier-card--automated .svc-tier-card-inner {
-  padding: 2.5rem 2.5rem 3rem;
+  padding: 4rem 2.75rem 3.25rem;
 }
+
 .svc-tier-recommended {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gildhart-gold);
   margin: 0;
@@ -1655,67 +1725,87 @@
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.18em;
+  color: var(--gildhart-gold);
   margin: 0;
 }
-.svc-tier-card--manual .svc-tier-category,
-.svc-tier-card--lifetime .svc-tier-category { color: #4d7b6f; }
-.svc-tier-card--automated .svc-tier-category { color: rgba(201, 164, 74, 0.85); }
 .svc-tier-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.18em;
   color: var(--gildhart-gold);
   margin: 0;
 }
 .svc-tier-title {
   font-family: 'Inter', 'Outfit', sans-serif;
-  font-size: 1.375rem;
+  font-size: 1.625rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
   margin: 0;
+}
+.svc-tier-card--automated .svc-tier-title {
+  font-size: 1.875rem;
+  color: #FFFDF8;
+  line-height: 1.18;
 }
 .svc-tier-card--manual .svc-tier-title,
-.svc-tier-card--lifetime .svc-tier-title { color: var(--navy); }
-.svc-tier-card--automated .svc-tier-title { color: white; }
+.svc-tier-card--lifetime .svc-tier-title {
+  color: var(--gildhart-green);
+}
+
+/* Body — italic proof statement with 2px gold left border. */
 .svc-tier-body {
   font-size: 1rem;
-  line-height: 1.65;
+  font-style: italic;
+  line-height: 1.7;
   margin: 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--gildhart-gold);
 }
 .svc-tier-card--manual .svc-tier-body,
-.svc-tier-card--lifetime .svc-tier-body { color: var(--gray-600); }
-.svc-tier-card--automated .svc-tier-body { color: rgba(255, 255, 255, 0.75); }
+.svc-tier-card--lifetime .svc-tier-body {
+  color: #2c3e36;
+}
+.svc-tier-card--automated .svc-tier-body {
+  font-size: 1.0625rem;
+  color: rgba(240, 230, 200, 0.95);
+}
+
+/* Bullets — plain on outer cards, gold em-dash on featured. No tick
+ * icons (matches homepage convention). flex: 1 so the list takes
+ * remaining vertical space and any CTA below baseline-aligns. */
 .svc-tier-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 1rem;
   flex: 1;
 }
 .svc-tier-list li {
   font-size: 0.9375rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
-  line-height: 1.5;
+  line-height: 1.7;
+  position: relative;
 }
 .svc-tier-card--manual .svc-tier-list li,
-.svc-tier-card--lifetime .svc-tier-list li { color: #374151; }
-.svc-tier-card--automated .svc-tier-list li { color: rgba(255, 255, 255, 0.85); }
-.svc-tier-check {
+.svc-tier-card--lifetime .svc-tier-list li {
+  color: #2c3e36;
+}
+.svc-tier-card--automated .svc-tier-list li {
+  color: rgba(240, 230, 200, 0.92);
+  padding-left: 1.5rem;
+}
+.svc-tier-card--automated .svc-tier-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
   color: var(--gildhart-gold);
   font-weight: 700;
-  flex-shrink: 0;
-  margin-top: 0.05em;
 }
-.svc-tier-card--manual .svc-tier-check,
-.svc-tier-card--lifetime .svc-tier-check { color: #4d7b6f; }
 
 /* Price strap */
 .svc-strap {
@@ -1824,13 +1914,28 @@
 .svc-eb-callout p:last-child { margin-bottom: 0; }
 .svc-eb-callout strong { color: white; }
 
-@media (max-width: 900px) {
-  .svc-tiers { grid-template-columns: 1fr; }
-  .svc-tier-card-inner { padding: 2.25rem 1.5rem 2.75rem; }
+@media (max-width: 960px) {
+  .svc-tiers { grid-template-columns: 1fr; gap: 1.5rem; }
+  /* Drop the desktop lift treatment on the featured card — once the
+   * cards stack, the -16px margins create awkward overlap with the
+   * cards above and below. */
+  .svc-tier-card--automated {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .svc-tier-card-image { height: 180px; }
+  .svc-tier-card--automated .svc-tier-card-image { height: 200px; }
+  .svc-tier-card-inner { padding: 2.5rem 2rem 2.25rem; }
+  .svc-tier-card--automated .svc-tier-card-inner { padding: 2.75rem 2rem 2.5rem; }
 }
 @media (max-width: 768px) {
   .svc-early-buyers { padding: 3rem 1.5rem 4rem; }
-  .svc-tier-card-inner { padding: 2rem 1.5rem; }
+  .svc-tier-card-image { height: 160px; }
+  .svc-tier-card--automated .svc-tier-card-image { height: 180px; }
+  .svc-tier-card-inner { padding: 2rem 1.5rem 2rem; }
+  .svc-tier-card--automated .svc-tier-card-inner { padding: 2.25rem 1.5rem 2.25rem; }
+  .svc-tier-title { font-size: 1.5rem; }
+  .svc-tier-card--automated .svc-tier-title { font-size: 1.625rem; }
   .svc-strap { padding: 1.5rem 1.75rem; }
   .svc-strap-price { font-size: 1.5rem; }
   .svc-strap-desc { font-size: 1rem; }
