@@ -40,7 +40,8 @@
   // Headline / intro fade up as the section enters; rows have their own
   // staggered transition (the wrapper class triggers child opacity/transform).
   reveal('.svc-ps-label, .svc-ps-headline, .svc-ps-intro', 'is-visible');
-  reveal('.svc-ps-row', 'is-visible', { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+  reveal('.svc-ps-narrative', 'is-visible', { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveal('.svc-ps-card', 'is-visible', { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
 
   // ── S2: Method — reveal each step + sync active state ─────────
   // The first step is rendered .is-active by PHP. As the user scrolls,

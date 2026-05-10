@@ -354,92 +354,89 @@
   transform: translateY(0);
 }
 
-/* Stats dashboard — flush-stacked rows on a navy backdrop, separated
- * by a single 1px gold-tinted hairline. Each row is a 3-col grid:
- * stat (35fr) / arrow gutter (auto) / pain (57fr). The first row
- * caps the top of the dashboard, the last caps the bottom; rounded
- * 12px radius applied via row + the wrapper masking the corners.
+/* Editorial narrative — cream card sitting on the dark navy section
+ * backdrop. Reads as long-form journalism: navy body text on warm
+ * cream, generous 1.75 line height, ~720px reading column, soft
+ * gold-tinted hairline + drop shadow lift the card off the navy.
+ * Each <p> is a beat; short single-sentence beats and longer beats
+ * get the same paragraph spacing so the rhythm reads "as written".
  *
- * Default state: card sits on a slightly lighter navy than the
- * section background (#1a2a3a-ish) with a subtle 30%-opacity gold
- * accent on the left edge. Hover lifts the background a fraction and
- * pushes the gold accent to 100% — gives a tactile, alive feel
- * without disturbing the dashboard read. */
-.svc-ps-rows {
+ * Last paragraph carries a top hairline so the punchline ("That's
+ * not traffic. That's authority...") feels like a closer. */
+.svc-ps-narrative {
+  background: var(--cream, #f5f3ef);
+  border-radius: 16px;
+  border: 1px solid rgba(201, 164, 74, 0.20);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.28),
+    0 4px 16px rgba(0, 0, 0, 0.18);
+  padding: 4.25rem 2rem;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.svc-ps-narrative.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.svc-ps-narrative-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.svc-ps-narrative p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--navy, #0d1a12);
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.005em;
+}
+.svc-ps-narrative p:last-child {
+  margin-bottom: 0;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(13, 26, 18, 0.10);
+  font-weight: 600;
+}
+
+/* Three-card stat row — premium navy-lift cards in a 3-col grid.
+ * Each card carries a 30%-opacity gold left accent that pops to 100%
+ * on hover; the background also lightens. align-items: stretch keeps
+ * cards at equal height even when one carries the source line. */
+.svc-ps-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+.svc-ps-card {
+  background: #1a2a3a;
+  border: 1px solid rgba(201, 164, 74, 0.16);
+  border-left: 4px solid rgba(201, 164, 74, 0.30);
+  border-radius: 12px;
+  padding: 2.25rem 1.75rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(201, 164, 74, 0.16);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.30);
-}
-.svc-ps-row {
-  display: grid;
-  grid-template-columns: 35fr auto 57fr;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 2rem 2rem 2rem 2.25rem;
-  background: #1a2a3a;
-  border-left: 4px solid rgba(201, 164, 74, 0.30);
-  border-bottom: 1px solid rgba(201, 164, 74, 0.10);
+  gap: 0.75rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
   opacity: 0;
   transform: translateY(20px);
   transition:
     opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
     background 0.25s ease,
-    border-left-color 0.25s ease;
+    border-left-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
-.svc-ps-row:last-child {
-  border-bottom: 0;
-}
-.svc-ps-row.is-visible {
+.svc-ps-card.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
-.svc-ps-row:hover {
+.svc-ps-card:hover {
   background: #1f3145;
   border-left-color: var(--gildhart-gold);
-}
-
-.svc-ps-win {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-  min-width: 0; /* allows long stat_text to wrap inside the grid track */
-}
-.svc-ps-vs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.5rem;
-  opacity: 0;
-  transition: opacity 0.4s ease 0.2s;
-}
-.svc-ps-row.is-visible .svc-ps-vs {
-  opacity: 1;
-}
-.svc-ps-vs-label {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: var(--gildhart-gold);
-  line-height: 1;
-}
-
-.svc-ps-lose {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  min-width: 0;
-  opacity: 0;
-  transform: translateX(16px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-}
-.svc-ps-row.is-visible .svc-ps-lose {
-  opacity: 1;
-  transform: translateX(0);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(201, 164, 74, 0.20);
 }
 
 .svc-ps-stat-num {
@@ -463,66 +460,45 @@
   font-size: 0.8125rem;
   color: rgba(201, 164, 74, 0.85);
   line-height: 1.5;
-  margin: 0;
-}
-
-.svc-ps-lose-icon {
-  flex-shrink: 0;
-  font-size: 0.875rem;
-  font-weight: 800;
-  color: #ff6b6b;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(255, 107, 107, 0.14);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.svc-ps-lose-text {
-  font-size: 1.0625rem;
-  color: #fff;
-  line-height: 1.45;
-  font-weight: 700;
-  margin: 0;
+  margin: 0.25rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.18);
 }
 
 @media (max-width: 768px) {
   .svc-problem-shift { padding: 3.5rem 1.25rem; }
   .svc-ps-headline { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.25rem; }
   .svc-ps-intro { font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
-  /* Collapse the 3-col dashboard to a vertical stack: stat + arrow +
-   * pain stack on top of each other. Arrow rotates 90° to point down
-   * so the visual flow stays "stat → consequence". */
-  .svc-ps-row {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1.5rem 1.25rem 1.5rem 1.5rem;
+  .svc-ps-narrative {
+    padding: 2.75rem 1.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 14px;
   }
-  .svc-ps-row:hover {
+  .svc-ps-narrative p { font-size: 1rem; line-height: 1.7; margin-bottom: 1.25rem; }
+  .svc-ps-narrative p:last-child { margin-top: 1.5rem; padding-top: 1.5rem; }
+  /* Collapse the 3-col stat row to a vertical stack on mobile so each
+   * card has room to breathe rather than crushing the stat number. */
+  .svc-ps-cards { grid-template-columns: 1fr; gap: 1rem; }
+  .svc-ps-card {
+    padding: 1.75rem 1.5rem 1.5rem;
+    border-radius: 12px;
+  }
+  .svc-ps-card:hover {
     background: #1a2a3a;
     border-left-color: rgba(201, 164, 74, 0.30);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
   }
-  .svc-ps-vs { padding: 0; justify-content: flex-start; }
-  .svc-ps-vs-label { transform: rotate(90deg); font-size: 1.5rem; }
-  .svc-ps-lose {
-    transform: translateY(12px);
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
-  }
-  .svc-ps-row.is-visible .svc-ps-lose { transform: translateY(0); }
   .svc-ps-stat-num { font-size: clamp(2.25rem, 8vw, 3rem); }
   .svc-ps-stat-text { font-size: 0.9375rem; }
   .svc-ps-stat-source { font-size: 0.78125rem; }
-  .svc-ps-lose-icon { width: 26px; height: 26px; font-size: 0.8125rem; }
-  .svc-ps-lose-text { font-size: 1rem; }
 }
 @media (max-width: 420px) {
   .svc-problem-shift { padding: 3rem 1rem; }
-  .svc-ps-row { padding: 1.25rem 1rem 1.25rem 1.25rem; }
+  .svc-ps-narrative { padding: 2.25rem 1.25rem; }
+  .svc-ps-narrative p { font-size: 0.9375rem; }
+  .svc-ps-card { padding: 1.5rem 1.25rem 1.25rem; }
   .svc-ps-stat-num { font-size: clamp(2rem, 9vw, 2.5rem); }
   .svc-ps-stat-text { font-size: 0.875rem; }
-  .svc-ps-lose-text { font-size: 0.9375rem; }
-  .svc-ps-lose-icon { width: 24px; height: 24px; font-size: 0.75rem; }
 }
 
 /* Teal CTA strip flush below the shift section */

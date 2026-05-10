@@ -1671,6 +1671,25 @@ acf_add_local_field_group( array(
             'rows'  => 5,
         ),
         array(
+            'key'        => 'field_gh_service_ps_narrative',
+            'label'      => 'Editorial Narrative — Paragraphs',
+            'name'       => 'service_problem_shift_narrative_paragraphs',
+            'type'       => 'repeater',
+            'layout'     => 'row',
+            'min'        => 0,
+            'max'        => 30,
+            'instructions' => 'Long-form story that sits in a cream editorial card between the intro and the stat cards. Each row is one paragraph; line breaks between paragraphs are preserved automatically. Leave the repeater empty to hide the card entirely.',
+            'sub_fields' => array(
+                array(
+                    'key'   => 'field_gh_service_ps_narrative_text',
+                    'label' => 'Paragraph',
+                    'name'  => 'text',
+                    'type'  => 'textarea',
+                    'rows'  => 3,
+                ),
+            ),
+        ),
+        array(
             'key'        => 'field_gh_service_ps_pairs',
             'label'      => 'Win / Consequence Pairs',
             'name'       => 'service_problem_shift_pairs',
