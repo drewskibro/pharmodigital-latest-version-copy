@@ -1671,6 +1671,20 @@ acf_add_local_field_group( array(
             'rows'  => 5,
         ),
         array(
+            'key'   => 'field_gh_service_ps_narrative_eyebrow',
+            'label' => 'Editorial Narrative — Eyebrow',
+            'name'  => 'service_problem_shift_narrative_eyebrow',
+            'type'  => 'text',
+            'instructions' => 'Gold mono uppercase label at the top of the narrative card.',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_narrative_headline',
+            'label' => 'Editorial Narrative — Headline',
+            'name'  => 'service_problem_shift_narrative_headline',
+            'type'  => 'text',
+            'instructions' => 'Forest-green bold sub-headline directly under the eyebrow.',
+        ),
+        array(
             'key'        => 'field_gh_service_ps_narrative',
             'label'      => 'Editorial Narrative — Paragraphs',
             'name'       => 'service_problem_shift_narrative_paragraphs',
@@ -1678,7 +1692,7 @@ acf_add_local_field_group( array(
             'layout'     => 'row',
             'min'        => 0,
             'max'        => 30,
-            'instructions' => 'Long-form story that sits in a cream editorial card between the intro and the stat cards. Each row is one paragraph; line breaks between paragraphs are preserved automatically. Leave the repeater empty to hide the card entirely.',
+            'instructions' => 'Long-form story that sits in a cream editorial card between the intro and the stat cards. Each row is one paragraph; line breaks between paragraphs are preserved automatically. The first and last paragraphs receive automatic editorial treatment (opener / closing pull-quote). Mark mid-narrative beats as "Emphasis" to apply italic + gold left border. Leave the repeater empty to hide the card entirely.',
             'sub_fields' => array(
                 array(
                     'key'   => 'field_gh_service_ps_narrative_text',
@@ -1686,6 +1700,17 @@ acf_add_local_field_group( array(
                     'name'  => 'text',
                     'type'  => 'textarea',
                     'rows'  => 3,
+                ),
+                array(
+                    'key'           => 'field_gh_service_ps_narrative_style',
+                    'label'         => 'Style',
+                    'name'          => 'style',
+                    'type'          => 'select',
+                    'choices'       => array(
+                        'body'     => 'Body (default)',
+                        'emphasis' => 'Emphasis (italic + gold left border)',
+                    ),
+                    'default_value' => 'body',
                 ),
             ),
         ),

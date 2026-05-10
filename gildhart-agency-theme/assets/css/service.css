@@ -354,24 +354,32 @@
   transform: translateY(0);
 }
 
-/* Editorial narrative — cream card sitting on the dark navy section
- * backdrop. Reads as long-form journalism: navy body text on warm
- * cream, generous 1.75 line height, ~720px reading column, soft
- * gold-tinted hairline + drop shadow lift the card off the navy.
- * Each <p> is a beat; short single-sentence beats and longer beats
- * get the same paragraph spacing so the rhythm reads "as written".
+/* Editorial narrative — premium cream card lifted off the dark navy
+ * section. Mirrors the homepage two-paths card system: gold mono
+ * eyebrow, forest-green bold headline, italic body with gold left
+ * border for emphasis paragraphs, cream backdrop with a 6px forest
+ * green accent running down the left edge.
  *
- * Last paragraph carries a top hairline so the punchline ("That's
- * not traffic. That's authority...") feels like a closer. */
+ * Hierarchy:
+ *   - .ornament    — small horizontal gold rule + diamond, premium opener
+ *   - .eyebrow     — gold mono uppercase, matches .two-paths-label
+ *   - .headline    — forest green bold, matches .two-paths-card-title
+ *   - body p       — Inter editorial body, navy, 1.125rem
+ *   - p:first-of-type → opener treatment (1.25rem, weight 600)
+ *   - p.is-emphasis → italic + 2px gold left border (matches .two-paths-card-body)
+ *   - p:last-of-type → closer (italic, 4px gold border, larger)
+ */
 .svc-ps-narrative {
-  background: var(--cream, #f5f3ef);
-  border-radius: 16px;
-  border: 1px solid rgba(201, 164, 74, 0.20);
+  position: relative;
+  background: var(--gildhart-cream, #f5f3ef);
+  border-radius: 18px;
+  border: 1px solid rgba(201, 164, 74, 0.22);
   box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.28),
-    0 4px 16px rgba(0, 0, 0, 0.18);
-  padding: 4.25rem 2rem;
+    0 32px 80px rgba(0, 0, 0, 0.32),
+    0 8px 24px rgba(0, 0, 0, 0.18);
+  padding: 4.5rem 2.5rem 4.5rem 3.5rem;
   margin-bottom: 4rem;
+  overflow: hidden;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -380,11 +388,61 @@
   opacity: 1;
   transform: translateY(0);
 }
+/* Forest green vertical accent — runs the full height of the card,
+ * 6px wide, anchors the editorial layout to the brand system. */
+.svc-ps-narrative::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 6px;
+  background: var(--gildhart-green);
+}
 .svc-ps-narrative-inner {
   max-width: 720px;
   margin: 0 auto;
 }
-.svc-ps-narrative p {
+/* Top ornament — small gold horizontal rule with a centered diamond
+ * dot. Sets the editorial register before the eyebrow lands. */
+.svc-ps-narrative-ornament {
+  display: block;
+  position: relative;
+  width: 60px;
+  height: 1px;
+  background: var(--gildhart-gold);
+  margin: 0 0 2rem;
+}
+.svc-ps-narrative-ornament::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--gildhart-gold);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.svc-ps-narrative-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1rem;
+}
+.svc-ps-narrative-headline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.625rem, 2.6vw, 2rem);
+  font-weight: 700;
+  color: var(--gildhart-green);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 2.75rem;
+}
+
+.svc-ps-narrative-body p {
   font-family: 'Inter', sans-serif;
   font-size: 1.125rem;
   line-height: 1.75;
@@ -392,12 +450,44 @@
   margin: 0 0 1.5rem;
   letter-spacing: -0.005em;
 }
-.svc-ps-narrative p:last-child {
-  margin-bottom: 0;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(13, 26, 18, 0.10);
+/* Opener — first paragraph gets a slightly larger, bolder pull-out
+ * treatment so the story has a clear lead-in beat. */
+.svc-ps-narrative-body p:first-of-type {
+  font-size: 1.3125rem;
   font-weight: 600;
+  color: var(--gildhart-green);
+  line-height: 1.5;
+  margin-bottom: 1.875rem;
+  letter-spacing: -0.012em;
+}
+/* Emphasis — italic with 2px gold left border, mirrors the homepage
+ * two-paths-card-body pattern. Used for short, punchy beats inside
+ * the prose ("Then something shifted." / "Then an IVF clinic
+ * called." / "Eight bookings in six months became 55 a month.") */
+.svc-ps-narrative-body p.is-emphasis {
+  font-style: italic;
+  font-size: 1.1875rem;
+  color: var(--gildhart-green);
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--gildhart-gold);
+  margin: 1.75rem 0;
+}
+/* Closer — last paragraph as a quote-styled punchline. Stronger
+ * gold border, bigger size, italic. The "authority compounds" line
+ * gets the rhetorical weight it earned. */
+.svc-ps-narrative-body p:last-of-type {
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-size: 1.3125rem;
+  font-weight: 500;
+  color: var(--gildhart-green);
+  line-height: 1.55;
+  margin: 2.5rem 0 0;
+  padding: 2rem 0 0 1.5rem;
+  border-top: 1px solid rgba(30, 61, 47, 0.14);
+  border-left: 4px solid var(--gildhart-gold);
+  letter-spacing: -0.01em;
 }
 
 /* Three-card stat row — premium navy-lift cards in a 3-col grid.
@@ -470,12 +560,21 @@
   .svc-ps-headline { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.25rem; }
   .svc-ps-intro { font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
   .svc-ps-narrative {
-    padding: 2.75rem 1.5rem;
+    padding: 3rem 1.25rem 3rem 2rem;
     margin-bottom: 2.5rem;
     border-radius: 14px;
   }
-  .svc-ps-narrative p { font-size: 1rem; line-height: 1.7; margin-bottom: 1.25rem; }
-  .svc-ps-narrative p:last-child { margin-top: 1.5rem; padding-top: 1.5rem; }
+  .svc-ps-narrative::before { width: 5px; }
+  .svc-ps-narrative-headline { font-size: clamp(1.375rem, 5vw, 1.75rem); margin-bottom: 2rem; }
+  .svc-ps-narrative-body p { font-size: 1rem; line-height: 1.7; margin-bottom: 1.25rem; }
+  .svc-ps-narrative-body p:first-of-type { font-size: 1.125rem; margin-bottom: 1.5rem; }
+  .svc-ps-narrative-body p.is-emphasis { font-size: 1.0625rem; padding-left: 1rem; margin: 1.5rem 0; }
+  .svc-ps-narrative-body p:last-of-type {
+    font-size: 1.125rem;
+    margin-top: 2rem;
+    padding: 1.5rem 0 0 1.25rem;
+    border-left-width: 3px;
+  }
   /* Collapse the 3-col stat row to a vertical stack on mobile so each
    * card has room to breathe rather than crushing the stat number. */
   .svc-ps-cards { grid-template-columns: 1fr; gap: 1rem; }
@@ -494,8 +593,11 @@
 }
 @media (max-width: 420px) {
   .svc-problem-shift { padding: 3rem 1rem; }
-  .svc-ps-narrative { padding: 2.25rem 1.25rem; }
-  .svc-ps-narrative p { font-size: 0.9375rem; }
+  .svc-ps-narrative { padding: 2.5rem 1rem 2.5rem 1.5rem; }
+  .svc-ps-narrative-body p { font-size: 0.9375rem; line-height: 1.65; }
+  .svc-ps-narrative-body p:first-of-type { font-size: 1.0625rem; }
+  .svc-ps-narrative-body p.is-emphasis { font-size: 1rem; }
+  .svc-ps-narrative-body p:last-of-type { font-size: 1.0625rem; }
   .svc-ps-card { padding: 1.5rem 1.25rem 1.25rem; }
   .svc-ps-stat-num { font-size: clamp(2rem, 9vw, 2.5rem); }
   .svc-ps-stat-text { font-size: 0.875rem; }
