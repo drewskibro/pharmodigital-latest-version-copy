@@ -112,44 +112,35 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                 <p class="svc-ps-intro"><?php echo esc_html( $intro ); ?></p>
             <?php endif; ?>
 
-            <?php if ( ! empty( $narrative_paragraphs ) ) :
-                $narrative_classes = 'svc-ps-narrative';
-                if ( $narrative_image_id ) {
-                    $narrative_classes .= ' svc-ps-narrative--has-image';
-                }
-            ?>
-                <article class="<?php echo esc_attr( $narrative_classes ); ?>">
+            <?php if ( $narrative_image_id ) : ?>
+                <figure class="svc-ps-narrative-hero">
+                    <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
+                        'class'   => 'svc-ps-narrative-hero-image',
+                        'alt'     => esc_attr( $narrative_headline ),
+                        'loading' => 'lazy',
+                    ) ); ?>
+                </figure>
+            <?php endif; ?>
+
+            <?php if ( ! empty( $narrative_paragraphs ) ) : ?>
+                <article class="svc-ps-narrative">
                     <div class="svc-ps-narrative-inner">
-
-                        <?php if ( $narrative_image_id ) : ?>
-                            <figure class="svc-ps-narrative-figure">
-                                <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
-                                    'class'   => 'svc-ps-narrative-image',
-                                    'alt'     => esc_attr( $narrative_headline ),
-                                    'loading' => 'lazy',
-                                ) ); ?>
-                            </figure>
+                        <span class="svc-ps-narrative-ornament" aria-hidden="true"></span>
+                        <?php if ( $narrative_eyebrow ) : ?>
+                            <p class="svc-ps-narrative-eyebrow"><?php echo esc_html( $narrative_eyebrow ); ?></p>
                         <?php endif; ?>
-
-                        <div class="svc-ps-narrative-copy">
-                            <span class="svc-ps-narrative-ornament" aria-hidden="true"></span>
-                            <?php if ( $narrative_eyebrow ) : ?>
-                                <p class="svc-ps-narrative-eyebrow"><?php echo esc_html( $narrative_eyebrow ); ?></p>
-                            <?php endif; ?>
-                            <?php if ( $narrative_headline ) : ?>
-                                <h3 class="svc-ps-narrative-headline"><?php echo esc_html( $narrative_headline ); ?></h3>
-                            <?php endif; ?>
-                            <div class="svc-ps-narrative-body">
-                                <?php foreach ( $narrative_paragraphs as $para ) :
-                                    $text  = $para['text']  ?? '';
-                                    $style = $para['style'] ?? 'body';
-                                    if ( ! $text ) continue;
-                                    $class = ( 'emphasis' === $style ) ? ' class="is-emphasis"' : ''; ?>
-                                    <p<?php echo $class; ?>><?php echo esc_html( $text ); ?></p>
-                                <?php endforeach; ?>
-                            </div>
+                        <?php if ( $narrative_headline ) : ?>
+                            <h3 class="svc-ps-narrative-headline"><?php echo esc_html( $narrative_headline ); ?></h3>
+                        <?php endif; ?>
+                        <div class="svc-ps-narrative-body">
+                            <?php foreach ( $narrative_paragraphs as $para ) :
+                                $text  = $para['text']  ?? '';
+                                $style = $para['style'] ?? 'body';
+                                if ( ! $text ) continue;
+                                $class = ( 'emphasis' === $style ) ? ' class="is-emphasis"' : ''; ?>
+                                <p<?php echo $class; ?>><?php echo esc_html( $text ); ?></p>
+                            <?php endforeach; ?>
                         </div>
-
                     </div>
                 </article>
             <?php endif; ?>
