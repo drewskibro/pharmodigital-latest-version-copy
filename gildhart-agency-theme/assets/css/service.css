@@ -403,6 +403,38 @@
   max-width: 720px;
   margin: 0 auto;
 }
+/* When the editor uploads a narrative image, the card switches to a
+ * 2-column layout: copy on the left, image on the right. The 720px
+ * max-width cap is lifted so the inner can fill the card. Reading
+ * column lands at ~480px on a 1100px container, which is tight but
+ * readable; image gets natural proportions. */
+.svc-ps-narrative--has-image .svc-ps-narrative-inner {
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4rem;
+  align-items: center;
+}
+.svc-ps-narrative-copy {
+  min-width: 0;
+}
+/* Figure column — image displays at natural proportions (no fixed
+ * height, no object-fit crop) so any marketing composition baked
+ * into the file lands intact. 16px radius + drop shadow that mirrors
+ * the card's own shadow at a smaller scale. */
+.svc-ps-narrative-figure {
+  margin: 0;
+  min-width: 0;
+}
+.svc-ps-narrative-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.28),
+    0 6px 18px rgba(0, 0, 0, 0.16);
+}
 /* Top ornament — small gold horizontal rule with a centered diamond
  * dot. Sets the editorial register before the eyebrow lands. */
 .svc-ps-narrative-ornament {
@@ -554,6 +586,17 @@
   margin: 0.25rem 0 0;
   padding-top: 0.875rem;
   border-top: 1px solid rgba(201, 164, 74, 0.30);
+}
+
+/* Tablet — collapse the narrative 2-col grid to a single column with
+ * the image stacked above the copy. The image is the visual anchor
+ * at this size, hooks the reader in before the prose. */
+@media (max-width: 960px) {
+  .svc-ps-narrative--has-image .svc-ps-narrative-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .svc-ps-narrative-figure { order: -1; }
 }
 
 @media (max-width: 768px) {

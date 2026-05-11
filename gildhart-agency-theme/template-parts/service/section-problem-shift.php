@@ -44,19 +44,20 @@ $intro    = gh_field( 'service_problem_shift_intro',    "That shortlist is being
 // treatment via CSS regardless of style.
 $narrative_eyebrow  = gh_field( 'service_problem_shift_narrative_eyebrow',  'From 8 Bookings To 55 A Month' );
 $narrative_headline = gh_field( 'service_problem_shift_narrative_headline', 'Authority compounds. Ad spend evaporates.' );
+$narrative_image_id = (int) get_field( 'service_problem_shift_narrative_image' );
 
 $narrative_paragraphs = get_field( 'service_problem_shift_narrative_paragraphs' );
 if ( empty( $narrative_paragraphs ) ) {
     $narrative_paragraphs = array(
         array( 'text' => "Sachin at Ealing Travel Clinic won't touch Google Ads.", 'style' => 'body' ),
-        array( 'text' => 'He had a beautiful website. Professionally designed. Properly built. And in six months it had generated eight HPV bookings. Eight.', 'style' => 'body' ),
+        array( 'text' => 'He had a beautiful website. Professionally designed. Properly built. And in a full year it had generated eight HPV bookings. Eight.', 'style' => 'body' ),
         array( 'text' => 'Not because the site was bad. Because nobody could find it.', 'style' => 'emphasis' ),
-        array( 'text' => "He didn't hire an agency. He used the Playbook. He'd never written a word about HPV before. Never created a single piece of content for the service.", 'style' => 'body' ),
+        array( 'text' => "He didn't hire an agency. He used the Playbook. He knew his subject — he's a clinician. What he didn't have was visibility. The content existed in his head. It just wasn't on the internet in a form that AI could find, trust, and recommend.", 'style' => 'body' ),
         array( 'text' => 'Then something shifted.', 'style' => 'emphasis' ),
-        array( 'text' => "Not overnight. Gradually — and then all at once. Daily enquiries started arriving from across London. People he'd never reached before. Asking specifically about HPV. About Gardasil 9. Patients who'd found his content, read it properly, and decided before they even made contact that Sachin was the person they trusted.", 'style' => 'body' ),
-        array( 'text' => 'Eight bookings in six months became 55 bookings a month.', 'style' => 'emphasis' ),
+        array( 'text' => "Not overnight. Gradually — and then all at once. Daily enquiries started arriving from across London. Patients who'd found his content, read it properly, and decided before they even made contact that Sachin was the person they trusted.", 'style' => 'body' ),
+        array( 'text' => 'Eight bookings in a year became 55 bookings a month.', 'style' => 'emphasis' ),
         array( 'text' => 'Then an IVF clinic called.', 'style' => 'emphasis' ),
-        array( 'text' => "They'd found his content on Zika virus testing. Read it. Decided he was a specialist. And started sending him their referrals.", 'style' => 'body' ),
+        array( 'text' => "They'd found his content on Zika virus testing. Read it. Decided he was a specialist. And started sending their referrals.", 'style' => 'body' ),
         array( 'text' => 'A medical institution. Finding a pharmacist through content. Calling him. Trusting him enough to send patients.', 'style' => 'body' ),
         array( 'text' => 'His patients tell him how good the content is. They arrive already convinced.', 'style' => 'body' ),
         array( 'text' => "That's not traffic. That's authority. And authority compounds in a way that ad spend never will.", 'style' => 'body' ),
@@ -111,25 +112,44 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                 <p class="svc-ps-intro"><?php echo esc_html( $intro ); ?></p>
             <?php endif; ?>
 
-            <?php if ( ! empty( $narrative_paragraphs ) ) : ?>
-                <article class="svc-ps-narrative">
+            <?php if ( ! empty( $narrative_paragraphs ) ) :
+                $narrative_classes = 'svc-ps-narrative';
+                if ( $narrative_image_id ) {
+                    $narrative_classes .= ' svc-ps-narrative--has-image';
+                }
+            ?>
+                <article class="<?php echo esc_attr( $narrative_classes ); ?>">
                     <div class="svc-ps-narrative-inner">
-                        <span class="svc-ps-narrative-ornament" aria-hidden="true"></span>
-                        <?php if ( $narrative_eyebrow ) : ?>
-                            <p class="svc-ps-narrative-eyebrow"><?php echo esc_html( $narrative_eyebrow ); ?></p>
+
+                        <?php if ( $narrative_image_id ) : ?>
+                            <figure class="svc-ps-narrative-figure">
+                                <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
+                                    'class'   => 'svc-ps-narrative-image',
+                                    'alt'     => esc_attr( $narrative_headline ),
+                                    'loading' => 'lazy',
+                                ) ); ?>
+                            </figure>
                         <?php endif; ?>
-                        <?php if ( $narrative_headline ) : ?>
-                            <h3 class="svc-ps-narrative-headline"><?php echo esc_html( $narrative_headline ); ?></h3>
-                        <?php endif; ?>
-                        <div class="svc-ps-narrative-body">
-                            <?php foreach ( $narrative_paragraphs as $para ) :
-                                $text  = $para['text']  ?? '';
-                                $style = $para['style'] ?? 'body';
-                                if ( ! $text ) continue;
-                                $class = ( 'emphasis' === $style ) ? ' class="is-emphasis"' : ''; ?>
-                                <p<?php echo $class; ?>><?php echo esc_html( $text ); ?></p>
-                            <?php endforeach; ?>
+
+                        <div class="svc-ps-narrative-copy">
+                            <span class="svc-ps-narrative-ornament" aria-hidden="true"></span>
+                            <?php if ( $narrative_eyebrow ) : ?>
+                                <p class="svc-ps-narrative-eyebrow"><?php echo esc_html( $narrative_eyebrow ); ?></p>
+                            <?php endif; ?>
+                            <?php if ( $narrative_headline ) : ?>
+                                <h3 class="svc-ps-narrative-headline"><?php echo esc_html( $narrative_headline ); ?></h3>
+                            <?php endif; ?>
+                            <div class="svc-ps-narrative-body">
+                                <?php foreach ( $narrative_paragraphs as $para ) :
+                                    $text  = $para['text']  ?? '';
+                                    $style = $para['style'] ?? 'body';
+                                    if ( ! $text ) continue;
+                                    $class = ( 'emphasis' === $style ) ? ' class="is-emphasis"' : ''; ?>
+                                    <p<?php echo $class; ?>><?php echo esc_html( $text ); ?></p>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
+
                     </div>
                 </article>
             <?php endif; ?>
