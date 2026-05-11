@@ -58,6 +58,15 @@ if ( empty( $narrative_paragraphs ) ) {
         array( 'text' => 'Eight bookings in a year became 55 bookings a month.', 'style' => 'emphasis' ),
         array( 'text' => 'Then an IVF clinic called.', 'style' => 'emphasis' ),
         array( 'text' => "They'd found his content on Zika virus testing. Read it. Decided he was a specialist. And started sending their referrals.", 'style' => 'body' ),
+        // Inline WhatsApp evidence — image_id is 0 in the default so
+        // the block won't render until an editor uploads a screenshot
+        // via the new ACF Evidence Image field on this row.
+        array(
+            'style'          => 'evidence',
+            'evidence_image' => 0,
+            'evidence_label' => 'Sachin · Ealing Travel Clinic · WhatsApp',
+            'text'           => 'An IVF clinic found his content. Read it. Called him.',
+        ),
         array( 'text' => 'A medical institution. Finding a pharmacist through content. Calling him. Trusting him enough to send patients.', 'style' => 'body' ),
         array( 'text' => 'His patients tell him how good the content is. They arrive already convinced.', 'style' => 'body' ),
         array( 'text' => "That's not traffic. That's authority. And authority compounds in a way that ad spend never will.", 'style' => 'body' ),
@@ -136,6 +145,34 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                             <?php foreach ( $narrative_paragraphs as $para ) :
                                 $text  = $para['text']  ?? '';
                                 $style = $para['style'] ?? 'body';
+
+                                // Evidence row — inline screenshot with gold
+                                // label above + italic caption below. Skipped
+                                // silently if the editor hasn't uploaded an
+                                // image yet, so the row sits inert until
+                                // populated.
+                                if ( 'evidence' === $style ) :
+                                    $ev_img_id = (int) ( $para['evidence_image'] ?? 0 );
+                                    $ev_label  = $para['evidence_label'] ?? '';
+                                    if ( ! $ev_img_id ) continue;
+                                    ?>
+                                    <figure class="svc-ps-narrative-evidence">
+                                        <?php if ( $ev_label ) : ?>
+                                            <span class="svc-ps-narrative-evidence-label"><?php echo esc_html( $ev_label ); ?></span>
+                                        <?php endif; ?>
+                                        <?php echo wp_get_attachment_image( $ev_img_id, 'full', false, array(
+                                            'class'   => 'svc-ps-narrative-evidence-image',
+                                            'alt'     => esc_attr( $text ?: $ev_label ),
+                                            'loading' => 'lazy',
+                                        ) ); ?>
+                                        <?php if ( $text ) : ?>
+                                            <figcaption class="svc-ps-narrative-evidence-caption"><?php echo esc_html( $text ); ?></figcaption>
+                                        <?php endif; ?>
+                                    </figure>
+                                    <?php
+                                    continue;
+                                endif;
+
                                 if ( ! $text ) continue;
                                 $class = ( 'emphasis' === $style ) ? ' class="is-emphasis"' : ''; ?>
                                 <p<?php echo $class; ?>><?php echo esc_html( $text ); ?></p>

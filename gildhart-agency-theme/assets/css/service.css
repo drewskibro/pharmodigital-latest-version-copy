@@ -525,6 +525,50 @@
   letter-spacing: -0.01em;
 }
 
+/* Inline evidence — image with gold uppercase label above and italic
+ * caption below. Used inside the Sachin narrative to drop in the
+ * real WhatsApp screenshot at the moment the IVF clinic referral
+ * beat lands. Treated as primary evidence: centred 600px column on
+ * desktop, full-width on mobile, 16px radius, drop shadow that lifts
+ * the screenshot off the cream backdrop. Generous vertical breathing
+ * room separates it from the surrounding paragraphs. */
+.svc-ps-narrative-evidence {
+  margin: 2.75rem auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+}
+.svc-ps-narrative-evidence-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0;
+  text-align: center;
+}
+.svc-ps-narrative-evidence-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow:
+    0 16px 36px rgba(13, 26, 18, 0.18),
+    0 4px 12px rgba(13, 26, 18, 0.10);
+}
+.svc-ps-narrative-evidence-caption {
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: rgba(30, 61, 47, 0.78);
+  line-height: 1.5;
+  margin: 0.5rem 0 0;
+  text-align: center;
+}
+
 /* Three-card stat row — premium navy-lift cards in a 3-col grid.
  * Each card carries a 30%-opacity gold left accent that pops to 100%
  * on hover; the background also lightens. align-items: stretch keeps
@@ -613,6 +657,14 @@
     padding: 1.5rem 0 0 1.25rem;
     border-left-width: 3px;
   }
+  .svc-ps-narrative-evidence {
+    max-width: 100%;
+    margin: 2rem 0;
+    gap: 0.75rem;
+  }
+  .svc-ps-narrative-evidence-image { border-radius: 12px; }
+  .svc-ps-narrative-evidence-label { font-size: 0.6875rem; letter-spacing: 0.2em; }
+  .svc-ps-narrative-evidence-caption { font-size: 0.875rem; }
   /* Collapse the 3-col stat row to a vertical stack on mobile so each
    * card has room to breathe rather than crushing the stat number. */
   .svc-ps-cards { grid-template-columns: 1fr; gap: 1rem; }
