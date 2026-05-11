@@ -1685,6 +1685,15 @@ acf_add_local_field_group( array(
             'instructions' => 'Forest-green bold sub-headline directly under the eyebrow.',
         ),
         array(
+            'key'           => 'field_gh_service_ps_narrative_image',
+            'label'         => 'Editorial Narrative — Image (optional)',
+            'name'          => 'service_problem_shift_narrative_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Renders to the right of the narrative copy in a 2-column grid on desktop. Displayed at natural proportions, 16px radius, soft drop shadow. Collapses above the copy on tablet/mobile. Leave empty to render the narrative as a single-column editorial card.',
+        ),
+        array(
             'key'        => 'field_gh_service_ps_narrative',
             'label'      => 'Editorial Narrative — Paragraphs',
             'name'       => 'service_problem_shift_narrative_paragraphs',
