@@ -403,37 +403,40 @@
   max-width: 720px;
   margin: 0 auto;
 }
-/* When the editor uploads a narrative image, the card switches to a
- * 2-column layout: copy on the left, image on the right. The 720px
- * max-width cap is lifted so the inner can fill the card. Reading
- * column lands at ~480px on a 1100px container, which is tight but
- * readable; image gets natural proportions. */
-.svc-ps-narrative--has-image .svc-ps-narrative-inner {
-  max-width: none;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 4rem;
+
+/* Hero image — full container width, sits on the section's dark
+ * navy backdrop ABOVE the narrative card. Marketing compositions
+ * (browser mockups, callouts, screenshots) render at native
+ * proportions with a soft gold halo glowing behind to anchor them
+ * against the dark section. The narrative card lands underneath in
+ * its proper 720px editorial reading column. */
+.svc-ps-narrative-hero {
+  position: relative;
+  margin: 0 0 4rem;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
-.svc-ps-narrative-copy {
-  min-width: 0;
+.svc-ps-narrative-hero::before {
+  content: '';
+  position: absolute;
+  inset: 4% 4% 4% 4%;
+  border-radius: 32px;
+  background: radial-gradient(ellipse at center, rgba(201, 164, 74, 0.28) 0%, rgba(201, 164, 74, 0) 65%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
 }
-/* Figure column — image displays at natural proportions (no fixed
- * height, no object-fit crop) so any marketing composition baked
- * into the file lands intact. 16px radius + drop shadow that mirrors
- * the card's own shadow at a smaller scale. */
-.svc-ps-narrative-figure {
-  margin: 0;
-  min-width: 0;
-}
-.svc-ps-narrative-image {
+.svc-ps-narrative-hero-image {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: auto;
   border-radius: 16px;
   box-shadow:
-    0 20px 56px rgba(0, 0, 0, 0.28),
-    0 6px 18px rgba(0, 0, 0, 0.16);
+    0 32px 80px rgba(0, 0, 0, 0.40),
+    0 8px 24px rgba(0, 0, 0, 0.22);
 }
 /* Top ornament — small gold horizontal rule with a centered diamond
  * dot. Sets the editorial register before the eyebrow lands. */
@@ -588,21 +591,12 @@
   border-top: 1px solid rgba(201, 164, 74, 0.30);
 }
 
-/* Tablet — collapse the narrative 2-col grid to a single column with
- * the image stacked above the copy. The image is the visual anchor
- * at this size, hooks the reader in before the prose. */
-@media (max-width: 960px) {
-  .svc-ps-narrative--has-image .svc-ps-narrative-inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .svc-ps-narrative-figure { order: -1; }
-}
-
 @media (max-width: 768px) {
   .svc-problem-shift { padding: 3.5rem 1.25rem; }
   .svc-ps-headline { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.25rem; }
   .svc-ps-intro { font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+  .svc-ps-narrative-hero { margin-bottom: 2.5rem; }
+  .svc-ps-narrative-hero-image { border-radius: 12px; }
   .svc-ps-narrative {
     padding: 3rem 1.25rem 3rem 2rem;
     margin-bottom: 2.5rem;
