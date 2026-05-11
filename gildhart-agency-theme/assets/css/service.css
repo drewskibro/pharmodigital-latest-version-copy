@@ -427,21 +427,9 @@
   z-index: 0;
   pointer-events: none;
 }
-/* Link wrap — entire hero image is tappable on every viewport (opens
- * the full-size file in a new tab so mobile readers can pinch-zoom
- * the transcript natively). Inherits no underline / no inherited
- * link colour; the visual is the image + the cue pill. */
-.svc-ps-narrative-hero-link {
+.svc-ps-narrative-hero-image {
   position: relative;
   z-index: 1;
-  display: block;
-  width: 100%;
-  text-decoration: none;
-  color: inherit;
-  cursor: zoom-in;
-  -webkit-tap-highlight-color: transparent;
-}
-.svc-ps-narrative-hero-image {
   display: block;
   width: 100%;
   height: auto;
@@ -449,40 +437,6 @@
   box-shadow:
     0 32px 80px rgba(0, 0, 0, 0.40),
     0 8px 24px rgba(0, 0, 0, 0.22);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.svc-ps-narrative-hero-link:hover .svc-ps-narrative-hero-image,
-.svc-ps-narrative-hero-link:focus-visible .svc-ps-narrative-hero-image {
-  transform: translateY(-2px);
-}
-/* Tap cue — gold pill with magnifying glass + label. Hidden by
- * default on desktop where the image already renders large enough
- * to read; revealed on mobile/tablet via the media query below.
- * Floats absolutely at the bottom-right so it overlays the image
- * without taking layout space. */
-.svc-ps-narrative-hero-cue {
-  display: none;
-  position: absolute;
-  bottom: 0.875rem;
-  right: 0.875rem;
-  z-index: 2;
-  align-items: center;
-  gap: 0.4375rem;
-  padding: 0.5rem 0.875rem 0.5rem 0.75rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.78125rem;
-  font-weight: 700;
-  letter-spacing: 0.005em;
-  color: var(--navy, #0d1a12);
-  background: var(--gildhart-gold);
-  border-radius: 999px;
-  box-shadow:
-    0 6px 16px rgba(13, 26, 18, 0.25),
-    0 0 0 1px rgba(13, 26, 18, 0.08);
-  pointer-events: none; /* tap registers on the parent link */
-}
-.svc-ps-narrative-hero-cue-icon {
-  flex-shrink: 0;
 }
 /* Top ornament — small gold horizontal rule with a centered diamond
  * dot. Sets the editorial register before the eyebrow lands. */
@@ -571,6 +525,50 @@
   letter-spacing: -0.01em;
 }
 
+/* Inline evidence — image with gold uppercase label above and italic
+ * caption below. Used inside the Sachin narrative to drop in the
+ * real WhatsApp screenshot at the moment the IVF clinic referral
+ * beat lands. Treated as primary evidence: centred 600px column on
+ * desktop, full-width on mobile, 16px radius, drop shadow that lifts
+ * the screenshot off the cream backdrop. Generous vertical breathing
+ * room separates it from the surrounding paragraphs. */
+.svc-ps-narrative-evidence {
+  margin: 2.75rem auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+}
+.svc-ps-narrative-evidence-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0;
+  text-align: center;
+}
+.svc-ps-narrative-evidence-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow:
+    0 16px 36px rgba(13, 26, 18, 0.18),
+    0 4px 12px rgba(13, 26, 18, 0.10);
+}
+.svc-ps-narrative-evidence-caption {
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: rgba(30, 61, 47, 0.78);
+  line-height: 1.5;
+  margin: 0.5rem 0 0;
+  text-align: center;
+}
+
 /* Three-card stat row — premium navy-lift cards in a 3-col grid.
  * Each card carries a 30%-opacity gold left accent that pops to 100%
  * on hover; the background also lightens. align-items: stretch keeps
@@ -641,23 +639,8 @@
   .svc-problem-shift { padding: 3.5rem 1.25rem; }
   .svc-ps-headline { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.25rem; }
   .svc-ps-intro { font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
-  /* Break the hero image out of the section's 1.25rem horizontal
-   * padding so it spans the full viewport — every pixel of width
-   * helps the transcript inside the image read at a usable size,
-   * and combined with the tap cue below users can pinch-zoom in
-   * a new tab for full-resolution reading. Radial halo also lifts
-   * its inset so it doesn't poke past the viewport edges. */
-  .svc-ps-narrative-hero {
-    margin: 0 -1.25rem 2.5rem;
-    width: calc(100% + 2.5rem);
-  }
-  .svc-ps-narrative-hero::before { inset: 0; border-radius: 0; }
-  .svc-ps-narrative-hero-image { border-radius: 0; }
-  .svc-ps-narrative-hero-cue {
-    display: inline-flex;
-    bottom: 0.75rem;
-    right: 0.75rem;
-  }
+  .svc-ps-narrative-hero { margin-bottom: 2.5rem; }
+  .svc-ps-narrative-hero-image { border-radius: 12px; }
   .svc-ps-narrative {
     padding: 3rem 1.25rem 3rem 2rem;
     margin-bottom: 2.5rem;
@@ -674,6 +657,14 @@
     padding: 1.5rem 0 0 1.25rem;
     border-left-width: 3px;
   }
+  .svc-ps-narrative-evidence {
+    max-width: 100%;
+    margin: 2rem 0;
+    gap: 0.75rem;
+  }
+  .svc-ps-narrative-evidence-image { border-radius: 12px; }
+  .svc-ps-narrative-evidence-label { font-size: 0.6875rem; letter-spacing: 0.2em; }
+  .svc-ps-narrative-evidence-caption { font-size: 0.875rem; }
   /* Collapse the 3-col stat row to a vertical stack on mobile so each
    * card has room to breathe rather than crushing the stat number. */
   .svc-ps-cards { grid-template-columns: 1fr; gap: 1rem; }

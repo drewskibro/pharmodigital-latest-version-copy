@@ -1718,8 +1718,43 @@ acf_add_local_field_group( array(
                     'choices'       => array(
                         'body'     => 'Body (default)',
                         'emphasis' => 'Emphasis (italic + gold left border)',
+                        'evidence' => 'Evidence (inline image with label + caption)',
                     ),
                     'default_value' => 'body',
+                ),
+                array(
+                    'key'           => 'field_gh_service_ps_narrative_evidence_image',
+                    'label'         => 'Evidence Image',
+                    'name'          => 'evidence_image',
+                    'type'          => 'image',
+                    'return_format' => 'id',
+                    'preview_size'  => 'medium',
+                    'instructions'  => 'Inline screenshot displayed between paragraphs. Centred in the reading column, max-width 600px on desktop, full-width on mobile, 16px radius, drop shadow.',
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field'    => 'field_gh_service_ps_narrative_style',
+                                'operator' => '==',
+                                'value'    => 'evidence',
+                            ),
+                        ),
+                    ),
+                ),
+                array(
+                    'key'           => 'field_gh_service_ps_narrative_evidence_label',
+                    'label'         => 'Evidence Label',
+                    'name'          => 'evidence_label',
+                    'type'          => 'text',
+                    'instructions'  => 'Small gold uppercase label above the image. e.g. "SACHIN · EALING TRAVEL CLINIC · WHATSAPP".',
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field'    => 'field_gh_service_ps_narrative_style',
+                                'operator' => '==',
+                                'value'    => 'evidence',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),
