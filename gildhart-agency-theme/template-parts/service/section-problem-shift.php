@@ -112,21 +112,13 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                 <p class="svc-ps-intro"><?php echo esc_html( $intro ); ?></p>
             <?php endif; ?>
 
-            <?php if ( $narrative_image_id ) :
-                $hero_full_url = wp_get_attachment_image_url( $narrative_image_id, 'full' );
-            ?>
+            <?php if ( $narrative_image_id ) : ?>
                 <figure class="svc-ps-narrative-hero">
-                    <a class="svc-ps-narrative-hero-link" href="<?php echo esc_url( $hero_full_url ); ?>" target="_blank" rel="noopener" aria-label="Tap to view the full ChatGPT transcript at full size">
-                        <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
-                            'class'   => 'svc-ps-narrative-hero-image',
-                            'alt'     => esc_attr( $narrative_headline ),
-                            'loading' => 'lazy',
-                        ) ); ?>
-                        <span class="svc-ps-narrative-hero-cue" aria-hidden="true">
-                            <svg class="svc-ps-narrative-hero-cue-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                            Tap to read full transcript
-                        </span>
-                    </a>
+                    <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
+                        'class'   => 'svc-ps-narrative-hero-image',
+                        'alt'     => esc_attr( $narrative_headline ),
+                        'loading' => 'lazy',
+                    ) ); ?>
                 </figure>
             <?php endif; ?>
 
