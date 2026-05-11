@@ -559,13 +559,20 @@
     0 16px 36px rgba(13, 26, 18, 0.18),
     0 4px 12px rgba(13, 26, 18, 0.10);
 }
+/* Caption sits as a primary narrative beat under the screenshot —
+ * same gravitas as the "Then an IVF clinic called." emphasis lines.
+ * Heavy weight, deep forest-green, generous size, tight measure so it
+ * reads as a story landing, not a polite image caption. */
 .svc-ps-narrative-evidence-caption {
   font-family: 'Inter', sans-serif;
-  font-style: italic;
-  font-size: 0.9375rem;
-  color: rgba(30, 61, 47, 0.78);
-  line-height: 1.5;
-  margin: 0.5rem 0 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.375rem;
+  color: var(--gildhart-forest, #1E3D2F);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  max-width: 540px;
+  margin: 1rem auto 0;
   text-align: center;
 }
 
@@ -664,7 +671,7 @@
   }
   .svc-ps-narrative-evidence-image { border-radius: 12px; }
   .svc-ps-narrative-evidence-label { font-size: 0.6875rem; letter-spacing: 0.2em; }
-  .svc-ps-narrative-evidence-caption { font-size: 0.875rem; }
+  .svc-ps-narrative-evidence-caption { font-size: 1.125rem; line-height: 1.35; }
   /* Collapse the 3-col stat row to a vertical stack on mobile so each
    * card has room to breathe rather than crushing the stat number. */
   .svc-ps-cards { grid-template-columns: 1fr; gap: 1rem; }
