@@ -1724,12 +1724,30 @@ acf_add_local_field_group( array(
                 ),
                 array(
                     'key'           => 'field_gh_service_ps_narrative_evidence_image',
-                    'label'         => 'Evidence Image',
+                    'label'         => 'Evidence Image (Desktop)',
                     'name'          => 'evidence_image',
                     'type'          => 'image',
                     'return_format' => 'id',
                     'preview_size'  => 'medium',
-                    'instructions'  => 'Inline screenshot displayed between paragraphs. Centred in the reading column, max-width 600px on desktop, full-width on mobile, 16px radius, drop shadow.',
+                    'instructions'  => 'Inline screenshot displayed between paragraphs. Centred in the reading column, max-width 600px on desktop, 16px radius, drop shadow. Use a landscape/wide crop suited to a desktop reading column.',
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field'    => 'field_gh_service_ps_narrative_style',
+                                'operator' => '==',
+                                'value'    => 'evidence',
+                            ),
+                        ),
+                    ),
+                ),
+                array(
+                    'key'           => 'field_gh_service_ps_narrative_evidence_image_mobile',
+                    'label'         => 'Evidence Image (Mobile, optional)',
+                    'name'          => 'evidence_image_mobile',
+                    'type'          => 'image',
+                    'return_format' => 'id',
+                    'preview_size'  => 'medium',
+                    'instructions'  => 'Optional portrait/tall crop served only on screens ≤640px wide. Leave empty to fall back to the desktop image on all viewports.',
                     'conditional_logic' => array(
                         array(
                             array(

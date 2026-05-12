@@ -152,19 +152,36 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                                 // image yet, so the row sits inert until
                                 // populated.
                                 if ( 'evidence' === $style ) :
-                                    $ev_img_id = (int) ( $para['evidence_image'] ?? 0 );
-                                    $ev_label  = $para['evidence_label'] ?? '';
+                                    $ev_img_id        = (int) ( $para['evidence_image'] ?? 0 );
+                                    $ev_img_mobile_id = (int) ( $para['evidence_image_mobile'] ?? 0 );
+                                    $ev_label         = $para['evidence_label'] ?? '';
                                     if ( ! $ev_img_id ) continue;
+
+                                    // Mobile portrait crop is optional. When supplied,
+                                    // render a <picture> so viewports ≤640px get the
+                                    // tall image and desktop keeps the landscape one.
+                                    $ev_mobile_src = $ev_img_mobile_id ? wp_get_attachment_image_url( $ev_img_mobile_id, 'large' ) : '';
                                     ?>
-                                    <figure class="svc-ps-narrative-evidence">
+                                    <figure class="svc-ps-narrative-evidence<?php echo $ev_mobile_src ? ' has-mobile-image' : ''; ?>">
                                         <?php if ( $ev_label ) : ?>
                                             <span class="svc-ps-narrative-evidence-label"><?php echo esc_html( $ev_label ); ?></span>
                                         <?php endif; ?>
-                                        <?php echo wp_get_attachment_image( $ev_img_id, 'full', false, array(
-                                            'class'   => 'svc-ps-narrative-evidence-image',
-                                            'alt'     => esc_attr( $text ?: $ev_label ),
-                                            'loading' => 'lazy',
-                                        ) ); ?>
+                                        <?php if ( $ev_mobile_src ) : ?>
+                                            <picture>
+                                                <source media="(max-width: 640px)" srcset="<?php echo esc_url( $ev_mobile_src ); ?>">
+                                                <?php echo wp_get_attachment_image( $ev_img_id, 'full', false, array(
+                                                    'class'   => 'svc-ps-narrative-evidence-image',
+                                                    'alt'     => esc_attr( $text ?: $ev_label ),
+                                                    'loading' => 'lazy',
+                                                ) ); ?>
+                                            </picture>
+                                        <?php else : ?>
+                                            <?php echo wp_get_attachment_image( $ev_img_id, 'full', false, array(
+                                                'class'   => 'svc-ps-narrative-evidence-image',
+                                                'alt'     => esc_attr( $text ?: $ev_label ),
+                                                'loading' => 'lazy',
+                                            ) ); ?>
+                                        <?php endif; ?>
                                         <?php if ( $text ) : ?>
                                             <figcaption class="svc-ps-narrative-evidence-caption"><?php echo esc_html( $text ); ?></figcaption>
                                         <?php endif; ?>
