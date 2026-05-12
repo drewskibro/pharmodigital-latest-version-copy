@@ -42,9 +42,11 @@ $intro    = gh_field( 'service_problem_shift_intro',    "That shortlist is being
 // gold left border (mirrors the homepage two-paths card body
 // treatment). First-of-type and last-of-type get auto editorial
 // treatment via CSS regardless of style.
-$narrative_eyebrow  = gh_field( 'service_problem_shift_narrative_eyebrow',  'From 8 Bookings To 55 A Month' );
-$narrative_headline = gh_field( 'service_problem_shift_narrative_headline', 'Authority compounds. Ad spend evaporates.' );
-$narrative_image_id = (int) get_field( 'service_problem_shift_narrative_image' );
+$narrative_eyebrow         = gh_field( 'service_problem_shift_narrative_eyebrow',  'From 8 Bookings To 55 A Month' );
+$narrative_headline        = gh_field( 'service_problem_shift_narrative_headline', 'Authority compounds. Ad spend evaporates.' );
+$narrative_image_id        = (int) get_field( 'service_problem_shift_narrative_image' );
+$narrative_image_mobile_id = (int) get_field( 'service_problem_shift_narrative_image_mobile' );
+$narrative_image_mobile_src = $narrative_image_mobile_id ? wp_get_attachment_image_url( $narrative_image_mobile_id, 'large' ) : '';
 
 $narrative_paragraphs = get_field( 'service_problem_shift_narrative_paragraphs' );
 if ( empty( $narrative_paragraphs ) ) {
@@ -122,12 +124,23 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
             <?php endif; ?>
 
             <?php if ( $narrative_image_id ) : ?>
-                <figure class="svc-ps-narrative-hero">
-                    <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
-                        'class'   => 'svc-ps-narrative-hero-image',
-                        'alt'     => esc_attr( $narrative_headline ),
-                        'loading' => 'lazy',
-                    ) ); ?>
+                <figure class="svc-ps-narrative-hero<?php echo $narrative_image_mobile_src ? ' has-mobile-image' : ''; ?>">
+                    <?php if ( $narrative_image_mobile_src ) : ?>
+                        <picture>
+                            <source media="(max-width: 640px)" srcset="<?php echo esc_url( $narrative_image_mobile_src ); ?>">
+                            <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
+                                'class'   => 'svc-ps-narrative-hero-image',
+                                'alt'     => esc_attr( $narrative_headline ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </picture>
+                    <?php else : ?>
+                        <?php echo wp_get_attachment_image( $narrative_image_id, 'full', false, array(
+                            'class'   => 'svc-ps-narrative-hero-image',
+                            'alt'     => esc_attr( $narrative_headline ),
+                            'loading' => 'lazy',
+                        ) ); ?>
+                    <?php endif; ?>
                 </figure>
             <?php endif; ?>
 
