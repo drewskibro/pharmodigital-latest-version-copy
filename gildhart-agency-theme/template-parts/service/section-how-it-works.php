@@ -32,17 +32,17 @@ if ( empty( $steps ) ) {
         array(
             'label' => 'Train',
             'title' => 'Built Around Your Practice. Not A Template.',
-            'text'  => "Most AI agents are generic. They answer generic questions and send generic responses. Patients feel it immediately and leave.\n\nYours is different. We build it around your specific services, your pricing, your clinical protocols, your tone. It knows the difference between a Mounjaro consultation and a private prescription. It handles the questions your best member of staff handles — and the ones they don't know how to answer yet.",
+            'text'  => "Your services. Your pricing. Your clinical protocols. Your tone. We build the agent around all of it — so it knows the difference between a Mounjaro consultation and a private prescription. It handles the questions your best member of staff handles. And the ones they don't know how to answer yet.\n\nNothing generic. Nothing off the shelf. Yours.",
         ),
         array(
             'label' => 'Test',
-            'title' => "It Doesn't Go Near Your Patients Until We're Certain.",
-            'text'  => "Before your agent goes live we run it through hundreds of real patient scenarios. Not easy ones. Edge cases. Sensitive clinical questions. Compliance boundaries. Pricing objections. The conversations that make most agents fail.\n\nIt only goes live when every scenario has been answered correctly. We've never rushed this step. We're not about to start.",
+            'title' => '100,000 Patient Conversations. Before Yours.',
+            'text'  => "Eighteen months. 100,000+ real patient conversations. Every edge case already handled. Every sensitive clinical question already answered. Every compliance boundary already mapped.\n\nBy the time it goes live on your site, nothing is new. Nothing is untested. Nothing is a guess.",
         ),
         array(
             'label' => 'Deploy',
             'title' => "Seven Days. Then It's Yours.",
-            'text'  => "Seven days after you sign off, it's live on your site. From that moment it's having conversations you'd never have time for — at hours you'd never be available — with patients who'd never have called.\n\nSouthdowns took a commercial needle stick contract at midnight. Ealing booked HPV appointments before the clinic opened. Superior closed Mounjaro consultations on a Sunday afternoon.\n\nYour agent starts the moment it goes live. It doesn't stop.",
+            'text'  => "Southdowns took a commercial needle stick contract at midnight. Ealing booked HPV appointments before the clinic opened. Superior closed Mounjaro consultations on a Sunday afternoon.\n\nSeven days after you sign off, that's your practice. Your agent starts the moment it goes live. It doesn't stop.",
         ),
     );
 }
