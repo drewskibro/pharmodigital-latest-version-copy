@@ -455,8 +455,8 @@ function gildhart_service_faq_defaults( $slug ) {
             ),
         ),
         'the-agent' => array(
-            'eyebrow'   => 'Frequently Asked Questions',
-            'headline'  => 'Everything You Need to Know Before You Deploy.',
+            'eyebrow'   => 'No Surprises',
+            'headline'  => 'The Questions Every Smart Practice Owner Asks First.',
             'cta_show'  => 0,
             'cta_text'  => '',
             'cta_label' => '',
@@ -464,11 +464,11 @@ function gildhart_service_faq_defaults( $slug ) {
             'items'     => array(
                 array(
                     'question' => 'Is this medically compliant?',
-                    'answer'   => 'Yes. The agent draws only from medically verified sources and your own practice website. It never gives medical advice. Its job is to reassure patients, answer their questions, and guide them toward booking. Clinical judgment stays with your team. Always.',
+                    'answer'   => 'Yes. The agent draws only from your own practice content and medically verified sources. It never diagnoses, never recommends specific medications, and never issues clinical advice. Its job is to answer questions, reassure patients, and guide them toward booking. The moment a question requires clinical judgment — dosing, interactions, contraindications — it routes the patient directly to your team. That boundary is hardcoded. It cannot be crossed.',
                 ),
                 array(
                     'question' => 'What guardrails are in place?',
-                    'answer'   => "We've spent 18 months testing this against real patient scenarios. The agent knows exactly what it can say and what it can't. When a question falls outside its scope it doesn't guess — it directs the patient appropriately. Across 50+ practices and hundreds of thousands of conversations, it has never given unsafe medical information. That's not luck. That's 18 months of deliberate refinement.",
+                    'answer'   => "We've spent 18 months testing this against real patient scenarios. The agent knows exactly what it can say and what it can't. When a question falls outside its scope, it doesn't guess — it tells the patient to speak directly with your pharmacist and provides your contact details. Across 50+ practices and hundreds of thousands of conversations, it has never given unsafe medical information. That's not luck. That's 18 months of deliberate refinement.",
                 ),
                 array(
                     'question' => 'How is this different from a standard chatbot?',
@@ -496,7 +496,7 @@ function gildhart_service_faq_defaults( $slug ) {
                 ),
                 array(
                     'question' => 'Is patient data secure and GDPR compliant?',
-                    'answer'   => "Fully. Every agent includes compliant patient messaging explaining how their data is used. We update your privacy policy as part of setup. Everything is handled in accordance with UK GDPR. You're covered from day one.",
+                    'answer'   => "Fully. Every agent includes compliant patient messaging explaining how data is used, so patients know from the first interaction. We operate under UK GDPR with data minimisation and purpose limitation as core principles — we collect only what's needed, store nothing beyond its purpose, and never share data with third parties. All communications are encrypted in transit and at rest. Your practice acts as data controller; we act as processor under a formal Data Processing Agreement. We update your privacy policy as part of setup. You're covered from day one.",
                 ),
                 array(
                     'question' => 'What happens after 12 months?',
