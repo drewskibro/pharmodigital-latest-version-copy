@@ -1686,12 +1686,21 @@ acf_add_local_field_group( array(
         ),
         array(
             'key'           => 'field_gh_service_ps_narrative_image',
-            'label'         => 'Editorial Narrative — Image (optional)',
+            'label'         => 'Editorial Narrative — Image (Desktop)',
             'name'          => 'service_problem_shift_narrative_image',
             'type'          => 'image',
             'return_format' => 'id',
             'preview_size'  => 'medium',
-            'instructions'  => 'Renders to the right of the narrative copy in a 2-column grid on desktop. Displayed at natural proportions, 16px radius, soft drop shadow. Collapses above the copy on tablet/mobile. Leave empty to render the narrative as a single-column editorial card.',
+            'instructions'  => 'Full-width hero image above the narrative card. Renders at native proportions with a soft gold halo behind it. Use a landscape composition tuned for desktop. Leave empty to render the narrative card with no hero image.',
+        ),
+        array(
+            'key'           => 'field_gh_service_ps_narrative_image_mobile',
+            'label'         => 'Editorial Narrative — Image (Mobile, optional)',
+            'name'          => 'service_problem_shift_narrative_image_mobile',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Optional portrait/tall crop served only on screens ≤640px wide. Leave empty to fall back to the desktop image on all viewports.',
         ),
         array(
             'key'        => 'field_gh_service_ps_narrative',
