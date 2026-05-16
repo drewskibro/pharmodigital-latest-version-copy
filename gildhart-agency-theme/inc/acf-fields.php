@@ -1871,10 +1871,12 @@ acf_add_local_field_group( array(
     ),
 ) );
 
-/* Service · Three Proof Cases */
+/* Service · Three Proof Cases (rebuilt as the single-image "The Proof"
+ * section — kept group key + menu order so historical metabox layout
+ * stays consistent). */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_proof_cases',
-    'title'      => 'Service · Three Proof Cases',
+    'title'      => 'Service · The Proof',
     'menu_order' => 3,
     'fields'     => array(
         array(
@@ -1887,9 +1889,10 @@ acf_add_local_field_group( array(
         ),
         array(
             'key'   => 'field_gh_service_proof_eyebrow',
-            'label' => 'Eyebrow',
+            'label' => 'Label (small gold caps)',
             'name'  => 'service_proof_cases_eyebrow',
             'type'  => 'text',
+            'instructions' => 'e.g. "The Proof". Renders gold, uppercase.',
         ),
         array(
             'key'   => 'field_gh_service_proof_headline',
@@ -1899,92 +1902,51 @@ acf_add_local_field_group( array(
         ),
         array(
             'key'   => 'field_gh_service_proof_subheadline',
-            'label' => 'Sub-headline',
+            'label' => 'Subhead',
             'name'  => 'service_proof_cases_subheadline',
             'type'  => 'textarea',
             'rows'  => 3,
         ),
         array(
-            'key'        => 'field_gh_service_proof_items',
-            'label'      => 'Cases',
-            'name'       => 'service_proof_cases_items',
-            'type'       => 'repeater',
-            'layout'     => 'block',
-            'min'        => 0,
-            'max'        => 6,
-            'instructions' => 'Cases alternate left/right automatically. Result, How and Quote accept inline <strong> markup for emphasis.',
-            'sub_fields' => array(
-                array(
-                    'key'   => 'field_gh_service_proof_item_name',
-                    'label' => 'Client Name',
-                    'name'  => 'client_name',
-                    'type'  => 'text',
-                ),
-                array(
-                    'key'   => 'field_gh_service_proof_item_tag',
-                    'label' => 'Sector Tag',
-                    'name'  => 'client_tag',
-                    'type'  => 'text',
-                    'instructions' => 'e.g. Travel Clinic, Pharmacy, Dental.',
-                ),
-                array(
-                    'key'           => 'field_gh_service_proof_item_image',
-                    'label'         => 'Case Image',
-                    'name'          => 'image',
-                    'type'          => 'image',
-                    'return_format' => 'id',
-                    'preview_size'  => 'medium',
-                ),
-                array(
-                    'key'   => 'field_gh_service_proof_item_result',
-                    'label' => 'The Result',
-                    'name'  => 'result_text',
-                    'type'  => 'textarea',
-                    'rows'  => 4,
-                    'instructions' => 'Inline <strong>tags allowed</strong>.',
-                ),
-                array(
-                    'key'   => 'field_gh_service_proof_item_how',
-                    'label' => 'How',
-                    'name'  => 'how_text',
-                    'type'  => 'textarea',
-                    'rows'  => 5,
-                    'instructions' => 'Inline <strong>tags allowed</strong>.',
-                ),
-                array(
-                    'key'   => 'field_gh_service_proof_item_quote',
-                    'label' => 'Quote (optional)',
-                    'name'  => 'quote_text',
-                    'type'  => 'textarea',
-                    'rows'  => 3,
-                ),
-                array(
-                    'key'   => 'field_gh_service_proof_item_attr',
-                    'label' => 'Quote Attribution',
-                    'name'  => 'quote_attr',
-                    'type'  => 'text',
-                ),
-            ),
-        ),
-        array(
-            'key'           => 'field_gh_service_proof_bing',
-            'label'         => 'Bing Rankings Image (optional)',
-            'name'          => 'service_proof_cases_bing_image',
+            'key'           => 'field_gh_service_proof_featured_image',
+            'label'         => 'Featured Image (Google AI Overview screenshot)',
+            'name'          => 'service_proof_cases_featured_image',
             'type'          => 'image',
             'return_format' => 'id',
             'preview_size'  => 'medium',
-            'instructions'  => 'Full-bleed proof image rendered below the cases.',
+            'instructions'  => 'Full-width hero screenshot. Renders at max 900px wide, 16px radius, soft drop shadow + 1px gold border.',
         ),
-    ),
-    'location' => array(
         array(
-            array(
-                'param'    => 'post_type',
-                'operator' => '==',
-                'value'    => 'service',
+            'key'   => 'field_gh_service_proof_featured_image_label',
+            'label' => 'Featured Image — Mini Label',
+            'name'  => 'service_proof_cases_featured_image_label',
+            'type'  => 'text',
+            'instructions' => 'Small gold caps line above the image. e.g. "Live Google AI Overview — Ealing Travel Clinic".',
+        ),
+        array(
+            'key'        => 'field_gh_service_proof_stats',
+            'label'      => 'Stats',
+            'name'       => 'service_proof_cases_stats',
+            'type'       => 'repeater',
+            'layout'     => 'table',
+            'min'        => 0,
+            'max'        => 3,
+            'instructions' => 'Three stats rendered horizontally below the image, divided by thin gold rules. Stacks vertically on mobile.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_proof_stat_figure', 'label' => 'Figure',  'name' => 'figure', 'type' => 'text', 'instructions' => 'Big gold number — e.g. "6 weeks", "#1", "£0".' ),
+                array( 'key' => 'field_gh_service_proof_stat_label',  'label' => 'Caption', 'name' => 'label',  'type' => 'text', 'instructions' => 'Small grey caption below the figure.' ),
             ),
         ),
+        array(
+            'key'   => 'field_gh_service_proof_closing',
+            'label' => 'Closing line',
+            'name'  => 'service_proof_cases_closing',
+            'type'  => 'textarea',
+            'rows'  => 3,
+            'instructions' => 'Centred paragraph below the stat strip.',
+        ),
     ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
 /* Service · Playing Field */

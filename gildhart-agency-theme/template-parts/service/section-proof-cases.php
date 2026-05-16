@@ -1,20 +1,25 @@
 <?php
 /**
- * Service: Three Proof Cases section.
+ * Service: The Proof section (Playbook).
  *
- * Dark navy section that substantiates the hero stats with full client
- * case studies — image + name + tag + result + how + optional quote.
- * Cases alternate left/right via a `--reverse` modifier on every other
- * row (CSS uses direction: rtl to flip the grid). An optional Bing
- * rankings image sits below the cases as the final proof point.
+ * Light cream section centred around a single Google AI Overview
+ * screenshot — Ealing Travel Clinic ranked #1 above Boots and
+ * Superdrug. Replaces the previous "Three Practices. Same Result."
+ * dark-navy three-case grid.
  *
- * Reads from per-section ACF group `Service · Three Proof Cases`.
- * Returns early when the show toggle is off. Falls back to The Playbook
- * copy from the static spec when ACF fields are empty.
+ * Layout:
+ *   1. Gold caps label → big navy headline → grey subhead.
+ *   2. Gold caps "Live Google AI Overview" mini-label → featured
+ *      screenshot with rounded corners, 1px gold border, and a soft
+ *      drop shadow so it floats on the cream backdrop.
+ *   3. Three-stat strip below the image (6 weeks / #1 / £0), each
+ *      stat = gold 36px figure + small grey caption, divided by
+ *      thin vertical gold rules.
+ *   4. Closing line below the stat strip.
  *
- * Rich text fields (result, how, quote) accept inline <strong> markup
- * and are output via wp_kses_post() so editors can bold the headline
- * numbers/phrases inside each block.
+ * Reads from per-section ACF group `Service · Three Proof Cases`
+ * (kept the existing group key so historical metabox menu order
+ * stays intact). Returns early when the show toggle is off.
  *
  * @package Gildhart
  */
@@ -23,122 +28,74 @@ if ( ! gh_field( 'service_proof_cases_show', 1 ) ) {
     return;
 }
 
-$eyebrow     = gh_field( 'service_proof_cases_eyebrow',     'Three Practices. Same Result.' );
-$headline    = gh_field( 'service_proof_cases_headline',    'Three Different Approaches. One Outcome: Domination.' );
-$subheadline = gh_field( 'service_proof_cases_subheadline', 'Same foundation. Different implementations. All outranking national chains.' );
+$label    = gh_field( 'service_proof_cases_eyebrow',     'The Proof' );
+$headline = gh_field( 'service_proof_cases_headline',    'Not Just AI Platforms. Google Too.' );
+$subhead  = gh_field( 'service_proof_cases_subheadline', 'Ealing Travel Clinic ranked #1 in Google AI Overviews for HPV vaccinations. Above Boots. Above Superdrug. In six weeks. Zero ad spend.' );
 
-$cases = get_field( 'service_proof_cases_items' );
-if ( empty( $cases ) ) {
-    $cases = array(
-        array(
-            'client_name' => 'Ealing Travel Clinic',
-            'client_tag'  => 'Travel Clinic',
-            'image'       => 0,
-            'result_text' => '<strong>#1 in Google AI Overviews</strong> for HPV vaccines. Outranking Boots and Superdrug. <strong>300% revenue growth</strong> in 6 months.',
-            'how_text'    => 'Six weeks. Zero ad spend. Five pieces of interactive content. Featured in <strong>Google AI Overviews, ChatGPT, and Claude</strong>. This is the core system.',
-            'quote_text'  => "Traffic's up <strong>300%</strong> and compounding every month. Not just traffic for the sake of it, but <strong>patients actually booking appointments</strong>.",
-            'quote_attr'  => '— Sachin Mehta, Owner, Ealing Travel Clinic',
-        ),
-        array(
-            'client_name' => 'Superior Pharmacy',
-            'client_tag'  => 'Pharmacy',
-            'image'       => 0,
-            'result_text' => 'Launched January 2026. <strong>First sale in 48 hours</strong>. Now <strong>50% of sales from ChatGPT and Bing combined</strong>. Competing nationally against operators with million-pound budgets.',
-            'how_text'    => 'Two-person team. New website. <strong>#1 on Bing for "Best Mounjaro Provider UK."</strong> That Bing ranking feeds ChatGPT\'s recommendations — when patients ask ChatGPT, Superior appears in comparison tables. Bing traffic converts higher than Google. Commercial intent buyers, not browsers. Patients switching from Juniper, SHEmed, and Pharmacy Express — national operators they\'d never heard of Superior until Bing and ChatGPT put them on the shortlist.',
-            'quote_text'  => '',
-            'quote_attr'  => '',
-        ),
+$image_id    = (int) get_field( 'service_proof_cases_featured_image' );
+$image_label = gh_field( 'service_proof_cases_featured_image_label', 'Live Google AI Overview — Ealing Travel Clinic' );
+
+$stats = get_field( 'service_proof_cases_stats' );
+if ( empty( $stats ) ) {
+    $stats = array(
+        array( 'figure' => '6 weeks', 'label' => 'From zero visibility to #1 in Google AI Overviews' ),
+        array( 'figure' => '#1',      'label' => 'Above Boots and Superdrug for HPV vaccinations' ),
+        array( 'figure' => '£0',      'label' => 'Ad spend behind the ranking' ),
     );
 }
 
-$bing_id = get_field( 'service_proof_cases_bing_image' );
+$closing = gh_field( 'service_proof_cases_closing', 'This is what the Pillar Domination Framework™ produces. Not paid rankings. Not temporary visibility. Permanent authority on every platform patients now use to make decisions.' );
 ?>
 
 <section class="svc-proof">
     <div class="svc-proof-inner">
-        <div class="svc-proof-header">
-            <?php if ( $eyebrow ) : ?>
-                <p class="svc-proof-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
-            <?php endif; ?>
-            <?php if ( $headline ) : ?>
-                <h2 class="svc-proof-headline"><?php echo esc_html( $headline ); ?></h2>
-            <?php endif; ?>
-            <?php if ( $subheadline ) : ?>
-                <p class="svc-proof-subheadline"><?php echo esc_html( $subheadline ); ?></p>
-            <?php endif; ?>
-        </div>
+        <?php if ( $label ) : ?>
+            <span class="svc-proof-label"><?php echo esc_html( $label ); ?></span>
+        <?php endif; ?>
+        <?php if ( $headline ) : ?>
+            <h2 class="svc-proof-headline"><?php echo esc_html( $headline ); ?></h2>
+        <?php endif; ?>
+        <?php if ( $subhead ) : ?>
+            <p class="svc-proof-subhead"><?php echo esc_html( $subhead ); ?></p>
+        <?php endif; ?>
 
-        <?php if ( ! empty( $cases ) ) : ?>
-            <div class="svc-proof-cases">
-                <?php foreach ( $cases as $i => $case ) :
-                    $name        = $case['client_name'] ?? '';
-                    $tag         = $case['client_tag']  ?? '';
-                    $image_id    = $case['image']       ?? 0;
-                    $result_text = $case['result_text'] ?? '';
-                    $how_text    = $case['how_text']    ?? '';
-                    $quote_text  = $case['quote_text']  ?? '';
-                    $quote_attr  = $case['quote_attr']  ?? '';
-                    $reverse     = ( $i % 2 === 1 );
-                    $classes     = 'svc-proof-case' . ( $reverse ? ' svc-proof-case--reverse' : '' );
-                ?>
-                    <div class="<?php echo esc_attr( $classes ); ?>">
-                        <div class="svc-proof-case-image">
-                            <?php if ( $image_id ) : ?>
-                                <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
-                                    'alt'     => esc_attr( $name ),
-                                    'loading' => 'lazy',
-                                ) ); ?>
-                            <?php else : ?>
-                                <div class="svc-proof-case-image-placeholder" aria-hidden="true"></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="svc-proof-case-content">
-                            <?php if ( $name || $tag ) : ?>
-                                <div class="svc-proof-case-client-row">
-                                    <?php if ( $name ) : ?>
-                                        <h3 class="svc-proof-case-client-name"><?php echo esc_html( $name ); ?></h3>
-                                    <?php endif; ?>
-                                    <?php if ( $tag ) : ?>
-                                        <span class="svc-proof-case-client-tag"><?php echo esc_html( $tag ); ?></span>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endif; ?>
+        <?php if ( $image_id ) : ?>
+            <div class="svc-proof-image-wrap">
+                <?php if ( $image_label ) : ?>
+                    <span class="svc-proof-image-label"><?php echo esc_html( $image_label ); ?></span>
+                <?php endif; ?>
+                <figure class="svc-proof-image">
+                    <?php echo wp_get_attachment_image( $image_id, 'full', false, array(
+                        'alt'     => esc_attr( $headline ),
+                        'loading' => 'lazy',
+                    ) ); ?>
+                </figure>
+            </div>
+        <?php endif; ?>
 
-                            <?php if ( $result_text ) : ?>
-                                <div class="svc-proof-case-result">
-                                    <p class="svc-proof-case-result-label">The Result</p>
-                                    <p class="svc-proof-case-result-text"><?php echo wp_kses_post( $result_text ); ?></p>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if ( $how_text ) : ?>
-                                <div class="svc-proof-case-how">
-                                    <p class="svc-proof-case-how-label">How</p>
-                                    <p class="svc-proof-case-how-text"><?php echo wp_kses_post( $how_text ); ?></p>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if ( $quote_text ) : ?>
-                                <div class="svc-proof-case-quote">
-                                    <p class="svc-proof-case-quote-text"><?php echo wp_kses_post( $quote_text ); ?></p>
-                                    <?php if ( $quote_attr ) : ?>
-                                        <p class="svc-proof-case-quote-attr"><?php echo esc_html( $quote_attr ); ?></p>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
+        <?php if ( ! empty( $stats ) ) : ?>
+            <div class="svc-proof-stats">
+                <?php foreach ( $stats as $i => $stat ) :
+                    $figure = $stat['figure'] ?? '';
+                    $sl     = $stat['label']  ?? '';
+                    if ( ! $figure && ! $sl ) continue; ?>
+                    <?php if ( $i > 0 ) : ?>
+                        <span class="svc-proof-stat-divider" aria-hidden="true"></span>
+                    <?php endif; ?>
+                    <div class="svc-proof-stat">
+                        <?php if ( $figure ) : ?>
+                            <span class="svc-proof-stat-figure"><?php echo esc_html( $figure ); ?></span>
+                        <?php endif; ?>
+                        <?php if ( $sl ) : ?>
+                            <span class="svc-proof-stat-label"><?php echo esc_html( $sl ); ?></span>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
 
-        <?php if ( $bing_id ) : ?>
-            <div class="svc-proof-bing">
-                <?php echo wp_get_attachment_image( $bing_id, 'large', false, array(
-                    'alt'     => 'Bing search results — #1 ranking proof',
-                    'loading' => 'lazy',
-                ) ); ?>
-            </div>
+        <?php if ( $closing ) : ?>
+            <p class="svc-proof-closing"><?php echo esc_html( $closing ); ?></p>
         <?php endif; ?>
     </div>
 </section>
