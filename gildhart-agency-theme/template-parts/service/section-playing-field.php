@@ -20,33 +20,33 @@ if ( ! gh_field( 'service_playing_field_show', 1 ) ) {
     return;
 }
 
-$eyebrow     = gh_field( 'service_playing_field_eyebrow',     'The Opportunity' );
-$headline    = gh_field( 'service_playing_field_headline',    'AI Search Killed Brand Authority' );
-$subheadline = gh_field( 'service_playing_field_subheadline', "Traditional search rewarded authority. Boots wins because they've spent 50 years building links you'll never match. AI search doesn't care." );
+$eyebrow     = gh_field( 'service_playing_field_eyebrow',     'The Levelling' );
+$headline    = gh_field( 'service_playing_field_headline',    "AI Search Doesn't Care How Big Your Budget Is." );
+$subheadline = gh_field( 'service_playing_field_subheadline', 'Traditional search rewarded whoever spent the most. Boots has spent years building a domain authority you were never going to compete with. AI search ignores all of it.' );
 
 $old_label   = gh_field( 'service_playing_field_old_label',   'The Old Game' );
-$old_caption = gh_field( 'service_playing_field_old_caption', "Boots, Bupa, Superdrug — they own Google because they've spent decades and millions you'll never match." );
+$old_caption = gh_field( 'service_playing_field_old_caption', "Boots, Bupa, Superdrug — they own traditional search. You were never going to win that game. Nobody told you there was a different one." );
 $old_rows    = get_field( 'service_playing_field_old_rows' );
 if ( empty( $old_rows ) ) {
     $old_rows = array(
-        array( 'text' => 'Authority wins every time' ),
-        array( 'text' => 'Marketing budgets determine visibility' ),
-        array( 'text' => 'Backlinks from decades of presence' ),
-        array( 'text' => 'Brand size and name recognition' ),
-        array( 'text' => '5+ years to build real authority' ),
+        array( 'text' => "Boots wins. You don't. Budget decides." ),
+        array( 'text' => 'Six-figure ad spend just to stay visible' ),
+        array( 'text' => "Decades of link-building you'll never catch up on" ),
+        array( 'text' => "Superdrug's name does the ranking for them" ),
+        array( 'text' => "Five years minimum before you're competitive" ),
     );
 }
 
 $new_label   = gh_field( 'service_playing_field_new_label',   'The New Reality' );
-$new_caption = gh_field( 'service_playing_field_new_caption', '<strong>Ealing outranked Boots in 6 weeks. On this new playing field, the best answer wins — not the biggest brand.</strong>' );
+$new_caption = gh_field( 'service_playing_field_new_caption', 'Ealing Travel Clinic outranked Boots in 6 weeks. No ad spend. No legacy domain. Just the right content — built the right way.' );
 $new_rows    = get_field( 'service_playing_field_new_rows' );
 if ( empty( $new_rows ) ) {
     $new_rows = array(
-        array( 'text' => 'Best answer wins' ),
-        array( 'text' => 'Content quality determines ranking' ),
-        array( 'text' => 'Engagement signals over domain age' ),
-        array( 'text' => 'Most helpful resource wins' ),
-        array( 'text' => 'Weeks to get featured, not years' ),
+        array( 'text' => 'Whoever answers best gets cited — full stop' ),
+        array( 'text' => 'One well-structured page beats a decade of backlinks' ),
+        array( 'text' => "Google's AI reads your content, not your company age" ),
+        array( 'text' => 'The most useful clinic wins, not the biggest one' ),
+        array( 'text' => 'Ealing went from nothing to cited in 6 weeks' ),
     );
 }
 
