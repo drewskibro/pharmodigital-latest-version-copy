@@ -42,8 +42,9 @@ $intro    = gh_field( 'service_problem_shift_intro',    "That shortlist is being
 // gold left border (mirrors the homepage two-paths card body
 // treatment). First-of-type and last-of-type get auto editorial
 // treatment via CSS regardless of style.
-$narrative_eyebrow         = gh_field( 'service_problem_shift_narrative_eyebrow',  'From 8 Bookings To 55 A Month' );
-$narrative_headline        = gh_field( 'service_problem_shift_narrative_headline', 'Authority compounds. Ad spend evaporates.' );
+$narrative_eyebrow         = gh_field( 'service_problem_shift_narrative_eyebrow',  '' );
+$narrative_headline        = gh_field( 'service_problem_shift_narrative_headline', 'From 8 Bookings To 55 A Month. Then An IVF Clinic Called.' );
+$narrative_subhead         = gh_field( 'service_problem_shift_narrative_subhead',  "He hasn't spent a penny on ads. He doesn't need to." );
 $narrative_image_id        = (int) get_field( 'service_problem_shift_narrative_image' );
 $narrative_image_mobile_id = (int) get_field( 'service_problem_shift_narrative_image_mobile' );
 $narrative_image_mobile_src = $narrative_image_mobile_id ? wp_get_attachment_image_url( $narrative_image_mobile_id, 'large' ) : '';
@@ -52,24 +53,32 @@ $narrative_paragraphs = get_field( 'service_problem_shift_narrative_paragraphs' 
 if ( empty( $narrative_paragraphs ) ) {
     $narrative_paragraphs = array(
         array( 'text' => "Sachin at Ealing Travel Clinic won't touch Google Ads.", 'style' => 'body' ),
-        array( 'text' => 'He had a beautiful website. Professionally designed. Properly built. And in a full year it had generated eight HPV bookings. Eight.', 'style' => 'body' ),
-        array( 'text' => 'Not because the site was bad. Because nobody could find it.', 'style' => 'emphasis' ),
+        array( 'text' => 'An IVF clinic found his content on Zika virus testing. Read it. Decided he was the specialist. And started sending their referrals. A school found his whooping cough vaccine content through a blog post and enquired about vaccinating 200 students. A medical institution and a school. Both finding a pharmacist through content. Both calling him. Both trusting him enough to send patients.', 'style' => 'body' ),
+        array( 'text' => "This didn't happen because Sachin ran ads. It happened because the right content existed in the right place at the right moment.", 'style' => 'body' ),
+        array( 'text' => 'He had a beautiful website. Professionally designed. Properly built. In a full year it had generated eight HPV bookings. Eight. Not because the site was bad. Because nobody could find it.', 'style' => 'body' ),
         array( 'text' => "He didn't hire an agency. He used the Playbook. He knew his subject — he's a clinician. What he didn't have was visibility. The content existed in his head. It just wasn't on the internet in a form that AI could find, trust, and recommend.", 'style' => 'body' ),
-        array( 'text' => 'Then something shifted.', 'style' => 'emphasis' ),
-        array( 'text' => "Not overnight. Gradually — and then all at once. Daily enquiries started arriving from across London. Patients who'd found his content, read it properly, and decided before they even made contact that Sachin was the person they trusted.", 'style' => 'body' ),
-        array( 'text' => 'Eight bookings in a year became 55 bookings a month.', 'style' => 'emphasis' ),
-        array( 'text' => 'Then an IVF clinic called.', 'style' => 'emphasis' ),
-        array( 'text' => "They'd found his content on Zika virus testing. Read it. Decided he was a specialist. And started sending their referrals.", 'style' => 'body' ),
-        // Inline WhatsApp evidence — image_id is 0 in the default so
-        // the block won't render until an editor uploads a screenshot
-        // via the new ACF Evidence Image field on this row.
+        array( 'text' => "Then something shifted. Not overnight. Gradually — and then all at once. Daily enquiries started arriving from across London. Patients who'd found his content, read it properly, and decided before they even made contact that Sachin was the person they trusted.", 'style' => 'body' ),
+        array( 'text' => 'Eight bookings in a year became 55 a month.', 'style' => 'body' ),
+        array( 'text' => 'And then the referrals followed.', 'style' => 'body' ),
+        // IVF clinic WhatsApp evidence — unchanged
         array(
             'style'          => 'evidence',
             'evidence_image' => 0,
             'evidence_label' => 'Sachin · Ealing Travel Clinic · WhatsApp',
             'text'           => 'An IVF clinic found his content. Read it. Called him.',
         ),
-        array( 'text' => 'A medical institution. Finding a pharmacist through content. Calling him. Trusting him enough to send patients.', 'style' => 'body' ),
+        array( 'text' => 'A medical institution. Finding a pharmacist through content. Calling him. Trusting him enough to send patients.', 'style' => 'emphasis' ),
+        // School WhatsApp evidence — new second proof beat, same schema
+        // as the IVF block above. Editor uploads the screenshot via
+        // the Evidence Image field on this row.
+        array( 'text' => 'Then a school called.', 'style' => 'emphasis' ),
+        array(
+            'style'          => 'evidence',
+            'evidence_image' => 0,
+            'evidence_label' => 'Sachin · Ealing Travel Clinic · WhatsApp',
+            'text'           => "They'd found his whooping cough vaccine content through a blog post. Read it. Decided he was the person to call. And enquired about vaccinating 200 students.",
+        ),
+        array( 'text' => 'A school. Finding a pharmacist through content. Reading it. Trusting it enough to make contact about 200 students.', 'style' => 'emphasis' ),
         array( 'text' => 'His patients tell him how good the content is. They arrive already convinced.', 'style' => 'body' ),
         array( 'text' => "That's not traffic. That's authority. And authority compounds in a way that ad spend never will.", 'style' => 'body' ),
     );
@@ -153,6 +162,9 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                         <?php endif; ?>
                         <?php if ( $narrative_headline ) : ?>
                             <h3 class="svc-ps-narrative-headline"><?php echo esc_html( $narrative_headline ); ?></h3>
+                        <?php endif; ?>
+                        <?php if ( $narrative_subhead ) : ?>
+                            <p class="svc-ps-narrative-subhead"><?php echo esc_html( $narrative_subhead ); ?></p>
                         <?php endif; ?>
                         <div class="svc-ps-narrative-body">
                             <?php foreach ( $narrative_paragraphs as $para ) :

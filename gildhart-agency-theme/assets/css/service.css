@@ -474,7 +474,21 @@
   color: var(--gildhart-green);
   letter-spacing: -0.02em;
   line-height: 1.2;
-  margin: 0 0 2.75rem;
+  margin: 0 0 0.75rem;
+}
+/* Subheading sits between the forest-green headline and the body
+ * prose. Italic, navy, lighter weight — reads as a continuation of
+ * the heading, not a body paragraph. */
+.svc-ps-narrative-subhead {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--navy);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  margin: 0 0 2.5rem;
+  opacity: 0.85;
 }
 
 .svc-ps-narrative-body p {
@@ -654,7 +668,8 @@
     border-radius: 14px;
   }
   .svc-ps-narrative::before { width: 5px; }
-  .svc-ps-narrative-headline { font-size: clamp(1.375rem, 5vw, 1.75rem); margin-bottom: 2rem; }
+  .svc-ps-narrative-headline { font-size: clamp(1.375rem, 5vw, 1.75rem); margin-bottom: 0.625rem; }
+  .svc-ps-narrative-subhead { font-size: 1rem; margin-bottom: 1.75rem; }
   .svc-ps-narrative-body p { font-size: 1rem; line-height: 1.7; margin-bottom: 1.25rem; }
   .svc-ps-narrative-body p:first-of-type { font-size: 1.125rem; margin-bottom: 1.5rem; }
   .svc-ps-narrative-body p.is-emphasis { font-size: 1.0625rem; padding-left: 1rem; margin: 1.5rem 0; }
