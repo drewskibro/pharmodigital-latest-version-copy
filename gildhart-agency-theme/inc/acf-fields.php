@@ -2704,6 +2704,38 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Service · Testimonial — Emjad (Agent, second testimonial above closing-offer).
+ *
+ * Standalone second testimonial block. Same structure as the Rahul
+ * Puri group above — separate field keys + names so the two blocks
+ * never collide on data. */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_testimonial_emjad',
+    'title'      => 'Service · Testimonial — Emjad',
+    'menu_order' => 6,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_testimonial_emjad_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_testimonial_emjad_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array(
+            'key' => 'field_gh_service_testimonial_emjad_photo', 'label' => 'Photo', 'name' => 'service_testimonial_emjad_photo',
+            'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+            'instructions' => 'Portrait orientation works best (260×300 desktop / 200×230 mobile).',
+        ),
+        array( 'key' => 'field_gh_service_testimonial_emjad_metric_value', 'label' => 'Metric Value', 'name' => 'service_testimonial_emjad_metric_value', 'type' => 'text', 'instructions' => 'Big result anchor below the photo. e.g. "Two Sites".' ),
+        array( 'key' => 'field_gh_service_testimonial_emjad_metric_label', 'label' => 'Metric Label', 'name' => 'service_testimonial_emjad_metric_label', 'type' => 'text', 'instructions' => 'Mono uppercase line under the metric value. e.g. "Fully Automated".' ),
+        array( 'key' => 'field_gh_service_testimonial_emjad_quote', 'label' => 'Quote',       'name' => 'service_testimonial_emjad_quote', 'type' => 'textarea', 'rows' => 8, 'instructions' => 'Inline <strong> + <em> allowed. Em-tags render as forest-green. Blank lines become paragraph breaks.' ),
+        array( 'key' => 'field_gh_service_testimonial_emjad_name',  'label' => 'Name',        'name' => 'service_testimonial_emjad_name',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_testimonial_emjad_role',  'label' => 'Role',        'name' => 'service_testimonial_emjad_role',  'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · Intelligence Engine (Agent A3) */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_intelligence_engine',

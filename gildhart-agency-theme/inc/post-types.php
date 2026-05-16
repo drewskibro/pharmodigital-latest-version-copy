@@ -340,6 +340,11 @@ function gildhart_service_section_roster( $slug ) {
             'flywheel',
             // A5
             'how-it-works', 'faq',
+            // A5b — second standalone testimonial (Emjad / Medihub).
+            // Lives between FAQ and the closing offer so it lands as
+            // a distinct section, with full top/bottom section
+            // spacing, just before the buy decision.
+            'testimonial-emjad',
             // A6 — closes the page. The Agent's "closing offer" replaces the
             // Playbook's separate Guarantee + Final CTA pair with a single
             // consolidated section (header → value stack + eligibility +
@@ -370,6 +375,7 @@ function gildhart_service_field_group_map() {
         'group_gh_service_track_record'     => 'track-record',
         'group_gh_service_sales_agent_pro'  => 'sales-agent-pro',
         'group_gh_service_testimonial'      => 'testimonial',
+        'group_gh_service_testimonial_emjad' => 'testimonial-emjad',
         'group_gh_service_intelligence_engine' => 'intelligence-engine',
         'group_gh_service_flywheel'         => 'flywheel',
         'group_gh_service_editorial_proof'  => 'editorial-proof',
