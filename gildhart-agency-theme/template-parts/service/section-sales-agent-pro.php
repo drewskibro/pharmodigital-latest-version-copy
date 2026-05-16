@@ -58,7 +58,7 @@ if ( empty( $stats ) ) {
     $stats = array(
         array(
             'kind'         => 'compare',
-            'client'       => 'Southdowns Pharmacy Group',
+            'client'       => 'Medihub',
             'num'          => '25%',
             'label'        => 'Conversion rate',
             'sub'          => 'Patients who reach The Agent convert at five to twelve times the practice\'s typical site rate — same traffic, different surface area.',
@@ -69,7 +69,7 @@ if ( empty( $stats ) ) {
         ),
         array(
             'kind'   => 'simple',
-            'client' => 'Medihub',
+            'client' => 'Southdowns Pharmacy Group',
             'num'    => '£200K+',
             'label'  => 'Annual revenue run rate',
             'sub'    => 'Generated after hours by The Agent. No night staff, no missed bookings — booking flow that previously dropped at 9pm now runs through the night.',
