@@ -32,8 +32,10 @@ $label    = gh_field( 'service_proof_cases_eyebrow',     'The Proof' );
 $headline = gh_field( 'service_proof_cases_headline',    'Not Just AI Platforms. Google Too.' );
 $subhead  = gh_field( 'service_proof_cases_subheadline', 'Ealing Travel Clinic ranked #1 in Google AI Overviews for HPV vaccinations. Above Boots. Above Superdrug. In six weeks. Zero ad spend.' );
 
-$image_id    = (int) get_field( 'service_proof_cases_featured_image' );
-$image_label = gh_field( 'service_proof_cases_featured_image_label', 'Live Google AI Overview — Ealing Travel Clinic' );
+$image_id           = (int) get_field( 'service_proof_cases_featured_image' );
+$image_mobile_id    = (int) get_field( 'service_proof_cases_featured_image_mobile' );
+$image_mobile_src   = $image_mobile_id ? wp_get_attachment_image_url( $image_mobile_id, 'large' ) : '';
+$image_label        = gh_field( 'service_proof_cases_featured_image_label', 'Live Google AI Overview — Ealing Travel Clinic' );
 
 $stats = get_field( 'service_proof_cases_stats' );
 if ( empty( $stats ) ) {
@@ -64,11 +66,21 @@ $closing = gh_field( 'service_proof_cases_closing', 'This is what the Pillar Dom
                 <?php if ( $image_label ) : ?>
                     <span class="svc-proof-image-label"><?php echo esc_html( $image_label ); ?></span>
                 <?php endif; ?>
-                <figure class="svc-proof-image">
-                    <?php echo wp_get_attachment_image( $image_id, 'full', false, array(
-                        'alt'     => esc_attr( $headline ),
-                        'loading' => 'lazy',
-                    ) ); ?>
+                <figure class="svc-proof-image<?php echo $image_mobile_src ? ' has-mobile-image' : ''; ?>">
+                    <?php if ( $image_mobile_src ) : ?>
+                        <picture>
+                            <source media="(max-width: 640px)" srcset="<?php echo esc_url( $image_mobile_src ); ?>">
+                            <?php echo wp_get_attachment_image( $image_id, 'full', false, array(
+                                'alt'     => esc_attr( $headline ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </picture>
+                    <?php else : ?>
+                        <?php echo wp_get_attachment_image( $image_id, 'full', false, array(
+                            'alt'     => esc_attr( $headline ),
+                            'loading' => 'lazy',
+                        ) ); ?>
+                    <?php endif; ?>
                 </figure>
             </div>
         <?php endif; ?>
