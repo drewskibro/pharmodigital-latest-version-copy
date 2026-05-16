@@ -1682,7 +1682,14 @@ acf_add_local_field_group( array(
             'label' => 'Editorial Narrative — Headline',
             'name'  => 'service_problem_shift_narrative_headline',
             'type'  => 'text',
-            'instructions' => 'Forest-green bold sub-headline directly under the eyebrow.',
+            'instructions' => 'Forest-green bold heading at the top of the narrative card.',
+        ),
+        array(
+            'key'   => 'field_gh_service_ps_narrative_subhead',
+            'label' => 'Editorial Narrative — Subheading',
+            'name'  => 'service_problem_shift_narrative_subhead',
+            'type'  => 'text',
+            'instructions' => 'Smaller line directly under the heading — sets up the body. Leave empty to hide.',
         ),
         array(
             'key'           => 'field_gh_service_ps_narrative_image',
