@@ -69,7 +69,7 @@ if ( empty( $stats ) ) {
         ),
         array(
             'kind'   => 'simple',
-            'client' => 'Southdowns Pharmacy Group',
+            'client' => 'Medihub',
             'num'    => '£200K+',
             'label'  => 'Annual revenue run rate',
             'sub'    => 'Generated after hours by The Agent. No night staff, no missed bookings — booking flow that previously dropped at 9pm now runs through the night.',
