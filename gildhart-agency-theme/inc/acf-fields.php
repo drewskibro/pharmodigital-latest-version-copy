@@ -1909,12 +1909,21 @@ acf_add_local_field_group( array(
         ),
         array(
             'key'           => 'field_gh_service_proof_featured_image',
-            'label'         => 'Featured Image (Google AI Overview screenshot)',
+            'label'         => 'Featured Image (Desktop)',
             'name'          => 'service_proof_cases_featured_image',
             'type'          => 'image',
             'return_format' => 'id',
             'preview_size'  => 'medium',
-            'instructions'  => 'Full-width hero screenshot. Renders at max 900px wide, 16px radius, soft drop shadow + 1px gold border.',
+            'instructions'  => 'Full-width hero screenshot. Renders at max 900px wide, 16px radius, soft drop shadow + 1px gold border. Use a landscape crop tuned for desktop.',
+        ),
+        array(
+            'key'           => 'field_gh_service_proof_featured_image_mobile',
+            'label'         => 'Featured Image (Mobile, optional)',
+            'name'          => 'service_proof_cases_featured_image_mobile',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Optional portrait/tall crop served only on screens ≤640px wide. Leave empty to fall back to the desktop image on all viewports.',
         ),
         array(
             'key'   => 'field_gh_service_proof_featured_image_label',
