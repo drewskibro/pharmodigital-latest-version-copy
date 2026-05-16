@@ -29,21 +29,21 @@ if ( ! gh_field( 'service_flywheel_show', 1 ) ) {
 
 $eyebrow  = gh_field( 'service_flywheel_eyebrow',  'The Content Flywheel' );
 $headline = gh_field( 'service_flywheel_headline', "Your Patients Write Your Marketing For You.\nThen It Brings You More Patients." );
-$desc     = gh_field( 'service_flywheel_desc',     'Every question a patient asks your agent becomes content that ranks in Google, ChatGPT, and Claude. That content brings new patients. Those patients ask new questions. The machine feeds itself.' );
+$desc     = gh_field( 'service_flywheel_desc',     "Your competitors are guessing what patients want. Your patients are telling you. Every single day.\n\nA school found one of our clients through a blog post and enquired about vaccines for 200 students. An IVF clinic called another wanting to send referrals. A travel clinic hit page one for whooping cough vaccine London — from a single piece of content built around a real patient question.\n\nNone of it was guesswork. All of it started with the agent." );
 
 $cards = get_field( 'service_flywheel_cards' );
 if ( empty( $cards ) ) {
     $cards = array(
-        array( 'icon_kind' => 'capture', 'title' => 'Patients Tell You What They Want',  'text' => 'Real questions. Real language. Real buying intent — captured automatically, 24/7.' ),
-        array( 'icon_kind' => 'intel',   'title' => 'We Find the Gold',                  'text' => "The high-value questions your competitors haven't answered yet. We surface them. You own them." ),
-        array( 'icon_kind' => 'content', 'title' => 'Content That Actually Converts',    'text' => 'Articles and service pages built from real patient language — not keyword stuffing. Real intent. Real results.' ),
-        array( 'icon_kind' => 'rank',    'title' => 'You Show Up Everywhere',            'text' => 'Google. ChatGPT. Claude. AI Overviews. New patients find you, ask questions, and the whole thing accelerates.' ),
+        array( 'icon_kind' => 'capture', 'title' => 'Patients Tell You What They Want',  'text' => 'Every question your agent receives is a revenue signal. Real language. Real buying intent. Captured automatically, around the clock. You see exactly what patients want and exactly how they ask for it.' ),
+        array( 'icon_kind' => 'intel',   'title' => 'We Find the Gold',                  'text' => "Most practices are sitting on questions they've never answered publicly. We identify the high-value gaps your competitors haven't touched yet. The ones patients are asking right now. You answer them first. You own them." ),
+        array( 'icon_kind' => 'content', 'title' => 'Content That Actually Converts',    'text' => 'We turn those questions into articles and service pages built from real patient language. Not keyword stuffing. Not generic health content. Specific, accurate, intent-driven copy that ranks because it deserves to.' ),
+        array( 'icon_kind' => 'rank',    'title' => 'You Show Up Everywhere',            'text' => "Google. ChatGPT. Claude. AI Overviews. Patients find you, ask questions, and the whole thing accelerates. The longer you run it, the wider the gap between you and every competitor who isn't." ),
     );
 }
 
 $loop_label = gh_field( 'service_flywheel_loop_label', 'Continuous Loop' );
 $loop_pill  = gh_field( 'service_flywheel_loop_pill',  'Accelerates over time — the longer you run it, the wider the gap' );
-$closing    = gh_field( 'service_flywheel_closing',    'Your competitors are guessing what patients want. Your patients are <em>telling</em> you. Every single day.' );
+$closing    = gh_field( 'service_flywheel_closing',    'The machine feeds itself. Every month it compounds. Every question makes the next one easier to rank for.' );
 
 $icon_glyph = function( $kind ) {
     return array(
@@ -68,9 +68,19 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                     <?php echo implode( '<br />', array_map( 'esc_html', $headline_lines ) ); ?>
                 </h2>
             <?php endif; ?>
-            <?php if ( $desc ) : ?>
-                <p class="svc-flywheel-desc"><?php echo esc_html( $desc ); ?></p>
-            <?php endif; ?>
+            <?php if ( $desc ) :
+                // Blank-line-delimited paragraphs. Editors can author the
+                // intro as one or many paragraphs; each block renders as
+                // its own <p> inside the .svc-flywheel-desc wrapper.
+                $desc_paras = array_filter( array_map( 'trim', preg_split( '/\r\n\r\n|\r\r|\n\n/', $desc ) ) );
+                if ( ! empty( $desc_paras ) ) : ?>
+                    <div class="svc-flywheel-desc">
+                        <?php foreach ( $desc_paras as $p ) : ?>
+                            <p><?php echo esc_html( $p ); ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif;
+            endif; ?>
         </div>
 
         <?php if ( ! empty( $cards ) ) : ?>
