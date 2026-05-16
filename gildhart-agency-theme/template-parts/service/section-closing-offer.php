@@ -171,7 +171,7 @@ $pull_quote_attr = gh_field( 'service_closing_pull_quote_attr', '— Southdowns 
 $bold_close      = gh_field( 'service_closing_bold_close',      'The cost question answers itself. Usually within the first week.' );
 $submit_label    = gh_field( 'service_closing_submit_label',    'Deploy The Agent' );
 $secure_note     = gh_field( 'service_closing_secure_note',     'Payments processed securely via Stripe.' );
-$joining_note    = gh_field( 'service_closing_joining_note',    'Joining 50+ practices across the UK, US, and beyond.' );
+$joining_note    = gh_field( 'service_closing_joining_note',    "Every practice that's live right now started exactly where you are." );
 
 $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $headline ) ) );
 ?>
@@ -262,6 +262,13 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                         $metric    = $card['metric'] ?? '';
                         $avatar_id = $card['avatar'] ?? 0;
                         if ( ! $quote && ! $name ) continue; ?>
+                        <?php
+                        // Fallback monogram derived from the first letter of the
+                        // name. Used only when no avatar has been uploaded — keeps
+                        // the meta row visually balanced so the layout doesn't
+                        // collapse against quotes with empty avatar slots.
+                        $initial = $name ? strtoupper( mb_substr( trim( $name ), 0, 1 ) ) : '';
+                        ?>
                         <article class="svc-closing-testimonial-card">
                             <?php if ( $quote ) : ?>
                                 <p class="svc-closing-testimonial-quote">&ldquo;<?php echo esc_html( $quote ); ?>&rdquo;</p>
@@ -273,6 +280,8 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                                             'alt'   => esc_attr( $name ),
                                             'class' => 'svc-closing-testimonial-avatar',
                                         ) ); ?>
+                                    <?php elseif ( $initial ) : ?>
+                                        <span class="svc-closing-testimonial-avatar svc-closing-testimonial-avatar--monogram" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
                                     <?php endif; ?>
                                     <div class="svc-closing-testimonial-meta">
                                         <?php if ( $name ) : ?>
