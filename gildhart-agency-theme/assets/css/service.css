@@ -777,12 +777,12 @@
 .svc-proof-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gildhart-green);
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.5rem;
 }
 .svc-proof-headline {
   font-family: 'Inter', sans-serif;
@@ -810,12 +810,12 @@
 .svc-proof-image-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gildhart-green);
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.875rem;
 }
 .svc-proof-image {
   margin: 0;
