@@ -27,7 +27,7 @@ if ( ! gh_field( 'service_why_show', 1 ) ) {
 $eyebrow      = gh_field( 'service_why_eyebrow',   'Why This Exists' );
 $headline     = gh_field( 'service_why_headline',  "Your Patients Are Asking Thousands of Clinical Questions.\nRight Now, They're Getting the Answers Somewhere Else." );
 $lead         = gh_field( 'service_why_lead',      "Every day, patients land on your site with a specific clinical question. Mounjaro eligibility. Yellow fever. Southeast Asia vaccines for a child. When you can't answer them in that moment — they leave. They don't come back." );
-$lead_stat    = gh_field( 'service_why_lead_stat', 'Their question gets answered. Just not by you.' );
+$lead_stat    = gh_field( 'service_why_lead_stat', 'Where they go: whoever had the answer ready. It wasn\'t you.' );
 $header_image = get_field( 'service_why_header_image' );
 
 $blocks = get_field( 'service_why_blocks' );
