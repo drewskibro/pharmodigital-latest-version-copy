@@ -1510,8 +1510,19 @@
  * row, 03 + 04 the second, and 05 spans full width as the closing
  * proof beat with a richer navy bg + gold radial halo so it lands
  * as the section's destination, not just another card in the grid. */
+/* ── The System (cream/light Claude-badge variant) ──────────────
+ * Section moved from a dark navy backdrop to the cream/peach/mint
+ * gradient that opens the hero. Cards are white over the gradient
+ * with a hairline gold border and a soft drop shadow — Claude
+ * product badges lead each card and a "Built with Claude" anchor
+ * sits in the header. Brand gold is darkened only for stat values
+ * so the figure reads against white without losing the brand hue.
+ */
+:root {
+  --svc-system-gold-deep: #8B6914;
+}
 .svc-system {
-  background: var(--navy);
+  background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
   padding: 7rem 2rem 7.5rem;
   position: relative;
   overflow: hidden;
@@ -1519,12 +1530,12 @@
 .svc-system::before {
   content: '';
   position: absolute;
-  top: -220px;
+  top: -240px;
   left: -180px;
   width: 620px;
   height: 620px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(30, 61, 47, 0.22) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(30, 61, 47, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 .svc-system::after {
@@ -1556,14 +1567,14 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
+  color: var(--gildhart-green);
   margin: 0 0 1.5rem;
 }
 .svc-system-headline {
   font-family: 'Inter', sans-serif;
   font-size: clamp(2rem, 3.6vw, 2.875rem);
   font-weight: 800;
-  color: #ffffff;
+  color: #1a2b3c;
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin: 0 0 1.5rem;
@@ -1572,10 +1583,24 @@
   font-family: 'Inter', sans-serif;
   font-size: 1.125rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(26, 43, 60, 0.78);
   line-height: 1.7;
   max-width: 720px;
   margin: 0 auto;
+}
+
+/* Centred "Built with Claude" badge under the subhead — anchors the
+ * section visually to the underlying platform before the cards begin. */
+.svc-system-built-with {
+  margin: 2.75rem auto 0;
+  display: flex;
+  justify-content: center;
+}
+.svc-system-built-with img {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
 }
 
 .svc-system-modules {
@@ -1586,18 +1611,17 @@
 .svc-system-module {
   position: relative;
   border-radius: 20px;
-  border: 1px solid rgba(201, 164, 74, 0.18);
-  background:
-    linear-gradient(180deg, #1a2c45 0%, #14233a 100%);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(201, 164, 74, 0.45);
+  background: #ffffff;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
   overflow: hidden;
   display: flex;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 .svc-system-module:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.36), 0 0 0 1px rgba(201, 164, 74, 0.30);
-  border-color: rgba(201, 164, 74, 0.30);
+  box-shadow: 0 14px 38px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
+  border-color: rgba(201, 164, 74, 0.65);
 }
 .svc-system-module-inner {
   padding: 2.5rem 2rem 2.25rem;
@@ -1605,35 +1629,36 @@
   flex-direction: column;
   width: 100%;
 }
-/* Closer (last card) spans the full width with a richer background
- * + soft gold halo. Internal content is constrained to ~780px and
- * centred so the wider canvas reads as deliberate. */
+/* Closer (last card) spans the full width with a faint warm wash so
+ * it still reads as the section's destination beat rather than just
+ * another card in the grid. */
 .svc-system-module--closer {
   grid-column: 1 / -1;
   background:
-    radial-gradient(circle at 12% 50%, rgba(201, 164, 74, 0.10) 0%, transparent 55%),
-    radial-gradient(circle at 90% 80%, rgba(30, 61, 47, 0.20) 0%, transparent 50%),
-    linear-gradient(180deg, #1c2f4a 0%, #131f33 100%);
-  border-color: rgba(201, 164, 74, 0.28);
+    radial-gradient(circle at 8% 50%, rgba(201, 164, 74, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 92% 80%, rgba(30, 61, 47, 0.05) 0%, transparent 50%),
+    #ffffff;
+  border-color: rgba(201, 164, 74, 0.55);
 }
 .svc-system-module--closer .svc-system-module-inner {
-  max-width: 780px;
+  max-width: 820px;
   margin: 0 auto;
   padding: 3rem 2.5rem 2.75rem;
   align-items: flex-start;
 }
 
-.svc-system-module-icon {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 1.5rem;
-  color: var(--gildhart-gold);
+/* Claude product badge at the top of each card — replaces the abstract
+ * SVG glyph from the dark variant. Left-aligned and capped at 180px
+ * so it leads the card visually without overpowering the title. */
+.svc-system-module-badge {
+  margin: 0 0 1.75rem;
 }
-.svc-system-module-icon svg,
-.svc-system-module-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.svc-system-module-badge img {
+  display: block;
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+}
 
 .svc-system-module-label {
   font-family: var(--font-mono);
@@ -1641,14 +1666,14 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
+  color: var(--gildhart-green);
   margin: 0 0 1rem;
 }
 .svc-system-module-title {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1.25rem, 1.7vw, 1.5rem);
   font-weight: 700;
-  color: #ffffff;
+  color: #1a2b3c;
   line-height: 1.25;
   letter-spacing: -0.015em;
   margin: 0 0 0.875rem;
@@ -1658,7 +1683,7 @@
   font-size: 1rem;
   font-style: italic;
   font-weight: 500;
-  color: rgba(245, 240, 232, 0.78);
+  color: rgba(26, 43, 60, 0.62);
   line-height: 1.5;
   margin: 0 0 1.25rem;
 }
@@ -1666,33 +1691,31 @@
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(26, 43, 60, 0.88);
   line-height: 1.7;
   margin: 0 0 1.75rem;
 }
 .svc-system-module-body:last-child { margin-bottom: 0; }
 
-/* Stat anchor at the bottom of the card — gold display number with a
- * smaller mono caps descriptor. Pushed to the bottom of the card via
- * margin-top: auto so cards with shorter bodies still align the stat
- * line across the row. */
+/* Stat anchor — deeper gold variant for legibility on white card.
+ * Pushed to the bottom via margin-top: auto so the stat line aligns
+ * across cards even when bodies differ in length. */
 .svc-system-module-stat {
   display: flex;
   align-items: baseline;
   gap: 0.875rem;
   flex-wrap: wrap;
   padding: 1rem 0 0;
-  border-top: 1px solid rgba(201, 164, 74, 0.18);
+  border-top: 1px solid rgba(201, 164, 74, 0.35);
   margin-top: auto;
 }
 .svc-system-module-stat-value {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1.5rem, 2.2vw, 1.875rem);
   font-weight: 900;
-  color: var(--gildhart-gold);
+  color: var(--svc-system-gold-deep);
   letter-spacing: -0.025em;
   line-height: 1;
-  text-shadow: 0 2px 14px rgba(201, 164, 74, 0.16);
 }
 .svc-system-module-stat-descriptor {
   font-family: var(--font-mono);
@@ -1700,13 +1723,15 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.72);
+  color: rgba(26, 43, 60, 0.72);
   line-height: 1.45;
 }
 
 @media (max-width: 768px) {
   .svc-system { padding: 5rem 1.25rem 5.5rem; }
   .svc-system-header { margin-bottom: 3rem; }
+  .svc-system-built-with { margin-top: 2.25rem; }
+  .svc-system-built-with img { max-width: 240px; }
   .svc-system-modules { grid-template-columns: 1fr; gap: 1.25rem; }
   /* Closer drops its full-width spanning on mobile — sits as a normal
    * single-column card with the rest. */
@@ -1716,7 +1741,8 @@
     align-items: stretch;
   }
   .svc-system-module-inner { padding: 2.25rem 1.75rem 2rem; }
-  .svc-system-module-icon { width: 48px; height: 48px; margin-bottom: 1.25rem; }
+  .svc-system-module-badge { margin-bottom: 1.25rem; }
+  .svc-system-module-badge img { max-width: 150px; }
   .svc-system-module-title { font-size: 1.25rem; }
   .svc-system-module-subtitle { font-size: 0.9375rem; }
   .svc-system-module-body { font-size: 0.9375rem; }
