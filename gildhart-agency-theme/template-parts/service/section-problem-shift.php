@@ -92,19 +92,19 @@ if ( empty( $pairs ) ) {
     $pairs = array(
         array(
             'number'      => '4.4x',
-            'stat_text'   => "ChatGPT visitors convert 4.4 times better than Google organic. They've already chosen before they arrive.",
-            'source_text' => 'Source: Semrush, across hundreds of healthcare sites.',
+            'stat_text'   => "ChatGPT visitors convert 4.4x better than standard organic search. They've already decided before they arrive.",
+            'source_text' => 'Source: Semrush. Analysed across hundreds of healthcare sites.',
             'lose_text'   => '',
         ),
         array(
             'number'      => '6 weeks',
-            'stat_text'   => 'Ealing Travel Clinic in Google AI Overviews. Ahead of Boots. Ahead of Superdrug. Ranking across the whole of London.',
+            'stat_text'   => 'Ealing Travel Clinic. Google AI Overviews. Six weeks from nothing. Ahead of Boots, Superdrug, and NHS.uk — ranking across the whole of London.',
             'source_text' => '',
             'lose_text'   => '',
         ),
         array(
             'number'      => '55',
-            'stat_text'   => 'HPV bookings per month. Up from eight in six months. No ads. No agency. Just the system.',
+            'stat_text'   => "HPV bookings per month. Up from eight.\n\nNo ads. No agency. Just the system.",
             'source_text' => '',
             'lose_text'   => '',
         ),
@@ -226,18 +226,31 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
 
             <?php if ( ! empty( $pairs ) ) : ?>
                 <div class="svc-ps-cards">
-                    <?php foreach ( $pairs as $pair ) :
+                    <?php
+                    // Card kinds are derived by position: 1st = industry stat,
+                    // 2nd = ranking result, 3rd = client outcome. Each gets a
+                    // modifier class so the variant treatments (cooler navy
+                    // for industry, gold accent for ranking, forest-green
+                    // accent for outcome) attach without an ACF schema change.
+                    $kinds = array( 'industry', 'ranking', 'outcome' );
+                    foreach ( $pairs as $i => $pair ) :
                         $num    = $pair['number']      ?? '';
                         $stat   = $pair['stat_text']   ?? '';
                         $source = $pair['source_text'] ?? '';
-                        if ( ! $num && ! $stat ) continue; ?>
-                        <div class="svc-ps-card">
+                        if ( ! $num && ! $stat ) continue;
+                        $kind = $kinds[ $i ] ?? 'industry';
+                        // Body splits on blank lines so editors can author a
+                        // separate closer paragraph (used on Card 3 to give
+                        // "No ads. No agency. Just the system." its own beat).
+                        $stat_paras = $stat ? array_filter( array_map( 'trim', preg_split( '/\r\n\r\n|\r\r|\n\n/', $stat ) ) ) : array();
+                        ?>
+                        <div class="svc-ps-card svc-ps-card--<?php echo esc_attr( $kind ); ?>">
                             <?php if ( $num ) : ?>
                                 <div class="svc-ps-stat-num"><?php echo esc_html( $num ); ?></div>
                             <?php endif; ?>
-                            <?php if ( $stat ) : ?>
-                                <p class="svc-ps-stat-text"><?php echo esc_html( $stat ); ?></p>
-                            <?php endif; ?>
+                            <?php foreach ( $stat_paras as $p ) : ?>
+                                <p class="svc-ps-stat-text"><?php echo esc_html( $p ); ?></p>
+                            <?php endforeach; ?>
                             <?php if ( $source ) : ?>
                                 <p class="svc-ps-stat-source"><?php echo esc_html( $source ); ?></p>
                             <?php endif; ?>

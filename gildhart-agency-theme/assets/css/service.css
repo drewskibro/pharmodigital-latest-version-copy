@@ -600,15 +600,19 @@
   gap: 1.25rem;
   align-items: stretch;
 }
+/* Base card chrome — shared geometry, padding, gap. Variant modifiers
+ * below tune background tone, border-accent colour, and stat-number
+ * weight to give each of the three proofs a subtle visual identity
+ * without breaking the set's design language. */
 .svc-ps-card {
   background: #1a2a3a;
   border: 1px solid rgba(201, 164, 74, 0.16);
   border-left: 4px solid rgba(201, 164, 74, 0.30);
   border-radius: 12px;
-  padding: 2.25rem 1.75rem 2rem;
+  padding: 2.5rem 2rem 2.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.875rem;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
   opacity: 0;
   transform: translateY(20px);
@@ -629,6 +633,52 @@
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(201, 164, 74, 0.20);
 }
 
+/* Industry stat — third-party Semrush data. Cooler, more saturated
+ * navy via --navy token. No left-accent variation; the source-line
+ * treatment carries the authority. */
+.svc-ps-card--industry {
+  background: var(--navy, #0f172a);
+  border-left-color: rgba(201, 164, 74, 0.22);
+}
+.svc-ps-card--industry:hover {
+  background: #182441;
+}
+
+/* Ranking result — most dramatic claim, most alive. Stronger gold
+ * border, gold inner halo via box-shadow inset, slightly warmer
+ * card body. */
+.svc-ps-card--ranking {
+  background: #1d2a3e;
+  border-color: rgba(201, 164, 74, 0.30);
+  border-left-color: rgba(201, 164, 74, 0.65);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.22),
+    0 0 24px rgba(201, 164, 74, 0.10),
+    inset 0 0 0 1px rgba(201, 164, 74, 0.08);
+}
+.svc-ps-card--ranking:hover {
+  background: #223252;
+  border-left-color: var(--gildhart-gold);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.32),
+    0 0 32px rgba(201, 164, 74, 0.18),
+    inset 0 0 0 1px rgba(201, 164, 74, 0.14);
+}
+
+/* Client outcome — emotional closer. Forest-green left accent
+ * (replaces gold) for the warmest of the three tones. Background
+ * carries a faint forest-tinted shift. */
+.svc-ps-card--outcome {
+  background: #1a2c2a;
+  border-left-color: rgba(30, 61, 47, 0.65);
+  border-color: rgba(30, 61, 47, 0.22);
+}
+.svc-ps-card--outcome:hover {
+  background: #1f3633;
+  border-left-color: var(--gildhart-green);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(30, 61, 47, 0.30);
+}
+
 .svc-ps-stat-num {
   font-family: 'Inter', sans-serif;
   font-size: clamp(3rem, 4.5vw, 4rem);
@@ -638,6 +688,12 @@
   line-height: 1;
   text-shadow: 0 2px 16px rgba(201, 164, 74, 0.18);
 }
+/* Ranking stat carries the most visual weight of the three — the
+ * dramatic claim deserves the biggest number. */
+.svc-ps-card--ranking .svc-ps-stat-num {
+  font-size: clamp(3.25rem, 5vw, 4.5rem);
+  text-shadow: 0 4px 24px rgba(201, 164, 74, 0.28);
+}
 .svc-ps-stat-text {
   font-size: 1.0625rem;
   color: rgba(255, 255, 255, 0.96);
@@ -645,15 +701,29 @@
   font-weight: 500;
   margin: 0;
 }
+/* Multi-paragraph bodies (Card 3 closer) — generous space between
+ * the body proper and the punchy closing beat. */
+.svc-ps-stat-text + .svc-ps-stat-text {
+  margin-top: 0.75rem;
+}
+.svc-ps-card--outcome .svc-ps-stat-text + .svc-ps-stat-text {
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+/* Source citation — credibility marker, not an afterthought. Plain
+ * weight, warm cream, ~14:1 contrast against the navy bg. Top rule
+ * separates it from the body without italicising or muting. */
 .svc-ps-stat-source {
   font-family: 'Inter', sans-serif;
-  font-style: italic;
+  font-style: normal;
   font-size: 0.875rem;
-  color: var(--gildhart-gold);
+  font-weight: 600;
+  color: var(--gildhart-cream, #F0E6C8);
   line-height: 1.5;
-  margin: 0.25rem 0 0;
-  padding-top: 0.875rem;
-  border-top: 1px solid rgba(201, 164, 74, 0.30);
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 240, 232, 0.18);
+  letter-spacing: 0.005em;
 }
 
 @media (max-width: 768px) {
@@ -691,17 +761,21 @@
    * card has room to breathe rather than crushing the stat number. */
   .svc-ps-cards { grid-template-columns: 1fr; gap: 1rem; }
   .svc-ps-card {
-    padding: 1.75rem 1.5rem 1.5rem;
+    padding: 2rem 1.5rem 1.75rem;
     border-radius: 12px;
   }
   .svc-ps-card:hover {
-    background: #1a2a3a;
-    border-left-color: rgba(201, 164, 74, 0.30);
+    /* Suppress hover state on touch viewports — only the variant
+     * background tones should differ between cards on mobile. */
+    background: inherit;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
   }
   .svc-ps-stat-num { font-size: clamp(2.25rem, 8vw, 3rem); }
+  .svc-ps-card--ranking .svc-ps-stat-num { font-size: clamp(2.5rem, 9vw, 3.25rem); }
   .svc-ps-stat-text { font-size: 0.9375rem; }
-  .svc-ps-stat-source { font-size: 0.78125rem; }
+  /* Source citation stays ≥13px on mobile so it remains legible
+   * as a credibility marker. */
+  .svc-ps-stat-source { font-size: 0.8125rem; }
 }
 @media (max-width: 420px) {
   .svc-problem-shift { padding: 3rem 1rem; }
@@ -710,9 +784,11 @@
   .svc-ps-narrative-body p:first-of-type { font-size: 1.0625rem; }
   .svc-ps-narrative-body p.is-emphasis { font-size: 1rem; }
   .svc-ps-narrative-body p:last-of-type { font-size: 1.0625rem; }
-  .svc-ps-card { padding: 1.5rem 1.25rem 1.25rem; }
+  .svc-ps-card { padding: 1.75rem 1.25rem 1.5rem; }
   .svc-ps-stat-num { font-size: clamp(2rem, 9vw, 2.5rem); }
+  .svc-ps-card--ranking .svc-ps-stat-num { font-size: clamp(2.25rem, 10vw, 2.875rem); }
   .svc-ps-stat-text { font-size: 0.875rem; }
+  .svc-ps-stat-source { font-size: 0.8125rem; }
 }
 
 /* Teal CTA strip flush below the shift section */
