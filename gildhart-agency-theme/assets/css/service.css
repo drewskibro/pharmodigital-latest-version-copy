@@ -1350,6 +1350,32 @@
   border-radius: 100px;
   padding: 0.45rem 0.95rem;
 }
+/* Mobile body copy + mobile proof pill — hidden on desktop. The
+ * desktop body and the visual-overlay pill carry the story above
+ * the 900px breakpoint. */
+.svc-method-step-text--mobile,
+.svc-method-step-proof--mobile { display: none; }
+
+/* Phone-framed mobile image. Only renders if the editor has uploaded
+ * a mobile image. Hidden on desktop entirely — the desktop visual
+ * panel carries that slot at wider viewports. */
+.svc-method-mobile-image {
+  display: none;
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: #15233a;
+}
+.svc-method-mobile-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* Visual panel — dark intentional card. Uploaded image (.svc-method-
  * visual-img) and the empty-state placeholder both occupy the same
@@ -1443,23 +1469,33 @@
   .svc-method { padding: 5rem 1.5rem 5.5rem; }
   .svc-method-header { margin-bottom: 3.5rem; }
   .svc-method-rows { gap: 4rem; }
-  /* Mobile order per step: headline (num+title) → visual → body.
-   * Same grid template areas regardless of which side held the
-   * visual on desktop. */
+  /* Mobile collapses the grid-template-areas layout entirely — each
+   * row becomes a vertical flex stack so the new phone-image element
+   * can slot between headline and body without rewriting the grid. */
   .svc-method-row,
   .svc-method-row--text-right {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "headline"
-      "visual"
-      "body";
-    column-gap: 0;
-    row-gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    grid-template-areas: none;
+    grid-template-columns: none;
   }
-  .svc-method-row-headline { align-self: start; gap: 0.75rem; }
+  .svc-method-row-headline { gap: 0.75rem; }
   .svc-method-step-num { font-size: clamp(3rem, 11vw, 4rem); }
   .svc-method-step-title { font-size: clamp(1.375rem, 5vw, 1.625rem); }
   .svc-method-step-text { font-size: 0.9375rem; line-height: 1.7; }
+  /* Show the phone-framed mobile image, hide the desktop visual
+   * placeholder/image panel entirely. */
+  .svc-method-mobile-image { display: block; }
+  .svc-method-row-visual { display: none; }
+  /* Swap text + pill visibility — mobile copy on, desktop copy off. */
+  .svc-method-step-text--desktop { display: none; }
+  .svc-method-step-text--mobile { display: block; }
+  .svc-method-step-proof--mobile { display: inline-block; align-self: flex-start; }
+  /* Body block gap so the mobile pill sits below the body with
+   * breathing room rather than touching the paragraph. */
+  .svc-method-row-body { gap: 1rem; }
 }
 @media (max-width: 600px) {
   .svc-method { padding: 4rem 1.25rem; }
