@@ -20,9 +20,9 @@ if ( ! gh_field( 'service_playing_field_show', 1 ) ) {
     return;
 }
 
-$eyebrow     = gh_field( 'service_playing_field_eyebrow',     'The Levelling' );
+$eyebrow     = gh_field( 'service_playing_field_eyebrow',     'The Shift Nobody Told You About' );
 $headline    = gh_field( 'service_playing_field_headline',    "AI Search Doesn't Care How Big Your Budget Is." );
-$subheadline = gh_field( 'service_playing_field_subheadline', 'Traditional search rewarded whoever spent the most. Boots has spent years building a domain authority you were never going to compete with. AI search ignores all of it.' );
+$subheadline = gh_field( 'service_playing_field_subheadline', 'Traditional search was rigged. Boots spent years building a domain authority you were never going to compete with. Then AI search arrived — and stopped caring about any of it.' );
 
 $old_label   = gh_field( 'service_playing_field_old_label',   'The Old Game' );
 $old_caption = gh_field( 'service_playing_field_old_caption', "Boots, Bupa, Superdrug — they own traditional search. You were never going to win that game. Nobody told you there was a different one." );
@@ -50,8 +50,8 @@ if ( empty( $new_rows ) ) {
     );
 }
 
-$callout_main      = gh_field( 'service_playing_field_callout_text',      'Same foundation Ealing used. Same foundation Superior used.' );
-$callout_highlight = gh_field( 'service_playing_field_callout_highlight', 'Level playing field. Finally.' );
+$callout_main      = gh_field( 'service_playing_field_callout_text',      "Same foundation Ealing used. Same foundation Superior used. Same foundation you're about to have. The playing field didn't level itself — but it levelled." );
+$callout_highlight = gh_field( 'service_playing_field_callout_highlight', '' );
 ?>
 
 <section class="svc-playing-field">
@@ -109,17 +109,15 @@ $callout_highlight = gh_field( 'service_playing_field_callout_highlight', 'Level
         </div>
 
         <?php if ( $callout_main || $callout_highlight ) : ?>
-            <div class="svc-pf-callout">
-                <p>
-                    <?php if ( $callout_main ) : ?>
-                        <?php echo esc_html( $callout_main ); ?>
-                    <?php endif; ?>
-                    <?php if ( $callout_main && $callout_highlight ) : ?><br /><?php endif; ?>
-                    <?php if ( $callout_highlight ) : ?>
-                        <span><?php echo esc_html( $callout_highlight ); ?></span>
-                    <?php endif; ?>
-                </p>
-            </div>
+            <p class="svc-pf-conclusion">
+                <?php if ( $callout_main ) : ?>
+                    <?php echo esc_html( $callout_main ); ?>
+                <?php endif; ?>
+                <?php if ( $callout_main && $callout_highlight ) : ?> <?php endif; ?>
+                <?php if ( $callout_highlight ) : ?>
+                    <span><?php echo esc_html( $callout_highlight ); ?></span>
+                <?php endif; ?>
+            </p>
         <?php endif; ?>
     </div>
 </section>
