@@ -1,19 +1,28 @@
 <?php
 /**
- * Service: What You Get section.
+ * Service: The System section (Playbook — formerly "What You Get").
  *
- * Cream-warm section that itemises the system's modules. 2-column grid
- * of module cards; if there's an odd count the last card centres in
- * its own row via the `:last-child` grid override in service.css.
+ * Dark navy section that walks through the five-step Playbook system
+ * the customer runs themselves: onboarding → knowledge base → skills
+ * → content → results. Five cards in a 2+2+1 grid (last card spans
+ * full-width as the closing proof beat).
  *
- * Each card carries a numbered badge, a coloured icon, title, hook
- * line, body, and a green proof-stat callout. Icon "kind" picks the
- * SVG + tonal background — engine / pillar / interactive / visuals /
- * indexed (rotates if more cards than kinds).
+ * Each card carries:
+ *   - 60×60 icon panel at the top (ACF image upload OR a styled
+ *     brand-aligned SVG fallback per icon_kind)
+ *   - Small gold caps step label
+ *   - Bold white title
+ *   - Italic muted-cream subtitle
+ *   - Body copy
+ *   - Gold-anchored stat line at the bottom
  *
- * Reads from per-section ACF group `Service · What You Get`. Returns
- * early when the show toggle is off. Falls back to The Playbook copy
- * from the static spec when ACF fields are empty.
+ * The closer (card 05) gets a richer navy background + subtle gold
+ * radial halo so it lands as the section's destination, not just
+ * another card in the grid.
+ *
+ * Reads from per-section ACF group `Service · What You Get` (key
+ * preserved so historical metabox position holds). Returns early
+ * when the show toggle is off.
  *
  * @package Gildhart
  */
@@ -23,40 +32,92 @@ if ( ! gh_field( 'service_what_you_get_show', 1 ) ) {
 }
 
 $eyebrow     = gh_field( 'service_what_you_get_eyebrow',     'The System' );
-$headline    = gh_field( 'service_what_you_get_headline',    'What Ealing, Superior, and Puri Actually Used. Now Yours.' );
-$subheadline = gh_field( 'service_what_you_get_subheadline', 'The same system. Used across three practices. Now generating five figures monthly, £500k annual revenue, and £100k from a single service. Fully automated. Yours today.' );
+$headline    = gh_field( 'service_what_you_get_headline',    'It Runs While You See Patients.' );
+$subheadline = gh_field( 'service_what_you_get_subheadline', "Ealing, Superior, and Rahul's weight loss clinic didn't brief writers, hire agencies, or manage campaigns. They selected their services. We built their knowledge base. They uploaded it to Cowork once. Claude has run the content cycle automatically every week since." );
 
 $modules = get_field( 'service_what_you_get_modules' );
 if ( empty( $modules ) ) {
     $modules = array(
-        array( 'icon_kind' => 'engine',      'title' => 'Your AI Content Engine',                'hook' => 'Set up in 20 minutes. Runs while you see patients.',          'body' => 'Produces content that gets you featured on Google AI Overviews, ChatGPT, Claude, and Perplexity — without hiring a writer, briefing an agency, or paying a monthly retainer.', 'proof_stat' => '£0/mo', 'proof_text' => 'Replaces agency content retainers entirely' ),
-        array( 'icon_kind' => 'pillar',      'title' => 'The Pillar Domination Method',          'hook' => 'Own every topic you serve. Every pillar compounds.',          'body' => 'A repeatable content architecture that dominates across ChatGPT, Claude, Google AI Overviews, and Perplexity simultaneously. Deploy once. Replicate for every service.',          'proof_stat' => '6 wks',  'proof_text' => 'Ealing beat Boots. Superior hit 50% of sales from AI search.' ),
-        array( 'icon_kind' => 'interactive', 'title' => 'Interactive Content That AI Trusts',    'hook' => '5+ minute engagement vs 30 seconds. AI notices the difference.', 'body' => 'Quizzes, calculators, and comparison tools that AI platforms read as trust signals. Longer engagement means higher recommendations — the difference between being on the shortlist and invisible.', 'proof_stat' => '6m 40s', 'proof_text' => 'Ealing Travel Clinic avg. session duration' ),
-        array( 'icon_kind' => 'visuals',     'title' => 'Professional Visuals Without The Bill', 'hook' => 'What agencies charge thousands for, built into the system.',  'body' => 'Clinically credible medical imagery and custom infographics in minutes, on demand. Low quality imagery signals low quality content to AI platforms — this eliminates that problem.', 'proof_stat' => '£0',     'proof_text' => 'Replaces £2k/shoot photography + £500/graphic design' ),
-        array( 'icon_kind' => 'indexed',     'title' => 'Indexed In Days, Not Months',           'hook' => "If AI hasn't crawled it, it doesn't exist. This fixes that.",  'body' => 'Gets every piece of content in front of Google, ChatGPT, and Claude in days rather than weeks. The reason every practice using this system sees results faster than any traditional SEO timeline.', 'proof_stat' => '48 hrs', 'proof_text' => "Superior's first AI-driven sale after going live" ),
+        array(
+            'icon_kind'        => 'menu',
+            'icon'             => 0,
+            'label'            => 'Step 01 — Onboarding',
+            'title'            => "Most Clinics Spend Months Figuring Out Where to Start. You'll Know in Five Minutes.",
+            'subtitle'         => 'Select your services. Everything builds around them.',
+            'body'             => 'During onboarding you choose up to five services from a guided menu — travel vaccines, weight loss, aesthetics, dentistry, cosmetic surgery. The moment you select them, your knowledge base is built around them, your content architecture is built around them, your ranking targets are built around them. One decision. The entire system follows.',
+            'stat_value'       => '10+',
+            'stat_descriptor'  => 'pre-built healthcare knowledge bases',
+            'is_closer'        => 0,
+        ),
+        array(
+            'icon_kind'        => 'library',
+            'icon'             => 0,
+            'label'            => 'Step 02 — Knowledge Base',
+            'title'            => 'The Only Technical Step You Ever Take Is Uploading One Folder.',
+            'subtitle'         => 'Everything inside it already built. Already compliant. Already structured for AI.',
+            'body'             => 'We build your knowledge base from our pre-verified healthcare content library — clinically accurate, structured for AI citation, and aligned with GPhC, GMC, GDC, and CQC standards depending on your specialism. You download it. You drag it into Cowork. That\'s it. Claude handles everything from that point forward.',
+            'stat_value'       => 'GPhC · GMC · GDC · CQC · MHRA',
+            'stat_descriptor'  => '',
+            'is_closer'        => 0,
+        ),
+        array(
+            'icon_kind'        => 'cycle',
+            'icon'             => 0,
+            'label'            => 'Step 03 — The Skills',
+            'title'            => 'You Review the Outputs. Claude Does Everything Else.',
+            'subtitle'         => 'Connected to your Google Search Console. Running every week.',
+            'body'             => 'The Skills find the questions your patients are already typing into ChatGPT, Google AI, and Perplexity. They build the content that answers those questions. They feed what\'s working back into the next cycle. Every week. Automatically. The only thing the system asks of you is ten minutes to review what Claude produced.',
+            'stat_value'       => '6 wks',
+            'stat_descriptor'  => 'Ealing beat Boots. Superior hit 50% of sales from AI search.',
+            'is_closer'        => 0,
+        ),
+        array(
+            'icon_kind'        => 'engagement',
+            'icon'             => 0,
+            'label'            => 'Step 04 — The Content',
+            'title'            => 'An IVF Clinic Read One Article and Started Sending Referrals.',
+            'subtitle'         => "That's what six minutes of engagement looks like in practice.",
+            'body'             => "Generic content gets thirty seconds. Content built from your clinical expertise — in your voice, about your services, answering the exact questions your patients are asking — gets six minutes. That dwell time is what Claude, ChatGPT, and Google AI read as authority. It's the difference between existing online and being recommended by AI to every patient who searches.",
+            'stat_value'       => '6m 40s',
+            'stat_descriptor'  => 'Ealing Travel Clinic avg. session duration',
+            'is_closer'        => 0,
+        ),
+        array(
+            'icon_kind'        => 'dashboard',
+            'icon'             => 0,
+            'label'            => 'Step 05 — The Results',
+            'title'            => 'Every Week the System Gets Smarter. Every Week the Gap Widens.',
+            'subtitle'         => 'Live in Cowork. Watching every AI platform. Automatically.',
+            'body'             => 'Claude monitors Google AI Overviews, ChatGPT, Perplexity, and Claude itself every week. You see exactly where you appear, which competitors you\'ve overtaken, and what the next content cycle should target. Every cycle feeds the next one. The longer it runs, the harder you are to displace.',
+            'stat_value'       => '48hrs',
+            'stat_descriptor'  => "Superior's first booking from AI search after going live",
+            'is_closer'        => 1,
+        ),
     );
 }
 
 /**
- * Inline icon SVG keyed by kind. Returns markup that's safe to print
- * inside .svc-system-module-icon — the wrapper applies the tonal bg
- * via the matching --{kind} CSS class.
+ * Minimal SVG glyph keyed by icon kind. Brand-aligned (uses
+ * currentColor so the wrapper's text colour drives the stroke), and
+ * intentionally abstract so they read as platform / system markers
+ * rather than literal product logos. Overridden by an ACF image
+ * upload when one is set on the row.
  */
 $icon_svg = function( $kind ) {
     $icons = array(
-        'engine'      => '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
-        'pillar'      => '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>',
-        'interactive' => '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>',
-        'visuals'     => '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>',
-        'indexed'     => '<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>',
+        'menu'       => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><line x1="10" y1="14" x2="38" y2="14" stroke-linecap="round"/><line x1="10" y1="24" x2="38" y2="24" stroke-linecap="round"/><line x1="10" y1="34" x2="30" y2="34" stroke-linecap="round"/><circle cx="38" cy="34" r="3" fill="currentColor" stroke="none"/></svg>',
+        'library'    => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="8" y="10" width="32" height="28" rx="2"/><line x1="8" y1="18" x2="40" y2="18"/><line x1="14" y1="24" x2="34" y2="24" stroke-linecap="round"/><line x1="14" y1="30" x2="28" y2="30" stroke-linecap="round"/></svg>',
+        'cycle'      => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M38 24a14 14 0 1 1-4.1-9.9" stroke-linecap="round"/><polyline points="38,8 38,16 30,16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>',
+        'engagement' => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><line x1="10" y1="12" x2="38" y2="12" stroke-linecap="round"/><line x1="10" y1="20" x2="38" y2="20" stroke-linecap="round"/><line x1="10" y1="28" x2="32" y2="28" stroke-linecap="round"/><line x1="10" y1="36" x2="24" y2="36" stroke-linecap="round"/><circle cx="36" cy="36" r="4" fill="currentColor" stroke="none"/></svg>',
+        'dashboard'  => '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="6" y="8" width="36" height="32" rx="2"/><polyline points="12,28 18,22 24,26 32,16 38,20" stroke-linecap="round" stroke-linejoin="round"/><circle cx="38" cy="20" r="2.5" fill="currentColor" stroke="none"/></svg>',
     );
-    return $icons[ $kind ] ?? $icons['engine'];
+    return $icons[ $kind ] ?? $icons['menu'];
 };
 ?>
 
 <section class="svc-system" id="what-you-get">
     <div class="svc-system-inner">
-        <div class="svc-system-header">
+        <header class="svc-system-header">
             <?php if ( $eyebrow ) : ?>
                 <p class="svc-system-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
             <?php endif; ?>
@@ -66,44 +127,54 @@ $icon_svg = function( $kind ) {
             <?php if ( $subheadline ) : ?>
                 <p class="svc-system-subheadline"><?php echo esc_html( $subheadline ); ?></p>
             <?php endif; ?>
-        </div>
+        </header>
 
         <?php if ( ! empty( $modules ) ) : ?>
             <div class="svc-system-modules">
-                <?php foreach ( $modules as $i => $module ) :
-                    $kind        = $module['icon_kind']  ?? 'engine';
-                    $title       = $module['title']      ?? '';
-                    $hook        = $module['hook']       ?? '';
-                    $body        = $module['body']       ?? '';
-                    $proof_stat  = $module['proof_stat'] ?? '';
-                    $proof_text  = $module['proof_text'] ?? '';
-                    $num         = sprintf( '%02d', $i + 1 );
-                    if ( ! $title && ! $hook && ! $body ) continue;
+                <?php foreach ( $modules as $module ) :
+                    $kind            = $module['icon_kind']       ?? 'menu';
+                    $icon_id         = (int) ( $module['icon']    ?? 0 );
+                    $label           = $module['label']           ?? '';
+                    $title           = $module['title']           ?? '';
+                    $subtitle        = $module['subtitle']        ?? '';
+                    $body            = $module['body']            ?? '';
+                    $stat_value      = $module['stat_value']      ?? '';
+                    $stat_descriptor = $module['stat_descriptor'] ?? '';
+                    $is_closer       = ! empty( $module['is_closer'] );
+                    if ( ! $title && ! $body ) continue;
+                    $card_class = 'svc-system-module' . ( $is_closer ? ' svc-system-module--closer' : '' );
                     ?>
-                    <article class="svc-system-module">
-                        <div class="svc-system-module-top">
-                            <div class="svc-system-module-num"><?php echo esc_html( $num ); ?></div>
+                    <article class="<?php echo esc_attr( $card_class ); ?>">
+                        <div class="svc-system-module-inner">
                             <div class="svc-system-module-icon svc-system-module-icon--<?php echo esc_attr( $kind ); ?>">
-                                <?php echo $icon_svg( $kind ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — static SVG ?>
+                                <?php if ( $icon_id ) : ?>
+                                    <?php echo wp_get_attachment_image( $icon_id, 'medium', false, array(
+                                        'alt'     => esc_attr( $title ),
+                                        'loading' => 'lazy',
+                                    ) ); ?>
+                                <?php else : ?>
+                                    <?php echo $icon_svg( $kind ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — static SVG ?>
+                                <?php endif; ?>
                             </div>
-                        </div>
-                        <div class="svc-system-module-content">
+                            <?php if ( $label ) : ?>
+                                <span class="svc-system-module-label"><?php echo esc_html( $label ); ?></span>
+                            <?php endif; ?>
                             <?php if ( $title ) : ?>
                                 <h3 class="svc-system-module-title"><?php echo esc_html( $title ); ?></h3>
                             <?php endif; ?>
-                            <?php if ( $hook ) : ?>
-                                <p class="svc-system-module-hook"><?php echo esc_html( $hook ); ?></p>
+                            <?php if ( $subtitle ) : ?>
+                                <p class="svc-system-module-subtitle"><?php echo esc_html( $subtitle ); ?></p>
                             <?php endif; ?>
                             <?php if ( $body ) : ?>
                                 <p class="svc-system-module-body"><?php echo esc_html( $body ); ?></p>
                             <?php endif; ?>
-                            <?php if ( $proof_stat || $proof_text ) : ?>
-                                <div class="svc-system-module-proof">
-                                    <?php if ( $proof_stat ) : ?>
-                                        <span class="svc-system-module-proof-stat"><?php echo esc_html( $proof_stat ); ?></span>
+                            <?php if ( $stat_value || $stat_descriptor ) : ?>
+                                <div class="svc-system-module-stat">
+                                    <?php if ( $stat_value ) : ?>
+                                        <span class="svc-system-module-stat-value"><?php echo esc_html( $stat_value ); ?></span>
                                     <?php endif; ?>
-                                    <?php if ( $proof_text ) : ?>
-                                        <span class="svc-system-module-proof-text"><?php echo esc_html( $proof_text ); ?></span>
+                                    <?php if ( $stat_descriptor ) : ?>
+                                        <span class="svc-system-module-stat-descriptor"><?php echo esc_html( $stat_descriptor ); ?></span>
                                     <?php endif; ?>
                                 </div>
                             <?php endif; ?>
