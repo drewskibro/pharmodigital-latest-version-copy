@@ -1999,7 +1999,11 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
-/* Service · Method */
+/* Service · Method — the four-step Playbook walkthrough. Rebuilt
+ * from the old sticky-timeline layout into an alternating two-column
+ * row grid. Legacy timeline_label / weeks fields kept in the group
+ * definition so historical data on the Playbook post doesn't become
+ * orphaned, but they're no longer rendered. */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_method',
     'title'      => 'Service · Method',
@@ -2015,31 +2019,52 @@ acf_add_local_field_group( array(
         ),
         array( 'key' => 'field_gh_service_method_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_method_eyebrow',  'type' => 'text' ),
         array( 'key' => 'field_gh_service_method_headline', 'label' => 'Headline', 'name' => 'service_method_headline', 'type' => 'text' ),
-        array( 'key' => 'field_gh_service_method_proof',    'label' => 'Proof Line', 'name' => 'service_method_proof_line', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
-        array( 'key' => 'field_gh_service_method_tl_label', 'label' => 'Timeline Label', 'name' => 'service_method_timeline_label', 'type' => 'text' ),
-        array(
-            'key' => 'field_gh_service_method_weeks', 'label' => 'Timeline Blocks', 'name' => 'service_method_weeks',
-            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
-            'instructions' => 'Three blocks is the designed default. Each is clickable and scrolls to the first matching step.',
-            'sub_fields' => array(
-                array( 'key' => 'field_gh_service_method_week_range',   'label' => 'Range Label', 'name' => 'range',   'type' => 'text' ),
-                array( 'key' => 'field_gh_service_method_week_summary', 'label' => 'Summary',     'name' => 'summary', 'type' => 'text' ),
-            ),
-        ),
+        array( 'key' => 'field_gh_service_method_proof',    'label' => 'Subtext',  'name' => 'service_method_proof_line', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'Centred paragraph below the H2.' ),
+        array( 'key' => 'field_gh_service_method_anchor_value', 'label' => 'Anchor Stat — Value', 'name' => 'service_method_anchor_stat_value', 'type' => 'text', 'instructions' => 'Large gold number below the subtext, e.g. "55", "6 weeks".' ),
+        array( 'key' => 'field_gh_service_method_anchor_label', 'label' => 'Anchor Stat — Descriptor', 'name' => 'service_method_anchor_stat_label', 'type' => 'text', 'instructions' => 'One-line descriptor under the anchor stat.' ),
         array(
             'key' => 'field_gh_service_method_steps', 'label' => 'Steps', 'name' => 'service_method_steps',
             'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
-            'instructions' => 'Numbered automatically (01, 02, 03…). The first step is active by default; scroll updates which step is highlighted.',
+            'instructions' => 'Numbered automatically (01, 02, 03…). Rows alternate sides: 01 visual right, 02 visual left, 03 visual right, 04 visual left.',
             'sub_fields' => array(
-                array( 'key' => 'field_gh_service_method_step_week',  'label' => 'Week Label (gold)', 'name' => 'week_label', 'type' => 'text' ),
-                array( 'key' => 'field_gh_service_method_step_title', 'label' => 'Step Title',        'name' => 'title',      'type' => 'text' ),
-                array( 'key' => 'field_gh_service_method_step_text',  'label' => 'Body Text',         'name' => 'text',       'type' => 'textarea', 'rows' => 4 ),
-                array( 'key' => 'field_gh_service_method_step_proof', 'label' => 'Proof Pill (optional)', 'name' => 'proof_pill', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_method_step_title', 'label' => 'Step Title', 'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_method_step_text',  'label' => 'Body Text',  'name' => 'text',  'type' => 'textarea', 'rows' => 5 ),
+                array( 'key' => 'field_gh_service_method_step_proof', 'label' => 'Proof Pill (optional)', 'name' => 'proof_pill', 'type' => 'text', 'instructions' => 'Renders as a gold-bordered pill — overlaid on the visual when an image is set, beneath the body otherwise.' ),
                 array(
-                    'key' => 'field_gh_service_method_step_block', 'label' => 'Linked Timeline Block', 'name' => 'week_block',
-                    'type' => 'number', 'min' => 0, 'max' => 5, 'default_value' => 0,
-                    'instructions' => 'Index of the timeline block this step belongs to (0 = first block, 1 = second, etc.).',
+                    'key' => 'field_gh_service_method_step_image', 'label' => 'Step Visual (optional)', 'name' => 'image',
+                    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+                    'instructions' => 'Image rendered in the paired half of the row. Falls back to an intentional styled placeholder when empty.',
                 ),
+                array(
+                    'key' => 'field_gh_service_method_step_visual_kind', 'label' => 'Visual Treatment', 'name' => 'visual_kind',
+                    'type' => 'select', 'default_value' => 'intent',
+                    'choices' => array(
+                        'intent'    => 'Intent / question graphic (Step 01)',
+                        'dwell'     => 'Dwell-time / content visual (Step 02)',
+                        'schema'    => 'Schema / structure diagram (Step 03)',
+                        'dashboard' => 'Dashboard / monitoring panel (Step 04)',
+                    ),
+                    'instructions' => 'Drives the placeholder styling when no image is uploaded.',
+                ),
+                // Legacy fields kept to preserve any historical saved data
+                // on the Playbook post. No longer rendered by the template.
+                array( 'key' => 'field_gh_service_method_step_week',  'label' => 'Week Label (deprecated)', 'name' => 'week_label', 'type' => 'text', 'instructions' => 'No longer rendered. Field kept for legacy data only.' ),
+                array(
+                    'key' => 'field_gh_service_method_step_block', 'label' => 'Linked Timeline Block (deprecated)', 'name' => 'week_block',
+                    'type' => 'number', 'min' => 0, 'max' => 5, 'default_value' => 0,
+                    'instructions' => 'No longer rendered. Field kept for legacy data only.',
+                ),
+            ),
+        ),
+        // Legacy timeline UI fields. No longer rendered.
+        array( 'key' => 'field_gh_service_method_tl_label', 'label' => 'Timeline Label (deprecated)', 'name' => 'service_method_timeline_label', 'type' => 'text', 'instructions' => 'No longer rendered.' ),
+        array(
+            'key' => 'field_gh_service_method_weeks', 'label' => 'Timeline Blocks (deprecated)', 'name' => 'service_method_weeks',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
+            'instructions' => 'No longer rendered. Field kept for legacy data only.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_method_week_range',   'label' => 'Range Label', 'name' => 'range',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_method_week_summary', 'label' => 'Summary',     'name' => 'summary', 'type' => 'text' ),
             ),
         ),
     ),

@@ -1,19 +1,25 @@
 <?php
 /**
- * Service: Method section.
+ * Service: The Playbook section (formerly "Method").
  *
- * Dark navy two-column section. Left column is a sticky anchor with
- * eyebrow + headline + proof-line + a 3-block timeline (Wk 1-2 / 3-4 /
- * 5-6). Right column is the four-step build process — numbered
- * circles connected by a gold-progressed thread.
+ * Dark navy section that walks through the four-step DIY system the
+ * Playbook customer runs themselves. Centred header (eyebrow + H2 +
+ * subtext + gold anchor stat) sits above an alternating two-column
+ * step grid: step 01 = text left / visual right, step 02 = text
+ * right / visual left, and so on.
  *
- * Steps reveal on scroll via svcReveal('.svc-method-step', 'is-visible').
- * The first step is active by default; service.js syncs the active state
- * (and the timeline block to its left) as steps scroll into view.
+ * Each step block carries:
+ *   - Big gold display number
+ *   - Bold white title
+ *   - Body copy
+ *   - Optional proof pill
+ *   - A paired visual (ACF image — falls back to a styled intentional
+ *     placeholder when no image is uploaded yet)
  *
- * Reads from per-section ACF group `Service · Method`. Returns early
- * when the show toggle is off. Falls back to The Playbook copy from
- * the static spec when ACF fields are empty.
+ * Reads from per-section ACF group `Service · Method`. Steps reveal
+ * on scroll via svcReveal('.svc-method-step', 'is-visible') — JS
+ * unchanged from the previous timeline build, so the existing reveal
+ * + observer keeps working without re-wiring.
  *
  * @package Gildhart
  */
@@ -22,122 +28,115 @@ if ( ! gh_field( 'service_method_show', 1 ) ) {
     return;
 }
 
-$eyebrow        = gh_field( 'service_method_eyebrow',        'The Method' );
-$headline       = gh_field( 'service_method_headline',       'How We Get You Featured in ChatGPT, Claude & Google AI Overviews' );
-$proof_line     = gh_field( 'service_method_proof_line',     'Four steps. <strong>Six weeks to first rankings.</strong> The exact system that put Ealing Travel Clinic and Superior Pharmacy on the AI shortlist — ahead of Boots and Bupa.' );
-$timeline_label = gh_field( 'service_method_timeline_label', 'Typical client timeline' );
+$eyebrow      = gh_field( 'service_method_eyebrow',      'The Playbook' );
+$headline     = gh_field( 'service_method_headline',     'The System Behind the Results.' );
+$subtext      = gh_field( 'service_method_proof_line',   "Sachin went from 8 HPV bookings to 55 a month. Superior Pharmacy appeared in ChatGPT within 4 weeks. Ealing Travel Clinic outranked Boots. Different clinics. Different specialisms. Same four steps. Yours to execute. The Playbook gives you the system. You run it." );
 
-$weeks = get_field( 'service_method_weeks' );
-if ( empty( $weeks ) ) {
-    $weeks = array(
-        array( 'range' => 'Wk 1–2', 'summary' => 'Discovery & Architecture' ),
-        array( 'range' => 'Wk 3–4', 'summary' => 'Content Build' ),
-        array( 'range' => 'Wk 5–6', 'summary' => 'First AI Rankings ✓' ),
-    );
-}
+$anchor_num   = gh_field( 'service_method_anchor_stat_value', '55' );
+$anchor_label = gh_field( 'service_method_anchor_stat_label', "Bookings per month — Sachin's Playbook result" );
 
 $steps = get_field( 'service_method_steps' );
 if ( empty( $steps ) ) {
     $steps = array(
         array(
-            'week_label' => 'Week 1–2',
-            'title'      => 'Discovery & Content Architecture',
-            'text'       => 'We interrogate every AI platform — ChatGPT, Claude, Perplexity, Google AI — to find the exact questions your patients are asking. Then we map a pillar + cluster architecture that owns the answer space, not just isolated keywords.',
+            'title'      => 'Find What Your Patients Are Already Asking',
+            'text'       => "Right now, patients in your area are typing questions into ChatGPT, Google AI, and Perplexity. About Mounjaro. About travel vaccines. About HPV. About weight loss injections. About conditions they're too embarrassed to ask their GP. Those questions are getting answered — by someone. In this step you find the exact questions, and map a content architecture that makes that someone you.",
             'proof_pill' => '',
-            'week_block' => 0,
+            'image'      => 0,
+            'visual_kind' => 'intent',
         ),
         array(
-            'week_label' => 'Week 2–4',
-            'title'      => 'Interactive Content That AI Trusts',
-            'text'       => 'Generic blog posts average 30 seconds on-page. Our quizzes, comparison tools, and symptom calculators average 5+ minutes. AI platforms read engagement signals — high dwell time signals authority and earns features.',
+            'title'      => "Build the Content That Makes Them Call Before They've Even Met You",
+            'text'       => "Sachin didn't close the IVF clinic. His content did — content he built using the Playbook. An IVF referral coordinator read a blog post about Zika testing and decided he was the specialist. That's what the right content does — it sells without selling. You'll learn the exact formats that AI platforms trust, that patients read for 6 minutes instead of 30 seconds, and that turn a search into a booked appointment.",
             'proof_pill' => 'Ealing Travel Clinic: avg. 6m 40s session duration',
-            'week_block' => 1,
+            'image'      => 0,
+            'visual_kind' => 'dwell',
         ),
         array(
-            'week_label' => 'Week 3–5',
-            'title'      => 'AI-Specific Technical Optimisation',
-            'text'       => 'We structure content for how LLMs actually parse pages — entity relationships, citation density, schema markup, and the specific formatting patterns that Claude, ChatGPT, and Google AI Overviews favour when building their answers.',
+            'title'      => 'Make It Readable by Humans and AI Simultaneously',
+            'text'       => "A well-written page that AI can't parse doesn't get cited. You'll structure entity relationships, schema markup, citation density, and the formatting patterns that make Claude, ChatGPT, and Google AI Overviews pull from your content instead of your competitor's. It's not technical for the sake of it. It's the difference between existing and being recommended.",
             'proof_pill' => '',
-            'week_block' => 1,
+            'image'      => 0,
+            'visual_kind' => 'schema',
         ),
         array(
-            'week_label' => 'Week 5–6',
-            'title'      => 'Rapid Indexing & Live Tracking',
-            'text'       => 'Custom indexing techniques get content crawled weeks faster than standard publishing. Then we monitor every AI platform daily — you see the exact moment you appear in recommendations, and we iterate in real time.',
-            'proof_pill' => 'Superior Pharmacy: in ChatGPT results within 4 weeks',
-            'week_block' => 2,
+            'title'      => 'Get Indexed. Appear. Know the Moment It Happens.',
+            'text'       => "Standard publishing waits weeks to get crawled. You'll cut that window. Then you'll monitor every AI platform so you see the exact moment your clinic gets recommended — and what to do next to compound it.",
+            'proof_pill' => 'Superior Pharmacy: ChatGPT results within 4 weeks of publishing',
+            'image'      => 0,
+            'visual_kind' => 'dashboard',
         ),
     );
 }
 ?>
 
 <section class="svc-method" id="method">
-    <div class="svc-method-layout">
-        <div class="svc-method-anchor">
+    <div class="svc-method-inner">
+        <header class="svc-method-header">
             <?php if ( $eyebrow ) : ?>
                 <p class="svc-method-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
             <?php endif; ?>
             <?php if ( $headline ) : ?>
                 <h2 class="svc-method-headline"><?php echo esc_html( $headline ); ?></h2>
             <?php endif; ?>
-            <?php if ( $proof_line ) : ?>
-                <p class="svc-method-proof-line"><?php echo wp_kses_post( $proof_line ); ?></p>
+            <?php if ( $subtext ) : ?>
+                <p class="svc-method-subtext"><?php echo esc_html( $subtext ); ?></p>
             <?php endif; ?>
-
-            <?php if ( ! empty( $weeks ) ) : ?>
-                <?php if ( $timeline_label ) : ?>
-                    <p class="svc-method-timeline-label"><?php echo esc_html( $timeline_label ); ?></p>
-                <?php endif; ?>
-                <div class="svc-method-weeks">
-                    <?php foreach ( $weeks as $i => $week ) :
-                        $range   = $week['range']   ?? '';
-                        $summary = $week['summary'] ?? '';
-                        if ( ! $range && ! $summary ) continue;
-                        $active  = ( 0 === $i ) ? ' is-active' : ''; ?>
-                        <button class="svc-method-week<?php echo esc_attr( $active ); ?>" type="button" data-week="<?php echo esc_attr( $i ); ?>">
-                            <?php if ( $range ) : ?>
-                                <span class="svc-method-week-num"><?php echo esc_html( $range ); ?></span>
-                            <?php endif; ?>
-                            <?php if ( $summary ) : ?>
-                                <span class="svc-method-week-label"><?php echo esc_html( $summary ); ?></span>
-                            <?php endif; ?>
-                        </button>
-                    <?php endforeach; ?>
+            <?php if ( $anchor_num || $anchor_label ) : ?>
+                <div class="svc-method-anchor-stat">
+                    <?php if ( $anchor_num ) : ?>
+                        <span class="svc-method-anchor-num"><?php echo esc_html( $anchor_num ); ?></span>
+                    <?php endif; ?>
+                    <?php if ( $anchor_label ) : ?>
+                        <span class="svc-method-anchor-label"><?php echo esc_html( $anchor_label ); ?></span>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
-        </div>
+        </header>
 
-        <div class="svc-method-steps">
+        <div class="svc-method-rows">
             <?php foreach ( $steps as $i => $step ) :
-                $week_label = $step['week_label'] ?? '';
-                $title      = $step['title']      ?? '';
-                $text       = $step['text']       ?? '';
-                $proof_pill = $step['proof_pill'] ?? '';
-                $week_block = $step['week_block'] ?? 0;
-                $active     = ( 0 === $i ) ? ' is-active' : '';
-                $num        = sprintf( '%02d', $i + 1 );
-                ?>
-                <div class="svc-method-step<?php echo esc_attr( $active ); ?>" data-step="<?php echo esc_attr( $i ); ?>" data-week-block="<?php echo esc_attr( $week_block ); ?>">
-                    <div class="svc-method-step-node">
-                        <div class="svc-method-step-circle">
-                            <span class="svc-method-step-num"><?php echo esc_html( $num ); ?></span>
-                        </div>
-                    </div>
-                    <div class="svc-method-step-body">
-                        <?php if ( $week_label ) : ?>
-                            <p class="svc-method-step-week"><?php echo esc_html( $week_label ); ?></p>
-                        <?php endif; ?>
+                $title       = $step['title']       ?? '';
+                $text        = $step['text']        ?? '';
+                $proof_pill  = $step['proof_pill']  ?? '';
+                $image_id    = (int) ( $step['image'] ?? 0 );
+                $visual_kind = $step['visual_kind'] ?? 'intent';
+                $num         = sprintf( '%02d', $i + 1 );
+                // Alternate sides — odd rows put visual on the right, even
+                // rows put it on the left. Mobile collapses both into the
+                // same stack order regardless.
+                $orient      = ( 0 === $i % 2 ) ? 'text-left' : 'text-right'; ?>
+                <article class="svc-method-step svc-method-row svc-method-row--<?php echo esc_attr( $orient ); ?>">
+                    <div class="svc-method-row-headline">
+                        <span class="svc-method-step-num"><?php echo esc_html( $num ); ?></span>
                         <?php if ( $title ) : ?>
                             <h3 class="svc-method-step-title"><?php echo esc_html( $title ); ?></h3>
                         <?php endif; ?>
+                    </div>
+                    <div class="svc-method-row-visual svc-method-row-visual--<?php echo esc_attr( $visual_kind ); ?>">
+                        <?php if ( $image_id ) : ?>
+                            <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
+                                'class'   => 'svc-method-visual-img',
+                                'alt'     => esc_attr( $title ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        <?php else : ?>
+                            <div class="svc-method-visual-placeholder" aria-hidden="true">
+                                <span class="svc-method-visual-placeholder-num"><?php echo esc_html( $num ); ?></span>
+                                <span class="svc-method-visual-placeholder-label">Insert visual</span>
+                            </div>
+                        <?php endif; ?>
+                        <?php // Proof pill overlay sits inside the visual for steps 02 + 04. ?>
+                        <?php if ( $proof_pill ) : ?>
+                            <span class="svc-method-visual-pill"><?php echo esc_html( $proof_pill ); ?></span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="svc-method-row-body">
                         <?php if ( $text ) : ?>
                             <p class="svc-method-step-text"><?php echo esc_html( $text ); ?></p>
                         <?php endif; ?>
-                        <?php if ( $proof_pill ) : ?>
-                            <span class="svc-method-step-proof"><?php echo esc_html( $proof_pill ); ?></span>
-                        <?php endif; ?>
                     </div>
-                </div>
+                </article>
             <?php endforeach; ?>
         </div>
     </div>
