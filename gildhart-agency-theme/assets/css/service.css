@@ -1012,26 +1012,41 @@
   align-items: stretch;
 }
 /* Old vs New comparison cards — the visual contrast IS the design
- * argument: dark navy "old game" sits next to light cream "new
- * reality". Both share radius + padding so the polarity reads on
- * structure alone, not chrome. */
+ * argument: dark navy "old game" sits next to faintly forest-tinted
+ * cream "new reality". Each card carries a 3px coloured left accent
+ * pulled from existing brand tokens (copper for old, forest green
+ * for new) to make the world they represent legible at a glance. */
 .svc-pf-col {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
   overflow: hidden;
-  padding: 2.5rem 2.25rem;
+  padding: 3rem 2.5rem;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
   height: 100%;
 }
+/* 3px coloured left accent rendered as a pseudo-element so it sits
+ * inside the rounded corners without fighting the card's overflow
+ * mask or its 1px chrome border. */
+.svc-pf-col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+}
 .svc-pf-col--old {
-  background: var(--navy);
+  background: linear-gradient(180deg, #0c1426 0%, #15233a 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+.svc-pf-col--old::before { background: #B45309; }
 .svc-pf-col--new {
-  background: #fffdf8;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, #fffdf8 0%, #fbf6ec 100%);
+  border: 1px solid rgba(30, 61, 47, 0.10);
 }
+.svc-pf-col--new::before { background: var(--gildhart-green); }
 .svc-pf-col-label {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -1052,7 +1067,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 .svc-pf-row {
@@ -1063,14 +1078,21 @@
   border: 0;
 }
 .svc-pf-dot {
-  width: 8px;
-  height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
-  margin-top: 0.5rem;
 }
-.svc-pf-col--old .svc-pf-dot { background: rgba(245, 240, 232, 0.35); }
-.svc-pf-col--new .svc-pf-dot { background: var(--gildhart-green); }
+.svc-pf-col--old .svc-pf-dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 0.55rem;
+  background: #B45309;
+}
+.svc-pf-col--new .svc-pf-dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 0.5rem;
+  background: var(--gildhart-green);
+}
 .svc-pf-row-text {
   font-size: 1.0625rem;
   line-height: 1.55;
@@ -1080,47 +1102,51 @@
 .svc-pf-col--old .svc-pf-row-text { color: #ffffff; }
 .svc-pf-col--new .svc-pf-row-text { color: var(--navy, #0d1a12); }
 .svc-pf-col-caption {
-  padding: 1.5rem 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.75rem 0 0;
+  border-top: 1px solid;
   font-size: 0.9375rem;
   line-height: 1.6;
   margin-top: auto;
 }
 .svc-pf-col--old .svc-pf-col-caption {
-  color: #ffffff;
-  border-top-color: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.92);
+  border-top-color: rgba(255, 255, 255, 0.18);
 }
-/* Right-card footer is the proof point — bolder, slightly larger,
- * navy. Stands as the most visually prominent line in the card. */
+/* Right-card footer is the proof point — bolder, larger, navy, and
+ * framed with a forest-green left edge so it lands as the strongest
+ * line on the card. */
 .svc-pf-col--new .svc-pf-col-caption {
   color: var(--navy, #0d1a12);
-  border-top-color: rgba(30, 61, 47, 0.12);
+  border-top-color: rgba(30, 61, 47, 0.18);
+  border-left: 3px solid var(--gildhart-green);
+  padding: 0.25rem 0 0.25rem 1rem;
+  margin-top: 2.25rem;
   font-size: 1.0625rem;
   font-weight: 700;
   line-height: 1.55;
 }
 
-.svc-pf-callout {
-  background: var(--navy);
-  border-radius: 20px;
-  padding: 3rem;
+/* Conclusion line below both cards — single centred sentence on the
+ * section's cream backdrop. Replaces the previous dark-navy strip
+ * treatment so the section closes editorially, not with chrome. */
+.svc-pf-conclusion {
   text-align: center;
-}
-.svc-pf-callout p {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 700;
-  color: white;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--navy, #0d1a12);
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 3.5rem auto 0;
+  letter-spacing: -0.005em;
 }
-.svc-pf-callout p span { color: var(--gildhart-gold); }
+.svc-pf-conclusion span { color: var(--gildhart-green); font-weight: 700; }
 
 @media (max-width: 768px) {
-  .svc-pf-compare { grid-template-columns: 1fr; }
-  .svc-playing-field { padding: 4rem 1.5rem; }
-  .svc-pf-callout { padding: 2rem 1.5rem; }
+  .svc-pf-compare { grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
+  .svc-playing-field { padding: 4rem 1.25rem; }
+  .svc-pf-col { padding: 2.25rem 1.75rem; }
+  .svc-pf-conclusion { margin-top: 2.5rem; font-size: 0.9375rem; }
 }
 
 /* ── S2: Method section ─────────────────────────────────────── */
