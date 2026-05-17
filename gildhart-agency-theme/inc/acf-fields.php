@@ -2028,12 +2028,18 @@ acf_add_local_field_group( array(
             'instructions' => 'Numbered automatically (01, 02, 03…). Rows alternate sides: 01 visual right, 02 visual left, 03 visual right, 04 visual left.',
             'sub_fields' => array(
                 array( 'key' => 'field_gh_service_method_step_title', 'label' => 'Step Title', 'name' => 'title', 'type' => 'text' ),
-                array( 'key' => 'field_gh_service_method_step_text',  'label' => 'Body Text',  'name' => 'text',  'type' => 'textarea', 'rows' => 5 ),
-                array( 'key' => 'field_gh_service_method_step_proof', 'label' => 'Proof Pill (optional)', 'name' => 'proof_pill', 'type' => 'text', 'instructions' => 'Renders as a gold-bordered pill — overlaid on the visual when an image is set, beneath the body otherwise.' ),
+                array( 'key' => 'field_gh_service_method_step_text',  'label' => 'Body Text (Desktop)',  'name' => 'text',  'type' => 'textarea', 'rows' => 5, 'instructions' => 'Long-form body shown on screens >900px wide.' ),
+                array( 'key' => 'field_gh_service_method_step_text_mobile', 'label' => 'Body Text (Mobile)', 'name' => 'text_mobile', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Shortened two-sentence version shown on screens ≤900px wide. Leave empty to fall back to the desktop body.' ),
+                array( 'key' => 'field_gh_service_method_step_proof', 'label' => 'Proof Pill (optional)', 'name' => 'proof_pill', 'type' => 'text', 'instructions' => 'Renders as a gold-bordered pill — overlaid on the desktop visual, rendered below the mobile body.' ),
                 array(
-                    'key' => 'field_gh_service_method_step_image', 'label' => 'Step Visual (optional)', 'name' => 'image',
+                    'key' => 'field_gh_service_method_step_image', 'label' => 'Step Visual (Desktop, optional)', 'name' => 'image',
                     'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
-                    'instructions' => 'Image rendered in the paired half of the row. Falls back to an intentional styled placeholder when empty.',
+                    'instructions' => 'Image rendered in the paired half of the row on desktop. Falls back to an intentional styled placeholder when empty.',
+                ),
+                array(
+                    'key' => 'field_gh_service_method_step_image_mobile', 'label' => 'Step Visual (Mobile, optional)', 'name' => 'mobile_image',
+                    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
+                    'instructions' => 'Portrait image rendered as a phone-framed screenshot on screens ≤900px wide. If empty the image slot is hidden on mobile entirely — no placeholder.',
                 ),
                 array(
                     'key' => 'field_gh_service_method_step_visual_kind', 'label' => 'Visual Treatment', 'name' => 'visual_kind',

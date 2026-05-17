@@ -39,31 +39,39 @@ $steps = get_field( 'service_method_steps' );
 if ( empty( $steps ) ) {
     $steps = array(
         array(
-            'title'      => 'Find What Your Patients Are Already Asking',
-            'text'       => "Right now, patients in your area are typing questions into ChatGPT, Google AI, and Perplexity. About Mounjaro. About travel vaccines. About HPV. About weight loss injections. About conditions they're too embarrassed to ask their GP. Those questions are getting answered — by someone. In this step you find the exact questions, and map a content architecture that makes that someone you.",
-            'proof_pill' => '',
-            'image'      => 0,
+            'title'       => 'Find What Your Patients Are Already Asking',
+            'text'        => "Right now, patients in your area are typing questions into ChatGPT, Google AI, and Perplexity. About Mounjaro. About travel vaccines. About HPV. About weight loss injections. About conditions they're too embarrassed to ask their GP. Those questions are getting answered — by someone. In this step you find the exact questions, and map a content architecture that makes that someone you.",
+            'text_mobile' => 'Patients in your area are already asking questions in ChatGPT, Google AI, and Perplexity — about Mounjaro, travel vaccines, HPV, and weight loss. This step finds those exact questions and maps a content architecture that makes you the one who answers them.',
+            'proof_pill'  => '',
+            'image'       => 0,
+            'mobile_image' => 0,
             'visual_kind' => 'intent',
         ),
         array(
-            'title'      => "Build the Content That Makes Them Call Before They've Even Met You",
-            'text'       => "Sachin didn't close the IVF clinic. His content did — content he built using the Playbook. An IVF referral coordinator read a blog post about Zika testing and decided he was the specialist. That's what the right content does — it sells without selling. You'll learn the exact formats that AI platforms trust, that patients read for 6 minutes instead of 30 seconds, and that turn a search into a booked appointment.",
-            'proof_pill' => 'Ealing Travel Clinic: avg. 6m 40s session duration',
-            'image'      => 0,
+            'title'       => "Build the Content That Makes Them Call Before They've Even Met You",
+            'text'        => "Sachin didn't close the IVF clinic. His content did — content he built using the Playbook. An IVF referral coordinator read a blog post about Zika testing and decided he was the specialist. That's what the right content does — it sells without selling. You'll learn the exact formats that AI platforms trust, that patients read for 6 minutes instead of 30 seconds, and that turn a search into a booked appointment.",
+            'text_mobile' => "Sachin didn't close the IVF clinic. His content did. This step covers the exact formats that AI platforms trust — content patients read for 6 minutes instead of 30 seconds, that turns a search into a booked appointment.",
+            'proof_pill'  => 'Ealing Travel Clinic: avg. 6m 40s session duration',
+            'image'       => 0,
+            'mobile_image' => 0,
             'visual_kind' => 'dwell',
         ),
         array(
-            'title'      => 'Make It Readable by Humans and AI Simultaneously',
-            'text'       => "A well-written page that AI can't parse doesn't get cited. You'll structure entity relationships, schema markup, citation density, and the formatting patterns that make Claude, ChatGPT, and Google AI Overviews pull from your content instead of your competitor's. It's not technical for the sake of it. It's the difference between existing and being recommended.",
-            'proof_pill' => '',
-            'image'      => 0,
+            'title'       => 'Make It Readable by Humans and AI Simultaneously',
+            'text'        => "A well-written page that AI can't parse doesn't get cited. You'll structure entity relationships, schema markup, citation density, and the formatting patterns that make Claude, ChatGPT, and Google AI Overviews pull from your content instead of your competitor's. It's not technical for the sake of it. It's the difference between existing and being recommended.",
+            'text_mobile' => "A well-written page that AI can't parse doesn't get cited. This step covers the structure, schema, and formatting patterns that make ChatGPT, Claude, and Google AI Overviews pull from your content instead of your competitor's.",
+            'proof_pill'  => '',
+            'image'       => 0,
+            'mobile_image' => 0,
             'visual_kind' => 'schema',
         ),
         array(
-            'title'      => 'Get Indexed. Appear. Know the Moment It Happens.',
-            'text'       => "Standard publishing waits weeks to get crawled. You'll cut that window. Then you'll monitor every AI platform so you see the exact moment your clinic gets recommended — and what to do next to compound it.",
-            'proof_pill' => 'Superior Pharmacy: ChatGPT results within 4 weeks of publishing',
-            'image'      => 0,
+            'title'       => 'Get Indexed. Appear. Know the Moment It Happens.',
+            'text'        => "Standard publishing waits weeks to get crawled. You'll cut that window. Then you'll monitor every AI platform so you see the exact moment your clinic gets recommended — and what to do next to compound it.",
+            'text_mobile' => 'Standard publishing waits weeks to get crawled. This step cuts that window — then shows you how to monitor every AI platform so you see the exact moment your clinic gets recommended.',
+            'proof_pill'  => 'Superior Pharmacy: ChatGPT results within 4 weeks of publishing',
+            'image'       => 0,
+            'mobile_image' => 0,
             'visual_kind' => 'dashboard',
         ),
     );
@@ -96,16 +104,21 @@ if ( empty( $steps ) ) {
 
         <div class="svc-method-rows">
             <?php foreach ( $steps as $i => $step ) :
-                $title       = $step['title']       ?? '';
-                $text        = $step['text']        ?? '';
-                $proof_pill  = $step['proof_pill']  ?? '';
-                $image_id    = (int) ( $step['image'] ?? 0 );
-                $visual_kind = $step['visual_kind'] ?? 'intent';
-                $num         = sprintf( '%02d', $i + 1 );
+                $title          = $step['title']        ?? '';
+                $text           = $step['text']         ?? '';
+                $text_mobile    = $step['text_mobile']  ?? '';
+                $proof_pill     = $step['proof_pill']   ?? '';
+                $image_id       = (int) ( $step['image']        ?? 0 );
+                $mobile_image_id = (int) ( $step['mobile_image'] ?? 0 );
+                $visual_kind    = $step['visual_kind']  ?? 'intent';
+                $num            = sprintf( '%02d', $i + 1 );
+                // Empty mobile body falls back to the desktop copy so a step
+                // with a single text field still renders something on phones.
+                $mobile_body    = $text_mobile !== '' ? $text_mobile : $text;
                 // Alternate sides — odd rows put visual on the right, even
                 // rows put it on the left. Mobile collapses both into the
                 // same stack order regardless.
-                $orient      = ( 0 === $i % 2 ) ? 'text-left' : 'text-right'; ?>
+                $orient         = ( 0 === $i % 2 ) ? 'text-left' : 'text-right'; ?>
                 <article class="svc-method-step svc-method-row svc-method-row--<?php echo esc_attr( $orient ); ?>">
                     <div class="svc-method-row-headline">
                         <span class="svc-method-step-num"><?php echo esc_html( $num ); ?></span>
@@ -126,14 +139,35 @@ if ( empty( $steps ) ) {
                                 <span class="svc-method-visual-placeholder-label">Insert visual</span>
                             </div>
                         <?php endif; ?>
-                        <?php // Proof pill overlay sits inside the visual for steps 02 + 04. ?>
+                        <?php // Proof pill overlay sits inside the visual for steps 02 + 04 on desktop. ?>
                         <?php if ( $proof_pill ) : ?>
                             <span class="svc-method-visual-pill"><?php echo esc_html( $proof_pill ); ?></span>
                         <?php endif; ?>
                     </div>
+                    <?php // Phone-framed mobile image — only renders if a mobile
+                          // image is uploaded. CSS hides the entire figure on
+                          // desktop and shows it as a 280px portrait card on
+                          // ≤900px. ?>
+                    <?php if ( $mobile_image_id ) : ?>
+                        <figure class="svc-method-mobile-image">
+                            <?php echo wp_get_attachment_image( $mobile_image_id, 'large', false, array(
+                                'alt'     => esc_attr( $title ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </figure>
+                    <?php endif; ?>
                     <div class="svc-method-row-body">
                         <?php if ( $text ) : ?>
-                            <p class="svc-method-step-text"><?php echo esc_html( $text ); ?></p>
+                            <p class="svc-method-step-text svc-method-step-text--desktop"><?php echo esc_html( $text ); ?></p>
+                        <?php endif; ?>
+                        <?php if ( $mobile_body ) : ?>
+                            <p class="svc-method-step-text svc-method-step-text--mobile"><?php echo esc_html( $mobile_body ); ?></p>
+                        <?php endif; ?>
+                        <?php // Mobile-only proof pill mirrors the desktop visual
+                              // overlay so the pill still appears on phones, below
+                              // the body copy. CSS hides this on desktop. ?>
+                        <?php if ( $proof_pill ) : ?>
+                            <span class="svc-method-step-proof svc-method-step-proof--mobile"><?php echo esc_html( $proof_pill ); ?></span>
                         <?php endif; ?>
                     </div>
                 </article>
