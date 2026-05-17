@@ -929,11 +929,11 @@
 }
 .svc-proof-stat-label {
   font-family: 'Inter', sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: rgba(13, 26, 18, 0.65);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--navy, #0d1a12);
   line-height: 1.5;
-  max-width: 180px;
+  max-width: 200px;
   text-align: center;
 }
 .svc-proof-stat-divider {
@@ -946,13 +946,14 @@
 }
 .svc-proof-closing {
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: rgba(13, 26, 18, 0.72);
-  line-height: 1.8;
-  max-width: 650px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--navy, #0d1a12);
+  line-height: 1.7;
+  max-width: 680px;
   margin: 3rem auto 0;
   text-align: center;
+  letter-spacing: -0.005em;
 }
 
 @media (max-width: 768px) {
