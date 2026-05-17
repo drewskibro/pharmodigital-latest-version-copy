@@ -1133,13 +1133,15 @@
 .svc-pf-conclusion {
   text-align: center;
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--navy, #0d1a12);
-  line-height: 1.65;
-  max-width: 720px;
+  line-height: 1.45;
+  max-width: 600px;
   margin: 3.5rem auto 0;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.02em;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.35);
 }
 .svc-pf-conclusion span { color: var(--gildhart-green); font-weight: 700; }
 
@@ -1147,7 +1149,7 @@
   .svc-pf-compare { grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
   .svc-playing-field { padding: 4rem 1.25rem; }
   .svc-pf-col { padding: 2.25rem 1.75rem; }
-  .svc-pf-conclusion { margin-top: 2.5rem; font-size: 0.9375rem; }
+  .svc-pf-conclusion { margin-top: 2.5rem; font-size: 1.1875rem; padding-top: 1.5rem; }
 }
 
 /* ── S2: Method section ─────────────────────────────────────── */
