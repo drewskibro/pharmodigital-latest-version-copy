@@ -1652,11 +1652,15 @@
  * so it leads the card visually without overpowering the title. */
 .svc-system-module-badge {
   margin: 0 0 1.75rem;
+  background: none;
+  border: 0;
+  padding: 0;
 }
 .svc-system-module-badge img {
   display: block;
-  max-width: 180px;
   width: 100%;
+  min-width: 220px;
+  max-width: 280px;
   height: auto;
 }
 
@@ -1741,8 +1745,8 @@
     align-items: stretch;
   }
   .svc-system-module-inner { padding: 2.25rem 1.75rem 2rem; }
-  .svc-system-module-badge { margin-bottom: 1.25rem; }
-  .svc-system-module-badge img { max-width: 150px; }
+  .svc-system-module-badge { margin-bottom: 1.5rem; }
+  .svc-system-module-badge img { min-width: 180px; max-width: 240px; }
   .svc-system-module-title { font-size: 1.25rem; }
   .svc-system-module-subtitle { font-size: 0.9375rem; }
   .svc-system-module-body { font-size: 0.9375rem; }

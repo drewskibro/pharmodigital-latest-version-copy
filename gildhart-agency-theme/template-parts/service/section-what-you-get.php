@@ -72,8 +72,8 @@ if ( empty( $modules ) ) {
             'title'            => 'The Only Technical Step You Ever Take Is Uploading One Folder.',
             'subtitle'         => 'Everything inside already built. Already compliant. Already structured for AI.',
             'body'             => "We build your knowledge base from our pre-verified healthcare content library — clinically accurate and aligned with GPhC, GMC, GDC, and CQC standards. You download it. You drag it into Cowork. Claude handles everything from that point forward.",
-            'stat_value'       => 'GPhC · GMC · GDC · CQC · MHRA',
-            'stat_descriptor'  => '',
+            'stat_value'       => 'Verified',
+            'stat_descriptor'  => 'Built to the standards of your regulatory body. GPhC, GMC, GDC, or CQC depending on your specialism.',
             'is_closer'        => 0,
         ),
         array(
