@@ -2376,6 +2376,15 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_service_pb_checkout_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_pb_checkout_eyebrow',  'type' => 'text' ),
         array( 'key' => 'field_gh_service_pb_checkout_headline', 'label' => 'Headline', 'name' => 'service_pb_checkout_headline', 'type' => 'text' ),
         array( 'key' => 'field_gh_service_pb_checkout_body',     'label' => 'Body',     'name' => 'service_pb_checkout_body',     'type' => 'textarea', 'rows' => 4 ),
+        array(
+            'key'           => 'field_gh_service_pb_checkout_hero_image',
+            'label'         => 'Hero Image (between body and checklist)',
+            'name'          => 'your_turn_hero_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Optional. Renders in the left column between the body copy and the gold-check checklist. Capped at 380px height desktop / 240px mobile with object-fit: contain — uploaded source should be at least 1600px wide for retina sharpness. Leave empty to render no image.',
+        ),
 
         /* Left column — checklist */
         array(

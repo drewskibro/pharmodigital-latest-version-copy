@@ -94,7 +94,13 @@ if ( empty( $testimonials ) ) {
 $card_label   = gh_field( 'service_pb_checkout_card_label',   'The AI Search Playbook' );
 $card_price   = gh_field( 'service_pb_checkout_card_price',   '£995' );
 $card_suffix  = gh_field( 'service_pb_checkout_card_suffix',  'one-time · lifetime access' );
-$card_feature = gh_field( 'service_pb_checkout_card_feature', 'One System. Every AI Platform. Yours Forever.' );
+$card_feature = gh_field( 'service_pb_checkout_card_feature', 'The exact system that put independent pharmacies and clinics above Boots, Superdrug, and NHS.uk in AI search. Yours forever. Starts working this week.' );
+
+/* Left column — hero image (between body and checklist). Lives inside
+ * the intro block as the last child so the grid-template-areas layout
+ * doesn't need a new row (which would render an empty 3rem gap when
+ * no image is uploaded). */
+$hero_image_id = (int) get_field( 'your_turn_hero_image' );
 
 /* Right column — form */
 $right_closer = gh_field( 'service_pb_checkout_right_closer', '£995. One time. Ealing spent it. Then made £198,000 from one service.' );
@@ -116,6 +122,19 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
             <?php endif; ?>
             <?php if ( $body ) : ?>
                 <p class="svc-pb-checkout-body"><?php echo esc_html( $body ); ?></p>
+            <?php endif; ?>
+            <?php if ( $hero_image_id ) : ?>
+                <figure class="svc-pb-checkout-hero-image">
+                    <?php
+                    $hero_alt = trim( (string) get_post_meta( $hero_image_id, '_wp_attachment_image_alt', true ) );
+                    if ( '' === $hero_alt ) {
+                        $hero_alt = $headline ?: 'AI Search Playbook for Healthcare';
+                    }
+                    echo wp_get_attachment_image( $hero_image_id, 'full', false, array(
+                        'alt'     => esc_attr( $hero_alt ),
+                        'loading' => 'lazy',
+                    ) ); ?>
+                </figure>
             <?php endif; ?>
         </div>
 
