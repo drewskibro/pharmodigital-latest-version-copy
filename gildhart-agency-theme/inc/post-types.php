@@ -603,7 +603,7 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_playing_field_old_label'         => 'The Old Game',
         'service_playing_field_old_caption'       => "Boots, Bupa, Superdrug — they own Google because they've spent decades and millions you'll never match.",
         'service_playing_field_new_label'         => 'The New Reality',
-        'service_playing_field_new_caption'       => '<strong>Ealing outranked Boots in 6 weeks. On this new playing field, the best answer wins — not the biggest brand.</strong>',
+        'service_playing_field_new_caption'       => "<strong>Ealing outranked Boots in 6 weeks. Then an IVF clinic started sending referrals. That's what the new game looks like when you're winning it.</strong>",
         'service_playing_field_callout_text'      => 'Same foundation Ealing used. Same foundation Superior used.',
         'service_playing_field_callout_highlight' => 'Level playing field. Finally.',
         // Method
