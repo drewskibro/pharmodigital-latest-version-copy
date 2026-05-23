@@ -2140,6 +2140,200 @@
   .svc-pb-checkout-right-closer { font-size: 1rem; margin-top: 0.75rem; }
 }
 
+/* ── Playbook checkout · Services multi-select widget ──────────
+ * Searchable multi-select that sits between Website URL and the
+ * right-column closer. Pills above the search input, dropdown
+ * panel below it. On mobile (≤640px) the dropdown becomes a
+ * fixed bottom sheet with a tap-to-close backdrop.
+ */
+.svc-pb-services-group { position: relative; }
+.svc-pb-services-subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(15, 23, 42, 0.6);
+  line-height: 1.45;
+  margin: -0.2rem 0 0.625rem;
+}
+
+/* Pill row above the search input */
+.svc-pb-services-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.625rem;
+}
+.svc-pb-services-pills:empty { display: none; }
+.svc-pb-services-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.4rem 0.4rem 0.75rem;
+  background: rgba(201, 164, 74, 0.14);
+  border: 1px solid rgba(201, 164, 74, 0.55);
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1a2b3c;
+  line-height: 1.2;
+  max-width: 100%;
+}
+.svc-pb-services-pill-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+.svc-pb-services-pill-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(201, 164, 74, 0.35);
+  color: #1a2b3c;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.svc-pb-services-pill-remove:hover {
+  background: var(--gildhart-gold);
+  color: #ffffff;
+}
+
+/* Search input + dropdown panel */
+.svc-pb-services-input-wrap { position: relative; }
+.svc-pb-services-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.06);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 20;
+  padding: 0.375rem;
+}
+.svc-pb-services-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0.625rem 0.875rem;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1a2b3c;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.svc-pb-services-option:hover,
+.svc-pb-services-option:focus-visible {
+  background: rgba(201, 164, 74, 0.12);
+  outline: none;
+}
+.svc-pb-services-option--other {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+  color: var(--gildhart-green);
+  font-weight: 600;
+}
+.svc-pb-services-dropdown-empty {
+  padding: 0.75rem 0.875rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: rgba(15, 23, 42, 0.55);
+}
+
+/* Custom entry input — appears when user picks "Other — please specify". */
+.svc-pb-services-custom {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+}
+.svc-pb-services-custom-input { flex: 1; }
+.svc-pb-services-custom-add {
+  flex: 0 0 auto;
+  padding: 0 1rem;
+  background: var(--gildhart-green);
+  color: #ffffff;
+  border: 0;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.svc-pb-services-custom-add:hover { background: var(--gildhart-black); }
+
+/* Inline max-selection message */
+.svc-pb-services-max-msg {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(201, 164, 74, 0.12);
+  border-left: 3px solid var(--gildhart-gold);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1a2b3c;
+  line-height: 1.4;
+}
+
+/* Mobile: dropdown becomes a bottom sheet */
+.svc-pb-services-sheet-backdrop { display: none; }
+@media (max-width: 640px) {
+  .svc-pb-services-group.is-open .svc-pb-services-sheet-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    border: 0;
+    padding: 0;
+    z-index: 90;
+    cursor: pointer;
+  }
+  .svc-pb-services-dropdown {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 70vh;
+    border-radius: 18px 18px 0 0;
+    padding: 1rem 0.875rem max(1.25rem, env(safe-area-inset-bottom));
+    z-index: 100;
+    box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.25);
+  }
+  .svc-pb-services-dropdown::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: rgba(15, 23, 42, 0.18);
+    border-radius: 999px;
+    margin: 0.125rem auto 0.875rem;
+  }
+  .svc-pb-services-option {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+  .svc-pb-services-pill { font-size: 0.875rem; }
+  .svc-pb-services-pill-label { max-width: 180px; }
+}
+
 /* ── S4: Math (The Numbers) section ─────────────────────────── */
 
 .svc-math {
