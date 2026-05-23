@@ -23,8 +23,22 @@ if ( ! gh_field( 'service_logo_bar_show', 1 ) ) {
 $label = gh_field( 'service_logo_bar_label', 'Every practice live is generating enquiries they never had before' );
 $logos = get_field( 'service_logo_bar_logos' );
 
+/**
+ * Fallback: when the current Service post has no logos populated,
+ * borrow them from the Agent post so newly-rostered Service pages
+ * (e.g. the Playbook) get the carousel rendered out of the box
+ * without requiring a duplicate ACF upload. Editors can override
+ * by uploading logos to the current post's Logo Bar field.
+ */
 if ( empty( $logos ) ) {
-    return; // No logos = no section
+    $fallback_post = get_page_by_path( 'the-agent', OBJECT, 'service' );
+    if ( $fallback_post && $fallback_post->ID !== get_the_ID() ) {
+        $logos = get_field( 'service_logo_bar_logos', $fallback_post->ID );
+    }
+}
+
+if ( empty( $logos ) ) {
+    return; // Still nothing = no section
 }
 
 // Tile each unique logo enough times so a single set has MIN_PER_SET
