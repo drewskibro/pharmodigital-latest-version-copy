@@ -1662,6 +1662,7 @@
   min-width: 220px;
   max-width: 280px;
   height: auto;
+  border-radius: 12px;
 }
 
 .svc-system-module-label {
