@@ -320,7 +320,7 @@ function gildhart_service_section_roster( $slug ) {
         'the-playbook' => array(
             'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'playing-field',
             'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'playbook-checkout', 'math',
-            'next-steps', 'faq', 'guarantee', 'final-cta',
+            'next-steps', 'faq', 'guarantee',
         ),
         'the-agent' => array(
             // A0
@@ -393,7 +393,6 @@ function gildhart_service_field_group_map() {
         'group_gh_service_next_steps'       => 'next-steps',
         'group_gh_service_faq'              => 'faq',
         'group_gh_service_guarantee'        => 'guarantee',
-        'group_gh_service_final_cta'        => 'final-cta',
     );
 }
 
@@ -636,18 +635,6 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_guarantee_headline'      => 'If You Implement This, It Works',
         'service_guarantee_body'          => "This isn't a promise. It's a documented fact. Three practices. Three different specialties. Same system. Same result.",
         'service_guarantee_personal_text' => "Go through all 5 modules. Follow the system. If you still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call.</strong> You're not buying a course. You're getting a system that works — and I'll make sure you know how to use it.",
-        // Final CTA
-        'service_final_eyebrow'         => 'Your Turn',
-        'service_final_headline'        => 'Ealing Spent £497. Then Generated £100k From One Service.',
-        'service_final_body'            => "Every month you pay for marketing. Every month the results are someone else's to switch off. This is different. One purchase. One system. Yours forever.",
-        'service_final_footer_line'     => 'Ealing did it. Superior did it. Southdowns did it. National chains spent millions. They spent £497.',
-        'service_final_price_eyebrow'   => 'The AI Search Playbook',
-        'service_final_price_title'     => 'One System. Every AI Platform. Yours Forever.',
-        'service_final_price_value'     => '£497',
-        'service_final_price_qualifier' => 'one-time · lifetime access',
-        'service_final_price_cta_label' => 'Get Instant Access — £497',
-        'service_final_price_cta_url'   => '#buy-now',
-        'service_final_price_secondary' => 'Or <a href="#contact">talk to us about Done-For-You →</a>',
     );
 
     // Slug-specific defaults override Playbook defaults (the fallback).
