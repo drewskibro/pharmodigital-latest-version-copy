@@ -1829,13 +1829,10 @@
   .svc-medihub-caption { margin-top: 1.75rem; font-size: 0.8125rem; letter-spacing: 0.12em; }
 }
 
-/* ── S4: The Offer (Window → Value Stack → Outcomes → CTA) ────
- * Replaces the old tier-card / strap / "Why Early Buyers Win" stack.
- * Single full-width section over the hero cream/peach/mint gradient,
- * carrying four parts that flow continuously with no background
- * breaks between them. Numbers and accents in brand gold; body
- * copy and headlines in dark navy for maximum contrast against
- * the gradient.
+/* ── S4: The Window (formerly a four-part Offer block — Parts
+ * 02-04 retired once the dedicated Playbook Checkout section took
+ * over the offer mechanics). Sits above the checkout section over
+ * the hero's cream/peach/mint gradient as a long-form copy beat.
  */
 .svc-offer {
   background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
@@ -1848,29 +1845,19 @@
   margin: 0 auto;
   position: relative;
 }
-
-/* Shared part container — generous vertical rhythm between the four
- * parts, no per-part backgrounds (the gradient runs the whole way). */
 .svc-offer-part {
-  padding: 4rem 0;
+  padding: 1rem 0;
   text-align: center;
 }
-.svc-offer-part:first-of-type { padding-top: 1rem; }
-.svc-offer-part:last-of-type  { padding-bottom: 1rem; }
-
-/* Eyebrow — gold on Window, forest green on Stack. */
 .svc-offer-eyebrow {
   font-family: 'Inter', sans-serif;
   font-size: 0.8125rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--gildhart-gold);
   margin: 0 0 1.25rem;
 }
-.svc-offer-eyebrow--gold  { color: var(--gildhart-gold); }
-.svc-offer-eyebrow--green { color: var(--gildhart-green); }
-
-/* Shared H2 — dark navy, large display, centred. */
 .svc-offer-headline {
   font-family: 'Inter', sans-serif;
   font-size: clamp(2rem, 3.8vw, 3rem);
@@ -1881,8 +1868,6 @@
   margin: 0 auto 1.25rem;
   max-width: 880px;
 }
-
-/* ─── PART 01: The Window ─── */
 .svc-offer-window-subhead {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
@@ -1920,204 +1905,13 @@
   text-align: center;
 }
 
-/* ─── PART 02: What You Get Today ─── */
-.svc-offer-stack-subtext {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 500;
-  color: rgba(26, 43, 60, 0.7);
-  line-height: 1.6;
-  margin: 0 auto 2.75rem;
-  max-width: 640px;
-}
-.svc-offer-stack-list {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-  max-width: 740px;
-  text-align: left;
-}
-.svc-offer-stack-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.875rem;
-  padding: 0.875rem 0;
-  border-bottom: 1px solid rgba(26, 43, 60, 0.08);
-}
-.svc-offer-stack-list li:last-child { border-bottom: 0; }
-.svc-offer-check {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: rgba(139, 105, 20, 0.12);
-  color: #8B6914;
-  font-size: 0.875rem;
-  font-weight: 800;
-  line-height: 1;
-  margin-top: 0.125rem;
-}
-.svc-offer-stack-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 400;
-  color: rgba(26, 43, 60, 0.92);
-  line-height: 1.7;
-}
-.svc-offer-stack-anchor {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-style: italic;
-  font-weight: 500;
-  color: rgba(26, 43, 60, 0.85);
-  line-height: 1.7;
-  max-width: 680px;
-  margin: 2.75rem auto 0;
-  text-align: center;
-}
-
-/* ─── PART 03: Client Outcomes ─── */
-.svc-offer-outcomes-row {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 0;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.svc-offer-stat {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem 1.75rem;
-  border-right: 1px solid rgba(201, 164, 74, 0.45);
-}
-.svc-offer-stat:last-child { border-right: 0; }
-.svc-offer-stat-value {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(2.75rem, 5vw, 3.75rem);
-  font-weight: 900;
-  color: #8B6914;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-.svc-offer-stat-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #1a2b3c;
-  line-height: 1.45;
-  text-align: center;
-}
-.svc-offer-stat-client {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
-  font-style: italic;
-  font-weight: 500;
-  color: rgba(26, 43, 60, 0.65);
-  line-height: 1.4;
-}
-
-/* ─── PART 04: Price and CTA ─── */
-.svc-offer-cta {
-  max-width: 740px;
-  margin: 0 auto;
-}
-.svc-offer-price {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.625rem;
-  margin: 0 0 2.5rem;
-}
-.svc-offer-price-value {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(2.25rem, 4vw, 3rem);
-  font-weight: 900;
-  color: #8B6914;
-  letter-spacing: -0.025em;
-  line-height: 1;
-}
-.svc-offer-price-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 500;
-  color: rgba(26, 43, 60, 0.85);
-  line-height: 1.5;
-}
-.svc-offer-cta-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: var(--gildhart-green);
-  color: #FFFDF8;
-  padding: 1.125rem 2.25rem;
-  border-radius: 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(30, 61, 47, 0.22);
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-.svc-offer-cta-primary:hover {
-  background: var(--gildhart-black);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 32px rgba(30, 61, 47, 0.32);
-}
-.svc-offer-cta-arrow { display: inline-block; transition: transform 0.2s ease; }
-.svc-offer-cta-primary:hover .svc-offer-cta-arrow { transform: translateX(3px); }
-.svc-offer-cta-secondary {
-  display: inline-block;
-  margin: 1.5rem auto 0;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: rgba(26, 43, 60, 0.72);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
-  transition: color 0.2s ease;
-}
-.svc-offer-cta-secondary:hover { color: var(--gildhart-green); }
-
 @media (max-width: 768px) {
   .svc-offer { padding: 4.5rem 1.25rem 5rem; }
-  .svc-offer-part { padding: 3rem 0; }
   .svc-offer-eyebrow { font-size: 0.75rem; letter-spacing: 0.12em; margin-bottom: 1rem; }
   .svc-offer-headline { font-size: clamp(1.625rem, 7vw, 2rem); }
   .svc-offer-window-subhead { font-size: 1.0625rem; margin-bottom: 2rem; }
   .svc-offer-window-body p { font-size: 1rem; line-height: 1.75; }
   .svc-offer-window-closer { font-size: 1.125rem; margin-top: 2rem; }
-  .svc-offer-stack-subtext { font-size: 1rem; margin-bottom: 2rem; }
-  .svc-offer-stack-list li { padding: 0.75rem 0; gap: 0.75rem; }
-  .svc-offer-stack-text { font-size: 1rem; line-height: 1.65; }
-  .svc-offer-stack-anchor { font-size: 0.9375rem; margin-top: 2rem; }
-
-  /* Outcomes stack vertically — gold dividers removed, generous
-   * spacing between each stat. */
-  .svc-offer-outcomes-row { flex-direction: column; gap: 2.25rem; }
-  .svc-offer-stat { padding: 0; border-right: 0; }
-  .svc-offer-stat-value { font-size: clamp(2.5rem, 12vw, 3.25rem); }
-
-  /* Primary CTA full width on mobile per spec. */
-  .svc-offer-price { margin-bottom: 2rem; }
-  .svc-offer-cta-primary {
-    display: flex;
-    width: 100%;
-    padding: 1.125rem 1.25rem;
-    font-size: 0.9375rem;
-  }
-  .svc-offer-cta-secondary { font-size: 0.875rem; margin-top: 1.25rem; }
 }
 
 /* ── S4b: Playbook Checkout section ──────────────────────────
