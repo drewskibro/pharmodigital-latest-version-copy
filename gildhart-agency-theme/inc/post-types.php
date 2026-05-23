@@ -319,8 +319,8 @@ function gildhart_service_section_roster( $slug ) {
     $rosters = array(
         'the-playbook' => array(
             'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'playing-field',
-            'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'math',
-            'faq', 'guarantee', 'final-cta',
+            'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'playbook-checkout', 'math',
+            'next-steps', 'faq', 'guarantee', 'final-cta',
         ),
         'the-agent' => array(
             // A0
@@ -388,7 +388,9 @@ function gildhart_service_field_group_map() {
         'group_gh_service_what_you_get'     => 'what-you-get',
         'group_gh_service_medihub_testimonial' => 'medihub-testimonial',
         'group_gh_service_early_buyers'     => 'early-buyers',
+        'group_gh_service_pb_checkout'      => 'playbook-checkout',
         'group_gh_service_math'             => 'math',
+        'group_gh_service_next_steps'       => 'next-steps',
         'group_gh_service_faq'              => 'faq',
         'group_gh_service_guarantee'        => 'guarantee',
         'group_gh_service_final_cta'        => 'final-cta',
@@ -619,6 +621,10 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_math_eyebrow'     => 'The Numbers',
         'service_math_headline'    => 'What This Actually Means For You',
         'service_math_subheadline' => "The playbook costs £497. But what you're really buying depends on who you are.",
+        // Next Steps
+        'service_next_eyebrow'     => 'Your Timeline',
+        'service_next_headline'    => 'What Happens Next',
+        'service_next_subheadline' => 'From purchase to AI rankings — exactly as it happened for Ealing and Superior.',
         // FAQ
         'service_faq_eyebrow'   => 'No Surprises',
         'service_faq_headline'  => "Questions You're Asking",
