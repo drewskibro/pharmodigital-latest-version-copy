@@ -2281,6 +2281,47 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Service · Medihub Testimonial */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_medihub_testimonial',
+    'title'      => 'Service · Medihub Testimonial',
+    'menu_order' => 7,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_medihub_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_medihub_testimonial_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array(
+            'key'   => 'field_gh_service_medihub_eyebrow',
+            'label' => 'Eyebrow',
+            'name'  => 'service_medihub_testimonial_eyebrow',
+            'type'  => 'text',
+            'instructions' => 'Gold small caps above the screenshot. Default: "From the Field".',
+        ),
+        array(
+            'key'           => 'field_gh_service_medihub_screenshot',
+            'label'         => 'LinkedIn Screenshot',
+            'name'          => 'medihub_linkedin_screenshot',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Upload the verified LinkedIn recommendation screenshot. Recommended width 1600px+ for retina sharpness. Renders at 800px max width with 12px rounded corners and a hairline gold border. Section hides automatically if empty.',
+        ),
+        array(
+            'key'   => 'field_gh_service_medihub_caption',
+            'label' => 'Caption',
+            'name'  => 'service_medihub_testimonial_caption',
+            'type'  => 'text',
+            'instructions' => 'Gold small caps line below the screenshot. Default: "Verified LinkedIn recommendation · May 2026".',
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · Sub-case Proof */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_sub_case_proof',
