@@ -2155,6 +2155,21 @@
   line-height: 1.45;
   margin: -0.2rem 0 0.625rem;
 }
+/* Reassurance microcopy directly below the multi-select. Slightly
+ * smaller than the body so it reads as a footnote, italic so it
+ * doesn't compete with the form labels, with a subtle gold left
+ * border to tie it to the rest of the section's brand accents. */
+.svc-pb-services-reassure {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.55;
+  margin: 0.75rem 0 0;
+  padding: 0.625rem 0 0.625rem 0.875rem;
+  border-left: 2px solid rgba(201, 164, 74, 0.55);
+}
 
 /* Pill row above the search input */
 .svc-pb-services-pills {
