@@ -2079,22 +2079,30 @@
 }
 
 /* ─── Pricing card ─── */
+/* Pricing card — "premium membership card" treatment. Background is
+ * a subtle warm-cream → pure-white gradient (top slightly warmer,
+ * bottom pure white). The border itself is a gold gradient that's
+ * brighter at the top edge and fades to a softer gold around the
+ * sides + bottom — built via background-clip's padding-box / border-box
+ * trick so a single element renders both layers without nesting. */
 .svc-pb-checkout-card {
-  background: #ffffff;
-  border: 1px solid rgba(201, 164, 74, 0.55);
+  background:
+    linear-gradient(180deg, #fffaf0 0%, #fffefb 35%, #ffffff 100%) padding-box,
+    linear-gradient(180deg, rgba(201, 164, 74, 0.85) 0%, rgba(201, 164, 74, 0.45) 35%, rgba(201, 164, 74, 0.28) 100%) border-box;
+  border: 1.5px solid transparent;
   border-radius: 20px;
-  padding: 2.25rem 2rem;
-  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.07), 0 2px 6px rgba(15, 23, 42, 0.04);
   text-align: center;
 }
 .svc-pb-checkout-card-label {
   font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--gildhart-gold);
-  margin: 0 0 1.25rem;
+  margin: 0 0 2rem;
 }
 .svc-pb-checkout-card-price {
   font-family: 'Inter', sans-serif;
@@ -2103,29 +2111,38 @@
   color: #1a2b3c;
   letter-spacing: -0.03em;
   line-height: 1;
-  margin: 0 0 0.5rem;
+  margin: 0 0 1.125rem;
 }
+/* "one-time · lifetime access" — now a forest-green pill, not muted
+ * footnote copy. Reads as a selling-point badge alongside the price. */
 .svc-pb-checkout-card-suffix {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: rgba(26, 43, 60, 0.6);
-  line-height: 1.5;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gildhart-cream, #F5F3EF);
+  background: var(--gildhart-green, #1E3D2F);
+  border-radius: 20px;
+  padding: 0.4rem 0.95rem;
   margin: 0;
+  line-height: 1.2;
 }
 .svc-pb-checkout-card-divider {
   height: 1px;
-  background: rgba(201, 164, 74, 0.4);
-  margin: 1.75rem auto;
+  background: rgba(201, 164, 74, 0.3);
+  margin: 2.5rem auto;
   max-width: 200px;
 }
 .svc-pb-checkout-card-feature {
   font-family: 'Inter', sans-serif;
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #1a2b3c;
-  line-height: 1.45;
+  line-height: 1.6;
   margin: 0;
+  padding-top: 0.5rem;
 }
 
 /* ─── Form wrapper (fields use .svc-closing-form-* — see above) ─── */
@@ -2155,7 +2172,9 @@
   .svc-pb-checkout-hero-image img { max-height: 240px; }
   .svc-pb-checkout-check-text { font-size: 1rem; line-height: 1.6; }
   .svc-pb-checkout-left-closer { font-size: 1.125rem; }
-  .svc-pb-checkout-card { padding: 1.75rem 1.5rem; }
+  .svc-pb-checkout-card { padding: 2.25rem 1.75rem; }
+  .svc-pb-checkout-card-label { font-size: 0.8125rem; margin-bottom: 1.5rem; }
+  .svc-pb-checkout-card-divider { margin: 2rem auto; }
   .svc-pb-checkout-form { padding: 1.5rem; }
   .svc-pb-checkout-right-closer { font-size: 1rem; margin-top: 0.75rem; }
 }
