@@ -319,7 +319,7 @@ function gildhart_service_section_roster( $slug ) {
     $rosters = array(
         'the-playbook' => array(
             'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'playing-field',
-            'method', 'what-you-get', 'medihub-testimonial', 'sub-case-proof', 'early-buyers', 'math',
+            'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'math',
             'next-steps', 'faq', 'guarantee', 'final-cta',
         ),
         'the-agent' => array(
@@ -387,7 +387,6 @@ function gildhart_service_field_group_map() {
         'group_gh_service_method'           => 'method',
         'group_gh_service_what_you_get'     => 'what-you-get',
         'group_gh_service_medihub_testimonial' => 'medihub-testimonial',
-        'group_gh_service_sub_case_proof'   => 'sub-case-proof',
         'group_gh_service_early_buyers'     => 'early-buyers',
         'group_gh_service_math'             => 'math',
         'group_gh_service_next_steps'       => 'next-steps',
@@ -615,11 +614,6 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_what_you_get_eyebrow'     => 'The System',
         'service_what_you_get_headline'    => 'What Ealing, Superior, and Puri Actually Used. Now Yours.',
         'service_what_you_get_subheadline' => 'The same system. Used across three practices. Now generating five figures monthly, £500k annual revenue, and £100k from a single service. Fully automated. Yours today.',
-        // Sub-case Proof
-        'service_sub_case_eyebrow'     => 'The Proof',
-        'service_sub_case_headline'    => 'Real Traffic. Real Results. Real Data.',
-        'service_sub_case_subheadline' => 'Google Search Console screenshots from clients who used this system.',
-        'service_sub_case_footer'      => 'Verified Search Console data. No invented numbers. Just results.',
         // Early Buyers
         'service_early_buyers_strap_price'      => '£497 once.',
         'service_early_buyers_strap_desc'       => 'The Complete System. Cowork Included. Lifetime Support.',

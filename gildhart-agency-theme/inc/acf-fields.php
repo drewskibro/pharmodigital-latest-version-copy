@@ -2322,42 +2322,6 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
-/* Service · Sub-case Proof */
-acf_add_local_field_group( array(
-    'key'        => 'group_gh_service_sub_case_proof',
-    'title'      => 'Service · Sub-case Proof',
-    'menu_order' => 7,
-    'fields'     => array(
-        array(
-            'key'           => 'field_gh_service_sc_show',
-            'label'         => 'Show this section',
-            'name'          => 'service_sub_case_show',
-            'type'          => 'true_false',
-            'default_value' => 1,
-            'ui'            => 1,
-        ),
-        array( 'key' => 'field_gh_service_sc_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_sub_case_eyebrow',     'type' => 'text' ),
-        array( 'key' => 'field_gh_service_sc_headline',    'label' => 'Headline',    'name' => 'service_sub_case_headline',    'type' => 'text' ),
-        array( 'key' => 'field_gh_service_sc_subheadline', 'label' => 'Subheadline', 'name' => 'service_sub_case_subheadline', 'type' => 'textarea', 'rows' => 3 ),
-        array(
-            'key' => 'field_gh_service_sc_cards', 'label' => 'Cards', 'name' => 'service_sub_case_cards',
-            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
-            'instructions' => 'Two cards is the designed default. Each card = a Search Console screenshot + a caption block.',
-            'sub_fields' => array(
-                array( 'key' => 'field_gh_service_sc_card_name', 'label' => 'Client Name', 'name' => 'name', 'type' => 'text' ),
-                array(
-                    'key' => 'field_gh_service_sc_card_image', 'label' => 'Screenshot',  'name' => 'image',
-                    'type' => 'image', 'return_format' => 'id', 'preview_size' => 'medium',
-                ),
-                array( 'key' => 'field_gh_service_sc_card_result', 'label' => 'Result Line', 'name' => 'result', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
-                array( 'key' => 'field_gh_service_sc_card_data',   'label' => 'Data Line',   'name' => 'data',   'type' => 'text', 'instructions' => 'Mono caps line. e.g. "5.93K clicks · 1.07M impressions · 3 months".' ),
-            ),
-        ),
-        array( 'key' => 'field_gh_service_sc_footer', 'label' => 'Footer Line', 'name' => 'service_sub_case_footer', 'type' => 'text' ),
-    ),
-    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
-) );
-
 /* Service · Early Buyers */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_early_buyers',
