@@ -2078,6 +2078,95 @@ acf_add_local_field_group( array(
 ) );
 
 /* Service · What You Get */
+
+/**
+ * Default rows for the System section "Cards" repeater. Single source
+ * of truth — used both by the template (when the repeater is empty)
+ * AND by the ACF load_value filter below to seed the repeater the
+ * first time an editor opens the post, so the rows are already there
+ * to edit rather than appearing as a blank "+ Add Row" button.
+ */
+if ( ! function_exists( 'gh_service_system_default_modules' ) ) {
+    function gh_service_system_default_modules() {
+        return array(
+            array(
+                'icon_kind'        => 'menu',
+                'icon'             => 0,
+                'label'            => 'Step 01 — Onboarding',
+                'title'            => "Most Clinics Spend Months Figuring Out Where to Start. You'll Know in Five Minutes.",
+                'subtitle'         => 'Select your services. Everything builds around them.',
+                'body'             => 'During onboarding you choose up to five services from a guided menu — travel vaccines, weight loss, aesthetics, dentistry, cosmetic surgery. One decision. Your knowledge base, content architecture, and ranking targets all build around that selection automatically.',
+                'stat_value'       => '10+',
+                'stat_descriptor'  => 'pre-built healthcare knowledge bases',
+                'is_closer'        => 0,
+            ),
+            array(
+                'icon_kind'        => 'library',
+                'icon'             => 0,
+                'label'            => 'Step 02 — Knowledge Base',
+                'title'            => 'The Only Technical Step You Ever Take Is Uploading One Folder.',
+                'subtitle'         => 'Everything inside already built. Already compliant. Already structured for AI.',
+                'body'             => 'We build your knowledge base from our pre-verified healthcare content library — clinically accurate and aligned with GPhC, GMC, GDC, and CQC standards. You download it. You drag it into Cowork. Claude handles everything from that point forward.',
+                'stat_value'       => 'Verified',
+                'stat_descriptor'  => 'Built to the standards of your regulatory body. GPhC, GMC, GDC, or CQC depending on your specialism.',
+                'is_closer'        => 0,
+            ),
+            array(
+                'icon_kind'        => 'cycle',
+                'icon'             => 0,
+                'label'            => 'Step 03 — The Skills',
+                'title'            => 'You Review the Outputs. Claude Does Everything Else.',
+                'subtitle'         => 'Connected to Google Search Console. Running every week.',
+                'body'             => "The Skills find the questions your patients are typing into ChatGPT, Google AI, and Perplexity. They build the content. They feed what's working back into the next cycle. Every week. Automatically.",
+                'stat_value'       => '6 wks',
+                'stat_descriptor'  => 'Ealing beat Boots. Superior hit 50% of sales from AI search.',
+                'is_closer'        => 0,
+            ),
+            array(
+                'icon_kind'        => 'engagement',
+                'icon'             => 0,
+                'label'            => 'Step 04 — The Content',
+                'title'            => 'An IVF Clinic Started Sending Referrals. A School Enquired About 200 Students. This Is Why.',
+                'subtitle'         => 'Six minutes of engagement versus thirty seconds. AI notices the difference.',
+                'body'             => 'Content built from your clinical expertise gets read for 6 minutes instead of 30 seconds. That dwell time is what Claude, ChatGPT, and Google AI read as authority. It is the difference between being ignored and being recommended.',
+                'stat_value'       => '6m 40s',
+                'stat_descriptor'  => 'Ealing Travel Clinic avg. session duration',
+                'is_closer'        => 0,
+            ),
+            array(
+                'icon_kind'        => 'dashboard',
+                'icon'             => 0,
+                'label'            => 'Step 05 — The Results',
+                'title'            => 'Every Week the System Gets Smarter. Every Week the Gap Widens.',
+                'subtitle'         => 'Live in Cowork. Watching every AI platform. Automatically.',
+                'body'             => "Claude monitors Google AI Overviews, ChatGPT, Perplexity, and Claude itself every week. You see exactly where you appear, which competitors you've overtaken, and what the next cycle should target. Every cycle feeds the next one. The longer it runs, the harder you are to displace.",
+                'stat_value'       => '50%',
+                'stat_descriptor'  => "of Superior Pharmacy's sales now come through ChatGPT",
+                'is_closer'        => 1,
+            ),
+        );
+    }
+}
+
+/**
+ * Seed the System Cards repeater with the default rows the first
+ * time a Service post is loaded in the admin and the field has no
+ * saved value yet. Only fires when the value is genuinely null —
+ * once the editor saves (even an intentionally empty repeater),
+ * the saved value wins and we don't re-seed. Restricted to the
+ * admin so the front-end template's own default array still kicks
+ * in for any unsaved post the public might hit.
+ */
+add_filter( 'acf/load_value/key=field_gh_service_wyg_modules', function( $value, $post_id, $field ) {
+    if ( ! is_admin() ) {
+        return $value;
+    }
+    if ( $value !== null && $value !== false && $value !== '' ) {
+        return $value;
+    }
+    return gh_service_system_default_modules();
+}, 10, 3 );
+
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_what_you_get',
     'title'      => 'Service · What You Get',
