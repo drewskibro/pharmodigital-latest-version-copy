@@ -470,7 +470,11 @@
     renderPills();
     syncHidden();
     searchEl.value = '';
-    closeDropdown();
+    // Keep the dropdown open after a pick so the user can chain
+    // selections without re-clicking the input — standard multi-select
+    // UX pattern. Re-render with no filter so the just-picked option
+    // disappears from the visible list immediately.
+    renderDropdown('');
     searchEl.focus();
   }
 
@@ -519,6 +523,11 @@
 
   // Events
   searchEl.addEventListener('focus', openDropdown);
+  // Click in addition to focus — without this, clicking the search
+  // input while it's already focused (e.g. immediately after picking
+  // an option) wouldn't reopen the dropdown, because the focus event
+  // only fires on focus transitions, not on every interaction.
+  searchEl.addEventListener('click', openDropdown);
   searchEl.addEventListener('input', function () {
     if (dropdownEl.hidden) openDropdown();
     renderDropdown(searchEl.value);
