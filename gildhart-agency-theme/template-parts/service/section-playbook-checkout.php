@@ -226,6 +226,52 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
                     <input type="url" id="svcPbWebsite" name="website" class="svc-closing-form-input" placeholder="https://yourpractice.co.uk" />
                 </div>
 
+                <div class="svc-closing-form-group svc-pb-services-group" data-services-multiselect>
+                    <label class="svc-closing-form-label" for="svcPbServicesSearch">Which services do you want to dominate?</label>
+                    <p class="svc-pb-services-subtext">Choose up to 5. We build your knowledge base around your selections.</p>
+
+                    <div class="svc-pb-services-pills" data-services-pills role="list" aria-label="Selected services"></div>
+
+                    <div class="svc-pb-services-input-wrap">
+                        <input
+                            type="text"
+                            id="svcPbServicesSearch"
+                            class="svc-closing-form-input svc-pb-services-search"
+                            placeholder="Type to search services…"
+                            autocomplete="off"
+                            aria-haspopup="listbox"
+                            aria-expanded="false"
+                            aria-controls="svcPbServicesDropdown"
+                        />
+                        <div
+                            class="svc-pb-services-dropdown"
+                            id="svcPbServicesDropdown"
+                            data-services-dropdown
+                            role="listbox"
+                            hidden
+                        ></div>
+                    </div>
+
+                    <div class="svc-pb-services-custom" data-services-custom hidden>
+                        <input
+                            type="text"
+                            class="svc-closing-form-input svc-pb-services-custom-input"
+                            data-services-custom-input
+                            placeholder="Type your service here"
+                            aria-label="Custom service name"
+                        />
+                        <button type="button" class="svc-pb-services-custom-add" data-services-custom-add>Add</button>
+                    </div>
+
+                    <p class="svc-pb-services-max-msg" data-services-max-msg hidden role="alert">
+                        Maximum 5 services selected. Remove one to add another.
+                    </p>
+
+                    <input type="hidden" name="services" data-services-value value="" />
+
+                    <button type="button" class="svc-pb-services-sheet-backdrop" data-services-sheet-close hidden aria-label="Close service selector"></button>
+                </div>
+
                 <?php if ( $right_closer ) : ?>
                     <p class="svc-pb-checkout-right-closer"><?php echo esc_html( $right_closer ); ?></p>
                 <?php endif; ?>
