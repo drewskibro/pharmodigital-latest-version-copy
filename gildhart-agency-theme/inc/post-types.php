@@ -455,6 +455,10 @@ function gildhart_service_faq_defaults( $slug ) {
                     'answer'   => 'You can. Done-for-you starts at £5k/month. But if you want to own the system — no ongoing fees, no dependency on an agency — this is for you. <strong>£497 once vs £60k/year.</strong> Same results.',
                 ),
                 array(
+                    'question' => '"Are there any additional fees once I purchase?"',
+                    'answer'   => 'No. <strong>£995 is the only payment you ever make for the Playbook.</strong> Everything described on this page — the knowledge base, the Claude Skills, the content architecture, the monthly strategy calls, every future update — is included. No subscription. No upgrade fees. No recurring costs of any kind. Lifetime access.',
+                ),
+                array(
                     'question' => '"Is there a refund policy?"',
                     'answer'   => "No refunds — because this works. It's documented. The screenshots don't lie. But if you go through all 5 modules and still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call at no extra charge.</strong> You're not buying a course. You're getting a system that works.",
                 ),
