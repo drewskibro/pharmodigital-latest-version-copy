@@ -36,7 +36,7 @@ if ( ! $screenshot_id ) {
         <?php endif; ?>
 
         <figure class="svc-medihub-figure">
-            <?php echo wp_get_attachment_image( $screenshot_id, 'large', false, array(
+            <?php echo wp_get_attachment_image( $screenshot_id, 'full', false, array(
                 'class'   => 'svc-medihub-image',
                 'alt'     => esc_attr( $caption ),
                 'loading' => 'lazy',
