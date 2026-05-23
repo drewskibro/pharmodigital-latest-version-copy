@@ -2120,6 +2120,232 @@
   .svc-offer-cta-secondary { font-size: 0.875rem; margin-top: 1.25rem; }
 }
 
+/* ── S4b: Playbook Checkout section ──────────────────────────
+ * Two-column desktop payment section. Sits over the same hero
+ * cream/peach/mint gradient as the offer block above so the two
+ * sections read as a continuous narrative beat. Reuses the Agent
+ * page's .svc-closing-* classes for shared components (testimonial
+ * cards, form fields, submit button, secure/joining notes) — only
+ * the layout grid, intro block, gold-check checklist, pricing card,
+ * and the two closer lines get unique .svc-pb-checkout-* classes.
+ *
+ * Desktop grid (4 left rows × 1 right column, right cell spans all
+ * four rows so the form sits flush against the intro + checklist +
+ * testimonials + closer stack):
+ *
+ *   intro        right
+ *   checklist    right
+ *   testimonials right
+ *   left-closer  right
+ *
+ * Mobile single column re-orders so the right column (pricing +
+ * form + CTA + notes) lands between left-closer and testimonials.
+ */
+.svc-pb-checkout {
+  background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+  padding: 6rem 2rem 7rem;
+  position: relative;
+  overflow: hidden;
+}
+.svc-pb-checkout-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "intro        right"
+    "checklist    right"
+    "testimonials right"
+    "left-closer  right";
+  gap: 3rem;
+  align-items: start;
+}
+.svc-pb-checkout-intro        { grid-area: intro; }
+.svc-pb-checkout-checklist    { grid-area: checklist; }
+.svc-pb-checkout-testimonials { grid-area: testimonials; }
+.svc-pb-checkout-left-closer  { grid-area: left-closer; }
+.svc-pb-checkout-right        { grid-area: right; }
+
+/* ─── Intro block ─── */
+.svc-pb-checkout-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1rem;
+}
+.svc-pb-checkout-headline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.875rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: #1a2b3c;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem;
+}
+.svc-pb-checkout-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: rgba(26, 43, 60, 0.92);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ─── Checklist (gold ✓ on the left of each item) ─── */
+.svc-pb-checkout-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.svc-pb-checkout-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(26, 43, 60, 0.08);
+}
+.svc-pb-checkout-checklist li:last-child { border-bottom: 0; }
+.svc-pb-checkout-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(139, 105, 20, 0.12);
+  color: #8B6914;
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-top: 0.125rem;
+}
+.svc-pb-checkout-check-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: rgba(26, 43, 60, 0.92);
+  line-height: 1.65;
+}
+
+/* ─── Testimonials wrapper (cards themselves use .svc-closing-*) ─── */
+.svc-pb-checkout-testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ─── Bold closer lines ─── */
+.svc-pb-checkout-left-closer {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-weight: 800;
+  color: #1a2b3c;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.svc-pb-checkout-right-closer {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a2b3c;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin: 1rem 0 0.5rem;
+}
+
+/* ─── Right column wrapper ─── */
+.svc-pb-checkout-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ─── Pricing card ─── */
+.svc-pb-checkout-card {
+  background: #ffffff;
+  border: 1px solid rgba(201, 164, 74, 0.55);
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  text-align: center;
+}
+.svc-pb-checkout-card-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1.25rem;
+}
+.svc-pb-checkout-card-price {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  color: #1a2b3c;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 0.5rem;
+}
+.svc-pb-checkout-card-suffix {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(26, 43, 60, 0.6);
+  line-height: 1.5;
+  margin: 0;
+}
+.svc-pb-checkout-card-divider {
+  height: 1px;
+  background: rgba(201, 164, 74, 0.4);
+  margin: 1.75rem auto;
+  max-width: 200px;
+}
+.svc-pb-checkout-card-feature {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #1a2b3c;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ─── Form wrapper (fields use .svc-closing-form-* — see above) ─── */
+.svc-pb-checkout-form {
+  background: #ffffff;
+  border: 1px solid rgba(201, 164, 74, 0.55);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+@media (max-width: 960px) {
+  .svc-pb-checkout { padding: 4.5rem 1.25rem 5rem; }
+  .svc-pb-checkout-inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "intro"
+      "checklist"
+      "left-closer"
+      "right"
+      "testimonials";
+    gap: 2rem;
+  }
+  .svc-pb-checkout-headline { font-size: clamp(1.625rem, 6vw, 2rem); }
+  .svc-pb-checkout-body { font-size: 1rem; line-height: 1.75; }
+  .svc-pb-checkout-check-text { font-size: 1rem; line-height: 1.6; }
+  .svc-pb-checkout-left-closer { font-size: 1.125rem; }
+  .svc-pb-checkout-card { padding: 1.75rem 1.5rem; }
+  .svc-pb-checkout-form { padding: 1.5rem; }
+  .svc-pb-checkout-right-closer { font-size: 1rem; margin-top: 0.75rem; }
+}
+
 /* ── S4: Math (The Numbers) section ─────────────────────────── */
 
 .svc-math {
