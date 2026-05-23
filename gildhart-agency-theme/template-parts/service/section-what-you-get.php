@@ -71,7 +71,7 @@ if ( empty( $modules ) && function_exists( 'gh_service_system_default_modules' )
             <?php endif; ?>
             <?php if ( $built_with_id ) : ?>
                 <div class="svc-system-built-with">
-                    <?php echo wp_get_attachment_image( $built_with_id, 'medium', false, array(
+                    <?php echo wp_get_attachment_image( $built_with_id, 'large', false, array(
                         'alt'     => 'Built with Claude',
                         'loading' => 'lazy',
                     ) ); ?>
@@ -98,7 +98,7 @@ if ( empty( $modules ) && function_exists( 'gh_service_system_default_modules' )
                         <div class="svc-system-module-inner">
                             <?php if ( $badge_id ) : ?>
                                 <div class="svc-system-module-badge">
-                                    <?php echo wp_get_attachment_image( $badge_id, 'medium', false, array(
+                                    <?php echo wp_get_attachment_image( $badge_id, 'large', false, array(
                                         'alt'     => esc_attr( $title ),
                                         'loading' => 'lazy',
                                     ) ); ?>
