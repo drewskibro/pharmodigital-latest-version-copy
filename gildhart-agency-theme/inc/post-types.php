@@ -615,13 +615,8 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_what_you_get_eyebrow'     => 'The System',
         'service_what_you_get_headline'    => 'What Ealing, Superior, and Puri Actually Used. Now Yours.',
         'service_what_you_get_subheadline' => 'The same system. Used across three practices. Now generating five figures monthly, £500k annual revenue, and £100k from a single service. Fully automated. Yours today.',
-        // The Offer (4-part section replacing the old Early Buyers stack)
-        'service_offer_price_value'         => '£497 once.',
-        'service_offer_price_descriptor'    => 'The Complete System. Cowork Included. Lifetime Support.',
-        'service_offer_primary_cta_label'   => 'Get Instant Access — £497',
-        'service_offer_primary_cta_url'     => '#checkout',
-        'service_offer_secondary_cta_label' => 'Or talk to us about Done For You',
-        'service_offer_secondary_cta_url'   => '/contact/',
+        // The Window — no slug-aware defaults needed; the template's
+        // inline fallback array carries the single-part copy.
         // Math
         'service_math_eyebrow'     => 'The Numbers',
         'service_math_headline'    => 'What This Actually Means For You',
