@@ -291,7 +291,10 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
                     <button type="button" class="svc-pb-services-sheet-backdrop" data-services-sheet-close hidden aria-label="Close service selector"></button>
                 </div>
 
-                <p class="svc-pb-services-reassure">Not sure? Make your best guess for now. During onboarding we'll research exactly what patients in your area are searching for across AI platforms — and we'll confirm or refine your selections based on real keyword data before we build anything.</p>
+                <div class="svc-pb-services-reassure">
+                    <p class="svc-pb-services-reassure-eyebrow">Included in your onboarding</p>
+                    <p class="svc-pb-services-reassure-text">Not sure? Make your best guess for now. During onboarding we'll research exactly what patients in your area are searching for across AI platforms — and we'll confirm or refine your selections based on real keyword data before we build anything.</p>
+                </div>
 
                 <?php if ( $right_closer ) : ?>
                     <p class="svc-pb-checkout-right-closer"><?php echo esc_html( $right_closer ); ?></p>
