@@ -2357,79 +2357,6 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
-/* Service · Playbook Checkout */
-acf_add_local_field_group( array(
-    'key'        => 'group_gh_service_pb_checkout',
-    'title'      => 'Service · Playbook Checkout',
-    'menu_order' => 9,
-    'fields'     => array(
-        array(
-            'key'           => 'field_gh_service_pb_checkout_show',
-            'label'         => 'Show this section',
-            'name'          => 'service_pb_checkout_show',
-            'type'          => 'true_false',
-            'default_value' => 1,
-            'ui'            => 1,
-        ),
-
-        /* Left column — intro */
-        array( 'key' => 'field_gh_service_pb_checkout_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_pb_checkout_eyebrow',  'type' => 'text' ),
-        array( 'key' => 'field_gh_service_pb_checkout_headline', 'label' => 'Headline', 'name' => 'service_pb_checkout_headline', 'type' => 'text' ),
-        array( 'key' => 'field_gh_service_pb_checkout_body',     'label' => 'Body',     'name' => 'service_pb_checkout_body',     'type' => 'textarea', 'rows' => 4 ),
-
-        /* Left column — checklist */
-        array(
-            'key'   => 'field_gh_service_pb_checkout_checklist',
-            'label' => 'Checklist Items',
-            'name'  => 'service_pb_checkout_checklist',
-            'type'  => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 12,
-            'instructions' => 'Each row renders as one gold ✓ checklist item.',
-            'sub_fields' => array(
-                array( 'key' => 'field_gh_service_pb_checkout_check_text', 'label' => 'Item', 'name' => 'text', 'type' => 'textarea', 'rows' => 2 ),
-            ),
-        ),
-
-        /* Left column — bold closer */
-        array( 'key' => 'field_gh_service_pb_checkout_left_closer', 'label' => 'Left-column Bold Closer', 'name' => 'service_pb_checkout_left_closer', 'type' => 'textarea', 'rows' => 2 ),
-
-        /* Left column — testimonials */
-        array(
-            'key'   => 'field_gh_service_pb_checkout_testimonials',
-            'label' => 'Testimonials',
-            'name'  => 'service_pb_checkout_testimonials',
-            'type'  => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
-            'instructions' => 'Three cards is the designed default. Same component used on the Agent page.',
-            'sub_fields' => array(
-                array( 'key' => 'field_gh_service_pb_checkout_test_quote',  'label' => 'Quote',         'name' => 'quote',  'type' => 'textarea', 'rows' => 4 ),
-                array( 'key' => 'field_gh_service_pb_checkout_test_name',   'label' => 'Name',          'name' => 'name',   'type' => 'text' ),
-                array( 'key' => 'field_gh_service_pb_checkout_test_role',   'label' => 'Title / Role',  'name' => 'role',   'type' => 'text' ),
-                array( 'key' => 'field_gh_service_pb_checkout_test_metric', 'label' => 'Result Badge',  'name' => 'metric', 'type' => 'text', 'instructions' => 'e.g. "55+ bookings per month". Optional.' ),
-                array(
-                    'key'           => 'field_gh_service_pb_checkout_test_avatar',
-                    'label'         => 'Avatar',
-                    'name'          => 'avatar',
-                    'type'          => 'image',
-                    'return_format' => 'id',
-                    'preview_size'  => 'thumbnail',
-                    'instructions'  => 'Square headshot recommended. Falls back to a monogram of the first letter of Name when empty.',
-                ),
-            ),
-        ),
-
-        /* Right column — pricing card */
-        array( 'key' => 'field_gh_service_pb_checkout_card_label',   'label' => 'Card · Top Label',     'name' => 'service_pb_checkout_card_label',   'type' => 'text' ),
-        array( 'key' => 'field_gh_service_pb_checkout_card_price',   'label' => 'Card · Price',         'name' => 'service_pb_checkout_card_price',   'type' => 'text' ),
-        array( 'key' => 'field_gh_service_pb_checkout_card_suffix',  'label' => 'Card · Price Suffix',  'name' => 'service_pb_checkout_card_suffix',  'type' => 'text', 'instructions' => 'Muted line under the price. e.g. "one-time · lifetime access".' ),
-        array( 'key' => 'field_gh_service_pb_checkout_card_feature', 'label' => 'Card · Feature Line',  'name' => 'service_pb_checkout_card_feature', 'type' => 'text', 'instructions' => 'Single feature summary below the gold divider.' ),
-
-        /* Right column — form copy */
-        array( 'key' => 'field_gh_service_pb_checkout_right_closer', 'label' => 'Right-column Bold Closer (above CTA)', 'name' => 'service_pb_checkout_right_closer', 'type' => 'textarea', 'rows' => 2 ),
-        array( 'key' => 'field_gh_service_pb_checkout_cta_label',    'label' => 'CTA Button Label',                     'name' => 'service_pb_checkout_cta_label',    'type' => 'text' ),
-        array( 'key' => 'field_gh_service_pb_checkout_secure_note',  'label' => 'Secure Payment Note',                  'name' => 'service_pb_checkout_secure_note',  'type' => 'text' ),
-        array( 'key' => 'field_gh_service_pb_checkout_joining_note', 'label' => 'Joining Note',                         'name' => 'service_pb_checkout_joining_note', 'type' => 'text' ),
-    ),
-    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
-) );
 
 /* Service · Math */
 acf_add_local_field_group( array(
@@ -2462,40 +2389,6 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
-/* Service · Next Steps */
-acf_add_local_field_group( array(
-    'key'        => 'group_gh_service_next_steps',
-    'title'      => 'Service · Next Steps',
-    'menu_order' => 10,
-    'fields'     => array(
-        array(
-            'key'           => 'field_gh_service_next_show',
-            'label'         => 'Show this section',
-            'name'          => 'service_next_show',
-            'type'          => 'true_false',
-            'default_value' => 1,
-            'ui'            => 1,
-        ),
-        array( 'key' => 'field_gh_service_next_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_next_eyebrow',     'type' => 'text' ),
-        array( 'key' => 'field_gh_service_next_headline',    'label' => 'Headline',    'name' => 'service_next_headline',    'type' => 'text' ),
-        array( 'key' => 'field_gh_service_next_subheadline', 'label' => 'Subheadline', 'name' => 'service_next_subheadline', 'type' => 'textarea', 'rows' => 3 ),
-        array(
-            'key' => 'field_gh_service_next_steps', 'label' => 'Timeline Steps', 'name' => 'service_next_steps',
-            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 12,
-            'instructions' => 'Numbers (1, 2, 3…) auto-render based on row order. Mark the last row "Final Step" for the navy destination card.',
-            'sub_fields' => array(
-                array( 'key' => 'field_gh_service_next_step_label', 'label' => 'Time Label', 'name' => 'label', 'type' => 'text', 'instructions' => 'e.g. "Today", "This Week", "Day 90".' ),
-                array( 'key' => 'field_gh_service_next_step_title', 'label' => 'Step Title', 'name' => 'title', 'type' => 'text' ),
-                array( 'key' => 'field_gh_service_next_step_text',  'label' => 'Body Text',  'name' => 'text',  'type' => 'textarea', 'rows' => 3 ),
-                array(
-                    'key' => 'field_gh_service_next_step_final', 'label' => 'Final Step (navy card)', 'name' => 'is_final',
-                    'type' => 'true_false', 'default_value' => 0, 'ui' => 1,
-                ),
-            ),
-        ),
-    ),
-    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
-) );
 
 /* Service · FAQ */
 acf_add_local_field_group( array(
