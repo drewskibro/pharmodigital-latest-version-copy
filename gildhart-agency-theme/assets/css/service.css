@@ -1665,13 +1665,24 @@
 }
 
 .svc-system-module-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gildhart-green);
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.svc-system-module-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--gildhart-gold);
+  flex: 0 0 auto;
 }
 .svc-system-module-title {
   font-family: 'Inter', sans-serif;
