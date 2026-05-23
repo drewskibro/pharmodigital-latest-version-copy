@@ -2322,10 +2322,10 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
-/* Service · Early Buyers */
+/* Service · The Offer (Window → Value Stack → Outcomes → CTA) */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_early_buyers',
-    'title'      => 'Service · Early Buyers',
+    'title'      => 'Service · The Offer',
     'menu_order' => 8,
     'fields'     => array(
         array(
@@ -2336,62 +2336,88 @@ acf_add_local_field_group( array(
             'default_value' => 1,
             'ui'            => 1,
         ),
+
+        /* ── PART 01 — The Window ── */
         array(
-            'key' => 'field_gh_service_eb_tiers', 'label' => 'Tier Cards', 'name' => 'service_early_buyers_tiers',
-            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 4,
-            'instructions' => 'Three cards is the designed default. "Kind" picks the colour treatment; "Automated" is the centre dark featured card.',
-            'sub_fields' => array(
-                array(
-                    'key' => 'field_gh_service_eb_tier_kind', 'label' => 'Kind', 'name' => 'kind',
-                    'type' => 'select', 'default_value' => 'manual',
-                    'choices' => array(
-                        'manual'    => 'Manual (light cream card)',
-                        'automated' => 'Automated (forest-green featured card, lifted)',
-                        'lifetime'  => 'Lifetime (light cream card)',
-                    ),
-                ),
-                array(
-                    'key'           => 'field_gh_service_eb_tier_image',
-                    'label'         => 'Top Image (optional)',
-                    'name'          => 'image',
-                    'type'          => 'image',
-                    'return_format' => 'id',
-                    'preview_size'  => 'medium',
-                    'instructions'  => 'Renders flush at the top of the card (200px tall, 220px on the featured Automated card). Falls back to a gold-mono placeholder when empty.',
-                ),
-                array( 'key' => 'field_gh_service_eb_tier_banner',  'label' => 'Proof Banner Text', 'name' => 'proof_banner', 'type' => 'text', 'instructions' => 'Mono uppercase strip below the image. Outer cards only — skipped on the featured Automated card.' ),
-                array( 'key' => 'field_gh_service_eb_tier_recom',   'label' => 'Recommended Label (optional)', 'name' => 'recommended', 'type' => 'text', 'instructions' => 'Inline gold caps label, typically "Recommended" on the Automated card.' ),
-                array( 'key' => 'field_gh_service_eb_tier_cat',     'label' => 'Category Label',   'name' => 'category',  'type' => 'text', 'instructions' => 'e.g. "Do It Yourself", "The Automation Layer".' ),
-                array( 'key' => 'field_gh_service_eb_tier_top',     'label' => 'Top Label (gold, optional)', 'name' => 'top_label', 'type' => 'text', 'instructions' => 'e.g. "Included Today", "Included Free". Skipped on the Automated card.' ),
-                array( 'key' => 'field_gh_service_eb_tier_title',   'label' => 'Title',            'name' => 'title',     'type' => 'text' ),
-                array( 'key' => 'field_gh_service_eb_tier_body',    'label' => 'Body',             'name' => 'body',      'type' => 'textarea', 'rows' => 5 ),
-                array(
-                    'key' => 'field_gh_service_eb_tier_bullets', 'label' => 'Bullet List (optional)', 'name' => 'bullets',
-                    'type' => 'repeater', 'layout' => 'table', 'min' => 0,
-                    'sub_fields' => array(
-                        array( 'key' => 'field_gh_service_eb_tier_bullet_text', 'label' => 'Bullet', 'name' => 'text', 'type' => 'text' ),
-                    ),
-                ),
-            ),
+            'key'   => 'field_gh_service_offer_window_msg',
+            'label' => '— PART 01 · The Window —',
+            'name'  => '',
+            'type'  => 'message',
+            'message' => 'Opening frame for the offer. Sets the "SEO in 2006 / mother of all second chances" positioning.',
         ),
-        array( 'key' => 'field_gh_service_eb_strap_price', 'label' => 'Price Strap — Price',     'name' => 'service_early_buyers_strap_price', 'type' => 'text' ),
-        array( 'key' => 'field_gh_service_eb_strap_desc',  'label' => 'Price Strap — Descriptor', 'name' => 'service_early_buyers_strap_desc',  'type' => 'text' ),
-        array( 'key' => 'field_gh_service_eb_cta_label',   'label' => 'CTA Label',                'name' => 'service_early_buyers_cta_label',   'type' => 'text' ),
-        array( 'key' => 'field_gh_service_eb_cta_url',     'label' => 'CTA URL',                  'name' => 'service_early_buyers_cta_url',     'type' => 'text' ),
+        array( 'key' => 'field_gh_service_offer_window_eyebrow',  'label' => 'Window · Eyebrow',  'name' => 'service_offer_window_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_offer_window_headline', 'label' => 'Window · Headline', 'name' => 'service_offer_window_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_offer_window_subhead',  'label' => 'Window · Gold Italic Subhead', 'name' => 'service_offer_window_subhead', 'type' => 'text' ),
         array(
-            'key' => 'field_gh_service_eb_callout_show', 'label' => 'Show "Why Early Buyers Win" Callout', 'name' => 'service_early_buyers_callout_show',
-            'type' => 'true_false', 'default_value' => 1, 'ui' => 1,
-        ),
-        array( 'key' => 'field_gh_service_eb_callout_eyebrow',  'label' => 'Callout — Eyebrow (optional)', 'name' => 'service_early_buyers_callout_eyebrow', 'type' => 'text' ),
-        array( 'key' => 'field_gh_service_eb_callout_headline', 'label' => 'Callout — Headline',           'name' => 'service_early_buyers_callout_headline', 'type' => 'text' ),
-        array(
-            'key' => 'field_gh_service_eb_callout_paras', 'label' => 'Callout — Paragraphs', 'name' => 'service_early_buyers_callout_paragraphs',
-            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
+            'key' => 'field_gh_service_offer_window_paras',
+            'label' => 'Window · Body Paragraphs',
+            'name' => 'service_offer_window_paragraphs',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 12,
             'instructions' => 'Each row is one paragraph. Inline <strong>tags allowed</strong>.',
             'sub_fields' => array(
-                array( 'key' => 'field_gh_service_eb_callout_para_text', 'label' => 'Paragraph', 'name' => 'text', 'type' => 'textarea', 'rows' => 4 ),
+                array( 'key' => 'field_gh_service_offer_window_para_text', 'label' => 'Paragraph', 'name' => 'text', 'type' => 'textarea', 'rows' => 3 ),
             ),
         ),
+        array( 'key' => 'field_gh_service_offer_window_closer', 'label' => 'Window · Bold Closing Line', 'name' => 'service_offer_window_closer', 'type' => 'textarea', 'rows' => 2 ),
+
+        /* ── PART 02 — What You Get Today ── */
+        array(
+            'key'   => 'field_gh_service_offer_stack_msg',
+            'label' => '— PART 02 · What You Get Today —',
+            'name'  => '',
+            'type'  => 'message',
+            'message' => '£497 value stack with gold-checkmark bullet list and italic anchor line below.',
+        ),
+        array( 'key' => 'field_gh_service_offer_stack_eyebrow',  'label' => 'Stack · Eyebrow',  'name' => 'service_offer_stack_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_offer_stack_headline', 'label' => 'Stack · Headline', 'name' => 'service_offer_stack_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_offer_stack_subtext',  'label' => 'Stack · Subtext',  'name' => 'service_offer_stack_subtext',  'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_offer_stack_items',
+            'label' => 'Stack · Value Items',
+            'name' => 'service_offer_stack_items',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 16,
+            'instructions' => 'Each row renders as one ✓ checklist item.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_offer_stack_item_text', 'label' => 'Item', 'name' => 'text', 'type' => 'textarea', 'rows' => 3 ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_offer_stack_anchor', 'label' => 'Stack · Italic Anchor Line', 'name' => 'service_offer_stack_anchor', 'type' => 'textarea', 'rows' => 3 ),
+
+        /* ── PART 03 — Client Outcomes ── */
+        array(
+            'key'   => 'field_gh_service_offer_outcomes_msg',
+            'label' => '— PART 03 · Client Outcomes —',
+            'name'  => '',
+            'type'  => 'message',
+            'message' => 'Three big stat blocks. Renders in a horizontal row on desktop with thin gold dividers between, stacks centred on mobile.',
+        ),
+        array(
+            'key' => 'field_gh_service_offer_outcomes',
+            'label' => 'Outcomes · Stats',
+            'name' => 'service_offer_outcomes',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 4,
+            'instructions' => 'Three rows is the designed default. Each row = a single big stat block.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_offer_outcome_value',  'label' => 'Number',     'name' => 'value',  'type' => 'text', 'instructions' => 'Gold display figure. e.g. "300%", "£100k".' ),
+                array( 'key' => 'field_gh_service_offer_outcome_label',  'label' => 'Label',      'name' => 'label',  'type' => 'text', 'instructions' => 'Small caps label below the number. e.g. "Revenue Growth".' ),
+                array( 'key' => 'field_gh_service_offer_outcome_client', 'label' => 'Client',     'name' => 'client', 'type' => 'text', 'instructions' => 'Italic client attribution. e.g. "Ealing Travel Clinic".' ),
+            ),
+        ),
+
+        /* ── PART 04 — Price and CTA ── */
+        array(
+            'key'   => 'field_gh_service_offer_cta_msg',
+            'label' => '— PART 04 · Price and CTA —',
+            'name'  => '',
+            'type'  => 'message',
+            'message' => 'Closing block. Gold display price + descriptor, primary green "Get Instant Access" button, and a secondary "Done For You" link below.',
+        ),
+        array( 'key' => 'field_gh_service_offer_price_value',         'label' => 'Price · Value',           'name' => 'service_offer_price_value',         'type' => 'text', 'instructions' => 'e.g. "£497 once."' ),
+        array( 'key' => 'field_gh_service_offer_price_descriptor',    'label' => 'Price · Descriptor',      'name' => 'service_offer_price_descriptor',    'type' => 'text', 'instructions' => 'e.g. "The Complete System. Cowork Included. Lifetime Support."' ),
+        array( 'key' => 'field_gh_service_offer_primary_cta_label',   'label' => 'Primary CTA · Label',     'name' => 'service_offer_primary_cta_label',   'type' => 'text' ),
+        array( 'key' => 'field_gh_service_offer_primary_cta_url',     'label' => 'Primary CTA · URL',       'name' => 'service_offer_primary_cta_url',     'type' => 'text', 'instructions' => 'Checkout URL.' ),
+        array( 'key' => 'field_gh_service_offer_secondary_cta_label', 'label' => 'Secondary Link · Label',  'name' => 'service_offer_secondary_cta_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_offer_secondary_cta_url',   'label' => 'Secondary Link · URL',    'name' => 'service_offer_secondary_cta_url',   'type' => 'text', 'instructions' => 'Done-for-you / contact URL.' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );

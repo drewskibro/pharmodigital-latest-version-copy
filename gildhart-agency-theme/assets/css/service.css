@@ -1829,388 +1829,295 @@
   .svc-medihub-caption { margin-top: 1.75rem; font-size: 0.6875rem; letter-spacing: 0.14em; }
 }
 
-/* ── S4: Early Buyers section ───────────────────────────────── */
-
-.svc-early-buyers {
-  background: #fef7ed;
-  padding: 4rem 2rem 6rem;
+/* ── S4: The Offer (Window → Value Stack → Outcomes → CTA) ────
+ * Replaces the old tier-card / strap / "Why Early Buyers Win" stack.
+ * Single full-width section over the hero cream/peach/mint gradient,
+ * carrying four parts that flow continuously with no background
+ * breaks between them. Numbers and accents in brand gold; body
+ * copy and headlines in dark navy for maximum contrast against
+ * the gradient.
+ */
+.svc-offer {
+  background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
+  padding: 6rem 2rem 7rem;
+  position: relative;
+  overflow: hidden;
 }
-.svc-eb-inner {
-  max-width: 1200px;
+.svc-offer-inner {
+  max-width: 1100px;
   margin: 0 auto;
-}
-
-/* Three tier cards */
-/* Tier cards — adopt the homepage Two Paths card system 1:1 so the
- * Playbook offer sits inside the same brand language as the homepage
- * "Choose Your Entry Point" cards.
- *
- * Outer cards (manual / lifetime): cream-white #FFFDF8, 20px radius,
- *   subtle green-tinted border, 2-layer shadow.
- * Featured card (automated): forest green backdrop with a 2px gold
- *   inset ring, physically lifted via -16px top/bottom margin so it
- *   reads as the priority sale, deeper drop shadow, z-index above
- *   siblings.
- *
- * Each card opens with a 200-220px image at the very top (gold-mono
- * placeholder when no image uploaded), then a quiet mono uppercase
- * banner on outer cards (skipped on featured), then the inner block.
- *
- * Body sits in italic with a 2px gold left border — the proof
- * statement treatment that ties this card system together. Bullets
- * are plain on outer cards; featured uses gold em-dash markers.
- * CTAs (when present) baseline-align via margin-top: auto. */
-.svc-tiers {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  align-items: stretch;
-}
-.svc-tier-card {
   position: relative;
-  background: #FFFDF8;
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(30, 61, 47, 0.08);
-  box-shadow:
-    0 1px 2px rgba(13, 26, 18, 0.04),
-    0 12px 32px -16px rgba(13, 26, 18, 0.10);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-.svc-tier-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 4px 12px rgba(13, 26, 18, 0.06),
-    0 24px 48px -16px rgba(13, 26, 18, 0.16);
-}
-/* Featured card — forest green, gold inset ring, lifted above siblings. */
-.svc-tier-card--automated {
-  background: var(--gildhart-green);
-  border: 0;
-  box-shadow:
-    inset 0 0 0 2px var(--gildhart-gold),
-    0 4px 16px rgba(13, 26, 18, 0.12),
-    0 28px 64px -24px rgba(13, 26, 18, 0.30);
-  margin-top: -16px;
-  margin-bottom: -16px;
-  z-index: 2;
-}
-.svc-tier-card--automated:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    inset 0 0 0 2px var(--gildhart-gold),
-    0 8px 24px rgba(13, 26, 18, 0.18),
-    0 36px 80px -24px rgba(13, 26, 18, 0.36);
 }
 
-/* Top image — flush with the top edge, corners masked by the card's
- * overflow:hidden + radius. */
-.svc-tier-card-image {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  flex-shrink: 0;
-  background: rgba(30, 61, 47, 0.06);
-}
-.svc-tier-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.svc-tier-card--automated .svc-tier-card-image {
-  height: 220px;
-  background: rgba(255, 255, 255, 0.04);
-}
-
-/* Placeholder shown when no image is uploaded — gold mono caps on a
- * tone-matched gradient so the empty slot reads as part of the card,
- * not a stray empty box. */
-.svc-tier-card-image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Shared part container — generous vertical rhythm between the four
+ * parts, no per-part backgrounds (the gradient runs the whole way). */
+.svc-offer-part {
+  padding: 4rem 0;
   text-align: center;
-  padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, rgba(30, 61, 47, 0.08), rgba(30, 61, 47, 0.04));
 }
-.svc-tier-card-image-placeholder span {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gildhart-gold);
-  line-height: 1.6;
-}
-.svc-tier-card--automated .svc-tier-card-image-placeholder {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-}
+.svc-offer-part:first-of-type { padding-top: 1rem; }
+.svc-offer-part:last-of-type  { padding-bottom: 1rem; }
 
-/* Quiet banner sits directly under the image on outer cards.
- * Featured card omits the banner (PHP only renders it when not the
- * automated tier). */
-.svc-tier-proof-banner {
-  background: rgba(30, 61, 47, 0.06);
-  color: var(--gildhart-green);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 12px 1.25rem;
-  border-bottom: 1px solid rgba(30, 61, 47, 0.10);
-}
-
-.svc-tier-card-inner {
-  padding: 3rem 2.5rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  flex: 1;
-}
-.svc-tier-card--automated .svc-tier-card-inner {
-  padding: 4rem 2.75rem 3.25rem;
-}
-
-.svc-tier-recommended {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin: 0;
-}
-.svc-tier-category {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--gildhart-gold);
-  margin: 0;
-}
-.svc-tier-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--gildhart-gold);
-  margin: 0;
-}
-.svc-tier-title {
-  font-family: 'Inter', 'Outfit', sans-serif;
-  font-size: 1.625rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  margin: 0;
-}
-.svc-tier-card--automated .svc-tier-title {
-  font-size: 1.875rem;
-  color: #FFFDF8;
-  line-height: 1.18;
-}
-.svc-tier-card--manual .svc-tier-title,
-.svc-tier-card--lifetime .svc-tier-title {
-  color: var(--gildhart-green);
-}
-
-/* Body — italic proof statement with 2px gold left border. */
-.svc-tier-body {
-  font-size: 1rem;
-  font-style: italic;
-  line-height: 1.7;
-  margin: 0;
-  padding-left: 1rem;
-  border-left: 2px solid var(--gildhart-gold);
-}
-.svc-tier-card--manual .svc-tier-body,
-.svc-tier-card--lifetime .svc-tier-body {
-  color: #2c3e36;
-}
-.svc-tier-card--automated .svc-tier-body {
-  font-size: 1.0625rem;
-  color: rgba(240, 230, 200, 0.95);
-}
-
-/* Bullets — plain on outer cards, gold em-dash on featured. No tick
- * icons (matches homepage convention). flex: 1 so the list takes
- * remaining vertical space and any CTA below baseline-aligns. */
-.svc-tier-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1;
-}
-.svc-tier-list li {
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  position: relative;
-}
-.svc-tier-card--manual .svc-tier-list li,
-.svc-tier-card--lifetime .svc-tier-list li {
-  color: #2c3e36;
-}
-.svc-tier-card--automated .svc-tier-list li {
-  color: rgba(240, 230, 200, 0.92);
-  padding-left: 1.5rem;
-}
-.svc-tier-card--automated .svc-tier-list li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  color: var(--gildhart-gold);
-  font-weight: 700;
-}
-
-/* Price strap */
-.svc-strap {
-  background: var(--navy);
-  border-radius: 16px;
-  padding: 2rem 3rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 2.5rem;
-  margin-bottom: 1.5rem;
-}
-.svc-strap-price {
+/* Eyebrow — gold on Window, forest green on Stack. */
+.svc-offer-eyebrow {
   font-family: 'Inter', sans-serif;
-  font-size: 1.75rem;
+  font-size: 0.8125rem;
   font-weight: 800;
-  color: var(--gildhart-gold);
-  letter-spacing: -0.02em;
-}
-.svc-strap-desc {
-  font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
-}
-.svc-strap-cta {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-.svc-strap-cta a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1.125rem 2.5rem;
-  background: var(--gildhart-green);
-  color: white;
-  font-weight: 700;
-  font-size: 1.0625rem;
-  border-radius: 10px;
-  text-decoration: none;
-  letter-spacing: -0.01em;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-.svc-strap-cta a:hover {
-  background: var(--gildhart-black);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(30, 61, 47, 0.3);
-}
-
-/* Why Early Buyers Win callout */
-.svc-eb-callout {
-  background: var(--navy);
-  border-radius: 24px;
-  padding: 4rem 4rem 3.5rem;
-  margin-top: 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  position: relative;
-  overflow: hidden;
-}
-.svc-eb-callout::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--gildhart-gold), var(--gildhart-green));
-}
-.svc-eb-callout::after {
-  content: '';
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(30, 61, 47, 0.22) 0%, transparent 70%);
-  pointer-events: none;
-}
-.svc-eb-callout-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin: 0 0 1rem;
-  display: block;
-}
-.svc-eb-callout h3 {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: 700;
-  color: white;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 0 0 1.75rem;
-}
-.svc-eb-callout p {
-  font-size: 1.1875rem;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.75;
   margin: 0 0 1.25rem;
-  max-width: 760px;
 }
-.svc-eb-callout p:last-child { margin-bottom: 0; }
-.svc-eb-callout strong { color: white; }
+.svc-offer-eyebrow--gold  { color: var(--gildhart-gold); }
+.svc-offer-eyebrow--green { color: var(--gildhart-green); }
 
-@media (max-width: 960px) {
-  .svc-tiers { grid-template-columns: 1fr; gap: 1.5rem; }
-  /* Drop the desktop lift treatment on the featured card — once the
-   * cards stack, the -16px margins create awkward overlap with the
-   * cards above and below. */
-  .svc-tier-card--automated {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  .svc-tier-card-image { height: 180px; }
-  .svc-tier-card--automated .svc-tier-card-image { height: 200px; }
-  .svc-tier-card-inner { padding: 2.5rem 2rem 2.25rem; }
-  .svc-tier-card--automated .svc-tier-card-inner { padding: 2.75rem 2rem 2.5rem; }
+/* Shared H2 — dark navy, large display, centred. */
+.svc-offer-headline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 800;
+  color: #1a2b3c;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 auto 1.25rem;
+  max-width: 880px;
 }
+
+/* ─── PART 01: The Window ─── */
+.svc-offer-window-subhead {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gildhart-gold);
+  line-height: 1.4;
+  margin: 0 auto 2.75rem;
+  max-width: 780px;
+  letter-spacing: -0.005em;
+}
+.svc-offer-window-body {
+  max-width: 740px;
+  margin: 0 auto;
+  text-align: left;
+}
+.svc-offer-window-body p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: rgba(26, 43, 60, 0.92);
+  line-height: 1.8;
+  margin: 0 0 1.25rem;
+}
+.svc-offer-window-body p:last-child { margin-bottom: 0; }
+.svc-offer-window-closer {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  color: #1a2b3c;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  max-width: 780px;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+
+/* ─── PART 02: What You Get Today ─── */
+.svc-offer-stack-subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: rgba(26, 43, 60, 0.7);
+  line-height: 1.6;
+  margin: 0 auto 2.75rem;
+  max-width: 640px;
+}
+.svc-offer-stack-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 740px;
+  text-align: left;
+}
+.svc-offer-stack-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(26, 43, 60, 0.08);
+}
+.svc-offer-stack-list li:last-child { border-bottom: 0; }
+.svc-offer-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(139, 105, 20, 0.12);
+  color: #8B6914;
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-top: 0.125rem;
+}
+.svc-offer-stack-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: rgba(26, 43, 60, 0.92);
+  line-height: 1.7;
+}
+.svc-offer-stack-anchor {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(26, 43, 60, 0.85);
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 2.75rem auto 0;
+  text-align: center;
+}
+
+/* ─── PART 03: Client Outcomes ─── */
+.svc-offer-outcomes-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.svc-offer-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.75rem;
+  border-right: 1px solid rgba(201, 164, 74, 0.45);
+}
+.svc-offer-stat:last-child { border-right: 0; }
+.svc-offer-stat-value {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.75rem, 5vw, 3.75rem);
+  font-weight: 900;
+  color: #8B6914;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.svc-offer-stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a2b3c;
+  line-height: 1.45;
+  text-align: center;
+}
+.svc-offer-stat-client {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(26, 43, 60, 0.65);
+  line-height: 1.4;
+}
+
+/* ─── PART 04: Price and CTA ─── */
+.svc-offer-cta {
+  max-width: 740px;
+  margin: 0 auto;
+}
+.svc-offer-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0 0 2.5rem;
+}
+.svc-offer-price-value {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #8B6914;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.svc-offer-price-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: rgba(26, 43, 60, 0.85);
+  line-height: 1.5;
+}
+.svc-offer-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--gildhart-green);
+  color: #FFFDF8;
+  padding: 1.125rem 2.25rem;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(30, 61, 47, 0.22);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.svc-offer-cta-primary:hover {
+  background: var(--gildhart-black);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(30, 61, 47, 0.32);
+}
+.svc-offer-cta-arrow { display: inline-block; transition: transform 0.2s ease; }
+.svc-offer-cta-primary:hover .svc-offer-cta-arrow { transform: translateX(3px); }
+.svc-offer-cta-secondary {
+  display: inline-block;
+  margin: 1.5rem auto 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(26, 43, 60, 0.72);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+.svc-offer-cta-secondary:hover { color: var(--gildhart-green); }
+
 @media (max-width: 768px) {
-  .svc-early-buyers { padding: 3rem 1.5rem 4rem; }
-  .svc-tier-card-image { height: 160px; }
-  .svc-tier-card--automated .svc-tier-card-image { height: 180px; }
-  .svc-tier-card-inner { padding: 2rem 1.5rem 2rem; }
-  .svc-tier-card--automated .svc-tier-card-inner { padding: 2.25rem 1.5rem 2.25rem; }
-  .svc-tier-title { font-size: 1.5rem; }
-  .svc-tier-card--automated .svc-tier-title { font-size: 1.625rem; }
-  .svc-strap { padding: 1.5rem 1.75rem; }
-  .svc-strap-price { font-size: 1.5rem; }
-  .svc-strap-desc { font-size: 1rem; }
-  .svc-eb-callout { padding: 2.5rem 2rem 2rem; margin-top: 2rem; }
-  .svc-eb-callout h3 { font-size: 1.5rem; }
-  .svc-eb-callout p { font-size: 1.0625rem; }
+  .svc-offer { padding: 4.5rem 1.25rem 5rem; }
+  .svc-offer-part { padding: 3rem 0; }
+  .svc-offer-eyebrow { font-size: 0.75rem; letter-spacing: 0.12em; margin-bottom: 1rem; }
+  .svc-offer-headline { font-size: clamp(1.625rem, 7vw, 2rem); }
+  .svc-offer-window-subhead { font-size: 1.0625rem; margin-bottom: 2rem; }
+  .svc-offer-window-body p { font-size: 1rem; line-height: 1.75; }
+  .svc-offer-window-closer { font-size: 1.125rem; margin-top: 2rem; }
+  .svc-offer-stack-subtext { font-size: 1rem; margin-bottom: 2rem; }
+  .svc-offer-stack-list li { padding: 0.75rem 0; gap: 0.75rem; }
+  .svc-offer-stack-text { font-size: 1rem; line-height: 1.65; }
+  .svc-offer-stack-anchor { font-size: 0.9375rem; margin-top: 2rem; }
+
+  /* Outcomes stack vertically — gold dividers removed, generous
+   * spacing between each stat. */
+  .svc-offer-outcomes-row { flex-direction: column; gap: 2.25rem; }
+  .svc-offer-stat { padding: 0; border-right: 0; }
+  .svc-offer-stat-value { font-size: clamp(2.5rem, 12vw, 3.25rem); }
+
+  /* Primary CTA full width on mobile per spec. */
+  .svc-offer-price { margin-bottom: 2rem; }
+  .svc-offer-cta-primary {
+    display: flex;
+    width: 100%;
+    padding: 1.125rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .svc-offer-cta-secondary { font-size: 0.875rem; margin-top: 1.25rem; }
 }
 
 /* ── S4: Math (The Numbers) section ─────────────────────────── */
