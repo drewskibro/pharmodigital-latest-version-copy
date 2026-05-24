@@ -2527,7 +2527,11 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gildhart-green);
+  /* Deep gold (not brand --gildhart-gold, which fails contrast on the
+   * white cards) — reuses the existing --svc-system-gold-deep token so
+   * the labels read as gold while clearing WCAG AA (~5.2:1). The final
+   * navy card overrides back to brand gold below. */
+  color: var(--svc-system-gold-deep, #8B6914);
   margin: 0 0 0.5rem;
 }
 .svc-next-step-title {
@@ -2553,11 +2557,15 @@
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.25), 0 0 0 6px rgba(15, 23, 42, 0.08);
 }
 .svc-next-step--final .svc-next-step-num { color: var(--gildhart-gold); }
+/* Final step — navy "arrival" card. Slightly more internal padding
+ * than the other steps so it lands as a destination, not just another
+ * step. */
 .svc-next-step--final .svc-next-step-body {
   background: var(--navy);
   border-color: rgba(30, 61, 47, 0.3);
   border-left: 4px solid var(--gildhart-green);
   box-shadow: 0 8px 40px rgba(15, 23, 42, 0.2);
+  padding: 2.75rem 3rem;
 }
 .svc-next-step--final .svc-next-step-body:hover {
   box-shadow: 0 12px 50px rgba(15, 23, 42, 0.3);
@@ -2568,9 +2576,10 @@
   font-size: 1.625rem;
 }
 .svc-next-step--final .svc-next-step-text {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.92);
   font-size: 1.1875rem;
   font-weight: 500;
+  line-height: 1.8;
 }
 
 @media (max-width: 768px) {
