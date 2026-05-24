@@ -31,10 +31,10 @@ if ( empty( $stats ) ) {
     );
 }
 
-$cta_primary_label   = gh_field( 'service_hero_cta_primary_label',   'Get The Playbook — £497' );
-$cta_primary_url     = gh_field( 'service_hero_cta_primary_url',     '#buy-now' );
+$cta_primary_label   = gh_field( 'service_hero_cta_primary_label',   'Get The Playbook — £995' );
+$cta_primary_url     = gh_field( 'service_hero_cta_primary_url',     '#your-turn' );
 $cta_secondary_label = gh_field( 'service_hero_cta_secondary_label', "See What's Inside" );
-$cta_secondary_url   = gh_field( 'service_hero_cta_secondary_url',   '#what-you-get' );
+$cta_secondary_url   = gh_field( 'service_hero_cta_secondary_url',   '#your-turn' );
 
 $image_id = get_field( 'service_hero_image' );
 ?>

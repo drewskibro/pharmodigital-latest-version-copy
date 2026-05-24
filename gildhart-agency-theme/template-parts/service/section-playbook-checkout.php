@@ -109,7 +109,7 @@ $secure_note  = gh_field( 'service_pb_checkout_secure_note',  'Payments processe
 $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice that's live right now started exactly where you are." );
 ?>
 
-<section class="svc-pb-checkout" id="checkout">
+<section class="svc-pb-checkout" id="your-turn">
     <div class="svc-pb-checkout-inner">
 
         <!-- ─── Intro (left, top) ─── -->

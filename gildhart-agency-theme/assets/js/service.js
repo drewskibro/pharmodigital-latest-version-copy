@@ -551,3 +551,30 @@
   renderDropdown('');
   syncHidden();
 })();
+
+/* ────────────────────────────────────────────────────────────────
+ * Hero CTAs — smooth in-page scroll.
+ *
+ * Scoped to the two hero buttons only (.svc-hero-cta a[href^="#"]) so
+ * no other link on the page changes behaviour. Matches the existing
+ * scroll pattern used elsewhere in this file — window.scrollTo with
+ * behavior:'smooth' and a --nav-h offset so the target section lands
+ * below the sticky nav rather than under it.
+ * ──────────────────────────────────────────────────────────────── */
+(function () {
+  var ctas = document.querySelectorAll('.svc-hero-cta a[href^="#"]');
+  if (!ctas.length) return;
+
+  Array.prototype.forEach.call(ctas, function (link) {
+    link.addEventListener('click', function (e) {
+      var hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      var target = document.getElementById(hash.slice(1));
+      if (!target) return; // Let the browser handle unknown anchors.
+      e.preventDefault();
+      var navOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 130;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - navOffset - 24;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+})();
