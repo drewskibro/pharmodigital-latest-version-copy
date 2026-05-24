@@ -3,14 +3,16 @@
  * Service: Guarantee section.
  *
  * Dark navy section centred on the page. A gold pill badge with a
- * shield SVG sits above the headline. Below the headline, a bordered
- * guarantee panel (gold left-border accent) holds three body
- * paragraphs and a separately-styled three-line closing statement —
- * the founder's personal-implementation promise.
+ * shield SVG sits above a centred headline. Below it, a two-column
+ * layout pairs THE PROOF (three named practice results, left) with
+ * THE GUARANTEE (the founder's personal-implementation promise,
+ * right). Both columns are boxed as a matched pair — the guarantee
+ * column carries an additional 4px gold left-border accent to mark
+ * it as the personal-commitment beat. A three-line closing statement
+ * sits full-width below both columns, centred, last line in gold.
  *
- * The proof stat cards (Ealing / Superior / South Downs) were removed
- * in favour of the longer-form guarantee copy; the headline now sits
- * above the panel rather than above a stat grid.
+ * On mobile the columns stack (proof above guarantee) and all body
+ * copy stays left-aligned.
  *
  * Reads from per-section ACF group `Service · Guarantee`. Returns
  * early when the show toggle is off. Falls back to The Playbook copy
@@ -23,13 +25,25 @@ if ( ! gh_field( 'service_guarantee_show', 1 ) ) {
     return;
 }
 
-$badge_text = gh_field( 'service_guarantee_badge_text', 'Personal Implementation Guarantee' );
-$headline   = gh_field( 'service_guarantee_headline',   'This System Has Already Worked. For Practices Exactly Like Yours.' );
+$badge_text   = gh_field( 'service_guarantee_badge_text', 'Personal Implementation Guarantee' );
+$headline     = gh_field( 'service_guarantee_headline',   'This System Has Already Worked. For Practices Exactly Like Yours.' );
 
-$paragraphs = get_field( 'service_guarantee_paragraphs' );
+/* Left column — THE PROOF */
+$proof_label  = gh_field( 'service_guarantee_proof_label', 'Three Practices. Three Specialisms. One Result.' );
+$proof_blocks = get_field( 'service_guarantee_proof_blocks' );
+if ( empty( $proof_blocks ) ) {
+    $proof_blocks = array(
+        array( 'name' => 'Ealing Travel Clinic', 'result' => '#1 in Google AI Overviews. 8 bookings became 55 a month. Then an IVF clinic started sending referrals.' ),
+        array( 'name' => 'Superior Pharmacy',    'result' => '50% of all sales now come through ChatGPT. First booking within 48 hours of going live.' ),
+        array( 'name' => 'Puri Pharmacy',        'result' => '£100k from Mounjaro alone. Outranking Boots nationally.' ),
+    );
+}
+
+/* Right column — THE GUARANTEE */
+$guarantee_label = gh_field( 'service_guarantee_guarantee_label', 'The Guarantee' );
+$paragraphs      = get_field( 'service_guarantee_paragraphs' );
 if ( empty( $paragraphs ) ) {
     $paragraphs = array(
-        array( 'text' => 'Ealing Travel Clinic. Superior Pharmacy. Puri Pharmacy. Three independent practices. Three different specialisms. All now appearing in Google AI Overviews, ChatGPT, and Perplexity ahead of national chains. Not because they got fortunate. Because the system works when it\'s implemented correctly.' ),
         array( 'text' => "If you implement this and aren't seeing results — I get on a call with you personally. Not a support ticket. Not a help doc. Me. One-on-one. Until it's working." ),
         array( 'text' => "And consider what you're weighing this against. Every week without this system is another week a practice in your area is building an AI presence you'll have to displace. Early positions compound. Late entry costs more than £995 — it costs the months of momentum you don't get back." ),
     );
@@ -57,27 +71,53 @@ $closing_last  = count( $closing_lines ) - 1;
             <h2 class="svc-guarantee-headline"><?php echo esc_html( $headline ); ?></h2>
         <?php endif; ?>
 
-        <?php if ( ! empty( $paragraphs ) || ! empty( $closing_lines ) ) : ?>
-            <div class="svc-guarantee-panel">
-                <?php if ( ! empty( $paragraphs ) ) : ?>
-                    <div class="svc-guarantee-panel-body">
+        <div class="svc-guarantee-columns">
+            <?php if ( ! empty( $proof_blocks ) ) : ?>
+                <div class="svc-guarantee-col svc-guarantee-col--proof">
+                    <?php if ( $proof_label ) : ?>
+                        <p class="svc-guarantee-col-label"><?php echo esc_html( $proof_label ); ?></p>
+                    <?php endif; ?>
+                    <div class="svc-guarantee-proof-blocks">
+                        <?php foreach ( $proof_blocks as $block ) :
+                            $name   = $block['name']   ?? '';
+                            $result = $block['result'] ?? '';
+                            if ( ! $name && ! $result ) continue; ?>
+                            <div class="svc-guarantee-proof-block">
+                                <?php if ( $name ) : ?>
+                                    <p class="svc-guarantee-proof-name"><?php echo esc_html( $name ); ?></p>
+                                <?php endif; ?>
+                                <?php if ( $result ) : ?>
+                                    <p class="svc-guarantee-proof-result"><?php echo esc_html( $result ); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if ( ! empty( $paragraphs ) ) : ?>
+                <div class="svc-guarantee-col svc-guarantee-col--guarantee">
+                    <?php if ( $guarantee_label ) : ?>
+                        <p class="svc-guarantee-col-label"><?php echo esc_html( $guarantee_label ); ?></p>
+                    <?php endif; ?>
+                    <div class="svc-guarantee-col-body">
                         <?php foreach ( $paragraphs as $para ) :
                             $text = $para['text'] ?? '';
                             if ( ! $text ) continue; ?>
-                            <p class="svc-guarantee-panel-para"><?php echo wp_kses_post( $text ); ?></p>
+                            <p class="svc-guarantee-para"><?php echo wp_kses_post( $text ); ?></p>
                         <?php endforeach; ?>
                     </div>
-                <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </div>
 
-                <?php if ( ! empty( $closing_lines ) ) : ?>
-                    <p class="svc-guarantee-closing">
-                        <?php foreach ( $closing_lines as $i => $line ) :
-                            $line_class = 'svc-guarantee-closing-line' . ( $i === $closing_last ? ' svc-guarantee-closing-line--gold' : '' ); ?>
-                            <span class="<?php echo esc_attr( $line_class ); ?>"><?php echo esc_html( $line ); ?></span>
-                        <?php endforeach; ?>
-                    </p>
-                <?php endif; ?>
-            </div>
+        <?php if ( ! empty( $closing_lines ) ) : ?>
+            <p class="svc-guarantee-closing">
+                <?php foreach ( $closing_lines as $i => $line ) :
+                    $line_class = 'svc-guarantee-closing-line' . ( $i === $closing_last ? ' svc-guarantee-closing-line--gold' : '' ); ?>
+                    <span class="<?php echo esc_attr( $line_class ); ?>"><?php echo esc_html( $line ); ?></span>
+                <?php endforeach; ?>
+            </p>
         <?php endif; ?>
     </div>
 </section>
