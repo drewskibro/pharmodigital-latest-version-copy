@@ -2449,37 +2449,6 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
-/* Service · Math */
-acf_add_local_field_group( array(
-    'key'        => 'group_gh_service_math',
-    'title'      => 'Service · Math (The Numbers)',
-    'menu_order' => 9,
-    'fields'     => array(
-        array(
-            'key'           => 'field_gh_service_math_show',
-            'label'         => 'Show this section',
-            'name'          => 'service_math_show',
-            'type'          => 'true_false',
-            'default_value' => 1,
-            'ui'            => 1,
-        ),
-        array( 'key' => 'field_gh_service_math_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_math_eyebrow',     'type' => 'text' ),
-        array( 'key' => 'field_gh_service_math_headline',    'label' => 'Headline',    'name' => 'service_math_headline',    'type' => 'text' ),
-        array( 'key' => 'field_gh_service_math_subheadline', 'label' => 'Subheadline', 'name' => 'service_math_subheadline', 'type' => 'textarea', 'rows' => 3 ),
-        array(
-            'key' => 'field_gh_service_math_cards', 'label' => 'Audience Cards', 'name' => 'service_math_cards',
-            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
-            'instructions' => 'Card colour rotates by row index (navy / white / sage / cream-warm) and repeats every four cards.',
-            'sub_fields' => array(
-                array( 'key' => 'field_gh_service_math_card_label',    'label' => 'Audience Label', 'name' => 'label',    'type' => 'text' ),
-                array( 'key' => 'field_gh_service_math_card_headline', 'label' => 'Headline',       'name' => 'headline', 'type' => 'text' ),
-                array( 'key' => 'field_gh_service_math_card_body',     'label' => 'Body',           'name' => 'body',     'type' => 'textarea', 'rows' => 4 ),
-            ),
-        ),
-    ),
-    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
-) );
-
 /* Service · Next Steps */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_next_steps',
