@@ -242,6 +242,29 @@ function gildhart_scripts() {
             'restUrl' => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
         ) );
     }
+
+    // Playbook thank-you page template — same service.css design system,
+    // its own personalisation JS (generic PI-summary reader). Reuses the
+    // GildhartThankYou global since the two thank-you templates are
+    // mutually exclusive (only one renders per request).
+    if ( is_page_template( 'page-templates/page-playbook-thank-you.php' ) ) {
+        wp_enqueue_style(
+            'gildhart-service',
+            GILDHART_URI . '/assets/css/service.css',
+            array( 'gildhart-globals' ),
+            gh_asset_ver( 'assets/css/service.css' )
+        );
+        wp_enqueue_script(
+            'gildhart-playbook-thank-you',
+            GILDHART_URI . '/assets/js/playbook-thank-you.js',
+            array(),
+            gh_asset_ver( 'assets/js/playbook-thank-you.js' ),
+            true
+        );
+        wp_localize_script( 'gildhart-playbook-thank-you', 'GildhartThankYou', array(
+            'restUrl' => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
+        ) );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'gildhart_scripts' );
 
