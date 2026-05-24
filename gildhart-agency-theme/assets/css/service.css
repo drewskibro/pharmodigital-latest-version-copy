@@ -1808,6 +1808,17 @@
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32), 0 4px 12px rgba(0, 0, 0, 0.18);
   background: #ffffff;
 }
+/* Portrait / phone-framed mobile variant — shown only ≤768px,
+ * centred, contained, no border or radius (the phone frame is baked
+ * into the image). Hidden by default on desktop. */
+.svc-medihub-figure--mobile { display: none; }
+.svc-medihub-image-mobile {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  object-fit: contain;
+}
 .svc-medihub-caption {
   font-family: 'Inter', sans-serif;
   font-size: 0.9375rem;
@@ -1826,6 +1837,11 @@
     max-width: 100%;
     border-radius: 8px;
   }
+  /* When a mobile image is present, hide the desktop landscape figure
+   * and show the portrait one. Without a mobile image, the desktop
+   * figure stays visible at all breakpoints (no --has-mobile class). */
+  .svc-medihub--has-mobile .svc-medihub-figure--desktop { display: none; }
+  .svc-medihub--has-mobile .svc-medihub-figure--mobile { display: flex; }
   .svc-medihub-caption { margin-top: 1.75rem; font-size: 0.8125rem; letter-spacing: 0.12em; }
 }
 
