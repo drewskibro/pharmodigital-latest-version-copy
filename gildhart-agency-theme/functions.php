@@ -195,6 +195,30 @@ function gildhart_scripts() {
                 'thankYouUrl' => esc_url_raw( home_url( '/agent-thank-you/' ) ),
             ) );
         }
+
+        // Playbook one-time checkout flow — enqueued independently of the
+        // agent flow, gated on the playbook keys + amount constant. Stripe.js
+        // is shared (wp_enqueue_script is idempotent on the same handle).
+        if ( function_exists( 'gildhart_stripe_playbook_is_configured' ) && gildhart_stripe_playbook_is_configured() ) {
+            wp_enqueue_script(
+                'stripe-js',
+                'https://js.stripe.com/v3/',
+                array(),
+                null,
+                true
+            );
+            wp_enqueue_script(
+                'gildhart-playbook-checkout',
+                GILDHART_URI . '/assets/js/playbook-checkout.js',
+                array( 'stripe-js' ),
+                gh_asset_ver( 'assets/js/playbook-checkout.js' ),
+                true
+            );
+            wp_localize_script( 'gildhart-playbook-checkout', 'GildhartPlaybookCheckout', array(
+                'restUrl'     => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
+                'thankYouUrl' => esc_url_raw( home_url( '/playbook-thank-you/' ) ),
+            ) );
+        }
     }
 
     // Agent thank-you page template — shares the service.css design

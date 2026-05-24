@@ -296,6 +296,17 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
                     <p class="svc-pb-services-reassure-text">Not sure? Make your best guess for now. During onboarding we'll research exactly what patients in your area are searching for across AI platforms — and we'll confirm or refine your selections based on real keyword data before we build anything.</p>
                 </div>
 
+                <?php
+                // Card Payment section — hidden until Step 1 (lead form) succeeds.
+                // playbook-checkout.js reveals it and mounts the Stripe Payment
+                // Element after /playbook-checkout returns a client_secret.
+                ?>
+                <div class="svc-closing-form-group" id="svcPbPaymentSection" hidden>
+                    <span class="svc-closing-form-label">Card Payment</span>
+                    <div id="svcPbPaymentMount" class="svc-closing-payment-mount" aria-live="polite"></div>
+                </div>
+                <div id="svcPbFormError" class="svc-closing-form-error" role="alert" hidden></div>
+
                 <?php if ( $right_closer ) : ?>
                     <p class="svc-pb-checkout-right-closer"><?php echo esc_html( $right_closer ); ?></p>
                 <?php endif; ?>
