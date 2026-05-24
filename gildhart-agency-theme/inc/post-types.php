@@ -621,8 +621,8 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         // inline fallback array carries the single-part copy.
         // Next Steps
         'service_next_eyebrow'     => 'Your Timeline',
-        'service_next_headline'    => 'What Happens Next',
-        'service_next_subheadline' => 'From purchase to AI rankings — exactly as it happened for Ealing and Superior.',
+        'service_next_headline'    => 'From Purchase to AI Rankings. Exactly as it Happened for Ealing and Superior.',
+        'service_next_subheadline' => 'No guesswork. No waiting to find out what happens next. This is the exact sequence — day by day, week by week.',
         // FAQ
         'service_faq_eyebrow'   => 'No Surprises',
         'service_faq_headline'  => "Questions You're Asking",
