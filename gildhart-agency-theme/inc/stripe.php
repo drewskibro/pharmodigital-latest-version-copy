@@ -582,14 +582,19 @@ function gildhart_stripe_create_payment_intent_for_lead( array $lead ) {
         'metadata' => $metadata,
     ) );
 
+    // Card only — which on the Payment Element automatically includes the
+    // card-backed wallets (Apple Pay, Google Pay) and Link, while excluding
+    // BNPL (Klarna, Clearpay) and Revolut Pay. Matches the agent flow's
+    // payment_method_types and suits B2B healthcare buyers who won't use
+    // instalment plans.
     $payment_intent = \Stripe\PaymentIntent::create( array(
-        'amount'                    => $amount,
-        'currency'                  => 'gbp',
-        'customer'                  => $customer->id,
-        'description'               => 'The AI Search Playbook',
-        'receipt_email'             => $email,
-        'metadata'                  => $metadata,
-        'automatic_payment_methods' => array( 'enabled' => true ),
+        'amount'               => $amount,
+        'currency'             => 'gbp',
+        'customer'             => $customer->id,
+        'description'          => 'The AI Search Playbook',
+        'receipt_email'        => $email,
+        'metadata'             => $metadata,
+        'payment_method_types' => array( 'card' ),
     ) );
 
     if ( empty( $payment_intent->client_secret ) ) {

@@ -583,10 +583,10 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_hero_eyebrow'             => 'The AI Search Playbook',
         'service_hero_title'               => "While You're Reading This, ChatGPT Is Recommending Your Competitors.",
         'service_hero_subtitle'            => 'Rahul at Puri Pharmacy is now on that shortlist. So is Raman at Superior Pharmacy and Sachin at Ealing Travel Clinic. One playbook. Three practices. No ad spend.',
-        'service_hero_cta_primary_label'   => 'Get The Playbook — £497',
-        'service_hero_cta_primary_url'     => '#buy-now',
+        'service_hero_cta_primary_label'   => 'Get The Playbook — £995',
+        'service_hero_cta_primary_url'     => '#your-turn',
         'service_hero_cta_secondary_label' => "See What's Inside",
-        'service_hero_cta_secondary_url'   => '#what-you-get',
+        'service_hero_cta_secondary_url'   => '#your-turn',
         // Problem Shift
         'service_problem_shift_label'           => 'The Shift',
         'service_problem_shift_headline'        => "In Two Years, The Practices On ChatGPT's Shortlist Will Own Your Market.",
