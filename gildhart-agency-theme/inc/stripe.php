@@ -54,18 +54,39 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function gildhart_stripe_config() {
     return array(
-        'publishable'   => defined( 'GILDHART_STRIPE_PUBLISHABLE_KEY' )    ? GILDHART_STRIPE_PUBLISHABLE_KEY    : '',
-        'secret'        => defined( 'GILDHART_STRIPE_SECRET_KEY' )         ? GILDHART_STRIPE_SECRET_KEY         : '',
-        'price_monthly' => defined( 'GILDHART_STRIPE_PRICE_AGENT_MONTHLY' ) ? GILDHART_STRIPE_PRICE_AGENT_MONTHLY : '',
-        'price_annual'  => defined( 'GILDHART_STRIPE_PRICE_AGENT_ANNUAL' )  ? GILDHART_STRIPE_PRICE_AGENT_ANNUAL  : '',
+        'publishable'     => defined( 'GILDHART_STRIPE_PUBLISHABLE_KEY' )     ? GILDHART_STRIPE_PUBLISHABLE_KEY     : '',
+        'secret'          => defined( 'GILDHART_STRIPE_SECRET_KEY' )          ? GILDHART_STRIPE_SECRET_KEY          : '',
+        'price_monthly'   => defined( 'GILDHART_STRIPE_PRICE_AGENT_MONTHLY' ) ? GILDHART_STRIPE_PRICE_AGENT_MONTHLY : '',
+        'price_annual'    => defined( 'GILDHART_STRIPE_PRICE_AGENT_ANNUAL' )  ? GILDHART_STRIPE_PRICE_AGENT_ANNUAL  : '',
+        // Playbook is a one-time charge. Amount is a VAT-inclusive integer
+        // in pence (e.g. 99500 = £995). No Stripe Tax — the displayed price
+        // is the final price.
+        'playbook_amount' => defined( 'GILDHART_STRIPE_PLAYBOOK_AMOUNT' )     ? (int) GILDHART_STRIPE_PLAYBOOK_AMOUNT : 0,
     );
 }
 
-/** Returns true iff all four constants are defined and non-empty. */
+/** Returns true iff all four agent subscription constants are defined. */
 function gildhart_stripe_is_configured() {
     $cfg = gildhart_stripe_config();
     return ! empty( $cfg['publishable'] ) && ! empty( $cfg['secret'] )
         && ! empty( $cfg['price_monthly'] ) && ! empty( $cfg['price_annual'] );
+}
+
+/**
+ * Minimum config to talk to Stripe at all (publishable + secret). Enough
+ * to retrieve a PaymentIntent for the thank-you page summary, regardless
+ * of which checkout flow (agent or playbook) created it.
+ */
+function gildhart_stripe_keys_configured() {
+    $cfg = gildhart_stripe_config();
+    return ! empty( $cfg['publishable'] ) && ! empty( $cfg['secret'] );
+}
+
+/** True iff the Playbook one-time checkout is configured (keys + amount). */
+function gildhart_stripe_playbook_is_configured() {
+    $cfg = gildhart_stripe_config();
+    return ! empty( $cfg['publishable'] ) && ! empty( $cfg['secret'] )
+        && ! empty( $cfg['playbook_amount'] );
 }
 
 /** True when the secret key starts with sk_test_ (used to label flows). */
@@ -104,7 +125,10 @@ function gildhart_stripe_plan_lookup( $plan ) {
 function gildhart_stripe_boot() {
     static $booted = false;
     if ( $booted ) return true;
-    if ( ! gildhart_stripe_is_configured() ) return false;
+    // Only the secret key is needed to boot the SDK — not the price
+    // constants. Gating on keys-only lets both the agent (subscription)
+    // and playbook (one-time) flows boot independently.
+    if ( ! gildhart_stripe_keys_configured() ) return false;
 
     $sdk_init = get_template_directory() . '/vendor/stripe-php/init.php';
     if ( ! file_exists( $sdk_init ) ) return false;
@@ -463,6 +487,133 @@ function gildhart_stripe_get_payment_intent_summary( $payment_intent_id ) {
 }
 
 /* ─────────────────────────────────────────────────────────────────
+ * Playbook — one-time PaymentIntent
+ * ───────────────────────────────────────────────────────────────── */
+
+/**
+ * Create a Stripe Customer + one-time PaymentIntent for a Playbook lead.
+ *
+ * Unlike the agent flow (a recurring Subscription), the Playbook is a
+ * single £995 charge. The amount is read from
+ * GILDHART_STRIPE_PLAYBOOK_AMOUNT and is treated as VAT-inclusive —
+ * there is NO Stripe Tax on top, so the customer pays exactly the
+ * displayed price (removes checkout friction / abandonment).
+ *
+ * A bare PaymentIntent takes a raw amount, not a Price ID, so no
+ * Stripe Product/Price object is involved. Product attribution for
+ * reporting + the Make.com → Kartra hand-off comes from the
+ * description ("The AI Search Playbook") + metadata.product, mirrored
+ * onto both the Customer and the PaymentIntent so Make picks it up on
+ * the payment_intent.succeeded webhook.
+ *
+ * The Playbook form carries an extra field the agent didn't — the
+ * `services` multi-select — captured here as a pipe-separated string
+ * in metadata for Make to map onto the appropriate Kartra fields.
+ *
+ * @param array $lead {
+ *   first_name    string  Required.
+ *   last_name     string  Required.
+ *   email         string  Required.
+ *   practice_name string  Optional.
+ *   website       string  Optional.
+ *   services      string  Optional. Pipe-separated list from the form.
+ * }
+ * @return array {
+ *   client_secret     string  PaymentIntent client_secret.
+ *   payment_intent_id string  Stripe PaymentIntent ID.
+ *   publishable_key   string  To init Stripe.js on the client.
+ *   plan_label        string  Human-readable label for display.
+ *   amount_total      int     Pence.
+ *   amount_formatted  string  e.g. "£995".
+ *   currency          string  e.g. "GBP".
+ * }
+ * @throws \Exception On invalid input or Stripe API error.
+ */
+function gildhart_stripe_create_payment_intent_for_lead( array $lead ) {
+    if ( ! gildhart_stripe_boot() ) {
+        throw new \Exception( 'Stripe is not configured on this site.' );
+    }
+
+    $cfg    = gildhart_stripe_config();
+    $amount = (int) $cfg['playbook_amount'];
+    if ( $amount < 1 ) {
+        throw new \Exception( 'Playbook amount is not configured.' );
+    }
+
+    foreach ( array( 'first_name', 'last_name', 'email' ) as $req ) {
+        if ( empty( $lead[ $req ] ) ) {
+            throw new \Exception( 'Missing required field: ' . $req );
+        }
+    }
+
+    $email = sanitize_email( $lead['email'] );
+    if ( ! is_email( $email ) ) {
+        throw new \Exception( 'Invalid email.' );
+    }
+
+    $first_name    = sanitize_text_field( $lead['first_name'] );
+    $last_name     = sanitize_text_field( $lead['last_name'] );
+    $practice_name = sanitize_text_field( $lead['practice_name'] ?? '' );
+    $website       = esc_url_raw( $lead['website'] ?? '' );
+    // Services arrive pipe-separated from the multi-select hidden input.
+    // Keep the raw string in metadata; Make splits on "|" for Kartra.
+    $services      = sanitize_text_field( $lead['services'] ?? '' );
+
+    $plan_label = 'The AI Search Playbook — £995 one-time';
+
+    $metadata = array(
+        'product'        => 'the-ai-search-playbook',
+        'first_name'     => $first_name,
+        'last_name'      => $last_name,
+        'practice_name'  => $practice_name,
+        'website'        => $website,
+        'services'       => $services,
+        'plan_label'     => $plan_label,
+        'customer_email' => $email,
+    );
+
+    // Customer — address.country kept for parity with the agent flow and
+    // so any future tax/reporting has a jurisdiction. No automatic_tax
+    // here: the £995 is VAT-inclusive and charged as-is.
+    $customer = \Stripe\Customer::create( array(
+        'email'    => $email,
+        'name'     => trim( $first_name . ' ' . $last_name ),
+        'address'  => array( 'country' => 'GB' ),
+        'metadata' => $metadata,
+    ) );
+
+    $payment_intent = \Stripe\PaymentIntent::create( array(
+        'amount'                    => $amount,
+        'currency'                  => 'gbp',
+        'customer'                  => $customer->id,
+        'description'               => 'The AI Search Playbook',
+        'receipt_email'             => $email,
+        'metadata'                  => $metadata,
+        'automatic_payment_methods' => array( 'enabled' => true ),
+    ) );
+
+    if ( empty( $payment_intent->client_secret ) ) {
+        throw new \Exception( 'Stripe did not return a client_secret for the PaymentIntent.' );
+    }
+
+    $currency_sym     = '£';
+    $amount_decimal   = $amount / 100;
+    $amount_formatted = $currency_sym . ( fmod( $amount_decimal, 1 ) === 0.0
+        ? number_format( $amount_decimal, 0 )
+        : number_format( $amount_decimal, 2 ) );
+
+    return array(
+        'client_secret'     => $payment_intent->client_secret,
+        'payment_intent_id' => $payment_intent->id,
+        'publishable_key'   => $cfg['publishable'],
+        'plan_label'        => 'The AI Search Playbook',
+        'amount_total'      => $amount,
+        'amount_formatted'  => $amount_formatted,
+        'currency'          => 'GBP',
+    );
+}
+
+/* ─────────────────────────────────────────────────────────────────
  * REST endpoints
  * ───────────────────────────────────────────────────────────────── */
 
@@ -470,6 +621,12 @@ add_action( 'rest_api_init', function () {
     register_rest_route( 'gildhart/v1', '/agent-checkout', array(
         'methods'             => 'POST',
         'callback'            => 'gildhart_rest_agent_checkout',
+        'permission_callback' => '__return_true',
+    ) );
+
+    register_rest_route( 'gildhart/v1', '/playbook-checkout', array(
+        'methods'             => 'POST',
+        'callback'            => 'gildhart_rest_playbook_checkout',
         'permission_callback' => '__return_true',
     ) );
 
@@ -522,13 +679,51 @@ function gildhart_rest_agent_checkout( WP_REST_Request $request ) {
 }
 
 /**
+ * POST /gildhart/v1/playbook-checkout
+ *
+ * JSON body: { first_name, last_name, email, practice_name, website, services }
+ * Response on success: { client_secret, payment_intent_id, publishable_key, plan_label, amount_total, amount_formatted, currency }
+ * Errors: 400 invalid_input, 502 stripe_api_error, 503 stripe_not_configured.
+ */
+function gildhart_rest_playbook_checkout( WP_REST_Request $request ) {
+    if ( ! gildhart_stripe_playbook_is_configured() ) {
+        return new WP_Error( 'stripe_not_configured', 'Playbook checkout is not configured on this site.', array( 'status' => 503 ) );
+    }
+
+    $body = $request->get_json_params();
+    if ( ! is_array( $body ) ) {
+        return new WP_Error( 'invalid_body', 'Invalid request body — JSON expected.', array( 'status' => 400 ) );
+    }
+
+    try {
+        $result = gildhart_stripe_create_payment_intent_for_lead( array(
+            'first_name'    => $body['first_name']    ?? '',
+            'last_name'     => $body['last_name']     ?? '',
+            'email'         => $body['email']         ?? '',
+            'practice_name' => $body['practice_name'] ?? '',
+            'website'       => $body['website']       ?? '',
+            'services'      => $body['services']      ?? '',
+        ) );
+        return rest_ensure_response( $result );
+    } catch ( \Stripe\Exception\ApiErrorException $e ) {
+        return new WP_Error( 'stripe_api_error', $e->getMessage(), array( 'status' => 502 ) );
+    } catch ( \Exception $e ) {
+        return new WP_Error( 'invalid_input', $e->getMessage(), array( 'status' => 400 ) );
+    }
+}
+
+/**
  * GET /gildhart/v1/payment-intent?id=pi_xxx
  *
  * Response: { email, plan_label, first_name, amount_formatted, next_charge_date, status }
  * Errors: 400 invalid_input, 502 stripe_api_error, 503 stripe_not_configured.
+ *
+ * Gated on keys-only config so it serves both the agent (subscription)
+ * and playbook (one-time) thank-you pages. For a one-time PI the
+ * next_charge_date best-effort lookup simply returns empty.
  */
 function gildhart_rest_payment_intent( WP_REST_Request $request ) {
-    if ( ! gildhart_stripe_is_configured() ) {
+    if ( ! gildhart_stripe_keys_configured() ) {
         return new WP_Error( 'stripe_not_configured', 'Stripe is not configured on this site.', array( 'status' => 503 ) );
     }
 
