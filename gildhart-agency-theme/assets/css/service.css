@@ -6827,7 +6827,8 @@
  * and .home. Without this, the body's --cream-warm shows through
  * between the nav bottom and the section's --cream top, creating a
  * visible horizontal seam right under the menu. */
-.page-template-page-agent-thank-you .nav-spacer { display: none; }
+.page-template-page-agent-thank-you .nav-spacer,
+.page-template-page-playbook-thank-you .nav-spacer { display: none; }
 
 .svc-thank-you {
   background: var(--cream);
