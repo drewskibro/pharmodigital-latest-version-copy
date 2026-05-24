@@ -2589,6 +2589,27 @@ acf_add_local_field_group( array(
             ),
         ),
         array( 'key' => 'field_gh_service_guarantee_closing', 'label' => 'Closing Statement', 'name' => 'service_guarantee_closing', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'One line per row (press Enter between lines). Each line renders as its own statement; the last line picks up a gold accent.' ),
+
+        array(
+            'key'           => 'field_gh_service_guarantee_drew_photo',
+            'label'         => 'Right Column — Drew Photo',
+            'name'          => 'guarantee_drew_photo',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Founder photo for the right column. Use the cut-out / transparent-background version (same as the homepage founder section). Renders at 320px max width desktop / 200px mobile, no border or shadow. Leave empty to render no photo.',
+        ),
+        array(
+            'key'           => 'field_gh_service_guarantee_logo',
+            'label'         => 'Right Column — Gildhart Logo Mark',
+            'name'          => 'guarantee_gildhart_logo',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'thumbnail',
+            'instructions'  => 'Circular Gildhart stag seal below the photo. Renders at 64px desktop / 48px mobile, 0.85 opacity. Falls back to the uploaded brand seal (Gildhart-08) if left empty.',
+        ),
+        array( 'key' => 'field_gh_service_guarantee_founder_name',  'label' => 'Right Column — Founder Name',  'name' => 'service_guarantee_founder_name',  'type' => 'text', 'instructions' => 'Default: "Drew Clayton".' ),
+        array( 'key' => 'field_gh_service_guarantee_founder_title', 'label' => 'Right Column — Founder Title', 'name' => 'service_guarantee_founder_title', 'type' => 'text', 'instructions' => 'Gold small caps. Default: "Founder, Gildhart".' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
