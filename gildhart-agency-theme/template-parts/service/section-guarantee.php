@@ -3,9 +3,14 @@
  * Service: Guarantee section.
  *
  * Dark navy section centred on the page. A gold pill badge with a
- * shield SVG sits above the headline; below the body, three proof
- * cards in a row recap the marquee numbers; a personal-callout block
- * closes the section with the founder's promise.
+ * shield SVG sits above the headline. Below the headline, a bordered
+ * guarantee panel (gold left-border accent) holds three body
+ * paragraphs and a separately-styled three-line closing statement —
+ * the founder's personal-implementation promise.
+ *
+ * The proof stat cards (Ealing / Superior / South Downs) were removed
+ * in favour of the longer-form guarantee copy; the headline now sits
+ * above the panel rather than above a stat grid.
  *
  * Reads from per-section ACF group `Service · Guarantee`. Returns
  * early when the show toggle is off. Falls back to The Playbook copy
@@ -18,20 +23,23 @@ if ( ! gh_field( 'service_guarantee_show', 1 ) ) {
     return;
 }
 
-$badge_text   = gh_field( 'service_guarantee_badge_text', 'Personal Implementation Guarantee' );
-$headline     = gh_field( 'service_guarantee_headline',   'If You Implement This, It Works' );
-$body         = gh_field( 'service_guarantee_body',       "This isn't a promise. It's a documented fact. Three practices. Three different specialties. Same system. Same result." );
+$badge_text = gh_field( 'service_guarantee_badge_text', 'Personal Implementation Guarantee' );
+$headline   = gh_field( 'service_guarantee_headline',   'This System Has Already Worked. For Practices Exactly Like Yours.' );
 
-$proof = get_field( 'service_guarantee_proof' );
-if ( empty( $proof ) ) {
-    $proof = array(
-        array( 'client' => 'Ealing Travel Clinic',  'stat' => '300%', 'desc' => '#1 in Google AI Overviews. Revenue growth in 3 months.' ),
-        array( 'client' => 'Superior Pharmacy',     'stat' => '50%',  'desc' => 'Of all sales from ChatGPT. First sale in 48 hours from launch.' ),
-        array( 'client' => 'South Downs Pharmacy',  'stat' => '100+', 'desc' => 'Monthly patients. 25% conversion rate. On autopilot.' ),
+$paragraphs = get_field( 'service_guarantee_paragraphs' );
+if ( empty( $paragraphs ) ) {
+    $paragraphs = array(
+        array( 'text' => 'Ealing Travel Clinic. Superior Pharmacy. Puri Pharmacy. Three independent practices. Three different specialisms. All now appearing in Google AI Overviews, ChatGPT, and Perplexity ahead of national chains. Not because they got fortunate. Because the system works when it\'s implemented correctly.' ),
+        array( 'text' => "If you implement this and aren't seeing results — I get on a call with you personally. Not a support ticket. Not a help doc. Me. One-on-one. Until it's working." ),
+        array( 'text' => "And consider what you're weighing this against. Every week without this system is another week a practice in your area is building an AI presence you'll have to displace. Early positions compound. Late entry costs more than £995 — it costs the months of momentum you don't get back." ),
     );
 }
 
-$personal_text = gh_field( 'service_guarantee_personal_text', "Go through all 5 modules. Follow the system. If you still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call.</strong> You're not buying a course. You're getting a system that works — and I'll make sure you know how to use it." );
+// Closing statement — newline-separated lines. The final line picks up
+// a gold accent so it lands as the section's last beat.
+$closing = gh_field( 'service_guarantee_closing', "One purchase.\nA system that works.\nAnd my direct involvement if it doesn't." );
+$closing_lines = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) $closing ) ) ) );
+$closing_last  = count( $closing_lines ) - 1;
 ?>
 
 <section class="svc-guarantee">
@@ -49,35 +57,26 @@ $personal_text = gh_field( 'service_guarantee_personal_text', "Go through all 5 
             <h2 class="svc-guarantee-headline"><?php echo esc_html( $headline ); ?></h2>
         <?php endif; ?>
 
-        <?php if ( $body ) : ?>
-            <p class="svc-guarantee-body"><?php echo esc_html( $body ); ?></p>
-        <?php endif; ?>
+        <?php if ( ! empty( $paragraphs ) || ! empty( $closing_lines ) ) : ?>
+            <div class="svc-guarantee-panel">
+                <?php if ( ! empty( $paragraphs ) ) : ?>
+                    <div class="svc-guarantee-panel-body">
+                        <?php foreach ( $paragraphs as $para ) :
+                            $text = $para['text'] ?? '';
+                            if ( ! $text ) continue; ?>
+                            <p class="svc-guarantee-panel-para"><?php echo wp_kses_post( $text ); ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
 
-        <?php if ( ! empty( $proof ) ) : ?>
-            <div class="svc-guarantee-proof-grid">
-                <?php foreach ( $proof as $card ) :
-                    $client = $card['client'] ?? '';
-                    $stat   = $card['stat']   ?? '';
-                    $desc   = $card['desc']   ?? '';
-                    if ( ! $client && ! $stat && ! $desc ) continue; ?>
-                    <article class="svc-guarantee-proof-card">
-                        <?php if ( $client ) : ?>
-                            <p class="svc-guarantee-proof-client"><?php echo esc_html( $client ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $stat ) : ?>
-                            <p class="svc-guarantee-proof-stat"><?php echo esc_html( $stat ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $desc ) : ?>
-                            <p class="svc-guarantee-proof-desc"><?php echo esc_html( $desc ); ?></p>
-                        <?php endif; ?>
-                    </article>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if ( $personal_text ) : ?>
-            <div class="svc-guarantee-personal">
-                <p class="svc-guarantee-personal-text"><?php echo wp_kses_post( $personal_text ); ?></p>
+                <?php if ( ! empty( $closing_lines ) ) : ?>
+                    <p class="svc-guarantee-closing">
+                        <?php foreach ( $closing_lines as $i => $line ) :
+                            $line_class = 'svc-guarantee-closing-line' . ( $i === $closing_last ? ' svc-guarantee-closing-line--gold' : '' ); ?>
+                            <span class="<?php echo esc_attr( $line_class ); ?>"><?php echo esc_html( $line ); ?></span>
+                        <?php endforeach; ?>
+                    </p>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
     </div>

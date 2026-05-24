@@ -636,9 +636,7 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_faq_cta_url'   => '#buy-now',
         // Guarantee
         'service_guarantee_badge_text'    => 'Personal Implementation Guarantee',
-        'service_guarantee_headline'      => 'If You Implement This, It Works',
-        'service_guarantee_body'          => "This isn't a promise. It's a documented fact. Three practices. Three different specialties. Same system. Same result.",
-        'service_guarantee_personal_text' => "Go through all 5 modules. Follow the system. If you still don't understand how to implement it, <strong>I'll personally walk you through it on a 1-on-1 call.</strong> You're not buying a course. You're getting a system that works — and I'll make sure you know how to use it.",
+        'service_guarantee_headline'      => 'This System Has Already Worked. For Practices Exactly Like Yours.',
     );
 
     // Slug-specific defaults override Playbook defaults (the fallback).

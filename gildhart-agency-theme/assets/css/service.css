@@ -2945,72 +2945,58 @@
   color: white;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  margin: 0 0 1.5rem;
-}
-.svc-guarantee-body {
-  font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.7;
-  max-width: 640px;
   margin: 0 auto 2.5rem;
+  max-width: 760px;
 }
 
-.svc-guarantee-proof-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 3rem;
-}
-.svc-guarantee-proof-card {
-  background: #1A202C;
+/* Bordered guarantee panel — slightly lighter than the navy section
+ * with a low-opacity gold outline and a 4px gold left-border accent
+ * that signals a personal commitment rather than a disclaimer. Holds
+ * the body paragraphs + the closing statement. */
+.svc-guarantee-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 164, 74, 0.3);
+  border-left: 4px solid var(--gildhart-gold);
   border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  text-align: left;
+  padding: 3rem;
+  max-width: 740px;
+  margin: 0 auto;
+  text-align: center;
 }
-.svc-guarantee-proof-client {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin: 0 0 0.5rem;
-}
-.svc-guarantee-proof-stat {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: white;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin: 0 0 0.25rem;
-}
-.svc-guarantee-proof-desc {
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.55);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.svc-guarantee-personal {
-  background: rgba(30, 61, 47, 0.18);
-  border: 1px solid rgba(30, 61, 47, 0.3);
-  border-radius: 16px;
-  padding: 2rem;
-  text-align: left;
-}
-.svc-guarantee-personal-text {
+.svc-guarantee-panel-para {
   font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.65;
-  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.8;
+  margin: 0 0 1.75rem;
 }
-.svc-guarantee-personal-text strong { color: white; }
+.svc-guarantee-panel-para:last-child { margin-bottom: 0; }
+
+/* Closing statement — display-size, each line on its own row, last
+ * line in gold. Cream-white on navy (~15:1) and gold on navy (~5.8:1)
+ * both clear WCAG AA. */
+.svc-guarantee-closing {
+  margin: 2.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.svc-guarantee-closing-line {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.375rem, 2.4vw, 1.75rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.svc-guarantee-closing-line--gold { color: var(--gildhart-gold); }
 
 @media (max-width: 768px) {
   .svc-guarantee { padding: 4rem 1.5rem; }
-  .svc-guarantee-proof-grid { grid-template-columns: 1fr; }
+  .svc-guarantee-headline { margin-bottom: 2rem; }
+  .svc-guarantee-panel { padding: 2rem; }
+  .svc-guarantee-panel-para { font-size: 1rem; line-height: 1.75; }
+  .svc-guarantee-closing { margin-top: 2rem; }
+  .svc-guarantee-closing-line { font-size: 1.25rem; }
 }
 
 /* ── Logo Bar (sits flush below the hero gradient) ──────────── */

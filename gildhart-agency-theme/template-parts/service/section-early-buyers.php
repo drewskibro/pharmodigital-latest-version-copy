@@ -33,7 +33,7 @@ $window_paras    = get_field( 'service_offer_window_paragraphs' );
 if ( empty( $window_paras ) ) {
     $window_paras = array(
         array( 'text' => 'In 2006 you could rank a healthcare website in Google in weeks. Build a few pages before the national chains caught up and slammed it shut.' ),
-        array( 'text' => "This window converts 300–800% better than that one ever did. AI search doesn't show ten results. It picks one. And right now — before Boots, Bupa, and Superdrug have figured out how to game it — that one can be you." ),
+        array( 'text' => "This window converts 300–800% better than that one ever did. Enterprise brands are paying thousands a month just to monitor whether they're appearing in AI search — without a system to actually get them there. This gives you the system. AI search doesn't show ten results. It picks one. And right now — before Boots, Bupa, and Superdrug have figured out how to game it — that one can be you." ),
         array( 'text' => 'The shortlist is being built right now. Not next year. Now.' ),
         array( 'text' => "Ealing got on it in 6 weeks. Superior got on it in 48 hours. Both moved before their competitors noticed. Their competitors have noticed now. They're already six months behind." ),
         array( 'text' => 'Every week you wait, someone in your area is claiming the spot you should own.' ),

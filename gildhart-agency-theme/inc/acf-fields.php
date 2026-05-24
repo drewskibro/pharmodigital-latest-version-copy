@@ -2558,18 +2558,15 @@ acf_add_local_field_group( array(
         ),
         array( 'key' => 'field_gh_service_guarantee_badge', 'label' => 'Badge Text',  'name' => 'service_guarantee_badge_text', 'type' => 'text' ),
         array( 'key' => 'field_gh_service_guarantee_h',     'label' => 'Headline',    'name' => 'service_guarantee_headline',   'type' => 'text' ),
-        array( 'key' => 'field_gh_service_guarantee_body',  'label' => 'Body',        'name' => 'service_guarantee_body',       'type' => 'textarea', 'rows' => 3 ),
         array(
-            'key' => 'field_gh_service_guarantee_proof', 'label' => 'Proof Cards', 'name' => 'service_guarantee_proof',
-            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 6,
-            'instructions' => 'Three cards is the designed default. Each card = client name + big stat + descriptor.',
+            'key' => 'field_gh_service_guarantee_paras', 'label' => 'Body Paragraphs', 'name' => 'service_guarantee_paragraphs',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
+            'instructions' => 'Each row is one paragraph inside the bordered guarantee panel. Inline <strong>tags allowed</strong>.',
             'sub_fields' => array(
-                array( 'key' => 'field_gh_service_guarantee_proof_client', 'label' => 'Client',     'name' => 'client', 'type' => 'text' ),
-                array( 'key' => 'field_gh_service_guarantee_proof_stat',   'label' => 'Stat',       'name' => 'stat',   'type' => 'text' ),
-                array( 'key' => 'field_gh_service_guarantee_proof_desc',   'label' => 'Descriptor', 'name' => 'desc',   'type' => 'text' ),
+                array( 'key' => 'field_gh_service_guarantee_para_text', 'label' => 'Paragraph', 'name' => 'text', 'type' => 'textarea', 'rows' => 4 ),
             ),
         ),
-        array( 'key' => 'field_gh_service_guarantee_personal', 'label' => 'Personal Promise', 'name' => 'service_guarantee_personal_text', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'Inline <strong>tags allowed</strong>.' ),
+        array( 'key' => 'field_gh_service_guarantee_closing', 'label' => 'Closing Statement', 'name' => 'service_guarantee_closing', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'One line per row (press Enter between lines). Each line renders as its own statement; the last line picks up a gold accent.' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
