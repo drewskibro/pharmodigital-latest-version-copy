@@ -63,6 +63,13 @@ $logo_id       = (int) get_field( 'guarantee_gildhart_logo' );
 $logo_fallback = 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png';
 $founder_name  = gh_field( 'service_guarantee_founder_name',  'Drew Clayton' );
 $founder_title = gh_field( 'service_guarantee_founder_title', 'Founder, Gildhart' );
+$linkedin_url  = gh_field( 'guarantee_linkedin_url' );
+// Fall back to the global social LinkedIn option so the CTA renders
+// out of the box before the section-specific field is wired.
+if ( ! $linkedin_url && function_exists( 'gh_option' ) ) {
+    $linkedin_url = gh_option( 'social_linkedin' );
+}
+$linkedin_text = gh_field( 'service_guarantee_linkedin_text', 'Connect with me on LinkedIn — 5,000+ healthcare professionals follow our AI search insights.' );
 $has_signature = $drew_photo_id || $logo_id || $logo_fallback || $founder_name;
 ?>
 
@@ -151,6 +158,15 @@ $has_signature = $drew_photo_id || $logo_id || $logo_fallback || $founder_name;
                     <?php endif; ?>
                     <?php if ( $founder_title ) : ?>
                         <p class="svc-guarantee-signature-title"><?php echo esc_html( $founder_title ); ?></p>
+                    <?php endif; ?>
+
+                    <?php if ( $linkedin_url && $linkedin_text ) : ?>
+                        <a class="svc-guarantee-linkedin" href="<?php echo esc_url( $linkedin_url ); ?>" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2" aria-hidden="true">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            <span class="svc-guarantee-linkedin-text"><?php echo esc_html( $linkedin_text ); ?></span>
+                        </a>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>

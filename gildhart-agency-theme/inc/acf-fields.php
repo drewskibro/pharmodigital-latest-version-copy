@@ -2610,6 +2610,8 @@ acf_add_local_field_group( array(
         ),
         array( 'key' => 'field_gh_service_guarantee_founder_name',  'label' => 'Right Column — Founder Name',  'name' => 'service_guarantee_founder_name',  'type' => 'text', 'instructions' => 'Default: "Drew Clayton".' ),
         array( 'key' => 'field_gh_service_guarantee_founder_title', 'label' => 'Right Column — Founder Title', 'name' => 'service_guarantee_founder_title', 'type' => 'text', 'instructions' => 'Gold small caps. Default: "Founder, Gildhart".' ),
+        array( 'key' => 'field_gh_service_guarantee_linkedin_url',  'label' => 'Right Column — LinkedIn URL',   'name' => 'guarantee_linkedin_url',  'type' => 'url',  'instructions' => 'Founder LinkedIn profile. Opens in a new tab. Falls back to the global Social · LinkedIn option if left empty.' ),
+        array( 'key' => 'field_gh_service_guarantee_linkedin_text', 'label' => 'Right Column — LinkedIn Text',  'name' => 'service_guarantee_linkedin_text', 'type' => 'textarea', 'rows' => 2, 'instructions' => 'Default: "Connect with me on LinkedIn — 5,000+ healthcare professionals follow our AI search insights."' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
