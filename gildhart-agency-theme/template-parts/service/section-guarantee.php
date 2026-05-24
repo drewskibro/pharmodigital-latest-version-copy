@@ -54,6 +54,16 @@ if ( empty( $paragraphs ) ) {
 $closing = gh_field( 'service_guarantee_closing', "One purchase.\nA system that works.\nAnd my direct involvement if it doesn't." );
 $closing_lines = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', (string) $closing ) ) ) );
 $closing_last  = count( $closing_lines ) - 1;
+
+/* Right column — founder signature (Drew photo + Gildhart logo + name). */
+$drew_photo_id = (int) get_field( 'guarantee_drew_photo' );
+$logo_id       = (int) get_field( 'guarantee_gildhart_logo' );
+// Logo falls back to the uploaded brand seal in the media library so the
+// signature renders out of the box before anyone wires the ACF field.
+$logo_fallback = 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png';
+$founder_name  = gh_field( 'service_guarantee_founder_name',  'Drew Clayton' );
+$founder_title = gh_field( 'service_guarantee_founder_title', 'Founder, Gildhart' );
+$has_signature = $drew_photo_id || $logo_id || $logo_fallback || $founder_name;
 ?>
 
 <section class="svc-guarantee">
@@ -72,8 +82,10 @@ $closing_last  = count( $closing_lines ) - 1;
         <?php endif; ?>
 
         <div class="svc-guarantee-columns">
-            <?php if ( ! empty( $proof_blocks ) ) : ?>
-                <div class="svc-guarantee-col svc-guarantee-col--proof">
+            <?php // Left column (60%) — combined proof + guarantee inside one
+                  // bordered box with the gold left-border accent. ?>
+            <div class="svc-guarantee-col svc-guarantee-col--main">
+                <?php if ( ! empty( $proof_blocks ) ) : ?>
                     <?php if ( $proof_label ) : ?>
                         <p class="svc-guarantee-col-label"><?php echo esc_html( $proof_label ); ?></p>
                     <?php endif; ?>
@@ -92,13 +104,11 @@ $closing_last  = count( $closing_lines ) - 1;
                             </div>
                         <?php endforeach; ?>
                     </div>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
 
-            <?php if ( ! empty( $paragraphs ) ) : ?>
-                <div class="svc-guarantee-col svc-guarantee-col--guarantee">
+                <?php if ( ! empty( $paragraphs ) ) : ?>
                     <?php if ( $guarantee_label ) : ?>
-                        <p class="svc-guarantee-col-label"><?php echo esc_html( $guarantee_label ); ?></p>
+                        <p class="svc-guarantee-col-label svc-guarantee-col-label--guarantee"><?php echo esc_html( $guarantee_label ); ?></p>
                     <?php endif; ?>
                     <div class="svc-guarantee-col-body">
                         <?php foreach ( $paragraphs as $para ) :
@@ -107,6 +117,41 @@ $closing_last  = count( $closing_lines ) - 1;
                             <p class="svc-guarantee-para"><?php echo wp_kses_post( $text ); ?></p>
                         <?php endforeach; ?>
                     </div>
+                <?php endif; ?>
+            </div>
+
+            <?php // Right column (40%) — founder signature. Floats cleanly on
+                  // the navy background, no box. ?>
+            <?php if ( $has_signature ) : ?>
+                <div class="svc-guarantee-signature">
+                    <?php if ( $drew_photo_id ) : ?>
+                        <div class="svc-guarantee-signature-photo">
+                            <?php echo wp_get_attachment_image( $drew_photo_id, 'large', false, array(
+                                'alt'     => esc_attr( $founder_name ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $logo_id ) : ?>
+                        <div class="svc-guarantee-signature-logo">
+                            <?php echo wp_get_attachment_image( $logo_id, 'medium', false, array(
+                                'alt'     => 'Gildhart',
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </div>
+                    <?php elseif ( $logo_fallback ) : ?>
+                        <div class="svc-guarantee-signature-logo">
+                            <img src="<?php echo esc_url( $logo_fallback ); ?>" alt="Gildhart" loading="lazy" />
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $founder_name ) : ?>
+                        <p class="svc-guarantee-signature-name"><?php echo esc_html( $founder_name ); ?></p>
+                    <?php endif; ?>
+                    <?php if ( $founder_title ) : ?>
+                        <p class="svc-guarantee-signature-title"><?php echo esc_html( $founder_title ); ?></p>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         </div>
