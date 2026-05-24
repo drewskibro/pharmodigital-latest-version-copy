@@ -2304,12 +2304,21 @@ acf_add_local_field_group( array(
         ),
         array(
             'key'           => 'field_gh_service_medihub_screenshot',
-            'label'         => 'LinkedIn Screenshot',
+            'label'         => 'LinkedIn Screenshot (desktop)',
             'name'          => 'medihub_linkedin_screenshot',
             'type'          => 'image',
             'return_format' => 'id',
             'preview_size'  => 'medium',
-            'instructions'  => 'Upload the verified LinkedIn recommendation screenshot. Recommended width 1600px+ for retina sharpness. Renders at 800px max width with 12px rounded corners and a hairline gold border. Section hides automatically if empty.',
+            'instructions'  => 'Landscape screenshot shown on desktop (hidden on mobile when a mobile image is set below). Recommended width 1600px+ for retina sharpness. Renders at 1000px max width with 12px rounded corners and a hairline gold border. Section hides automatically if both image fields are empty.',
+        ),
+        array(
+            'key'           => 'field_gh_service_medihub_mobile',
+            'label'         => 'LinkedIn Screenshot (mobile)',
+            'name'          => 'medihub_linkedin_mobile',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Portrait / phone-framed version shown on mobile only (≤768px). Renders centred at 380px max width, object-fit: contain (never cropped), no border or radius. Leave empty to show the desktop screenshot at all breakpoints.',
         ),
         array(
             'key'   => 'field_gh_service_medihub_caption',

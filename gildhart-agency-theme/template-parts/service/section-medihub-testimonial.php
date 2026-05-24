@@ -23,25 +23,38 @@ if ( ! gh_field( 'service_medihub_testimonial_show', 1 ) ) {
 $eyebrow       = gh_field( 'service_medihub_testimonial_eyebrow', 'From the Field' );
 $caption       = gh_field( 'service_medihub_testimonial_caption', 'Verified LinkedIn recommendation · May 2026' );
 $screenshot_id = (int) get_field( 'medihub_linkedin_screenshot' );
+$mobile_id     = (int) get_field( 'medihub_linkedin_mobile' );
 
-if ( ! $screenshot_id ) {
+if ( ! $screenshot_id && ! $mobile_id ) {
     return;
 }
 ?>
 
-<section class="svc-medihub" id="medihub-testimonial">
+<section class="svc-medihub<?php echo $mobile_id ? ' svc-medihub--has-mobile' : ''; ?>" id="medihub-testimonial">
     <div class="svc-medihub-inner">
         <?php if ( $eyebrow ) : ?>
             <p class="svc-medihub-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
         <?php endif; ?>
 
-        <figure class="svc-medihub-figure">
-            <?php echo wp_get_attachment_image( $screenshot_id, 'full', false, array(
-                'class'   => 'svc-medihub-image',
-                'alt'     => esc_attr( $caption ),
-                'loading' => 'lazy',
-            ) ); ?>
-        </figure>
+        <?php if ( $screenshot_id ) : ?>
+            <figure class="svc-medihub-figure svc-medihub-figure--desktop">
+                <?php echo wp_get_attachment_image( $screenshot_id, 'full', false, array(
+                    'class'   => 'svc-medihub-image',
+                    'alt'     => esc_attr( $caption ),
+                    'loading' => 'lazy',
+                ) ); ?>
+            </figure>
+        <?php endif; ?>
+
+        <?php if ( $mobile_id ) : ?>
+            <figure class="svc-medihub-figure svc-medihub-figure--mobile">
+                <?php echo wp_get_attachment_image( $mobile_id, 'large', false, array(
+                    'class'   => 'svc-medihub-image-mobile',
+                    'alt'     => esc_attr( $caption ),
+                    'loading' => 'lazy',
+                ) ); ?>
+            </figure>
+        <?php endif; ?>
 
         <?php if ( $caption ) : ?>
             <p class="svc-medihub-caption"><?php echo esc_html( $caption ); ?></p>
