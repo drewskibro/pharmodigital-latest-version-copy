@@ -3005,17 +3005,43 @@
   text-align: center;
   padding-top: 0.5rem;
 }
+/* Photo with the same bottom fade-out as the homepage founder section
+ * (.founder-image::after), but faded to navy instead of cream since
+ * this section sits on the dark background. Same 120px gradient
+ * height, same object-position: bottom so the legs aren't cropped —
+ * the fade dissolves the bottom edge naturally. */
+.svc-guarantee-signature-photo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.svc-guarantee-signature-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.6) 40%, var(--navy) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
 .svc-guarantee-signature-photo img {
   display: block;
   width: 100%;
   max-width: 320px;
   height: auto;
   object-fit: contain;
+  object-position: bottom;
   margin: 0 auto;
-  border-radius: 12px;
 }
+/* Logo sits at the base of the photo fade, centred — lifted up into
+ * the fade zone so it reads as resting on the dissolve. */
 .svc-guarantee-signature-logo {
-  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
+  margin-top: -0.5rem;
 }
 .svc-guarantee-signature-logo img {
   display: block;
@@ -3043,6 +3069,25 @@
   margin: 0;
   line-height: 1.4;
 }
+/* LinkedIn CTA — whole line clickable, muted cream → gold on hover. */
+.svc-guarantee-linkedin {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-width: 320px;
+  margin: 0.75rem auto 0;
+  padding-bottom: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--gildhart-cream, #F0E6C8);
+  text-decoration: none;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+.svc-guarantee-linkedin svg { flex-shrink: 0; margin-top: 2px; }
+.svc-guarantee-linkedin:hover { color: var(--gildhart-gold); }
 
 /* Proof blocks — name + result, hairline gold divider between. */
 .svc-guarantee-proof-block {
@@ -3103,13 +3148,14 @@
   /* Single column — signature (photo + logo) stacks ABOVE the copy. */
   .svc-guarantee-columns { grid-template-columns: 1fr; gap: 2rem; }
   .svc-guarantee-signature { order: -1; padding-top: 0; }
-  .svc-guarantee-col { padding: 1.5rem; }
+  .svc-guarantee-col { padding: 1.75rem; }
   .svc-guarantee-col-label--guarantee { margin-top: 2rem; }
   .svc-guarantee-proof-name { font-size: 1rem; }
   .svc-guarantee-proof-result { font-size: 0.9375rem; }
-  .svc-guarantee-para { font-size: 1rem; line-height: 1.75; }
-  .svc-guarantee-signature-photo img { max-width: 200px; }
+  .svc-guarantee-para { font-size: 1rem; line-height: 1.8; }
+  .svc-guarantee-signature-photo img { max-width: 280px; }
   .svc-guarantee-signature-logo img { width: 48px; }
+  .svc-guarantee-linkedin { max-width: 280px; }
   .svc-guarantee-closing { margin-top: 2.5rem; }
   .svc-guarantee-closing-line { font-size: 1.25rem; }
 }
