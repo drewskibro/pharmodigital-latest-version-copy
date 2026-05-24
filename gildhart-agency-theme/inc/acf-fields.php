@@ -3301,3 +3301,53 @@ acf_add_local_field_group( array(
         ),
     ),
 ) );
+
+/* ─────────────────────────────────────────────────────────────────
+ * Service · Playbook Thank-you Page
+ *
+ * Leaner than the agent thank-you group: hero + optional video +
+ * timeline only. Scoped to the page-playbook-thank-you.php template.
+ * ───────────────────────────────────────────────────────────────── */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_playbook_thank_you',
+    'title'      => 'Service · Playbook Thank-you Page',
+    'menu_order' => 21,
+    'fields'     => array(
+        // Confirmation hero
+        array( 'key' => 'field_gh_pty_hero_title', 'label' => 'Hero — Title', 'name' => 'playbook_thank_you_hero_title', 'type' => 'text', 'instructions' => 'Personalised at runtime — "You\'re in." becomes "You\'re in, [First Name]." Default: "You\'re in."' ),
+        array( 'key' => 'field_gh_pty_hero_lead',  'label' => 'Hero — Lead Line', 'name' => 'playbook_thank_you_hero_lead', 'type' => 'text', 'instructions' => 'Default: "You now own The AI Search Playbook."' ),
+        array( 'key' => 'field_gh_pty_hero_sub',   'label' => 'Hero — Status Line', 'name' => 'playbook_thank_you_hero_sub', 'type' => 'text', 'instructions' => 'Green-dot status strip below the hero. Default: "Everything\'s ready and waiting for you in Cowork."' ),
+
+        // Welcome video — off by default until a Playbook video is recorded
+        array(
+            'key'           => 'field_gh_pty_video_show',
+            'label'         => 'Show Welcome Video',
+            'name'          => 'playbook_thank_you_video_show',
+            'type'          => 'true_false',
+            'default_value' => 0,
+            'ui'            => 1,
+            'instructions'  => 'Off by default. Section also auto-hides if the Video URL is empty regardless of this toggle.',
+        ),
+        array( 'key' => 'field_gh_pty_video_eyebrow', 'label' => 'Video — Eyebrow', 'name' => 'playbook_thank_you_video_eyebrow', 'type' => 'text', 'instructions' => 'Default: "Welcome from Drew".' ),
+        array( 'key' => 'field_gh_pty_video_url',     'label' => 'Video — URL',     'name' => 'playbook_thank_you_video_url',     'type' => 'oembed', 'instructions' => 'Paste a Vimeo or YouTube URL. ACF auto-renders the embed. Section hides when empty or the toggle is off.' ),
+        array( 'key' => 'field_gh_pty_video_caption', 'label' => 'Video — Caption', 'name' => 'playbook_thank_you_video_caption', 'type' => 'text', 'instructions' => 'Default: "A quick word from Drew — what happens next."' ),
+
+        // Timeline
+        array( 'key' => 'field_gh_pty_timeline_eyebrow', 'label' => 'Timeline — Eyebrow', 'name' => 'playbook_thank_you_timeline_eyebrow', 'type' => 'text', 'instructions' => 'Default: "What happens next".' ),
+        array(
+            'key' => 'field_gh_pty_timeline_items', 'label' => 'Timeline — Items', 'name' => 'playbook_thank_you_timeline_items',
+            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 6,
+            'instructions' => 'Three items is the designed default. Each has a mono-uppercase label, a bold title, and a body line.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_pty_tli_label', 'label' => 'Label', 'name' => 'label', 'type' => 'text' ),
+                array( 'key' => 'field_gh_pty_tli_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
+                array( 'key' => 'field_gh_pty_tli_body',  'label' => 'Body',  'name' => 'body',  'type' => 'textarea', 'rows' => 2 ),
+            ),
+        ),
+    ),
+    'location' => array(
+        array(
+            array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-playbook-thank-you.php' ),
+        ),
+    ),
+) );
