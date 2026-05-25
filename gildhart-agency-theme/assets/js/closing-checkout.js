@@ -47,6 +47,11 @@
   var elements      = null;
   var paymentEl     = null;
   var clientSecret  = null;
+  // Set true once the Payment Element fires its 'ready' event. Guards
+  // against calling stripe.confirmPayment() before the element is
+  // mounted/ready — the cause of the "elements should have a mounted
+  // Payment Element" error if a user submits a beat too early.
+  var paymentReady  = false;
 
   // Override the ACF-driven "Deploy The Agent" label on page load so the
   // initial button text reflects the actual Step 1 action. After Step 1
@@ -158,6 +163,10 @@
       });
       paymentEl = elements.create('payment', { layout: 'tabs' });
 
+      // Track readiness — confirmPayment is blocked until this fires.
+      paymentReady = false;
+      paymentEl.on('ready', function () { paymentReady = true; });
+
       // Reveal the Card Payment section (hidden in the markup until
       // Step 1 succeeds), THEN mount — mounting into a hidden parent
       // can produce a zero-height iframe in some browsers.
@@ -205,6 +214,13 @@
 
     // Step 2 path: client_secret already exists → confirm card.
     if (clientSecret) {
+      // Don't confirm until the Payment Element has fired 'ready' — calling
+      // confirmPayment against an unmounted/not-ready element throws Stripe's
+      // "elements should have a mounted Payment Element" error.
+      if (!paymentReady) {
+        setError('Just a moment — the card form is still loading.');
+        return;
+      }
       confirmPayment().catch(function (err) {
         setError(err.message);
         // Reset to "Pay £X" so the user can retry. Use the original
