@@ -42,12 +42,13 @@ $cta_text  = gh_field( 'service_faq_cta_text',  $defaults['cta_text'] );
 $cta_label = gh_field( 'service_faq_cta_label', $defaults['cta_label'] );
 $cta_url   = gh_field( 'service_faq_cta_url',   $defaults['cta_url'] );
 
-// Agent page never shows the FAQ CTA. The "Get Instant Access — £497"
-// copy is Playbook-only; the agent has its own dual-plan checkout in
-// the Closing Offer section above. Force off regardless of ACF state
-// so stale Playbook defaults can't leak onto the agent if the field
-// was saved with cta_show=1 during early setup.
-if ( 'the-agent' === $slug ) {
+// Neither the Agent nor the Playbook shows the FAQ's own built-in CTA.
+// The Agent has its Closing Offer checkout; the Playbook now carries
+// dedicated interstitial CTA strips (after the Shift, the Levelling,
+// and the FAQ) plus the Your Turn form, so the in-FAQ button is
+// redundant. Force off regardless of ACF state so a stale saved
+// cta_show=1 can't resurrect it.
+if ( 'the-agent' === $slug || 'the-playbook' === $slug ) {
     $cta_show = 0;
 }
 ?>
