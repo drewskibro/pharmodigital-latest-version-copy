@@ -110,6 +110,11 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
 ?>
 
 <section class="svc-pb-checkout" id="your-turn">
+    <?php // Legacy anchor alias: several CTAs (hero, problem-shift strip, FAQ)
+          // still target #buy-now from saved ACF values. This makes that
+          // anchor land on the Your Turn section so they all work without
+          // touching the saved data. ?>
+    <span id="buy-now" class="svc-pb-checkout-anchor" aria-hidden="true"></span>
     <div class="svc-pb-checkout-inner">
 
         <!-- ─── Intro (left, top) ─── -->

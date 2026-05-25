@@ -1956,6 +1956,15 @@
   padding: 6rem 2rem 7rem;
   position: relative;
   overflow: hidden;
+  /* Offset native anchor jumps (#your-turn / #buy-now from non-hero CTAs)
+   * so the section lands below the fixed nav, not under it. */
+  scroll-margin-top: var(--nav-h, 130px);
+}
+/* Legacy #buy-now anchor target — sits at the top of the section, also
+ * offset below the fixed nav for native jumps. */
+.svc-pb-checkout-anchor {
+  display: block;
+  scroll-margin-top: var(--nav-h, 130px);
 }
 .svc-pb-checkout-inner {
   max-width: 1200px;
