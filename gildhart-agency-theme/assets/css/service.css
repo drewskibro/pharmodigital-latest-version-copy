@@ -297,6 +297,8 @@
 
 .svc-problem-shift-wrap {
   background: var(--navy);
+  /* Offset the #the-shift anchor jump below the fixed nav. */
+  scroll-margin-top: var(--nav-h, 130px);
 }
 .svc-problem-shift {
   padding: 6rem 2rem;
