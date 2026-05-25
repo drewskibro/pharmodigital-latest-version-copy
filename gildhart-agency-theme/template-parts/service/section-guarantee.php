@@ -28,18 +28,7 @@ if ( ! gh_field( 'service_guarantee_show', 1 ) ) {
 $badge_text   = gh_field( 'service_guarantee_badge_text', 'Personal Implementation Guarantee' );
 $headline     = gh_field( 'service_guarantee_headline',   'This System Has Already Worked. For Practices Exactly Like Yours.' );
 
-/* Left column — THE PROOF */
-$proof_label  = gh_field( 'service_guarantee_proof_label', 'Three Practices. Three Specialisms. One Result.' );
-$proof_blocks = get_field( 'service_guarantee_proof_blocks' );
-if ( empty( $proof_blocks ) ) {
-    $proof_blocks = array(
-        array( 'name' => 'Ealing Travel Clinic', 'result' => '#1 in Google AI Overviews. 8 bookings became 55 a month. Then an IVF clinic started sending referrals.' ),
-        array( 'name' => 'Superior Pharmacy',    'result' => '50% of all sales now come through ChatGPT. First booking within 48 hours of going live.' ),
-        array( 'name' => 'Puri Pharmacy',        'result' => '£100k from Mounjaro alone. Outranking Boots nationally.' ),
-    );
-}
-
-/* Right column — THE GUARANTEE */
+/* Left column — THE GUARANTEE */
 $guarantee_label = gh_field( 'service_guarantee_guarantee_label', 'The Guarantee' );
 $paragraphs      = get_field( 'service_guarantee_paragraphs' );
 if ( empty( $paragraphs ) ) {
@@ -92,30 +81,9 @@ $has_signature = $drew_photo_id || $logo_id || $logo_fallback || $founder_name;
             <?php // Left column (60%) — combined proof + guarantee inside one
                   // bordered box with the gold left-border accent. ?>
             <div class="svc-guarantee-col svc-guarantee-col--main">
-                <?php if ( ! empty( $proof_blocks ) ) : ?>
-                    <?php if ( $proof_label ) : ?>
-                        <p class="svc-guarantee-col-label"><?php echo esc_html( $proof_label ); ?></p>
-                    <?php endif; ?>
-                    <div class="svc-guarantee-proof-blocks">
-                        <?php foreach ( $proof_blocks as $block ) :
-                            $name   = $block['name']   ?? '';
-                            $result = $block['result'] ?? '';
-                            if ( ! $name && ! $result ) continue; ?>
-                            <div class="svc-guarantee-proof-block">
-                                <?php if ( $name ) : ?>
-                                    <p class="svc-guarantee-proof-name"><?php echo esc_html( $name ); ?></p>
-                                <?php endif; ?>
-                                <?php if ( $result ) : ?>
-                                    <p class="svc-guarantee-proof-result"><?php echo esc_html( $result ); ?></p>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-
                 <?php if ( ! empty( $paragraphs ) ) : ?>
                     <?php if ( $guarantee_label ) : ?>
-                        <p class="svc-guarantee-col-label svc-guarantee-col-label--guarantee"><?php echo esc_html( $guarantee_label ); ?></p>
+                        <p class="svc-guarantee-col-label"><?php echo esc_html( $guarantee_label ); ?></p>
                     <?php endif; ?>
                     <div class="svc-guarantee-col-body">
                         <?php foreach ( $paragraphs as $para ) :

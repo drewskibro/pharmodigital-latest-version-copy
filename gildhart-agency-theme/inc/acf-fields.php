@@ -2587,20 +2587,9 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_service_guarantee_badge', 'label' => 'Badge Text',  'name' => 'service_guarantee_badge_text', 'type' => 'text' ),
         array( 'key' => 'field_gh_service_guarantee_h',     'label' => 'Headline',    'name' => 'service_guarantee_headline',   'type' => 'text' ),
 
-        array( 'key' => 'field_gh_service_guarantee_proof_label', 'label' => 'Left Column — Proof Label', 'name' => 'service_guarantee_proof_label', 'type' => 'text', 'instructions' => 'Gold caps label above the proof blocks. e.g. "Three Practices. Three Specialisms. One Result."' ),
+        array( 'key' => 'field_gh_service_guarantee_guarantee_label', 'label' => 'Guarantee Label', 'name' => 'service_guarantee_guarantee_label', 'type' => 'text', 'instructions' => 'Gold caps label above the guarantee paragraphs. e.g. "The Guarantee".' ),
         array(
-            'key' => 'field_gh_service_guarantee_proof_blocks', 'label' => 'Left Column — Proof Blocks', 'name' => 'service_guarantee_proof_blocks',
-            'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
-            'instructions' => 'Each row = a named practice + its result. Rendered with a hairline gold divider between blocks.',
-            'sub_fields' => array(
-                array( 'key' => 'field_gh_service_guarantee_proof_block_name',   'label' => 'Practice Name', 'name' => 'name',   'type' => 'text' ),
-                array( 'key' => 'field_gh_service_guarantee_proof_block_result', 'label' => 'Result',        'name' => 'result', 'type' => 'textarea', 'rows' => 3 ),
-            ),
-        ),
-
-        array( 'key' => 'field_gh_service_guarantee_guarantee_label', 'label' => 'Right Column — Guarantee Label', 'name' => 'service_guarantee_guarantee_label', 'type' => 'text', 'instructions' => 'Gold caps label above the guarantee paragraphs. e.g. "The Guarantee".' ),
-        array(
-            'key' => 'field_gh_service_guarantee_paras', 'label' => 'Right Column — Guarantee Paragraphs', 'name' => 'service_guarantee_paragraphs',
+            'key' => 'field_gh_service_guarantee_paras', 'label' => 'Guarantee Paragraphs', 'name' => 'service_guarantee_paragraphs',
             'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 8,
             'instructions' => 'Each row is one paragraph inside the bordered guarantee column. Inline <strong>tags allowed</strong>.',
             'sub_fields' => array(
