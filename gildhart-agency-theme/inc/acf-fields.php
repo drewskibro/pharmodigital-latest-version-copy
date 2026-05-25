@@ -2366,6 +2366,47 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Service · FluClinic Proof */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_fluclinic_proof',
+    'title'      => 'Service · FluClinic Proof',
+    'menu_order' => 9,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_fcp_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_fluclinic_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_fcp_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_fluclinic_eyebrow',  'type' => 'text', 'instructions' => 'Gold small caps. Default: "Four Weeks. Three Platforms. One Independent Clinic."' ),
+        array( 'key' => 'field_gh_service_fcp_headline', 'label' => 'Headline', 'name' => 'service_fluclinic_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_fcp_body',     'label' => 'Body Paragraph', 'name' => 'service_fluclinic_body', 'type' => 'textarea', 'rows' => 5 ),
+        array( 'key' => 'field_gh_service_fcp_punch',    'label' => 'Punch Line', 'name' => 'service_fluclinic_punch', 'type' => 'text', 'instructions' => 'The single display-size gut-punch line. Default: "It took four weeks."' ),
+        array(
+            'key'           => 'field_gh_service_fcp_screenshot',
+            'label'         => 'AI Overview Screenshot',
+            'name'          => 'fluclinic_gai_screenshot',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'The Google AI Overview screenshot showing FluClinic2You ranked. Renders at 900px max width, 12px rounded corners, hairline gold border, never cropped. Hides if empty — must be a clean, legible capture.',
+        ),
+        array( 'key' => 'field_gh_service_fcp_closing', 'label' => 'Closing Line', 'name' => 'service_fluclinic_closing', 'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key' => 'field_gh_service_fcp_stats', 'label' => 'Stat Bar', 'name' => 'service_fluclinic_stats',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 4,
+            'instructions' => 'Three stats is the designed default. Gold number + white caps label.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_fcp_stat_value', 'label' => 'Number', 'name' => 'value', 'type' => 'text', 'instructions' => 'e.g. "4", "3", "#1".' ),
+                array( 'key' => 'field_gh_service_fcp_stat_label', 'label' => 'Label',  'name' => 'label', 'type' => 'text', 'instructions' => 'Small caps label below the number.' ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · Playbook Checkout */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_pb_checkout',
