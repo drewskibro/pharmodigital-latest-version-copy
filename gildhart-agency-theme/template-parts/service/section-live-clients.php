@@ -28,6 +28,16 @@ $footnote = gh_field( 'service_live_clients_footnote', 'Every practice shown is 
 
 $cards = get_field( 'service_live_clients_cards' );
 if ( empty( $cards ) ) {
+    // Fallback: pull the Agent service post's carousel so this section
+    // can be embedded on non-service pages (e.g. the Playbook thank-you
+    // upsell) and still render the live-client cards. Header fields use
+    // their defaults above, which match the Agent's copy.
+    $agent_post = get_page_by_path( 'the-agent', OBJECT, 'service' );
+    if ( $agent_post && (int) $agent_post->ID !== (int) get_the_ID() ) {
+        $cards = get_field( 'service_live_clients_cards', (int) $agent_post->ID );
+    }
+}
+if ( empty( $cards ) ) {
     return; // No cards = no carousel
 }
 ?>

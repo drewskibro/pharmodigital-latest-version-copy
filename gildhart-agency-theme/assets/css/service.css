@@ -7902,6 +7902,14 @@
   align-items: flex-start;
   gap: 0.875rem;
 }
+/* Centred variant — used when the CTA sits in its own container below
+ * the full-width Live Clients carousel (Playbook thank-you upsell),
+ * rather than left-aligned inside the copy column. */
+.svc-thank-you-upsell-cta-wrap--centered {
+  align-items: center;
+  text-align: center;
+  margin-top: 3rem;
+}
 .svc-thank-you-upsell-cta {
   display: inline-flex;
   align-items: center;

@@ -251,26 +251,33 @@ $upsell_proof_emphasis = gh_field( 'playbook_thank_you_upsell_proof_emphasis', '
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-
-                        <?php if ( $upsell_cta_lbl && $upsell_cta_url ) : ?>
-                            <div class="svc-thank-you-upsell-cta-wrap">
-                                <a class="svc-thank-you-upsell-cta" href="<?php echo esc_url( $upsell_cta_url ); ?>">
-                                    <?php echo esc_html( $upsell_cta_lbl ); ?> &rarr;
-                                </a>
-                                <?php if ( $upsell_more_lbl && $upsell_more_url ) : ?>
-                                    <a class="svc-thank-you-upsell-secondary" href="<?php echo esc_url( $upsell_more_url ); ?>">
-                                        <?php echo esc_html( $upsell_more_lbl ); ?> &rarr;
-                                    </a>
-                                <?php endif; ?>
-                                <?php if ( $upsell_footnote ) : ?>
-                                    <p class="svc-thank-you-upsell-footnote"><?php echo esc_html( $upsell_footnote ); ?></p>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
                     </div>
 
                 </div>
             </div>
+
+            <?php // Full-width Agent social proof — the Live Clients carousel,
+                  // rendered verbatim (same template part + cross-post data +
+                  // service.js behaviour) between the proof copy and the CTA. ?>
+            <?php get_template_part( 'template-parts/service/section-live-clients' ); ?>
+
+            <?php if ( $upsell_cta_lbl && $upsell_cta_url ) : ?>
+                <div class="svc-thank-you-upsell-inner">
+                    <div class="svc-thank-you-upsell-cta-wrap svc-thank-you-upsell-cta-wrap--centered">
+                        <a class="svc-thank-you-upsell-cta" href="<?php echo esc_url( $upsell_cta_url ); ?>">
+                            <?php echo esc_html( $upsell_cta_lbl ); ?> &rarr;
+                        </a>
+                        <?php if ( $upsell_more_lbl && $upsell_more_url ) : ?>
+                            <a class="svc-thank-you-upsell-secondary" href="<?php echo esc_url( $upsell_more_url ); ?>">
+                                <?php echo esc_html( $upsell_more_lbl ); ?> &rarr;
+                            </a>
+                        <?php endif; ?>
+                        <?php if ( $upsell_footnote ) : ?>
+                            <p class="svc-thank-you-upsell-footnote"><?php echo esc_html( $upsell_footnote ); ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
         </section>
     <?php endif; ?>
 </main>

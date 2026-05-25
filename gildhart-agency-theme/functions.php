@@ -264,6 +264,17 @@ function gildhart_scripts() {
         wp_localize_script( 'gildhart-playbook-thank-you', 'GildhartThankYou', array(
             'restUrl' => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
         ) );
+        // The Agent upsell embeds the Live Clients carousel, whose
+        // arrows / dots / drag-scroll / lightbox live in service.js —
+        // enqueue it here so the carousel behaves as it does on the
+        // Agent page.
+        wp_enqueue_script(
+            'gildhart-service',
+            GILDHART_URI . '/assets/js/service.js',
+            array(),
+            gh_asset_ver( 'assets/js/service.js' ),
+            true
+        );
     }
 }
 add_action( 'wp_enqueue_scripts', 'gildhart_scripts' );
