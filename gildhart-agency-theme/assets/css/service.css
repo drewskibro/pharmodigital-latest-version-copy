@@ -293,6 +293,69 @@
   }
 }
 
+/* ── Interstitial CTA strip (repeated at conviction peaks) ──────
+ * Forest-green band so it reads as a deliberate action beat against
+ * both the navy and cream sections it sits between. Prompt + cream
+ * button side-by-side on desktop, stacked on mobile. Thin gold edges
+ * mark it off from neighbouring sections.
+ */
+.svc-cta-strip {
+  background: var(--gildhart-green);
+  padding: 3rem 2rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.3);
+  border-bottom: 1px solid rgba(201, 164, 74, 0.3);
+}
+.svc-cta-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem 2.25rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.svc-cta-strip-prompt {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.svc-cta-strip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--gildhart-cream, #F0E6C8);
+  color: var(--gildhart-green);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.svc-cta-strip-btn:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
+}
+.svc-cta-strip-arrow { display: inline-block; transition: transform 0.2s ease; }
+.svc-cta-strip-btn:hover .svc-cta-strip-arrow { transform: translateX(3px); }
+
+@media (max-width: 768px) {
+  .svc-cta-strip { padding: 2.5rem 1.5rem; }
+  .svc-cta-strip-inner { flex-direction: column; gap: 1.25rem; }
+  .svc-cta-strip-prompt { font-size: 1.25rem; }
+  .svc-cta-strip-btn { width: 100%; justify-content: center; padding: 1rem 1.25rem; }
+}
+
 /* ── S1: Problem Shift section ──────────────────────────────── */
 
 .svc-problem-shift-wrap {

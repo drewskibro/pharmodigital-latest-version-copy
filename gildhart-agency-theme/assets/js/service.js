@@ -570,16 +570,17 @@
 })();
 
 /* ────────────────────────────────────────────────────────────────
- * Hero CTAs — smooth in-page scroll.
+ * In-page CTA smooth scroll.
  *
- * Scoped to the two hero buttons only (.svc-hero-cta a[href^="#"]) so
- * no other link on the page changes behaviour. Matches the existing
- * scroll pattern used elsewhere in this file — window.scrollTo with
- * behavior:'smooth' and a --nav-h offset so the target section lands
- * below the sticky nav rather than under it.
+ * Scoped to the hero buttons and the interstitial CTA strips
+ * (.svc-hero-cta / .svc-cta-strip anchors) so no unrelated link on the
+ * page changes behaviour. Matches the existing scroll pattern used
+ * elsewhere in this file — window.scrollTo with behavior:'smooth' and a
+ * --nav-h offset so the target section lands below the sticky nav
+ * rather than under it.
  * ──────────────────────────────────────────────────────────────── */
 (function () {
-  var ctas = document.querySelectorAll('.svc-hero-cta a[href^="#"]');
+  var ctas = document.querySelectorAll('.svc-hero-cta a[href^="#"], .svc-cta-strip a[href^="#"]');
   if (!ctas.length) return;
 
   Array.prototype.forEach.call(ctas, function (link) {

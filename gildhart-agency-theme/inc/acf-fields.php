@@ -1635,6 +1635,30 @@ acf_add_local_field_group( array(
     ),
 ) );
 
+/* Service · Interstitial CTA — shared by every repeated 'cta' strip in
+ * the roster. One set of fields drives all instances (they're identical
+ * by design). */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_cta',
+    'title'      => 'Service · CTA Strips',
+    'menu_order' => 2,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_cta_show',
+            'label'         => 'Show CTA strips',
+            'name'          => 'service_cta_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+            'instructions'  => 'Toggles every interstitial CTA strip on the page at once.',
+        ),
+        array( 'key' => 'field_gh_service_cta_prompt', 'label' => 'Prompt Line', 'name' => 'service_cta_prompt', 'type' => 'text', 'instructions' => 'Default: "Ready to get on the shortlist?"' ),
+        array( 'key' => 'field_gh_service_cta_label',  'label' => 'Button Label', 'name' => 'service_cta_label',  'type' => 'text', 'instructions' => 'Default: "Get The Playbook — £995". The → arrow is added automatically.' ),
+        array( 'key' => 'field_gh_service_cta_url',    'label' => 'Button URL',   'name' => 'service_cta_url',    'type' => 'text', 'instructions' => 'Default: #your-turn (smooth-scrolls to the checkout section).' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · Problem Shift */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_problem_shift',
