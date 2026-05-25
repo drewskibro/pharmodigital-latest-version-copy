@@ -422,7 +422,7 @@ function gildhart_service_faq_defaults( $slug ) {
         'the-playbook' => array(
             'eyebrow'   => 'No Surprises',
             'headline'  => "Questions You're Asking",
-            'cta_show'  => 1,
+            'cta_show'  => 0,
             'cta_text'  => 'Still have questions? <strong>Get the system now and ask me directly on the monthly calls.</strong>',
             'cta_label' => 'Get Instant Access — £497',
             'cta_url'   => '#buy-now',
