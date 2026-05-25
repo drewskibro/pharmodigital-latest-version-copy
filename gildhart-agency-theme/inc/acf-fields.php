@@ -2386,12 +2386,21 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_service_fcp_punch',    'label' => 'Punch Line', 'name' => 'service_fluclinic_punch', 'type' => 'text', 'instructions' => 'The single display-size gut-punch line. Default: "It took four weeks."' ),
         array(
             'key'           => 'field_gh_service_fcp_screenshot',
-            'label'         => 'AI Overview Screenshot',
+            'label'         => 'AI Overview Screenshot (desktop)',
             'name'          => 'fluclinic_gai_screenshot',
             'type'          => 'image',
             'return_format' => 'id',
             'preview_size'  => 'medium',
-            'instructions'  => 'The Google AI Overview screenshot showing FluClinic2You ranked. Renders at 900px max width, 12px rounded corners, hairline gold border, never cropped. Hides if empty — must be a clean, legible capture.',
+            'instructions'  => 'The Google AI Overview screenshot showing FluClinic2You ranked. Shown on desktop (hidden on mobile when a mobile image is set below). Renders at 900px max width, 12px rounded corners, hairline gold border, never cropped. Hides if empty — must be a clean, legible capture.',
+        ),
+        array(
+            'key'           => 'field_gh_service_fcp_mobile',
+            'label'         => 'AI Overview Screenshot (mobile)',
+            'name'          => 'fluclinic_gai_mobile',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Portrait / mobile-cropped version shown on mobile only (≤768px). Same gold border + 12px radius, never cropped. Leave empty to show the desktop screenshot at all breakpoints.',
         ),
         array( 'key' => 'field_gh_service_fcp_closing', 'label' => 'Closing Line', 'name' => 'service_fluclinic_closing', 'type' => 'textarea', 'rows' => 3 ),
         array(

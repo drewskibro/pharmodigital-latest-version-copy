@@ -1996,6 +1996,10 @@
   display: flex;
   justify-content: center;
 }
+/* Portrait mobile variant — hidden on desktop, shown ≤768px only when
+ * a mobile image exists (.svc-fcp--has-mobile). Without a mobile image
+ * the desktop screenshot shows at all breakpoints. */
+.svc-fcp-figure--mobile { display: none; }
 .svc-fcp-image {
   display: block;
   width: 100%;
@@ -2064,6 +2068,9 @@
   .svc-fcp-punch { font-size: 1.5rem; margin: 2rem auto; }
   .svc-fcp-figure { margin: 2rem auto; }
   .svc-fcp-image { border-radius: 8px; }
+  /* Swap desktop screenshot for the portrait mobile one when present. */
+  .svc-fcp--has-mobile .svc-fcp-figure--desktop { display: none; }
+  .svc-fcp--has-mobile .svc-fcp-figure--mobile { display: flex; }
   .svc-fcp-closing { font-size: 1.0625rem; margin-top: 2rem; }
   /* Stats stack vertically — dividers removed, generous spacing. */
   .svc-fcp-stats { flex-direction: column; gap: 2.25rem; margin-top: 2.75rem; }
