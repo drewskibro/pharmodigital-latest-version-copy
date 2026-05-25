@@ -30,6 +30,7 @@ $punch    = gh_field( 'service_fluclinic_punch',    'It took four weeks.' );
 $closing  = gh_field( 'service_fluclinic_closing',  "This isn't a pharmacy story. This isn't a travel clinic story. This is what the system does — in any healthcare specialism, for any independent practice, against any competitor regardless of size." );
 
 $screenshot_id = (int) get_field( 'fluclinic_gai_screenshot' );
+$mobile_id     = (int) get_field( 'fluclinic_gai_mobile' );
 
 $stats = get_field( 'service_fluclinic_stats' );
 if ( empty( $stats ) ) {
@@ -41,7 +42,7 @@ if ( empty( $stats ) ) {
 }
 ?>
 
-<section class="svc-fcp" id="fluclinic-proof">
+<section class="svc-fcp<?php echo $mobile_id ? ' svc-fcp--has-mobile' : ''; ?>" id="fluclinic-proof">
     <div class="svc-fcp-inner">
         <?php if ( $eyebrow ) : ?>
             <p class="svc-fcp-eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
@@ -57,8 +58,18 @@ if ( empty( $stats ) ) {
         <?php endif; ?>
 
         <?php if ( $screenshot_id ) : ?>
-            <figure class="svc-fcp-figure">
+            <figure class="svc-fcp-figure svc-fcp-figure--desktop">
                 <?php echo wp_get_attachment_image( $screenshot_id, 'large', false, array(
+                    'class'   => 'svc-fcp-image',
+                    'alt'     => esc_attr( $headline ),
+                    'loading' => 'lazy',
+                ) ); ?>
+            </figure>
+        <?php endif; ?>
+
+        <?php if ( $mobile_id ) : ?>
+            <figure class="svc-fcp-figure svc-fcp-figure--mobile">
+                <?php echo wp_get_attachment_image( $mobile_id, 'large', false, array(
                     'class'   => 'svc-fcp-image',
                     'alt'     => esc_attr( $headline ),
                     'loading' => 'lazy',
