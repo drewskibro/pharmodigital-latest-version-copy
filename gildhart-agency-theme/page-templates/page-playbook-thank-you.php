@@ -59,6 +59,35 @@ if ( empty( $timeline_items ) ) {
         ),
     );
 }
+
+/* Agent upsell — cross-sell block above the footer pitching the AI
+ * Agent to a buyer who's just bought the Playbook (the mirror of the
+ * Agent thank-you page's Playbook upsell). Reuses the .svc-thank-you-
+ * upsell-* component verbatim, with an added secondary "Learn more"
+ * link. The image defaults to the Agent service post's hero so a single
+ * upload powers /the-agent/ AND this upsell; the upsell_image field
+ * overrides if set. */
+$upsell_show     = gh_field( 'playbook_thank_you_upsell_show',      1 );
+$upsell_eyebrow  = gh_field( 'playbook_thank_you_upsell_eyebrow',   'Complete the system' );
+$upsell_headline = gh_field( 'playbook_thank_you_upsell_headline',  'Your Playbook is Ready. Now Convert the Patients It Sends You.' );
+$upsell_body     = gh_field( 'playbook_thank_you_upsell_body',      "The Playbook is the traffic system. Every piece of content you publish through it gets you featured on ChatGPT, Claude, Perplexity, and Google AI Overviews — sending pre-sold patients to your practice around the clock. But when those patients arrive at your website at 11pm on a Sunday, who answers them? The AI Agent does. It qualifies them, captures their details, and books them in — while you sleep. The Playbook fills the pipeline. The Agent converts it. That's the flywheel." );
+$upsell_cta_lbl  = gh_field( 'playbook_thank_you_upsell_cta_label', 'Add The AI Agent' );
+$upsell_cta_url  = gh_field( 'playbook_thank_you_upsell_cta_url',   '/the-agent/' );
+$upsell_more_lbl = gh_field( 'playbook_thank_you_upsell_more_label','Learn more about the AI Agent' );
+$upsell_more_url = gh_field( 'agent_page_url',                      '/the-agent/' );
+$upsell_footnote = gh_field( 'playbook_thank_you_upsell_footnote',  'Fully built and live in 7 days. Starts generating enquiries immediately.' );
+$upsell_image_id = (int) get_field( 'playbook_thank_you_upsell_image' );
+if ( ! $upsell_image_id ) {
+    $agent_post = get_page_by_path( 'the-agent', OBJECT, 'service' );
+    if ( $agent_post ) {
+        $upsell_image_id = (int) get_field( 'service_hero_image', $agent_post->ID );
+    }
+}
+
+/* Proof block inside the upsell. */
+$upsell_proof_label    = gh_field( 'playbook_thank_you_upsell_proof_label',    'What happens when both systems run together' );
+$upsell_proof_body     = gh_field( 'playbook_thank_you_upsell_proof_body',     'Ealing ranked page one for Zika virus London. An IVF clinic found them. Called them. And started sending referrals. That\'s not a patient booking — that\'s an institution generating recurring revenue on autopilot. The Playbook did that. The Agent means every enquiry that follows gets answered instantly, routed correctly, and converted — without anyone on your team lifting a finger.' );
+$upsell_proof_emphasis = gh_field( 'playbook_thank_you_upsell_proof_emphasis', 'The Playbook gets you found. The Agent gets you booked. One without the other is half the system.' );
 ?>
 
 <main id="main" class="site-main">
@@ -180,6 +209,70 @@ if ( empty( $timeline_items ) ) {
 
         </div>
     </section>
+
+    <!-- Agent upsell — mirrors the Agent thank-you page's Playbook upsell.
+         Full-width visual anchor on top, copy stack below. -->
+    <?php if ( $upsell_show && ( $upsell_headline || $upsell_body ) ) : ?>
+        <section class="svc-thank-you-upsell" aria-labelledby="svcPlaybookUpsellHeading">
+            <div class="svc-thank-you-upsell-inner">
+                <div class="svc-thank-you-upsell-stack">
+
+                    <?php if ( $upsell_image_id ) : ?>
+                        <figure class="svc-thank-you-upsell-media">
+                            <?php echo wp_get_attachment_image( $upsell_image_id, 'full', false, array(
+                                'class'   => 'svc-thank-you-upsell-image',
+                                'alt'     => esc_attr( $upsell_headline ),
+                                'loading' => 'lazy',
+                            ) ); ?>
+                        </figure>
+                    <?php endif; ?>
+
+                    <div class="svc-thank-you-upsell-copy">
+                        <?php if ( $upsell_eyebrow ) : ?>
+                            <span class="svc-thank-you-upsell-eyebrow"><?php echo esc_html( $upsell_eyebrow ); ?></span>
+                        <?php endif; ?>
+                        <?php if ( $upsell_headline ) : ?>
+                            <h2 id="svcPlaybookUpsellHeading" class="svc-thank-you-upsell-headline"><?php echo esc_html( $upsell_headline ); ?></h2>
+                        <?php endif; ?>
+                        <?php if ( $upsell_body ) : ?>
+                            <p class="svc-thank-you-upsell-body"><?php echo esc_html( $upsell_body ); ?></p>
+                        <?php endif; ?>
+
+                        <?php if ( $upsell_proof_label || $upsell_proof_body || $upsell_proof_emphasis ) : ?>
+                            <div class="svc-thank-you-upsell-proof">
+                                <?php if ( $upsell_proof_label ) : ?>
+                                    <span class="svc-thank-you-upsell-proof-label"><?php echo esc_html( $upsell_proof_label ); ?></span>
+                                <?php endif; ?>
+                                <?php if ( $upsell_proof_body ) : ?>
+                                    <p class="svc-thank-you-upsell-proof-body"><?php echo esc_html( $upsell_proof_body ); ?></p>
+                                <?php endif; ?>
+                                <?php if ( $upsell_proof_emphasis ) : ?>
+                                    <p class="svc-thank-you-upsell-proof-emphasis"><?php echo esc_html( $upsell_proof_emphasis ); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ( $upsell_cta_lbl && $upsell_cta_url ) : ?>
+                            <div class="svc-thank-you-upsell-cta-wrap">
+                                <a class="svc-thank-you-upsell-cta" href="<?php echo esc_url( $upsell_cta_url ); ?>">
+                                    <?php echo esc_html( $upsell_cta_lbl ); ?> &rarr;
+                                </a>
+                                <?php if ( $upsell_more_lbl && $upsell_more_url ) : ?>
+                                    <a class="svc-thank-you-upsell-secondary" href="<?php echo esc_url( $upsell_more_url ); ?>">
+                                        <?php echo esc_html( $upsell_more_lbl ); ?> &rarr;
+                                    </a>
+                                <?php endif; ?>
+                                <?php if ( $upsell_footnote ) : ?>
+                                    <p class="svc-thank-you-upsell-footnote"><?php echo esc_html( $upsell_footnote ); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
 </main>
 
 <?php
