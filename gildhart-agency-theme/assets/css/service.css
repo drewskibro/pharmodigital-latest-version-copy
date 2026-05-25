@@ -7931,6 +7931,20 @@
     0 6px 14px rgba(13, 26, 18, 0.12);
   background: linear-gradient(135deg, #b88a30 0%, var(--gildhart-gold) 50%, #c89d3f 100%);
 }
+/* Secondary "Learn more" link — muted, underlined, no button. Only the
+ * Playbook→Agent upsell uses this (the Agent→Playbook upsell has no
+ * secondary link); harmless on both since it only renders when present. */
+.svc-thank-you-upsell-secondary {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(13, 26, 18, 0.6);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+.svc-thank-you-upsell-secondary:hover { color: var(--gildhart-green); }
 .svc-thank-you-upsell-footnote {
   font-family: var(--font-mono);
   font-size: 0.70rem;

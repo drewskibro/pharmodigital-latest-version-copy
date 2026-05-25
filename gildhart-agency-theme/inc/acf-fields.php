@@ -3407,6 +3407,36 @@ acf_add_local_field_group( array(
                 array( 'key' => 'field_gh_pty_tli_body',  'label' => 'Body',  'name' => 'body',  'type' => 'textarea', 'rows' => 2 ),
             ),
         ),
+
+        // ── Agent upsell (mirror of the Agent thank-you Playbook upsell) ──
+        array(
+            'key'           => 'field_gh_pty_upsell_show',
+            'label'         => 'Agent Upsell — Show',
+            'name'          => 'playbook_thank_you_upsell_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_pty_upsell_eyebrow',  'label' => 'Agent Upsell — Eyebrow',  'name' => 'playbook_thank_you_upsell_eyebrow',  'type' => 'text',     'instructions' => 'Default: "Complete the system".' ),
+        array( 'key' => 'field_gh_pty_upsell_headline', 'label' => 'Agent Upsell — Headline', 'name' => 'playbook_thank_you_upsell_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_pty_upsell_body',     'label' => 'Agent Upsell — Body',     'name' => 'playbook_thank_you_upsell_body',     'type' => 'textarea', 'rows' => 5 ),
+        array(
+            'key'           => 'field_gh_pty_upsell_image',
+            'label'         => 'Agent Upsell — Image',
+            'name'          => 'playbook_thank_you_upsell_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Optional. Defaults to the Agent service post hero image if left empty.',
+        ),
+        array( 'key' => 'field_gh_pty_upsell_proof_label',    'label' => 'Agent Upsell — Proof Label',    'name' => 'playbook_thank_you_upsell_proof_label',    'type' => 'text' ),
+        array( 'key' => 'field_gh_pty_upsell_proof_body',     'label' => 'Agent Upsell — Proof Paragraph', 'name' => 'playbook_thank_you_upsell_proof_body',     'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_gh_pty_upsell_proof_emphasis', 'label' => 'Agent Upsell — Italic Takeaway', 'name' => 'playbook_thank_you_upsell_proof_emphasis', 'type' => 'text' ),
+        array( 'key' => 'field_gh_pty_upsell_cta_label',  'label' => 'Agent Upsell — Primary CTA Label', 'name' => 'playbook_thank_you_upsell_cta_label', 'type' => 'text', 'instructions' => 'Default: "Add The AI Agent". The → arrow is added automatically.' ),
+        array( 'key' => 'field_gh_pty_upsell_cta_url',    'label' => 'Agent Upsell — Primary CTA URL',   'name' => 'playbook_thank_you_upsell_cta_url',   'type' => 'text', 'instructions' => 'Default: "/the-agent/".' ),
+        array( 'key' => 'field_gh_pty_upsell_more_label', 'label' => 'Agent Upsell — Secondary Link Label', 'name' => 'playbook_thank_you_upsell_more_label', 'type' => 'text', 'instructions' => 'Default: "Learn more about the AI Agent".' ),
+        array( 'key' => 'field_gh_pty_upsell_more_url',   'label' => 'Agent Upsell — Secondary Link URL',   'name' => 'agent_page_url', 'type' => 'text', 'instructions' => 'Default: "/the-agent/".' ),
+        array( 'key' => 'field_gh_pty_upsell_footnote',   'label' => 'Agent Upsell — Footnote',          'name' => 'playbook_thank_you_upsell_footnote', 'type' => 'text', 'instructions' => 'Default: "Fully built and live in 7 days. Starts generating enquiries immediately."' ),
     ),
     'location' => array(
         array(
