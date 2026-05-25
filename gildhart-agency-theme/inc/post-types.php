@@ -586,7 +586,7 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_hero_cta_primary_label'   => 'Get The Playbook — £995',
         'service_hero_cta_primary_url'     => '#your-turn',
         'service_hero_cta_secondary_label' => "See What's Inside",
-        'service_hero_cta_secondary_url'   => '#your-turn',
+        'service_hero_cta_secondary_url'   => '#the-shift',
         // Problem Shift
         'service_problem_shift_label'           => 'The Shift',
         'service_problem_shift_headline'        => "In Two Years, The Practices On ChatGPT's Shortlist Will Own Your Market.",

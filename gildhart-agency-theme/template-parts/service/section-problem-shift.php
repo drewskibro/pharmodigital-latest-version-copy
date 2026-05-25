@@ -117,7 +117,7 @@ $strip_cta_lbl  = gh_field( 'service_problem_shift_strip_cta_label', 'Get The Sy
 $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' );
 ?>
 
-<section class="svc-problem-shift-wrap">
+<section class="svc-problem-shift-wrap" id="the-shift">
     <div class="svc-problem-shift">
         <div class="svc-ps-inner">
             <?php if ( $label ) : ?>
