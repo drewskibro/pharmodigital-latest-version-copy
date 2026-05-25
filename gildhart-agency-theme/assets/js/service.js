@@ -390,10 +390,13 @@
     hiddenInput.value = selected.map(function (s) { return s.label; }).join('|');
   }
 
-  function showMaxMsg() {
-    maxMsg.hidden = false;
-    clearTimeout(showMaxMsg._t);
-    showMaxMsg._t = setTimeout(function () { maxMsg.hidden = true; }, 3500);
+  // Persistent max-state. Called after every add/remove: disables the
+  // search input and reveals the inline notice when 5 are selected,
+  // re-enables + hides it when the user drops below 5.
+  function updateMaxState() {
+    var atMax = selected.length >= MAX_TOTAL;
+    searchEl.disabled = atMax;
+    maxMsg.classList.toggle('is-visible', atMax);
   }
 
   function renderPills() {
@@ -418,7 +421,7 @@
         renderPills();
         renderDropdown(searchEl.value);
         syncHidden();
-        maxMsg.hidden = true;
+        updateMaxState();
       });
       pill.appendChild(btn);
 
@@ -467,21 +470,27 @@
   }
 
   function addStock(label) {
-    if (selected.length >= MAX_TOTAL) { showMaxMsg(); return; }
+    if (selected.length >= MAX_TOTAL) return;
     selected.push({ label: label, custom: false });
     renderPills();
     syncHidden();
     searchEl.value = '';
-    // Keep the dropdown open after a pick so the user can chain
-    // selections without re-clicking the input — standard multi-select
-    // UX pattern. Re-render with no filter so the just-picked option
-    // disappears from the visible list immediately.
+    if (selected.length >= MAX_TOTAL) {
+      // 5th selection — close the dropdown, disable the input, and show
+      // the inline notice. Closing here (rather than re-rendering an
+      // open dropdown) is what removes the visual flash.
+      closeDropdown();
+      updateMaxState();
+      return;
+    }
+    // Below max — keep the dropdown open for chaining. Re-render with no
+    // filter so the just-picked option disappears from the visible list.
     renderDropdown('');
     searchEl.focus();
   }
 
   function openCustomEntry() {
-    if (selected.length >= MAX_TOTAL) { showMaxMsg(); return; }
+    if (selected.length >= MAX_TOTAL) return;
     if (customCount() >= MAX_CUSTOM) return;
     closeDropdown();
     customWrap.hidden = false;
@@ -495,20 +504,25 @@
       customWrap.hidden = true;
       return;
     }
-    if (selected.length >= MAX_TOTAL) { showMaxMsg(); return; }
+    if (selected.length >= MAX_TOTAL) { customWrap.hidden = true; return; }
     selected.push({ label: value, custom: true });
     renderPills();
     syncHidden();
     customInput.value = '';
     customWrap.hidden = true;
+    if (selected.length >= MAX_TOTAL) {
+      // Custom entry counts toward the 5 — same close + disable + notice.
+      closeDropdown();
+      updateMaxState();
+      return;
+    }
     searchEl.focus();
   }
 
   function openDropdown() {
-    if (selected.length >= MAX_TOTAL && customCount() >= MAX_CUSTOM) {
-      showMaxMsg();
-      return;
-    }
+    // At max the search input is disabled (so focus/click/input events
+    // won't fire), but guard here too as a belt-and-braces.
+    if (selected.length >= MAX_TOTAL) return;
     dropdownEl.hidden = false;
     searchEl.setAttribute('aria-expanded', 'true');
     container.classList.add('is-open');
@@ -552,6 +566,7 @@
   renderPills();
   renderDropdown('');
   syncHidden();
+  updateMaxState();
 })();
 
 /* ────────────────────────────────────────────────────────────────

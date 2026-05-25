@@ -287,8 +287,8 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
                         <button type="button" class="svc-pb-services-custom-add" data-services-custom-add>Add</button>
                     </div>
 
-                    <p class="svc-pb-services-max-msg" data-services-max-msg hidden role="alert">
-                        Maximum 5 services selected. Remove one to add another.
+                    <p class="svc-pb-services-max-msg" data-services-max-msg role="status">
+                        You've selected 5 services. Remove one to make a change.
                     </p>
 
                     <input type="hidden" name="services" data-services-value value="" />
