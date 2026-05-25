@@ -110,7 +110,7 @@ $has_signature = $drew_photo_id || $logo_id || $logo_fallback || $founder_name;
 
                     <?php if ( $logo_id ) : ?>
                         <div class="svc-guarantee-signature-logo">
-                            <?php echo wp_get_attachment_image( $logo_id, 'medium', false, array(
+                            <?php echo wp_get_attachment_image( $logo_id, 'full', false, array(
                                 'alt'     => 'Gildhart',
                                 'loading' => 'lazy',
                             ) ); ?>
