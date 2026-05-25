@@ -319,7 +319,7 @@ function gildhart_service_section_roster( $slug ) {
     $rosters = array(
         'the-playbook' => array(
             'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'playing-field',
-            'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'playbook-checkout',
+            'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'fluclinic-proof', 'playbook-checkout',
             'next-steps', 'faq', 'guarantee',
         ),
         'the-agent' => array(
@@ -388,6 +388,7 @@ function gildhart_service_field_group_map() {
         'group_gh_service_what_you_get'     => 'what-you-get',
         'group_gh_service_medihub_testimonial' => 'medihub-testimonial',
         'group_gh_service_early_buyers'     => 'early-buyers',
+        'group_gh_service_fluclinic_proof'  => 'fluclinic-proof',
         'group_gh_service_pb_checkout'      => 'playbook-checkout',
         'group_gh_service_next_steps'       => 'next-steps',
         'group_gh_service_faq'              => 'faq',
