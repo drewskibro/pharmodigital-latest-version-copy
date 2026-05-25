@@ -7902,6 +7902,14 @@
   align-items: flex-start;
   gap: 0.875rem;
 }
+/* Centred variant — used when the CTA sits in its own container below
+ * the full-width Live Clients carousel (Playbook thank-you upsell),
+ * rather than left-aligned inside the copy column. */
+.svc-thank-you-upsell-cta-wrap--centered {
+  align-items: center;
+  text-align: center;
+  margin-top: 3rem;
+}
 .svc-thank-you-upsell-cta {
   display: inline-flex;
   align-items: center;
@@ -7990,4 +7998,12 @@
     0 1px 0 rgba(13, 26, 18, 0.04),
     0 24px 48px rgba(13, 26, 18, 0.16),
     0 8px 18px rgba(13, 26, 18, 0.08);
+}
+/* The Playbook thank-you upsell pulls the Agent hero (a larger,
+ * full-frame asset than the Agent upsell's Playbook shot), so cap its
+ * container tighter here — it reads as a contained card rather than a
+ * full-bleed hero. Scoped to the template so the Agent upsell keeps
+ * its wider anchor. */
+.page-template-page-playbook-thank-you .svc-thank-you-upsell-media {
+  max-width: 640px;
 }
