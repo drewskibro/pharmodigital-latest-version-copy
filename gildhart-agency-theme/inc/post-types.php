@@ -57,6 +57,39 @@ function gildhart_register_service_cpt() {
 add_action( 'init', 'gildhart_register_service_cpt' );
 
 /**
+ * Seed the WebPro Elite service post.
+ *
+ * Service entries are database records, not code, so a freshly deployed
+ * theme has no WebPro Elite page until one is created. This creates it
+ * programmatically once, after the CPT is registered. Guarded two ways:
+ * an autoloaded option flag short-circuits after the first run, and a
+ * slug lookup prevents duplicating an existing post. Deleting the post
+ * later won't resurrect it (the flag stays set), so we don't fight an
+ * editor who removes it on purpose.
+ *
+ * Content renders entirely from slug-aware defaults — only the hero
+ * image needs a manual Media Library upload afterwards.
+ */
+function gildhart_seed_web_pro_elite_service() {
+    if ( get_option( 'gildhart_wpe_seeded' ) ) {
+        return;
+    }
+    if ( ! post_type_exists( 'service' ) ) {
+        return;
+    }
+    if ( ! get_page_by_path( 'web-pro-elite', OBJECT, 'service' ) ) {
+        wp_insert_post( array(
+            'post_type'   => 'service',
+            'post_name'   => 'web-pro-elite',
+            'post_title'  => 'WebPro Elite',
+            'post_status' => 'publish',
+        ) );
+    }
+    update_option( 'gildhart_wpe_seeded', 1 );
+}
+add_action( 'init', 'gildhart_seed_web_pro_elite_service', 20 );
+
+/**
  * Register the `case_study` CPT.
  */
 function gildhart_register_case_study_cpt() {
