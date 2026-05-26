@@ -462,6 +462,10 @@ function gildhart_body_classes( $classes ) {
     }
     if ( is_singular( 'service' ) ) {
         $classes[] = 'single-service';
+        global $post;
+        if ( $post ) {
+            $classes[] = 'service-' . $post->post_name;
+        }
     }
     return $classes;
 }

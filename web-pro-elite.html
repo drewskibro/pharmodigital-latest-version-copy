@@ -220,10 +220,10 @@
          WPE HERO — matches homepage brand system
          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
       .wpe-hero {
-        min-height: auto;
+        min-height: 100vh;
         display: flex;
-        align-items: flex-start;
-        padding: 2.5rem 2rem 2rem;
+        align-items: center;
+        padding: 0 2rem;
         margin-top: 0;
         position: relative;
         overflow: hidden;
@@ -238,8 +238,8 @@
         margin: 0 auto;
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1.3fr;
-        gap: 2rem;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 3rem;
         align-items: center;
         position: relative;
         z-index: 1;
@@ -260,8 +260,7 @@
         font-size: 0.75rem;
         font-weight: 700;
         color: var(--gildhart-green);
-        margin-top: -1.5rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1.5rem;
         line-height: 1.6;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -284,21 +283,20 @@
         opacity: 0.9;
       }
 
-      /* ── Homepage-matching hero headline ── */
+      /* ── Hero headline — three-line cinematic reveal ── */
       .wpe-hero-title {
         font-family: 'Inter', sans-serif;
-        font-size: clamp(2.75rem, 5.5vw, 4rem);
+        font-size: clamp(2.25rem, 4.5vw, 3.25rem);
         font-weight: 700;
-        line-height: 1.08;
+        line-height: 1.1;
         color: var(--gildhart-black);
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.75rem;
         letter-spacing: -0.02em;
       }
 
       .wpe-ht-line1 {
         display: block;
         font-size: 1em;
-        margin-bottom: 0.08em;
         opacity: 0;
         transform: translateY(12px);
         animation: wpeFadeUp 0.8s ease-out 0.2s forwards;
@@ -306,23 +304,23 @@
 
       .wpe-ht-line2 {
         display: block;
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        font-style: normal;
-        color: var(--gildhart-black);
         font-size: 1.18em;
         line-height: 1.02;
-        margin-bottom: 0;
-        margin-top: 0;
+        margin: 0;
         letter-spacing: -0.02em;
         opacity: 0;
         transform: translateY(12px);
-        animation: wpeFadeUp 0.8s ease-out 1.0s forwards;
+        animation: wpeFadeUp 0.8s ease-out 1.3s forwards;
       }
 
-      /* line3 no longer used — hidden */
       .wpe-ht-line3 {
-        display: none;
+        display: block;
+        font-size: 1.42em;
+        line-height: 0.95;
+        letter-spacing: -0.035em;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: wpeFadeUp 0.8s ease-out 1.8s forwards;
       }
 
       .wpe-hero-title-accent { color: var(--gildhart-black); }
@@ -339,7 +337,7 @@
         max-width: 560px;
         opacity: 0;
         transform: translateY(12px);
-        animation: wpeFadeUp 0.6s ease-out 1.6s forwards;
+        animation: wpeFadeUp 0.6s ease-out 2.3s forwards;
       }
 
       .wpe-hero-subtitle strong {
@@ -353,7 +351,7 @@
         margin-bottom: 2rem;
         opacity: 0;
         transform: translateY(12px);
-        animation: wpeFadeUp 0.5s ease-out 2.0s forwards;
+        animation: wpeFadeUp 0.5s ease-out 2.7s forwards;
       }
 
       /* Brand-matched buttons — gold primary, dark outline (matches homepage) */
@@ -392,7 +390,7 @@
         text-align: center;
         opacity: 0;
         transform: translateY(10px);
-        animation: wpeFadeUp 0.4s ease-out 2.3s forwards;
+        animation: wpeFadeUp 0.4s ease-out 3.1s forwards;
       }
 
       .wpe-hero-trust span {
@@ -404,39 +402,31 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-      /* ── Right visual: hero image stack (matches homepage) ── */
+      /* ── Right visual ── */
       .wpe-hero-visual {
         position: relative;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        perspective: 1000px;
+        justify-content: flex-end;
+        margin-right: -4vw;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
       }
 
       .wpe-hero-image-stack {
         position: relative;
-        width: 100%;
-        max-width: 900px;
-        overflow: visible;
+        width: 90%;
+        max-width: 680px;
       }
 
       .wpe-hero-image-stack img {
         width: 100%;
-        max-width: 900px;
         height: auto;
-        border-radius: 16px;
-        position: relative;
-        border: none;
-        box-shadow:
-          0 32px 80px rgba(0, 0, 0, 0.22),
-          0 12px 32px rgba(0, 0, 0, 0.12);
-        margin: 0 auto;
         display: block;
+        border-radius: 20px;
         opacity: 0;
-        transform: translateY(30px) scale(0.98);
+        transform: translateY(40px) scale(0.95);
         animation: wpeHeroImgIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
-        background: transparent;
         mix-blend-mode: multiply;
       }
 
@@ -446,11 +436,7 @@
 
       .wpe-hero-image-stack img:hover {
         transform: translateY(-6px) scale(1.015);
-        box-shadow:
-          0 40px 90px rgba(0, 0, 0, 0.26),
-          0 16px 40px rgba(0, 0, 0, 0.14),
-          0 0 0 1px rgba(0, 0, 0, 0.04);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        transition: transform 0.4s ease;
       }
 
       /* Legacy selectors — keep hidden so no stale markup shows */
@@ -1486,38 +1472,65 @@
         margin: 10px auto 0;
       }
 
-      /* ─── Logo Bar ─── */
-      .logo-bar {
+      /* ─── Logo Bar (matches live Agent page) ─── */
+      .wpe-logo-bar {
+        background: #fef7ed;
+        padding: 2.5rem 0;
+        overflow: hidden;
+        position: relative;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .wpe-logo-bar::before,
+      .wpe-logo-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 120px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .wpe-logo-bar::before {
+        left: 0;
+        background: linear-gradient(90deg, #fef7ed 0%, transparent 100%);
+      }
+      .wpe-logo-bar::after {
+        right: 0;
+        background: linear-gradient(270deg, #fef7ed 0%, transparent 100%);
+      }
+      .wpe-logo-bar-label {
+        text-align: center;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.875rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(15,23,42,0.85);
+        margin: 0 0 1.75rem;
+        padding: 0 1.5rem;
+      }
+      .wpe-logo-bar-track {
         width: 100%;
-        background: #fcf4e9;
-        border-top: 1px solid rgba(0,0,0,0.05);
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-        padding: 2rem 0;
         overflow: hidden;
       }
-
-      .logo-bar-scroller {
+      .wpe-logo-bar-scroller {
         display: flex;
+        align-items: center;
         gap: 4rem;
-        animation: logoScroll 30s linear infinite;
+        width: max-content;
+        animation: wpeLogoScroll 30s linear infinite;
       }
-
-      .logo-bar-scroller img {
-        height: 50px;
+      .wpe-logo-bar-scroller:hover { animation-play-state: paused; }
+      .wpe-logo-bar-scroller img {
+        height: 65px;
         width: auto;
-        filter: grayscale(100%);
-        opacity: 0.7;
-        transition: all 0.3s;
+        object-fit: contain;
+        transition: transform 0.3s ease;
         flex-shrink: 0;
       }
-
-      .logo-bar-scroller img:hover {
-        filter: grayscale(0%);
-        opacity: 1;
-      }
-
-      @keyframes logoScroll {
-        0% { transform: translateX(0); }
+      .wpe-logo-bar-scroller img:hover { transform: scale(1.05); }
+      @keyframes wpeLogoScroll {
+        0%   { transform: translateX(0); }
         100% { transform: translateX(-50%); }
       }
 
@@ -1567,13 +1580,8 @@
       @media (max-width: 768px) {
       .wpe-hero {
         min-height: auto;
-        display: flex;
         align-items: flex-start;
         padding: 3rem 1.5rem 2rem;
-        margin-top: 0;
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
       }
         .wpe-hero-content {
           text-align: center;
@@ -1805,6 +1813,11 @@
       }
 
       @media (max-width: 768px) {
+        .wpe-logo-bar { padding: 2rem 0; }
+        .wpe-logo-bar::before,
+        .wpe-logo-bar::after { width: 60px; }
+        .wpe-logo-bar-scroller img { height: 50px; }
+        .wpe-logo-bar-scroller { gap: 3rem; }
         .wpe-intro {
           padding: 5rem 1.5rem 4rem;
         }
@@ -2035,7 +2048,8 @@
           <p class="wpe-hero-eyebrow">WebPro Elite</p>
           <h1 class="wpe-hero-title">
             <span class="wpe-ht-line1">Your last agency built a website.</span>
-            <span class="wpe-ht-line2">We build a business.</span>
+            <span class="wpe-ht-line2">Yours isn't generating patients.</span>
+            <span class="wpe-ht-line3">Ours will.</span>
           </h1>
 
           <p class="wpe-hero-subtitle">
@@ -2053,9 +2067,10 @@
           </p>
         </div>
 
-        <!-- Right: Hero image stack (matches homepage) -->
+        <!-- Right: Hero image — three website browser mockups (gold-framed) -->
         <div class="wpe-hero-visual">
           <div class="wpe-hero-image-stack">
+            <!-- TODO: replace src with hosted URL for the new gold-frame mockup image -->
             <img
               src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1776953930768-0.png"
               alt="Three client websites shown in browser mockups — Chiselhurst Pharmacy Group, Superior Pharmacy, and Easy Clinic"
@@ -2065,92 +2080,32 @@
       </div>
     </section>
 
-    <!-- Trusted-by label above logo bar -->
-    <div style="background:#fcf4e9; padding: 1.5rem 2rem 0; text-align:center;">
-      <p
-        style="font-family:'Space Mono',monospace; font-size:0.75rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#1E3D2F; margin:0; opacity:0.75;"
-      >
-        Trusted by healthcare practices across the UK &amp; Worldwide
-      </p>
-    </div>
-
-    <!-- Logo Bar -->
-    <section class="logo-bar">
-      <div class="logo-bar-scroller">
-        <!-- First set -->
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
-          alt="Superior Pharmacy"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
-          alt="Raylane Pharmacy Group"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
-          alt="Ealing Travel Clinic"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
-          alt="Superior Pharmacy"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
-          alt="Raylane Pharmacy Group"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
-          alt="Ealing Travel Clinic"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
-          alt="Superior Pharmacy"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
-          alt="Raylane Pharmacy Group"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
-          alt="Ealing Travel Clinic"
-        />
-        <!-- Duplicate set for seamless loop -->
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
-          alt="Superior Pharmacy"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
-          alt="Raylane Pharmacy Group"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
-          alt="Ealing Travel Clinic"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
-          alt="Superior Pharmacy"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
-          alt="Raylane Pharmacy Group"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
-          alt="Ealing Travel Clinic"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png"
-          alt="Superior Pharmacy"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png"
-          alt="Raylane Pharmacy Group"
-        />
-        <img
-          src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png"
-          alt="Ealing Travel Clinic"
-        />
+    <!-- ═══ LOGO BAR ═══ -->
+    <section class="wpe-logo-bar">
+      <p class="wpe-logo-bar-label">Every practice live is generating enquiries they never had before</p>
+      <div class="wpe-logo-bar-track">
+        <div class="wpe-logo-bar-scroller">
+          <!-- Set 1 (×3 to fill track) -->
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="Superior Pharmacy" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="Raylane Pharmacy Group" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="Ealing Travel Clinic" />
+          <!-- Set 2 — duplicate for seamless loop -->
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793847-1.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793843-0.png" alt="" aria-hidden="true" />
+          <img src="https://c.animaapp.com/mmktn80mRLaFfz/img/uploaded-asset-1772974793855-2.png" alt="" aria-hidden="true" />
+        </div>
       </div>
     </section>
 

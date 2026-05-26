@@ -57,6 +57,39 @@ function gildhart_register_service_cpt() {
 add_action( 'init', 'gildhart_register_service_cpt' );
 
 /**
+ * Seed the WebPro Elite service post.
+ *
+ * Service entries are database records, not code, so a freshly deployed
+ * theme has no WebPro Elite page until one is created. This creates it
+ * programmatically once, after the CPT is registered. Guarded two ways:
+ * an autoloaded option flag short-circuits after the first run, and a
+ * slug lookup prevents duplicating an existing post. Deleting the post
+ * later won't resurrect it (the flag stays set), so we don't fight an
+ * editor who removes it on purpose.
+ *
+ * Content renders entirely from slug-aware defaults — only the hero
+ * image needs a manual Media Library upload afterwards.
+ */
+function gildhart_seed_web_pro_elite_service() {
+    if ( get_option( 'gildhart_wpe_seeded' ) ) {
+        return;
+    }
+    if ( ! post_type_exists( 'service' ) ) {
+        return;
+    }
+    if ( ! get_page_by_path( 'web-pro-elite', OBJECT, 'service' ) ) {
+        wp_insert_post( array(
+            'post_type'   => 'service',
+            'post_name'   => 'web-pro-elite',
+            'post_title'  => 'WebPro Elite',
+            'post_status' => 'publish',
+        ) );
+    }
+    update_option( 'gildhart_wpe_seeded', 1 );
+}
+add_action( 'init', 'gildhart_seed_web_pro_elite_service', 20 );
+
+/**
  * Register the `case_study` CPT.
  */
 function gildhart_register_case_study_cpt() {
@@ -290,6 +323,20 @@ function gildhart_service_defaults_by_slug() {
             'service_closing_secure_note'      => 'Payments processed securely via Stripe.',
             'service_closing_joining_note'     => 'Joining 50+ practices across the UK, US, and beyond.',
         ),
+        'web-pro-elite' => array(
+            // Hero
+            'service_hero_eyebrow'             => 'WebPro Elite',
+            'service_hero_title'               => "Your last agency built a website.\nYours isn't generating patients.\nOurs will.",
+            'service_hero_subtitle'            => 'Superior Pharmacy is on track for £500k this year. The website did that. Built on Claude Code, architected for AI search from day one. Zero ad spend.',
+            'service_hero_cta_primary_label'   => 'See The Live Builds',
+            'service_hero_cta_primary_url'     => '#portfolio',
+            'service_hero_cta_secondary_label' => 'Join The Waitlist',
+            'service_hero_cta_secondary_url'   => '#contact',
+            // Hero stats are a repeater — set in section-hero.php's
+            // slug-aware fallback (repeaters don't backfill via load_value).
+            // Logo Bar
+            'service_logo_bar_label'           => 'Every build is ranking on Google, featured in ChatGPT, and generating revenue',
+        ),
     );
 }
 
@@ -350,6 +397,11 @@ function gildhart_service_section_roster( $slug ) {
             // consolidated section (header → value stack + eligibility +
             // testimonials | proof row + pricing + form on the right).
             'closing-offer',
+        ),
+        'web-pro-elite' => array(
+            // Built section-by-section. Append slugs here as each WebPro
+            // Elite section is implemented (portfolio, package, etc.).
+            'hero', 'logo-bar',
         ),
     );
     // Unknown slug falls back to the Playbook roster as the longest-running
