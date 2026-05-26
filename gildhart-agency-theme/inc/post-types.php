@@ -446,6 +446,7 @@ function gildhart_service_field_group_map() {
         'group_gh_service_next_steps'       => 'next-steps',
         'group_gh_service_faq'              => 'faq',
         'group_gh_service_guarantee'        => 'guarantee',
+        'group_gh_service_wpe_portfolio'    => 'wpe-portfolio',
     );
 }
 

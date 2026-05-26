@@ -2789,6 +2789,55 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Service · WPE Portfolio (WebPro Elite) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_wpe_portfolio',
+    'title'      => 'Service · WPE Portfolio',
+    'menu_order' => 30,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_wpe_portfolio_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_wpe_portfolio_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_wpe_portfolio_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_wpe_portfolio_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wpe_portfolio_headline', 'label' => 'Headline', 'name' => 'service_wpe_portfolio_headline', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_service_wpe_portfolio_subhead',  'label' => 'Subhead',  'name' => 'service_wpe_portfolio_subhead',  'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key'          => 'field_gh_service_wpe_portfolio_cards',
+            'label'        => 'Portfolio Cards',
+            'name'         => 'service_wpe_portfolio_cards',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 8,
+            'button_label' => 'Add Build',
+            'instructions' => 'Three cards is the designed default. Cards auto-alternate sides (1st preview-left, 2nd reversed, …). Attach a Media Library screenshot per card; a gold-tinted placeholder shows until one is set.',
+            'sub_fields'   => array(
+                array( 'key' => 'field_gh_service_wpe_pf_tag',       'label' => 'Client Tag',       'name' => 'tag',       'type' => 'text', 'instructions' => 'Small uppercase label, e.g. "Multi-Site Pharmacy Group".' ),
+                array( 'key' => 'field_gh_service_wpe_pf_name',      'label' => 'Client / Headline', 'name' => 'name',      'type' => 'text' ),
+                array( 'key' => 'field_gh_service_wpe_pf_url_label', 'label' => 'URL Label',        'name' => 'url_label', 'type' => 'text', 'instructions' => 'Shown in the browser address bar, e.g. "superiorpharmacy.co.uk".' ),
+                array( 'key' => 'field_gh_service_wpe_pf_url',       'label' => 'Live Site URL',    'name' => 'url',       'type' => 'url', 'instructions' => 'Full URL for the "View Live Site" link.' ),
+                array(
+                    'key'           => 'field_gh_service_wpe_pf_image',
+                    'label'         => 'Screenshot',
+                    'name'          => 'image',
+                    'type'          => 'image',
+                    'return_format' => 'id',
+                    'preview_size'  => 'medium',
+                    'instructions'  => 'Live-site screenshot shown inside the browser frame. Renders a gold-tinted placeholder when empty.',
+                ),
+                array( 'key' => 'field_gh_service_wpe_pf_outcome',    'label' => 'Outcome Paragraph', 'name' => 'outcome',    'type' => 'textarea', 'rows' => 4 ),
+                array( 'key' => 'field_gh_service_wpe_pf_highlights', 'label' => 'Highlights',        'name' => 'highlights', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'One highlight per line. Each renders with a gold tick.' ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · Track Record (Agent A2) */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_track_record',
