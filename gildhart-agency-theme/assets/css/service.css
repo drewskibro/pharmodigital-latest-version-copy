@@ -7763,6 +7763,7 @@
   .svc-thank-you-upsell-proof-body { font-size: 1rem; }
   .svc-thank-you-upsell-proof-emphasis { font-size: 1.0625rem; }
   .svc-thank-you-upsell-cta { font-size: 0.9375rem; padding: 1rem 1.625rem; }
+  .svc-thank-you-upsell-cta-wrap--centered { margin-top: 3rem; padding: 2.25rem 1.5rem; }
 }
 
 /* ─────────────────────────────────────────────────────────────────
@@ -7904,11 +7905,33 @@
 }
 /* Centred variant — used when the CTA sits in its own container below
  * the full-width Live Clients carousel (Playbook thank-you upsell),
- * rather than left-aligned inside the copy column. */
+ * rather than left-aligned inside the copy column. Rendered as a navy
+ * panel so the final "Add the Agent" decision reads as a deliberate,
+ * contained moment against the cream section. */
 .svc-thank-you-upsell-cta-wrap--centered {
   align-items: center;
   text-align: center;
-  margin-top: 3rem;
+  margin: 4.5rem auto 0;
+  max-width: 680px;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  background: linear-gradient(165deg, #0f172a 0%, #16223b 100%);
+  border: 1px solid rgba(201, 164, 74, 0.20);
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.28),
+    0 8px 20px rgba(15, 23, 42, 0.16);
+}
+/* Secondary link + footnote sit on navy here, so they need light ink
+ * (their base colours are dark for the Agent page's cream CTA). */
+.svc-thank-you-upsell-cta-wrap--centered .svc-thank-you-upsell-secondary {
+  color: rgba(245, 243, 239, 0.75);
+}
+.svc-thank-you-upsell-cta-wrap--centered .svc-thank-you-upsell-secondary:hover {
+  color: var(--gildhart-gold);
+}
+.svc-thank-you-upsell-cta-wrap--centered .svc-thank-you-upsell-footnote {
+  color: rgba(245, 243, 239, 0.72);
+  font-size: 0.74rem;
 }
 .svc-thank-you-upsell-cta {
   display: inline-flex;
@@ -8006,4 +8029,11 @@
  * its wider anchor. */
 .page-template-page-playbook-thank-you .svc-thank-you-upsell-media {
   max-width: 640px;
+}
+/* Give the proof emphasis line room to breathe before the full-width
+ * Live Clients carousel that follows, so it stops crowding the section
+ * below. Scoped to the Playbook page (the Agent upsell has no carousel
+ * between copy and CTA). */
+.page-template-page-playbook-thank-you .svc-thank-you-upsell-stack {
+  padding-bottom: 2.5rem;
 }
