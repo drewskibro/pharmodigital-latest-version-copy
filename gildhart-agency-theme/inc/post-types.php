@@ -401,7 +401,7 @@ function gildhart_service_section_roster( $slug ) {
         'web-pro-elite' => array(
             // Built section-by-section. Append slugs here as each WebPro
             // Elite section is implemented (portfolio, package, etc.).
-            'hero', 'logo-bar',
+            'hero', 'logo-bar', 'wpe-intro', 'wpe-portfolio', 'wpe-package',
         ),
     );
     // Unknown slug falls back to the Playbook roster as the longest-running
@@ -446,6 +446,7 @@ function gildhart_service_field_group_map() {
         'group_gh_service_next_steps'       => 'next-steps',
         'group_gh_service_faq'              => 'faq',
         'group_gh_service_guarantee'        => 'guarantee',
+        'group_gh_service_wpe_portfolio'    => 'wpe-portfolio',
     );
 }
 
