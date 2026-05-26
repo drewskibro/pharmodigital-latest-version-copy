@@ -8878,7 +8878,7 @@
 
 /* Form fields */
 .svc-wpe-closing-form { display: flex; flex-direction: column; gap: 1rem; }
-.svc-wpe-closing-form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.svc-wpe-closing-form-group { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
 .svc-wpe-closing-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 
 .svc-wpe-closing-form-label {
@@ -8889,6 +8889,8 @@
 }
 .svc-wpe-closing-form-input,
 .svc-wpe-closing-form-select {
+  width: 100%;
+  box-sizing: border-box;
   padding: 0.75rem 1rem;
   border: 1.5px solid rgba(30, 61, 47, 0.18);
   border-radius: 8px;
