@@ -24,11 +24,22 @@ $subtitle = gh_field( 'service_hero_subtitle', 'Rahul at Puri Pharmacy is now on
 
 $stats = get_field( 'service_hero_stats' );
 if ( empty( $stats ) ) {
-    $stats = array(
-        array( 'number' => '300%',  'label' => 'Ealing Travel Clinic revenue growth' ),
-        array( 'number' => '50%',   'label' => 'Superior Pharmacy sales from ChatGPT' ),
-        array( 'number' => '£100k', 'label' => 'Puri Pharmacy from Mounjaro alone' ),
-    );
+    // Slug-aware fallback — repeater rows can't be backfilled via the
+    // acf/load_value defaults map, so per-product stats live here.
+    $hero_slug = get_post_field( 'post_name', get_the_ID() );
+    if ( 'web-pro-elite' === $hero_slug ) {
+        $stats = array(
+            array( 'number' => '£50M+', 'label' => 'Revenue generated across our client network' ),
+            array( 'number' => '1000+', 'label' => 'AI search rankings won' ),
+            array( 'number' => '50+',   'label' => 'Healthcare practices built' ),
+        );
+    } else {
+        $stats = array(
+            array( 'number' => '300%',  'label' => 'Ealing Travel Clinic revenue growth' ),
+            array( 'number' => '50%',   'label' => 'Superior Pharmacy sales from ChatGPT' ),
+            array( 'number' => '£100k', 'label' => 'Puri Pharmacy from Mounjaro alone' ),
+        );
+    }
 }
 
 $cta_primary_label   = gh_field( 'service_hero_cta_primary_label',   'Get The Playbook — £995' );

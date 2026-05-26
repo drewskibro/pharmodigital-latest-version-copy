@@ -290,6 +290,20 @@ function gildhart_service_defaults_by_slug() {
             'service_closing_secure_note'      => 'Payments processed securely via Stripe.',
             'service_closing_joining_note'     => 'Joining 50+ practices across the UK, US, and beyond.',
         ),
+        'web-pro-elite' => array(
+            // Hero
+            'service_hero_eyebrow'             => 'WebPro Elite',
+            'service_hero_title'               => "Your last agency built a website.\nYours isn't generating patients.\nOurs will.",
+            'service_hero_subtitle'            => 'Superior Pharmacy is on track for £500k this year. The website did that. Built on Claude Code, architected for AI search from day one. Zero ad spend.',
+            'service_hero_cta_primary_label'   => 'See The Live Builds',
+            'service_hero_cta_primary_url'     => '#portfolio',
+            'service_hero_cta_secondary_label' => 'Join The Waitlist',
+            'service_hero_cta_secondary_url'   => '#contact',
+            // Hero stats are a repeater — set in section-hero.php's
+            // slug-aware fallback (repeaters don't backfill via load_value).
+            // Logo Bar
+            'service_logo_bar_label'           => 'Every build is ranking on Google, featured in ChatGPT, and generating revenue',
+        ),
     );
 }
 
@@ -350,6 +364,11 @@ function gildhart_service_section_roster( $slug ) {
             // consolidated section (header → value stack + eligibility +
             // testimonials | proof row + pricing + form on the right).
             'closing-offer',
+        ),
+        'web-pro-elite' => array(
+            // Built section-by-section. Append slugs here as each WebPro
+            // Elite section is implemented (portfolio, package, etc.).
+            'hero', 'logo-bar',
         ),
     );
     // Unknown slug falls back to the Playbook roster as the longest-running

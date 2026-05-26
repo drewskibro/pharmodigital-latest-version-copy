@@ -263,6 +263,16 @@
   transform: scale(1.01);
 }
 
+/* WebPro Elite hero image is a white-background mockup of three browser
+ * frames (which carry their own shadows). Drop the card treatment and
+ * multiply the white into the cream gradient so the frames float. */
+.service-web-pro-elite .svc-hero-image img {
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
 /* Responsive */
 @media (max-width: 960px) {
   .svc-hero-inner {
