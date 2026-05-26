@@ -609,3 +609,105 @@
     });
   });
 })();
+
+/* ────────────────────────────────────────────────────────────────
+ * WebPro Elite — waitlist form submit.
+ *
+ * Progressive enhancement: with no JS the form is inert (action=""),
+ * so nothing breaks; with JS it POSTs JSON to the WP REST endpoint and
+ * redirects to the thank-you page on success.
+ *
+ * A fresh nonce is fetched from /wpe-token at submit time rather than
+ * read from the page, so full-page caching can never serve a stale
+ * token. The honeypot field travels in the body and is checked server
+ * side. Config (restUrl, thankYouUrl) is localised as GildhartWpeWaitlist
+ * and only present on the WPE service page.
+ * ──────────────────────────────────────────────────────────────── */
+(function () {
+  var form = document.getElementById('svcWpeWaitlistForm');
+  var cfg = window.GildhartWpeWaitlist;
+  if (!form || !cfg || !cfg.restUrl) return;
+
+  var submitBtn = form.querySelector('.svc-wpe-closing-form-submit');
+  var errorEl = document.getElementById('svcWpeFormError');
+  var btnLabel = submitBtn ? submitBtn.innerHTML : '';
+
+  function showError(msg) {
+    if (!errorEl) return;
+    errorEl.textContent = msg;
+    errorEl.hidden = false;
+  }
+  function clearError() {
+    if (!errorEl) return;
+    errorEl.hidden = true;
+    errorEl.textContent = '';
+  }
+  function setBusy(busy) {
+    if (!submitBtn) return;
+    submitBtn.disabled = busy;
+    submitBtn.innerHTML = busy ? 'Sending…' : btnLabel;
+  }
+
+  function val(name) {
+    var el = form.querySelector('[name="' + name + '"]');
+    return el ? el.value.trim() : '';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearError();
+
+    var email = val('email');
+    if (!email || email.indexOf('@') === -1) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+    if (!val('first_name') && !val('last_name')) {
+      showError('Please tell us your name.');
+      return;
+    }
+
+    setBusy(true);
+
+    // Step 1 — fresh nonce (cache-safe). Step 2 — submit.
+    fetch(cfg.restUrl + 'wpe-token', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.json(); })
+      .then(function (tok) {
+        return fetch(cfg.restUrl + 'wpe-waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nonce: tok && tok.nonce ? tok.nonce : '',
+            hp: val('hp'),
+            practice_name: val('practice_name'),
+            first_name: val('first_name'),
+            last_name: val('last_name'),
+            email: email,
+            phone: val('phone'),
+            website: val('website'),
+            practice_type: val('practice_type')
+          })
+        });
+      })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      })
+      .then(function (result) {
+        if (result.ok && result.data && result.data.ok) {
+          window.location.href = cfg.thankYouUrl || '/';
+          return;
+        }
+        var msg = (result.data && result.data.message)
+          ? result.data.message
+          : 'Something went wrong. Please try again.';
+        showError(msg);
+        setBusy(false);
+      })
+      .catch(function () {
+        showError('Network error. Please check your connection and try again.');
+        setBusy(false);
+      });
+  });
+})();

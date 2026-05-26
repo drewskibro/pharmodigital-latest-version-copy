@@ -8876,6 +8876,15 @@
   margin: 0 0 1.75rem;
 }
 
+/* Honeypot — pulled off-screen, never shown, never read aloud. */
+.svc-wpe-closing-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* Form fields */
 .svc-wpe-closing-form { display: flex; flex-direction: column; gap: 1rem; }
 .svc-wpe-closing-form-group { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }

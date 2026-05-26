@@ -170,7 +170,17 @@ function gildhart_scripts() {
             true
         );
 
-        // Stripe checkout flow — only enqueue when wp-config.php has
+        // WebPro Elite waitlist form — only on the WPE service post. The
+        // form's REST endpoint + thank-you redirect target are localised
+        // for service.js's submit handler (which no-ops on other pages
+        // where the form markup is absent).
+        if ( 'web-pro-elite' === get_post_field( 'post_name', get_queried_object_id() ) ) {
+            wp_localize_script( 'gildhart-service', 'GildhartWpeWaitlist', array(
+                'restUrl'     => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
+                'thankYouUrl' => esc_url_raw( home_url( '/web-pro-elite-thank-you/' ) ),
+            ) );
+        }
+
         // the four required constants. If Stripe isn't configured, the
         // form's <button type="submit"> just no-ops gracefully (no JS,
         // no console errors), and the placeholder copy in
@@ -243,6 +253,18 @@ function gildhart_scripts() {
         ) );
     }
 
+    // WebPro Elite thank-you page template — waitlist confirmation. Reuses
+    // the service.css design system (.svc-thank-you-* components). No
+    // bespoke JS: there's no payment to read back, so the page is static.
+    if ( is_page_template( 'page-templates/page-wpe-thank-you.php' ) ) {
+        wp_enqueue_style(
+            'gildhart-service',
+            GILDHART_URI . '/assets/css/service.css',
+            array( 'gildhart-globals' ),
+            gh_asset_ver( 'assets/css/service.css' )
+        );
+    }
+
     // Playbook thank-you page template — same service.css design system,
     // its own personalisation JS (generic PI-summary reader). Reuses the
     // GildhartThankYou global since the two thank-you templates are
@@ -307,6 +329,16 @@ if ( file_exists( GILDHART_DIR . '/inc/post-types.php' ) ) {
  */
 if ( file_exists( GILDHART_DIR . '/inc/stripe.php' ) ) {
     require_once GILDHART_DIR . '/inc/stripe.php';
+}
+
+/**
+ * WebPro Elite waitlist — lead capture endpoint, CPT storage, spam
+ * protection (honeypot + nonce + IP rate limit), email notification, and
+ * Make.com → Kartra webhook. Self-contained; webhook step is skipped when
+ * GILDHART_WPE_WEBHOOK_URL is undefined.
+ */
+if ( file_exists( GILDHART_DIR . '/inc/wpe-waitlist.php' ) ) {
+    require_once GILDHART_DIR . '/inc/wpe-waitlist.php';
 }
 
 /**

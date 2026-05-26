@@ -105,6 +105,12 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
 
                 <form class="svc-wpe-closing-form" id="svcWpeWaitlistForm" action="" method="post" novalidate>
 
+                    <?php // Honeypot — visually hidden, off-screen, excluded from tab order. Bots fill it; humans never see it. ?>
+                    <div class="svc-wpe-closing-hp" aria-hidden="true">
+                        <label for="svcWpeCompanyUrl">Company URL</label>
+                        <input type="text" id="svcWpeCompanyUrl" name="hp" tabindex="-1" autocomplete="off" />
+                    </div>
+
                     <div class="svc-wpe-closing-form-group">
                         <label class="svc-wpe-closing-form-label" for="svcWpePractice">Practice Name</label>
                         <input type="text" id="svcWpePractice" name="practice_name" class="svc-wpe-closing-form-input" placeholder="e.g. Superior Pharmacy" />
