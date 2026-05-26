@@ -43,6 +43,9 @@
   // ── WebPro Elite: Portfolio cards ─────────────────────────────
   reveal('.svc-wpe-portfolio-card', 'is-visible', { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
+  // ── WebPro Elite: Outcome Momentum timeline (draws line + milestones) ──
+  reveal('.svc-wpe-delivery', 'is-active', { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
   // ── S1: Problem Shift + Three Proof Cases reveals ──────────────
   // Headline / intro fade up as the section enters; rows have their own
   // staggered transition (the wrapper class triggers child opacity/transform).

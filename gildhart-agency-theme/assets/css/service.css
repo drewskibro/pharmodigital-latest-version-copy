@@ -8434,3 +8434,286 @@
     order: unset;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+ * WebPro Elite — Package + Outcome Momentum Timeline
+ *
+ * Forest-green section, two gold-bordered columns, then a cinematic
+ * horizontal timeline whose line draws + milestones reveal once the
+ * container gains .is-active (wired in service.js).
+ * ═══════════════════════════════════════════════════════════════════ */
+.svc-wpe-package {
+  background: var(--gildhart-green);
+  padding: 8rem 2rem 7rem;
+  position: relative;
+  overflow: hidden;
+}
+.svc-wpe-package::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(201, 164, 74, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.svc-wpe-package-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.svc-wpe-package-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 5rem;
+}
+.svc-wpe-package-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+.svc-wpe-package-headline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.875rem, 3vw, 2.75rem);
+  font-weight: 800;
+  color: #faf5ee;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+.svc-wpe-package-headline span { display: block; }
+.svc-wpe-package-subhead {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  color: rgba(245, 236, 215, 0.7);
+  line-height: 1.75;
+  margin: 1.5rem 0 0;
+}
+.svc-wpe-package-subhead em {
+  font-style: normal;
+  color: #faf5ee;
+  font-weight: 600;
+}
+
+/* ── Columns ── */
+.svc-wpe-package-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.svc-wpe-package-col {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  padding: 3rem 2.75rem;
+  border: 1.5px solid var(--gildhart-gold);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+.svc-wpe-package-col--dark { background: rgba(255, 255, 255, 0.11); }
+.svc-wpe-package-col:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 0 0 2px rgba(201, 164, 74, 0.5);
+}
+.svc-wpe-package-col-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1.75rem;
+}
+.svc-wpe-package-col-header {
+  margin-bottom: 2.25rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(201, 164, 74, 0.25);
+}
+.svc-wpe-package-col-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  color: #ffffff;
+}
+.svc-wpe-package-col-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #f5ecd7;
+  line-height: 1.65;
+  margin: 0;
+}
+.svc-wpe-package-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+.svc-wpe-package-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  color: #f5ecd7;
+  line-height: 1.55;
+}
+.svc-wpe-pkg-check {
+  color: var(--gildhart-gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.15em;
+}
+
+/* ── Outcome Momentum Timeline ── */
+.svc-wpe-delivery {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
+  padding: 4rem 4rem 3.5rem;
+  border: 1px solid rgba(201, 164, 74, 0.2);
+  box-shadow: inset 0 1px 0 rgba(201, 164, 74, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+.svc-wpe-delivery-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 3.5rem;
+  position: relative;
+  z-index: 1;
+}
+.svc-wpe-timeline {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  z-index: 1;
+}
+.svc-wpe-timeline::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 164, 74, 0.15) 0%, rgba(201, 164, 74, 0.4) 40%, rgba(201, 164, 74, 0.7) 100%);
+  z-index: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.svc-wpe-delivery.is-active .svc-wpe-timeline::before { transform: scaleX(1); }
+.svc-wpe-milestone {
+  flex: 1;
+  position: relative;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.svc-wpe-milestone:first-child { padding-left: 0; }
+.svc-wpe-milestone:last-child { padding-right: 0; }
+.svc-wpe-delivery.is-active .svc-wpe-milestone:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.svc-wpe-delivery.is-active .svc-wpe-milestone:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+.svc-wpe-delivery.is-active .svc-wpe-milestone:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.9s; }
+.svc-wpe-delivery.is-active .svc-wpe-milestone:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 1.2s; }
+.svc-wpe-milestone-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  margin-bottom: 1.75rem;
+  opacity: 0.6;
+  transition: all 0.4s ease;
+}
+.svc-wpe-milestone:hover .svc-wpe-milestone-dot {
+  opacity: 1;
+  box-shadow: 0 0 16px rgba(201, 164, 74, 0.5);
+  transform: scale(1.3);
+}
+.svc-wpe-milestone--destination .svc-wpe-milestone-dot {
+  width: 14px;
+  height: 14px;
+  opacity: 1;
+  box-shadow: 0 0 0 5px rgba(201, 164, 74, 0.12), 0 0 24px rgba(201, 164, 74, 0.3);
+  animation: svcWpeDestPulse 2.5s ease-in-out infinite 2s;
+}
+@keyframes svcWpeDestPulse {
+  0%, 100% { box-shadow: 0 0 0 5px rgba(201, 164, 74, 0.12), 0 0 24px rgba(201, 164, 74, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(201, 164, 74, 0.18), 0 0 36px rgba(201, 164, 74, 0.45); }
+}
+.svc-wpe-milestone-month {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 0.875rem;
+  white-space: nowrap;
+}
+.svc-wpe-milestone-body {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  max-width: 260px;
+  margin: 0;
+}
+.svc-wpe-milestone--destination .svc-wpe-milestone-month {
+  font-size: 0.78rem;
+}
+.svc-wpe-milestone--destination .svc-wpe-milestone-body {
+  color: var(--gildhart-gold);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: 290px;
+}
+
+@media (max-width: 960px) {
+  .svc-wpe-package { padding: 5rem 1.5rem 4rem; }
+  .svc-wpe-package-cols { grid-template-columns: 1fr; }
+  .svc-wpe-package-col { padding: 2.25rem 1.75rem; }
+  .svc-wpe-delivery { padding: 2.5rem 1.75rem 2rem; }
+  .svc-wpe-delivery-label { margin-bottom: 2.5rem; }
+  .svc-wpe-timeline { flex-direction: column; gap: 0; }
+  .svc-wpe-timeline::before {
+    top: 6px; left: 5px; right: auto; bottom: 6px;
+    width: 1px; height: auto;
+    transform: scaleY(0); transform-origin: top center;
+  }
+  .svc-wpe-delivery.is-active .svc-wpe-timeline::before { transform: scaleY(1); }
+  .svc-wpe-milestone {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 0 0 2.25rem 0;
+  }
+  .svc-wpe-milestone:last-child { padding-bottom: 0; }
+  .svc-wpe-milestone-dot { margin-bottom: 0; margin-top: 0.15rem; }
+  .svc-wpe-milestone-body,
+  .svc-wpe-milestone--destination .svc-wpe-milestone-body { max-width: 100%; }
+}
