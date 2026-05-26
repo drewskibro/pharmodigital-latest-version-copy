@@ -401,7 +401,7 @@ function gildhart_service_section_roster( $slug ) {
         'web-pro-elite' => array(
             // Built section-by-section. Append slugs here as each WebPro
             // Elite section is implemented (portfolio, package, etc.).
-            'hero', 'logo-bar',
+            'hero', 'logo-bar', 'wpe-intro',
         ),
     );
     // Unknown slug falls back to the Playbook roster as the longest-running

@@ -36,6 +36,10 @@
 
   window.svcReveal = reveal;
 
+  // ── WebPro Elite: Intro copy + proof cards ────────────────────
+  reveal('.svc-wpe-intro-eyebrow, .svc-wpe-intro-headline, .svc-wpe-intro-body, .svc-wpe-intro-emphasis, .svc-wpe-intro-cta', 'is-visible');
+  reveal('.svc-wpe-intro-card', 'is-visible', { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
   // ── S1: Problem Shift + Three Proof Cases reveals ──────────────
   // Headline / intro fade up as the section enters; rows have their own
   // staggered transition (the wrapper class triggers child opacity/transform).
