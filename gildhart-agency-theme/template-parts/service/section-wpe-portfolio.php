@@ -115,10 +115,11 @@ if ( empty( $cards ) ) {
                             <?php endif; ?>
                         </div>
                         <?php if ( $image_id ) : ?>
-                            <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
+                            <?php echo wp_get_attachment_image( $image_id, 'full', false, array(
                                 'class'   => 'svc-wpe-preview-shot',
                                 'alt'     => esc_attr( $name . ' website' ),
                                 'loading' => 'lazy',
+                                'sizes'   => '(max-width: 900px) 100vw, 50vw',
                             ) ); ?>
                         <?php else : ?>
                             <div class="svc-wpe-preview-placeholder" aria-hidden="true">
