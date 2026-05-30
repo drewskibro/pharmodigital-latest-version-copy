@@ -8632,6 +8632,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
 }
 .svc-wpe-package-col {
@@ -8641,33 +8642,52 @@
   border: 1.5px solid var(--gildhart-gold);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+  position: relative;
+  overflow: hidden;
 }
 .svc-wpe-package-col--dark { background: rgba(255, 255, 255, 0.11); }
-/* Featured (premium) column — heavier 2px gold border, gold glow, and
- * 8px more padding on every side than the standard column so it reads
- * as the differentiator without altering the layout. */
+/* Featured (premium) column — heavier 2px gold border, gold glow, a
+ * faint gold wash to lift it off Card 1, and 16px more top/bottom
+ * padding so it reads as the differentiator without altering layout. */
 .svc-wpe-package-col--featured {
   border-width: 2px;
-  padding: calc(3rem + 8px) calc(2.75rem + 8px);
-  box-shadow: 0 8px 32px rgba(201, 164, 74, 0.15);
+  padding: calc(3rem + 16px) 2.75rem;
+  background: rgba(201, 164, 74, 0.04);
+  box-shadow: 0 12px 40px rgba(201, 164, 74, 0.18);
 }
 .svc-wpe-package-col:hover {
   transform: translateY(-8px);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 0 0 2px rgba(201, 164, 74, 0.5);
 }
+/* Numbered label is now a giant gold watermark behind the card title,
+ * pinned to the top-right of the card interior. The card's overflow:
+ * hidden keeps it from spilling past the rounded corners; content
+ * below carries z-index: 1 to stay above it. Scales down on smaller
+ * cards so it never dominates. */
 .svc-wpe-package-col-num {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.25rem;
+  margin: 0;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: clamp(72px, 9vw, 120px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--gildhart-gold);
-  margin: 0 0 1.75rem;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.svc-wpe-package-col-header,
+.svc-wpe-package-list {
+  position: relative;
+  z-index: 1;
 }
 .svc-wpe-package-col-header {
   margin-bottom: 2.25rem;
   padding-bottom: 2rem;
-  position: relative;
 }
 /* Short gold accent rule between the intro paragraph and the bullet
  * list — replaces the old faint full-width divider, which read as a
@@ -8683,7 +8703,7 @@
 }
 .svc-wpe-package-col-title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.625rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -8735,7 +8755,7 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gildhart-gold);
   margin: 0 0 3.5rem;
@@ -8754,8 +8774,8 @@
   top: 10px;
   left: 10px;
   right: 10px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(201, 164, 74, 0.15) 0%, rgba(201, 164, 74, 0.4) 40%, rgba(201, 164, 74, 0.7) 100%);
+  height: 2px;
+  background: rgba(201, 164, 74, 0.5);
   z-index: 0;
   transform-origin: left center;
   transform: scaleX(0);
@@ -8780,15 +8800,15 @@
 .svc-wpe-delivery.is-active .svc-wpe-milestone:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.9s; }
 .svc-wpe-delivery.is-active .svc-wpe-milestone:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 1.2s; }
 .svc-wpe-milestone-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--gildhart-gold);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
   margin-bottom: 1.75rem;
-  opacity: 0.6;
+  opacity: 1;
   transition: all 0.4s ease;
 }
 .svc-wpe-milestone:hover .svc-wpe-milestone-dot {
@@ -8811,7 +8831,7 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gildhart-gold);
   margin: 0 0 0.875rem;
@@ -8820,8 +8840,8 @@
 .svc-wpe-milestone-body {
   font-family: 'Outfit', 'Inter', sans-serif;
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.7;
+  color: #f5ecd7;
+  line-height: 1.8;
   max-width: 260px;
   margin: 0;
 }
@@ -8830,7 +8850,7 @@
 }
 .svc-wpe-milestone--destination .svc-wpe-milestone-body {
   color: var(--gildhart-gold);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.0625rem;
   line-height: 1.6;
   max-width: 290px;
