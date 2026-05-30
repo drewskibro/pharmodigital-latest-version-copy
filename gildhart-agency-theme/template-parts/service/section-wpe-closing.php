@@ -36,6 +36,8 @@ $form_eyebrow = gh_field( 'service_wpe_closing_form_eyebrow', 'Join The Waitlist
 $form_subhead = gh_field( 'service_wpe_closing_form_subhead', "We take on a limited number of builds per quarter. Tell us about your practice and we'll be in touch within 24 hours." );
 $form_submit  = gh_field( 'service_wpe_closing_form_submit',  'Join The Waitlist' );
 $form_note    = gh_field( 'service_wpe_closing_form_note',    "No commitment. We'll confirm your spot and scope the project together." );
+$form_success_title = gh_field( 'service_wpe_closing_form_success_title', "You're on the waitlist." );
+$form_success_body  = gh_field( 'service_wpe_closing_form_success_body',  "We'll be in touch within 24 hours to confirm your spot and scope the project together." );
 
 $body_paras = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n\r\n|\r\r|\n\n/', $body ) ) ) );
 if ( empty( $body_paras ) && $body ) {
@@ -103,7 +105,20 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                     <p class="svc-wpe-closing-form-subhead"><?php echo esc_html( $form_subhead ); ?></p>
                 <?php endif; ?>
 
-                <form class="svc-wpe-closing-form" id="svcWpeWaitlistForm" action="" method="post" novalidate>
+                <form
+                    class="svc-wpe-closing-form"
+                    id="svcWpeWaitlistForm"
+                    action=""
+                    method="post"
+                    novalidate
+                    data-success-title="<?php echo esc_attr( $form_success_title ); ?>"
+                    data-success-body="<?php echo esc_attr( $form_success_body ); ?>"
+                >
+                    <?php // Honeypot — hidden from real users, bots fill it. ?>
+                    <div class="svc-wpe-closing-form-honeypot" aria-hidden="true">
+                        <label for="svcWpeCompanyRole">Company role (leave blank)</label>
+                        <input type="text" id="svcWpeCompanyRole" name="company_role" tabindex="-1" autocomplete="off" />
+                    </div>
 
                     <div class="svc-wpe-closing-form-group">
                         <label class="svc-wpe-closing-form-label" for="svcWpePractice">Practice Name</label>
