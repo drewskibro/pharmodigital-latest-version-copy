@@ -299,7 +299,11 @@
   align-self: end;
   margin-right: clamp(-7rem, calc(50% - 50vw + 2rem), -2rem);
   transform: scale(1.12);
-  transform-origin: bottom right;
+  /* Grow up + right from the bottom-left anchor so the composite never
+   * intrudes on the left column copy. Combined with the negative
+   * margin-right, the right bleed lands past the viewport edge; the
+   * section's overflow-x: clip handles the clean cut-off. */
+  transform-origin: bottom left;
 }
 .service-web-pro-elite .svc-hero-stats {
   border-bottom: none;
