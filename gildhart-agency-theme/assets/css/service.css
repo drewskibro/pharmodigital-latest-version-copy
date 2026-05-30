@@ -284,17 +284,35 @@
  * space around the image splits evenly top + bottom (reads as
  * intentional padding) rather than collapsing entirely above the
  * image. Stats divider dropped so the hero flows into the next
- * section. No scale, no bleed — the new image fills the column. */
-.service-web-pro-elite .svc-hero-inner {
-  grid-template-columns: 1fr 1.25fr;
-  align-items: center;
-}
-.service-web-pro-elite .svc-hero-image {
-  align-self: center;
+ * section. Scoped to desktop so the standard single-column mobile
+ * collapse (below) takes over at ≤960px — without min-width:961px
+ * this override would beat the mobile rule on specificity and leave
+ * the copy squashed in a 45% column. */
+@media (min-width: 961px) {
+  .service-web-pro-elite .svc-hero-inner {
+    grid-template-columns: 1fr 1.25fr;
+    align-items: center;
+  }
+  .service-web-pro-elite .svc-hero-image {
+    align-self: center;
+  }
 }
 .service-web-pro-elite .svc-hero-stats {
   border-bottom: none;
   padding-bottom: 0;
+}
+
+/* WPE mobile: show the portrait composite stacked below the copy.
+ * Overrides the global .svc-hero-image { display: none } at ≤960px
+ * since the portrait image works naturally in a single-column flow. */
+@media (max-width: 960px) {
+  .service-web-pro-elite .svc-hero-image {
+    display: block;
+    margin-top: 0.5rem;
+  }
+  .service-web-pro-elite .svc-hero-image img {
+    max-height: none;
+  }
 }
 
 /* Responsive */
