@@ -196,6 +196,21 @@ function gildhart_scripts() {
             ) );
         }
 
+        // WebPro Elite waitlist form — no Stripe, no payment. Just a
+        // validated submission that forwards to a Make.com webhook.
+        // Enqueued on every single-service page; the JS exits if the
+        // form isn't on the page so it's safe to load broadly.
+        wp_enqueue_script(
+            'gildhart-wpe-waitlist',
+            GILDHART_URI . '/assets/js/wpe-waitlist.js',
+            array(),
+            gh_asset_ver( 'assets/js/wpe-waitlist.js' ),
+            true
+        );
+        wp_localize_script( 'gildhart-wpe-waitlist', 'GildhartWpeWaitlist', array(
+            'restUrl' => esc_url_raw( rest_url( 'gildhart/v1/' ) ),
+        ) );
+
         // Playbook one-time checkout flow — enqueued independently of the
         // agent flow, gated on the playbook keys + amount constant. Stripe.js
         // is shared (wp_enqueue_script is idempotent on the same handle).
@@ -307,6 +322,14 @@ if ( file_exists( GILDHART_DIR . '/inc/post-types.php' ) ) {
  */
 if ( file_exists( GILDHART_DIR . '/inc/stripe.php' ) ) {
     require_once GILDHART_DIR . '/inc/stripe.php';
+}
+
+/**
+ * WebPro Elite waitlist — REST endpoint that validates the form and
+ * forwards to a Make.com webhook URL set via wp-config. No Stripe.
+ */
+if ( file_exists( GILDHART_DIR . '/inc/wpe-waitlist.php' ) ) {
+    require_once GILDHART_DIR . '/inc/wpe-waitlist.php';
 }
 
 /**

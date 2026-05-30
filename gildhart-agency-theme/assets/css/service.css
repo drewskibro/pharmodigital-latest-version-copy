@@ -9112,6 +9112,73 @@
   transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(13, 26, 18, 0.3);
 }
+/* Submit loading state — dims the button + disables interaction
+ * while the REST request is in flight. */
+.svc-wpe-closing-form-submit.is-loading,
+.svc-wpe-closing-form-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
+  box-shadow: none;
+}
+/* Per-field error highlight — applied by the JS when the REST
+ * endpoint returns a 400 with a field-specific message map. */
+.svc-wpe-closing-form-input--error,
+.svc-wpe-closing-form-select--error {
+  border-color: #c0392b !important;
+  background: rgba(192, 57, 43, 0.04);
+}
+/* Honeypot — visually + screen-reader hidden, but still in the DOM
+ * so spam bots fill it. Position off-screen rather than display:none
+ * so headless browsers that ignore display:none still find it. */
+.svc-wpe-closing-form-honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+/* Inline success state — replaces the form card content on a 200
+ * response. Sits in the same white card so the page layout doesn't
+ * jump, with a gold tick + confirmation copy. */
+.svc-wpe-closing-form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 0.25rem;
+  gap: 1rem;
+}
+.svc-wpe-closing-form-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(201, 164, 74, 0.12);
+  color: var(--gildhart-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.svc-wpe-closing-form-success-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--gildhart-green);
+  margin: 0;
+}
+.svc-wpe-closing-form-success-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: rgba(13, 26, 18, 0.75);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 360px;
+}
 .svc-wpe-closing-form-note {
   font-size: 0.8125rem;
   color: rgba(13, 26, 18, 0.5);
