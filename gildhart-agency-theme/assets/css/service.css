@@ -263,38 +263,34 @@
   transform: scale(1.01);
 }
 
-/* WebPro Elite hero image is a portrait three-browser composite on a
- * white ground. Drop the card treatment, multiply the white into the
- * cream gradient so the frames float, and cap the rendered height so
- * the tall composite doesn't push the grid row past a comfortable
- * hero height. Width goes auto (driven by the height cap) and
- * margin-left: auto right-aligns it within the column. */
+/* WebPro Elite hero image is a fanned three-browser composite on a
+ * white ground (wider than it is tall, so width is the constraint).
+ * Drop the card treatment, multiply the white into the cream gradient
+ * so the frames float, and cap the rendered height as a safety so a
+ * very tall export can't blow out the row. */
 .service-web-pro-elite .svc-hero-image img {
   border-radius: 0;
   box-shadow: none;
   object-fit: contain;
-  object-position: right bottom;
+  object-position: center;
   mix-blend-mode: multiply;
-  width: auto;
-  max-width: 100%;
-  max-height: clamp(480px, 60vh, 680px);
-  margin-left: auto;
+  width: 100%;
+  height: auto;
+  max-height: clamp(480px, 72vh, 760px);
 }
 
-/* WPE-only hero composition: bottom-anchor the portrait composite in
- * the right column, keep the left copy centred vertically with the
- * existing spacing, and drop the stats divider so the hero flows
- * naturally into the next section. No scale, no negative-margin
- * bleed — the new image's aspect ratio fills the column on its own. */
+/* WPE-only hero composition: widen the image column so the composite
+ * renders larger, and vertically CENTRE both columns so the leftover
+ * space around the image splits evenly top + bottom (reads as
+ * intentional padding) rather than collapsing entirely above the
+ * image. Stats divider dropped so the hero flows into the next
+ * section. No scale, no bleed — the new image fills the column. */
 .service-web-pro-elite .svc-hero-inner {
-  align-items: end;
-}
-.service-web-pro-elite .svc-hero-content {
-  align-self: center;
-  padding-bottom: 4rem;
+  grid-template-columns: 1fr 1.25fr;
+  align-items: center;
 }
 .service-web-pro-elite .svc-hero-image {
-  align-self: end;
+  align-self: center;
 }
 .service-web-pro-elite .svc-hero-stats {
   border-bottom: none;
