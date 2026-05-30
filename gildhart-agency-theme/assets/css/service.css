@@ -8643,6 +8643,14 @@
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
 }
 .svc-wpe-package-col--dark { background: rgba(255, 255, 255, 0.11); }
+/* Featured (premium) column — heavier 2px gold border, gold glow, and
+ * 8px more padding on every side than the standard column so it reads
+ * as the differentiator without altering the layout. */
+.svc-wpe-package-col--featured {
+  border-width: 2px;
+  padding: calc(3rem + 8px) calc(2.75rem + 8px);
+  box-shadow: 0 8px 32px rgba(201, 164, 74, 0.15);
+}
 .svc-wpe-package-col:hover {
   transform: translateY(-8px);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 0 0 2px rgba(201, 164, 74, 0.5);
@@ -8659,7 +8667,19 @@
 .svc-wpe-package-col-header {
   margin-bottom: 2.25rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(201, 164, 74, 0.25);
+  position: relative;
+}
+/* Short gold accent rule between the intro paragraph and the bullet
+ * list — replaces the old faint full-width divider, which read as a
+ * muddy hairline at 0.25 opacity. */
+.svc-wpe-package-col-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--gildhart-gold);
 }
 .svc-wpe-package-col-title {
   font-family: 'Inter', sans-serif;
