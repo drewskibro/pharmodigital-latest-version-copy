@@ -270,7 +270,40 @@
   border-radius: 0;
   box-shadow: none;
   object-fit: contain;
+  object-position: right bottom;
   mix-blend-mode: multiply;
+}
+
+/* WPE-only hero composition: oversized, bottom-anchored mockup that
+ * bleeds off the right viewport edge so the three browsers feel live
+ * and expansive. Right column gets more grid weight, image self-aligns
+ * to the bottom of the row, and a scale + bottom-right transform-origin
+ * grows the composite up-and-left without cropping. Negative right
+ * margin pulls the container past the section's 2rem padding and (on
+ * wide screens) past the inner's 1400px max-width so the image meets
+ * the viewport edge. Section padding-bottom and the stats divider are
+ * dropped so the image anchors visually to the bottom of the hero. */
+.service-web-pro-elite .svc-hero {
+  padding-bottom: 0;
+}
+.service-web-pro-elite .svc-hero-inner {
+  grid-template-columns: 1fr 1.35fr;
+  align-items: end;
+  gap: 2rem;
+}
+.service-web-pro-elite .svc-hero-content {
+  align-self: center;
+  padding-bottom: 4rem;
+}
+.service-web-pro-elite .svc-hero-image {
+  align-self: end;
+  margin-right: clamp(-7rem, calc(50% - 50vw + 2rem), -2rem);
+  transform: scale(1.12);
+  transform-origin: bottom right;
+}
+.service-web-pro-elite .svc-hero-stats {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 /* Responsive */
