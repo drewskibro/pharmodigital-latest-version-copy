@@ -8163,26 +8163,51 @@
   transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
-.svc-wpe-intro-emphasis {
+/* Interrupt statement — sits between body paragraphs and disrupts the
+ * flow. Bigger, bolder, dark navy, generous breathing room each side
+ * so it lands as a deliberate beat rather than another paragraph. */
+.svc-wpe-intro-interrupt {
   font-family: 'Inter', sans-serif;
-  font-size: 1.15rem;
+  font-size: clamp(1.0625rem, 1.4vw, 1.15rem);
   font-weight: 700;
   color: var(--navy);
-  line-height: 1.55;
-  margin: 0 0 2rem;
+  line-height: 1.6;
+  margin: 2rem 0;
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+}
+/* Closing — three stacked one-line "blows". Each line is its own block;
+ * 8px gap keeps them tight and percussive, 2.5rem above lifts them
+ * clear of the second body paragraph. */
+.svc-wpe-intro-closing {
+  margin: 2.5rem 0 2rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+}
+.svc-wpe-intro-closing-line {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.svc-wpe-intro-closing-line + .svc-wpe-intro-closing-line {
+  margin-top: 8px;
 }
 .svc-wpe-intro-cta {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
 }
 .svc-wpe-intro-eyebrow.is-visible,
 .svc-wpe-intro-headline.is-visible,
 .svc-wpe-intro-body.is-visible,
-.svc-wpe-intro-emphasis.is-visible,
+.svc-wpe-intro-interrupt.is-visible,
+.svc-wpe-intro-closing.is-visible,
 .svc-wpe-intro-cta.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -8216,6 +8241,18 @@
   transform: translateY(-3px);
   box-shadow: 0 10px 36px rgba(13, 26, 18, 0.09);
 }
+/* Oversized gold stat figure — sits above the client name and is the
+ * card's dominant visual element. Tight bottom margin so it kisses the
+ * uppercase client line below it. */
+.svc-wpe-intro-card-figure {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--gildhart-gold);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.4rem;
+}
 .svc-wpe-intro-card-client {
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -8227,19 +8264,63 @@
 }
 .svc-wpe-intro-card-stat {
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: clamp(1.25rem, 2vw, 1.375rem);
+  font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin: 0 0 0.5rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
 }
 .svc-wpe-intro-card-desc {
   font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--gray-600);
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0;
+}
+
+/* ── Featured anchor card ──
+ * Card 2 carries the page. Forest-green ground + 2px gold border +
+ * extra padding + a gold "Flagship Result" badge. Stat figure is
+ * bumped one notch larger; client/headline/body colours flip to gold
+ * + white + soft cream. Hover-lift behaviour is preserved alongside
+ * the standard cards. */
+.svc-wpe-intro-card--featured {
+  position: relative;
+  background: var(--gildhart-green);
+  border: 2px solid var(--gildhart-gold);
+  border-left: 2px solid var(--gildhart-gold);
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(201, 164, 74, 0.20);
+}
+.svc-wpe-intro-card--featured:hover {
+  box-shadow: 0 14px 44px rgba(201, 164, 74, 0.28);
+}
+.svc-wpe-intro-card--featured .svc-wpe-intro-card-figure {
+  font-size: clamp(2.75rem, 5.5vw, 3.5rem);
+  margin-top: 0.5rem;
+}
+.svc-wpe-intro-card--featured .svc-wpe-intro-card-stat {
+  color: #ffffff;
+  font-size: clamp(1.375rem, 2.2vw, 1.5rem);
+}
+.svc-wpe-intro-card--featured .svc-wpe-intro-card-desc {
+  color: var(--gildhart-cream, #F0E6C8);
+}
+.svc-wpe-intro-card-flagship {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  display: inline-block;
+  background: var(--gildhart-gold);
+  color: var(--gildhart-green);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
 }
 
 @media (max-width: 960px) {

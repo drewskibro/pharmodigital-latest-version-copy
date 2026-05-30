@@ -2789,6 +2789,59 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Service · WPE Intro (WebPro Elite — "What WebPro Elite Is") */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_wpe_intro',
+    'title'      => 'Service · WPE Intro',
+    'menu_order' => 29,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_wpe_intro_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_wpe_intro_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_wpe_intro_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_wpe_intro_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wpe_intro_headline', 'label' => 'Headline', 'name' => 'service_wpe_intro_headline', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_wpe_intro_para_1',   'label' => 'Body Paragraph 1', 'name' => 'service_wpe_intro_para_1', 'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_gh_service_wpe_intro_interrupt','label' => 'Interrupt Statement', 'name' => 'service_wpe_intro_interrupt', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'Dark navy, bold, sits big between the two body paragraphs. This line is meant to disrupt the flow — write it as a statement, not body copy.' ),
+        array( 'key' => 'field_gh_service_wpe_intro_para_2',   'label' => 'Body Paragraph 2', 'name' => 'service_wpe_intro_para_2', 'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_gh_service_wpe_intro_closing',  'label' => 'Closing Lines', 'name' => 'service_wpe_intro_closing', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'One line per blow. Renders as a stacked sequence of separate lines — each lands as its own deliberate statement.' ),
+        array( 'key' => 'field_gh_service_wpe_intro_cta_label','label' => 'CTA Label', 'name' => 'service_wpe_intro_cta_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wpe_intro_cta_url',  'label' => 'CTA URL',   'name' => 'service_wpe_intro_cta_url',   'type' => 'text', 'instructions' => 'Anchor (#portfolio) or full URL.' ),
+        array(
+            'key'          => 'field_gh_service_wpe_intro_cards',
+            'label'        => 'Proof Cards',
+            'name'         => 'service_wpe_intro_cards',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 6,
+            'button_label' => 'Add Card',
+            'instructions' => 'Three cards is the designed default. Mark exactly one as Featured — that card renders forest-green with a gold border and a flagship badge. The other two render white with a gold left accent.',
+            'sub_fields'   => array(
+                array( 'key' => 'field_gh_service_wpe_intro_card_figure', 'label' => 'Stat Figure', 'name' => 'figure', 'type' => 'text', 'instructions' => 'Oversized headline number above the client name, e.g. "#1", "£500k", "#1 UK".' ),
+                array( 'key' => 'field_gh_service_wpe_intro_card_client', 'label' => 'Client Name', 'name' => 'client', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_wpe_intro_card_stat',   'label' => 'Headline',    'name' => 'stat',   'type' => 'text', 'instructions' => 'Bold headline below the client name, e.g. "300% Revenue Growth".' ),
+                array( 'key' => 'field_gh_service_wpe_intro_card_desc',   'label' => 'Body Copy',   'name' => 'desc',   'type' => 'textarea', 'rows' => 3 ),
+                array(
+                    'key'           => 'field_gh_service_wpe_intro_card_featured',
+                    'label'         => 'Featured (anchor) card',
+                    'name'          => 'featured',
+                    'type'          => 'true_false',
+                    'ui'            => 1,
+                    'default_value' => 0,
+                    'instructions'  => 'Mark one card per section as featured to get the forest-green + gold treatment.',
+                ),
+                array( 'key' => 'field_gh_service_wpe_intro_card_flagship', 'label' => 'Flagship Badge Label', 'name' => 'flagship_label', 'type' => 'text', 'instructions' => 'Small gold badge at top-left of the featured card, e.g. "Flagship Result". Only renders when Featured is on.' ),
+            ),
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · WPE Portfolio (WebPro Elite) */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_wpe_portfolio',
