@@ -90,13 +90,15 @@ function gildhart_wpe_waitlist_submit( WP_REST_Request $request ) {
 
     $errors = array();
 
-    // Required fields. Phone + website are optional, practice_type
-    // is required so Kartra can route by clinic category.
+    // Required fields. Website is optional; practice_type is required
+    // so Kartra can route by clinic category, and phone is required so
+    // the sales team can call to scope within the promised 24 hours.
     $required = array(
         'practice_name' => 'Practice name is required.',
         'first_name'    => 'First name is required.',
         'last_name'     => 'Last name is required.',
         'email'         => 'Email is required.',
+        'phone'         => 'Phone number is required.',
         'practice_type' => 'Please select your practice type.',
     );
     foreach ( $required as $key => $message ) {
