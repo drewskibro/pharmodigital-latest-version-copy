@@ -25,7 +25,7 @@ if ( ! gh_field( 'service_wpe_package_show', 1 ) ) {
 
 $eyebrow  = gh_field( 'service_wpe_package_eyebrow',  'What WebPro Elite Is' );
 $headline = gh_field( 'service_wpe_package_headline', "Every Other Agency Builds You a Website.\nWe Build You a Patient Acquisition Engine." );
-$subhead  = gh_field( 'service_wpe_package_subhead',  'Every other agency builds you a website. We build you a website ::and:: the AI search infrastructure that makes it generate patients. No extra fee. It\'s how we build everything.' );
+$subhead  = gh_field( 'service_wpe_package_subhead',  'Every other agency builds you a website. We build you a website that Google ranks, ChatGPT cites, and patients find. That\'s not a feature. That\'s the entire architecture.' );
 
 $cols = get_field( 'service_wpe_package_cols' );
 if ( empty( $cols ) ) {
@@ -33,14 +33,11 @@ if ( empty( $cols ) ) {
         array(
             'num'   => '01',
             'title' => 'The Website',
-            'sub'   => "Most healthcare websites are invisible to the platforms patients now use to make decisions. Yours won't be. Every Gildhart build starts with Claude Code — the AI infrastructure that tells Google, ChatGPT, and Claude exactly what your practice does, who it serves, and why it should be recommended.",
+            'sub'   => "Most healthcare websites are invisible to the platforms patients now use to make decisions. Every Gildhart build starts with Claude Code — the AI infrastructure that tells Google, ChatGPT, and Claude exactly what your practice does, who it serves, and why it should be recommended.",
             'items' => array(
                 'Built on Claude Code — architected for AI search from day one',
-                'Clinically credible design that converts high-intent patients',
                 'Dedicated service pages for every revenue-generating offering',
                 'GPhC-compliant throughout — no compromises on clinical standards',
-                'Online booking, fast load speed, structured data — all included',
-                'Hosting, SSL, and 12 months technical support included',
             ),
         ),
         array(
@@ -49,11 +46,8 @@ if ( empty( $cols ) ) {
             'sub'   => "ChatGPT doesn't search Google. It searches Bing. Every day patients ask ChatGPT for a Mounjaro provider, a travel clinic, a private prescription service. Most practices have never touched Bing. That's why they're invisible. This framework fixes that — deliberately, specifically, permanently.",
             'items' => array(
                 "Bing indexation protocol — the exact reason Superior appeared on ChatGPT's shortlist in 48 hours",
-                'Pillar content strategy mapped to your five highest-revenue services',
                 'Google AI Overview optimisation for local and national queries',
                 'Structured data and entity markup so AI platforms trust your content',
-                'Full AI search audit across Google, Bing, ChatGPT, and Claude',
-                'Monthly ranking report across all AI platforms for 12 months',
             ),
         ),
     );
@@ -126,8 +120,15 @@ $headline_lines = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $
                 if ( is_string( $items ) ) {
                     $items = array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $items ) ) );
                 }
-                $dark = ( $ci % 2 === 1 ); ?>
-                <div class="svc-wpe-package-col<?php echo $dark ? ' svc-wpe-package-col--dark' : ''; ?>">
+                $dark = ( $ci % 2 === 1 );
+                // Second column is the premium differentiator — gets the
+                // featured treatment (heavier gold border + glow + padding).
+                $featured = ( 1 === $ci );
+                $col_class = 'svc-wpe-package-col';
+                if ( $dark )     { $col_class .= ' svc-wpe-package-col--dark'; }
+                if ( $featured ) { $col_class .= ' svc-wpe-package-col--featured'; }
+                ?>
+                <div class="<?php echo esc_attr( $col_class ); ?>">
                     <?php if ( $num ) : ?>
                         <p class="svc-wpe-package-col-num"><?php echo esc_html( $num ); ?></p>
                     <?php endif; ?>
