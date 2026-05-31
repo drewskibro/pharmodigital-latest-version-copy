@@ -135,6 +135,16 @@ function gildhart_scripts() {
     );
 
     // ── Per-page assets ───────────────────────────────────────────────
+    // About page — shares globals + nav + footer; its own scoped styles.
+    if ( is_page_template( 'page-templates/page-about.php' ) ) {
+        wp_enqueue_style(
+            'gildhart-about',
+            GILDHART_URI . '/assets/css/about.css',
+            array( 'gildhart-globals' ),
+            gh_asset_ver( 'assets/css/about.css' )
+        );
+    }
+
     // Homepage
     if ( is_page_template( 'page-templates/page-home.php' ) ) {
         wp_enqueue_style(
