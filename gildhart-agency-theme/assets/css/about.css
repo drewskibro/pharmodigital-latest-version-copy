@@ -51,7 +51,7 @@
   justify-content: center;
 }
 .about-crest img {
-  width: 80px;
+  width: 100px;
   height: auto;
   display: block;
 }
@@ -96,6 +96,7 @@
 .about-founder {
   background: var(--cream-warm);
   padding: clamp(5rem, 9vw, 7rem) var(--about-pad-x);
+  overflow: hidden;
 }
 .about-founder-inner {
   max-width: var(--container-max);
@@ -175,7 +176,13 @@
 .about-linkedin:hover { color: var(--gildhart-green); }
 .about-linkedin svg { flex-shrink: 0; }
 
-/* Founder media column */
+/* Founder media column — portrait + crest stacked, no hard card
+ * treatment. Mirrors the homepage founder section: a soft cream-fade
+ * gradient overlay melts the bottom of the photo into the section
+ * background so the natural crop reads as deliberate rather than as
+ * a sharp-edged headshot card. object-position: bottom keeps Drew's
+ * head anchored at the top of the frame so the fade hits his torso,
+ * not his face. */
 .about-founder-media {
   display: flex;
   flex-direction: column;
@@ -183,15 +190,32 @@
   gap: 2rem;
 }
 .about-founder-photo {
+  position: relative;
   width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
+  max-width: 460px;
+}
+.about-founder-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    rgba(254, 247, 237, 0) 0%,
+    rgba(254, 247, 237, 0.6) 40%,
+    var(--cream-warm) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 .about-founder-photo img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: contain;
+  object-position: bottom;
 }
 
 /* ════════════════════════════════════════
