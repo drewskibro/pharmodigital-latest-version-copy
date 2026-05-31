@@ -98,7 +98,12 @@ $linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/
                 <?php if ( $email ) : ?>
                     <a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
                 <?php endif; ?>
-                <span class="footer-contact-line">Blackpool, England</span>
+                <span class="footer-contact-line footer-contact-address">
+                    <span class="footer-contact-address-label">Registered office</span>
+                    1 Richmond Road<br>
+                    Lytham St. Anns on Sea<br>
+                    Lancashire, FY8 1PE
+                </span>
                 <span class="footer-contact-line footer-contact-line--fine">Registered in England &amp; Wales</span>
                 <span class="footer-contact-line footer-contact-line--fine">Company No. 15341513</span>
                 <span class="footer-contact-line footer-contact-line--fine">VAT No. 456 8779 26</span>
