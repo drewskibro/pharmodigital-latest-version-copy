@@ -20,13 +20,10 @@ $copyright_template = gh_option( 'footer_copyright', '© {year} Gildhart™. All
 $copyright          = str_replace( '{year}', date_i18n( 'Y' ), $copyright_template );
 $legal_links        = gh_option( 'footer_legal_links', array() );
 
-// Dedicated cream wordmark for the footer (sits on the green ground).
-// Different asset to the header logo which renders on light surfaces.
-$footer_logo = gh_option( 'footer_logo' );
-if ( ! $footer_logo ) {
-    $footer_logo = 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/04/Gildhart-04-scaled.png';
-}
-
+// Footer brand renders as a cream text wordmark (matching the nav),
+// not the circular crest — the detailed crest is illegible at footer
+// scale. ™ is appended since the Gildhart name is trademarked.
+//
 // Contact email falls back to the brand bookings address so the
 // Contact column renders out of the box even before agency_email is set.
 $email   = gh_email() ?: 'bookings@gildhart.co.uk';
@@ -38,7 +35,7 @@ $linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/
         <div class="footer-top">
             <div class="footer-brand">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-brand-name" aria-label="<?php echo esc_attr( $agency_name ); ?>">
-                    <img class="footer-brand-logo" src="<?php echo esc_url( $footer_logo ); ?>" alt="<?php echo esc_attr( $agency_name ); ?>">
+                    <span class="footer-brand-wordmark"><?php echo esc_html( $agency_name ); ?><sup class="footer-brand-tm">&trade;</sup></span>
                 </a>
                 <?php if ( $tagline ) : ?>
                     <p class="footer-brand-tagline"><?php echo esc_html( $tagline ); ?></p>
