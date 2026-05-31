@@ -60,19 +60,19 @@ if ( empty( $milestones ) ) {
     $milestones = array(
         array(
             'period' => 'Week 1',
-            'body'   => 'We architect your site on Claude Code — every service page built for AI search from the first line of code.',
+            'body'   => 'Your practice is live. Every service page built to answer the exact questions patients are asking right now.',
         ),
         array(
             'period' => 'Month 1',
-            'body'   => 'Indexed across Google, Bing, ChatGPT, and Claude. The first AI-sourced enquiries start landing.',
+            'body'   => "You start appearing in places your competitors aren't. Google. ChatGPT. Claude. Patients find you without you spending a penny on ads.",
         ),
         array(
             'period' => 'Month 3',
-            'body'   => 'Rankings climb. Content compounds. Patients arrive pre-sold, around the clock, with zero ad spend.',
+            'body'   => "You stop wondering if it's working. The enquiries tell you.",
         ),
         array(
             'period'      => 'Month 6+',
-            'body'        => 'A patient acquisition engine running on autopilot — compounding every month, owned forever.',
+            'body'        => "It's Tuesday evening. You're not at work. Three patients just booked. You'll find out in the morning.",
             'destination' => true,
         ),
     );
