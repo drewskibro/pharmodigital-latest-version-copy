@@ -38,6 +38,16 @@
   filter: brightness(0) invert(1);
   opacity: 0.9;
 }
+/* Dedicated cream-wordmark variant — pre-toned for the green ground,
+ * so it skips the brightness/invert bleach that the legacy mono
+ * variant relies on. Renders the wordmark in its natural cream. */
+.footer-brand-logo {
+  height: 36px;
+  width: auto;
+  filter: none;
+  opacity: 1;
+  display: block;
+}
 
 .footer-brand-tagline {
   color: rgba(255, 255, 255, 0.5);
@@ -110,6 +120,14 @@
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
+}
+/* Copyright — full-width centred. Overrides the .footer-bottom flex
+ * default (left-justified leftover item) so the trademark line reads
+ * as a deliberate centred footnote. */
+.footer-copyright {
+  width: 100%;
+  text-align: center;
+  margin: 0;
 }
 .footer-bottom p {
   color: rgba(255, 255, 255, 0.4);

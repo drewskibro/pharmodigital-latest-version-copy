@@ -13,13 +13,23 @@ $tagline            = gh_option( 'footer_tagline', 'AI Infrastructure. Built Onl
 $description        = gh_option( 'footer_description' );
 $brand_link_label   = gh_option( 'footer_brand_link_label' );
 $brand_link_url     = gh_option( 'footer_brand_link_url' );
-$copyright_template = gh_option( 'footer_copyright', '© {year} ' . $agency_name . '. All rights reserved. Gildhart™ and Pillar Domination Framework™ are trademarks of Social Gains Limited, registered in England and Wales.' );
+// Copyright + trademark + Social Gains registration line. The first
+// "Gildhart" is hardcoded with the ™ glyph (the {agency_name} token
+// can't supply it without forcing the trademark everywhere else).
+$copyright_template = gh_option( 'footer_copyright', '© {year} Gildhart™. All rights reserved. Gildhart™ and Pillar Domination Framework™ are trademarks of Social Gains Limited, registered in England and Wales.' );
 $copyright          = str_replace( '{year}', date_i18n( 'Y' ), $copyright_template );
 $legal_links        = gh_option( 'footer_legal_links', array() );
 
-// Contact email falls back to the brand address so the Contact column
-// renders out of the box even before the agency_email option is set.
-$email   = gh_email() ?: 'hello@gildhart.co.uk';
+// Dedicated cream wordmark for the footer (sits on the green ground).
+// Different asset to the header logo which renders on light surfaces.
+$footer_logo = gh_option( 'footer_logo' );
+if ( ! $footer_logo ) {
+    $footer_logo = 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/04/Gildhart-04-scaled.png';
+}
+
+// Contact email falls back to the brand bookings address so the
+// Contact column renders out of the box even before agency_email is set.
+$email   = gh_email() ?: 'bookings@gildhart.co.uk';
 $linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/gildhart' );
 ?>
 
@@ -27,11 +37,8 @@ $linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/
     <div class="footer-inner">
         <div class="footer-top">
             <div class="footer-brand">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-brand-name">
-                    <?php if ( gh_has_uploaded_logo() ) : ?>
-                        <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $agency_name ); ?>">
-                    <?php endif; ?>
-                    <?php echo esc_html( $agency_name ); ?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-brand-name" aria-label="<?php echo esc_attr( $agency_name ); ?>">
+                    <img class="footer-brand-logo" src="<?php echo esc_url( $footer_logo ); ?>" alt="<?php echo esc_attr( $agency_name ); ?>">
                 </a>
                 <?php if ( $tagline ) : ?>
                     <p class="footer-brand-tagline"><?php echo esc_html( $tagline ); ?></p>
@@ -96,13 +103,14 @@ $linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/
                 <?php endif; ?>
                 <span class="footer-contact-line">Blackpool, England</span>
                 <span class="footer-contact-line footer-contact-line--fine">Registered in England &amp; Wales</span>
-                <span class="footer-contact-line footer-contact-line--fine">Company No. [COMPANY NUMBER]</span>
+                <span class="footer-contact-line footer-contact-line--fine">Company No. 15341513</span>
+                <span class="footer-contact-line footer-contact-line--fine">VAT No. 456 8779 26</span>
             </div>
         </div>
 
         <div class="footer-bottom">
             <p class="footer-compliance">All systems and content produced to GPhC, GMC, GDC, and CQC regulatory standards.</p>
-            <p><?php echo esc_html( $copyright ); ?></p>
+            <p class="footer-copyright"><?php echo esc_html( $copyright ); ?></p>
             <?php if ( ! empty( $legal_links ) ) : ?>
                 <div class="footer-legal">
                     <?php foreach ( $legal_links as $link ) : ?>
