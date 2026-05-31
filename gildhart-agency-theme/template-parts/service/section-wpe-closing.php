@@ -37,7 +37,7 @@ $form_subhead = gh_field( 'service_wpe_closing_form_subhead', "We take on a limi
 $form_submit  = gh_field( 'service_wpe_closing_form_submit',  'Join The Waitlist' );
 $form_note    = gh_field( 'service_wpe_closing_form_note',    "No commitment. We'll confirm your spot and scope the project together." );
 $form_success_title = gh_field( 'service_wpe_closing_form_success_title', "You're on the waitlist." );
-$form_success_body  = gh_field( 'service_wpe_closing_form_success_body',  "We'll be in touch within 24 hours to confirm your spot and scope the project together." );
+$form_success_body  = gh_field( 'service_wpe_closing_form_success_body',  'The practices that moved first own their market. You just moved.' );
 
 $body_paras = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n\r\n|\r\r|\n\n/', $body ) ) ) );
 if ( empty( $body_paras ) && $body ) {
