@@ -32,25 +32,23 @@
   text-decoration: none;
   margin-bottom: 0.375rem;
 }
-.footer-brand-name img {
-  height: 36px;
-  width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+/* Footer brand is a cream text wordmark, not the circular crest —
+ * the detailed crest is illegible at footer scale. Matches the nav's
+ * brand presence but as type, sized for the footer column. */
+.footer-brand-wordmark {
+  font-family: var(--font-primary);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--gildhart-cream);
+  line-height: 1;
 }
-/* Dedicated cream-wordmark variant — pre-toned for the green ground,
- * so it skips the brightness/invert bleach the legacy mono variant
- * relies on. Selector is doubled (.footer-brand-name .footer-brand-logo)
- * so its specificity (0,2,0) wins over .footer-brand-name img (0,1,1)
- * — without this the legacy bleach filter forces the wordmark to a
- * pure-white silhouette. */
-.footer-brand-name .footer-brand-logo {
-  height: 56px;
-  width: auto;
-  max-width: 220px;
-  filter: none;
-  opacity: 1;
-  display: block;
+.footer-brand-tm {
+  font-size: 0.5em;
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 0.1em;
+  color: var(--gildhart-gold);
 }
 
 .footer-brand-tagline {
