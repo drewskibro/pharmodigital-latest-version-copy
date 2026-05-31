@@ -80,6 +80,20 @@
 }
 .footer-col a:hover { color: var(--gildhart-gold); }
 
+/* Contact column non-link lines — location + legal registration.
+ * Matches the footer link muted tone; the --fine modifier drops the
+ * registration lines a touch smaller and dimmer. */
+.footer-contact-line {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+}
+.footer-contact-line--fine {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8125rem;
+  margin-bottom: 0.5rem;
+}
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -88,6 +102,14 @@
   border-top: 1px solid rgba(201, 164, 74, 0.2);
   flex-wrap: wrap;
   gap: 1rem;
+}
+/* Compliance note — full-width centred row above the copyright line. */
+.footer-compliance {
+  width: 100%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
 }
 .footer-bottom p {
   color: rgba(255, 255, 255, 0.4);

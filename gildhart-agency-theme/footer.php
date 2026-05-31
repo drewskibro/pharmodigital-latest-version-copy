@@ -9,17 +9,18 @@
 
 $logo_url           = gh_logo_url();
 $agency_name        = gh_agency_name();
-$tagline            = gh_option( 'footer_tagline', 'The AI Search Playbook for Healthcare' );
+$tagline            = gh_option( 'footer_tagline', 'AI Infrastructure. Built Only For Healthcare.' );
 $description        = gh_option( 'footer_description' );
 $brand_link_label   = gh_option( 'footer_brand_link_label' );
 $brand_link_url     = gh_option( 'footer_brand_link_url' );
-$copyright_template = gh_option( 'footer_copyright', '© {year} ' . $agency_name . '. All rights reserved.' );
+$copyright_template = gh_option( 'footer_copyright', '© {year} ' . $agency_name . '. All rights reserved. Gildhart™ and Pillar Domination Framework™ are trademarks of Social Gains Limited, registered in England and Wales.' );
 $copyright          = str_replace( '{year}', date_i18n( 'Y' ), $copyright_template );
 $legal_links        = gh_option( 'footer_legal_links', array() );
 
-$email   = gh_email();
-$phone   = gh_phone();
-$address = gh_option( 'agency_address' );
+// Contact email falls back to the brand address so the Contact column
+// renders out of the box even before the agency_email option is set.
+$email   = gh_email() ?: 'hello@gildhart.co.uk';
+$linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/gildhart' );
 ?>
 
 <footer class="footer">
@@ -48,7 +49,7 @@ $address = gh_option( 'agency_address' );
             $has_services_menu = has_nav_menu( 'footer-services' );
             ?>
             <div class="footer-col">
-                <h4>Services</h4>
+                <h4>The Systems</h4>
                 <?php if ( $has_services_menu ) : ?>
                     <?php wp_nav_menu( array(
                         'theme_location' => 'footer-services',
@@ -83,9 +84,8 @@ $address = gh_option( 'agency_address' );
                     ) ); ?>
                 <?php else : ?>
                     <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a>
-                    <a href="<?php echo esc_url( home_url( '/case-studies/' ) ); ?>">Case Studies</a>
-                    <a href="<?php echo esc_url( home_url( '/services/' ) ); ?>">Services</a>
-                    <a href="<?php echo esc_url( gh_waitlist_url() ); ?>">Waitlist</a>
+                    <a href="<?php echo esc_url( home_url( '/#revenue-results' ) ); ?>">The Proof</a>
+                    <a href="<?php echo esc_url( $linkedin_company ); ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <?php endif; ?>
             </div>
 
@@ -94,16 +94,14 @@ $address = gh_option( 'agency_address' );
                 <?php if ( $email ) : ?>
                     <a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
                 <?php endif; ?>
-                <?php if ( $phone ) : ?>
-                    <a href="tel:<?php echo esc_attr( gh_phone_link() ); ?>"><?php echo esc_html( $phone ); ?></a>
-                <?php endif; ?>
-                <?php if ( $address ) : ?>
-                    <span style="display:block;color:rgba(255,255,255,0.6);margin-bottom:0.75rem;"><?php echo nl2br( esc_html( $address ) ); ?></span>
-                <?php endif; ?>
+                <span class="footer-contact-line">Blackpool, England</span>
+                <span class="footer-contact-line footer-contact-line--fine">Registered in England &amp; Wales</span>
+                <span class="footer-contact-line footer-contact-line--fine">Company No. [COMPANY NUMBER]</span>
             </div>
         </div>
 
         <div class="footer-bottom">
+            <p class="footer-compliance">All systems and content produced to GPhC, GMC, GDC, and CQC regulatory standards.</p>
             <p><?php echo esc_html( $copyright ); ?></p>
             <?php if ( ! empty( $legal_links ) ) : ?>
                 <div class="footer-legal">
