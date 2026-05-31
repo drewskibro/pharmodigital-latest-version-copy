@@ -175,6 +175,15 @@
 }
 .about-linkedin:hover { color: var(--gildhart-green); }
 .about-linkedin svg { flex-shrink: 0; }
+/* In the media column the link sits centred beneath the crest, kept
+ * to a readable width so the two-line label wraps tidily under the
+ * portrait + seal signature stack. */
+.about-linkedin--media {
+  margin-top: 0;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 360px;
+}
 
 /* Founder media column — portrait + crest stacked, no hard card
  * treatment. Mirrors the homepage founder section: a soft cream-fade

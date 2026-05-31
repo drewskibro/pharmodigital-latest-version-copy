@@ -18,9 +18,12 @@ $logo_url       = gh_logo_url();
 $agency_name    = gh_agency_name();
 $home_url       = esc_url( home_url( '/' ) );
 $about_url      = esc_url( home_url( '/about/' ) );
-$waitlist_label = gh_option( 'waitlist_label', 'Join The Waitlist' );
+$waitlist_label = gh_option( 'waitlist_label', 'Get Started' );
 $waitlist_page  = gh_option( 'waitlist_page' );
-$waitlist_url   = $waitlist_page ? esc_url( get_permalink( $waitlist_page ) ) : esc_url( gh_waitlist_url() );
+// Default the nav CTA to the homepage "Choose Your Entry Point" section
+// (#get-started in section-two-paths.php). A configured waitlist page in
+// the ACF options still wins if one is set.
+$waitlist_url   = $waitlist_page ? esc_url( get_permalink( $waitlist_page ) ) : esc_url( home_url( '/#get-started' ) );
 
 $who_we_help    = gh_option( 'who_we_help_items', array() );
 
