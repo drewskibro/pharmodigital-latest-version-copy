@@ -2891,6 +2891,53 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Service · WPE Closing (WebPro Elite — closing CTA + waitlist form) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_wpe_closing',
+    'title'      => 'Service · WPE Closing',
+    'menu_order' => 32,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_wpe_closing_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_wpe_closing_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_wpe_closing_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_wpe_closing_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wpe_closing_headline', 'label' => 'Headline', 'name' => 'service_wpe_closing_headline', 'type' => 'textarea', 'rows' => 2, 'instructions' => 'One line per newline — each renders as its own block.' ),
+        array( 'key' => 'field_gh_service_wpe_closing_body',     'label' => 'Body',     'name' => 'service_wpe_closing_body',     'type' => 'textarea', 'rows' => 5, 'instructions' => 'Separate paragraphs with a blank line.' ),
+
+        array( 'key' => 'field_gh_service_wpe_closing_pricing_eyebrow', 'label' => 'Pricing Eyebrow', 'name' => 'service_wpe_closing_pricing_eyebrow', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wpe_closing_pricing_detail',  'label' => 'Pricing Detail',  'name' => 'service_wpe_closing_pricing_detail',  'type' => 'textarea', 'rows' => 3 ),
+
+        array(
+            'key'          => 'field_gh_service_wpe_closing_trust_items',
+            'label'        => 'Trust Items',
+            'name'         => 'service_wpe_closing_trust_items',
+            'type'         => 'repeater',
+            'layout'       => 'table',
+            'min'          => 0,
+            'max'          => 6,
+            'button_label' => 'Add Trust Item',
+            'instructions' => 'Ticked reassurance points below the pricing block. Three is the designed default.',
+            'sub_fields'   => array(
+                array( 'key' => 'field_gh_service_wpe_closing_trust_text', 'label' => 'Text', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+
+        array( 'key' => 'field_gh_service_wpe_closing_form_eyebrow', 'label' => 'Form Heading',  'name' => 'service_wpe_closing_form_eyebrow', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wpe_closing_form_subhead', 'label' => 'Form Subhead',  'name' => 'service_wpe_closing_form_subhead', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_wpe_closing_form_submit',  'label' => 'Submit Button Label', 'name' => 'service_wpe_closing_form_submit', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_wpe_closing_form_note',    'label' => 'Form Footnote',  'name' => 'service_wpe_closing_form_note',    'type' => 'textarea', 'rows' => 2 ),
+
+        array( 'key' => 'field_gh_service_wpe_closing_form_success_title', 'label' => 'Success — Heading', 'name' => 'service_wpe_closing_form_success_title', 'type' => 'text', 'instructions' => 'Shown in the confirmation card after a successful submission.' ),
+        array( 'key' => 'field_gh_service_wpe_closing_form_success_body',  'label' => 'Success — Subtext', 'name' => 'service_wpe_closing_form_success_body',  'type' => 'textarea', 'rows' => 2, 'instructions' => 'Subtext beneath the success heading.' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · Track Record (Agent A2) */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_track_record',
