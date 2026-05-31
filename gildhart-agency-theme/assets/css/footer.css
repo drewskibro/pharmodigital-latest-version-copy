@@ -93,17 +93,36 @@
 .footer-col a:hover { color: var(--gildhart-gold); }
 
 /* Contact column non-link lines — location + legal registration.
- * Matches the footer link muted tone; the --fine modifier drops the
- * registration lines a touch smaller and dimmer. */
+ * Tone lifted from the old 0.6/0.4 (which was nearly invisible on the
+ * green ground) to 0.78/0.62 with a 500 weight so the legal detail
+ * actually reads while staying secondary to the links. */
 .footer-contact-line {
   display: block;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 500;
   margin-bottom: 0.75rem;
 }
 .footer-contact-line--fine {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 500;
   font-size: 0.8125rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+/* Registered-office address block — three lines kept tight under a
+ * small gold label so it reads as one deliberate address unit. */
+.footer-contact-address {
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+.footer-contact-address-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin-bottom: 0.4rem;
 }
 
 .footer-bottom {
