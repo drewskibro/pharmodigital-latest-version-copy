@@ -68,7 +68,7 @@
   function renderSuccess () {
     if ( ! cardEl ) return;
     var title = form.getAttribute( 'data-success-title' ) || "You're on the waitlist.";
-    var body  = form.getAttribute( 'data-success-body' )  || "We'll be in touch within 24 hours.";
+    var body  = form.getAttribute( 'data-success-body' )  || 'The practices that moved first own their market. You just moved.';
 
     var wrap = document.createElement( 'div' );
     wrap.className = 'svc-wpe-closing-form-success';
