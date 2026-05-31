@@ -2938,6 +2938,110 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Page · About (About Gildhart template) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_page_about',
+    'title'      => 'Page · About',
+    'menu_order' => 5,
+    'fields'     => array(
+        /* Section 1 — Hero */
+        array( 'key' => 'field_gh_about_hero_label',    'label' => 'Hero — Label',    'name' => 'about_hero_label',    'type' => 'text' ),
+        array( 'key' => 'field_gh_about_hero_headline', 'label' => 'Hero — Headline', 'name' => 'about_hero_headline', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_about_hero_intro',    'label' => 'Hero — Intro',    'name' => 'about_hero_intro',    'type' => 'textarea', 'rows' => 4 ),
+
+        /* Section 2 — Founder */
+        array(
+            'key'           => 'field_gh_about_founder_image',
+            'label'         => 'Founder — Photo',
+            'name'          => 'about_founder_image',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'medium',
+            'instructions'  => 'Falls back to the homepage founder photo, then the guarantee Drew photo, if left empty.',
+        ),
+        array(
+            'key'           => 'field_gh_about_crest_logo',
+            'label'         => 'Crest Logo (gold)',
+            'name'          => 'about_crest_logo',
+            'type'          => 'image',
+            'return_format' => 'id',
+            'preview_size'  => 'thumbnail',
+            'instructions'  => 'Gold Gildhart crest, shown beneath the founder photo and in the closing CTA. Falls back to the brand seal in the media library.',
+        ),
+        array( 'key' => 'field_gh_about_founder_label',     'label' => 'Founder — Label',     'name' => 'about_founder_label',     'type' => 'text' ),
+        array( 'key' => 'field_gh_about_founder_headline',  'label' => 'Founder — Headline',  'name' => 'about_founder_headline',  'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_about_founder_block_1',   'label' => 'Founder — Paragraph 1', 'name' => 'about_founder_block_1', 'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_gh_about_founder_pullquote', 'label' => 'Founder — Pullquote', 'name' => 'about_founder_pullquote', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_about_founder_block_2',   'label' => 'Founder — Paragraph 2', 'name' => 'about_founder_block_2', 'type' => 'textarea', 'rows' => 4 ),
+        array( 'key' => 'field_gh_about_founder_block_3',   'label' => 'Founder — Statement',   'name' => 'about_founder_block_3', 'type' => 'textarea', 'rows' => 3 ),
+        array(
+            'key'          => 'field_gh_about_founder_results',
+            'label'        => 'Founder — Result Statements',
+            'name'         => 'about_founder_results',
+            'type'         => 'repeater',
+            'layout'       => 'table',
+            'min'          => 0,
+            'max'          => 6,
+            'button_label' => 'Add Result',
+            'instructions' => 'Each renders on its own line with a gold dash.',
+            'sub_fields'   => array(
+                array( 'key' => 'field_gh_about_result_text', 'label' => 'Text', 'name' => 'text', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_about_founder_name',  'label' => 'Founder — Sign-off Name',  'name' => 'about_founder_name',  'type' => 'text' ),
+        array( 'key' => 'field_gh_about_founder_title', 'label' => 'Founder — Sign-off Title', 'name' => 'about_founder_title', 'type' => 'text' ),
+        array( 'key' => 'field_gh_about_founder_linkedin_url',  'label' => 'Founder — LinkedIn URL',  'name' => 'about_founder_linkedin_url',  'type' => 'url', 'instructions' => 'Falls back to the global social LinkedIn option.' ),
+        array( 'key' => 'field_gh_about_founder_linkedin_text', 'label' => 'Founder — LinkedIn Text', 'name' => 'about_founder_linkedin_text', 'type' => 'text' ),
+
+        /* Section 3 — How We Work */
+        array( 'key' => 'field_gh_about_how_label',    'label' => 'How We Work — Label',    'name' => 'about_how_label',    'type' => 'text' ),
+        array( 'key' => 'field_gh_about_how_headline', 'label' => 'How We Work — Headline', 'name' => 'about_how_headline', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_about_how_subhead',  'label' => 'How We Work — Subhead',  'name' => 'about_how_subhead',  'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_about_how_proof_1',  'label' => 'How We Work — Proof 1',  'name' => 'about_how_proof_1',  'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_about_how_proof_2',  'label' => 'How We Work — Proof 2',  'name' => 'about_how_proof_2',  'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_about_how_closer',   'label' => 'How We Work — Closer',   'name' => 'about_how_closer',   'type' => 'textarea', 'rows' => 2 ),
+
+        /* Section 4 — Who We Work With */
+        array( 'key' => 'field_gh_about_who_label',    'label' => 'Who We Work With — Label',    'name' => 'about_who_label',    'type' => 'text' ),
+        array( 'key' => 'field_gh_about_who_headline', 'label' => 'Who We Work With — Headline', 'name' => 'about_who_headline', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_about_who_subhead',  'label' => 'Who We Work With — Subhead',  'name' => 'about_who_subhead',  'type' => 'textarea', 'rows' => 4 ),
+        array(
+            'key'          => 'field_gh_about_who_cards',
+            'label'        => 'Who We Work With — Cards',
+            'name'         => 'about_who_cards',
+            'type'         => 'repeater',
+            'layout'       => 'block',
+            'min'          => 0,
+            'max'          => 4,
+            'button_label' => 'Add Card',
+            'instructions' => 'Three cards is the designed default. Mark one as Featured for the gold-border anchor treatment.',
+            'sub_fields'   => array(
+                array( 'key' => 'field_gh_about_card_stat',     'label' => 'Stat',     'name' => 'stat',     'type' => 'text', 'instructions' => 'e.g. "£500k+", "300%", "250+".' ),
+                array( 'key' => 'field_gh_about_card_label',    'label' => 'Label',    'name' => 'label',    'type' => 'text', 'instructions' => 'Small uppercase, e.g. "Pharmacy Groups".' ),
+                array( 'key' => 'field_gh_about_card_headline', 'label' => 'Headline', 'name' => 'headline', 'type' => 'textarea', 'rows' => 3 ),
+                array( 'key' => 'field_gh_about_card_body',     'label' => 'Body',     'name' => 'body',     'type' => 'textarea', 'rows' => 3 ),
+                array(
+                    'key'           => 'field_gh_about_card_featured',
+                    'label'         => 'Featured (anchor) card',
+                    'name'          => 'featured',
+                    'type'          => 'true_false',
+                    'ui'            => 1,
+                    'default_value' => 0,
+                ),
+            ),
+        ),
+
+        /* Section 5 — Closing CTA */
+        array( 'key' => 'field_gh_about_cta_headline',   'label' => 'CTA — Headline',        'name' => 'about_cta_headline',   'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_about_cta_subhead',    'label' => 'CTA — Subhead',         'name' => 'about_cta_subhead',    'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_about_cta_btn1_label', 'label' => 'CTA — Button 1 Label',  'name' => 'about_cta_btn1_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_about_cta_btn1_url',   'label' => 'CTA — Button 1 URL',    'name' => 'about_cta_btn1_url',   'type' => 'text' ),
+        array( 'key' => 'field_gh_about_cta_btn2_label', 'label' => 'CTA — Button 2 Label',  'name' => 'about_cta_btn2_label', 'type' => 'text' ),
+        array( 'key' => 'field_gh_about_cta_btn2_url',   'label' => 'CTA — Button 2 URL',    'name' => 'about_cta_btn2_url',   'type' => 'text' ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-about.php' ) ) ),
+) );
+
 /* Service · Track Record (Agent A2) */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_track_record',
