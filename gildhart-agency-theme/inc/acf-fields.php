@@ -227,7 +227,7 @@ acf_add_local_field_group( array(
             'label'         => 'Footer Tagline',
             'name'          => 'footer_tagline',
             'type'          => 'text',
-            'default_value' => 'The AI Search Playbook for Healthcare',
+            'default_value' => 'AI Infrastructure. Built Only For Healthcare.',
         ),
         array(
             'key'   => 'field_gh_footer_description',
@@ -278,7 +278,7 @@ acf_add_local_field_group( array(
             'name'          => 'footer_copyright',
             'type'          => 'text',
             'instructions'  => 'Use {year} for the current year.',
-            'default_value' => '© {year} Gildhart. All rights reserved.',
+            'default_value' => '© {year} Gildhart™. All rights reserved. Gildhart™ and Pillar Domination Framework™ are trademarks of Social Gains Limited, registered in England and Wales.',
         ),
     ),
     'location' => array(
