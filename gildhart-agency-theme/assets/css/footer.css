@@ -39,11 +39,15 @@
   opacity: 0.9;
 }
 /* Dedicated cream-wordmark variant — pre-toned for the green ground,
- * so it skips the brightness/invert bleach that the legacy mono
- * variant relies on. Renders the wordmark in its natural cream. */
-.footer-brand-logo {
-  height: 36px;
+ * so it skips the brightness/invert bleach the legacy mono variant
+ * relies on. Selector is doubled (.footer-brand-name .footer-brand-logo)
+ * so its specificity (0,2,0) wins over .footer-brand-name img (0,1,1)
+ * — without this the legacy bleach filter forces the wordmark to a
+ * pure-white silhouette. */
+.footer-brand-name .footer-brand-logo {
+  height: 56px;
   width: auto;
+  max-width: 220px;
   filter: none;
   opacity: 1;
   display: block;
