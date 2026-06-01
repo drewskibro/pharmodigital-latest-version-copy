@@ -15,16 +15,26 @@
 
 $image_id     = gh_field( 'founder_image' );
 $eyebrow      = gh_field( 'founder_eyebrow', 'The Person Behind The Results' );
-$headline     = gh_field( 'founder_headline' );
+$headline     = gh_field( 'founder_headline', "Twenty Years In Healthcare. Built From The Inside." );
 $paragraphs   = gh_field( 'founder_paragraphs', array() );
+if ( empty( $paragraphs ) ) {
+    $paragraphs = array(
+        array( 'text' => "I've spent my career inside healthcare. NHS campaigns. Bupa. Harley Street clinics. Bizitch Dental — one of the UK's largest dental groups. Twenty years working on the accounts that shaped how millions of patients find and choose their providers." ),
+        array( 'text' => "Then AI search happened. And everything I'd learned about how patients make healthcare decisions became the foundation for something entirely new." ),
+        array( 'text' => "ChatGPT doesn't search Google. It searches Bing. Google AI Overviews reward clinical authority and content architecture. Most healthcare practices don't know what that language is yet. I do — and I've spent the last few years building the infrastructure that puts our clients at the top of every AI platform patients now use." ),
+    );
+}
 $name         = gh_field( 'founder_name', 'Drew' );
 $title        = gh_field( 'founder_title', 'Founder, Gildhart' );
 $linkedin_url = gh_field( 'founder_linkedin_url' );
-$linkedin_txt = gh_field( 'founder_linkedin_text' );
-
-if ( ! $image_id && ! $headline && empty( $paragraphs ) ) {
-    return;
+if ( ! $linkedin_url && function_exists( 'gh_option' ) ) {
+    $linkedin_url = gh_option( 'social_linkedin' );
 }
+$linkedin_txt = gh_field( 'founder_linkedin_text', 'Connect with me on LinkedIn — 5,000+ healthcare professionals follow our AI search insights.' );
+
+// Always render — defaults above carry the section even when ACF is
+// empty. The image still falls through when not set; the rest of the
+// content holds the layout on its own.
 ?>
 
 <section class="founder-section">

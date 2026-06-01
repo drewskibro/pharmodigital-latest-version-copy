@@ -11,17 +11,17 @@
  */
 
 $image_id      = gh_field( 'fcs_image' );
-$quote         = gh_field( 'fcs_quote' );
-$author_name   = gh_field( 'fcs_author_name' );
-$author_title  = gh_field( 'fcs_author_title' );
+$quote         = gh_field( 'fcs_quote', "Traffic's up <strong>300%</strong> and compounding every month. Not just traffic for the sake of it, but <strong>patients actually booking appointments</strong>." );
+$author_name   = gh_field( 'fcs_author_name', 'Sachin Patel' );
+$author_title  = gh_field( 'fcs_author_title', 'Founder, Ealing Travel Clinic' );
 $show_stars    = gh_field( 'fcs_show_stars', 1 );
 
 $cta_badge     = gh_field( 'fcs_cta_badge', 'Full Case Study' );
-$cta_text      = gh_field( 'fcs_cta_text' );
-$cta_number    = gh_field( 'fcs_cta_number' );
-$cta_label     = gh_field( 'fcs_cta_label' );
-$cta_meta      = gh_field( 'fcs_cta_meta' );
-$cta_how       = gh_field( 'fcs_cta_how' );
+$cta_text      = gh_field( 'fcs_cta_text',  'See the 6-month transformation that generated' );
+$cta_number    = gh_field( 'fcs_cta_number', '300%' );
+$cta_label     = gh_field( 'fcs_cta_label',  'more patients →' );
+$cta_meta      = gh_field( 'fcs_cta_meta',   '6-month transformation • AI Overview rankings • Real booking data' );
+$cta_how       = gh_field( 'fcs_cta_how',    'How: AI-optimised content. Zero ad spend. Six weeks to #1 in Google AI Overviews.' );
 $cta_link_label = gh_field( 'fcs_cta_link_label', 'See How We Did It' );
 
 // Resolve the CTA card link: case_study post override → URL field → null.
@@ -40,10 +40,8 @@ $allowed_quote_tags = array(
     'br'     => array(),
 );
 
-// If nothing meaningful is set, bail out so we don't render an empty section.
-if ( ! $image_id && ! $quote && ! $author_name ) {
-    return;
-}
+// Always render — the defaults above carry the section even when ACF
+// is empty (image falls through gracefully, copy holds the layout).
 ?>
 
 <section class="featured-case-study">

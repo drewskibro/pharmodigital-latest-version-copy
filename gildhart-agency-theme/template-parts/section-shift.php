@@ -11,26 +11,38 @@
  */
 
 $eyebrow      = gh_field( 'shift_eyebrow', 'The Shift' );
-$headline     = gh_field( 'shift_headline' );
-$subheadline  = gh_field( 'shift_subheadline' );
+$headline     = gh_field( 'shift_headline', 'The biggest change in patient acquisition in twenty years just happened. Quietly.' );
+$subheadline  = gh_field( 'shift_subheadline', "Patients used to scroll ten Google results. They now read three AI recommendations. Same intent, different game, completely different winners." );
 
 $old_label    = gh_field( 'shift_old_label', 'The Old Game' );
 $old_query    = gh_field( 'shift_old_query', 'Best Mounjaro provider' );
-$old_caption  = gh_field( 'shift_old_caption' );
+$old_caption  = gh_field( 'shift_old_caption', 'Ten results. Mostly ads. Patients scroll, compare, abandon. The model that built every digital marketing agency for two decades.' );
 
 $new_label        = gh_field( 'shift_new_label', 'The New Reality' );
 $new_logo_label   = gh_field( 'shift_new_logo_label', 'ChatGPT' );
 $new_query        = gh_field( 'shift_new_query', 'Best Mounjaro provider UK?' );
 $new_intro        = gh_field( 'shift_new_response_intro', 'Here are the top providers currently recommended for Mounjaro in the UK:' );
 $recommendations  = gh_field( 'shift_new_recommendations', array() );
+if ( empty( $recommendations ) ) {
+    $recommendations = array(
+        array( 'name' => 'Superior Pharmacy', 'detail' => 'Specialist weight-management clinic with same-day private prescriptions.' ),
+        array( 'name' => 'Ealing Travel Clinic', 'detail' => 'GPhC-registered with senior pharmacist consultations.' ),
+        array( 'name' => 'Puri Pharmacy',     'detail' => 'Independent pharmacy ranked #1 nationally for Mounjaro provision.' ),
+    );
+}
 $shortlist_note   = gh_field( 'shift_new_shortlist_note', "AI gives 3–5 recommendations. That's the entire market." );
-$new_caption      = gh_field( 'shift_new_caption' );
+$new_caption      = gh_field( 'shift_new_caption', 'Three results. No ads. The decision is essentially made before the patient ever clicks a website.' );
 
 $proof_cards = gh_field( 'shift_proof_cards', array() );
-
-if ( ! $headline && empty( $proof_cards ) ) {
-    return;
+if ( empty( $proof_cards ) ) {
+    $proof_cards = array(
+        array( 'value' => '300%',  'label' => 'Ealing Travel Clinic revenue growth' ),
+        array( 'value' => '50%',   'label' => 'Superior Pharmacy sales from ChatGPT' ),
+        array( 'value' => '#1 UK', 'label' => 'Puri Pharmacy for Mounjaro nationally' ),
+    );
 }
+
+// Always render — defaults carry the section without ACF data.
 
 $allowed_inline = array( 'strong' => array(), 'em' => array(), 'br' => array() );
 

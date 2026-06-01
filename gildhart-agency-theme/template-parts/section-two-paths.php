@@ -19,15 +19,68 @@
  */
 
 $eyebrow     = gh_field( 'two_paths_eyebrow', 'CHOOSE YOUR ENTRY POINT' );
-$headline    = gh_field( 'two_paths_headline' );
-$subheadline = gh_field( 'two_paths_subheadline' );
+$headline    = gh_field( 'two_paths_headline', 'Three Systems. Same AI Search Infrastructure.' );
+$subheadline = gh_field( 'two_paths_subheadline', 'Whether you run the playbook yourself, deploy it on your existing site, or commission a new build — every path delivers the same foundation.' );
 $cards       = gh_field( 'two_paths_cards', array() );
 // Trust line beneath the cards was removed — the field is still
 // registered in ACF so any saved value isn't orphaned, but nothing
 // renders here.
 
 if ( empty( $cards ) ) {
-    return;
+    $cards = array(
+        array(
+            'kicker'       => 'Self-Serve',
+            'label'        => 'THE PLAYBOOK',
+            'title'        => 'The Playbook',
+            'body'         => 'The complete AI search system, packaged for healthcare practices to deploy themselves. Built on the same framework we use for clients on track for £500k a year.',
+            'proof_number' => '£497',
+            'proof_label'  => 'One-time. Owned forever.',
+            'features'     => array(
+                array( 'text' => 'Pillar Domination Framework™ — the exact AI search method' ),
+                array( 'text' => 'Every prompt, every template — copy and paste' ),
+                array( 'text' => 'Monthly group calls with Drew' ),
+                array( 'text' => 'Lifetime updates as AI platforms evolve' ),
+            ),
+            'cta_label'    => 'Get The Playbook →',
+            'cta_url'      => home_url( '/the-playbook/' ),
+        ),
+        array(
+            'is_featured'  => 1,
+            'banner'       => 'Most Popular',
+            'kicker'       => 'Done-For-You',
+            'label'        => 'WEBPRO ELITE',
+            'title'        => 'WebPro Elite',
+            'body'         => 'A full healthcare website rebuild — architected for AI search from the first line of code. Built on Claude Code, designed to rank, cite, and convert.',
+            'proof_number' => '£500k+',
+            'proof_label'  => 'Revenue generated across our client network',
+            'features'     => array(
+                array( 'text' => 'Custom-built website on Claude Code' ),
+                array( 'text' => 'Pillar Domination Framework™ deployed across every service' ),
+                array( 'text' => 'GPhC / GMC / CQC compliant throughout' ),
+                array( 'text' => '12 months hosting + technical support' ),
+                array( 'text' => 'Scoped to your services and your market' ),
+            ),
+            'cta_label'    => 'See What We Build →',
+            'cta_url'      => home_url( '/web-pro-elite/' ),
+        ),
+        array(
+            'is_dark'      => 1,
+            'kicker'       => 'Always-On',
+            'label'        => 'THE AGENT',
+            'title'        => 'The Agent',
+            'body'         => "An AI-powered agent embedded on your site that answers patient questions, captures intent, and books appointments around the clock — even when you're not at work.",
+            'proof_number' => '24/7',
+            'proof_label'  => 'Booking after-hours, automatically',
+            'features'     => array(
+                array( 'text' => 'Embedded on your existing site in minutes' ),
+                array( 'text' => 'Trained on your services + clinical data' ),
+                array( 'text' => 'Captures patient intent on every interaction' ),
+                array( 'text' => 'Integrates with your booking system' ),
+            ),
+            'cta_label'    => 'See The Agent →',
+            'cta_url'      => home_url( '/the-agent/' ),
+        ),
+    );
 }
 ?>
 
