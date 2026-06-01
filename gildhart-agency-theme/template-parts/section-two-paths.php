@@ -22,7 +22,9 @@ $eyebrow     = gh_field( 'two_paths_eyebrow', 'CHOOSE YOUR ENTRY POINT' );
 $headline    = gh_field( 'two_paths_headline' );
 $subheadline = gh_field( 'two_paths_subheadline' );
 $cards       = gh_field( 'two_paths_cards', array() );
-$trust_line  = gh_field( 'two_paths_trust_line', "Every path is built on revenue we've already generated for real practices." );
+// Trust line beneath the cards was removed — the field is still
+// registered in ACF so any saved value isn't orphaned, but nothing
+// renders here.
 
 if ( empty( $cards ) ) {
     return;
@@ -151,10 +153,6 @@ if ( empty( $cards ) ) {
                 </div>
             <?php endforeach; ?>
         </div>
-
-        <?php if ( $trust_line ) : ?>
-            <p class="two-paths-trust-line"><?php echo esc_html( $trust_line ); ?></p>
-        <?php endif; ?>
 
     </div>
 </section>
