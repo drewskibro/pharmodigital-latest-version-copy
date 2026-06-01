@@ -228,51 +228,7 @@
 }
 
 /* ════════════════════════════════════════
- * SECTION 3 — HOW WE WORK (cream)
- * ════════════════════════════════════════ */
-.about-how {
-  background: var(--cream, #f5f3ef);
-  padding: clamp(5rem, 9vw, 7rem) var(--about-pad-x);
-}
-.about-how-inner {
-  max-width: var(--container-max);
-  margin: 0 auto;
-}
-.about-how-headline {
-  font-family: var(--font-body);
-  font-size: clamp(2rem, 4vw, 2.625rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-  color: var(--gildhart-green);
-  margin: 0 0 1.5rem;
-  max-width: 700px;
-}
-.about-how-subhead {
-  font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--gray-600);
-  margin: 0 0 2.5rem;
-  max-width: 640px;
-}
-.about-how-proof {
-  max-width: 700px;
-}
-.about-how-proof .about-body:last-child { margin-bottom: 0; }
-.about-how-closer {
-  font-family: var(--font-body);
-  font-size: clamp(1.375rem, 2.4vw, 1.5rem);
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
-  color: var(--gildhart-green);
-  margin: 2.5rem 0 0;
-  max-width: 700px;
-}
-
-/* ════════════════════════════════════════
- * SECTION 4 — WHO WE WORK WITH (forest green)
+ * SECTION 3 — WHO WE WORK WITH (forest green)
  * ════════════════════════════════════════ */
 .about-who {
   background: var(--gildhart-green);
@@ -370,7 +326,7 @@
 }
 
 /* ════════════════════════════════════════
- * SECTION 5 — CLOSING CTA (forest green)
+ * SECTION 4 — CLOSING CTA (forest green)
  * ════════════════════════════════════════ */
 .about-cta {
   background: var(--gildhart-green);
