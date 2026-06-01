@@ -27,13 +27,20 @@ $close_headline   = gh_field( 'revenue_close_headline' );
 $close_stat_num   = gh_field( 'revenue_close_stat_num' );
 $close_stat_strong = gh_field( 'revenue_close_stat_strong' );
 $close_stat_label = gh_field( 'revenue_close_stat_label' );
+$close_intro      = gh_field( 'revenue_close_intro', "These aren't projections. This is last month." );
 $close_body       = gh_field( 'revenue_close_body', array() );
-$close_final      = gh_field( 'revenue_close_final' );
+if ( empty( $close_body ) ) {
+    $close_body = array(
+        array( 'text' => 'Practices on AI search convert at 4.4 times the rate of standard organic. Not because they spent more. Because they got there first. That gap widens every single week.' ),
+        array( 'text' => 'The practices moving now will be impossible to displace in twelve months. The ones waiting will find the shortlist already full.' ),
+    );
+}
+$close_final      = gh_field( 'revenue_close_final', 'The window is open. The practices moving today will own the market. The ones waiting will find it already closed.' );
 
 $cta1_label       = gh_field( 'revenue_close_cta_primary_label', "See If You're On The AI Shortlist →" );
-$cta1_url         = gh_field( 'revenue_close_cta_primary_url', '#contact' );
+$cta1_url         = gh_field( 'revenue_close_cta_primary_url', home_url( '/the-playbook/' ) );
 $cta2_label       = gh_field( 'revenue_close_cta_secondary_label', 'See What We Build →' );
-$cta2_url         = gh_field( 'revenue_close_cta_secondary_url', '/services' );
+$cta2_url         = gh_field( 'revenue_close_cta_secondary_url', home_url( '/web-pro-elite/' ) );
 
 if ( ! $headline && empty( $cards ) && ! $close_headline ) {
     return;
@@ -127,6 +134,10 @@ $logo_url       = $divider_logo_id
                             <?php endif; ?>
                         </div>
                     </div>
+                <?php endif; ?>
+
+                <?php if ( $close_intro ) : ?>
+                    <p class="revenue-close-intro"><?php echo esc_html( $close_intro ); ?></p>
                 <?php endif; ?>
 
                 <?php if ( ! empty( $close_body ) ) : ?>
