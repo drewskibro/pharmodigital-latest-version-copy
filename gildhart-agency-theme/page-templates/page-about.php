@@ -178,7 +178,6 @@ function gildhart_about_crest( $crest_id, $crest_fallback ) {
     <?php /* ───────────── SECTION 3 — CLOSING CTA ───────────── */ ?>
     <section class="about-cta">
         <div class="about-cta-inner">
-            <?php gildhart_about_crest( $crest_id, $crest_fallback ); ?>
             <?php if ( $cta_headline ) : ?>
                 <h2 class="about-cta-headline"><?php echo esc_html( $cta_headline ); ?></h2>
             <?php endif; ?>
