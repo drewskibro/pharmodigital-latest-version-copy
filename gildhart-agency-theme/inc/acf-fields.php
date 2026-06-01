@@ -3032,15 +3032,7 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_about_founder_linkedin_url',  'label' => 'Founder — LinkedIn URL',  'name' => 'about_founder_linkedin_url',  'type' => 'url', 'instructions' => 'Falls back to the global social LinkedIn option.' ),
         array( 'key' => 'field_gh_about_founder_linkedin_text', 'label' => 'Founder — LinkedIn Text', 'name' => 'about_founder_linkedin_text', 'type' => 'text' ),
 
-        /* Section 3 — How We Work */
-        array( 'key' => 'field_gh_about_how_label',    'label' => 'How We Work — Label',    'name' => 'about_how_label',    'type' => 'text' ),
-        array( 'key' => 'field_gh_about_how_headline', 'label' => 'How We Work — Headline', 'name' => 'about_how_headline', 'type' => 'textarea', 'rows' => 2 ),
-        array( 'key' => 'field_gh_about_how_subhead',  'label' => 'How We Work — Subhead',  'name' => 'about_how_subhead',  'type' => 'textarea', 'rows' => 3 ),
-        array( 'key' => 'field_gh_about_how_proof_1',  'label' => 'How We Work — Proof 1',  'name' => 'about_how_proof_1',  'type' => 'textarea', 'rows' => 3 ),
-        array( 'key' => 'field_gh_about_how_proof_2',  'label' => 'How We Work — Proof 2',  'name' => 'about_how_proof_2',  'type' => 'textarea', 'rows' => 3 ),
-        array( 'key' => 'field_gh_about_how_closer',   'label' => 'How We Work — Closer',   'name' => 'about_how_closer',   'type' => 'textarea', 'rows' => 2 ),
-
-        /* Section 4 — Who We Work With */
+        /* Section 3 — Who We Work With */
         array( 'key' => 'field_gh_about_who_label',    'label' => 'Who We Work With — Label',    'name' => 'about_who_label',    'type' => 'text' ),
         array( 'key' => 'field_gh_about_who_headline', 'label' => 'Who We Work With — Headline', 'name' => 'about_who_headline', 'type' => 'textarea', 'rows' => 2 ),
         array( 'key' => 'field_gh_about_who_subhead',  'label' => 'Who We Work With — Subhead',  'name' => 'about_who_subhead',  'type' => 'textarea', 'rows' => 4 ),
@@ -3070,7 +3062,7 @@ acf_add_local_field_group( array(
             ),
         ),
 
-        /* Section 5 — Closing CTA */
+        /* Section 4 — Closing CTA */
         array( 'key' => 'field_gh_about_cta_headline',   'label' => 'CTA — Headline',        'name' => 'about_cta_headline',   'type' => 'textarea', 'rows' => 2 ),
         array( 'key' => 'field_gh_about_cta_subhead',    'label' => 'CTA — Subhead',         'name' => 'about_cta_subhead',    'type' => 'textarea', 'rows' => 3 ),
         array( 'key' => 'field_gh_about_cta_btn1_label', 'label' => 'CTA — Button 1 Label',  'name' => 'about_cta_btn1_label', 'type' => 'text' ),

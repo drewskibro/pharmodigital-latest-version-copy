@@ -2,10 +2,11 @@
 /**
  * Template Name: About Gildhart
  *
- * The About page — five full-bleed sections built on the Gildhart
+ * The About page — four full-bleed sections built on the Gildhart
  * design system (forest green / gold / cream / navy, Outfit + Inter,
- * shared tokens). Alternating green ↔ cream backgrounds carry the eye
- * down the page; the founder block is the editorial centrepiece.
+ * shared tokens). Hero (green) → Founder (cream) → Who We Work With
+ * (green) → Closing CTA (green); the founder block is the editorial
+ * centrepiece.
  *
  * All copy renders from PHP defaults via gh_field(), so the page is
  * complete the moment the template is assigned to a Page — the ACF
@@ -63,15 +64,7 @@ if ( empty( $f_results ) ) {
     );
 }
 
-/* ── Section 3 — How We Work ── */
-$hw_label    = gh_field( 'about_how_label',    'How We Work' );
-$hw_headline = gh_field( 'about_how_headline', "We Don't Consult. We Deploy. Then We Compound." );
-$hw_subhead  = gh_field( 'about_how_subhead',  'Gildhart deploys infrastructure. Not strategy documents. Not recommendations. Systems that run, generate revenue, and get stronger every single month.' );
-$hw_proof_1  = gh_field( 'about_how_proof_1',  "Superior Pharmacy didn't get a strategy. They got a system that now drives 50% of their revenue from AI search." );
-$hw_proof_2  = gh_field( 'about_how_proof_2',  "Southdowns didn't get recommendations. They got 250 patient enquiries a month across 13 services they'd never actively marketed." );
-$hw_closer   = gh_field( 'about_how_closer',   "That's what deploying looks like. That's what compounding looks like." );
-
-/* ── Section 4 — Who We Work With ── */
+/* ── Section 3 — Who We Work With ── */
 $ww_label    = gh_field( 'about_who_label',    'Who We Work With' );
 $ww_headline = gh_field( 'about_who_headline', 'Built For The Practices Ready To Own Their Market.' );
 $ww_subhead  = gh_field( 'about_who_subhead',  'We work with pharmacy groups, private clinic operators, and healthcare businesses that have made a decision. Not a consideration. They already understand that AI search is the most significant shift in patient acquisition in twenty years.' );
@@ -214,35 +207,7 @@ function gildhart_about_crest( $crest_id, $crest_fallback ) {
         </div>
     </section>
 
-    <?php /* ───────────── SECTION 3 — HOW WE WORK ───────────── */ ?>
-    <section class="about-how">
-        <div class="about-how-inner">
-            <?php if ( $hw_label ) : ?>
-                <p class="about-eyebrow"><?php echo esc_html( $hw_label ); ?></p>
-            <?php endif; ?>
-            <?php if ( $hw_headline ) : ?>
-                <h2 class="about-how-headline"><?php echo esc_html( $hw_headline ); ?></h2>
-            <?php endif; ?>
-            <?php if ( $hw_subhead ) : ?>
-                <p class="about-how-subhead"><?php echo esc_html( $hw_subhead ); ?></p>
-            <?php endif; ?>
-
-            <div class="about-how-proof">
-                <?php if ( $hw_proof_1 ) : ?>
-                    <p class="about-body"><?php echo esc_html( $hw_proof_1 ); ?></p>
-                <?php endif; ?>
-                <?php if ( $hw_proof_2 ) : ?>
-                    <p class="about-body"><?php echo esc_html( $hw_proof_2 ); ?></p>
-                <?php endif; ?>
-            </div>
-
-            <?php if ( $hw_closer ) : ?>
-                <p class="about-how-closer"><?php echo esc_html( $hw_closer ); ?></p>
-            <?php endif; ?>
-        </div>
-    </section>
-
-    <?php /* ───────────── SECTION 4 — WHO WE WORK WITH ───────────── */ ?>
+    <?php /* ───────────── SECTION 3 — WHO WE WORK WITH ───────────── */ ?>
     <section class="about-who">
         <div class="about-who-inner">
             <div class="about-who-header">
@@ -284,7 +249,7 @@ function gildhart_about_crest( $crest_id, $crest_fallback ) {
         </div>
     </section>
 
-    <?php /* ───────────── SECTION 5 — CLOSING CTA ───────────── */ ?>
+    <?php /* ───────────── SECTION 4 — CLOSING CTA ───────────── */ ?>
     <section class="about-cta">
         <div class="about-cta-inner">
             <?php gildhart_about_crest( $crest_id, $crest_fallback ); ?>
