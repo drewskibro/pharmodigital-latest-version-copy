@@ -145,6 +145,16 @@ function gildhart_scripts() {
         );
     }
 
+    // Privacy Policy page — long-form legal content with scoped styles.
+    if ( is_page_template( 'page-templates/page-privacy.php' ) ) {
+        wp_enqueue_style(
+            'gildhart-privacy',
+            GILDHART_URI . '/assets/css/privacy.css',
+            array( 'gildhart-globals' ),
+            gh_asset_ver( 'assets/css/privacy.css' )
+        );
+    }
+
     // Homepage
     if ( is_page_template( 'page-templates/page-home.php' ) ) {
         wp_enqueue_style(
@@ -467,6 +477,97 @@ function gh_waitlist_url() {
         return get_permalink( $page );
     }
     return home_url( '/waitlist/' );
+}
+
+/**
+ * Helper: default Privacy Policy body HTML.
+ *
+ * Returned as the fallback for the privacy_content WYSIWYG field so
+ * the page renders complete the moment its template is assigned —
+ * the admin can then edit any section in the rich-text editor and
+ * the saved value will replace this default. Markup uses h2 for the
+ * major sections, h3 for sub-headers, p for body, and ul/li for
+ * bullets; privacy.css styles each natively.
+ */
+function gildhart_privacy_default_content() {
+    return <<<HTML
+<h2>Who We Are</h2>
+<p>Gildhart is a trading name of PharmoDigital Ltd, registered in England and Wales.</p>
+<p>Company Registration Number: 15341513<br>
+VAT Number: 456877926<br>
+Registered Office: 1 Richmond Road, Lytham St. Annes on Sea, Lancashire, FY8 1PE<br>
+Data Controller: Drew Clayton, Founder<br>
+Contact: <a href="mailto:bookings@gildhart.com">bookings@gildhart.com</a></p>
+
+<h2>Your Privacy. Our Responsibility.</h2>
+<p>Gildhart is an AI infrastructure company. We build systems for healthcare practices across the UK and beyond. We take data seriously — not because we have to, but because the practices we work with hold their patients to the same standard. This policy explains exactly what we collect, why we collect it, and what we do with it.</p>
+<p>This policy applies to gildhart.com and all associated pages, forms, and communications.</p>
+
+<h2>What We Collect And Why</h2>
+<h3>When you join the waitlist or purchase a product</h3>
+<p>Name, email address, practice name, website URL, and practice type. We use this to process your enquiry or purchase, deliver your product or service, and communicate with you about your engagement with Gildhart. Lawful basis: contract and legitimate interests.</p>
+<h3>When you visit our website</h3>
+<p>We use cookies and analytics tools including Google Analytics to understand how visitors interact with our site. This may include your IP address, browser type, pages visited, and time on site. Lawful basis: consent, collected via our cookie banner.</p>
+<h3>When you sign up to our email list</h3>
+<p>Name and email address. We use this to send you information about AI search strategy for healthcare practices. You can unsubscribe at any time using the link in every email. Lawful basis: consent.</p>
+<h3>When you contact us directly</h3>
+<p>Any information you choose to share by email or contact form. We use this solely to respond to your enquiry. Lawful basis: legitimate interests.</p>
+
+<h2>Who We Share Your Data With</h2>
+<p>We do not sell your data. We do not share it with third parties for their own marketing purposes. We use the following third-party processors to operate our business:</p>
+<ul>
+    <li>Kartra — email marketing and sequence delivery</li>
+    <li>Google Analytics — website analytics</li>
+    <li>Stripe — payment processing</li>
+    <li>Skool — community platform</li>
+    <li>Cloudflare — website security and performance</li>
+</ul>
+<p>Each processor operates under their own privacy policy and data processing terms. We have reviewed each to ensure they meet UK GDPR standards.</p>
+
+<h2>Advertising Platforms</h2>
+<p>We run advertising campaigns on LinkedIn and Meta (Facebook and Instagram). These platforms may use cookies or pixels on our website to measure ad performance. We do not pass sensitive health data to these platforms. Our advertising is directed at healthcare business owners and practitioners — not patients. If you have visited our site via an ad, the relevant platform's privacy policy also applies.</p>
+
+<h2>How Long We Keep Your Data</h2>
+<ul>
+    <li>Waitlist and enquiry data — 24 months from last contact unless an engagement begins</li>
+    <li>Customer data — 7 years from the end of the engagement in line with UK financial record-keeping requirements</li>
+    <li>Email list — until you unsubscribe or request deletion</li>
+    <li>Analytics data — as per Google Analytics default retention settings (26 months)</li>
+</ul>
+
+<h2>Your Rights Under UK GDPR</h2>
+<p>You have the right to:</p>
+<ul>
+    <li>Access the personal data we hold about you</li>
+    <li>Request correction of inaccurate data</li>
+    <li>Request deletion of your data</li>
+    <li>Object to processing based on legitimate interests</li>
+    <li>Withdraw consent at any time where consent is the lawful basis</li>
+    <li>Request restriction of processing</li>
+    <li>Data portability where technically feasible</li>
+</ul>
+<p>To exercise any of these rights contact <a href="mailto:bookings@gildhart.com">bookings@gildhart.com</a>. We will respond within 30 days.</p>
+<p>If you are not satisfied with our response you have the right to lodge a complaint with the Information Commissioner's Office at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p>
+
+<h2>Cookies</h2>
+<p>We use the following categories of cookies:</p>
+<ul>
+    <li>Strictly necessary — required for the site to function. No consent required.</li>
+    <li>Analytics — help us understand how visitors use the site. Consent required.</li>
+    <li>Marketing — used by advertising platforms to measure campaign performance. Consent required.</li>
+</ul>
+<p>You can manage your cookie preferences at any time via the cookie banner on our site.</p>
+
+<h2>Data Security</h2>
+<p>We use industry-standard security measures to protect your data including SSL encryption, secure hosting via Cloudflare, and restricted internal access. In the event of a data breach we will notify the ICO within 72 hours and affected individuals without undue delay where required.</p>
+
+<h2>Medical Disclaimer</h2>
+<p>PharmoDigital Ltd does not provide medical advice of any nature. Nothing on this website constitutes medical, clinical, or regulatory advice. All content produced by Gildhart is for marketing and informational purposes only. PharmoDigital Ltd is not associated with any medical boards or regulatory bodies.</p>
+
+<h2>Changes To This Policy</h2>
+<p>We review this policy regularly. The current version is always published at gildhart.com/privacy. Material changes will be communicated to active customers by email.</p>
+<p>Last updated: May 2026</p>
+HTML;
 }
 
 /**

@@ -90,6 +90,7 @@ $linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/
                     <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a>
                     <a href="<?php echo esc_url( home_url( '/#revenue-results' ) ); ?>">The Proof</a>
                     <a href="<?php echo esc_url( $linkedin_company ); ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>">Privacy Policy</a>
                 <?php endif; ?>
             </div>
 
