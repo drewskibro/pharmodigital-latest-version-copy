@@ -12,11 +12,11 @@
 $eyebrow         = gh_field( 'hero_eyebrow', 'AI Search for Healthcare' );
 $headline_d      = gh_field( 'hero_headline_desktop', "National Chains Spend Millions.\nStill Lose to Our\nClients." );
 $headline_m      = gh_field( 'hero_headline_mobile' ); // optional override
-$subtitle        = gh_field( 'hero_subtitle' );
+$subtitle        = gh_field( 'hero_subtitle', "Superior Pharmacy is on track for £500k this year. Built on Claude Code, architected for AI search from day one. Zero ad spend." );
 $primary_label   = gh_field( 'hero_primary_cta_label', 'Get The System' );
-$primary_url     = gh_field( 'hero_primary_cta_url', '#contact' );
+$primary_url     = gh_field( 'hero_primary_cta_url', '#get-started' );
 $secondary_label = gh_field( 'hero_secondary_cta_label', 'See The Proof' );
-$secondary_url   = gh_field( 'hero_secondary_cta_url', '#case-studies' );
+$secondary_url   = gh_field( 'hero_secondary_cta_url', '#revenue-results' );
 $trust_stats     = gh_field( 'hero_trust_stats', '£50M+ Revenue | 1000+ AI Rankings | 50+ Healthcare Clients' );
 $image_id        = gh_field( 'hero_image' );
 

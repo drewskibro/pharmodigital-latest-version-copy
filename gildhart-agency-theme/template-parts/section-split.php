@@ -11,19 +11,32 @@
  */
 
 $problem_eyebrow  = gh_field( 'split_problem_eyebrow', 'THE PROBLEM' );
-$problem_title    = gh_field( 'split_problem_title' );
+$problem_title    = gh_field( 'split_problem_title', 'Patients aren\'t searching Google the way they used to.' );
 $problem_lines    = gh_field( 'split_problem_lines', array() );
+if ( empty( $problem_lines ) ) {
+    $problem_lines = array(
+        array( 'text' => "They're asking ChatGPT. They're asking Claude. They're reading Google's AI Overview before they ever click a website." ),
+        array( 'text' => "And AI doesn't return ten blue links. It returns <strong>three recommendations</strong>. That's the whole market." ),
+        array( 'text' => "If your practice isn't one of the three, it doesn't matter how good your website looks. You're invisible." ),
+    );
+}
 
 $solution_eyebrow = gh_field( 'split_solution_eyebrow', 'THE SOLUTION' );
 $cards            = gh_field( 'split_cards', array() );
-
-$cta_text  = gh_field( 'split_cta_text' );
-$cta_label = gh_field( 'split_cta_label', 'Get The System →' );
-$cta_url   = gh_field( 'split_cta_url', '#contact' );
-
-if ( ! $problem_title && empty( $problem_lines ) && empty( $cards ) ) {
-    return;
+if ( empty( $cards ) ) {
+    $cards = array(
+        array( 'title' => 'Built On Claude Code',  'body' => 'Every site we build is architected on the same AI infrastructure that powers the most advanced content systems in the world.' ),
+        array( 'title' => 'Pillar Domination',     'body' => 'Each high-revenue service gets a content pillar mapped to the exact questions patients are asking AI right now.' ),
+        array( 'title' => 'Indexed Everywhere',    'body' => 'Google, Bing, ChatGPT, Claude, Perplexity. We get you found in every AI platform patients use to choose their providers.' ),
+        array( 'title' => 'Compounding Authority', 'body' => 'Every piece of content reinforces every other. Rankings climb. Citations follow. The system gets stronger every month.' ),
+    );
 }
+
+$cta_text  = gh_field( 'split_cta_text',  'Run the playbook yourself, or let us deploy it for you.' );
+$cta_label = gh_field( 'split_cta_label', 'See How It Works →' );
+$cta_url   = gh_field( 'split_cta_url',   '#get-started' );
+
+// Always render — defaults carry the section without ACF data.
 
 $allowed_inline = array( 'strong' => array(), 'em' => array(), 'br' => array() );
 ?>

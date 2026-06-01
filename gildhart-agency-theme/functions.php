@@ -438,7 +438,11 @@ function gh_logo_url() {
     if ( $custom_logo_id ) {
         return wp_get_attachment_image_url( $custom_logo_id, 'full' );
     }
-    return GILDHART_URI . '/assets/images/logo.svg';
+    // Hard fallback to the gold-crest media asset so the nav logo
+    // always renders, even on a fresh deploy with no Theme Settings
+    // populated. The local SVG used to serve this role but failed
+    // silently on some deploys.
+    return 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png';
 }
 
 /**
@@ -447,7 +451,10 @@ function gh_logo_url() {
  * fallback SVG (which includes the word "Gildhart") is in use.
  */
 function gh_has_uploaded_logo() {
-    return (bool) ( gh_option( 'agency_logo' ) || get_theme_mod( 'custom_logo' ) );
+    // True even when no logo is configured — gh_logo_url() now always
+    // returns a valid URL (hard fallback to the gold-crest media
+    // asset), so the header always has a real image to render.
+    return true;
 }
 
 /**

@@ -175,12 +175,12 @@
 .hero-image-stack {
   position: relative;
   width: 100%;
-  max-width: 720px;
+  max-width: 580px;
   overflow: visible;
 }
 .hero-image-stack img {
   width: 100%;
-  max-width: 720px;
+  max-width: 580px;
   height: auto;
   border-radius: 20px;
   position: relative;
