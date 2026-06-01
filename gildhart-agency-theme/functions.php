@@ -353,6 +353,16 @@ if ( file_exists( GILDHART_DIR . '/inc/wpe-waitlist.php' ) ) {
 }
 
 /**
+ * Admin Reset Content tool — emergency-recovery admin page under
+ * Gildhart Settings that wipes stale ACF saved values so PHP defaults
+ * can render. To remove the tool entirely, delete this require and
+ * the inc/admin-reset.php file.
+ */
+if ( is_admin() && file_exists( GILDHART_DIR . '/inc/admin-reset.php' ) ) {
+    require_once GILDHART_DIR . '/inc/admin-reset.php';
+}
+
+/**
  * Helper: Get ACF option field with fallback.
  *
  * Strict null/empty-string check so true_false fields (which return 0 for "No")
