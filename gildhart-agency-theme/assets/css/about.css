@@ -240,7 +240,6 @@
   margin: 0 auto;
   text-align: center;
 }
-.about-cta .about-crest { margin-bottom: 2.5rem; }
 .about-cta-headline {
   font-family: var(--font-body);
   font-size: clamp(1.875rem, 3.6vw, 2.375rem);
