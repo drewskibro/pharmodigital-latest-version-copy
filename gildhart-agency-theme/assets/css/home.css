@@ -1994,7 +1994,7 @@ a.featured-cta-card:hover .featured-cta-link {
 
 .revenue-section {
   background: linear-gradient(180deg, #0a0f1c 0%, #0f172a 40%, #111d35 100%);
-  padding: 8rem 2rem 7rem;
+  padding: 7.5rem 2rem;
   overflow: hidden;
   overflow-x: clip;
   position: relative;
@@ -2218,13 +2218,12 @@ a.featured-cta-card:hover .featured-cta-link {
 }
 .revenue-close-headline {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 600;
-  font-style: italic;
+  font-size: clamp(1.625rem, 2.8vw, 2.25rem);
+  font-weight: 800;
   color: white;
   margin-bottom: 3.5rem;
-  letter-spacing: -0.02em;
-  line-height: 1.35;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
@@ -2266,33 +2265,54 @@ a.featured-cta-card:hover .featured-cta-link {
   margin-bottom: 0.25rem;
 }
 
+/* Intro hammer — standalone white statement sitting between the stat
+ * block and the body paragraphs. Centred, bolder, slightly larger than
+ * body so it lands as the opening beat of the closing sequence. */
+.revenue-close-intro {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  max-width: 680px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
 .revenue-close-body {
-  margin-bottom: 3.5rem;
+  margin: 0 auto 3rem;
+  max-width: 680px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .revenue-close-body p {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.78);
-  line-height: 1.85;
+  line-height: 1.8;
   margin-bottom: 1.75rem;
-  text-align: left;
+  text-align: center;
 }
 .revenue-close-body p:last-child { margin-bottom: 0; }
 
+/* Closing peak — last beat before the CTAs. Bold without italic for
+ * authority at large display sizes; no border sandwich (the previous
+ * white-at-0.08 top/bottom rules read as a literal box around the
+ * moment that should feel open). 3rem margin-top lets the line land
+ * cleanly after Block 3. */
 .revenue-close-final {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1.25rem, 2.2vw, 1.625rem);
-  font-weight: 700;
-  font-style: italic;
+  font-size: clamp(1.375rem, 2.6vw, 1.625rem);
+  font-weight: 800;
   color: white;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.4;
-  padding: 2.5rem 0;
-  margin-bottom: 3.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 3rem auto 0;
+  max-width: 680px;
   text-align: center;
   opacity: 0;
   transform: translateY(16px);
@@ -2304,6 +2324,7 @@ a.featured-cta-card:hover .featured-cta-link {
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 3rem;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -2350,7 +2371,8 @@ a.featured-cta-card:hover .featured-cta-link {
 .revenue-section.rev-visible .revenue-card:nth-child(4) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 1.05s; }
 .revenue-section.rev-visible .revenue-close-headline   { opacity: 1; transform: translateY(0); transition-delay: 1.6s; }
 .revenue-section.rev-visible .revenue-close-stat       { opacity: 1; transform: translateY(0); transition-delay: 1.85s; }
-.revenue-section.rev-visible .revenue-close-body       { opacity: 1; transform: translateY(0); transition-delay: 2.1s; }
+.revenue-section.rev-visible .revenue-close-intro      { opacity: 1; transform: translateY(0); transition-delay: 2.0s; }
+.revenue-section.rev-visible .revenue-close-body       { opacity: 1; transform: translateY(0); transition-delay: 2.2s; }
 .revenue-section.rev-visible .revenue-close-final      { opacity: 1; transform: translateY(0); transition-delay: 2.4s; }
 .revenue-section.rev-visible .revenue-close-cta-buttons { opacity: 1; transform: translateY(0); transition-delay: 2.7s; }
 
