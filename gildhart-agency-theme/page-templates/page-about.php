@@ -2,11 +2,11 @@
 /**
  * Template Name: About Gildhart
  *
- * The About page — four full-bleed sections built on the Gildhart
+ * The About page — three full-bleed sections built on the Gildhart
  * design system (forest green / gold / cream / navy, Outfit + Inter,
- * shared tokens). Hero (green) → Founder (cream) → Who We Work With
- * (green) → Closing CTA (green); the founder block is the editorial
- * centrepiece.
+ * shared tokens). Hero (green) → Founder (cream) → Closing CTA
+ * (green); the founder block is the editorial centrepiece and
+ * carries the page on its own.
  *
  * All copy renders from PHP defaults via gh_field(), so the page is
  * complete the moment the template is assigned to a Page — the ACF
@@ -64,39 +64,7 @@ if ( empty( $f_results ) ) {
     );
 }
 
-/* ── Section 3 — Who We Work With ── */
-$ww_label    = gh_field( 'about_who_label',    'Who We Work With' );
-$ww_headline = gh_field( 'about_who_headline', 'Built For The Practices Ready To Own Their Market.' );
-$ww_subhead  = gh_field( 'about_who_subhead',  'We work with pharmacy groups, private clinic operators, and healthcare businesses that have made a decision. Not a consideration. They already understand that AI search is the most significant shift in patient acquisition in twenty years.' );
-
-$ww_cards = get_field( 'about_who_cards' );
-if ( empty( $ww_cards ) ) {
-    $ww_cards = array(
-        array(
-            'stat'     => '£500k+',
-            'label'    => 'Pharmacy Groups',
-            'headline' => 'Independent pharmacy groups and multi-site operators ready to become the dominant practice in their market.',
-            'body'     => 'Superior Pharmacy went from invisible to £500k annual revenue on AI search alone.',
-            'featured' => 0,
-        ),
-        array(
-            'stat'     => '300%',
-            'label'    => 'Private Clinic Operators',
-            'headline' => 'Private clinics with high-value services and the ambition to make AI search their primary patient acquisition channel.',
-            'body'     => 'Ealing Travel Clinic generates £100k from a single service we built infrastructure around.',
-            'featured' => 1,
-        ),
-        array(
-            'stat'     => '250+',
-            'label'    => 'Enterprise Healthcare',
-            'headline' => 'Healthcare businesses operating at scale who understand that the window to build AI search dominance is open now.',
-            'body'     => 'Southdowns went from zero digital presence to 250+ private patient enquiries a month across 13 services.',
-            'featured' => 0,
-        ),
-    );
-}
-
-/* ── Section 5 — Closing CTA ── */
+/* ── Section 3 — Closing CTA ── */
 $cta_headline = gh_field( 'about_cta_headline', 'The system is already working. For practices exactly like yours.' );
 $cta_subhead  = gh_field( 'about_cta_subhead',  'Start with the Playbook and run the system yourself. Or let us deploy it for you with The Agent. Both are working right now.' );
 $cta_btn1_label = gh_field( 'about_cta_btn1_label', 'Get The Playbook' );
@@ -207,49 +175,7 @@ function gildhart_about_crest( $crest_id, $crest_fallback ) {
         </div>
     </section>
 
-    <?php /* ───────────── SECTION 3 — WHO WE WORK WITH ───────────── */ ?>
-    <section class="about-who">
-        <div class="about-who-inner">
-            <div class="about-who-header">
-                <?php if ( $ww_label ) : ?>
-                    <p class="about-eyebrow about-eyebrow--centered about-eyebrow--on-green"><?php echo esc_html( $ww_label ); ?></p>
-                <?php endif; ?>
-                <?php if ( $ww_headline ) : ?>
-                    <h2 class="about-who-headline"><?php echo esc_html( $ww_headline ); ?></h2>
-                <?php endif; ?>
-                <?php if ( $ww_subhead ) : ?>
-                    <p class="about-who-subhead"><?php echo esc_html( $ww_subhead ); ?></p>
-                <?php endif; ?>
-            </div>
-
-            <div class="about-who-cards">
-                <?php foreach ( $ww_cards as $card ) :
-                    $stat     = $card['stat']     ?? '';
-                    $label    = $card['label']    ?? '';
-                    $headline = $card['headline'] ?? '';
-                    $body     = $card['body']     ?? '';
-                    $featured = ! empty( $card['featured'] );
-                    if ( ! $stat && ! $headline ) continue; ?>
-                    <article class="about-who-card<?php echo $featured ? ' about-who-card--featured' : ''; ?>">
-                        <?php if ( $stat ) : ?>
-                            <p class="about-who-card-stat"><?php echo esc_html( $stat ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $label ) : ?>
-                            <p class="about-who-card-label"><?php echo esc_html( $label ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $headline ) : ?>
-                            <h3 class="about-who-card-headline"><?php echo esc_html( $headline ); ?></h3>
-                        <?php endif; ?>
-                        <?php if ( $body ) : ?>
-                            <p class="about-who-card-body"><?php echo esc_html( $body ); ?></p>
-                        <?php endif; ?>
-                    </article>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <?php /* ───────────── SECTION 4 — CLOSING CTA ───────────── */ ?>
+    <?php /* ───────────── SECTION 3 — CLOSING CTA ───────────── */ ?>
     <section class="about-cta">
         <div class="about-cta-inner">
             <?php gildhart_about_crest( $crest_id, $crest_fallback ); ?>

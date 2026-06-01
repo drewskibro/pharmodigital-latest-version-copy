@@ -228,105 +228,7 @@
 }
 
 /* ════════════════════════════════════════
- * SECTION 3 — WHO WE WORK WITH (forest green)
- * ════════════════════════════════════════ */
-.about-who {
-  background: var(--gildhart-green);
-  padding: clamp(5rem, 9vw, 7rem) var(--about-pad-x);
-}
-.about-who-inner {
-  max-width: var(--container-max);
-  margin: 0 auto;
-}
-.about-who-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 3.5rem;
-}
-.about-eyebrow--on-green { color: var(--gildhart-gold); }
-.about-who-headline {
-  font-family: var(--font-body);
-  font-size: clamp(2rem, 4vw, 2.625rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-  color: var(--white);
-  margin: 0 auto 1.5rem;
-  max-width: 700px;
-}
-.about-who-subhead {
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  color: rgba(240, 230, 200, 0.78);
-  margin: 0 auto;
-  max-width: 600px;
-}
-.about-who-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-  align-items: stretch;
-}
-.about-who-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(201, 164, 74, 0.25);
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
-}
-.about-who-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-}
-/* Featured card — gold border, gold wash, more padding. */
-.about-who-card--featured {
-  background: rgba(201, 164, 74, 0.07);
-  border: 2px solid var(--gildhart-gold);
-  padding: 3rem 2.25rem;
-  box-shadow: 0 12px 40px rgba(201, 164, 74, 0.18);
-}
-.about-who-card-stat {
-  font-family: var(--font-primary);
-  font-size: clamp(2.5rem, 4.5vw, 3rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--gildhart-gold);
-  margin: 0 0 0.75rem;
-}
-.about-who-card-label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin: 0 0 1.25rem;
-}
-.about-who-card-headline {
-  font-family: var(--font-body);
-  font-size: 1.125rem;
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  margin: 0 0 1rem;
-}
-.about-who-card-body {
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--gildhart-cream);
-  margin: 0;
-  margin-top: auto;
-  padding-top: 1rem;
-}
-
-/* ════════════════════════════════════════
- * SECTION 4 — CLOSING CTA (forest green)
+ * SECTION 3 — CLOSING CTA (forest green)
  * ════════════════════════════════════════ */
 .about-cta {
   background: var(--gildhart-green);
@@ -394,5 +296,4 @@
   }
   /* Image stacks above the copy on mobile. */
   .about-founder-media { order: -1; }
-  .about-who-cards { grid-template-columns: 1fr; }
 }
