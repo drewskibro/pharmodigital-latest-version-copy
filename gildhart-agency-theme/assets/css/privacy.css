@@ -1,0 +1,196 @@
+/* ════════════════════════════════════════════════════════════════
+ * Privacy Policy — page styles
+ *
+ * Four-section layout (green hero → cream policy → cream reCAPTCHA
+ * strap → green closing) on the Gildhart design system. All colours,
+ * fonts, and shadows reference globals.css tokens. The policy body
+ * is rendered from a WYSIWYG ACF field, so styles target native
+ * elements (h2, h3, p, ul li, a) under .privacy-content rather than
+ * bespoke classes.
+ *
+ * Loaded only on the Privacy template (functions.php).
+ * ════════════════════════════════════════════════════════════════ */
+
+.privacy-page {
+  --privacy-pad-x: clamp(1.25rem, 4vw, 2rem);
+}
+
+/* Hide the nav-spacer so the green hero meets the fixed nav cleanly;
+ * the hero's top padding folds in var(--nav-h) (set by nav.js). */
+.page-template-page-privacy .nav-spacer { display: none; }
+
+/* ── Shared eyebrow (mirrors About) ── */
+.privacy-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  text-align: center;
+  margin: 0 0 1.25rem;
+}
+
+/* ════════════════════════════════════════
+ * HERO (forest green)
+ * ════════════════════════════════════════ */
+.privacy-hero {
+  background: var(--gildhart-green);
+  padding: calc(clamp(4rem, 8vw, 6rem) + var(--nav-h, 130px)) var(--privacy-pad-x) clamp(4rem, 8vw, 6rem);
+}
+.privacy-hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+.privacy-hero-headline {
+  font-family: var(--font-body);
+  font-size: clamp(1.875rem, 4vw, 2.625rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: var(--gildhart-cream);
+  margin: 0 auto 1.5rem;
+  max-width: 750px;
+}
+.privacy-hero-updated {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: rgba(240, 230, 200, 0.65);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* ════════════════════════════════════════
+ * POLICY CONTENT (cream)
+ * ════════════════════════════════════════ */
+.privacy-content-section {
+  background: var(--cream-warm);
+  padding: clamp(4rem, 8vw, 6rem) var(--privacy-pad-x);
+}
+.privacy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--font-body);
+}
+
+/* Major section headers — uppercase, dark navy, 800.
+ * Each h2 (except the first) carries a thin gold rule above it,
+ * which is how we get the "divider between major sections" without
+ * any extra markup. First h2 sits flush at the top of the policy. */
+.privacy-content h2 {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gildhart-green);
+  margin: 3rem 0 1rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.35);
+  line-height: 1.3;
+}
+.privacy-content h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Sub-headers — dark navy, 700, sentence-case. */
+.privacy-content h3 {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--gildhart-green);
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.4;
+}
+
+/* Body — dark grey, generous line-height for long-form readability. */
+.privacy-content p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--gray-700);
+  margin: 0 0 1rem;
+}
+
+/* Bullets — simple, no decorative icons. Native disc markers in gold
+ * give the brand accent without bespoke pseudos. */
+.privacy-content ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1.25rem;
+}
+.privacy-content ul li {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--gray-700);
+  margin: 0 0 0.5rem;
+}
+.privacy-content ul li::marker { color: var(--gildhart-gold); }
+
+/* Inline links in the policy body — gold, with a soft underline. */
+.privacy-content a {
+  color: var(--gildhart-green);
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 164, 74, 0.55);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.privacy-content a:hover {
+  color: var(--gildhart-gold);
+  text-decoration-color: var(--gildhart-gold);
+}
+
+/* ════════════════════════════════════════
+ * RECAPTCHA NOTICE (cream — same as policy, no divider above)
+ * ════════════════════════════════════════ */
+.privacy-recaptcha {
+  background: var(--cream-warm);
+  padding: 1.5rem var(--privacy-pad-x);
+  text-align: center;
+}
+.privacy-recaptcha-text {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(13, 26, 18, 0.55);
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.privacy-recaptcha-text a {
+  color: var(--gildhart-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.privacy-recaptcha-text a:hover {
+  color: var(--gildhart-green);
+  text-decoration: underline;
+}
+
+/* ════════════════════════════════════════
+ * CLOSING (forest green)
+ * ════════════════════════════════════════ */
+.privacy-closing {
+  background: var(--gildhart-green);
+  padding: clamp(4rem, 8vw, 6rem) var(--privacy-pad-x);
+  text-align: center;
+}
+.privacy-closing-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--gildhart-cream);
+  margin: 0 auto;
+  max-width: 640px;
+  line-height: 1.7;
+}
+.privacy-closing-text a {
+  color: var(--gildhart-gold);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+.privacy-closing-text a:hover {
+  text-decoration: underline;
+}

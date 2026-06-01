@@ -278,7 +278,7 @@ acf_add_local_field_group( array(
             'name'          => 'footer_copyright',
             'type'          => 'text',
             'instructions'  => 'Use {year} for the current year.',
-            'default_value' => '© {year} Gildhart™. All rights reserved. Gildhart™ and Pillar Domination Framework™ are trademarks of Social Gains Limited, registered in England and Wales.',
+            'default_value' => '© {year} Gildhart. All rights reserved. Gildhart™ and Pillar Domination Framework™ are trademarks of PharmoDigital Ltd. Company No. 15341513. VAT No. 456877926. Registered Office: 1 Richmond Road, Lytham St. Annes on Sea, Lancashire, FY8 1PE.',
         ),
     ),
     'location' => array(
@@ -2936,6 +2936,45 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_service_wpe_closing_form_success_body',  'label' => 'Success — Subtext', 'name' => 'service_wpe_closing_form_success_body',  'type' => 'textarea', 'rows' => 2, 'instructions' => 'Subtext beneath the success heading.' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
+/* Page · Privacy (Privacy Policy template) */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_page_privacy',
+    'title'      => 'Page · Privacy',
+    'menu_order' => 6,
+    'fields'     => array(
+        array( 'key' => 'field_gh_privacy_hero_label',    'label' => 'Hero — Label',     'name' => 'privacy_hero_label',    'type' => 'text' ),
+        array( 'key' => 'field_gh_privacy_hero_headline', 'label' => 'Hero — Headline',  'name' => 'privacy_hero_headline', 'type' => 'textarea', 'rows' => 2 ),
+        array( 'key' => 'field_gh_privacy_hero_updated',  'label' => 'Hero — Last Updated', 'name' => 'privacy_hero_updated', 'type' => 'text', 'instructions' => 'e.g. "Last updated: May 2026".' ),
+        array(
+            'key'           => 'field_gh_privacy_content',
+            'label'         => 'Policy Body',
+            'name'          => 'privacy_content',
+            'type'          => 'wysiwyg',
+            'tabs'          => 'visual',
+            'toolbar'       => 'full',
+            'media_upload'  => 0,
+            'instructions'  => 'Rich-text content for the policy. Use Heading 2 for major sections, Heading 3 for sub-headers, paragraphs for body, and bullet lists for stacked items. Styling is applied automatically.',
+        ),
+        array(
+            'key'          => 'field_gh_privacy_recaptcha_text',
+            'label'        => 'reCAPTCHA Notice',
+            'name'         => 'privacy_recaptcha_text',
+            'type'         => 'textarea',
+            'rows'         => 3,
+            'instructions' => 'Inline HTML allowed for the Privacy Policy / Terms of Service links.',
+        ),
+        array(
+            'key'          => 'field_gh_privacy_closing_text',
+            'label'        => 'Closing Strap',
+            'name'         => 'privacy_closing_text',
+            'type'         => 'textarea',
+            'rows'         => 2,
+            'instructions' => 'Centred line in the green closing section. Inline mailto/URL links allowed.',
+        ),
+    ),
+    'location' => array( array( array( 'param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/page-privacy.php' ) ) ),
 ) );
 
 /* Page · About (About Gildhart template) */
