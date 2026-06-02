@@ -117,6 +117,22 @@ foreach ( $stats_raw as $raw ) {
                     ?>
                 </div>
             </div>
+        <?php else : ?>
+            <?php /* Crest hero — luxury-brand mark as the hero artifact.
+                  * Rendered when no explicit hero_image is uploaded so the
+                  * page always has a refined visual statement. Pure CSS
+                  * + the existing gold crest media asset; no generation,
+                  * no compositing, no dependency on additional files. */ ?>
+            <div class="hero-visual hero-visual--crest">
+                <div class="hero-crest">
+                    <img
+                        src="https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png"
+                        alt="Gildhart"
+                        loading="eager"
+                        fetchpriority="high"
+                    />
+                </div>
+            </div>
         <?php endif; ?>
     </div>
 </section>

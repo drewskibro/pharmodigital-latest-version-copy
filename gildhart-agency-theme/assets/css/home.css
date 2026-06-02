@@ -243,6 +243,61 @@
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22), 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
+/* ── Crest hero variant ──
+ * Luxury-brand mark as the hero artifact. The gold crest sits
+ * centred at a substantial scale, with a soft warm radial glow
+ * blurred behind it for ambient depth — the Patek/Aesop/Hermès
+ * convention of letting the brand mark itself be the visual
+ * statement. Used as the fallback when no explicit hero_image is
+ * uploaded via ACF, so the page always presents a refined visual
+ * even with zero media library setup. */
+.hero-visual--crest {
+  perspective: none;
+  padding: clamp(1rem, 3vw, 2.5rem) 0;
+}
+.hero-crest {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  animation: heroCrestIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+.hero-crest::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at center,
+    rgba(201, 164, 74, 0.22) 0%,
+    rgba(201, 164, 74, 0.10) 35%,
+    rgba(201, 164, 74, 0) 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-crest img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  display: block;
+  /* No filter — the asset is gold-on-transparent and reads naturally on cream. */
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-crest:hover img {
+  transform: translateY(-4px);
+}
+@keyframes heroCrestIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 /* ── Logo Bar ───────────────────────────────────────────────── */
 
 .logo-bar-eyebrow-band {
@@ -304,6 +359,10 @@
   .hero-image-stack img {
     max-width: 100%;
   }
+  /* Crest hero stays at a sensible centred scale on mobile rather
+   * than scaling up to 100% width — preserves the editorial feel. */
+  .hero-crest { max-width: 320px; }
+  .hero-crest img { max-width: 280px; }
 }
 
 @media (max-width: 768px) {
