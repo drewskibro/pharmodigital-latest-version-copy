@@ -103,7 +103,7 @@ $upsell_headline = gh_field( 'agent_thank_you_upsell_headline',  'Your agent is 
 $upsell_subhead  = gh_field( 'agent_thank_you_upsell_subhead',   'The AI Search Playbook — how Ealing Travel Clinic filled their agent with £100k of HPV patients. From one service. In one year.' );
 $upsell_body     = gh_field( 'agent_thank_you_upsell_body',      "The Playbook is the traffic system. Every piece of content you publish through it gets you featured on ChatGPT, Claude, Perplexity, and Google AI Overviews — sending pre-sold patients straight to your agent around the clock. Ealing didn't run ads. They didn't hire a marketing team. They followed the system. £100k from HPV alone. Every other service they publish compounds on top of that. The agent converts them. The Playbook fills it. That's the flywheel." );
 $upsell_cta_lbl  = gh_field( 'agent_thank_you_upsell_cta_label', 'Get the Playbook — £497 →' );
-$upsell_cta_url  = gh_field( 'agent_thank_you_upsell_cta_url',   'https://pharmodigital.kinsta.cloud/the-playbook/' );
+$upsell_cta_url  = gh_field( 'agent_thank_you_upsell_cta_url',   home_url( '/the-playbook/' ) );
 $upsell_footnote = gh_field( 'agent_thank_you_upsell_footnote',  '' ); // Optional, hidden by default per current spec.
 $upsell_image_id = get_field( 'agent_thank_you_upsell_image' );
 if ( ! $upsell_image_id ) {
