@@ -24,7 +24,11 @@
 get_header();
 
 /* ── Shared assets ── */
-$crest_fallback = 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png';
+// Crest fallback resolves to the configured agency_logo first, then
+// custom_logo theme mod, then the bundled local SVG — see
+// gh_logo_url() in functions.php. Always same-domain, never breaks
+// across deploys.
+$crest_fallback = function_exists( 'gh_logo_url' ) ? gh_logo_url() : '';
 $crest_id       = (int) get_field( 'about_crest_logo' );
 
 /* Founder photo: prefer an About-specific upload, then reuse the

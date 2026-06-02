@@ -126,8 +126,8 @@ foreach ( $stats_raw as $raw ) {
             <div class="hero-visual hero-visual--crest">
                 <div class="hero-crest">
                     <img
-                        src="https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png"
-                        alt="Gildhart"
+                        src="<?php echo esc_url( gh_logo_url() ); ?>"
+                        alt="<?php echo esc_attr( gh_agency_name() ); ?>"
                         loading="eager"
                         fetchpriority="high"
                     />

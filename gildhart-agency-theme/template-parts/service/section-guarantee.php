@@ -47,9 +47,9 @@ $closing_last  = count( $closing_lines ) - 1;
 /* Right column — founder signature (Drew photo + Gildhart logo + name). */
 $drew_photo_id = (int) get_field( 'guarantee_drew_photo' );
 $logo_id       = (int) get_field( 'guarantee_gildhart_logo' );
-// Logo falls back to the uploaded brand seal in the media library so the
-// signature renders out of the box before anyone wires the ACF field.
-$logo_fallback = 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png';
+// Logo fallback resolves via gh_logo_url() — same chain everywhere
+// (agency_logo → custom_logo → bundled SVG). Always same-domain.
+$logo_fallback = function_exists( 'gh_logo_url' ) ? gh_logo_url() : '';
 $founder_name  = gh_field( 'service_guarantee_founder_name',  'Drew Clayton' );
 $founder_title = gh_field( 'service_guarantee_founder_title', 'Founder, Gildhart' );
 $linkedin_url  = gh_field( 'guarantee_linkedin_url' );

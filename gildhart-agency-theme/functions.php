@@ -438,11 +438,9 @@ function gh_logo_url() {
     if ( $custom_logo_id ) {
         return wp_get_attachment_image_url( $custom_logo_id, 'full' );
     }
-    // Hard fallback to the gold-crest media asset so the nav logo
-    // always renders, even on a fresh deploy with no Theme Settings
-    // populated. The local SVG used to serve this role but failed
-    // silently on some deploys.
-    return 'https://pharmodigital.kinsta.cloud/wp-content/uploads/2026/05/Gildhart-08-scaled.png';
+    // Local SVG fallback bundled with the theme — guaranteed to be on
+    // the same domain as the site, never breaks across deploys.
+    return GILDHART_URI . '/assets/images/logo.svg';
 }
 
 /**
