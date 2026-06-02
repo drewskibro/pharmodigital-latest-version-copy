@@ -28,7 +28,7 @@
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 3rem;
   align-items: center;
 }
@@ -175,12 +175,12 @@
 .hero-image-stack {
   position: relative;
   width: 100%;
-  max-width: 580px;
+  max-width: 460px;
   overflow: visible;
 }
 .hero-image-stack img {
   width: 100%;
-  max-width: 580px;
+  max-width: 460px;
   height: auto;
   border-radius: 20px;
   position: relative;
