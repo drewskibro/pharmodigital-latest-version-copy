@@ -16,21 +16,25 @@ $author_name   = gh_field( 'fcs_author_name', 'Sachin Patel' );
 $author_title  = gh_field( 'fcs_author_title', 'Founder, Ealing Travel Clinic' );
 $show_stars    = gh_field( 'fcs_show_stars', 1 );
 
-$cta_badge     = gh_field( 'fcs_cta_badge', 'Full Case Study' );
-$cta_text      = gh_field( 'fcs_cta_text',  'See the 6-month transformation that generated' );
+$cta_badge     = gh_field( 'fcs_cta_badge', 'Case Study · Ealing Travel Clinic' );
+$cta_text      = gh_field( 'fcs_cta_text',  'Six-month transformation' );
 $cta_number    = gh_field( 'fcs_cta_number', '300%' );
-$cta_label     = gh_field( 'fcs_cta_label',  'more patients →' );
-$cta_meta      = gh_field( 'fcs_cta_meta',   '6-month transformation • AI Overview rankings • Real booking data' );
-$cta_how       = gh_field( 'fcs_cta_how',    'How: AI-optimised content. Zero ad spend. Six weeks to #1 in Google AI Overviews.' );
-$cta_link_label = gh_field( 'fcs_cta_link_label', 'See How We Did It' );
+$cta_label     = gh_field( 'fcs_cta_label',  'More patients' );
+$cta_meta      = gh_field( 'fcs_cta_meta',   'AI Overview rankings · Real booking data' );
+$cta_how       = gh_field( 'fcs_cta_how',    'AI-optimised content. Zero ad spend. Six weeks to #1 in Google AI Overviews.' );
+$cta_link_label = gh_field( 'fcs_cta_link_label', 'Read the full story' );
 
-// Resolve the CTA card link: case_study post override → URL field → null.
+// Resolve the CTA card link: case_study post override → URL field
+// → the Playbook page as the editorial-house default.
 $case_study_id = gh_field( 'fcs_case_study' );
 $cta_url       = '';
 if ( $case_study_id ) {
     $cta_url = get_permalink( $case_study_id );
 } else {
     $cta_url = gh_field( 'fcs_link_url' );
+}
+if ( ! $cta_url ) {
+    $cta_url = home_url( '/the-playbook/' );
 }
 
 // Allowed inline tags inside the quote (e.g. <strong>).

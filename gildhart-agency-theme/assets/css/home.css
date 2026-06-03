@@ -522,102 +522,123 @@
 }
 
 /* ── CTA card ── */
+/* Editorial case-study callout — no card edge, no pill badge, no
+ * checkmark, no bullet-dots. The page background carries the block;
+ * a thin gold rule above the mono uppercase label provides the only
+ * boundary. Dominant centred stat, small caps label below, supporting
+ * lines stripped to essentials, quiet text link at the bottom. */
 .featured-cta-card {
   display: block;
-  background: #fcf4e9;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 1.75rem 2rem;
-  max-width: 420px;
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(201, 164, 74, 0.4);
+  border-radius: 0;
+  padding: 2.5rem 0 0;
+  max-width: 480px;
   text-decoration: none;
   cursor: pointer;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease 0.9s,
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s,
-              border-color 0.2s,
-              box-shadow 0.2s;
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
 }
-a.featured-cta-card:hover {
-  border-color: rgba(30, 61, 47, 0.3);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+a.featured-cta-card:hover .featured-cta-link {
+  color: var(--gildhart-gold);
+  gap: 0.7rem;
 }
 
+/* Eyebrow — small mono uppercase label matching the rest of the
+ * site's eyebrow treatment. Replaces the pill-with-tick. */
 .featured-cta-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--navy);
-  color: white;
-  font-size: 0.75rem;
+  display: block;
+  background: transparent;
+  color: var(--gildhart-gold);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  margin-bottom: 1rem;
+  letter-spacing: 0.2em;
+  padding: 0;
+  border-radius: 0;
+  margin-bottom: 1.5rem;
 }
-.featured-cta-badge::before {
-  content: '✓';
-  font-size: 0.625rem;
-}
+.featured-cta-badge::before { content: none; }
 
+/* "Six-month transformation" — small lead-in above the number. */
 .featured-cta-text {
-  font-size: 1rem;
-  color: var(--navy);
-  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--gray-600);
+  margin-bottom: 1rem;
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
+/* Dominant number lockup — number owns the line, small caps label
+ * sits underneath. Economist / FT data-callout treatment. */
 .featured-cta-stat {
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
 }
 .featured-cta-number {
-  font-size: 2.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3.25rem, 6vw, 4.5rem);
   font-weight: 800;
   color: var(--navy);
+  letter-spacing: -0.04em;
   line-height: 1;
 }
 .featured-cta-label {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--navy);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gildhart-green);
 }
 
+/* Meta line — bullet-dots removed. The "·" character stays if the
+ * editor uses it, but the default is now an em-dash separator. */
 .featured-cta-meta {
   font-size: 0.8125rem;
-  color: rgba(15, 23, 42, 0.7);
-  margin-bottom: 0.5rem;
+  color: rgba(15, 23, 42, 0.6);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
 }
+/* Supporting body line — no "How:" prefix, just the sentences. */
 .featured-cta-how {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: #4b5563;
-  margin-bottom: 1rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--gray-700);
+  margin-bottom: 1.75rem;
+  line-height: 1.7;
+  max-width: 420px;
 }
 
+/* Quiet text link — replaces the all-caps tracked button-looking
+ * link with a calm sentence-case link in brand gold with an arrow. */
 .featured-cta-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--navy);
   text-decoration: none;
-  transition: gap 0.2s;
-}
-a.featured-cta-card:hover .featured-cta-link {
-  gap: 0.75rem;
+  transition: color 0.2s ease, gap 0.2s ease;
 }
 .featured-cta-link::after {
   content: '→';
-  font-size: 1rem;
+  font-size: 0.9375rem;
+  transition: transform 0.2s ease;
+}
+a.featured-cta-card:hover .featured-cta-link::after {
+  transform: translateX(2px);
 }
 
 /* ── Visible state (added by IntersectionObserver in home.js) ── */
