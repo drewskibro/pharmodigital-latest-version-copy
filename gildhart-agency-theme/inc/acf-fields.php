@@ -1017,6 +1017,25 @@ acf_add_local_field_group( array(
                     ),
                 ),
                 array(
+                    'key'          => 'field_gh_home_tp_card_credentials',
+                    'label'        => 'Credentials Line (Optional)',
+                    'name'         => 'credentials',
+                    'type'         => 'repeater',
+                    'layout'       => 'table',
+                    'min'          => 0,
+                    'max'          => 5,
+                    'button_label' => 'Add Credential',
+                    'instructions' => 'Small mono-caps gold credentials shown between the bullets and the price. Em-dash separated. Designed for the featured (middle) card — leave empty on the others unless you want them there too. e.g. "Claude Code", "GPhC Compliant", "Built for AI Search".',
+                    'sub_fields'   => array(
+                        array(
+                            'key'   => 'field_gh_home_tp_card_credential_text',
+                            'label' => 'Credential',
+                            'name'  => 'text',
+                            'type'  => 'text',
+                        ),
+                    ),
+                ),
+                array(
                     'key'   => 'field_gh_home_tp_card_price',
                     'label' => 'Price',
                     'name'  => 'price_value',
