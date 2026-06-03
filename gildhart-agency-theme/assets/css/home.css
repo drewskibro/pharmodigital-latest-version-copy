@@ -604,19 +604,21 @@ a.featured-cta-card:hover {
 }
 
 /* Meta line + supporting line — cream at reduced opacity for the
- * green ground. */
+ * green ground. Sized to read as supporting copy under the massive
+ * 300% above, not as footnotes. */
 .featured-cta-meta {
-  font-size: 0.8125rem;
-  color: rgba(240, 230, 200, 0.6);
-  margin-bottom: 0.875rem;
-  letter-spacing: 0.01em;
+  font-size: 1rem;
+  color: rgba(240, 230, 200, 0.72);
+  margin-bottom: 1rem;
+  letter-spacing: 0.005em;
+  line-height: 1.55;
 }
 .featured-cta-how {
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   font-weight: 400;
-  color: rgba(240, 230, 200, 0.82);
+  color: rgba(240, 230, 200, 0.9);
   margin-bottom: 1.75rem;
-  line-height: 1.7;
+  line-height: 1.65;
   max-width: 420px;
 }
 
