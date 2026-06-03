@@ -180,8 +180,20 @@ if ( empty( $cards ) ) {
                         <?php if ( ! empty( $features ) ) : ?>
                             <ul class="two-paths-features">
                                 <?php foreach ( $features as $feature ) :
-                                    if ( empty( $feature['text'] ) ) continue; ?>
+                                    if ( empty( $feature['text'] ) ) continue;
+                                    // Render with hierarchy when the text uses an em-dash
+                                    // " — " as a label/description separator. The label
+                                    // bolds, the em-dash tints gold as a brand accent
+                                    // divider, the description stays regular weight.
+                                    // Bullets without an em-dash render bare.
+                                    $parts = preg_split( '/\s+—\s+/', $feature['text'], 2 );
+                                    if ( count( $parts ) === 2 ) : ?>
+                                    <li>
+                                        <span class="two-paths-feature-label"><?php echo esc_html( $parts[0] ); ?></span><span class="two-paths-feature-dash" aria-hidden="true"> — </span><span class="two-paths-feature-desc"><?php echo esc_html( $parts[1] ); ?></span>
+                                    </li>
+                                    <?php else : ?>
                                     <li><?php echo esc_html( $feature['text'] ); ?></li>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>

@@ -1426,6 +1426,7 @@ a.featured-cta-card:hover .featured-cta-link {
 }
 .two-paths-card-image img {
   width: 100%;
+  max-width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
@@ -1617,14 +1618,32 @@ a.featured-cta-card:hover .featured-cta-link {
   margin: 0 0 2rem 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.125rem;
   flex: 1;
 }
 .two-paths-features li {
   font-size: 0.9375rem;
   color: #2c3e36;
-  line-height: 1.7;
+  line-height: 1.65;
   position: relative;
+}
+/* Label / dash / desc treatment — bullets that use a " — " separator
+ * render with hierarchy. Label bolds (navy), em-dash tints gold as a
+ * brand-coloured visual divider, description stays regular weight at
+ * slightly muted opacity so the eye lands on the label first. Honours
+ * the design system's "no tick icons" rule by using the existing
+ * punctuation as the accent rather than adding a decorative marker. */
+.two-paths-feature-label {
+  font-weight: 700;
+  color: inherit;
+}
+.two-paths-feature-dash {
+  color: var(--gildhart-gold);
+  font-weight: 700;
+}
+.two-paths-feature-desc {
+  font-weight: 400;
+  opacity: 0.82;
 }
 .two-paths-card--hero .two-paths-features li {
   color: rgba(240, 230, 200, 0.92);
