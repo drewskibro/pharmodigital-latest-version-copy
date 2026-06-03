@@ -1682,6 +1682,53 @@ a.featured-cta-card:hover .featured-cta-link::after {
   color: var(--gildhart-cream);
 }
 
+/* ── Editorial credentials line ──
+ * Small mono gold caps with em-dash separators, centred in the
+ * load-bearing gap between bullets and the price block. Honours
+ * the rest of the site's eyebrow treatment (font-mono, 0.6875rem,
+ * weight 700, wide tracking, uppercase) so it disappears into the
+ * page rhythm rather than reading as a badge row. The separator is
+ * dimmer than the items so the eye lands on the credentials.
+ * Cosmetic only — list-style stripped, no markers. */
+.two-paths-credentials {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+.two-paths-credentials-item,
+.two-paths-credentials-sep {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.two-paths-credentials-item {
+  color: var(--gildhart-gold);
+}
+.two-paths-credentials-sep {
+  color: rgba(201, 164, 74, 0.4);
+  font-weight: 400;
+}
+/* Featured (green ground) card lifts the credentials a touch so
+ * they don't fight the gold border at low opacity. */
+.two-paths-card--hero .two-paths-credentials-item {
+  color: rgba(201, 164, 74, 0.95);
+}
+.two-paths-card--hero .two-paths-credentials-sep {
+  color: rgba(201, 164, 74, 0.45);
+}
+/* Dark navy card — credentials stay readable on the dark ground. */
+.two-paths-card--dark .two-paths-credentials-item {
+  color: rgba(201, 164, 74, 0.9);
+}
+
 /* Price block — understated, italic note */
 .two-paths-price-block {
   display: flex;

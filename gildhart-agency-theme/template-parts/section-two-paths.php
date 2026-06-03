@@ -60,6 +60,7 @@ if ( empty( $cards ) ) {
                 array( 'text' => '12 months hosting + technical support' ),
                 array( 'text' => 'Scoped to your services and your market' ),
             ),
+            'credentials'  => array( 'Claude Code', 'GPhC Compliant', 'Built for AI Search' ),
             'cta_label'    => 'See What We Build →',
             'cta_url'      => home_url( '/web-pro-elite/' ),
         ),
@@ -114,6 +115,7 @@ if ( empty( $cards ) ) {
                 $proof_num    = $card['proof_number'] ?? '';
                 $proof_label  = $card['proof_label']  ?? '';
                 $features     = $card['features']     ?? array();
+                $credentials  = $card['credentials']  ?? array();
                 $price_value  = $card['price_value']  ?? '';
                 $price_note   = $card['price_value_note'] ?? '';
                 $cta_label    = $card['cta_label']    ?? '';
@@ -197,6 +199,39 @@ if ( empty( $cards ) ) {
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
+
+                        <?php
+                        // Editorial credentials line — small mono caps,
+                        // gold, em-dash separated. Sits in the load-
+                        // bearing gap created by the features list's
+                        // flex:1, above the price block. Rendered when
+                        // a card carries a non-empty `credentials`
+                        // array; designed for the featured card but
+                        // works on any card if credentials are set.
+                        if ( ! empty( $credentials ) ) :
+                            // Normalise: accept either array of strings
+                            // or array of { 'text' => ... } rows so the
+                            // field plays nicely with an ACF repeater
+                            // if one is added later.
+                            $credentials_clean = array();
+                            foreach ( $credentials as $c ) {
+                                $val = is_array( $c ) ? ( $c['text'] ?? '' ) : (string) $c;
+                                $val = trim( $val );
+                                if ( '' !== $val ) {
+                                    $credentials_clean[] = $val;
+                                }
+                            }
+                            if ( ! empty( $credentials_clean ) ) : ?>
+                            <ul class="two-paths-credentials" aria-label="Credentials">
+                                <?php foreach ( $credentials_clean as $i => $c ) : ?>
+                                    <?php if ( $i > 0 ) : ?>
+                                        <li class="two-paths-credentials-sep" aria-hidden="true">—</li>
+                                    <?php endif; ?>
+                                    <li class="two-paths-credentials-item"><?php echo esc_html( $c ); ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif;
+                        endif; ?>
 
                         <?php if ( $price_value || $price_note ) : ?>
                             <div class="two-paths-price-block">
