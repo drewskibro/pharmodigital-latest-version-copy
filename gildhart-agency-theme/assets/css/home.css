@@ -522,42 +522,45 @@
 }
 
 /* ── CTA card ── */
-/* Editorial case-study callout — no card edge, no pill badge, no
- * checkmark, no bullet-dots. The page background carries the block;
- * a thin gold rule above the mono uppercase label provides the only
- * boundary. Dominant centred stat, small caps label below, supporting
- * lines stripped to essentials, quiet text link at the bottom. */
+/* Editorial case-study callout — forest green confident block on the
+ * cream page. Brand colour as visual real estate (the Stripe-purple /
+ * Anthropic-sand / Linear-blue convention). Eyebrow + em-dashes carry
+ * the editorial voice; the green ground gives it real presence. */
 .featured-cta-card {
   display: block;
-  background: transparent;
-  border: none;
-  border-top: 1px solid rgba(201, 164, 74, 0.4);
-  border-radius: 0;
-  padding: 2.5rem 0 0;
+  background: var(--gildhart-green);
+  border: 1px solid rgba(201, 164, 74, 0.25);
+  border-radius: 20px;
+  padding: clamp(2rem, 3.5vw, 2.75rem);
   max-width: 480px;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 20px 50px rgba(30, 61, 47, 0.18),
+              0 6px 18px rgba(30, 61, 47, 0.08);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease 0.9s,
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s;
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
 }
-a.featured-cta-card:hover .featured-cta-link {
-  color: var(--gildhart-gold);
-  gap: 0.7rem;
+a.featured-cta-card:hover {
+  border-color: rgba(201, 164, 74, 0.5);
+  box-shadow: 0 24px 60px rgba(30, 61, 47, 0.28),
+              0 8px 22px rgba(30, 61, 47, 0.12);
 }
 
-/* Eyebrow — small mono uppercase label matching the rest of the
- * site's eyebrow treatment. Replaces the pill-with-tick. */
+/* Eyebrow — gold mono caps. Bumped to 0.75rem with wider tracking so
+ * it actually reads on the green ground. */
 .featured-cta-badge {
   display: block;
   background: transparent;
   color: var(--gildhart-gold);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   padding: 0;
   border-radius: 0;
   margin-bottom: 1.5rem;
@@ -567,78 +570,83 @@ a.featured-cta-card:hover .featured-cta-link {
 /* "Six-month transformation" — small lead-in above the number. */
 .featured-cta-text {
   font-size: 0.9375rem;
-  color: var(--gray-600);
-  margin-bottom: 1rem;
+  color: rgba(240, 230, 200, 0.75);
+  margin-bottom: 0.5rem;
   font-weight: 500;
   letter-spacing: 0.01em;
 }
 
 /* Dominant number lockup — number owns the line, small caps label
- * sits underneath. Economist / FT data-callout treatment. */
+ * sits underneath. clamp() ensures it actually feels massive on
+ * desktop while collapsing sensibly on mobile. */
 .featured-cta-stat {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.25rem;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 .featured-cta-number {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(3.25rem, 6vw, 4.5rem);
+  font-size: clamp(4rem, 7vw, 6rem);
   font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.04em;
-  line-height: 1;
+  color: var(--white);
+  letter-spacing: -0.045em;
+  line-height: 0.95;
 }
 .featured-cta-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--gildhart-green);
+  letter-spacing: 0.2em;
+  color: var(--gildhart-gold);
 }
 
-/* Meta line — bullet-dots removed. The "·" character stays if the
- * editor uses it, but the default is now an em-dash separator. */
+/* Meta line + supporting line — cream at reduced opacity for the
+ * green ground. */
 .featured-cta-meta {
   font-size: 0.8125rem;
-  color: rgba(15, 23, 42, 0.6);
-  margin-bottom: 0.75rem;
+  color: rgba(240, 230, 200, 0.6);
+  margin-bottom: 0.875rem;
   letter-spacing: 0.01em;
 }
-/* Supporting body line — no "How:" prefix, just the sentences. */
 .featured-cta-how {
   font-size: 0.9375rem;
   font-weight: 400;
-  color: var(--gray-700);
+  color: rgba(240, 230, 200, 0.82);
   margin-bottom: 1.75rem;
   line-height: 1.7;
   max-width: 420px;
 }
 
-/* Quiet text link — replaces the all-caps tracked button-looking
- * link with a calm sentence-case link in brand gold with an arrow. */
+/* "Read the full story" — promoted from quiet text link to real
+ * action element. Gold, bigger, with weight. Arrow nudges right on
+ * hover; whole card brightens via box-shadow + border. */
 .featured-cta-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   letter-spacing: 0.01em;
   text-transform: none;
-  color: var(--navy);
+  color: var(--gildhart-gold);
   text-decoration: none;
   transition: color 0.2s ease, gap 0.2s ease;
 }
 .featured-cta-link::after {
   content: '→';
-  font-size: 0.9375rem;
+  font-size: 1rem;
   transition: transform 0.2s ease;
 }
+a.featured-cta-card:hover .featured-cta-link {
+  color: #e0bd60;
+  gap: 0.7rem;
+}
 a.featured-cta-card:hover .featured-cta-link::after {
-  transform: translateX(2px);
+  transform: translateX(3px);
 }
 
 /* ── Visible state (added by IntersectionObserver in home.js) ── */
