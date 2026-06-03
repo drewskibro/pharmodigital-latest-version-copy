@@ -367,7 +367,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: calc(2rem + var(--nav-h, 130px)) 1.5rem 4rem;
+    padding: calc(1rem + var(--nav-h, 130px)) 1.5rem 4rem;
     min-height: auto;
     margin-top: 0;
   }
