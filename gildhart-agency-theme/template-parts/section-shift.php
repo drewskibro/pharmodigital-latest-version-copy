@@ -2,10 +2,14 @@
 /**
  * Section: The Shift (homepage)
  *
- * Header + two-column comparison (Google search mockup vs ChatGPT mockup) +
- * row of three "client result" proof cards. Mockup decoration (fake search-
- * result bars, AI bubble structure) is hardcoded; only the editable copy
- * (queries, captions, recommendations) is ACF-driven.
+ * Header + two-column comparison (Google search mockup vs ChatGPT
+ * mockup). Mockup decoration (fake search-result bars, AI bubble
+ * structure) is hardcoded; only the editable copy (queries, captions,
+ * recommendations) is ACF-driven.
+ *
+ * Each recommendation row supports an `is_highlight` flag that
+ * applies the gold-tinted "Your Practice" treatment — the rest stay
+ * neutral as the subordinate "National Chain" entries.
  *
  * @package Gildhart
  */
@@ -24,23 +28,29 @@ $new_query        = gh_field( 'shift_new_query', 'Best Mounjaro provider UK?' );
 $new_intro        = gh_field( 'shift_new_response_intro', 'Here are the top providers currently recommended for Mounjaro in the UK:' );
 $recommendations  = gh_field( 'shift_new_recommendations', array() );
 if ( empty( $recommendations ) ) {
+    // Illustrative mockup — abstract "Your Practice" vs national
+    // chains so the visual reads as positioning ("imagine if your
+    // practice ranked here") rather than naming specific competitors.
+    // The first row carries is_highlight => 1 to apply the gold
+    // treatment; the other two stay neutral / subordinate.
     $recommendations = array(
-        array( 'name' => 'Superior Pharmacy', 'detail' => 'Specialist weight-management clinic with same-day private prescriptions.' ),
-        array( 'name' => 'Ealing Travel Clinic', 'detail' => 'GPhC-registered with senior pharmacist consultations.' ),
-        array( 'name' => 'Puri Pharmacy',     'detail' => 'Independent pharmacy ranked #1 nationally for Mounjaro provision.' ),
+        array(
+            'name'         => 'Your Practice',
+            'detail'       => 'Cited across ChatGPT, Claude, and Google AI Overviews. Built on AI-search infrastructure.',
+            'is_highlight' => 1,
+        ),
+        array(
+            'name'   => 'National Chain',
+            'detail' => 'Standard high-street provider.',
+        ),
+        array(
+            'name'   => 'National Chain',
+            'detail' => 'Standard high-street provider.',
+        ),
     );
 }
 $shortlist_note   = gh_field( 'shift_new_shortlist_note', "AI gives 3–5 recommendations. That's the entire market." );
 $new_caption      = gh_field( 'shift_new_caption', 'Three results. No ads. The decision is essentially made before the patient ever clicks a website.' );
-
-$proof_cards = gh_field( 'shift_proof_cards', array() );
-if ( empty( $proof_cards ) ) {
-    $proof_cards = array(
-        array( 'value' => '300%',  'label' => 'Ealing Travel Clinic revenue growth' ),
-        array( 'value' => '50%',   'label' => 'Superior Pharmacy sales from ChatGPT' ),
-        array( 'value' => '#1 UK', 'label' => 'Puri Pharmacy for Mounjaro nationally' ),
-    );
-}
 
 // Always render — defaults carry the section without ACF data.
 
@@ -126,12 +136,17 @@ $google_widths = array(
                             <p class="ai-response-intro"><?php echo esc_html( $new_intro ); ?></p>
                         <?php endif; ?>
                         <?php foreach ( $recommendations as $i => $rec ) :
-                            $rank = $i + 1;
-                            $name = $rec['name']   ?? '';
-                            $det  = $rec['detail'] ?? '';
-                            $checkmark = ( 1 === $rank ) ? ' ✓' : '';
+                            $rank      = $i + 1;
+                            $name      = $rec['name']   ?? '';
+                            $det       = $rec['detail'] ?? '';
+                            $highlight = ! empty( $rec['is_highlight'] );
+                            $classes   = 'ai-recommendation' . ( $highlight ? ' ai-recommendation--highlight' : '' );
+                            // Checkmark follows the highlight flag, not the
+                            // position — so the gold-treated row gets it
+                            // regardless of where it sits in the list.
+                            $checkmark = $highlight ? ' ✓' : '';
                             ?>
-                            <div class="ai-recommendation">
+                            <div class="<?php echo esc_attr( $classes ); ?>">
                                 <div class="ai-rec-rank"><?php echo (int) $rank; ?></div>
                                 <div>
                                     <?php if ( $name ) : ?>
@@ -154,30 +169,6 @@ $google_widths = array(
             </div>
 
         </div>
-
-        <?php if ( ! empty( $proof_cards ) ) : ?>
-            <div class="shift-proof">
-                <?php foreach ( $proof_cards as $card ) :
-                    $label = $card['label'] ?? 'CLIENT RESULT';
-                    $name  = $card['name']  ?? '';
-                    $win   = $card['win']   ?? '';
-                    $stat  = $card['stat']  ?? '';
-                    ?>
-                    <div class="shift-proof-card">
-                        <p class="shift-proof-label"><?php echo esc_html( $label ); ?></p>
-                        <?php if ( $name ) : ?>
-                            <p class="shift-proof-name"><?php echo esc_html( $name ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $win ) : ?>
-                            <p class="shift-proof-win"><?php echo esc_html( $win ); ?></p>
-                        <?php endif; ?>
-                        <?php if ( $stat ) : ?>
-                            <p class="shift-proof-stat"><?php echo esc_html( $stat ); ?></p>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
 
     </div>
 </section>
