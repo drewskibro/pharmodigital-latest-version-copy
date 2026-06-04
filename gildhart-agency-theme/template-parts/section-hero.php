@@ -17,7 +17,7 @@ $primary_label   = gh_field( 'hero_primary_cta_label', 'Get The System' );
 $primary_url     = gh_field( 'hero_primary_cta_url', '#get-started' );
 $secondary_label = gh_field( 'hero_secondary_cta_label', 'See The Proof' );
 $secondary_url   = gh_field( 'hero_secondary_cta_url', '#revenue-results' );
-$trust_stats     = gh_field( 'hero_trust_stats', '£50M+ Revenue Generated | 1000+ AI Search Rankings | 50+ Healthcare Practices Built' );
+$trust_stats     = gh_field( 'hero_trust_stats', '£500k+ :: ONE PHARMACY. NO AD SPEND. | 6 weeks :: EALING. ABOVE BOOTS. | 50+ :: NATIONAL CHAINS OUTRANKED.' );
 $image_id        = gh_field( 'hero_image' );
 
 // Split headlines on line breaks, max 3 lines.
@@ -26,13 +26,20 @@ $lines_mobile  = $headline_m
     ? array_slice( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $headline_m ) ) ), 0, 3 )
     : $lines_desktop;
 
-// Parse trust stats — each chunk between | splits on its FIRST space
-// into a {value, label} pair so we can render value-over-label cells
-// instead of the old pipe-separated marketing-blog string.
+// Parse trust stats — each chunk between | becomes a {value, label}
+// pair. Preferred separator inside a chunk is `::` (e.g.
+// "£500k+ :: One Pharmacy. No Ad Spend."), which lets values contain
+// spaces and labels contain punctuation without ambiguity. Falls
+// back to splitting on the first space so legacy single-token values
+// like "£50M+ Revenue" still parse correctly without an edit.
 $stats_raw = array_filter( array_map( 'trim', explode( '|', $trust_stats ) ) );
 $stats     = array();
 foreach ( $stats_raw as $raw ) {
-    $parts   = explode( ' ', $raw, 2 );
+    if ( false !== strpos( $raw, '::' ) ) {
+        $parts = array_map( 'trim', explode( '::', $raw, 2 ) );
+    } else {
+        $parts = explode( ' ', $raw, 2 );
+    }
     $stats[] = array(
         'value' => $parts[0] ?? '',
         'label' => $parts[1] ?? '',

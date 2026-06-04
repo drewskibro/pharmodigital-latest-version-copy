@@ -387,8 +387,18 @@
   .hero-stat {
     text-align: center;
     align-items: center;
+    min-width: 0;
   }
-  .hero-stat-label { max-width: none; }
+  .hero-stat-label {
+    max-width: none;
+    word-break: break-word;
+  }
+  .hero-stat-value {
+    /* Allow long values to scale down at narrow widths so nothing
+     * overflows. clamp() floor is set so "6 weeks" or "£500k+" stay
+     * legible in a 3-column 360px viewport. */
+    font-size: clamp(1.5rem, 6vw, 2.375rem);
+  }
   .hero-title .desktop-only { display: none; }
   .hero-title .mobile-only  { display: inline; }
   .hero-content {
@@ -2192,6 +2202,30 @@ a.featured-cta-card:hover .featured-cta-link::after {
   .founder-copy { padding: 3rem 1.5rem 2rem; }
   .founder-headline { font-size: 1.625rem; }
   .founder-body { font-size: 1rem; }
+
+  /* Hero trust stats — stack vertically on small phones so each
+   * stat gets full width, the number can read dominant, and longer
+   * labels (e.g. "ONE PHARMACY. NO AD SPEND.") never truncate. */
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-content: stretch;
+  }
+  .hero-stat {
+    text-align: center;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+  .hero-stat-value {
+    font-size: clamp(2rem, 9vw, 2.625rem);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    max-width: 22ch;
+    margin: 0.4rem auto 0;
+  }
 }
 
 /* ── Revenue Results ────────────────────────────────────────── */
