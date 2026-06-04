@@ -342,6 +342,18 @@
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+/* Logo bar — speed up the scroll on narrower viewports to compensate
+ * for the optical-flow drop. The animation runs at identical px/s on
+ * every viewport, but mobile shows fewer logos at once (less motion
+ * to register) and each logo fills more of the screen (it feels like
+ * it's crawling). Trimming the duration restores the perceived energy
+ * of the desktop sweep. */
+@media (max-width: 768px) {
+  .logo-bar-scroller { animation-duration: 20s; }
+}
+@media (max-width: 480px) {
+  .logo-bar-scroller { animation-duration: 16s; }
+}
 
 /* ── Responsive ─────────────────────────────────────────────── */
 
