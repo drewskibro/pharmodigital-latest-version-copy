@@ -172,7 +172,12 @@
   grid-template-columns: repeat(3, auto);
   gap: clamp(2rem, 4vw, 3.5rem);
   justify-content: start;
-  align-items: start;
+  /* Anchor cells to the bottom of the row so the values create a
+   * clean horizontal baseline regardless of how many lines the
+   * label above wraps to. Without this, longer multi-line labels
+   * push their values up while shorter labels leave their values
+   * lower — the row looks ragged. */
+  align-items: end;
   opacity: 0;
   transform: translateY(10px);
   animation: heroFadeUp 0.4s ease-out 3.0s forwards;
@@ -190,7 +195,11 @@
   text-transform: uppercase;
   color: var(--gildhart-gold);
   margin: 0;
-  max-width: 14ch;
+  /* Wider cap (22ch up from 14ch) lets longer sentence-style labels
+   * like "ONE PHARMACY. NO AD SPEND." wrap to two lines instead of
+   * four. Combined with align-items: end on the grid above, the
+   * values stay on a clean baseline below regardless of label height. */
+  max-width: 22ch;
   line-height: 1.35;
 }
 .hero-stat-value {
@@ -341,6 +350,18 @@
 @keyframes logoScroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+/* Logo bar — speed up the scroll on narrower viewports to compensate
+ * for the optical-flow drop. The animation runs at identical px/s on
+ * every viewport, but mobile shows fewer logos at once (less motion
+ * to register) and each logo fills more of the screen (it feels like
+ * it's crawling). Trimming the duration restores the perceived energy
+ * of the desktop sweep. */
+@media (max-width: 768px) {
+  .logo-bar-scroller { animation-duration: 20s; }
+}
+@media (max-width: 480px) {
+  .logo-bar-scroller { animation-duration: 16s; }
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */
