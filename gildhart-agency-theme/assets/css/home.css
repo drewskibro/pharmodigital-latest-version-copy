@@ -1683,18 +1683,25 @@ a.featured-cta-card:hover .featured-cta-link::after {
 .two-paths-card--dark .two-paths-proof-number {
   color: var(--gildhart-gold);
 }
+/* Proof label — restyled from short-caption mono-uppercase to body
+ * font sentence case so it reads cleanly for descriptive sentences
+ * as well as short labels. The 0.6875rem mono-caps-tight-tracking
+ * recipe works for 3-5 word labels (the original intent) but becomes
+ * actively hard to read once the content runs to a full sentence,
+ * which is what some cards now carry. Body font + sentence case +
+ * 0.9375rem + 1.65 line-height handles both registers gracefully. */
 .two-paths-proof-label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 450;
+  letter-spacing: 0.005em;
+  text-transform: none;
   color: var(--gray-600);
-  line-height: 1.5;
+  line-height: 1.65;
 }
 .two-paths-card--hero .two-paths-proof-label,
 .two-paths-card--dark .two-paths-proof-label {
-  color: rgba(240, 230, 200, 0.75);
+  color: rgba(240, 230, 200, 0.82);
 }
 
 /* Bullets — no ticks. Outer cards plain, hero gets gold em-dash. */
