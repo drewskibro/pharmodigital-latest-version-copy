@@ -24,11 +24,15 @@ if ( empty( $problem_lines ) ) {
 $solution_eyebrow = gh_field( 'split_solution_eyebrow', 'THE SOLUTION' );
 $cards            = gh_field( 'split_cards', array() );
 if ( empty( $cards ) ) {
+    // Sub-field name in ACF is `text` — defaults match so the
+    // renderer below picks them up. The Pillar Domination card is
+    // promoted to featured via `is_featured` (forest green +
+    // gold treatment, see .split-card--featured in home.css).
     $cards = array(
-        array( 'title' => 'Built On Claude Code',  'body' => 'Every site we build is architected on the same AI infrastructure that powers the most advanced content systems in the world.' ),
-        array( 'title' => 'Pillar Domination',     'body' => 'Each high-revenue service gets a content pillar mapped to the exact questions patients are asking AI right now.' ),
-        array( 'title' => 'Indexed Everywhere',    'body' => 'Google, Bing, ChatGPT, Claude, Perplexity. We get you found in every AI platform patients use to choose their providers.' ),
-        array( 'title' => 'Compounding Authority', 'body' => 'Every piece of content reinforces every other. Rankings climb. Citations follow. The system gets stronger every month.' ),
+        array( 'title' => 'Built On Claude Code',  'text' => 'Every site we build is architected on the same AI infrastructure that powers the most advanced content systems in the world.' ),
+        array( 'title' => 'Pillar Domination',     'text' => 'Each high-revenue service gets a content pillar mapped to the exact questions patients are asking AI right now.', 'is_featured' => 1 ),
+        array( 'title' => 'Indexed Everywhere',    'text' => 'Google, Bing, ChatGPT, Claude, Perplexity. We get you found in every AI platform patients use to choose their providers.' ),
+        array( 'title' => 'Compounding Authority', 'text' => 'Every piece of content reinforces every other. Rankings climb. Citations follow. The system gets stronger every month.' ),
     );
 }
 
@@ -66,10 +70,12 @@ $allowed_inline = array( 'strong' => array(), 'em' => array(), 'br' => array() )
             <?php if ( ! empty( $cards ) ) : ?>
                 <div class="split-cards">
                     <?php foreach ( $cards as $card ) :
-                        $title = $card['title'] ?? '';
-                        $text  = $card['text']  ?? '';
+                        $title    = $card['title']       ?? '';
+                        $text     = $card['text']        ?? '';
+                        $featured = ! empty( $card['is_featured'] );
+                        $classes  = 'split-card' . ( $featured ? ' split-card--featured' : '' );
                         ?>
-                        <div class="split-card">
+                        <div class="<?php echo esc_attr( $classes ); ?>">
                             <?php if ( $title ) : ?>
                                 <h3 class="split-card-title"><?php echo esc_html( $title ); ?></h3>
                             <?php endif; ?>
