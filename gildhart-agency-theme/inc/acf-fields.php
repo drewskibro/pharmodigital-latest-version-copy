@@ -644,6 +644,15 @@ acf_add_local_field_group( array(
                     'type'  => 'textarea',
                     'rows'  => 3,
                 ),
+                array(
+                    'key'           => 'field_gh_home_split_card_featured',
+                    'label'         => 'Hero Treatment',
+                    'name'          => 'is_featured',
+                    'type'          => 'true_false',
+                    'ui'            => 1,
+                    'default_value' => 0,
+                    'instructions'  => 'Toggle on for the one card that should be visually elevated — forest green ground with a gold title. Designed for one card per group; multiple toggled-on cards still work but the hierarchy weakens.',
+                ),
             ),
         ),
 

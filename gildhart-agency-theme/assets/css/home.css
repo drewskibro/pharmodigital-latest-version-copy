@@ -884,6 +884,30 @@ a.featured-cta-card:hover .featured-cta-link::after {
   line-height: 1.65;
 }
 
+/* Hero treatment — one card per group elevated to the brand's
+ * primary ground. Forest green (var(--gildhart-green)) with gold
+ * title (var(--gildhart-gold)), cream body for legibility, 1px
+ * gold border at moderate opacity to reinforce the boundary
+ * without going decorative. Padding / radius / sizing / hover
+ * lift are inherited from .split-card so the card sits in the
+ * same grid cell with the same dimensions as its peers. */
+.split-card--featured {
+  background: var(--gildhart-green);
+  border-color: rgba(201, 164, 74, 0.45);
+}
+.split-card--featured .split-card-title {
+  color: var(--gildhart-gold);
+}
+.split-card--featured .split-card-text {
+  color: rgba(240, 230, 200, 0.92);
+}
+/* Hover state on the featured card — keep the gold border bright
+ * instead of the navy outline the base hover applies. */
+.split-card--featured:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18),
+              0 0 0 1px rgba(201, 164, 74, 0.6) !important;
+}
+
 /* CTA strip — full-width Gildhart green */
 .split-cta {
   background: var(--gildhart-green);
