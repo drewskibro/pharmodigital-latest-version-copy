@@ -786,8 +786,9 @@ acf_add_local_field_group( array(
             'name'         => 'shift_new_recommendations',
             'type'         => 'repeater',
             'layout'       => 'block',
-            'min'          => 1,
+            'min'          => 0,
             'max'          => 3,
+            'instructions' => 'Leave the repeater empty to render the default "Your Practice / National Chain / National Chain" mockup with gold treatment. Or add up to 3 rows to override — flip Hero Treatment on for the one row that should get the gold "Your Practice" styling.',
             'sub_fields'   => array(
                 array(
                     'key'   => 'field_gh_home_shift_new_rec_name',
@@ -801,6 +802,15 @@ acf_add_local_field_group( array(
                     'name'  => 'detail',
                     'type'  => 'textarea',
                     'rows'  => 2,
+                ),
+                array(
+                    'key'           => 'field_gh_home_shift_new_rec_highlight',
+                    'label'         => 'Hero Treatment',
+                    'name'          => 'is_highlight',
+                    'type'          => 'true_false',
+                    'ui'            => 1,
+                    'default_value' => 0,
+                    'instructions'  => 'Toggle on for the one row that should render with the gold "Your Practice" treatment (gold tint, gold left accent, gold rank circle, brief glow on scroll). Designed for one row per group; multiple toggled-on rows still work but the hierarchy weakens.',
                 ),
             ),
         ),
