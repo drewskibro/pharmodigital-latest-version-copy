@@ -139,7 +139,18 @@ if ( empty( $cards ) ) {
                             <?php echo wp_get_attachment_image( $image_id, 'full', false, array(
                                 'alt'     => esc_attr( $title ),
                                 'loading' => 'lazy',
-                                'sizes'   => '(max-width: 768px) 100vw, 33vw',
+                                // Sizes hint matches actual rendered width:
+                                // - mobile: full viewport (~390px display)
+                                // - tablet at 2-col break: half viewport
+                                // - desktop 3-col: card max-width ~380-400px
+                                // The previous 33vw advertised 640px+ on
+                                // wide monitors, causing the browser to load
+                                // an oversized srcset variant and then
+                                // aggressively downscale it to the actual
+                                // ~340-380px card width — visible as
+                                // softness on Retina desktops while mobile
+                                // (where 100vw matches reality) stayed crisp.
+                                'sizes'   => '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px',
                             ) ); ?>
                         <?php else : ?>
                             <div class="two-paths-card-image-placeholder" aria-hidden="true">
