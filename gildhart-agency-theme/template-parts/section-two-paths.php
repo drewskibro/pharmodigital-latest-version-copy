@@ -136,9 +136,10 @@ if ( empty( $cards ) ) {
                 <div class="<?php echo esc_attr( $card_classes ); ?>">
                     <div class="two-paths-card-image">
                         <?php if ( $image_id ) : ?>
-                            <?php echo wp_get_attachment_image( $image_id, 'large', false, array(
+                            <?php echo wp_get_attachment_image( $image_id, 'full', false, array(
                                 'alt'     => esc_attr( $title ),
                                 'loading' => 'lazy',
+                                'sizes'   => '(max-width: 768px) 100vw, 33vw',
                             ) ); ?>
                         <?php else : ?>
                             <div class="two-paths-card-image-placeholder" aria-hidden="true">

@@ -1515,14 +1515,26 @@ a.featured-cta-card:hover .featured-cta-link::after {
   max-width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 .two-paths-card--hero .two-paths-card-image {
   height: 220px;
   background: rgba(255, 255, 255, 0.04);
 }
+/* Featured (hero) card images are deliberate product mockups with
+ * their own designed backgrounds (laptop on dark canvas, etc.).
+ * object-fit: contain lets the asset show in full rather than being
+ * cropped to fill — preserves the composition the asset was built
+ * for. Any letterbox space blends with the card's own dark ground. */
+.two-paths-card--hero .two-paths-card-image img {
+  object-fit: contain;
+}
 .two-paths-card--dark .two-paths-card-image {
   background: rgba(255, 255, 255, 0.04);
+}
+.two-paths-card--dark .two-paths-card-image img {
+  object-fit: contain;
 }
 
 /* Placeholder shown when no image is uploaded. Uses each card's tone so
