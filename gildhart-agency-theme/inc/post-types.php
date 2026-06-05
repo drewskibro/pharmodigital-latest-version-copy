@@ -77,11 +77,26 @@ function gildhart_seed_web_pro_elite_service() {
     if ( ! post_type_exists( 'service' ) ) {
         return;
     }
-    if ( ! get_page_by_path( 'web-pro-elite', OBJECT, 'service' ) ) {
+    // Seed a service post for The Build (historically called
+    // WebPro Elite — same offering, renamed for clarity to match
+    // the "Done For You · The Build" label used on the homepage
+    // pricing card). The old web-pro-elite post is auto-detected
+    // and renamed in place to avoid duplicate seeding on sites
+    // that already have the legacy slug.
+    $legacy = get_page_by_path( 'web-pro-elite', OBJECT, 'service' );
+    if ( $legacy ) {
+        // Rename the legacy post in place rather than creating a
+        // duplicate — preserves all ACF saved data attached to it.
+        wp_update_post( array(
+            'ID'         => $legacy->ID,
+            'post_name'  => 'the-build',
+            'post_title' => 'The Build',
+        ) );
+    } elseif ( ! get_page_by_path( 'the-build', OBJECT, 'service' ) ) {
         wp_insert_post( array(
             'post_type'   => 'service',
-            'post_name'   => 'web-pro-elite',
-            'post_title'  => 'WebPro Elite',
+            'post_name'   => 'the-build',
+            'post_title'  => 'The Build',
             'post_status' => 'publish',
         ) );
     }
@@ -213,7 +228,7 @@ add_filter( 'request', 'gildhart_service_request_filter' );
  * values always win; only empty / null values are backfilled.
  *
  * Defaults are slug-aware: each service product (`the-playbook`, `the-agent`,
- * `web-pro-elite`, …) has its own defaults map. The active map is picked from
+ * `the-build`, …) has its own defaults map. The active map is picked from
  * the post slug (post_name); unknown slugs fall back to The Playbook so a
  * fresh service still renders complete copy.
  *
@@ -323,9 +338,9 @@ function gildhart_service_defaults_by_slug() {
             'service_closing_secure_note'      => 'Payments processed securely via Stripe.',
             'service_closing_joining_note'     => 'Joining 50+ practices across the UK, US, and beyond.',
         ),
-        'web-pro-elite' => array(
+        'the-build' => array(
             // Hero
-            'service_hero_eyebrow'             => 'WebPro Elite',
+            'service_hero_eyebrow'             => 'The Build',
             'service_hero_title'               => "Your last agency built a website.\nYours isn't generating patients.\nOurs will.",
             'service_hero_subtitle'            => 'Superior Pharmacy is on track for £500k this year. The website did that. Built on Claude Code, architected for AI search from day one. Zero ad spend.',
             'service_hero_cta_primary_label'   => 'See The Live Builds',
@@ -398,9 +413,11 @@ function gildhart_service_section_roster( $slug ) {
             // testimonials | proof row + pricing + form on the right).
             'closing-offer',
         ),
-        'web-pro-elite' => array(
-            // Built section-by-section. Append slugs here as each WebPro
-            // Elite section is implemented (portfolio, package, etc.).
+        'the-build' => array(
+            // Internal section template names retain the historical
+            // wpe-* prefix (template files weren't renamed to avoid
+            // orphaning ACF saved data keyed against the WPE field
+            // groups). Same offering, just rebranded externally.
             'hero', 'logo-bar', 'wpe-intro', 'wpe-portfolio', 'wpe-package', 'wpe-closing',
         ),
     );

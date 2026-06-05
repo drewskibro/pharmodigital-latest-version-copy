@@ -23,7 +23,7 @@ if ( ! gh_field( 'service_wpe_package_show', 1 ) ) {
     return;
 }
 
-$eyebrow  = gh_field( 'service_wpe_package_eyebrow',  'What WebPro Elite Is' );
+$eyebrow  = gh_field( 'service_wpe_package_eyebrow',  'What The Build Is' );
 $headline = gh_field( 'service_wpe_package_headline', "Every Other Agency Builds You a Website.\nWe Build You a Patient Acquisition Engine." );
 $subhead  = gh_field( 'service_wpe_package_subhead',  'Every other agency builds you a website. We build you a website that Google ranks, ChatGPT cites, and patients find. That\'s not a feature. That\'s the entire architecture.' );
 

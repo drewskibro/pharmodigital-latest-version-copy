@@ -18,7 +18,7 @@ if ( ! gh_field( 'service_wpe_closing_show', 1 ) ) {
 
 $eyebrow  = gh_field( 'service_wpe_closing_eyebrow', 'The Investment' );
 $headline = gh_field( 'service_wpe_closing_headline', "Scoped To Your Practice.\nPriced To Pay For Itself." );
-$body     = gh_field( 'service_wpe_closing_body', "WebPro Elite isn't a standard web package. Every build is scoped to your specific services, your market, and the AI search landscape you're competing in.\n\nOne fixed project fee. No retainer. No ongoing monthly charges. The website and the AI search infrastructure — both yours, forever." );
+$body     = gh_field( 'service_wpe_closing_body', "The Build isn't a standard web package. Every build is scoped to your specific services, your market, and the AI search landscape you're competing in.\n\nOne fixed project fee. No retainer. No ongoing monthly charges. The website and the AI search infrastructure — both yours, forever." );
 
 $pricing_eyebrow = gh_field( 'service_wpe_closing_pricing_eyebrow', 'Custom-Scoped Pricing' );
 $pricing_detail  = gh_field( 'service_wpe_closing_pricing_detail',  'Every project is priced to your services, your market, and your timeline. We scope before we quote — no surprise costs, no scope creep.' );

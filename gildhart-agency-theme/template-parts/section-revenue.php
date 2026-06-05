@@ -40,7 +40,7 @@ $close_final      = gh_field( 'revenue_close_final', 'The window is open. The pr
 $cta1_label       = gh_field( 'revenue_close_cta_primary_label', "See If You're On The AI Shortlist →" );
 $cta1_url         = gh_field( 'revenue_close_cta_primary_url', home_url( '/the-playbook/' ) );
 $cta2_label       = gh_field( 'revenue_close_cta_secondary_label', 'See What We Build →' );
-$cta2_url         = gh_field( 'revenue_close_cta_secondary_url', home_url( '/web-pro-elite/' ) );
+$cta2_url         = gh_field( 'revenue_close_cta_secondary_url', home_url( '/the-build/' ) );
 
 if ( ! $headline && empty( $cards ) && ! $close_headline ) {
     return;
