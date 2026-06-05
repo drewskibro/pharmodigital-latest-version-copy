@@ -91,7 +91,7 @@ function gildhart_render_reset_page() {
         <hr>
 
         <h2 style="margin-top: 2rem;">Reset Service Pages Content</h2>
-        <p>Clears every saved ACF value across all Service posts (Agent, Playbook, WebPro Elite — and any others). Every section on every service page will re-render from the theme defaults.</p>
+        <p>Clears every saved ACF value across all Service posts (Agent, Playbook, The Build — and any others). Every section on every service page will re-render from the theme defaults.</p>
         <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('This will erase all saved ACF content across every Service post. Continue?');">
             <input type="hidden" name="action" value="gildhart_reset_service" />
             <?php wp_nonce_field( 'gildhart_reset_service', '_gh_reset_nonce' ); ?>

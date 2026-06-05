@@ -268,7 +268,7 @@
  * Drop the card treatment, multiply the white into the cream gradient
  * so the frames float, and cap the rendered height as a safety so a
  * very tall export can't blow out the row. */
-.service-web-pro-elite .svc-hero-image img {
+.service-the-build .svc-hero-image img {
   border-radius: 0;
   box-shadow: none;
   object-fit: contain;
@@ -289,15 +289,15 @@
  * this override would beat the mobile rule on specificity and leave
  * the copy squashed in a 45% column. */
 @media (min-width: 961px) {
-  .service-web-pro-elite .svc-hero-inner {
+  .service-the-build .svc-hero-inner {
     grid-template-columns: 1fr 1.25fr;
     align-items: center;
   }
-  .service-web-pro-elite .svc-hero-image {
+  .service-the-build .svc-hero-image {
     align-self: center;
   }
 }
-.service-web-pro-elite .svc-hero-stats {
+.service-the-build .svc-hero-stats {
   border-bottom: none;
   padding-bottom: 0;
 }
@@ -306,11 +306,11 @@
  * Overrides the global .svc-hero-image { display: none } at ≤960px
  * since the portrait image works naturally in a single-column flow. */
 @media (max-width: 960px) {
-  .service-web-pro-elite .svc-hero-image {
+  .service-the-build .svc-hero-image {
     display: block;
     margin-top: 0.5rem;
   }
-  .service-web-pro-elite .svc-hero-image img {
+  .service-the-build .svc-hero-image img {
     max-height: none;
   }
 }

@@ -62,7 +62,7 @@ if ( empty( $cards ) ) {
             'url_label'  => 'superiorpharmacy.co.uk',
             'url'        => 'https://superiorpharmacy.co.uk',
             'image'      => 0,
-            'outcome'    => 'Superior Pharmacy ranks page one on Google for "best Mounjaro provider UK" — ahead of Med Express and major national operators. Built on WebPro Elite. First ChatGPT sale within 48 hours of launch. Now on track for £500k this year. Two-person team. No ads. No agency retainer.',
+            'outcome'    => 'Superior Pharmacy ranks page one on Google for "best Mounjaro provider UK" — ahead of Med Express and major national operators. Built on The Build. First ChatGPT sale within 48 hours of launch. Now on track for £500k this year. Two-person team. No ads. No agency retainer.',
             'highlights' => array(
                 'Page one Google — "best Mounjaro provider UK"',
                 '50% of all revenue now from AI search',

@@ -26,14 +26,14 @@ if ( ! gh_field( 'service_wpe_intro_show', 1 ) ) {
     return;
 }
 
-$eyebrow  = gh_field( 'service_wpe_intro_eyebrow',  'What WebPro Elite Is' );
+$eyebrow  = gh_field( 'service_wpe_intro_eyebrow',  'What The Build Is' );
 $headline = gh_field( 'service_wpe_intro_headline', 'Every Other Agency Builds You a Website. We Build You a Patient Acquisition Engine.' );
 
 $para_1 = gh_field( 'service_wpe_intro_para_1', 'Most healthcare websites were built to exist. They look acceptable. They load. They have a contact form. They were built for a version of the internet that no longer works the way it did.' );
 
 $interrupt = gh_field( 'service_wpe_intro_interrupt', 'Google still matters. But Google now surfaces AI answers before it surfaces websites. ChatGPT, Claude, and Perplexity are where patients go next. And most healthcare websites aren\'t built to appear in any of them.' );
 
-$para_2 = gh_field( 'service_wpe_intro_para_2', 'WebPro Elite is built on Claude Code — the same AI infrastructure that powers the most advanced content systems in the world. Every page is structured to be cited by AI platforms. Every service is architected to answer the exact questions patients are asking right now.' );
+$para_2 = gh_field( 'service_wpe_intro_para_2', 'The Build is built on Claude Code — the same AI infrastructure that powers the most advanced content systems in the world. Every page is structured to be cited by AI platforms. Every service is architected to answer the exact questions patients are asking right now.' );
 
 $closing = gh_field( 'service_wpe_intro_closing', "The website is the foundation.\nThe framework is what generates revenue.\nYou get both." );
 
@@ -55,7 +55,7 @@ if ( empty( $cards ) ) {
             'figure'         => '£500k',
             'client'         => 'Superior Pharmacy',
             'stat'           => 'On Track For £500k This Year',
-            'desc'           => 'Built on WebPro Elite. First ChatGPT sale within 48 hours of launch. Now 50% of all revenue comes from AI search. Two-person team. No ad spend.',
+            'desc'           => 'Built on The Build. First ChatGPT sale within 48 hours of launch. Now 50% of all revenue comes from AI search. Two-person team. No ad spend.',
             'featured'       => 1,
             'flagship_label' => 'Flagship Result',
         ),
@@ -63,7 +63,7 @@ if ( empty( $cards ) ) {
             'figure'         => '#1 UK',
             'client'         => 'Puri Pharmacy',
             'stat'           => '#1 UK Mounjaro Provider',
-            'desc'           => 'Independent pharmacy outranking national chains for their most valuable search terms. Built from scratch on WebPro Elite. Now taking that presence national.',
+            'desc'           => 'Independent pharmacy outranking national chains for their most valuable search terms. Built from scratch on The Build. Now taking that presence national.',
             'featured'       => 0,
             'flagship_label' => '',
         ),

@@ -27,7 +27,7 @@ if ( empty( $stats ) ) {
     // Slug-aware fallback — repeater rows can't be backfilled via the
     // acf/load_value defaults map, so per-product stats live here.
     $hero_slug = get_post_field( 'post_name', get_the_ID() );
-    if ( 'web-pro-elite' === $hero_slug ) {
+    if ( 'the-build' === $hero_slug ) {
         $stats = array(
             array( 'number' => '£50M+', 'label' => 'Revenue generated across our client network' ),
             array( 'number' => '1000+', 'label' => 'AI search rankings won' ),
