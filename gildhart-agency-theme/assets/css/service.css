@@ -665,7 +665,12 @@
  * room separates it from the surrounding paragraphs. */
 .svc-ps-narrative-evidence {
   margin: 2.75rem auto;
-  max-width: 600px;
+  /* Match the parent .svc-ps-narrative-inner reading column (720px)
+   * so the screenshot sits full-width within the editorial column
+   * rather than collapsing narrower than the body paragraphs that
+   * frame it — that mismatch was what made the image look visually
+   * shrunk on desktop while mobile (which uses 100vw) read correctly. */
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   align-items: center;

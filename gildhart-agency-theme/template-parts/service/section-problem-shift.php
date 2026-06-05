@@ -203,7 +203,7 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                                                     // figure cap) so the browser picks the srcset
                                                     // variant closest to 600px * DPR rather than
                                                     // loading an oversized source and downscaling.
-                                                    'sizes'   => '(max-width: 640px) 100vw, 600px',
+                                                    'sizes'   => '(max-width: 640px) 100vw, 720px',
                                                 ) ); ?>
                                             </picture>
                                         <?php else : ?>
@@ -211,7 +211,7 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                                                 'class'   => 'svc-ps-narrative-evidence-image',
                                                 'alt'     => esc_attr( $text ?: $ev_label ),
                                                 'loading' => 'lazy',
-                                                'sizes'   => '(max-width: 640px) 100vw, 600px',
+                                                'sizes'   => '(max-width: 640px) 100vw, 720px',
                                             ) ); ?>
                                         <?php endif; ?>
                                         <?php if ( $text ) : ?>
