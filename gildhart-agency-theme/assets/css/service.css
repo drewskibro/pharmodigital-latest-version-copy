@@ -665,7 +665,7 @@
  * room separates it from the surrounding paragraphs. */
 .svc-ps-narrative-evidence {
   margin: 2.75rem auto;
-  max-width: 760px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
