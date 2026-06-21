@@ -43,6 +43,14 @@ add_action( 'admin_menu', function () {
         'gildhart-reset-content',
         'gildhart_render_reset_page'
     );
+    add_submenu_page(
+        'gildhart-settings',
+        'Integration Status',
+        'Integration Status',
+        'manage_options',
+        'gildhart-integration-status',
+        'gildhart_render_integration_status_page'
+    );
 }, 30 );
 
 /**
@@ -286,3 +294,144 @@ add_action( 'admin_post_gildhart_reset_settings', function () {
     ), admin_url( 'admin.php' ) ) );
     exit;
 } );
+
+/**
+ * Render the Integration Status diagnostic page.
+ *
+ * Read-only summary of every wp-config / theme-config constant the
+ * theme's integrations rely on (Stripe Agent subscriptions, Stripe
+ * Playbook one-time, Make.com WPE waitlist webhook). Designed for
+ * users who don't want to SFTP into wp-config to verify setup —
+ * just shows pass/fail for each constant with a partial masked
+ * preview so secrets stay secret in screenshots.
+ */
+function gildhart_render_integration_status_page() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( 'Insufficient permissions.' );
+    }
+
+    // Helper: mask a secret/key value so it's visible-enough to
+    // confirm "yes a value is here" without exposing it in a
+    // screenshot. e.g. "sk_test_51AB****WXyz".
+    $mask = function ( $value ) {
+        $value = (string) $value;
+        $len   = strlen( $value );
+        if ( $len === 0 ) return '';
+        if ( $len <= 12 ) return str_repeat( '*', $len );
+        return substr( $value, 0, 8 ) . str_repeat( '*', 6 ) . substr( $value, -4 );
+    };
+
+    // Detect Stripe mode from the secret key prefix.
+    $stripe_mode = 'unknown';
+    if ( defined( 'GILDHART_STRIPE_SECRET_KEY' ) && is_string( GILDHART_STRIPE_SECRET_KEY ) ) {
+        if ( 0 === strpos( GILDHART_STRIPE_SECRET_KEY, 'sk_test_' ) ) {
+            $stripe_mode = 'TEST';
+        } elseif ( 0 === strpos( GILDHART_STRIPE_SECRET_KEY, 'sk_live_' ) ) {
+            $stripe_mode = 'LIVE';
+        }
+    }
+
+    // The set of constants this page audits, grouped by integration.
+    $groups = array(
+        'Stripe — Agent + Playbook Checkout' => array(
+            'GILDHART_STRIPE_PUBLISHABLE_KEY' => array(
+                'note' => 'Public key (pk_test_… or pk_live_…). Shipped to the browser.',
+                'mask' => true,
+            ),
+            'GILDHART_STRIPE_SECRET_KEY'      => array(
+                'note' => 'Secret key (sk_test_… or sk_live_…). Server-side only.',
+                'mask' => true,
+            ),
+            'GILDHART_STRIPE_PRICE_AGENT_MONTHLY' => array(
+                'note' => 'Stripe Price ID for the Agent monthly subscription (price_…).',
+                'mask' => false,
+            ),
+            'GILDHART_STRIPE_PRICE_AGENT_ANNUAL'  => array(
+                'note' => 'Stripe Price ID for the Agent annual subscription (price_…).',
+                'mask' => false,
+            ),
+            'GILDHART_STRIPE_PLAYBOOK_AMOUNT'     => array(
+                'note' => 'Playbook one-time amount in pence (e.g. 99500 = £995). Integer, no quotes.',
+                'mask' => false,
+            ),
+        ),
+        'Make.com — WebPro Elite Waitlist' => array(
+            'GILDHART_MAKE_WEBHOOK_WPE_WAITLIST' => array(
+                'note' => 'Make.com custom webhook URL the WPE waitlist form posts to.',
+                'mask' => true,
+            ),
+        ),
+    );
+
+    ?>
+    <div class="wrap">
+        <h1>Integration Status</h1>
+        <p style="font-size: 14px; max-width: 760px;">
+            Read-only diagnostic. Shows which integration constants are defined in <code>wp-config.php</code>.
+            Sensitive values are partially masked so you can safely screenshot this page.
+        </p>
+
+        <?php if ( 'unknown' !== $stripe_mode ) : ?>
+            <p style="font-size: 14px; max-width: 760px;">
+                <strong>Stripe mode:</strong>
+                <span style="display:inline-block;padding:2px 10px;border-radius:4px;font-weight:700;<?php
+                    echo 'TEST' === $stripe_mode
+                        ? 'background:#fff3cd;color:#664d03;'
+                        : 'background:#d1e7dd;color:#0a3622;';
+                ?>"><?php echo esc_html( $stripe_mode ); ?></span>
+                <?php if ( 'TEST' === $stripe_mode ) : ?>
+                    — Stripe is running in test mode. No real charges will go through.
+                <?php else : ?>
+                    — Stripe is running in <strong>live mode</strong>. Real charges will go through.
+                <?php endif; ?>
+            </p>
+        <?php endif; ?>
+
+        <?php foreach ( $groups as $group_label => $constants ) : ?>
+            <h2 style="margin-top: 2rem;"><?php echo esc_html( $group_label ); ?></h2>
+            <table class="widefat striped" style="max-width: 920px;">
+                <thead>
+                    <tr>
+                        <th style="width: 30px;">&nbsp;</th>
+                        <th>Constant</th>
+                        <th>Value</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ( $constants as $const => $meta ) :
+                        $is_defined = defined( $const );
+                        $raw        = $is_defined ? constant( $const ) : '';
+                        $is_set     = $is_defined && '' !== trim( (string) $raw );
+                        $display    = '';
+                        if ( $is_set ) {
+                            if ( ! empty( $meta['mask'] ) ) {
+                                $display = $mask( $raw );
+                            } else {
+                                $display = (string) $raw;
+                            }
+                        }
+                        ?>
+                        <tr>
+                            <td style="font-size: 18px; text-align: center;<?php echo $is_set ? 'color:#198754;' : 'color:#dc3545;'; ?>">
+                                <?php echo $is_set ? '✓' : '✗'; ?>
+                            </td>
+                            <td><code><?php echo esc_html( $const ); ?></code></td>
+                            <td><code style="background: transparent;"><?php echo $is_set ? esc_html( $display ) : '<em style="color:#999;">not set</em>'; ?></code></td>
+                            <td style="color:#666;"><?php echo esc_html( $meta['note'] ); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endforeach; ?>
+
+        <h2 style="margin-top: 2rem;">What to do with these results</h2>
+        <ul style="max-width: 760px;">
+            <li><strong>All green ticks</strong> on the Stripe row → the Agent checkout should work end-to-end. Test purchase next.</li>
+            <li><strong>Any red X in Stripe</strong> → the missing constant needs to be added to <code>wp-config.php</code> above the <code>/* That's all, stop editing! */</code> line.</li>
+            <li><strong>Stripe in TEST mode</strong> → safe to do test purchases with card <code>4242 4242 4242 4242</code>. Flip to LIVE when you're ready to take real payments.</li>
+            <li><strong>Make webhook red X</strong> → the WPE waitlist form will return a friendly 503 error until the constant is added. Doesn't affect Stripe checkout.</li>
+        </ul>
+    </div>
+    <?php
+}
