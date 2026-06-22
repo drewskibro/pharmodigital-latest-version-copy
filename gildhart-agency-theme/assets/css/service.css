@@ -3677,50 +3677,96 @@
 
 /* Editorial callout — emitted as a sibling section right after the
  * dark-navy Live Clients section. Pulls the closing prose out of the
- * navy footer onto its own cream stage so the copy reads as flowing
- * editorial rather than a cramped white-on-navy caption. Narrow
- * reading column (matches the .svc-ps-narrative-inner convention on
- * /the-playbook/) with italic body type at 1.7 line-height.
+ * navy footer onto its own cream stage so the copy reads as a proper
+ * editorial moment rather than a cramped white-on-navy caption.
  *
- * When the footnote ACF value contains blank-line paragraph breaks,
- * the LAST paragraph is split off and rendered as a forest-green
- * climax line — gold hairline rule above, slightly larger type — so
- * the "The building is dark. The revenue isn't." beat lands as the
- * payoff instead of vanishing into the running prose. */
+ * Composition:
+ *   - Gold mono eyebrow ("On Any Given Day") anchors the moment.
+ *   - 760px reading column, italic prose at 1.75rem / 1.55 line-height
+ *     so the vignettes occupy space rather than reading as a footnote.
+ *   - **double-asterisk** spans in the ACF copy render as gold-weighted
+ *     accent words (the temporal spine — midnight, Sunday afternoon,
+ *     morning) so the rhythm of the prose pops.
+ *   - Three-dot gold ornament (4px-6px-4px, middle solid) replaces the
+ *     default WordPress hairline rule — premium brand mark instead of
+ *     a generic divider.
+ *   - Closer renders as a 2rem forest-green pull-quote with each
+ *     sentence on its own line, so "The building is dark." breathes
+ *     before "The revenue isn't." lands.
+ */
 .svc-live-clients-callout {
   background: var(--cream);
-  padding: 5.5rem 2rem 6rem;
+  padding: 6rem 2rem 6.5rem;
   position: relative;
 }
 .svc-live-clients-callout-inner {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
   text-align: center;
 }
+.svc-live-clients-callout-eyebrow {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1.875rem;
+  text-align: center;
+}
 .svc-live-clients-callout-prose {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.5rem;
   font-family: 'Inter', sans-serif;
-  font-size: 1.375rem;
-  line-height: 1.7;
+  font-size: 1.75rem;
+  line-height: 1.55;
   font-style: italic;
   font-weight: 400;
   color: var(--gildhart-text, #2c2a26);
-  letter-spacing: 0.005em;
+  letter-spacing: -0.005em;
 }
 .svc-live-clients-callout-prose:last-of-type {
   margin-bottom: 0;
 }
+.svc-live-clients-callout-mark {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--gildhart-gold);
+  letter-spacing: 0;
+}
+.svc-live-clients-callout-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  margin: 2.5rem 0 2.25rem;
+}
+.svc-live-clients-callout-divider span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gildhart-gold);
+  opacity: 0.55;
+}
+.svc-live-clients-callout-divider span:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  opacity: 1;
+}
 .svc-live-clients-callout-closer {
-  margin: 2.5rem 0 0;
-  padding-top: 2.25rem;
-  border-top: 1px solid rgba(201, 164, 74, 0.45);
+  margin: 0;
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
-  line-height: 1.45;
+  font-size: 2rem;
+  line-height: 1.3;
   font-style: italic;
   font-weight: 500;
   color: var(--gildhart-forest, #1E3D2F);
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
+}
+.svc-live-clients-callout-closer span {
+  display: block;
+}
+.svc-live-clients-callout-closer span + span {
+  margin-top: 0.4rem;
 }
 
 /* Lightbox overlay (shared by all .svc-lightbox-trigger on the page) */
@@ -3830,12 +3876,16 @@
   .svc-carousel-nav { display: none; }
   .svc-live-clients-footnote { font-size: 1rem; padding: 1.5rem 1.5rem 0; }
   .svc-live-clients-callout { padding: 4rem 1.5rem 4.5rem; }
-  .svc-live-clients-callout-prose { font-size: 1.125rem; line-height: 1.65; }
-  .svc-live-clients-callout-closer {
-    font-size: 1.25rem;
-    margin-top: 2rem;
-    padding-top: 1.75rem;
+  .svc-live-clients-callout-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.25rem;
   }
+  .svc-live-clients-callout-prose { font-size: 1.25rem; line-height: 1.5; }
+  .svc-live-clients-callout-divider { margin: 2rem 0 1.75rem; gap: 0.5rem; }
+  .svc-live-clients-callout-divider span { width: 3px; height: 3px; }
+  .svc-live-clients-callout-divider span:nth-child(2) { width: 5px; height: 5px; }
+  .svc-live-clients-callout-closer { font-size: 1.5rem; line-height: 1.3; }
 }
 
 /* ── A1: Why This Exists section ────────────────────────────── */
