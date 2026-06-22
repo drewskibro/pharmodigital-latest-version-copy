@@ -11,6 +11,14 @@
  * by ID — `liveCarouselTrack`, `saLightbox`). Mobile collapses the
  * carousel to a stacked column and hides the arrow nav.
  *
+ * Emits a sibling cream-bg callout section AFTER the navy carousel
+ * to host the footnote prose as an editorial moment (max-width 720px
+ * reading column, larger italic body, generous line-height). If the
+ * footnote contains blank-line-separated paragraphs, the LAST one is
+ * rendered as a forest-green climax line with a gold rule above —
+ * e.g. "The building is dark. The revenue isn't." lands as the
+ * paragraph's payoff instead of bleeding into the running prose.
+ *
  * Reads from per-section ACF group `Service · Live Clients`. Returns
  * early when the show toggle is off OR no cards are populated.
  *
@@ -39,6 +47,22 @@ if ( empty( $cards ) ) {
 }
 if ( empty( $cards ) ) {
     return; // No cards = no carousel
+}
+
+// Split the footnote on blank-line paragraph breaks. If editors leave
+// the final beat ("The building is dark. The revenue isn't.") on its
+// own paragraph it renders as a forest-green climax with a gold rule
+// above; otherwise the whole thing reads as a single prose block.
+$footnote_paras  = array();
+$footnote_closer = '';
+if ( $footnote ) {
+    $paras = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n\r\n|\r\r|\n\n/', $footnote ) ) ) );
+    if ( count( $paras ) > 1 ) {
+        $footnote_closer = array_pop( $paras );
+        $footnote_paras  = $paras;
+    } else {
+        $footnote_paras  = $paras;
+    }
 }
 ?>
 
@@ -98,10 +122,20 @@ if ( empty( $cards ) ) {
         <button class="svc-carousel-btn" id="carouselNext" type="button" aria-label="Next client">→</button>
     </div>
 
-    <?php if ( $footnote ) : ?>
-        <p class="svc-live-clients-footnote"><?php echo esc_html( $footnote ); ?></p>
-    <?php endif; ?>
 </section>
+
+<?php if ( ! empty( $footnote_paras ) || $footnote_closer ) : ?>
+    <section class="svc-live-clients-callout">
+        <div class="svc-live-clients-callout-inner">
+            <?php foreach ( $footnote_paras as $para ) : ?>
+                <p class="svc-live-clients-callout-prose"><?php echo esc_html( $para ); ?></p>
+            <?php endforeach; ?>
+            <?php if ( $footnote_closer ) : ?>
+                <p class="svc-live-clients-callout-closer"><?php echo esc_html( $footnote_closer ); ?></p>
+            <?php endif; ?>
+        </div>
+    </section>
+<?php endif; ?>
 
 <?php // Shared lightbox overlay for any .svc-lightbox-trigger on the page. ?>
 <div class="svc-lightbox-overlay" id="saLightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
