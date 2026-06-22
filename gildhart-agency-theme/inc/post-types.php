@@ -387,12 +387,17 @@ function gildhart_service_section_roster( $slug ) {
         'the-agent' => array(
             // A0
             'hero', 'logo-bar',
-            // A1
-            'live-clients', 'why-this-exists',
+            // A1 — three-beat proof escalation. Visual proof (carousel of
+            // live client sites) → human proof (Rahul testimonial, named
+            // and on-the-record) → editorial proof (the "On Any Given
+            // Day" callout, vignettes from three named practices). All
+            // three resolve BEFORE the page pivots into the problem
+            // framing of Why This Exists.
+            'live-clients', 'testimonial', 'live-callout', 'why-this-exists',
             // A2
             'track-record', 'sales-agent-pro',
             // A3
-            'testimonial', 'intelligence-engine',
+            'intelligence-engine',
             // A4 — editorial-proof was retired from this roster as of the
             // SA Pro stats consolidation. Its proofs (£200K Southdowns,
             // 50% Superior, 25% Ealing, 100K network) are now redundant
