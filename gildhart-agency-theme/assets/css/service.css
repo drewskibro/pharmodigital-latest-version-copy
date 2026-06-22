@@ -4258,19 +4258,19 @@
   line-height: 1.55;
 }
 .svc-why-block-bullets li::before {
+  /* Gold horizontal dash replaces the forest-green tick-in-circle.
+   * The 18px width matches the legacy circle so text alignment doesn't
+   * shift; the dash sits at the cap-height of the first line (margin-
+   * top tuned for the 17px / 1.55 lh body) so it reads as a marker
+   * next to the text rather than floating mid-row. Deep gold (#8B6914)
+   * for legibility — the lighter brand gold washes out at 2px. */
   content: '';
   display: block;
   width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(30, 61, 47, 0.10);
-  border: 1.5px solid rgba(30, 61, 47, 0.35);
+  height: 2px;
+  background: var(--svc-system-gold-deep, #8B6914);
   flex-shrink: 0;
-  margin-top: 3px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4.5 8l2.5 2.5 4.5-5' stroke='%231E3D2F' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-size: 14px;
-  background-repeat: no-repeat;
-  background-position: center;
+  margin-top: 11px;
 }
 .svc-why-block-bullets li strong {
   color: var(--navy);
