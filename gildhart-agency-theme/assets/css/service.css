@@ -3696,7 +3696,7 @@
  */
 .svc-live-clients-callout {
   background: var(--cream);
-  padding: 6rem 2rem 6.5rem;
+  padding: 4.5rem 2rem 5rem;
   position: relative;
 }
 .svc-live-clients-callout-inner {
@@ -3706,12 +3706,14 @@
 }
 .svc-live-clients-callout-eyebrow {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
-  margin: 0 0 1.875rem;
+  /* Deep gold (#8B6914) reads cleanly on cream where the lighter brand
+   * gold turned the eyebrow into a squint at small sizes. */
+  color: var(--svc-system-gold-deep, #8B6914);
+  margin: 0 0 1.5rem;
   text-align: center;
 }
 .svc-live-clients-callout-prose {
@@ -3875,11 +3877,11 @@
   .svc-live-card { flex: 0 0 auto; }
   .svc-carousel-nav { display: none; }
   .svc-live-clients-footnote { font-size: 1rem; padding: 1.5rem 1.5rem 0; }
-  .svc-live-clients-callout { padding: 4rem 1.5rem 4.5rem; }
+  .svc-live-clients-callout { padding: 3.25rem 1.5rem 3.75rem; }
   .svc-live-clients-callout-eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    margin-bottom: 1.25rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 1.125rem;
   }
   .svc-live-clients-callout-prose { font-size: 1.25rem; line-height: 1.5; }
   .svc-live-clients-callout-divider { margin: 2rem 0 1.75rem; gap: 0.5rem; }
