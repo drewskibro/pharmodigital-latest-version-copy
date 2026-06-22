@@ -5432,7 +5432,7 @@
 .svc-intel-card {
   background: white;
   border-radius: 16px;
-  padding: 1.5rem 1.75rem 1.875rem 2.875rem;
+  padding: 2.125rem 2.5rem 2.625rem 2.875rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 6px 24px rgba(13, 26, 18, 0.06), 0 1px 3px rgba(13, 26, 18, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -5490,8 +5490,8 @@
  * dot is anchored on the left edge, sitting on the card's gold line. */
 .svc-intel-card-moment {
   position: relative;
-  padding-bottom: 1.125rem;
-  margin-bottom: 1.125rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
   border-bottom: 1px solid rgba(13, 26, 18, 0.05);
 }
 .svc-intel-card-moment:last-child {
@@ -5524,14 +5524,22 @@
 .svc-intel-card-label--intel   { color: var(--gildhart-gold); }
 
 .svc-intel-card-text {
-  font-size: 0.9375rem;
+  /* Patient Query — the hook of each card. Largest, heaviest, italic
+   * (anchors it as the real quote it is). Sets the visual centre of
+   * gravity above the supporting Agent Outcome below. */
+  font-size: 1.125rem;
   color: var(--navy);
-  line-height: 1.6;
-  font-weight: 500;
+  line-height: 1.55;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.005em;
   margin: 0;
 }
 .svc-intel-card-outcome {
-  font-size: 0.9375rem;
+  /* Agent Outcome — supporting detail. Drops below Patient Query in
+   * scale to create hierarchy; the eye reads quote → outcome as
+   * problem → solution. */
+  font-size: 0.875rem;
   color: var(--gray-600);
   line-height: 1.6;
   margin: 0;
@@ -5544,7 +5552,7 @@
 .svc-intel-card-asset {
   background: linear-gradient(135deg, #0f172a 0%, #131c33 60%, #18213a 100%);
   border-radius: 10px;
-  padding: 1rem 1.125rem 1.125rem;
+  padding: 1.25rem 1.375rem 1.375rem;
   margin-top: 0.5rem;
   position: relative;
   overflow: hidden;
@@ -5562,7 +5570,7 @@
 .svc-intel-card-asset-chip {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.20em;
   text-transform: uppercase;
@@ -5572,7 +5580,7 @@
   z-index: 1;
 }
 .svc-intel-card-asset-body {
-  font-size: 0.825rem;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.55;
   margin: 0;
