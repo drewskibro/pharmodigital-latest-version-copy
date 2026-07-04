@@ -3,7 +3,8 @@
  * Header — Gildhart Agency.
  *
  * Renders the fixed top navigation:
- *  - Logo (ACF option → custom_logo → SVG fallback)
+ *  - Brand wordmark — cream Outfit text + gold ™, matching the footer
+ *    (the circular crest read as busy/illegible at nav scale)
  *  - "Who We Help" dropdown (ACF repeater of audience segments)
  *  - "Our Work" dropdown (auto-populated from `service` CPT — Phase 2)
  *  - "The Proof" dropdown (auto-populated from `case_study` CPT — Phase 2)
@@ -14,7 +15,6 @@
  * @package Gildhart
  */
 
-$logo_url       = gh_logo_url();
 $agency_name    = gh_agency_name();
 $home_url       = esc_url( home_url( '/' ) );
 $about_url      = esc_url( home_url( '/about/' ) );
@@ -59,7 +59,7 @@ $case_studies_query = new WP_Query( array(
 <nav class="nav" id="mainNav">
     <div class="nav-inner">
         <a href="<?php echo $home_url; ?>" class="nav-brand" aria-label="<?php echo esc_attr( $agency_name ); ?>">
-            <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $agency_name ); ?>" width="80" height="80" loading="eager" decoding="async" fetchpriority="high">
+            <span class="nav-brand-wordmark"><?php echo esc_html( $agency_name ); ?><sup class="nav-brand-tm">&trade;</sup></span>
         </a>
 
         <div class="nav-links">

@@ -40,20 +40,28 @@
   position: relative;
   padding: 0.75rem 0 0.25rem;
 }
-.nav-brand img {
-  width: auto;
-  height: auto;
-  max-width: 150px;
-  max-height: 150px;
-  object-fit: contain;
-  display: block;
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 8px rgba(201, 164, 74, 0.25));
-  transition: filter 0.3s ease, transform 0.3s ease;
+/* Cream Outfit wordmark, matching the footer brand. Sized large to
+ * hold the centred hero slot the circular crest used to occupy; the
+ * ™ is set in gold and superscripted like the footer. */
+.nav-brand-wordmark {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--gildhart-cream);
+  line-height: 1;
+  white-space: nowrap;
+  transition: font-size 0.3s ease, color 0.3s ease;
 }
-.nav-brand:hover img {
-  filter: drop-shadow(0 4px 16px rgba(201, 164, 74, 0.4));
-  transform: scale(1.04);
+.nav-brand-tm {
+  font-size: 0.4em;
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 0.12em;
+  color: var(--gildhart-gold);
+}
+.nav-brand:hover .nav-brand-wordmark {
+  color: #ffffff;
 }
 
 .nav-links,
@@ -128,12 +136,11 @@
 
 /* ── Shrink-on-scroll (desktop only) ── */
 @media (min-width: 769px) {
-  .nav-brand img { transition: max-width 0.3s ease, max-height 0.3s ease, filter 0.3s ease; }
   .nav-brand { transition: padding 0.3s ease; }
   .nav-links,
   .nav-links-right { transition: padding-bottom 0.3s ease, gap 0.3s ease; }
   .nav.nav-scrolled .nav-brand { padding: 0.25rem 0 0; }
-  .nav.nav-scrolled .nav-brand img { max-width: 90px; max-height: 90px; }
+  .nav.nav-scrolled .nav-brand-wordmark { font-size: 1.6rem; }
   .nav.nav-scrolled .nav-links,
   .nav.nav-scrolled .nav-links-right { padding-bottom: 0.5rem; gap: 1.5rem; }
 }
@@ -526,7 +533,7 @@
 
 /* ── Tablet ── */
 @media (max-width: 1024px) {
-  .nav-brand img { max-width: 120px; max-height: 120px; }
+  .nav-brand-wordmark { font-size: 2.15rem; }
   .nav-brand { padding: 0.5rem 0 0.125rem; }
   .nav-links,
   .nav-links-right { gap: 1.25rem; }
@@ -550,7 +557,7 @@
     grid-row: unset;
     padding: 10px 0 14px;
   }
-  .nav-brand img { max-width: 110px; max-height: 110px; }
+  .nav-brand-wordmark { font-size: 2rem; }
   .nav-hamburger {
     position: absolute;
     right: 1.25rem;
