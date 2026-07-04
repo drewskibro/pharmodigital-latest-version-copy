@@ -3,15 +3,23 @@
  * Service: Playing Field section.
  *
  * Cream section that frames the underlying market shift: AI search has
- * killed the brand-authority moat. Two side-by-side comparison columns
- * — "The Old Game" vs "The New Reality" — with bullet rows + a closing
- * caption per column. A dark navy callout strip below carries the
- * "level playing field" rallying line with a gold-highlighted second
- * line.
+ * killed the brand-authority moat. Renders a single full-width
+ * editorial narrative in a centred 780px reading column — clean prose
+ * on the section background, no card or box.
+ *
+ * Narrative treatment (parsed from the `service_playing_field_narrative`
+ * textarea, paragraphs split on blank lines):
+ *   - A paragraph wrapped in **double asterisks** becomes the bold
+ *     pivot line — the hinge of the argument.
+ *   - The last paragraph auto-italicises as the closing verdict.
+ *
+ * The legacy two-column "Old Game vs New Reality" comparison + the
+ * navy conclusion callout were retired in favour of the narrative;
+ * their ACF fields (old_rows / new_rows / captions / callout) remain
+ * registered but dormant so historical data isn't orphaned.
  *
  * Reads from per-section ACF group `Service · Playing Field`. Returns
- * early when the show toggle is off. Falls back to The Playbook copy
- * from the static spec when ACF fields are empty.
+ * early when the show toggle is off.
  *
  * @package Gildhart
  */
@@ -24,34 +32,16 @@ $eyebrow     = gh_field( 'service_playing_field_eyebrow',     'The Shift Nobody 
 $headline    = gh_field( 'service_playing_field_headline',    "AI Search Doesn't Care How Big Your Budget Is." );
 $subheadline = gh_field( 'service_playing_field_subheadline', 'Traditional search was rigged. Boots spent years building a domain authority you were never going to compete with. Then AI search arrived — and stopped caring about any of it.' );
 
-$old_label   = gh_field( 'service_playing_field_old_label',   'The Old Game' );
-$old_caption = gh_field( 'service_playing_field_old_caption', "Boots, Bupa, Superdrug — they own traditional search. You were never going to win that game. Nobody told you there was a different one." );
-$old_rows    = get_field( 'service_playing_field_old_rows' );
-if ( empty( $old_rows ) ) {
-    $old_rows = array(
-        array( 'text' => "Boots wins. You don't. Budget decides." ),
-        array( 'text' => 'Six-figure ad spend just to stay visible' ),
-        array( 'text' => "Decades of link-building you'll never catch up on" ),
-        array( 'text' => "Superdrug's name does the ranking for them" ),
-        array( 'text' => "Five years minimum before you're competitive" ),
-    );
-}
+$narrative = gh_field( 'service_playing_field_narrative', "For fifty years, Boots won because they could afford to. Six-figure ad spend. Decades of link-building. A brand name that Google trusted on sight. You were always starting five years behind.\n\n**Then AI search arrived. And it doesn't know who Boots is.**\n\nIt knows who answered the question best. Who structured their content correctly. Who built their pages the way AI actually reads them.\n\nEaling Travel Clinic did that. Six weeks later they were above Boots across London. Above Superdrug. Above NHS.uk. Sachin hadn't changed his services, his prices, or his location. He'd changed the infrastructure.\n\nThat's the only thing that changed. And it changed everything." );
 
-$new_label   = gh_field( 'service_playing_field_new_label',   'The New Reality' );
-$new_caption = gh_field( 'service_playing_field_new_caption', 'Ealing Travel Clinic outranked Boots in 6 weeks. No ad spend. No legacy domain. Just the right content — built the right way.' );
-$new_rows    = get_field( 'service_playing_field_new_rows' );
-if ( empty( $new_rows ) ) {
-    $new_rows = array(
-        array( 'text' => 'Whoever answers best gets cited — full stop' ),
-        array( 'text' => 'One well-structured page beats a decade of backlinks' ),
-        array( 'text' => "Google's AI reads your content, not your company age" ),
-        array( 'text' => 'The most useful clinic wins, not the biggest one' ),
-        array( 'text' => 'Ealing went from nothing to cited in 6 weeks' ),
-    );
-}
-
-$callout_main      = gh_field( 'service_playing_field_callout_text',      "Same foundation Ealing used. Same foundation Superior used. Same foundation you're about to have. The playing field didn't level itself — but it levelled." );
-$callout_highlight = gh_field( 'service_playing_field_callout_highlight', '' );
+// Split the narrative on blank lines. Each paragraph renders as its
+// own <p>; the last one italicises as the closing verdict, and any
+// paragraph fully wrapped in **double asterisks** becomes the bold
+// pivot line (markers stripped).
+$narrative_paras = $narrative
+    ? array_values( array_filter( array_map( 'trim', preg_split( '/\r\n\r\n|\r\r|\n\n/', $narrative ) ) ) )
+    : array();
+$last_index = count( $narrative_paras ) - 1;
 ?>
 
 <section class="svc-playing-field">
@@ -68,56 +58,23 @@ $callout_highlight = gh_field( 'service_playing_field_callout_highlight', '' );
             <?php endif; ?>
         </div>
 
-        <div class="svc-pf-compare">
-            <div class="svc-pf-col svc-pf-col--old">
-                <?php if ( $old_label ) : ?>
-                    <div class="svc-pf-col-label"><?php echo esc_html( $old_label ); ?></div>
-                <?php endif; ?>
-                <div class="svc-pf-col-body">
-                    <?php foreach ( $old_rows as $row ) :
-                        $text = $row['text'] ?? '';
-                        if ( ! $text ) continue; ?>
-                        <div class="svc-pf-row">
-                            <span class="svc-pf-dot" aria-hidden="true"></span>
-                            <p class="svc-pf-row-text"><?php echo esc_html( $text ); ?></p>
-                        </div>
+        <?php if ( ! empty( $narrative_paras ) ) : ?>
+            <div class="svc-pf-narrative">
+                <div class="svc-pf-narrative-inner">
+                    <?php foreach ( $narrative_paras as $i => $para ) :
+                        $is_pivot   = ( '**' === substr( $para, 0, 2 ) && '**' === substr( $para, -2 ) );
+                        $is_verdict = ( $i === $last_index );
+                        if ( $is_pivot ) {
+                            $para = trim( substr( $para, 2, -2 ) );
+                        }
+                        $class = 'svc-pf-narrative-p';
+                        if ( $is_pivot )   $class .= ' is-pivot';
+                        if ( $is_verdict ) $class .= ' is-verdict';
+                        ?>
+                        <p class="<?php echo esc_attr( $class ); ?>"><?php echo esc_html( $para ); ?></p>
                     <?php endforeach; ?>
                 </div>
-                <?php if ( $old_caption ) : ?>
-                    <div class="svc-pf-col-caption"><?php echo wp_kses_post( $old_caption ); ?></div>
-                <?php endif; ?>
             </div>
-
-            <div class="svc-pf-col svc-pf-col--new">
-                <?php if ( $new_label ) : ?>
-                    <div class="svc-pf-col-label"><?php echo esc_html( $new_label ); ?></div>
-                <?php endif; ?>
-                <div class="svc-pf-col-body">
-                    <?php foreach ( $new_rows as $row ) :
-                        $text = $row['text'] ?? '';
-                        if ( ! $text ) continue; ?>
-                        <div class="svc-pf-row">
-                            <span class="svc-pf-dot" aria-hidden="true"></span>
-                            <p class="svc-pf-row-text"><?php echo esc_html( $text ); ?></p>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <?php if ( $new_caption ) : ?>
-                    <div class="svc-pf-col-caption"><?php echo wp_kses_post( $new_caption ); ?></div>
-                <?php endif; ?>
-            </div>
-        </div>
-
-        <?php if ( $callout_main || $callout_highlight ) : ?>
-            <p class="svc-pf-conclusion">
-                <?php if ( $callout_main ) : ?>
-                    <?php echo esc_html( $callout_main ); ?>
-                <?php endif; ?>
-                <?php if ( $callout_main && $callout_highlight ) : ?> <?php endif; ?>
-                <?php if ( $callout_highlight ) : ?>
-                    <span><?php echo esc_html( $callout_highlight ); ?></span>
-                <?php endif; ?>
-            </p>
         <?php endif; ?>
     </div>
 </section>

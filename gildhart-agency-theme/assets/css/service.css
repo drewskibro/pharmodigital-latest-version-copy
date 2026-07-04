@@ -1292,11 +1292,54 @@
 }
 .svc-pf-conclusion span { color: var(--gildhart-green); font-weight: 700; }
 
+/* Full-width editorial narrative — replaces the retired two-column
+ * "Old Game vs New Reality" compare grid. A centred 780px reading
+ * column of left-aligned prose sitting directly on the section's cream
+ * background: no card, no border, no box. Matches the problem-shift
+ * editorial narrative elsewhere on the Playbook page (navy body) so
+ * the two long-form beats read as one voice.
+ *   - .is-pivot   — the **wrapped** hinge line: navy, bold, larger,
+ *                   extra breathing room so it lands as the turn.
+ *   - .is-verdict — the closing paragraph: forest-green italic, the
+ *                   brand-signed verdict. */
+.svc-pf-narrative {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.svc-pf-narrative-p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1875rem;
+  line-height: 1.75;
+  font-weight: 400;
+  color: var(--navy, #0d1a12);
+  letter-spacing: -0.003em;
+  margin: 0 0 1.75rem;
+}
+.svc-pf-narrative-p:last-child { margin-bottom: 0; }
+.svc-pf-narrative-p.is-pivot {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 2.5rem 0;
+}
+.svc-pf-narrative-p.is-verdict {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.3125rem;
+  line-height: 1.5;
+  color: var(--gildhart-forest, #1E3D2F);
+  margin-top: 2.5rem;
+}
+
 @media (max-width: 768px) {
   .svc-pf-compare { grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 2.5rem; }
   .svc-playing-field { padding: 4rem 1.25rem; }
   .svc-pf-col { padding: 2.25rem 1.75rem; }
   .svc-pf-conclusion { margin-top: 2.5rem; font-size: 1.1875rem; padding-top: 1.5rem; }
+  .svc-pf-narrative-p { font-size: 1.0625rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .svc-pf-narrative-p.is-pivot { font-size: 1.3125rem; margin: 2rem 0; }
+  .svc-pf-narrative-p.is-verdict { font-size: 1.1875rem; margin-top: 2rem; }
 }
 
 /* ── S2: Method section ─────────────────────────────────────── */
