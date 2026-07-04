@@ -2249,7 +2249,7 @@ add_filter( 'acf/load_value/key=field_gh_service_wyg_modules', function( $value,
 
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_what_you_get',
-    'title'      => 'Service · What You Get',
+    'title'      => 'Service · The System (What You Get)',
     'menu_order' => 6,
     'fields'     => array(
         array(
