@@ -1802,6 +1802,9 @@
   max-width: 300px;
   width: 100%;
   height: auto;
+  /* Round the badge's hard corners so it reads as a premium tile
+   * rather than a pasted-in rectangle. */
+  border-radius: 14px;
 }
 
 .svc-system-modules {

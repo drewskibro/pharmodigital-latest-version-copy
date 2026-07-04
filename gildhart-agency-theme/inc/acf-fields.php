@@ -2229,29 +2229,41 @@ if ( ! function_exists( 'gh_service_system_default_modules' ) ) {
 }
 
 /**
- * Seed the System Cards repeater with the default rows the first
- * time a Service post is loaded in the admin and the field has no
- * saved value yet. Only fires when the value is genuinely null —
- * once the editor saves (even an intentionally empty repeater),
- * the saved value wins and we don't re-seed. Restricted to the
- * admin so the front-end template's own default array still kicks
- * in for any unsaved post the public might hit.
+ * Seed the System Cards repeater with the default rows the first time
+ * a Service post that uses the section is opened in the editor.
+ *
+ * The old approach returned the defaults via `acf/load_value`, but ACF
+ * renders repeater rows from the stored row-count meta, not from a
+ * load_value return — so the editor kept showing a single blank row.
+ * Instead we PERSIST the default rows into the post the first time the
+ * edit screen loads with an empty repeater, so ACF then reads real
+ * saved rows and renders all six as editable. Once saved, they're the
+ * editor's own data; we never overwrite a populated repeater.
  */
-add_filter( 'acf/load_value/key=field_gh_service_wyg_modules', function( $value, $post_id, $field ) {
-    if ( ! is_admin() ) {
-        return $value;
+add_action( 'load-post.php', 'gildhart_seed_system_cards' );
+add_action( 'load-post-new.php', 'gildhart_seed_system_cards' );
+function gildhart_seed_system_cards() {
+    if ( ! function_exists( 'update_field' ) || ! function_exists( 'gh_service_system_default_modules' ) ) {
+        return;
     }
-    // Seed the defaults whenever the repeater is genuinely unset — which
-    // includes ACF's empty-repeater representations of 0, '0', '', and
-    // array(). The old strict !== checks let a 0 row-count slip through,
-    // so the editor showed a single blank row instead of the six default
-    // cards. empty() catches every no-value form; real saved rows arrive
-    // as a non-empty array and are returned untouched.
-    if ( ! empty( $value ) ) {
-        return $value;
+    $post_id = isset( $_GET['post'] ) ? (int) $_GET['post'] : 0;
+    if ( ! $post_id || 'service' !== get_post_type( $post_id ) ) {
+        return;
     }
-    return gh_service_system_default_modules();
-}, 10, 3 );
+    // Only for products whose roster actually renders this section.
+    $slug = get_post_field( 'post_name', $post_id );
+    if ( function_exists( 'gildhart_service_section_roster' )
+        && ! in_array( 'what-you-get', gildhart_service_section_roster( $slug ), true ) ) {
+        return;
+    }
+    // Read the raw stored count (bypasses any filters). Empty / '0' means
+    // no real rows yet — write the defaults so they become editable.
+    $raw = get_post_meta( $post_id, 'service_what_you_get_modules', true );
+    if ( ! empty( $raw ) ) {
+        return;
+    }
+    update_field( 'field_gh_service_wyg_modules', gh_service_system_default_modules(), $post_id );
+}
 
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_what_you_get',
