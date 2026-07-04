@@ -380,7 +380,7 @@ function gildhart_service_defaults_by_slug() {
 function gildhart_service_section_roster( $slug ) {
     $rosters = array(
         'the-playbook' => array(
-            'hero', 'logo-bar', 'problem-shift', 'cta', 'proof-cases', 'playing-field', 'cta',
+            'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'playing-field', 'cta',
             'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'fluclinic-proof', 'playbook-checkout',
             'next-steps', 'faq', 'cta', 'guarantee',
         ),
@@ -671,7 +671,7 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_problem_shift_headline'        => "In Two Years, The Practices On ChatGPT's Shortlist Will Own Your Market.",
         'service_problem_shift_intro'           => "That shortlist is being built right now. Every week a practice claims a spot. Every week it gets harder to displace them. And the patients those practices are capturing — Semrush confirmed it across hundreds of sites — convert 4.4 times better than Google organic visitors. Not because of the platform. Because by the time they click a name on ChatGPT's recommendation, the decision is already made.",
         'service_problem_shift_strip_text'      => 'First time in 20 years independent practices can outrank national chains. Not in 5 years. In weeks.',
-        'service_problem_shift_strip_cta_label' => 'Get The System',
+        'service_problem_shift_strip_cta_label' => 'Get The Playbook — £995',
         'service_problem_shift_strip_cta_url'   => '#buy-now',
         // Three Proof Cases
         'service_proof_cases_eyebrow'     => 'Three Practices. Same Result.',
