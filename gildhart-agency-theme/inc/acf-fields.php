@@ -2037,6 +2037,7 @@ acf_add_local_field_group( array(
         array( 'key' => 'field_gh_service_pf_eyebrow',     'label' => 'Eyebrow',     'name' => 'service_playing_field_eyebrow',     'type' => 'text' ),
         array( 'key' => 'field_gh_service_pf_headline',    'label' => 'Headline',    'name' => 'service_playing_field_headline',    'type' => 'text' ),
         array( 'key' => 'field_gh_service_pf_subheadline', 'label' => 'Subheadline', 'name' => 'service_playing_field_subheadline', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_pf_narrative', 'label' => 'Narrative', 'name' => 'service_playing_field_narrative', 'type' => 'textarea', 'rows' => 12, 'instructions' => 'Full-width editorial narrative that replaces the old two-column layout. Separate paragraphs with a blank line. Wrap a whole paragraph in **double asterisks** to make it the bold pivot line. The last paragraph auto-italicises as the closing verdict. The "Old/New Column" and "Callout" fields below are legacy and no longer rendered.' ),
         array( 'key' => 'field_gh_service_pf_old_label',   'label' => 'Old Column — Label',   'name' => 'service_playing_field_old_label',   'type' => 'text' ),
         array(
             'key' => 'field_gh_service_pf_old_rows', 'label' => 'Old Column — Rows', 'name' => 'service_playing_field_old_rows',
