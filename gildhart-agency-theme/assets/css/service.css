@@ -711,6 +711,28 @@
   margin: 1rem auto 0;
   text-align: center;
 }
+/* Desktop breakout — the evidence screenshots are LANDSCAPE captures
+ * (WhatsApp-for-Desktop windows), so pinning them to the 720px text
+ * reading column renders the conversation bubbles small. From 1160px
+ * up — where the 1100px card is at full width and has room on either
+ * side of the 720px column — the figure breaks out to 920px via
+ * symmetric negative margins. The body paragraphs keep their 720px
+ * measure; only the proof screenshots widen, so the transcript text
+ * scales up ~28% and reads without squinting. The card's own overflow
+ * clip and the geometry (≥40px clear of the card edge at every common
+ * desktop width) keep the breakout from colliding with the green
+ * accent border. Mobile is untouched — the portrait crops already
+ * fill 100vw and read perfectly. */
+@media (min-width: 1160px) {
+  .svc-ps-narrative-evidence {
+    max-width: none;
+    width: 920px;
+    margin-top: 3.25rem;
+    margin-bottom: 3.25rem;
+    margin-left: -100px;
+    margin-right: -100px;
+  }
+}
 
 /* Three-card stat row — premium navy-lift cards in a 3-col grid.
  * Each card carries a 30%-opacity gold left accent that pops to 100%
