@@ -577,11 +577,14 @@
 }
 .svc-ps-narrative-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
+  /* Deep gold (#8B6914) — the lighter brand gold washed out against
+   * the cream narrative card and the eyebrow was hard to read on both
+   * desktop and mobile. Matches the live-clients callout eyebrow fix. */
+  color: var(--svc-system-gold-deep, #8B6914);
   margin: 0 0 1rem;
 }
 .svc-ps-narrative-headline {
@@ -1065,7 +1068,7 @@
 }
 .svc-proof-stat-figure {
   font-family: 'Inter', sans-serif;
-  font-size: 2.25rem;
+  font-size: 2.7rem;
   font-weight: 800;
   color: var(--gildhart-gold);
   letter-spacing: -0.02em;
