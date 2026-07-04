@@ -1317,19 +1317,30 @@
 }
 .svc-pf-narrative-p:last-child { margin-bottom: 0; }
 .svc-pf-narrative-p.is-pivot {
-  font-size: 1.5rem;
-  line-height: 1.4;
+  /* The hinge of the argument, pulled out of the body flow into its
+   * own moment: 30px forest-green, a thin gold rule immediately above
+   * marking the old-world → new-world shift, and generous space top
+   * and bottom so it reads as a centrepiece, not a sentence. */
+  font-size: 1.875rem;
+  line-height: 1.35;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 2.5rem 0;
+  letter-spacing: -0.015em;
+  color: var(--gildhart-forest, #1E3D2F);
+  margin: 3rem 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.5);
 }
 .svc-pf-narrative-p.is-verdict {
+  /* Closing verdict, isolated by its own gold rule with extra breathing
+   * room above (≈16px more than the body rhythm) so it lands apart. */
   font-style: italic;
   font-weight: 500;
   font-size: 1.3125rem;
   line-height: 1.5;
   color: var(--gildhart-forest, #1E3D2F);
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 164, 74, 0.5);
 }
 
 @media (max-width: 768px) {
@@ -1338,8 +1349,8 @@
   .svc-pf-col { padding: 2.25rem 1.75rem; }
   .svc-pf-conclusion { margin-top: 2.5rem; font-size: 1.1875rem; padding-top: 1.5rem; }
   .svc-pf-narrative-p { font-size: 1.0625rem; line-height: 1.7; margin-bottom: 1.5rem; }
-  .svc-pf-narrative-p.is-pivot { font-size: 1.3125rem; margin: 2rem 0; }
-  .svc-pf-narrative-p.is-verdict { font-size: 1.1875rem; margin-top: 2rem; }
+  .svc-pf-narrative-p.is-pivot { font-size: 1.4375rem; margin: 2.5rem 0; padding-top: 1.5rem; }
+  .svc-pf-narrative-p.is-verdict { font-size: 1.1875rem; margin-top: 2.75rem; padding-top: 1.5rem; }
 }
 
 /* ── S2: Method section ─────────────────────────────────────── */
