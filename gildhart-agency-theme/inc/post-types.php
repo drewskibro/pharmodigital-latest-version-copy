@@ -380,7 +380,7 @@ function gildhart_service_defaults_by_slug() {
 function gildhart_service_section_roster( $slug ) {
     $rosters = array(
         'the-playbook' => array(
-            'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'cta',
+            'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'featured-case-study', 'cta',
             'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'fluclinic-proof', 'playbook-checkout',
             'next-steps', 'faq', 'cta', 'guarantee',
         ),

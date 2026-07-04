@@ -2322,6 +2322,180 @@
   .svc-fcp-stat-value { font-size: clamp(2.5rem, 12vw, 3.25rem); }
 }
 
+/* ── Featured Case Study (Sachin / Ealing) — Playbook variant ──
+ * Ported from the homepage featured-case-study component. The homepage
+ * copy relies on home.js (IntersectionObserver → .fcs-visible) for its
+ * staggered reveal; home.js isn't loaded on service pages, so this port
+ * bakes in the visible end-state — every element renders immediately,
+ * no JS required. The idle float / counter-pulse animations are dropped
+ * (they were JS-triggered flourishes, not essential). */
+.featured-case-study {
+  background: var(--cream, #f5f3f0);
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+  overflow-x: clip;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.featured-case-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.featured-case-image {
+  position: relative;
+}
+.featured-case-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+.featured-case-image::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: 20px;
+  bottom: 20px;
+  border: 2px solid var(--gildhart-green);
+  border-radius: 16px;
+  opacity: 0.4;
+  z-index: -1;
+}
+.featured-case-content { color: var(--navy); }
+.featured-quote-mark {
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--gildhart-gold);
+  opacity: 0.6;
+  margin-bottom: -1rem;
+  font-family: Georgia, serif;
+}
+.featured-quote {
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--navy);
+  margin-bottom: 2rem;
+}
+.featured-quote strong { color: var(--gildhart-green); font-weight: 600; }
+.featured-author { margin-bottom: 0.5rem; }
+.featured-author-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.featured-author-title { font-size: 1rem; color: var(--gray-600); }
+.featured-stars { display: flex; gap: 0.25rem; margin-bottom: 2.5rem; }
+.featured-stars span { color: #fbbf24; font-size: 1.125rem; }
+.featured-cta-card {
+  display: block;
+  background: var(--gildhart-green);
+  border: 1px solid rgba(201, 164, 74, 0.25);
+  border-radius: 20px;
+  padding: clamp(2rem, 3.5vw, 2.75rem);
+  max-width: 480px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 20px 50px rgba(30, 61, 47, 0.18), 0 6px 18px rgba(30, 61, 47, 0.08);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+a.featured-cta-card:hover {
+  border-color: rgba(201, 164, 74, 0.5);
+  box-shadow: 0 24px 60px rgba(30, 61, 47, 0.28), 0 8px 22px rgba(30, 61, 47, 0.12);
+}
+.featured-cta-badge {
+  display: block;
+  color: var(--gildhart-gold);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-bottom: 1.5rem;
+}
+.featured-cta-text {
+  font-size: 0.9375rem;
+  color: rgba(240, 230, 200, 0.75);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.featured-cta-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.featured-cta-number {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(4rem, 7vw, 6rem);
+  font-weight: 800;
+  color: var(--white, #ffffff);
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+.featured-cta-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gildhart-gold);
+}
+.featured-cta-meta {
+  font-size: 1rem;
+  color: rgba(240, 230, 200, 0.72);
+  margin-bottom: 1rem;
+  letter-spacing: 0.005em;
+  line-height: 1.55;
+}
+.featured-cta-how {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: rgba(240, 230, 200, 0.9);
+  margin-bottom: 1.75rem;
+  line-height: 1.65;
+  max-width: 420px;
+}
+.featured-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--gildhart-gold);
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+.featured-cta-link::after {
+  content: '→';
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+a.featured-cta-card:hover .featured-cta-link { color: #e0bd60; gap: 0.7rem; }
+a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px); }
+
+@media (max-width: 1024px) {
+  .featured-case-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .featured-case-image { max-width: 350px; margin: 0 auto; }
+  .featured-case-image::before { display: none; }
+  .featured-quote-mark { font-size: 4rem; }
+  .featured-stars { justify-content: center; }
+  .featured-cta-card { margin: 0 auto; }
+}
+
 /* ── S4b: Playbook Checkout section ──────────────────────────
  * Two-column desktop payment section. Sits over the same hero
  * cream/peach/mint gradient as the offer block above so the two
