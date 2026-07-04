@@ -2241,7 +2241,13 @@ add_filter( 'acf/load_value/key=field_gh_service_wyg_modules', function( $value,
     if ( ! is_admin() ) {
         return $value;
     }
-    if ( $value !== null && $value !== false && $value !== '' ) {
+    // Seed the defaults whenever the repeater is genuinely unset — which
+    // includes ACF's empty-repeater representations of 0, '0', '', and
+    // array(). The old strict !== checks let a 0 row-count slip through,
+    // so the editor showed a single blank row instead of the six default
+    // cards. empty() catches every no-value form; real saved rows arrive
+    // as a non-empty array and are returned untouched.
+    if ( ! empty( $value ) ) {
         return $value;
     }
     return gh_service_system_default_modules();
