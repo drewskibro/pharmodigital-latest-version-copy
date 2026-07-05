@@ -2471,6 +2471,44 @@ acf_add_local_field_group( array(
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
 
+/* Service · Lead Proof — anonymised real captured lead (Agent).
+ * PRIVACY: keep this anonymised. First name + initial only; never add
+ * email, phone, or full name to these fields. */
+acf_add_local_field_group( array(
+    'key'        => 'group_gh_service_lead_proof',
+    'title'      => 'Service · Lead Proof',
+    'menu_order' => 9,
+    'fields'     => array(
+        array(
+            'key'           => 'field_gh_service_lp_show',
+            'label'         => 'Show this section',
+            'name'          => 'service_lead_proof_show',
+            'type'          => 'true_false',
+            'default_value' => 1,
+            'ui'            => 1,
+        ),
+        array( 'key' => 'field_gh_service_lp_eyebrow',  'label' => 'Eyebrow',  'name' => 'service_lead_proof_eyebrow',  'type' => 'text' ),
+        array( 'key' => 'field_gh_service_lp_headline', 'label' => 'Headline', 'name' => 'service_lead_proof_headline', 'type' => 'text' ),
+        array( 'key' => 'field_gh_service_lp_practice', 'label' => 'Card — Practice Name', 'name' => 'service_lead_proof_practice', 'type' => 'text', 'instructions' => 'Small caps line in the card header, e.g. "Southdowns Pharmacy Group".' ),
+        array( 'key' => 'field_gh_service_lp_badge',    'label' => 'Card — Badge', 'name' => 'service_lead_proof_badge', 'type' => 'text', 'instructions' => 'Gold pill top-right of the card, e.g. "Captured 11:35pm".' ),
+        array( 'key' => 'field_gh_service_lp_summary',  'label' => 'Card — AI Lead Summary', 'name' => 'service_lead_proof_summary', 'type' => 'textarea', 'rows' => 5, 'instructions' => 'The italic AI summary. ANONYMISED — no email, no phone, first name + initial only.' ),
+        array( 'key' => 'field_gh_service_lp_name',     'label' => 'Card — Name', 'name' => 'service_lead_proof_name', 'type' => 'text', 'instructions' => 'Anonymised: first name + initial only (e.g. "Clare W."). Never a full name.' ),
+        array( 'key' => 'field_gh_service_lp_service',  'label' => 'Card — Service Requested', 'name' => 'service_lead_proof_service', 'type' => 'textarea', 'rows' => 3 ),
+        array( 'key' => 'field_gh_service_lp_branch',   'label' => 'Card — Branch', 'name' => 'service_lead_proof_branch', 'type' => 'text' ),
+        array(
+            'key' => 'field_gh_service_lp_stats', 'label' => 'Card — Stat Strip', 'name' => 'service_lead_proof_stats',
+            'type' => 'repeater', 'layout' => 'table', 'min' => 0, 'max' => 4,
+            'instructions' => 'Four stats is the designed default. Gold number + caps label.',
+            'sub_fields' => array(
+                array( 'key' => 'field_gh_service_lp_stat_value', 'label' => 'Number', 'name' => 'value', 'type' => 'text' ),
+                array( 'key' => 'field_gh_service_lp_stat_label', 'label' => 'Label',  'name' => 'label', 'type' => 'text' ),
+            ),
+        ),
+        array( 'key' => 'field_gh_service_lp_caption',  'label' => 'Closing Kicker', 'name' => 'service_lead_proof_caption', 'type' => 'textarea', 'rows' => 4, 'instructions' => 'The line beneath the card that lands the point.' ),
+    ),
+    'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
+) );
+
 /* Service · Playbook Checkout */
 acf_add_local_field_group( array(
     'key'        => 'group_gh_service_pb_checkout',

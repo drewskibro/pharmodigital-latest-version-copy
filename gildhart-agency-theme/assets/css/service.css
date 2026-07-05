@@ -5896,6 +5896,198 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
   .svc-intel-cards { grid-template-columns: 1fr; }
 }
 
+/* ── A3b: Real Lead Captured proof (Agent) ──────────────────────
+ * Dark navy stage so the light "lead notification" card floats. The
+ * card recreates a real (anonymised) captured lead: dark header bar →
+ * AI summary → lead rows → gold stat strip, with a closing kicker on
+ * the navy beneath. Recreated, not screenshotted, so the redaction
+ * stays under our control and it renders on-brand. */
+.svc-lead {
+  background: var(--navy, #0d1a12);
+  padding: 7rem 2rem 7.5rem;
+  position: relative;
+}
+.svc-lead-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.svc-lead-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.svc-lead-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gildhart-gold);
+  margin: 0 0 1.25rem;
+}
+.svc-lead-headline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+}
+.svc-lead-card {
+  max-width: 620px;
+  margin: 0 auto;
+  background: #fbfaf7;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 164, 74, 0.25);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.svc-lead-card-top {
+  background: #101b2e;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.svc-lead-card-top-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.svc-lead-card-practice {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.svc-lead-card-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.svc-lead-card-badge {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy, #0d1a12);
+  background: var(--gildhart-gold);
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.svc-lead-summary {
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(180deg, rgba(201, 164, 74, 0.06), rgba(201, 164, 74, 0));
+  border-bottom: 1px solid rgba(13, 26, 18, 0.08);
+}
+.svc-lead-summary-label,
+.svc-lead-info-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--svc-system-gold-deep, #8B6914);
+  margin-bottom: 0.75rem;
+}
+.svc-lead-summary-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: #3a3a38;
+}
+.svc-lead-info {
+  padding: 1.5rem 1.75rem 0.5rem;
+}
+.svc-lead-info-label {
+  color: rgba(13, 26, 18, 0.4);
+  margin-bottom: 1rem;
+}
+.svc-lead-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(13, 26, 18, 0.07);
+  align-items: start;
+}
+.svc-lead-row-key {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(13, 26, 18, 0.5);
+}
+.svc-lead-row-val {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy, #0d1a12);
+  line-height: 1.5;
+}
+.svc-lead-row-val--pill {
+  justify-self: start;
+  background: var(--navy, #0d1a12);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+}
+.svc-lead-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1.5rem 1.75rem 1.75rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(13, 26, 18, 0.08);
+}
+.svc-lead-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.svc-lead-stat-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--svc-system-gold-deep, #8B6914);
+}
+.svc-lead-stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgba(13, 26, 18, 0.5);
+}
+.svc-lead-kicker {
+  max-width: 640px;
+  margin: 3rem auto 0;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+@media (max-width: 768px) {
+  .svc-lead { padding: 4.5rem 1.25rem 5rem; }
+  .svc-lead-header { margin-bottom: 2.5rem; }
+  .svc-lead-card-top { flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+  .svc-lead-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  .svc-lead-row-key { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .svc-lead-stats { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 1rem; }
+  .svc-lead-kicker { font-size: 1.0625rem; }
+}
+
 /* ── A4: Content Flywheel section ───────────────────────────── */
 
 .svc-flywheel {
