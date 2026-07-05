@@ -398,6 +398,11 @@ function gildhart_service_section_roster( $slug ) {
             'track-record', 'sales-agent-pro',
             // A3
             'intelligence-engine',
+            // A3b — a real captured lead (anonymised) right after the
+            // Intelligence Engine argues "every question is a revenue
+            // signal": here's one it caught at 11:35pm — a 10-country
+            // travel-vaccination enquiry a booking calendar couldn't take.
+            'lead-proof',
             // A4 — editorial-proof was retired from this roster as of the
             // SA Pro stats consolidation. Its proofs (£200K Southdowns,
             // 50% Superior, 25% Ealing, 100K network) are now redundant
@@ -451,6 +456,7 @@ function gildhart_service_field_group_map() {
         'group_gh_service_testimonial'      => 'testimonial',
         'group_gh_service_testimonial_emjad' => 'testimonial-emjad',
         'group_gh_service_intelligence_engine' => 'intelligence-engine',
+        'group_gh_service_lead_proof'       => 'lead-proof',
         'group_gh_service_flywheel'         => 'flywheel',
         'group_gh_service_editorial_proof'  => 'editorial-proof',
         'group_gh_service_how_it_works'     => 'how-it-works',
