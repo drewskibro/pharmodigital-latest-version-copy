@@ -387,13 +387,15 @@ function gildhart_service_section_roster( $slug ) {
         'the-agent' => array(
             // A0
             'hero', 'logo-bar',
-            // A1 — three-beat proof escalation. Visual proof (carousel of
-            // live client sites) → human proof (Rahul testimonial, named
-            // and on-the-record) → editorial proof (the "On Any Given
-            // Day" callout, vignettes from three named practices). All
-            // three resolve BEFORE the page pivots into the problem
-            // framing of Why This Exists.
-            'live-clients', 'testimonial', 'live-callout', 'why-this-exists',
+            // A1 — proof escalation. Visual proof (carousel of live client
+            // sites) → human proof (Rahul testimonial, named and on-the-
+            // record), then the page pivots into Why This Exists. The
+            // "On Any Given Day" editorial callout (live-callout) was cut
+            // as atmosphere-not-proof and redundant with the Real Lead
+            // Captured card, which makes the same after-hours-revenue point
+            // with a real £1,400 lead. Template/CSS/ACF preserved — re-add
+            // 'live-callout' here to revive.
+            'live-clients', 'testimonial', 'why-this-exists',
             // A2
             'track-record', 'sales-agent-pro',
             // A3
