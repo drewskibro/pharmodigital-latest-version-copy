@@ -559,7 +559,7 @@ function gildhart_stripe_create_payment_intent_for_lead( array $lead ) {
     // Keep the raw string in metadata; Make splits on "|" for Kartra.
     $services      = sanitize_text_field( $lead['services'] ?? '' );
 
-    $plan_label = 'The AI Search Playbook — £995 one-time';
+    $plan_label = 'The AI Search Playbook — £1,995 one-time';
 
     $metadata = array(
         'product'        => 'the-ai-search-playbook',

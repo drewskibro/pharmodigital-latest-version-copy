@@ -351,7 +351,7 @@ function gildhart_render_integration_status_page() {
                 'mask' => false,
             ),
             'GILDHART_STRIPE_PLAYBOOK_AMOUNT'     => array(
-                'note' => 'Playbook one-time amount in pence (e.g. 99500 = £995). Integer, no quotes.',
+                'note' => 'Playbook one-time amount in pence (e.g. 199500 = £1,995). Integer, no quotes.',
                 'mask' => false,
             ),
         ),

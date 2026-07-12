@@ -21,7 +21,7 @@ if ( ! gh_field( 'service_cta_show', 1 ) ) {
 }
 
 $prompt    = gh_field( 'service_cta_prompt', 'Ready to get on the shortlist?' );
-$cta_label = gh_field( 'service_cta_label',  'Get The Playbook — £995' );
+$cta_label = gh_field( 'service_cta_label',  'Get The Playbook — £1,995' );
 $cta_url   = gh_field( 'service_cta_url',    '#your-turn' );
 
 if ( ! $cta_label ) {

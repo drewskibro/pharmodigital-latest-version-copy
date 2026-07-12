@@ -33,7 +33,7 @@ if ( empty( $cards ) ) {
             'label'        => 'THE PLAYBOOK',
             'title'        => 'The Playbook',
             'body'         => 'The complete AI search system, packaged for healthcare practices to deploy themselves. Built on the same framework we use for clients on track for £500k a year.',
-            'proof_number' => '£497',
+            'proof_number' => '£1,995',
             'proof_label'  => 'One-time. Owned forever.',
             'features'     => array(
                 array( 'text' => 'Pillar Domination Framework™ — the exact AI search method' ),

@@ -509,7 +509,7 @@ function gildhart_service_faq_defaults( $slug ) {
             'headline'  => "Questions You're Asking",
             'cta_show'  => 0,
             'cta_text'  => 'Still have questions? <strong>Get the system now and ask me directly on the monthly calls.</strong>',
-            'cta_label' => 'Get Instant Access — £497',
+            'cta_label' => 'Get Instant Access — £1,995',
             'cta_url'   => '#buy-now',
             'items'     => array(
                 array(
@@ -538,11 +538,11 @@ function gildhart_service_faq_defaults( $slug ) {
                 ),
                 array(
                     'question' => '"Why not just hire you to do it?"',
-                    'answer'   => 'You can. Done-for-you starts at £5k/month. But if you want to own the system — no ongoing fees, no dependency on an agency — this is for you. <strong>£497 once vs £60k/year.</strong> Same results.',
+                    'answer'   => 'You can. Done-for-you starts at £5k/month. But if you want to own the system — no ongoing fees, no dependency on an agency — this is for you. <strong>£1,995 once vs £60k/year.</strong> Same results.',
                 ),
                 array(
                     'question' => '"Are there any additional fees once I purchase?"',
-                    'answer'   => 'No. <strong>£995 is the only payment you ever make for the Playbook.</strong> Everything described on this page — the knowledge base, the Claude Skills, the content architecture, the monthly strategy calls, every future update — is included. No subscription. No upgrade fees. No recurring costs of any kind. Lifetime access.',
+                    'answer'   => 'The <strong>£1,995 is the only payment you make to us</strong> — one time, lifetime access, no subscription or upgrade fees on the Playbook. That includes the full setup: we get on your computer and install the whole system for you (or whoever on your team will run it) — knowledge base, Cowork Project, content engine, all of it. You own it forever. <strong>The one ongoing cost is Claude</strong>, the AI that runs the engine — about <strong>£17/month</strong>, set up in Module 1 exactly like any software tool, and paid to Anthropic, not us. That £17/month replaces the £5,000+/month an agency charges to do this, and takes a serious bite out of your Google Ads bill — most practices save £60,000–£100,000 a year.',
                 ),
                 array(
                     'question' => '"Is there a refund policy?"',
@@ -670,7 +670,7 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_hero_eyebrow'             => 'The AI Search Playbook',
         'service_hero_title'               => "While You're Reading This, ChatGPT Is Recommending Your Competitors.",
         'service_hero_subtitle'            => 'Rahul at Puri Pharmacy is now on that shortlist. So is Raman at Superior Pharmacy and Sachin at Ealing Travel Clinic. One playbook. Three practices. No ad spend.',
-        'service_hero_cta_primary_label'   => 'Get The Playbook — £995',
+        'service_hero_cta_primary_label'   => 'Get The Playbook — £1,995',
         'service_hero_cta_primary_url'     => '#your-turn',
         'service_hero_cta_secondary_label' => "See What's Inside",
         'service_hero_cta_secondary_url'   => '#the-shift',
@@ -679,7 +679,7 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_problem_shift_headline'        => "In Two Years, The Practices On ChatGPT's Shortlist Will Own Your Market.",
         'service_problem_shift_intro'           => "That shortlist is being built right now. Every week a practice claims a spot. Every week it gets harder to displace them. And the patients those practices are capturing — Semrush confirmed it across hundreds of sites — convert 4.4 times better than Google organic visitors. Not because of the platform. Because by the time they click a name on ChatGPT's recommendation, the decision is already made.",
         'service_problem_shift_strip_text'      => 'First time in 20 years independent practices can outrank national chains. Not in 5 years. In weeks.',
-        'service_problem_shift_strip_cta_label' => 'Get The Playbook — £995',
+        'service_problem_shift_strip_cta_label' => 'Get The Playbook — £1,995',
         'service_problem_shift_strip_cta_url'   => '#buy-now',
         // Three Proof Cases
         'service_proof_cases_eyebrow'     => 'Three Practices. Same Result.',
@@ -714,7 +714,7 @@ function gildhart_service_default_values( $value, $post_id, $field ) {
         'service_faq_eyebrow'   => 'No Surprises',
         'service_faq_headline'  => "Questions You're Asking",
         'service_faq_cta_text'  => 'Still have questions? <strong>Get the system now and ask me directly on the monthly calls.</strong>',
-        'service_faq_cta_label' => 'Get Instant Access — £497',
+        'service_faq_cta_label' => 'Get Instant Access — £1,995',
         'service_faq_cta_url'   => '#buy-now',
         // Guarantee
         'service_guarantee_badge_text'    => 'Personal Implementation Guarantee',

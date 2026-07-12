@@ -2704,6 +2704,15 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
   line-height: 1;
   margin: 0 0 1.125rem;
 }
+/* Prerequisite note under the pay button — honest, quiet, not alarming.
+ * Frames the Claude subscription as the single small ongoing cost. */
+.svc-pb-checkout-prereq {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--gray-600);
+  text-align: center;
+}
 /* "one-time · lifetime access" — now a forest-green pill, not muted
  * footnote copy. Reads as a selling-point badge alongside the price. */
 .svc-pb-checkout-card-suffix {
