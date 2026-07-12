@@ -2,11 +2,16 @@
 /**
  * Service: Next Steps section.
  *
- * Cream-warm vertical timeline of 6 steps from purchase to ranked.
- * A green-to-fade vertical line runs behind the numbered circles
- * (left column); each step's body sits in a white card with a
- * green left border. The final step swaps to a navy card with
- * gold accents to feel like the destination.
+ * Cream-warm vertical timeline answering "what happens after I buy?"
+ * — a compact, cardless sequence of milestone steps. Each step is a
+ * small gold node on a thin vertical line beside a date label, tight
+ * title, and one short line of copy.
+ *
+ * The visual weight tapers step to step, driven by the inline --i
+ * (step index) / --n (total) custom properties: the first step reads
+ * urgent (larger title, solid node), the last reads calm and
+ * inevitable (smaller, softer). No card, no numbered circles, no
+ * "arrival" treatment — the de-escalation IS the arrival.
  *
  * Reads from per-section ACF group `Service · Next Steps`. Returns
  * early when the show toggle is off. Falls back to The Playbook
@@ -22,19 +27,18 @@ if ( ! gh_field( 'service_next_show', 1 ) ) {
 
 $eyebrow     = gh_field( 'service_next_eyebrow',     'Your Timeline' );
 $headline    = gh_field( 'service_next_headline',    'From Purchase to AI Rankings. Exactly as it Happened for Ealing and Superior.' );
-$subheadline = gh_field( 'service_next_subheadline', 'No guesswork. No waiting to find out what happens next. This is the exact sequence — day by day, week by week.' );
+$subheadline = gh_field( 'service_next_subheadline', 'No guesswork. No waiting. This is the exact sequence.' );
 
 $steps = get_field( 'service_next_steps' );
 if ( empty( $steps ) ) {
     $steps = array(
-        array( 'label' => 'Today',      'title' => "You're Inside. The System is Ready.",                  'text' => "Your knowledge base is built around your five services. Your Claude Skills are configured. Everything is waiting for you in Cowork. You're ready to go from day one.", 'is_final' => 0 ),
-        array( 'label' => 'This Week',  'title' => 'You Upload Once. Claude Takes Over.',                  'text' => 'Drag your knowledge base into Cowork. Run the first Skill. Claude interrogates your services against what patients in your area are already searching for — and maps the exact content architecture that puts you on the AI shortlist.', 'is_final' => 0 ),
-        array( 'label' => 'Next Week',  'title' => 'Your First Content Goes Live.',                        'text' => "This is where the Pillar Domination Framework™ starts working. Claude builds a complete content architecture around one of your services — clinically accurate, structured for AI citation, written in your voice. Not generic health content. Content about your Mounjaro service, your travel vaccines, your HPV clinic. Content that makes patients decide you're the specialist before they've even called. You review it. You publish it.", 'is_final' => 0 ),
-        array( 'label' => 'Weeks 2–6',  'title' => 'Content Live. Indexing Started. Rankings Appearing.',  'text' => 'Every piece of content is submitted to Google, ChatGPT, Claude, and Perplexity using the indexing system — in days, not months. Ealing appeared in Google AI Overviews within 6 weeks. Superior had their first booking from ChatGPT within 48 hours of going live.', 'is_final' => 0 ),
-        array( 'label' => 'Weeks 6–12', 'title' => "You're on the Shortlist.",                             'text' => "Your practice is appearing in AI recommendations across Google, ChatGPT, Perplexity, and Claude. New patients are finding you, reading your content, and deciding you're the specialist before they've even made contact. The system runs automatically every week. You review what Claude produced and publish.", 'is_final' => 0 ),
-        array( 'label' => 'Day 90',     'title' => 'Ranked. Compounding. Impossible to Displace.',         'text' => "Your target services are featured across Google AI, ChatGPT, Perplexity, and Claude. Every week the system gets smarter. Every week the gap between you and every competitor who isn't doing this gets wider. This is what Ealing, Superior, and Puri look like right now. This is where you're going.", 'is_final' => 1 ),
+        array( 'label' => 'Today',     'title' => 'We Set It Up Together.',                       'text' => 'Your private AI workspace is configured around your practice — your services, your pricing, your clinical protocols loaded in before you run a single session. You leave the setup call knowing exactly how to run it every week.' ),
+        array( 'label' => 'This Week', 'title' => 'Your First Content Is Built.',                  'text' => "Claude works through your first service — clinically accurate, structured for AI citation, written in your voice. Not generic health content: your Mounjaro clinic, your travel vaccines, your HPV service. You review it. You publish it." ),
+        array( 'label' => 'Weeks 2–6', 'title' => 'Rankings Appearing.',                          'text' => 'Ealing appeared in Google AI Overviews within 6 weeks. Superior had their first ChatGPT booking within 48 hours of going live. The indexing system cuts the window — results in weeks, not months.' ),
+        array( 'label' => 'Day 90',    'title' => 'Ranked. Compounding. Impossible to Displace.', 'text' => "Every week the system gets stronger. Every week the gap between you and every competitor who isn't doing this gets wider. This is what Ealing, Superior, and Puri look like right now. This is where you're going." ),
     );
 }
+$step_total = count( $steps );
 ?>
 
 <section class="svc-next">
@@ -54,18 +58,15 @@ if ( empty( $steps ) ) {
         <?php if ( ! empty( $steps ) ) : ?>
             <div class="svc-next-timeline">
                 <?php foreach ( $steps as $i => $step ) :
-                    $label    = $step['label']    ?? '';
-                    $title    = $step['title']    ?? '';
-                    $text     = $step['text']     ?? '';
-                    $is_final = ! empty( $step['is_final'] );
-                    $classes  = 'svc-next-step' . ( $is_final ? ' svc-next-step--final' : '' );
+                    $label = $step['label'] ?? '';
+                    $title = $step['title'] ?? '';
+                    $text  = $step['text']  ?? '';
+                    // --i drives the step-to-step taper (title size, node,
+                    // colour): step 0 reads urgent, the last reads calm and
+                    // inevitable. --n is the total for count-relative maths.
                     ?>
-                    <div class="<?php echo esc_attr( $classes ); ?>">
-                        <div class="svc-next-step-node">
-                            <div class="svc-next-step-circle">
-                                <span class="svc-next-step-num"><?php echo esc_html( $i + 1 ); ?></span>
-                            </div>
-                        </div>
+                    <div class="svc-next-step" style="--i: <?php echo (int) $i; ?>; --n: <?php echo (int) $step_total; ?>;">
+                        <div class="svc-next-step-node" aria-hidden="true"></div>
                         <div class="svc-next-step-body">
                             <?php if ( $label ) : ?>
                                 <p class="svc-next-step-label"><?php echo esc_html( $label ); ?></p>

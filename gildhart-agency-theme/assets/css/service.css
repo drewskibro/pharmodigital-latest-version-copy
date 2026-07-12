@@ -3101,148 +3101,84 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
   margin: 0 auto;
 }
 
+/* Compact, cardless timeline. Small gold node dots on a thin line, no
+ * cards, no numbered circles. Weight tapers step to step via the inline
+ * --i (step index) so the sequence de-escalates: step 0 urgent, the
+ * last calm and inevitable. */
 .svc-next-timeline {
-  display: flex;
-  flex-direction: column;
   position: relative;
+  max-width: 720px;
+  margin: 0 auto;
 }
 .svc-next-timeline::before {
   content: '';
   position: absolute;
-  left: 39px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--gildhart-green) 0%, rgba(30, 61, 47, 0.15) 100%);
-  border-radius: 4px;
+  left: 6px;
+  top: 0.6rem;
+  bottom: 2.5rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gildhart-green) 0%, rgba(30, 61, 47, 0.10) 100%);
   z-index: 0;
 }
 .svc-next-step {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 2rem;
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 1.5rem;
+  align-items: start;
 }
-.svc-next-step + .svc-next-step { margin-top: 0.75rem; }
+.svc-next-step + .svc-next-step { margin-top: 2.5rem; }
 .svc-next-step-node {
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
-  padding-top: 2rem;
-}
-.svc-next-step-circle {
-  width: 80px;
-  height: 80px;
+  width: 14px;
+  height: 14px;
+  margin-top: 0.5rem;
   border-radius: 50%;
-  border: 3px solid var(--gildhart-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  background: white;
-  box-shadow: 0 4px 20px rgba(30, 61, 47, 0.12), 0 0 0 6px rgba(30, 61, 47, 0.06);
-  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--gildhart-gold);
+  /* Cream ring masks the line behind the dot. */
+  box-shadow: 0 0 0 4px #fef7ed;
+  /* Softens toward the end of the sequence. */
+  opacity: calc(1 - var(--i) * 0.13);
 }
-.svc-next-step-num {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--gildhart-green);
-  letter-spacing: -0.02em;
-}
-.svc-next-step-body {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem 2.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-left: 4px solid var(--gildhart-green);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.svc-next-step-body:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
+.svc-next-step-body { min-width: 0; }
 .svc-next-step-label {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  /* Deep gold (not brand --gildhart-gold, which fails contrast on the
-   * white cards) — reuses the existing --svc-system-gold-deep token so
-   * the labels read as gold while clearing WCAG AA (~5.2:1). The final
-   * navy card overrides back to brand gold below. */
+  /* Deep gold (--svc-system-gold-deep) clears WCAG AA on the cream. */
   color: var(--svc-system-gold-deep, #8B6914);
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.4rem;
+  opacity: calc(1 - var(--i) * 0.1);
 }
 .svc-next-step-title {
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  /* Tapers 1.5rem → ~1.1rem across four steps — the core de-escalation
+   * signal. Scales with --i so any step count degrades gracefully. */
+  font-size: calc(1.5rem - var(--i) * 0.13rem);
   font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.02em;
-  line-height: 1.25;
-  margin: 0 0 0.625rem;
+  line-height: 1.2;
+  margin: 0 0 0.4rem;
 }
 .svc-next-step-text {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--gray-600);
-  line-height: 1.7;
+  line-height: 1.6;
   margin: 0;
-}
-
-/* Final step — navy card, gold accents, destination feel */
-.svc-next-step--final .svc-next-step-circle {
-  background: var(--navy);
-  border-color: var(--navy);
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.25), 0 0 0 6px rgba(15, 23, 42, 0.08);
-}
-.svc-next-step--final .svc-next-step-num { color: var(--gildhart-gold); }
-/* Final step — navy "arrival" card. Slightly more internal padding
- * than the other steps so it lands as a destination, not just another
- * step. */
-.svc-next-step--final .svc-next-step-body {
-  background: var(--navy);
-  border-color: rgba(30, 61, 47, 0.3);
-  border-left: 4px solid var(--gildhart-green);
-  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.2);
-  padding: 2.75rem 3rem;
-}
-.svc-next-step--final .svc-next-step-body:hover {
-  box-shadow: 0 12px 50px rgba(15, 23, 42, 0.3);
-}
-.svc-next-step--final .svc-next-step-label { color: var(--gildhart-gold); }
-.svc-next-step--final .svc-next-step-title {
-  color: white;
-  font-size: 1.625rem;
-}
-.svc-next-step--final .svc-next-step-text {
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 1.1875rem;
-  font-weight: 500;
-  line-height: 1.8;
+  max-width: 54ch;
 }
 
 @media (max-width: 768px) {
   .svc-next { padding: 5rem 1.5rem 6rem; }
-  .svc-next-timeline::before { left: 27px; }
-  .svc-next-step { grid-template-columns: 56px 1fr; gap: 1.25rem; }
-  .svc-next-step-node { padding-top: 1.5rem; }
-  .svc-next-step-circle { width: 56px; height: 56px; box-shadow: 0 2px 12px rgba(30, 61, 47, 0.1); }
-  .svc-next-step-num { font-size: 1.25rem; }
-  .svc-next-step-body { padding: 1.5rem; }
-  .svc-next-step-title { font-size: 1.25rem; }
-  .svc-next-step-text { font-size: 1rem; }
-  .svc-next-step--final .svc-next-step-title { font-size: 1.375rem; }
-  .svc-next-step--final .svc-next-step-text { font-size: 1.0625rem; }
-}
-@media (max-width: 480px) {
-  .svc-next-timeline::before { left: 22px; }
-  .svc-next-step { grid-template-columns: 46px 1fr; gap: 1rem; }
-  .svc-next-step-circle { width: 46px; height: 46px; }
-  .svc-next-step-num { font-size: 1.125rem; }
+  .svc-next-timeline::before { left: 5px; }
+  .svc-next-step { grid-template-columns: 12px 1fr; gap: 1rem; }
+  .svc-next-step + .svc-next-step { margin-top: 2rem; }
+  .svc-next-step-node { width: 12px; height: 12px; }
+  .svc-next-step-title { font-size: calc(1.3rem - var(--i) * 0.1rem); }
+  .svc-next-step-text { font-size: 0.9375rem; }
 }
 
 /* ── S5: FAQ section ────────────────────────────────────────── */
