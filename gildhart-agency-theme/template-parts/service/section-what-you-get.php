@@ -44,7 +44,7 @@ $built_with_id = (int) get_field( 'system_built_with_claude_badge' );
 // Intro block — gold eyebrow + centred lead paragraph between the
 // header and the card grid, framing what the buyer is getting.
 $intro_eyebrow = gh_field( 'system_intro_eyebrow', 'Everything You Get' );
-$intro_body    = gh_field( 'system_intro_body', "This isn't a course with videos to watch. We set up a dedicated Cowork Project on your computer — your clinical knowledge base already loaded, your content system configured, your practice instructions written in before you run a single task. Every week, Claude works through your content autonomously inside that workspace: writing, structuring, publishing directly to your site. It remembers where it left off. It knows your services, your pricing, your compliance requirements. You don't explain yourself every time. You just approve what it produces and let it run." );
+$intro_body    = gh_field( 'system_intro_body', "This isn't a watch-and-hope course. We set up a dedicated Cowork Project on your computer for you — your clinical knowledge base loaded, your content system configured, your practice instructions written in before you run a single task — then five short modules and the monthly calls show you exactly how to run it. Every week, Claude works through your content autonomously inside that workspace: writing, structuring, publishing directly to your site. It remembers where it left off. It knows your services, your pricing, your compliance requirements. You don't explain yourself every time. You just approve what it produces and let it run." );
 
 $modules = get_field( 'service_what_you_get_modules' );
 if ( empty( $modules ) && function_exists( 'gh_service_system_default_modules' ) ) {

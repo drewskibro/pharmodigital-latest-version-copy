@@ -63,7 +63,7 @@ $f_results = get_field( 'about_founder_results' );
 if ( empty( $f_results ) ) {
     $f_results = array(
         array( 'text' => 'Superior Pharmacy is on track for £500k this year.' ),
-        array( 'text' => 'Ealing Travel Clinic generates £100k from a single service.' ),
+        array( 'text' => 'Ealing Travel Clinic generates £99k from a single service.' ),
         array( 'text' => 'Southdowns captures 250+ extra private patient enquiries every month.' ),
     );
 }

@@ -43,7 +43,7 @@ if ( ! gh_field( 'service_pb_checkout_show', 1 ) ) {
 
 /* Left column — intro */
 $eyebrow  = gh_field( 'service_pb_checkout_eyebrow',  'Your Turn' );
-$headline = gh_field( 'service_pb_checkout_headline', 'Ealing Spent £995. Then Generated £100k From One Service.' );
+$headline = gh_field( 'service_pb_checkout_headline', 'Ealing Spent £1,995. Then Generated £99k From One Service.' );
 $body     = gh_field( 'service_pb_checkout_body',     "Every month you pay for marketing. Every month the results are someone else's to switch off. This is different. One purchase. One system. Yours forever." );
 
 /* Left column — checklist (gold ✓) */
@@ -60,7 +60,7 @@ if ( empty( $checklist ) ) {
 }
 
 /* Left column — bold closer line under checklist */
-$left_closer = gh_field( 'service_pb_checkout_left_closer', 'Ealing did it. Superior did it. Puri did it. National chains spent millions. They spent £995.' );
+$left_closer = gh_field( 'service_pb_checkout_left_closer', 'Ealing did it. Superior did it. Puri did it. National chains spent millions. They spent £1,995.' );
 
 /* Left column — testimonials */
 $testimonials = get_field( 'service_pb_checkout_testimonials' );
@@ -92,7 +92,7 @@ if ( empty( $testimonials ) ) {
 
 /* Right column — pricing card */
 $card_label   = gh_field( 'service_pb_checkout_card_label',   'The AI Search Playbook' );
-$card_price   = gh_field( 'service_pb_checkout_card_price',   '£995' );
+$card_price   = gh_field( 'service_pb_checkout_card_price',   '£1,995' );
 $card_suffix  = gh_field( 'service_pb_checkout_card_suffix',  'one-time · lifetime access' );
 $card_feature = gh_field( 'service_pb_checkout_card_feature', 'The exact system that put independent pharmacies and clinics above Boots, Superdrug, and NHS.uk in AI search. Yours forever. Starts working this week.' );
 
@@ -103,9 +103,13 @@ $card_feature = gh_field( 'service_pb_checkout_card_feature', 'The exact system 
 $hero_image_id = (int) get_field( 'your_turn_hero_image' );
 
 /* Right column — form */
-$right_closer = gh_field( 'service_pb_checkout_right_closer', '£995. One time. Ealing spent it. Then made £198,000 from one service.' );
+$right_closer = gh_field( 'service_pb_checkout_right_closer', '£1,995. One time. Ealing spent it. Then made £99,000 from one service.' );
 $cta_label    = gh_field( 'service_pb_checkout_cta_label',    'Continue to Payment' );
 $secure_note  = gh_field( 'service_pb_checkout_secure_note',  'Payments processed securely via Stripe.' );
+// Honest prerequisite: the buyer runs the system on their own Claude
+// subscription (~£17/mo, set up in Module 1). Stated near the button so
+// there are no "you said no fees" surprises after purchase.
+$prereq_note  = gh_field( 'service_pb_checkout_prereq_note',  'One-time payment to us — you own it forever. Runs on your own Claude subscription (~£17/mo), which we set up for you in Module 1. That\'s the only ongoing cost.' );
 $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice that's live right now started exactly where you are." );
 ?>
 
@@ -323,6 +327,9 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
                     </button>
                 <?php endif; ?>
 
+                <?php if ( $prereq_note ) : ?>
+                    <p class="svc-pb-checkout-prereq"><?php echo esc_html( $prereq_note ); ?></p>
+                <?php endif; ?>
                 <?php if ( $secure_note ) : ?>
                     <p class="svc-closing-form-note">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>

@@ -47,7 +47,7 @@ if ( empty( $cards ) ) {
             'figure'         => '#1',
             'client'         => 'Ealing Travel Clinic',
             'stat'           => '300% Revenue Growth',
-            'desc'           => 'Zero AI visibility to #1 in Google AI Overviews for travel vaccinations. Six weeks. Zero ad spend. Now generating £100k from HPV vaccinations alone.',
+            'desc'           => 'Zero AI visibility to #1 in Google AI Overviews for travel vaccinations. Six weeks. Zero ad spend. Now generating £99k from HPV vaccinations alone.',
             'featured'       => 0,
             'flagship_label' => '',
         ),

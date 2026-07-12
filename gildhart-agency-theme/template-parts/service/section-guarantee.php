@@ -34,7 +34,7 @@ $paragraphs      = get_field( 'service_guarantee_paragraphs' );
 if ( empty( $paragraphs ) ) {
     $paragraphs = array(
         array( 'text' => "If you implement this and aren't seeing results — I get on a call with you personally. Not a support ticket. Not a help doc. Me. One-on-one. Until it's working." ),
-        array( 'text' => "And consider what you're weighing this against. Every week without this system is another week a practice in your area is building an AI presence you'll have to displace. Early positions compound. Late entry costs more than £995 — it costs the months of momentum you don't get back." ),
+        array( 'text' => "And consider what you're weighing this against. Every week without this system is another week a practice in your area is building an AI presence you'll have to displace. Early positions compound. Late entry costs more than £1,995 — it costs the months of momentum you don't get back." ),
     );
 }
 
