@@ -18,18 +18,16 @@
  *
  * Desktop layout:
  *   ┌──────────────┬───────────────┐
- *   │ intro        │               │
- *   ├──────────────┤   pricing +   │
- *   │ checklist    │   form +      │
- *   ├──────────────┤   right       │
- *   │ testimonials │   closer +    │
- *   ├──────────────┤   CTA +       │
- *   │ left-closer  │   notes       │
+ *   │ intro        │   pricing +   │
+ *   ├──────────────┤   form +      │
+ *   │ checklist    │   right       │
+ *   ├──────────────┤   closer +    │
+ *   │ testimonials │   CTA + notes │
  *   └──────────────┴───────────────┘
  *
  * Mobile order:
- *   intro → checklist → left-closer → pricing → form → right-closer →
- *   CTA → notes → testimonials.
+ *   intro → checklist → pricing → form → right-closer → CTA → notes
+ *   → testimonials.
  *
  * The form is rendered as static HTML — Stripe integration is out of
  * scope. The submit no-ops until backend wiring is added.
@@ -58,9 +56,6 @@ if ( empty( $checklist ) ) {
         array( 'text' => "Personal implementation guarantee — go through the system, follow the steps, and if you're still stuck I'll personally walk you through it one-on-one." ),
     );
 }
-
-/* Left column — bold closer line under checklist */
-$left_closer = gh_field( 'service_pb_checkout_left_closer', 'Ealing did it. Superior did it. Puri did it. National chains spent millions. They spent £1,995.' );
 
 /* Left column — testimonials */
 $testimonials = get_field( 'service_pb_checkout_testimonials' );
@@ -202,11 +197,6 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
                     </article>
                 <?php endforeach; ?>
             </div>
-        <?php endif; ?>
-
-        <!-- ─── Left-column bold closer (desktop bottom-left, mobile after checklist) ─── -->
-        <?php if ( $left_closer ) : ?>
-            <p class="svc-pb-checkout-left-closer"><?php echo esc_html( $left_closer ); ?></p>
         <?php endif; ?>
 
         <!-- ─── Right column: pricing card + form + CTA + notes ─── -->

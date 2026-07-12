@@ -2570,10 +2570,9 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
  *   intro        right
  *   checklist    right
  *   testimonials right
- *   left-closer  right
  *
  * Mobile single column re-orders so the right column (pricing +
- * form + CTA + notes) lands between left-closer and testimonials.
+ * form + CTA + notes) lands between checklist and testimonials.
  */
 .svc-pb-checkout {
   background: linear-gradient(135deg, #fef7ed 0%, #fdf4e8 25%, #fef9f3 50%, #f0fdf9 75%, #ecfdf5 100%);
@@ -2598,15 +2597,13 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
   grid-template-areas:
     "intro        right"
     "checklist    right"
-    "testimonials right"
-    "left-closer  right";
+    "testimonials right";
   gap: 3rem;
   align-items: start;
 }
 .svc-pb-checkout-intro        { grid-area: intro; }
 .svc-pb-checkout-checklist    { grid-area: checklist; }
 .svc-pb-checkout-testimonials { grid-area: testimonials; }
-.svc-pb-checkout-left-closer  { grid-area: left-closer; }
 .svc-pb-checkout-right        { grid-area: right; }
 
 /* ─── Intro block ─── */
@@ -2700,15 +2697,6 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
 }
 
 /* ─── Bold closer lines ─── */
-.svc-pb-checkout-left-closer {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-  font-weight: 800;
-  color: #1a2b3c;
-  line-height: 1.45;
-  letter-spacing: -0.015em;
-  margin: 0;
-}
 .svc-pb-checkout-right-closer {
   font-family: 'Inter', sans-serif;
   font-size: 1.125rem;
@@ -2819,7 +2807,6 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
     grid-template-areas:
       "intro"
       "checklist"
-      "left-closer"
       "right"
       "testimonials";
     gap: 2rem;
@@ -2829,7 +2816,6 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
   .svc-pb-checkout-hero-image { margin-top: 1.5rem; margin-bottom: -0.5rem; }
   .svc-pb-checkout-hero-image img { max-height: 240px; }
   .svc-pb-checkout-check-text { font-size: 1rem; line-height: 1.6; }
-  .svc-pb-checkout-left-closer { font-size: 1.125rem; }
   .svc-pb-checkout-card { padding: 2.25rem 1.75rem; }
   .svc-pb-checkout-card-label { font-size: 0.8125rem; margin-bottom: 1.5rem; }
   .svc-pb-checkout-card-divider { margin: 2rem auto; }
