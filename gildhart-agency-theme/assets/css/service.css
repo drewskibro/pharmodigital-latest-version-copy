@@ -2297,8 +2297,8 @@
 }
 .svc-fcp-tst-photo img {
   display: block;
-  width: 54px;
-  height: 54px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(201, 164, 74, 0.55);
