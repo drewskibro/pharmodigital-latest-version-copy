@@ -3077,11 +3077,12 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
 }
 .svc-next-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
+  /* Deep gold — the lighter brand gold washed out on the cream. */
+  color: var(--svc-system-gold-deep, #8B6914);
   margin: 0 0 1rem;
 }
 .svc-next-headline {
@@ -3107,7 +3108,7 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
  * last calm and inevitable. */
 .svc-next-timeline {
   position: relative;
-  max-width: 720px;
+  max-width: 920px;
   margin: 0 auto;
 }
 .svc-next-timeline::before {
@@ -3170,7 +3171,7 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
   color: var(--gray-600);
   line-height: 1.65;
   margin: 0;
-  max-width: 54ch;
+  max-width: 68ch;
 }
 
 /* Closing CTA — forest-green button that turns the timeline's momentum
