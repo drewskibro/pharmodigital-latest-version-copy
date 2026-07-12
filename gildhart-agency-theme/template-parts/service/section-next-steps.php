@@ -29,6 +29,10 @@ $eyebrow     = gh_field( 'service_next_eyebrow',     'Your Timeline' );
 $headline    = gh_field( 'service_next_headline',    'From Purchase to AI Rankings. Exactly as it Happened for Ealing and Superior.' );
 $subheadline = gh_field( 'service_next_subheadline', 'No guesswork. No waiting. This is the exact sequence.' );
 
+// Closing CTA — converts the timeline's momentum into the buy step.
+$cta_label = gh_field( 'service_next_cta_label', 'Get The Playbook — £1,995' );
+$cta_url   = gh_field( 'service_next_cta_url',   '#your-turn' );
+
 $steps = get_field( 'service_next_steps' );
 if ( empty( $steps ) ) {
     $steps = array(
@@ -80,6 +84,15 @@ $step_total = count( $steps );
                         </div>
                     </div>
                 <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ( $cta_label ) : ?>
+            <div class="svc-next-cta">
+                <a href="<?php echo esc_url( $cta_url ); ?>" class="svc-next-cta-btn">
+                    <?php echo esc_html( $cta_label ); ?>
+                    <span class="svc-next-cta-arrow" aria-hidden="true">→</span>
+                </a>
             </div>
         <?php endif; ?>
     </div>
