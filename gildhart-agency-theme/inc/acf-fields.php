@@ -2633,17 +2633,15 @@ acf_add_local_field_group( array(
         array(
             'key' => 'field_gh_service_next_steps', 'label' => 'Timeline Steps', 'name' => 'service_next_steps',
             'type' => 'repeater', 'layout' => 'block', 'min' => 0, 'max' => 12,
-            'instructions' => 'Numbers (1, 2, 3…) auto-render based on row order. Mark the last row "Final Step" for the navy destination card.',
+            'instructions' => 'Compact milestone sequence — keep it to about four steps. Visual weight tapers from the first row (urgent) to the last (calm, inevitable), so order matters.',
             'sub_fields' => array(
                 array( 'key' => 'field_gh_service_next_step_label', 'label' => 'Time Label', 'name' => 'label', 'type' => 'text', 'instructions' => 'e.g. "Today", "This Week", "Day 90".' ),
                 array( 'key' => 'field_gh_service_next_step_title', 'label' => 'Step Title', 'name' => 'title', 'type' => 'text' ),
                 array( 'key' => 'field_gh_service_next_step_text',  'label' => 'Body Text',  'name' => 'text',  'type' => 'textarea', 'rows' => 3 ),
-                array(
-                    'key' => 'field_gh_service_next_step_final', 'label' => 'Final Step (navy card)', 'name' => 'is_final',
-                    'type' => 'true_false', 'default_value' => 0, 'ui' => 1,
-                ),
             ),
         ),
+        array( 'key' => 'field_gh_service_next_cta_label', 'label' => 'Closing CTA — Label', 'name' => 'service_next_cta_label', 'type' => 'text', 'instructions' => 'Button beneath the timeline. Leave empty to hide. The → arrow is added automatically.' ),
+        array( 'key' => 'field_gh_service_next_cta_url',   'label' => 'Closing CTA — URL',   'name' => 'service_next_cta_url',   'type' => 'text', 'instructions' => 'Default: "#your-turn" (scrolls to the checkout on this page).' ),
     ),
     'location' => array( array( array( 'param' => 'post_type', 'operator' => '==', 'value' => 'service' ) ) ),
 ) );
