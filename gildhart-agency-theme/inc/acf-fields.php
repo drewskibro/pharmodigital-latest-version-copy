@@ -2573,7 +2573,6 @@ acf_add_local_field_group( array(
         ),
 
         /* Left column — bold closer */
-        array( 'key' => 'field_gh_service_pb_checkout_left_closer', 'label' => 'Left-column Bold Closer', 'name' => 'service_pb_checkout_left_closer', 'type' => 'textarea', 'rows' => 2 ),
 
         /* Left column — testimonials */
         array(
