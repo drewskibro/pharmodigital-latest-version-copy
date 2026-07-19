@@ -2182,7 +2182,7 @@ if ( ! function_exists( 'gh_service_system_default_modules' ) ) {
                 'badge'            => 0,
                 'label'            => "What's Inside — 03",
                 'title'            => 'Pre-Built Healthcare Knowledge Base',
-                'subtitle'         => 'GPhC, GMC, GDC and CQC aware. Before you write a word.',
+                'subtitle'         => 'GPhC and GMC aware. Before you write a word.',
                 'body'             => 'The verified clinical knowledge base we use across every practice — vaccines, services, destinations, compliance rules. Real pharmacists. Real GPhC numbers. Real prices. Nothing invented. Your Cowork Project starts from a foundation that took months to build. You inherit it on day one.',
                 'stat_value'       => '',
                 'stat_descriptor'  => '',
@@ -2291,6 +2291,7 @@ acf_add_local_field_group( array(
             'instructions'  => 'Centred under the subhead. Recommended max width 300px.',
         ),
         array( 'key' => 'field_gh_system_intro_eyebrow', 'label' => 'Intro — Eyebrow', 'name' => 'system_intro_eyebrow', 'type' => 'text', 'instructions' => 'Gold caps label above the intro paragraph, e.g. "Everything You Get". Sits between the header and the cards.' ),
+        array( 'key' => 'field_gh_system_intro_lead', 'label' => 'Intro — Lead Line', 'name' => 'system_intro_lead', 'type' => 'textarea', 'rows' => 3, 'instructions' => 'The weighted reassurance line shown first, above the setup paragraph — the "it remembers / you just approve and let it run" promise. Leave empty to hide.' ),
         array( 'key' => 'field_gh_system_intro_body', 'label' => 'Intro — Paragraph', 'name' => 'system_intro_body', 'type' => 'textarea', 'rows' => 5, 'instructions' => 'Centred lead paragraph (max 780px) that frames what the buyer is getting, before the card grid begins. Leave empty to hide.' ),
         array(
             'key' => 'field_gh_service_wyg_modules', 'label' => 'Cards', 'name' => 'service_what_you_get_modules',
@@ -2572,7 +2573,9 @@ acf_add_local_field_group( array(
             ),
         ),
 
-        /* Left column — bold closer */
+        /* Left column — control / compliance promise */
+        array( 'key' => 'field_gh_service_pb_checkout_control_title', 'label' => 'Control Promise — Title', 'name' => 'service_pb_checkout_control_title', 'type' => 'text', 'instructions' => 'Bordered reassurance block below the checklist. Leave title and body empty to hide.' ),
+        array( 'key' => 'field_gh_service_pb_checkout_control_body',  'label' => 'Control Promise — Body',  'name' => 'service_pb_checkout_control_body',  'type' => 'textarea', 'rows' => 4 ),
 
         /* Left column — testimonials */
         array(

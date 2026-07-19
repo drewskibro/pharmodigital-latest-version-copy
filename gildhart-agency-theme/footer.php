@@ -112,7 +112,7 @@ $linkedin_company = gh_option( 'social_linkedin', 'https://linkedin.com/company/
         </div>
 
         <div class="footer-bottom">
-            <p class="footer-compliance">All systems and content produced to GPhC, GMC, GDC, and CQC regulatory standards.</p>
+            <p class="footer-compliance">All systems and content produced to GPhC and GMC regulatory standards.</p>
             <p class="footer-copyright"><?php echo esc_html( $copyright ); ?></p>
             <?php if ( ! empty( $legal_links ) ) : ?>
                 <div class="footer-legal">

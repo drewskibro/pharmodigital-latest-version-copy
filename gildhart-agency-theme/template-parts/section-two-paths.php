@@ -56,7 +56,7 @@ if ( empty( $cards ) ) {
             'features'     => array(
                 array( 'text' => 'Custom-built website on Claude Code' ),
                 array( 'text' => 'Pillar Domination Framework™ deployed across every service' ),
-                array( 'text' => 'GPhC / GMC / CQC compliant throughout' ),
+                array( 'text' => 'GPhC / GMC compliant throughout' ),
                 array( 'text' => '12 months hosting + technical support' ),
                 array( 'text' => 'Scoped to your services and your market' ),
             ),

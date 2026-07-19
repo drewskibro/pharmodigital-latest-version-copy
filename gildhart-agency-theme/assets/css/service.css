@@ -1880,6 +1880,21 @@
   color: var(--svc-system-gold-deep, #8B6914);
   margin: 0 0 1.25rem;
 }
+/* Lead reassurance line — elevated above the setup paragraph so the
+ * non-technical buyer meets the "you just approve and let it run"
+ * promise first. Larger, forest-green, with a gold rule beneath. */
+.svc-system-intro-lead {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.375rem, 2.2vw, 1.625rem);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--gildhart-forest, #1E3D2F);
+  margin: 0 auto 1.75rem;
+  padding-bottom: 1.75rem;
+  max-width: 680px;
+  border-bottom: 1px solid rgba(201, 164, 74, 0.4);
+}
 .svc-system-intro-body {
   font-family: 'Inter', sans-serif;
   font-size: 1.1875rem;
@@ -1997,6 +2012,7 @@
   .svc-system-module--wide .svc-system-module-inner { max-width: none; }
   .svc-system-intro { margin-bottom: 3rem; }
   .svc-system-intro-eyebrow { font-size: 0.75rem; letter-spacing: 0.18em; }
+  .svc-system-intro-lead { font-size: 1.25rem; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
   .svc-system-intro-body { font-size: 1.0625rem; line-height: 1.7; }
   .svc-system-module--closer .svc-system-module-inner {
     padding: 2.25rem 1.75rem 2rem;
@@ -2597,14 +2613,45 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
   grid-template-areas:
     "intro        right"
     "checklist    right"
+    "control      right"
     "testimonials right";
   gap: 3rem;
   align-items: start;
 }
 .svc-pb-checkout-intro        { grid-area: intro; }
 .svc-pb-checkout-checklist    { grid-area: checklist; }
+.svc-pb-checkout-control      { grid-area: control; }
 .svc-pb-checkout-testimonials { grid-area: testimonials; }
 .svc-pb-checkout-right        { grid-area: right; }
+
+/* Control / compliance promise — a quiet-confident bordered block that
+ * answers the "the AI fabricates a clinical claim and I'm liable" fear
+ * right at the buy decision. Forest-green rule, cream ground. */
+.svc-pb-checkout-control {
+  border: 1px solid rgba(30, 61, 47, 0.18);
+  border-left: 4px solid var(--gildhart-green);
+  border-radius: 12px;
+  background: rgba(30, 61, 47, 0.03);
+  padding: 1.5rem 1.75rem;
+}
+.svc-pb-checkout-control-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.6rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--gildhart-forest, #1E3D2F);
+}
+.svc-pb-checkout-control-icon { font-size: 1.05rem; }
+.svc-pb-checkout-control-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--gray-700, #3a3a38);
+}
 
 /* ─── Intro block ─── */
 .svc-pb-checkout-eyebrow {
@@ -2807,6 +2854,7 @@ a.featured-cta-card:hover .featured-cta-link::after { transform: translateX(3px)
     grid-template-areas:
       "intro"
       "checklist"
+      "control"
       "right"
       "testimonials";
     gap: 2rem;

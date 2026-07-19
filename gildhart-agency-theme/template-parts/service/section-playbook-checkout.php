@@ -50,7 +50,7 @@ if ( empty( $checklist ) ) {
     $checklist = array(
         array( 'text' => 'The exact content architecture that got Ealing to #1 in Google AI Overviews — copy-paste ready.' ),
         array( 'text' => "Every Claude Skill we use across 50+ practices — built, tested, yours in minutes." ),
-        array( 'text' => 'Pre-built healthcare knowledge base — installed into Cowork before you start. GPhC, GMC, GDC, and CQC compliant.' ),
+        array( 'text' => 'Pre-built healthcare knowledge base — installed into Cowork before you start. GPhC and GMC compliant.' ),
         array( 'text' => 'Monthly strategy calls — so your system evolves as AI platforms evolve.' ),
         array( 'text' => 'Lifetime access — deploy across one practice or fifty, no extra cost.' ),
         array( 'text' => "Personal implementation guarantee — go through the system, follow the steps, and if you're still stuck I'll personally walk you through it one-on-one." ),
@@ -106,6 +106,12 @@ $secure_note  = gh_field( 'service_pb_checkout_secure_note',  'Payments processe
 // there are no "you said no fees" surprises after purchase.
 $prereq_note  = gh_field( 'service_pb_checkout_prereq_note',  'One-time payment to us — you own it forever. Runs on your own Claude subscription (~£17/mo), which we set up for you in Module 1. That\'s the only ongoing cost.' );
 $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice that's live right now started exactly where you are." );
+
+// Control / compliance promise — consolidates the scattered "you stay in
+// control / nothing goes live without you / nothing invented" claims into
+// one direct answer to the GPhC/GMC liability fear, at the buy decision.
+$control_title = gh_field( 'service_pb_checkout_control_title', 'You Stay In Control. Always.' );
+$control_body  = gh_field( 'service_pb_checkout_control_body',  'Nothing goes live without you — every piece lands behind a human sign-off gate, and you approve before the world sees it. The system draws only from your verified clinical knowledge base: real sources, real numbers, nothing invented. Full automation. Zero loss of control.' );
 ?>
 
 <section class="svc-pb-checkout" id="your-turn">
@@ -154,6 +160,21 @@ $joining_note = gh_field( 'service_pb_checkout_joining_note', "Every practice th
                     </li>
                 <?php endforeach; ?>
             </ul>
+        <?php endif; ?>
+
+        <!-- ─── Control / compliance promise (left, below checklist) ─── -->
+        <?php if ( $control_title || $control_body ) : ?>
+            <div class="svc-pb-checkout-control">
+                <?php if ( $control_title ) : ?>
+                    <p class="svc-pb-checkout-control-title">
+                        <span class="svc-pb-checkout-control-icon" aria-hidden="true">🛡</span>
+                        <?php echo esc_html( $control_title ); ?>
+                    </p>
+                <?php endif; ?>
+                <?php if ( $control_body ) : ?>
+                    <p class="svc-pb-checkout-control-body"><?php echo esc_html( $control_body ); ?></p>
+                <?php endif; ?>
+            </div>
         <?php endif; ?>
 
         <!-- ─── Testimonials (left, below checklist on desktop) ─── -->
