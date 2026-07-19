@@ -41,10 +41,12 @@ $subheadline = gh_field( 'service_what_you_get_subheadline', "Ealing, Superior, 
 // Header "Built with Claude" badge — centred under the subhead.
 $built_with_id = (int) get_field( 'system_built_with_claude_badge' );
 
-// Intro block — gold eyebrow + centred lead paragraph between the
-// header and the card grid, framing what the buyer is getting.
+// Intro block — gold eyebrow + a weighted lead line (the reassurance
+// promise, elevated out of the paragraph so a non-technical buyer meets
+// it first) + the setup paragraph, between the header and the cards.
 $intro_eyebrow = gh_field( 'system_intro_eyebrow', 'Everything You Get' );
-$intro_body    = gh_field( 'system_intro_body', "This isn't a watch-and-hope course. We set up a dedicated Cowork Project on your computer for you — your clinical knowledge base loaded, your content system configured, your practice instructions written in before you run a single task — then five short modules and the monthly calls show you exactly how to run it. Every week, Claude works through your content autonomously inside that workspace: writing, structuring, publishing directly to your site. It remembers where it left off. It knows your services, your pricing, your compliance requirements. You don't explain yourself every time. You just approve what it produces and let it run." );
+$intro_lead    = gh_field( 'system_intro_lead', "It remembers where it left off. It knows your services, your pricing, your compliance requirements. You don't explain yourself every time. You just approve what it produces and let it run." );
+$intro_body    = gh_field( 'system_intro_body', "This isn't a watch-and-hope course. We set up a dedicated Cowork Project on your computer for you — your clinical knowledge base loaded, your content system configured, your practice instructions written in before you run a single task — then five short modules and the monthly calls show you exactly how to run it. Every week, Claude works through your content autonomously inside that workspace: writing, structuring, publishing directly to your site." );
 
 $modules = get_field( 'service_what_you_get_modules' );
 if ( empty( $modules ) && function_exists( 'gh_service_system_default_modules' ) ) {
@@ -89,6 +91,9 @@ $orphan_index = ( count( $non_closer_indices ) % 2 === 1 ) ? (int) end( $non_clo
             <div class="svc-system-intro">
                 <?php if ( $intro_eyebrow ) : ?>
                     <p class="svc-system-intro-eyebrow"><?php echo esc_html( $intro_eyebrow ); ?></p>
+                <?php endif; ?>
+                <?php if ( $intro_lead ) : ?>
+                    <p class="svc-system-intro-lead"><?php echo esc_html( $intro_lead ); ?></p>
                 <?php endif; ?>
                 <?php if ( $intro_body ) : ?>
                     <p class="svc-system-intro-body"><?php echo esc_html( $intro_body ); ?></p>

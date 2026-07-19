@@ -49,8 +49,8 @@ if ( empty( $steps ) ) {
         ),
         array(
             'title'       => "Build the Content That Makes Them Call Before They've Even Met You",
-            'text'        => "Sachin didn't close the IVF clinic. His content did — content he built using the Playbook. An IVF referral coordinator read a blog post about Zika testing and decided he was the specialist. That's what the right content does — it sells without selling. You'll learn the exact formats that AI platforms trust, that patients read for 6 minutes instead of 30 seconds, and that turn a search into a booked appointment.",
-            'text_mobile' => "Sachin didn't close the IVF clinic. His content did. This step covers the exact formats that AI platforms trust — content patients read for 6 minutes instead of 30 seconds, that turns a search into a booked appointment.",
+            'text'        => "Ealing went from invisible to above Boots in six weeks — no ads, no agency, no cold outreach. The content did it. It's the same reason an IVF referral coordinator found Sachin through a blog post and started sending patients: the right content sells without selling. You'll learn the exact formats that AI platforms trust, that patients read for 6 minutes instead of 30 seconds, and that turn a search into a booked appointment.",
+            'text_mobile' => "Ealing went from invisible to above Boots in six weeks — no ads, no agency. The content did it. This step covers the exact formats that AI platforms trust — content patients read for 6 minutes instead of 30 seconds, that turns a search into a booked appointment.",
             'proof_pill'  => 'Ealing Travel Clinic: avg. 6m 40s session duration',
             'image'       => 0,
             'mobile_image' => 0,
