@@ -394,8 +394,14 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: calc(1rem + var(--nav-h, 130px)) 1.5rem 4rem;
+    padding: calc(2.25rem + var(--nav-h, 130px)) 1.5rem 4rem;
     min-height: auto;
+    margin-top: 0;
+  }
+  /* Desktop pulls the eyebrow up 1.5rem to tighten it under the nav,
+   * but mobile's smaller top padding can't absorb that — it collided
+   * with the fixed header. Reset the negative margin here. */
+  .hero-eyebrow {
     margin-top: 0;
   }
   .hero-inner {
