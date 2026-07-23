@@ -128,8 +128,26 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                 <h2 class="svc-ps-headline"><?php echo esc_html( $headline ); ?></h2>
             <?php endif; ?>
 
-            <?php if ( $intro ) : ?>
-                <p class="svc-ps-intro"><?php echo esc_html( $intro ); ?></p>
+            <?php if ( $intro ) :
+                // Break the dense intro into one-sentence lines so it
+                // scans line by line instead of reading as a wall — the
+                // copy is already short declarative statements. Split on a
+                // sentence terminator followed by whitespace; the "4.4"
+                // figure has no trailing space so it stays intact. Then
+                // lift the key proof stat into a gold accent.
+                $intro_lines = array_values( array_filter( array_map( 'trim', preg_split( '/(?<=[.!?])\s+/', $intro ) ) ) );
+                ?>
+                <div class="svc-ps-intro">
+                    <?php foreach ( $intro_lines as $intro_line ) :
+                        $intro_line_html = preg_replace(
+                            '/(4\.4 times better than Google organic visitors)/',
+                            '<strong class="svc-ps-intro-mark">$1</strong>',
+                            esc_html( $intro_line )
+                        );
+                        ?>
+                        <p class="svc-ps-intro-line"><?php echo $intro_line_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — pre-escaped; only the trusted gold-mark span is injected ?></p>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
 
             <?php if ( $narrative_image_id ) : ?>

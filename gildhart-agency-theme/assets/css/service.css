@@ -456,15 +456,26 @@
   transform: translateY(0);
 }
 .svc-ps-intro {
-  font-size: 1.1875rem;
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.8;
   margin: 0 0 3.5rem;
-  max-width: 640px;
-  letter-spacing: 0.005em;
+  max-width: 600px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+/* Each sentence on its own line with air between, so the dense
+ * paragraph scans line by line instead of reading as a wall. */
+.svc-ps-intro-line {
+  font-size: 1.1875rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  margin: 0 0 0.9rem;
+}
+.svc-ps-intro-line:last-child { margin-bottom: 0; }
+/* The proof stat — lifted into gold so the eye lands on it. */
+.svc-ps-intro-mark {
+  color: var(--gildhart-gold);
+  font-weight: 700;
 }
 .svc-ps-intro.is-visible {
   opacity: 1;
@@ -876,7 +887,8 @@
 @media (max-width: 768px) {
   .svc-problem-shift { padding: 3.5rem 1.25rem; }
   .svc-ps-headline { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.25rem; }
-  .svc-ps-intro { font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+  .svc-ps-intro { margin-bottom: 2.5rem; }
+  .svc-ps-intro-line { font-size: 1rem; line-height: 1.55; margin-bottom: 0.8rem; }
   .svc-ps-narrative-hero { margin-bottom: 2.5rem; }
   .svc-ps-narrative-hero-image { border-radius: 12px; }
   .svc-ps-narrative {
