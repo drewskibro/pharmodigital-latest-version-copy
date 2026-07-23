@@ -1832,12 +1832,40 @@
   box-shadow: 0 6px 22px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
   overflow: hidden;
   display: flex;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 .svc-system-module:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 38px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
   border-color: rgba(201, 164, 74, 0.65);
+}
+/* Big ghosted number — a consistent per-card accent (replaces the
+ * uneven per-card badges) that adds hierarchy and reinforces the
+ * 01–06 sequence without competing with the label. Outlined gold,
+ * sits behind the content in the top-right. */
+.svc-system-module-num {
+  position: absolute;
+  top: 0.25rem;
+  right: 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(201, 164, 74, 0.38);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+/* Content sits above the ghost number. */
+.svc-system-module-inner { position: relative; z-index: 1; }
+/* Scroll reveal — each card fades up as it enters view (natural
+ * cascade in the 2-up grid). Gated on motion preference; svcReveal
+ * falls back to adding .is-visible immediately without JS/IO. */
+@media (prefers-reduced-motion: no-preference) {
+  .svc-system-module { opacity: 0; transform: translateY(24px); }
+  .svc-system-module.is-visible { opacity: 1; transform: translateY(0); }
 }
 .svc-system-module-inner {
   padding: 2.5rem 2rem 2.25rem;

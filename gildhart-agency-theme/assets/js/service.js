@@ -63,6 +63,9 @@
   reveal('.svc-next-timeline', 'is-active', { threshold: 0.15 });
   reveal('.svc-next-step', 'is-visible', { threshold: 0.25, rootMargin: '0px 0px -50px 0px' });
 
+  // ── The System "What's Inside" cards — fade each up as it scrolls in.
+  reveal('.svc-system-module', 'is-visible', { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
   // ── S2: Method — reveal each step + sync active state ─────────
   // The first step is rendered .is-active by PHP. As the user scrolls,
   // whichever step's circle is closest to the top of the viewport (below
