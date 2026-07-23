@@ -112,14 +112,6 @@ $orphan_index = ( count( $non_closer_indices ) % 2 === 1 ) ? (int) end( $non_clo
                     $stat_descriptor = $module['stat_descriptor'] ?? '';
                     $is_closer       = ! empty( $module['is_closer'] );
                     $card_pos        = $i + 1;
-                    $badge_id        = (int) ( $module['badge'] ?? 0 );
-                    // Legacy fallback: badges used to live in top-level
-                    // positional fields (system_card_0X_badge). Honour any
-                    // set before the badge moved into the repeater, until
-                    // the card is re-saved with its own badge.
-                    if ( ! $badge_id && $card_pos <= 5 ) {
-                        $badge_id = (int) get_post_meta( get_the_ID(), 'system_card_0' . $card_pos . '_badge', true );
-                    }
                     if ( ! $title && ! $body ) continue;
                     $card_class = 'svc-system-module';
                     if ( $is_closer ) {
@@ -128,16 +120,11 @@ $orphan_index = ( count( $non_closer_indices ) % 2 === 1 ) ? (int) end( $non_clo
                         $card_class .= ' svc-system-module--wide';
                     }
                     ?>
-                    <article class="<?php echo esc_attr( $card_class ); ?>">
+                    <article class="<?php echo esc_attr( $card_class ); ?>" style="--i: <?php echo (int) $i; ?>;">
+                        <?php if ( ! $is_closer ) : ?>
+                            <span class="svc-system-module-num" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $card_pos ) ); ?></span>
+                        <?php endif; ?>
                         <div class="svc-system-module-inner">
-                            <?php if ( $badge_id ) : ?>
-                                <div class="svc-system-module-badge">
-                                    <?php echo wp_get_attachment_image( $badge_id, 'large', false, array(
-                                        'alt'     => esc_attr( $title ),
-                                        'loading' => 'lazy',
-                                    ) ); ?>
-                                </div>
-                            <?php endif; ?>
                             <?php if ( $label ) : ?>
                                 <span class="svc-system-module-label"><?php echo esc_html( $label ); ?></span>
                             <?php endif; ?>
