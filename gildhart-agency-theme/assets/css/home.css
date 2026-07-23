@@ -189,18 +189,21 @@
 }
 .hero-stat-label {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--gildhart-gold);
+  /* Deep gold (#8B6914) — the lighter brand gold washed out at this
+   * small size on the cream hero. (service.css's --svc-system-gold-deep
+   * token isn't loaded on the homepage, so the hex is inline.) */
+  color: #8B6914;
   margin: 0;
   /* Wider cap (22ch up from 14ch) lets longer sentence-style labels
    * like "ONE PHARMACY. NO AD SPEND." wrap to two lines instead of
    * four. Combined with align-items: end on the grid above, the
    * values stay on a clean baseline below regardless of label height. */
   max-width: 22ch;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 .hero-stat-value {
   font-family: 'Inter', sans-serif;
@@ -316,11 +319,14 @@
 }
 .logo-bar-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  /* Matched to the Playbook's .svc-logo-bar-label, which reads crisply:
+   * bigger, heavier, tighter tracking, and a dark navy that holds
+   * contrast on the peach band where the forest green receded. */
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gildhart-green);
+  color: rgba(15, 23, 42, 0.85);
   margin: 0;
 }
 
@@ -2226,8 +2232,8 @@ a.featured-cta-card:hover .featured-cta-link::after {
     line-height: 1;
   }
   .hero-stat-label {
-    font-size: 0.6875rem;
-    letter-spacing: 0.18em;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
     max-width: 22ch;
     margin: 0.4rem auto 0;
   }
