@@ -78,7 +78,7 @@ $case_studies_query = new WP_Query( array(
 
             <?php if ( $services_query->have_posts() ) : ?>
             <div class="nav-dropdown">
-                <button class="nav-dropdown-trigger" type="button">Our Work <span class="dd-arrow">▼</span></button>
+                <button class="nav-dropdown-trigger" type="button">The Infrastructure <span class="dd-arrow">▼</span></button>
                 <div class="nav-dropdown-menu">
                     <?php while ( $services_query->have_posts() ) : $services_query->the_post();
                         $sub = gh_field( 'service_nav_subtitle' );
@@ -156,7 +156,7 @@ $case_studies_query = new WP_Query( array(
         if ( $services_query_m->have_posts() ) :
         ?>
         <button class="mobile-nav-section-trigger" data-accordion type="button">
-            Our Work <span class="mobile-dd-arrow">▾</span>
+            The Infrastructure <span class="mobile-dd-arrow">▾</span>
         </button>
         <div class="mobile-dd-panel">
             <?php while ( $services_query_m->have_posts() ) : $services_query_m->the_post();
