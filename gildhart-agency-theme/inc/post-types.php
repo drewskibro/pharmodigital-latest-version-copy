@@ -380,8 +380,13 @@ function gildhart_service_defaults_by_slug() {
 function gildhart_service_section_roster( $slug ) {
     $rosters = array(
         'the-playbook' => array(
+            // The Window (early-buyers) sits directly above Method: it's the
+            // "why now / the window is closing" urgency beat, so it motivates
+            // the mechanism that follows rather than re-raising urgency late.
+            // It also hands off bright-cream → navy Method as a deliberate
+            // light-to-dark pivot.
             'hero', 'logo-bar', 'problem-shift', 'proof-cases', 'featured-case-study', 'cta',
-            'method', 'what-you-get', 'medihub-testimonial', 'early-buyers', 'fluclinic-proof', 'playbook-checkout',
+            'early-buyers', 'method', 'what-you-get', 'medihub-testimonial', 'fluclinic-proof', 'playbook-checkout',
             'next-steps', 'faq', 'cta', 'guarantee',
         ),
         'the-agent' => array(
