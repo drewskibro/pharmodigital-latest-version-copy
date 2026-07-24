@@ -58,13 +58,44 @@ $window_closer = gh_field( 'service_offer_window_closer', 'The practices moving 
                 <div class="svc-offer-window-body">
                     <?php foreach ( $window_paras as $para ) :
                         $text = $para['text'] ?? '';
-                        if ( ! $text ) continue; ?>
-                        <p><?php echo wp_kses_post( $text ); ?></p>
+                        if ( ! $text ) continue;
+
+                        // Sanitise any editor HTML first, then lift the copy's
+                        // own hooks so the argument has anchors instead of
+                        // reading as a flat wall:
+                        //   · concrete proof — a bare number + time unit
+                        //     ("6 weeks", "48 hours") — pulled into gold, the
+                        //     same accent the 4.4x stat gets in The Shift.
+                        //   · the reframe line "It picks one." — the whole
+                        //     pitch in three words — set in bold navy.
+                        // Both patterns no-op silently when the live copy
+                        // doesn't contain them, so editors stay free.
+                        $html = wp_kses_post( $text );
+                        $html = preg_replace(
+                            '/(\b\d+\s?(?:hours?|days?|weeks?|months?)\b)/i',
+                            '<strong class="svc-offer-mark">$1</strong>',
+                            $html
+                        );
+                        $html = preg_replace(
+                            '/(It picks one\.)/',
+                            '<strong class="svc-offer-punch">$1</strong>',
+                            $html
+                        );
+                        ?>
+                        <p><?php echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — wp_kses_post'd above; only trusted accent spans injected ?></p>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
-            <?php if ( $window_closer ) : ?>
-                <p class="svc-offer-window-closer"><?php echo esc_html( $window_closer ); ?></p>
+            <?php if ( $window_closer ) :
+                // The verdict. Lift the ownership phrase into gold so the
+                // stamp lands on its sharpest word.
+                $closer_html = preg_replace(
+                    '/(own the shortlist)/i',
+                    '<strong class="svc-offer-closer-mark">$1</strong>',
+                    esc_html( $window_closer )
+                );
+                ?>
+                <p class="svc-offer-window-closer"><?php echo $closer_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — esc_html'd above; only trusted gold mark injected ?></p>
             <?php endif; ?>
         </div>
     </div>

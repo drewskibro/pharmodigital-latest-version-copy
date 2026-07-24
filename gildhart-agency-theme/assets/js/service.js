@@ -56,6 +56,9 @@
   reveal('.svc-ps-narrative', 'is-visible', { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   reveal('.svc-ps-card', 'is-visible', { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
 
+  // ── S4: The Window — card + verdict stamp fade up on entry ─────
+  reveal('.svc-offer-window-body, .svc-offer-window-closer', 'is-visible', { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
   // ── Next Steps timeline — draw the line, then pop each step in ──
   // The container gets .is-active to draw the vertical line; each step
   // gets .is-visible to fade up + pop its node (staggered via the --i
