@@ -440,13 +440,13 @@
 }
 .svc-ps-headline {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
-  font-weight: 700;
+  font-size: clamp(2.125rem, 4vw, 3.125rem);
+  font-weight: 800;
   color: white;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin: 0 0 1.75rem;
-  max-width: 780px;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  margin: 0 0 2rem;
+  max-width: 820px;
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
@@ -457,29 +457,84 @@
 }
 .svc-ps-intro {
   margin: 0 0 3.5rem;
-  max-width: 600px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+  max-width: 680px;
 }
 /* Each sentence on its own line with air between, so the dense
- * paragraph scans line by line instead of reading as a wall. */
+ * paragraph scans line by line instead of reading as a wall. Lines
+ * stagger up one after another once the block enters view — each keys
+ * its delay off the inline --i index the template stamps on it, so the
+ * argument builds beat by beat rather than arriving all at once. */
 .svc-ps-intro-line {
-  font-size: 1.1875rem;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.3125rem;
+  color: rgba(255, 255, 255, 0.86);
   line-height: 1.5;
   letter-spacing: 0.005em;
-  margin: 0 0 0.9rem;
+  margin: 0 0 1.15rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(0.12s + var(--i, 0) * 0.09s);
 }
 .svc-ps-intro-line:last-child { margin-bottom: 0; }
+.svc-ps-intro.is-visible .svc-ps-intro-line {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The opening stake — larger and brighter, it sets the terms before
+ * the argument gets going. */
+.svc-ps-intro-line.is-lead {
+  font-size: clamp(1.5rem, 2.6vw, 1.875rem);
+  line-height: 1.32;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.6rem;
+}
+
+/* The "Every week…" drumbeat pair — sat together behind a gold rule so
+ * the anaphora reads as a ticking clock rather than two loose lines. */
+.svc-ps-intro-line.is-beat {
+  padding-left: 1.15rem;
+  border-left: 2px solid rgba(201, 164, 74, 0.4);
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 0.5rem;
+}
+.svc-ps-intro-line.is-beat + .svc-ps-intro-line.is-beat {
+  margin-bottom: 1.6rem;
+}
+.svc-ps-intro-tick {
+  color: var(--gildhart-gold);
+  font-weight: 700;
+}
+
+/* The payoff — the eye should land here last and hard. Bigger, bright,
+ * a gold left tick to punctuate the close of the argument. */
+.svc-ps-intro-line.is-closer {
+  font-size: clamp(1.375rem, 2.2vw, 1.6875rem);
+  line-height: 1.4;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.005em;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--gildhart-gold);
+  margin-top: 2rem;
+}
+
 /* The proof stat — lifted into gold so the eye lands on it. */
 .svc-ps-intro-mark {
   color: var(--gildhart-gold);
   font-weight: 700;
 }
-.svc-ps-intro.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-ps-intro-line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Editorial narrative — premium cream card lifted off the dark navy
@@ -886,9 +941,12 @@
 
 @media (max-width: 768px) {
   .svc-problem-shift { padding: 3.5rem 1.25rem; }
-  .svc-ps-headline { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.25rem; }
+  .svc-ps-headline { font-size: clamp(1.75rem, 7vw, 2.25rem); margin-bottom: 1.5rem; }
   .svc-ps-intro { margin-bottom: 2.5rem; }
-  .svc-ps-intro-line { font-size: 1rem; line-height: 1.55; margin-bottom: 0.8rem; }
+  .svc-ps-intro-line { font-size: 1.0625rem; line-height: 1.5; margin-bottom: 0.95rem; }
+  .svc-ps-intro-line.is-lead { margin-bottom: 1.25rem; }
+  .svc-ps-intro-line.is-beat { padding-left: 0.9rem; }
+  .svc-ps-intro-line.is-closer { margin-top: 1.5rem; padding-left: 1rem; }
   .svc-ps-narrative-hero { margin-bottom: 2.5rem; }
   .svc-ps-narrative-hero-image { border-radius: 12px; }
   .svc-ps-narrative {

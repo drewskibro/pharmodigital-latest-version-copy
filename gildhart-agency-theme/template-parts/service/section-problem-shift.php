@@ -133,19 +133,49 @@ $strip_cta_url  = gh_field( 'service_problem_shift_strip_cta_url',   '#buy-now' 
                 // scans line by line instead of reading as a wall — the
                 // copy is already short declarative statements. Split on a
                 // sentence terminator followed by whitespace; the "4.4"
-                // figure has no trailing space so it stays intact. Then
-                // lift the key proof stat into a gold accent.
+                // figure has no trailing space so it stays intact.
                 $intro_lines = array_values( array_filter( array_map( 'trim', preg_split( '/(?<=[.!?])\s+/', $intro ) ) ) );
+                $intro_last  = count( $intro_lines ) - 1;
                 ?>
                 <div class="svc-ps-intro">
-                    <?php foreach ( $intro_lines as $intro_line ) :
+                    <?php foreach ( $intro_lines as $i => $intro_line ) :
+                        // Editorial roles derived from position + copy so the
+                        // block reads as one argument instead of a flat list:
+                        //   · lead   — the opening stake (first line)
+                        //   · beat   — the "Every week…" anaphora, a drumbeat
+                        //   · closer — the payoff (last line), landed with weight
+                        $line_classes = array( 'svc-ps-intro-line' );
+                        $is_beat = ( 0 === stripos( $intro_line, 'Every week' ) );
+
+                        if ( 0 === $i ) {
+                            $line_classes[] = 'is-lead';
+                        } elseif ( $i === $intro_last ) {
+                            $line_classes[] = 'is-closer';
+                        }
+                        if ( $is_beat ) {
+                            $line_classes[] = 'is-beat';
+                        }
+
+                        $intro_line_html = esc_html( $intro_line );
+
+                        // Lift the key proof stat into a gold accent.
                         $intro_line_html = preg_replace(
                             '/(4\.4 times better than Google organic visitors)/',
                             '<strong class="svc-ps-intro-mark">$1</strong>',
-                            esc_html( $intro_line )
+                            $intro_line_html
                         );
+
+                        // Drum the repeated "Every week" opener in gold so the
+                        // anaphora reads as a ticking clock down the pair.
+                        if ( $is_beat ) {
+                            $intro_line_html = preg_replace(
+                                '/^(Every week)/',
+                                '<span class="svc-ps-intro-tick">$1</span>',
+                                $intro_line_html
+                            );
+                        }
                         ?>
-                        <p class="svc-ps-intro-line"><?php echo $intro_line_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — pre-escaped; only the trusted gold-mark span is injected ?></p>
+                        <p class="<?php echo esc_attr( implode( ' ', $line_classes ) ); ?>" style="--i: <?php echo (int) $i; ?>;"><?php echo $intro_line_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — pre-escaped; only trusted accent spans are injected ?></p>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
